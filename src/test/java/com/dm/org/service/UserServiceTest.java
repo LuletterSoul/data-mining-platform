@@ -1,9 +1,14 @@
 package com.dm.org.service;
 
 
+import com.dm.org.base.BaseServiceInitializer;
+import com.dm.org.model.User;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
 
 
 /**
@@ -18,8 +23,16 @@ import org.junit.After;
  * 
  * @version 1.0
  */
-public class UserServiceTest
+public class UserServiceTest extends BaseServiceInitializer
 {
+
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService)
+    {
+        this.userService = userService;
+    }
 
     @Before
     public void before()
@@ -42,7 +55,7 @@ public class UserServiceTest
     public void testSetUserDao()
         throws Exception
     {
-        // TODO: Test goes here...
+        userService.save();
     }
 
     /**

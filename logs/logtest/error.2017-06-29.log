@@ -1,0 +1,15 @@
+2017-06-29  20:38:29.418 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+2017-06-29  20:38:29.418 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Table 'data_mining.user_info' doesn't exist
+2017-06-29  20:38:29.432 [main] ERROR org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
+2017-06-29  20:47:10.429 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+2017-06-29  20:47:10.430 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Table 'data_mining.user_info' doesn't exist
+2017-06-29  20:47:10.434 [main] ERROR org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
+2017-06-29  20:48:18.522 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+2017-06-29  20:48:18.522 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Table 'data_mining.user_info' doesn't exist
+2017-06-29  20:48:18.530 [main] ERROR org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
+2017-06-29  20:51:09.837 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1366, SQLState: HY000
+2017-06-29  20:51:09.838 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Incorrect string value: '\xE7\x94\xB7' for column 'gender' at row 1
+2017-06-29  20:51:09.848 [main] ERROR org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error during managed flush [org.hibernate.exception.GenericJDBCException: could not execute statement]
+2017-06-29  20:55:01.439 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1366, SQLState: HY000
+2017-06-29  20:55:01.439 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Incorrect string value: '\xE7\x94\xB7' for column 'gender' at row 1
+2017-06-29  20:55:01.449 [main] ERROR org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error during managed flush [org.hibernate.exception.GenericJDBCException: could not execute statement]

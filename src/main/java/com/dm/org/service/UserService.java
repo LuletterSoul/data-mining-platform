@@ -35,8 +35,8 @@ public class UserService
 
     public User save()
     {
-        String randomId=UUID.randomUUID().toString().substring(8);
-        String randomName=UUID.randomUUID().toString().substring(8);
+        String randomId=UUID.randomUUID().toString().substring(0,8);
+        String randomName=UUID.randomUUID().toString().substring(0,8);
         User user = new User(randomId, randomName, "ÄÐ", 100);
         userDao.saveUser(user);
         return user;

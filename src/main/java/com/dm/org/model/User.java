@@ -25,6 +25,10 @@ public class User
 
     private Integer age;
 
+    public User()
+    {
+    }
+
     public User(String userId, String name, String gender, Integer age) {
         this.userId = userId;
         this.name = name;

@@ -40,7 +40,8 @@ public class UserDao
     }
 
     @SuppressWarnings("unchecked")
-    public List<User> getUserList(){
+    public List<User> getUserList()
+    {
         return (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).list();
     }
 
