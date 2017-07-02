@@ -10,13 +10,30 @@
     <properties>
         <!-- spring framework  version control -->
         <spring.version>4.3.9.RELEASE</spring.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
+        <!-- unit test begin -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>LATEST</version>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.8.47</version>
+        </dependency>
+
+        <!-- unit test end -->
+
+        <!-- JSTL tag lib  -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
 
         <dependency>
@@ -30,6 +47,7 @@
             <version>2.1</version>
         </dependency>
 
+        <!-- json support begin -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -41,6 +59,8 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.8.7</version>
         </dependency>
+
+        <!-- json support end -->
 
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -60,6 +80,7 @@
             <version>0.9.1.2</version>
         </dependency>
 
+        <!-- hibernate ORM support  -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -72,7 +93,7 @@
             <version>5.2.4.Final</version>
         </dependency>
 
-
+        <!-- mysql database  -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -160,8 +181,7 @@
         </dependency>
         <!-- spring framework end -->
 
-        <!-- log funtion begin -->
-
+        <!-- log begin -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -177,7 +197,7 @@
             <artifactId>logback-core</artifactId>
             <version>1.1.2</version>
         </dependency>
-        <!-- log funtion end -->
+        <!-- log  end -->
 
         <!-- aspectj weaver begin-->
 
@@ -194,6 +214,7 @@
         </dependency>
         <!-- aspectj weaver end-->
 
+        <!-- google API support -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
