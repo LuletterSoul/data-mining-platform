@@ -1,5 +1,6 @@
 package com.dm.org.base;
 
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * @author ÁõÏéµÂ qq313700046@icloud.com .
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ qq313700046@icloud.com .
  * @date created in  20:26 2017/6/29.
  * @description
  * @modified by:
@@ -21,6 +22,12 @@ import org.springframework.web.context.WebApplicationContext;
 @ContextConfiguration(locations = "classpath:spring-context.xml")
 public class BaseServiceInitializer
 {
-    @Autowired
+
     protected WebApplicationContext webApplicationContext;
+
+    @Autowired
+    public void setWebApplicationContext(WebApplicationContext webApplicationContext)
+    {
+        this.webApplicationContext = webApplicationContext;
+    }
 }

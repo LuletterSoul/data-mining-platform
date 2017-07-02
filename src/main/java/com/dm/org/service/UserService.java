@@ -33,11 +33,11 @@ public class UserService
         return userDao;
     }
 
-    public User save()
+    public User save(User user)
     {
-        String randomId=UUID.randomUUID().toString().substring(0,8);
-        String randomName=UUID.randomUUID().toString().substring(0,8);
-        User user = new User(randomId, randomName, "ÄÐ", 100);
+//        String randomId=UUID.randomUUID().toString().substring(0,8);
+//        String randomName=UUID.randomUUID().toString().substring(0,8);
+//        User user = new User(randomId, randomName, "ÄÐ", 100);
         userDao.saveUser(user);
         return user;
     }
@@ -45,5 +45,10 @@ public class UserService
     public List<User> findAllUsers()
     {
         return userDao.getUserList();
+    }
+
+    public User getUserById(String userId)
+    {
+        return userDao.findByUserId(userId);
     }
 }

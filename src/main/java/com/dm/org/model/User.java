@@ -5,6 +5,8 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -38,6 +40,8 @@ public class User
 
     @Id
     @Column(name = "userId", nullable = false, length = 32)
+    @NotNull
+    @Size(max = 16, min = 8)
     public String getUserId()
     {
         return userId;
@@ -49,6 +53,8 @@ public class User
     }
 
     @Basic
+    @NotNull
+    @Size(max = 16,min = 2)
     @Column(name = "name", nullable = true, length = 32)
     public String getName()
     {
@@ -62,6 +68,7 @@ public class User
 
     @Basic
     @Column(name = "gender", nullable = true, length = 20)
+    @NotNull
     public String getGender()
     {
         return gender;
@@ -74,6 +81,7 @@ public class User
 
     @Basic
     @Column(name = "age", nullable = true)
+    @NotNull
     public Integer getAge()
     {
         return age;

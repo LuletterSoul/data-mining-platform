@@ -55,7 +55,7 @@ public class UserServiceTest extends BaseServiceInitializer
     public void testSetUserDao()
         throws Exception
     {
-        userService.save();
+
     }
 
     /**
