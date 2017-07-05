@@ -12,6 +12,10 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-context.xml</param-value>
