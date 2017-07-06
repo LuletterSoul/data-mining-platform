@@ -29,7 +29,6 @@ public class MethodInvocationInterceptor implements MethodInterceptor
         try
         {
             result = invocation.proceed();
-
             // get current invoked method name
             String methodName = invocation.getThis().toString() + "|"
                                 + invocation.getMethod().getName();

@@ -41,3 +41,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+target/classes/com/dm/org/identifier/EntityIdentifier.class
+target/classes/com/dm/org/utils/HibernateQueryAdapter.class
+target/test-classes/com/dm/org/dao/supprot/DataSetAttributeDaoTest.class
+*.class

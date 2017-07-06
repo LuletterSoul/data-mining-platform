@@ -1,0 +1,380 @@
+2017-07-04  20:50:13.361 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+2017-07-04  20:50:13.399 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-07-04  20:50:13.435 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2017-07-04  20:50:13.437 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2017-07-04  20:50:13.454 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-07-04  20:50:13.454 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-07-04  20:50:13.455 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy34
+2017-07-04  20:50:13.458 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-07-04  20:50:13.459 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via user class loader
+2017-07-04  20:50:13.460 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-07-04  20:50:13.461 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-07-04  20:50:13.461 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-07-04  20:50:15.121 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+2017-07-04  20:50:15.124 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+2017-07-04  20:50:15.133 [main] DEBUG org.hibernate.integrator.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+2017-07-04  20:50:15.417 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.2.10.Final}
+2017-07-04  20:50:15.422 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2017-07-04  20:50:15.494 [main] DEBUG org.hibernate.cfg.Configuration - Building session factory using internal StandardServiceRegistryBuilder
+2017-07-04  20:50:15.508 [main] DEBUG org.hibernate.service.spi.ServiceBinding - Overriding existing service binding [org.hibernate.secure.spi.JaccService]
+2017-07-04  20:50:15.508 [main] DEBUG org.hibernate.cfg.Configuration - Building session factory using provided StandardServiceRegistry
+2017-07-04  20:50:15.541 [main] DEBUG org.hibernate.cache.internal.RegionFactoryInitiator - Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
+2017-07-04  20:50:15.565 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-07-04  20:50:15.613 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration boolean -> org.hibernate.type.BooleanType@a567e72
+2017-07-04  20:50:15.613 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration boolean -> org.hibernate.type.BooleanType@a567e72
+2017-07-04  20:50:15.614 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@a567e72
+2017-07-04  20:50:15.618 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@34b9fc7d
+2017-07-04  20:50:15.621 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration true_false -> org.hibernate.type.TrueFalseType@588ffeb
+2017-07-04  20:50:15.623 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration yes_no -> org.hibernate.type.YesNoType@67ec8477
+2017-07-04  20:50:15.627 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration byte -> org.hibernate.type.ByteType@278f8425
+2017-07-04  20:50:15.628 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration byte -> org.hibernate.type.ByteType@278f8425
+2017-07-04  20:50:15.628 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@278f8425
+2017-07-04  20:50:15.634 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration character -> org.hibernate.type.CharacterType@5eeedb60
+2017-07-04  20:50:15.634 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration char -> org.hibernate.type.CharacterType@5eeedb60
+2017-07-04  20:50:15.634 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@5eeedb60
+2017-07-04  20:50:15.640 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration short -> org.hibernate.type.ShortType@2b9b7f1f
+2017-07-04  20:50:15.643 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration short -> org.hibernate.type.ShortType@2b9b7f1f
+2017-07-04  20:50:15.644 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Short -> org.hibernate.type.ShortType@2b9b7f1f
+2017-07-04  20:50:15.652 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration integer -> org.hibernate.type.IntegerType@5d39f2d8
+2017-07-04  20:50:15.653 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration int -> org.hibernate.type.IntegerType@5d39f2d8
+2017-07-04  20:50:15.654 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@5d39f2d8
+2017-07-04  20:50:15.660 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration long -> org.hibernate.type.LongType@71c905a3
+2017-07-04  20:50:15.661 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration long -> org.hibernate.type.LongType@71c905a3
+2017-07-04  20:50:15.661 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Long -> org.hibernate.type.LongType@71c905a3
+2017-07-04  20:50:15.666 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration float -> org.hibernate.type.FloatType@7fedfe27
+2017-07-04  20:50:15.668 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration float -> org.hibernate.type.FloatType@7fedfe27
+2017-07-04  20:50:15.670 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Float -> org.hibernate.type.FloatType@7fedfe27
+2017-07-04  20:50:15.674 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration double -> org.hibernate.type.DoubleType@2d66530f
+2017-07-04  20:50:15.675 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration double -> org.hibernate.type.DoubleType@2d66530f
+2017-07-04  20:50:15.675 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@2d66530f
+2017-07-04  20:50:15.682 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@18a645fd
+2017-07-04  20:50:15.683 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@18a645fd
+2017-07-04  20:50:15.688 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration big_integer -> org.hibernate.type.BigIntegerType@6872f9c8
+2017-07-04  20:50:15.689 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@6872f9c8
+2017-07-04  20:50:15.693 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration string -> org.hibernate.type.StringType@201aa8c1
+2017-07-04  20:50:15.693 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.String -> org.hibernate.type.StringType@201aa8c1
+2017-07-04  20:50:15.696 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration nstring -> org.hibernate.type.StringNVarcharType@54da32dc
+2017-07-04  20:50:15.702 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@7e8a46b7
+2017-07-04  20:50:15.706 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration url -> org.hibernate.type.UrlType@21fff664
+2017-07-04  20:50:15.708 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.net.URL -> org.hibernate.type.UrlType@21fff664
+2017-07-04  20:50:15.710 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration Duration -> org.hibernate.type.DurationType@5486887b
+2017-07-04  20:50:15.710 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.Duration -> org.hibernate.type.DurationType@5486887b
+2017-07-04  20:50:15.714 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration Instant -> org.hibernate.type.InstantType@4d33940d
+2017-07-04  20:50:15.715 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.Instant -> org.hibernate.type.InstantType@4d33940d
+2017-07-04  20:50:15.720 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@68809cc7
+2017-07-04  20:50:15.721 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@68809cc7
+2017-07-04  20:50:15.725 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration LocalDate -> org.hibernate.type.LocalDateType@13cd7ea5
+2017-07-04  20:50:15.726 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@13cd7ea5
+2017-07-04  20:50:15.731 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@ff6077
+2017-07-04  20:50:15.733 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@ff6077
+2017-07-04  20:50:15.737 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2687f956
+2017-07-04  20:50:15.739 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2687f956
+2017-07-04  20:50:15.742 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@30135202
+2017-07-04  20:50:15.742 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@30135202
+2017-07-04  20:50:15.790 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@4e38d975
+2017-07-04  20:50:15.790 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@4e38d975
+2017-07-04  20:50:15.793 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration date -> org.hibernate.type.DateType@1280851e
+2017-07-04  20:50:15.793 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Date -> org.hibernate.type.DateType@1280851e
+2017-07-04  20:50:15.795 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration time -> org.hibernate.type.TimeType@31e32ea2
+2017-07-04  20:50:15.795 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@31e32ea2
+2017-07-04  20:50:15.797 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration timestamp -> org.hibernate.type.TimestampType@551de37d
+2017-07-04  20:50:15.798 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@551de37d
+2017-07-04  20:50:15.798 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Date -> org.hibernate.type.TimestampType@551de37d
+2017-07-04  20:50:15.804 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@33abde31
+2017-07-04  20:50:15.806 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration calendar -> org.hibernate.type.CalendarType@3028e50e
+2017-07-04  20:50:15.806 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@3028e50e
+2017-07-04  20:50:15.806 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@3028e50e
+2017-07-04  20:50:15.807 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@bb095
+2017-07-04  20:50:15.809 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration locale -> org.hibernate.type.LocaleType@4bdc8b5d
+2017-07-04  20:50:15.809 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@4bdc8b5d
+2017-07-04  20:50:15.810 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration currency -> org.hibernate.type.CurrencyType@c4c0b41
+2017-07-04  20:50:15.810 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@c4c0b41
+2017-07-04  20:50:15.811 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration timezone -> org.hibernate.type.TimeZoneType@40ab8a8
+2017-07-04  20:50:15.811 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@40ab8a8
+2017-07-04  20:50:15.812 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration class -> org.hibernate.type.ClassType@76b224cd
+2017-07-04  20:50:15.812 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Class -> org.hibernate.type.ClassType@76b224cd
+2017-07-04  20:50:15.814 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@37095ded
+2017-07-04  20:50:15.814 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@37095ded
+2017-07-04  20:50:15.815 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@43826ec
+2017-07-04  20:50:15.817 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration binary -> org.hibernate.type.BinaryType@56da52a7
+2017-07-04  20:50:15.817 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration byte[] -> org.hibernate.type.BinaryType@56da52a7
+2017-07-04  20:50:15.817 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [B -> org.hibernate.type.BinaryType@56da52a7
+2017-07-04  20:50:15.818 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@6050462a
+2017-07-04  20:50:15.819 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@6050462a
+2017-07-04  20:50:15.819 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@6050462a
+2017-07-04  20:50:15.821 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration row_version -> org.hibernate.type.RowVersionType@7b208b45
+2017-07-04  20:50:15.823 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration image -> org.hibernate.type.ImageType@783efb48
+2017-07-04  20:50:15.824 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration characters -> org.hibernate.type.CharArrayType@4443ef6f
+2017-07-04  20:50:15.824 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration char[] -> org.hibernate.type.CharArrayType@4443ef6f
+2017-07-04  20:50:15.824 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [C -> org.hibernate.type.CharArrayType@4443ef6f
+2017-07-04  20:50:15.825 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@38548b19
+2017-07-04  20:50:15.825 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@38548b19
+2017-07-04  20:50:15.825 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@38548b19
+2017-07-04  20:50:15.826 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration text -> org.hibernate.type.TextType@d1a10ac
+2017-07-04  20:50:15.827 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration ntext -> org.hibernate.type.NTextType@12db3386
+2017-07-04  20:50:15.834 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration blob -> org.hibernate.type.BlobType@44c5a16f
+2017-07-04  20:50:15.835 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@44c5a16f
+2017-07-04  20:50:15.836 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@21325036
+2017-07-04  20:50:15.842 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration clob -> org.hibernate.type.ClobType@6ceb7b5e
+2017-07-04  20:50:15.842 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@6ceb7b5e
+2017-07-04  20:50:15.845 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration nclob -> org.hibernate.type.NClobType@1bbae752
+2017-07-04  20:50:15.846 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@1bbae752
+2017-07-04  20:50:15.847 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@76075d65
+2017-07-04  20:50:15.849 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@383790cf
+2017-07-04  20:50:15.854 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration serializable -> org.hibernate.type.SerializableType@4d0b0fd4
+2017-07-04  20:50:15.862 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration object -> org.hibernate.type.ObjectType@57540fd0
+2017-07-04  20:50:15.863 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@57540fd0
+2017-07-04  20:50:15.864 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@629f066f
+2017-07-04  20:50:15.865 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@1542af63
+2017-07-04  20:50:15.866 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@ecfbe91
+2017-07-04  20:50:15.867 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@20ed3303
+2017-07-04  20:50:15.867 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@3adbe50f
+2017-07-04  20:50:15.867 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@3a627c80
+2017-07-04  20:50:15.867 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@49aa766b
+2017-07-04  20:50:15.867 [main] DEBUG org.hibernate.type.BasicTypeRegistry - Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@963176
+2017-07-04  20:50:16.570 [main] DEBUG org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator - Database ->
+       name : MySQL
+    version : 5.7.17
+      major : 5
+      minor : 7
+2017-07-04  20:50:16.571 [main] DEBUG org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator - Driver ->
+       name : MySQL Connector Java
+    version : mysql-connector-java-5.1.30 ( Revision: alexander.soklakov@oracle.com-20140310090514-8xt1yoht5ksg2e7c )
+      major : 5
+      minor : 1
+2017-07-04  20:50:16.572 [main] DEBUG org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator - JDBC version : 4.0
+2017-07-04  20:50:16.642 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2017-07-04  20:50:16.695 [main] DEBUG org.hibernate.engine.jdbc.env.spi.IdentifierHelperBuilder - JDBC driver metadata reported database stores quoted identifiers in more than one case
+2017-07-04  20:50:16.699 [main] DEBUG org.hibernate.engine.jdbc.env.spi.IdentifierHelperBuilder - IdentifierCaseStrategy for both quoted and unquoted identifiers was set to the same strategy [LOWER]; that will likely lead to problems in schema update and validation if using quoted identifiers
+2017-07-04  20:50:16.711 [main] INFO  org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2017-07-04  20:50:16.758 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
+2017-07-04  20:50:16.759 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [guid] -> [org.hibernate.id.GUIDGenerator]
+2017-07-04  20:50:16.761 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid] -> [org.hibernate.id.UUIDHexGenerator]
+2017-07-04  20:50:16.761 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid.hex] -> [org.hibernate.id.UUIDHexGenerator]
+2017-07-04  20:50:16.762 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [assigned] -> [org.hibernate.id.Assigned]
+2017-07-04  20:50:16.763 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [identity] -> [org.hibernate.id.IdentityGenerator]
+2017-07-04  20:50:16.764 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [select] -> [org.hibernate.id.SelectGenerator]
+2017-07-04  20:50:16.772 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+2017-07-04  20:50:16.775 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [seqhilo] -> [org.hibernate.id.SequenceHiLoGenerator]
+2017-07-04  20:50:16.777 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [increment] -> [org.hibernate.id.IncrementGenerator]
+2017-07-04  20:50:16.779 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [foreign] -> [org.hibernate.id.ForeignGenerator]
+2017-07-04  20:50:16.780 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.id.SequenceIdentityGenerator]
+2017-07-04  20:50:16.780 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+2017-07-04  20:50:16.782 [main] DEBUG org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
+2017-07-04  20:50:16.942 [main] DEBUG org.hibernate.boot.model.relational.Namespace - Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
+2017-07-04  20:50:17.051 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.dm.org.model.DataSetAttribute
+2017-07-04  20:50:17.161 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2017-07-04  20:50:17.189 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name DataSetAttribute
+2017-07-04  20:50:17.197 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity com.dm.org.model.DataSetAttribute on table data_set_attribute
+2017-07-04  20:50:17.243 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_attribute), mappingColumn=attributeId, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.251 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property attributeId with lazy=false
+2017-07-04  20:50:17.256 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetAttribute:attributeId]
+2017-07-04  20:50:17.258 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for attributeId
+2017-07-04  20:50:17.262 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property attributeId
+2017-07-04  20:50:17.267 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_attribute), mappingColumn=attrFeatures, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.268 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property attrFeatures with lazy=false
+2017-07-04  20:50:17.269 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetAttribute:attrFeatures]
+2017-07-04  20:50:17.270 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for attrFeatures
+2017-07-04  20:50:17.270 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property attrFeatures
+2017-07-04  20:50:17.274 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='containerId', referencedColumn='', mappedBy=''}
+2017-07-04  20:50:17.278 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_attribute), mappingColumn=dataSetContainer, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.293 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property dataSetContainer
+2017-07-04  20:50:17.295 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_attribute), mappingColumn=description, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.295 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property description with lazy=false
+2017-07-04  20:50:17.295 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetAttribute:description]
+2017-07-04  20:50:17.295 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for description
+2017-07-04  20:50:17.296 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property description
+2017-07-04  20:50:17.296 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_attribute), mappingColumn=fieldName, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.297 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property fieldName with lazy=false
+2017-07-04  20:50:17.297 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetAttribute:fieldName]
+2017-07-04  20:50:17.301 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for fieldName
+2017-07-04  20:50:17.302 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property fieldName
+2017-07-04  20:50:17.305 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.dm.org.model.DataSetCollection
+2017-07-04  20:50:17.306 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2017-07-04  20:50:17.306 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name DataSetCollection
+2017-07-04  20:50:17.307 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity com.dm.org.model.DataSetCollection on table data_set_collection
+2017-07-04  20:50:17.328 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=collectionId, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.329 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property collectionId with lazy=false
+2017-07-04  20:50:17.329 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:collectionId]
+2017-07-04  20:50:17.329 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for collectionId
+2017-07-04  20:50:17.329 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property collectionId
+2017-07-04  20:50:17.331 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=abstractInfo, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.331 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property abstractInfo with lazy=false
+2017-07-04  20:50:17.331 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:abstractInfo]
+2017-07-04  20:50:17.332 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for abstractInfo
+2017-07-04  20:50:17.332 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property abstractInfo
+2017-07-04  20:50:17.335 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=area, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.336 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property area with lazy=false
+2017-07-04  20:50:17.336 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:area]
+2017-07-04  20:50:17.336 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for area
+2017-07-04  20:50:17.337 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property area
+2017-07-04  20:50:17.352 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=associatedTasks, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.353 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property associatedTasks with lazy=false
+2017-07-04  20:50:17.353 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:associatedTasks]
+2017-07-04  20:50:17.353 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for associatedTasks
+2017-07-04  20:50:17.353 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property associatedTasks
+2017-07-04  20:50:17.354 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=characteristic, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.357 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property characteristic with lazy=false
+2017-07-04  20:50:17.363 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:characteristic]
+2017-07-04  20:50:17.373 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for characteristic
+2017-07-04  20:50:17.374 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property characteristic
+2017-07-04  20:50:17.375 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=dataDonated, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.375 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property dataDonated with lazy=false
+2017-07-04  20:50:17.376 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:dataDonated]
+2017-07-04  20:50:17.377 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for dataDonated
+2017-07-04  20:50:17.377 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property dataDonated
+2017-07-04  20:50:17.378 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='dataSetCollection'}
+2017-07-04  20:50:17.379 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=dataSets, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.388 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=null, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.421 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=element, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.423 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=dataSets_KEY, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.426 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='dataSets_KEY', referencedColumn='null', mappedBy='null'}
+2017-07-04  20:50:17.429 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='dataSetCollection'}
+2017-07-04  20:50:17.429 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='dataSetCollection'}
+2017-07-04  20:50:17.442 [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder - Collection role: com.dm.org.model.DataSetCollection.dataSets
+2017-07-04  20:50:17.456 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property dataSets
+2017-07-04  20:50:17.457 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=description, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.458 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property description with lazy=false
+2017-07-04  20:50:17.458 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:description]
+2017-07-04  20:50:17.458 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for description
+2017-07-04  20:50:17.458 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property description
+2017-07-04  20:50:17.460 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=enableMissing, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.460 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property enableMissing with lazy=false
+2017-07-04  20:50:17.461 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:enableMissing]
+2017-07-04  20:50:17.463 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for enableMissing
+2017-07-04  20:50:17.463 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property enableMissing
+2017-07-04  20:50:17.463 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=relevantPapers, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.464 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property relevantPapers with lazy=false
+2017-07-04  20:50:17.464 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:relevantPapers]
+2017-07-04  20:50:17.472 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for relevantPapers
+2017-07-04  20:50:17.472 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property relevantPapers
+2017-07-04  20:50:17.473 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_collection), mappingColumn=topics, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.473 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property topics with lazy=false
+2017-07-04  20:50:17.473 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetCollection:topics]
+2017-07-04  20:50:17.474 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for topics
+2017-07-04  20:50:17.474 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property topics
+2017-07-04  20:50:17.474 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.dm.org.model.DataSetContainer
+2017-07-04  20:50:17.474 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2017-07-04  20:50:17.475 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name DataSetContainer
+2017-07-04  20:50:17.475 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity com.dm.org.model.DataSetContainer on table data_set_container
+2017-07-04  20:50:17.490 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=containerId, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.490 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property containerId with lazy=false
+2017-07-04  20:50:17.491 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:containerId]
+2017-07-04  20:50:17.493 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for containerId
+2017-07-04  20:50:17.494 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property containerId
+2017-07-04  20:50:17.497 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='dataSetContainer'}
+2017-07-04  20:50:17.497 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=attributeSet, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.498 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=null, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.498 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=element, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.498 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=attributeSet_KEY, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.498 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='attributeSet_KEY', referencedColumn='null', mappedBy='null'}
+2017-07-04  20:50:17.499 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='dataSetContainer'}
+2017-07-04  20:50:17.499 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='dataSetContainer'}
+2017-07-04  20:50:17.500 [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder - Collection role: com.dm.org.model.DataSetContainer.attributeSet
+2017-07-04  20:50:17.501 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property attributeSet
+2017-07-04  20:50:17.501 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=attributeTypes, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.501 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property attributeTypes with lazy=false
+2017-07-04  20:50:17.502 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:attributeTypes]
+2017-07-04  20:50:17.502 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for attributeTypes
+2017-07-04  20:50:17.502 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property attributeTypes
+2017-07-04  20:50:17.502 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=data, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.503 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property data with lazy=false
+2017-07-04  20:50:17.504 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:data]
+2017-07-04  20:50:17.504 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for data
+2017-07-04  20:50:17.504 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property data
+2017-07-04  20:50:17.505 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='collectionId', referencedColumn='', mappedBy=''}
+2017-07-04  20:50:17.505 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=dataSetCollection, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.505 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property dataSetCollection
+2017-07-04  20:50:17.505 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=features, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.506 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property features with lazy=false
+2017-07-04  20:50:17.507 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:features]
+2017-07-04  20:50:17.507 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for features
+2017-07-04  20:50:17.509 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property features
+2017-07-04  20:50:17.509 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=fileType, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.510 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property fileType with lazy=false
+2017-07-04  20:50:17.510 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:fileType]
+2017-07-04  20:50:17.510 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for fileType
+2017-07-04  20:50:17.510 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property fileType
+2017-07-04  20:50:17.510 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=instances, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.510 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property instances with lazy=false
+2017-07-04  20:50:17.511 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:instances]
+2017-07-04  20:50:17.511 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for instances
+2017-07-04  20:50:17.511 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property instances
+2017-07-04  20:50:17.511 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=setName, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.512 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property setName with lazy=false
+2017-07-04  20:50:17.512 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:setName]
+2017-07-04  20:50:17.512 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for setName
+2017-07-04  20:50:17.512 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property setName
+2017-07-04  20:50:17.512 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(data_set_container), mappingColumn=size, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.513 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property size with lazy=false
+2017-07-04  20:50:17.513 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.DataSetContainer:size]
+2017-07-04  20:50:17.513 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for size
+2017-07-04  20:50:17.513 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property size
+2017-07-04  20:50:17.513 [main] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.dm.org.model.User
+2017-07-04  20:50:17.514 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2017-07-04  20:50:17.514 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Import with entity name User
+2017-07-04  20:50:17.514 [main] DEBUG org.hibernate.cfg.annotations.EntityBinder - Bind entity com.dm.org.model.User on table user_info
+2017-07-04  20:50:17.529 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(user_info), mappingColumn=userId, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.530 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property userId with lazy=false
+2017-07-04  20:50:17.531 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.User:userId]
+2017-07-04  20:50:17.531 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for userId
+2017-07-04  20:50:17.532 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property userId
+2017-07-04  20:50:17.533 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(user_info), mappingColumn=age, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.534 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property age with lazy=false
+2017-07-04  20:50:17.534 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.User:age]
+2017-07-04  20:50:17.535 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for age
+2017-07-04  20:50:17.535 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property age
+2017-07-04  20:50:17.535 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(user_info), mappingColumn=gender, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.535 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property gender with lazy=false
+2017-07-04  20:50:17.535 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.User:gender]
+2017-07-04  20:50:17.535 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for gender
+2017-07-04  20:50:17.536 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property gender
+2017-07-04  20:50:17.536 [main] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(user_info), mappingColumn=name, insertable=true, updatable=true, unique=false}
+2017-07-04  20:50:17.537 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - MetadataSourceProcessor property name with lazy=false
+2017-07-04  20:50:17.537 [main] DEBUG org.hibernate.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.dm.org.model.User:name]
+2017-07-04  20:50:17.537 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - building SimpleValue for name
+2017-07-04  20:50:17.537 [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder - Building property name
+2017-07-04  20:50:17.539 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for attributeId
+2017-07-04  20:50:17.540 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for attrFeatures
+2017-07-04  20:50:17.541 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for description
+2017-07-04  20:50:17.541 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for fieldName
+2017-07-04  20:50:17.541 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for collectionId
+2017-07-04  20:50:17.541 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for abstractInfo
+2017-07-04  20:50:17.542 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for area
+2017-07-04  20:50:17.542 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for associatedTasks
+2017-07-04  20:50:17.542 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for characteristic
+2017-07-04  20:50:17.544 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for dataDonated
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for description
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for enableMissing
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for relevantPapers
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for topics
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for containerId
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for attributeTypes
+2017-07-04  20:50:17.545 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for data
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for features
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for fileType
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for instances
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for setName
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for size
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for userId
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for age
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for gender
+2017-07-04  20:50:17.546 [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder - Starting fillSimpleValue for name
+2017-07-04  20:50:17.559 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [attributeid] to be non-null as it is part of the primary key for table [data_set_attribute]
+2017-07-04  20:50:17.560 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [collectionid] to be non-null as it is part of the primary key for table [data_set_collection]
+2017-07-04  20:50:17.560 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [containerid] to be non-null as it is part of the primary key for table [data_set_container]
+2017-07-04  20:50:17.560 [main] DEBUG org.hibernate.mapping.PrimaryKey - Forcing column [userid] to be non-null as it is part of the primary key for table [user_info]
+2017-07-04  20:50:17.560 [main] DEBUG org.hibernate.cfg.CollectionSecondPass - Second pass for collection: com.dm.org.model.DataSetCollection.dataSets
+2017-07-04  20:50:17.563 [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder - Binding a OneToMany: com.dm.org.model.DataSetCollection.dataSets through a foreign key
+2017-07-04  20:50:17.571 [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: com.dm.org.model.DataSetCollection.dataSets -> data_set_container
+2017-07-04  20:50:17.576 [main] DEBUG org.hibernate.cfg.annotations.TableBinder - Retrieving property com.dm.org.model.DataSetContainer.dataSetCollection
+2017-07-04  20:50:17.577 [main] DEBUG org.hibernate.cfg.CollectionSecondPass - Mapped collection key: collectionId, one-to-many: com.dm.org.model.DataSetContainer
+2017-07-04  20:50:17.577 [main] DEBUG org.hibernate.cfg.CollectionSecondPass - Second pass for collection: com.dm.org.model.DataSetContainer.attributeSet
+2017-07-04  20:50:17.578 [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder - Binding a OneToMany: com.dm.org.model.DataSetContainer.attributeSet through a foreign key
+2017-07-04  20:50:17.578 [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: com.dm.org.model.DataSetContainer.attributeSet -> data_set_attribute
+2017-07-04  20:50:17.579 [main] DEBUG org.hibernate.cfg.annotations.TableBinder - Retrieving property com.dm.org.model.DataSetAttribute.dataSetContainer
+2017-07-04  20:50:17.579 [main] DEBUG org.hibernate.cfg.CollectionSecondPass - Mapped collection key: containerId, one-to-many: com.dm.org.model.DataSetAttribute
+2017-07-04  20:50:17.579 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: com.dm.org.model.DataSetContainer
+2017-07-04  20:50:17.581 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: com.dm.org.model.DataSetCollection
+2017-07-04  20:50:17.586 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: com.dm.org.model.DataSetContainer
+2017-07-04  20:50:17.586 [main] DEBUG org.hibernate.boot.internal.InFlightMetadataCollectorImpl - Resolving reference to class: com.dm.org.model.DataSetCollection
