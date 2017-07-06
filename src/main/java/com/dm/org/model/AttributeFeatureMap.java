@@ -16,8 +16,8 @@ import java.io.Serializable;
  * @modified by:
  */
 @Entity
-@Table(name = "attr_feature", catalog = "")
-public class AttributeFeatureMap implements EntityIdentifier,Serializable
+@Table(name = "attr_feature_info", catalog = "")
+public class AttributeFeatureMap implements EntityIdentifier
 {
     private Integer id;
     private AttributeFeature feature;

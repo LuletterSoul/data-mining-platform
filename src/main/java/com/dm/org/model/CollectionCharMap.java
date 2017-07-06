@@ -15,8 +15,8 @@ import java.io.Serializable;
  * @modified by:
  */
 @Entity
-@Table(name = "collec_char", catalog = "")
-public class CollectionCharMap implements EntityIdentifier,Serializable
+@Table(name = "collec_char_info", catalog = "")
+public class CollectionCharMap implements EntityIdentifier
 {
     private Integer id;
     private DataSetCharacteristic characteristic;
@@ -34,7 +34,7 @@ public class CollectionCharMap implements EntityIdentifier,Serializable
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(name="char",nullable = false)
+    @Column(name="characteristic",nullable = false)
     public DataSetCharacteristic getCharacteristic()
     {
         return characteristic;
