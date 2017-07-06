@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+//@TransactionConfiguration(transactionManager = "transactionManager")
 @ContextConfiguration(locations = "classpath:spring-context.xml")
 public class BaseServiceInitializer
 {
