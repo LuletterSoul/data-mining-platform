@@ -13,7 +13,7 @@ import java.util.Set;
  * @description
  * @modified by:
  */
-public interface BaseDao<E, PK extends Serializable>
+public interface BaseRepository<E, PK extends Serializable>
 {
     // Object getByUniquePrimaryKey(Class clazz,Serializable id);
     // Object get(String queryString,Object ... values);

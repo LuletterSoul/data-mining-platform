@@ -1,15 +1,14 @@
 package com.dm.org.dao.supprot;
 
 
-import com.dm.org.dao.BaseDao;
+import com.dm.org.dao.BaseRepository;
 import com.dm.org.identifier.EntityIdentifier;
 import com.dm.org.query.PaginationDescriptor;
-import com.dm.org.utils.HibernateQueryAdapter;
-import com.dm.org.utils.HibernateQueryAdapter.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,7 +25,7 @@ import static com.dm.org.utils.HibernateQueryAdapter.whereStringAssemble;
  * @description
  * @modified by:
  */
-public class BaseRepository<E, PK extends Serializable> implements BaseDao<E, PK>
+public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK>
 {
     private SessionFactory sessionFactory;
 
@@ -43,7 +42,7 @@ public class BaseRepository<E, PK extends Serializable> implements BaseDao<E, PK
         return sessionFactory.getCurrentSession();
     }
 
-    protected BaseRepository(Class<E> eClass)
+    protected BaseDao(Class<E> eClass)
     {
         clazz = eClass;
     }
@@ -53,53 +52,6 @@ public class BaseRepository<E, PK extends Serializable> implements BaseDao<E, PK
         return clazz;
     }
 
-    private String from()
-    {
-        return "from " + getClazz().getName();
-    }
-    
-    private String count()
-    {
-        return "select count(1) " + from();
-    }
-
-    private String where(String[] propertyNames, Object[] values)
-    {
-        StringBuilder whereStringBuilder = new StringBuilder(" where 1 = 1");
-        for (int i = 0, len = propertyNames.length; i < len; i++ )
-        {
-            whereStringBuilder.append(" and ");
-            if (values[i] instanceof String)
-            {
-                whereStringBuilder.append(propertyNames[i]).append("='").append(values[i]).append(
-                    "'");
-            }
-            else
-            {
-                whereStringBuilder.append(propertyNames[i]).append("=").append(values[i]);
-            }
-        }
-        return whereStringBuilder.toString();
-    }
-
-    private String whereFuzzy(String[] propertyNames, Object[] values)
-    {
-        StringBuilder fuzzyHqlBuilder = new StringBuilder(" where 1 = 1");
-        for (int i = 0, len = propertyNames.length; i < len; i++ )
-        {
-            fuzzyHqlBuilder.append(" and ");
-            if (values[i] instanceof String)
-            {
-                fuzzyHqlBuilder.append(propertyNames[i]).append(" like '%").append(
-                    values[i]).append("%'");
-            }
-            else
-            {
-                fuzzyHqlBuilder.append(propertyNames[i]).append("=").append(values[i]);
-            }
-        }
-        return fuzzyHqlBuilder.toString();
-    }
 
     public Serializable save(E entity)
     {
@@ -293,5 +245,53 @@ public class BaseRepository<E, PK extends Serializable> implements BaseDao<E, PK
     {
         Query query = getSession().createQuery(count() + whereFuzzy(propertyNames, values));
         return Integer.parseInt(query.uniqueResult().toString());
+    }
+
+    private String from()
+    {
+        return "from " + getClazz().getName();
+    }
+
+    private String count()
+    {
+        return "select count(1) " + from();
+    }
+
+    private String where(String[] propertyNames, Object[] values)
+    {
+        StringBuilder whereStringBuilder = new StringBuilder(" where 1 = 1");
+        for (int i = 0, len = propertyNames.length; i < len; i++ )
+        {
+            whereStringBuilder.append(" and ");
+            if (values[i] instanceof String)
+            {
+                whereStringBuilder.append(propertyNames[i]).append("='").append(values[i]).append(
+                        "'");
+            }
+            else
+            {
+                whereStringBuilder.append(propertyNames[i]).append("=").append(values[i]);
+            }
+        }
+        return whereStringBuilder.toString();
+    }
+
+    private String whereFuzzy(String[] propertyNames, Object[] values)
+    {
+        StringBuilder fuzzyHqlBuilder = new StringBuilder(" where 1 = 1");
+        for (int i = 0, len = propertyNames.length; i < len; i++ )
+        {
+            fuzzyHqlBuilder.append(" and ");
+            if (values[i] instanceof String)
+            {
+                fuzzyHqlBuilder.append(propertyNames[i]).append(" like '%").append(
+                        values[i]).append("%'");
+            }
+            else
+            {
+                fuzzyHqlBuilder.append(propertyNames[i]).append("=").append(values[i]);
+            }
+        }
+        return fuzzyHqlBuilder.toString();
     }
 }
