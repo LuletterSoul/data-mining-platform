@@ -23,8 +23,6 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
-
     <context:component-scan base-package="com.dm.org" />
 
     <!-- 引入外部文件 -->
@@ -102,7 +100,9 @@
     <aop:config proxy-target-class="true">
         <aop:pointcut id="servicePointCut"
                       expression="execution(* com.dm.org.service.*.*(..))" />
+        <aop:pointcut id="methodPointCut" expression="execution(* com.dm.org..*(..))"/>
         <aop:advisor advice-ref="transactionAdvice"  pointcut-ref="servicePointCut"/>
+        <aop:advisor advice-ref="methodInvocationInterceptor" pointcut-ref="methodPointCut"/>
     </aop:config>
 
     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
