@@ -4,11 +4,12 @@ package com.dm.org.model;
 import com.dm.org.identifier.EntityIdentifier;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,16 +22,16 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "data_set_collection", catalog = "")
-public class DataSetCollection implements EntityIdentifier,Serializable
+public class DataSetCollection implements EntityIdentifier
 
 {
-    private UUID collectionId;
+    private String collectionId;
 
     private Byte enableMissing;
 
     private String description;
 
-    private Timestamp dataDonated;
+    private Timestamp dateDonated;
 
     private String relevantPapers;
 
@@ -46,16 +47,21 @@ public class DataSetCollection implements EntityIdentifier,Serializable
 
     private Set<DataSetContainer> dataSets;
 
+    public DataSetCollection()
+    {
+
+    }
 
     @Id
-    @GeneratedValue
-    @Column(name = "collectionId", nullable = false)
-    public UUID getCollectionId()
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "uuidGenerator")
+    @Column(name = "collectionId", nullable = false,length = 32)
+    public String getCollectionId()
     {
         return collectionId;
     }
 
-    public void setCollectionId(UUID collectionId)
+    public void setCollectionId(String collectionId)
     {
         this.collectionId = collectionId;
     }
@@ -72,7 +78,8 @@ public class DataSetCollection implements EntityIdentifier,Serializable
         this.enableMissing = enableMissing;
     }
 
-    @Basic
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "description", nullable = true, length = -1)
     public String getDescription()
     {
@@ -86,30 +93,29 @@ public class DataSetCollection implements EntityIdentifier,Serializable
 
     @Basic
     @Column(name = "dataDonated", nullable = true)
-    public Timestamp getDataDonated()
+    public Timestamp getDateDonated()
     {
-        return dataDonated;
+        return dateDonated;
     }
 
-    public void setDataDonated(Timestamp dataDonated)
+    public void setDateDonated(Timestamp dataDonated)
     {
-        this.dataDonated = dataDonated;
+        this.dateDonated = dataDonated;
     }
 
-    @Basic
-    @Column(name = "relevantPapers", nullable = true, length = -1)
-    public String getRelevantPapers()
-    {
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "relevantPapers", nullable = true)
+    public String getRelevantPapers() {
         return relevantPapers;
     }
 
-    public void setRelevantPapers(String relevantPapers)
-    {
+    public void setRelevantPapers(String relevantPapers) {
         this.relevantPapers = relevantPapers;
     }
 
     @Basic
-    @Column(name = "abstractInfo", nullable = false, length = -1)
+    @Column(name = "abstractInfo", nullable = false, length = 600)
     public String getAbstractInfo()
     {
         return abstractInfo;
@@ -170,9 +176,9 @@ public class DataSetCollection implements EntityIdentifier,Serializable
 
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinTable(name = "cllec_char",
+    @JoinTable(name = "collec_char_rela",
             joinColumns = @JoinColumn(name = "collectionId"),
-            inverseJoinColumns = @JoinColumn(name = "char"))
+            inverseJoinColumns = @JoinColumn(name = "charId"))
     public Set<CollectionCharMap>  getCharacteristics()
     {
         return characteristics;
@@ -220,7 +226,7 @@ public class DataSetCollection implements EntityIdentifier,Serializable
                 .add("characteristics", characteristics)
                 .add("enableMissing", enableMissing)
                 .add("description", description)
-                .add("dataDonated", dataDonated)
+                .add("dataDonated", dateDonated)
                 .add("relevantPapers", relevantPapers)
                 .add("abstractInfo", abstractInfo)
                 .add("associatedTasks", associatedTasks)

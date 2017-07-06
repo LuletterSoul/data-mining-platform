@@ -4,6 +4,7 @@ package com.dm.org.model;
 import com.dm.org.identifier.EntityIdentifier;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,13 +21,13 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "data_set_attribute", catalog = "")
-public class DataSetAttribute implements EntityIdentifier,Serializable
+public class DataSetAttribute implements EntityIdentifier
 {
-    private UUID attributeId;
+    private String attributeId;
 
     private String fieldName;
 
-    private String description;
+    private byte[] description;
 
     private Set<AttributeFeatureMap> features;
 
@@ -34,13 +35,15 @@ public class DataSetAttribute implements EntityIdentifier,Serializable
 
 
     @Id
-    @Column(name = "attributeId", nullable = false)
-    public UUID getAttributeId()
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "uuidGenerator")
+    @Column(name = "attributeId", nullable = false,length = 32)
+    public String getAttributeId()
     {
         return attributeId;
     }
 
-    public void setAttributeId(UUID attributeId)
+    public void setAttributeId(String attributeId)
     {
         this.attributeId = attributeId;
     }
@@ -57,21 +60,20 @@ public class DataSetAttribute implements EntityIdentifier,Serializable
         this.fieldName = fieldName;
     }
 
-    @Basic
-    @Column(name = "description", nullable = true, length = -1)
-    public String getDescription()
-    {
+
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
+    @Column(name = "description" ,nullable = false)
+    public byte[] getDescription() {
         return description;
     }
 
-    public void setDescription(String description)
-    {
+    public void setDescription(byte[] description) {
         this.description = description;
     }
 
-
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    @JoinTable(name = "attr_features",
+    @JoinTable(name = "attr_feature_rela",
             joinColumns = @JoinColumn(name = "containerId"),
             inverseJoinColumns = @JoinColumn(name = "feature"))
     public Set<AttributeFeatureMap> getFeatures()

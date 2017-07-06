@@ -19,9 +19,9 @@ import java.util.*;
  */
 @Entity
 @Table(name = "data_set_container", catalog = "")
-public class DataSetContainer implements EntityIdentifier,Serializable
+public class DataSetContainer implements EntityIdentifier
 {
-    private UUID containerId;
+    private String containerId;
 
     private String setName;
 
@@ -40,13 +40,14 @@ public class DataSetContainer implements EntityIdentifier,Serializable
     private Set<DataSetAttribute> attributeSet;
 
     @Id
-    @GeneratedValue
-    @Column(name = "containerId", nullable = false)
-    public UUID getContainerId() {
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "uuidGenerator")
+    @Column(name = "containerId", nullable = false,length = 32)
+    public String getContainerId() {
         return containerId;
     }
 
-    public void setContainerId(UUID containerId) {
+    public void setContainerId(String containerId) {
         this.containerId = containerId;
     }
 
@@ -111,7 +112,7 @@ public class DataSetContainer implements EntityIdentifier,Serializable
         this.fileType = fileType;
     }
 
-    @Basic
+    @Basic(fetch = FetchType.LAZY)
     @Lob
     @Column(name = "data", nullable = false)
     public byte[] getData()
@@ -137,7 +138,9 @@ public class DataSetContainer implements EntityIdentifier,Serializable
         this.dataSetCollection = dataSetCollection;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetContainer",orphanRemoval = true,fetch = FetchType.LAZY)
+//    @JoinTable(name="ctner_attr_re",joinColumns = @JoinColumn(name = "containerId",referencedColumnName = "containerId"),
+//    inverseJoinColumns = @JoinColumn(name = "attributeId",referencedColumnName = "attributeId"))
     public Set<DataSetAttribute> getAttributeSet() {
         return attributeSet;
     }
