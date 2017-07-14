@@ -104,7 +104,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @Lob
-    @Basic(fetch = FetchType.LAZY)
+   //@Basic(fetch = FetchType.LAZY)
     @Column(name = "relevantPapers", nullable = true)
     public String getRelevantPapers() {
         return relevantPapers;
@@ -163,7 +163,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetCollection",
-            orphanRemoval = true, fetch = FetchType.LAZY)
+            orphanRemoval = true, fetch = FetchType.EAGER)
     public Set<DataSetContainer> getDataSets()
     {
         return dataSets;
@@ -175,7 +175,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     @JoinTable(name = "collec_char_rela",
             joinColumns = @JoinColumn(name = "collectionId"),
             inverseJoinColumns = @JoinColumn(name = "charId"))
@@ -232,7 +232,6 @@ public class DataSetCollection implements EntityIdentifier
                 .add("associatedTasks", associatedTasks)
                 .add("topics", topics)
                 .add("area", area)
-                .add("dataSets", dataSets)
                 .toString();
     }
 }

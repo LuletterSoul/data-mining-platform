@@ -7,10 +7,8 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 
 /**
@@ -23,7 +21,7 @@ import java.util.UUID;
 @Table(name = "data_set_attribute", catalog = "")
 public class DataSetAttribute implements EntityIdentifier
 {
-    private String attributeId;
+    private Long attributeId;
 
     private String fieldName;
 
@@ -33,20 +31,21 @@ public class DataSetAttribute implements EntityIdentifier
 
     private DataSetContainer dataSetContainer;
 
+    private List<DataSetCell> cellList;
+
 
     @Id
-    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
-    @GeneratedValue(generator = "uuidGenerator")
-    @Column(name = "attributeId", nullable = false,length = 32)
-    public String getAttributeId()
+    @GenericGenerator(name = "identityGenerator",strategy = "identity")
+    @GeneratedValue(generator = "identityGenerator")
+    public Long getAttributeId()
     {
         return attributeId;
     }
 
-    public void setAttributeId(String attributeId)
-    {
+    public void setAttributeId(Long attributeId) {
         this.attributeId = attributeId;
     }
+
 
     @Basic
     @Column(name = "fieldName", nullable = false, length = 30)
@@ -87,7 +86,8 @@ public class DataSetAttribute implements EntityIdentifier
 
     @ManyToOne
     @JoinColumn(name = "containerId", foreignKey = @ForeignKey(name = "CONTAINER_ID_FK"))
-    public DataSetContainer getDataSetContainer() {
+    public DataSetContainer getDataSetContainer()
+    {
         return dataSetContainer;
     }
 
@@ -95,6 +95,18 @@ public class DataSetAttribute implements EntityIdentifier
         this.dataSetContainer = dataSetContainer;
     }
 
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetAttribute"
+            ,fetch = FetchType.LAZY,orphanRemoval = true)
+    public List<DataSetCell> getCellList()
+    {
+        return cellList;
+    }
+
+    public void setCellList(List<DataSetCell> cells)
+    {
+        this.cellList = cells;
+    }
 
     @Override
     public boolean equals(Object o)
@@ -115,14 +127,14 @@ public class DataSetAttribute implements EntityIdentifier
 
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("attributeId", attributeId)
                 .add("fieldName", fieldName)
                 .add("description", description)
                 .add("features", features)
                 .add("dataSetContainer", dataSetContainer)
+                .add("cells", cellList)
                 .toString();
     }
 }

@@ -7,7 +7,6 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.*;
 
 
@@ -38,6 +37,10 @@ public class DataSetContainer implements EntityIdentifier
     private DataSetCollection dataSetCollection;
 
     private Set<DataSetAttribute> attributeSet;
+
+    private List<DataSetRow> rowList;
+
+
 
     @Id
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
@@ -112,7 +115,6 @@ public class DataSetContainer implements EntityIdentifier
         this.fileType = fileType;
     }
 
-    @Basic(fetch = FetchType.LAZY)
     @Lob
     @Column(name = "data", nullable = false)
     public byte[] getData()
@@ -125,7 +127,7 @@ public class DataSetContainer implements EntityIdentifier
         this.data = data;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "collectionId",
             foreignKey = @ForeignKey(name = "COLLECTION_ID_FK"))
     public DataSetCollection getDataSetCollection()
@@ -138,39 +140,58 @@ public class DataSetContainer implements EntityIdentifier
         this.dataSetCollection = dataSetCollection;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetContainer",orphanRemoval = true,fetch = FetchType.LAZY)
-//    @JoinTable(name="ctner_attr_re",joinColumns = @JoinColumn(name = "containerId",referencedColumnName = "containerId"),
-//    inverseJoinColumns = @JoinColumn(name = "attributeId",referencedColumnName = "attributeId"))
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetContainer"
+            ,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<DataSetAttribute> getAttributeSet() {
         return attributeSet;
     }
 
-    public void setAttributeSet(Set<DataSetAttribute> attributeSet) {
+    public void setAttributeSet(Set<DataSetAttribute> attributeSet)
+    {
         this.attributeSet = attributeSet;
     }
 
-    @Override
-    public boolean equals(Object o)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetContainer"
+            ,orphanRemoval = true,fetch = FetchType.LAZY)
+    public List<DataSetRow> getRowList()
     {
+        return rowList;
+    }
+
+    public void setRowList(List<DataSetRow> rows)
+    {
+        this.rowList = rows;
+    }
+
+    @Override
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DataSetContainer that = (DataSetContainer)o;
+        DataSetContainer that = (DataSetContainer) o;
 
         return Objects.equal(this.containerId, that.containerId);
     }
 
+
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hashCode(containerId);
     }
+
 
     @Override
     public String toString()
     {
-        return MoreObjects.toStringHelper(this).add("containerId", containerId).add("setName",
-            setName).add("attributeTypes", attributeTypes).add("size", size).add("instances",
-                instances).add("fileType", fileType).add("data", data).toString();
+        return MoreObjects.toStringHelper(this)
+                .add("containerId", containerId)
+                .add("setName", setName)
+                .add("attributeTypes", attributeTypes)
+                .add("size", size)
+                .add("instances", instances)
+                .add("fileType", fileType)
+                .add("data", data)
+                .add("dataSetCollection", dataSetCollection)
+                .toString();
     }
 }
