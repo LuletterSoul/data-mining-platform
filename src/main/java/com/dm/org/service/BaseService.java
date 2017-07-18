@@ -28,7 +28,8 @@ public interface BaseService <E, PK extends Serializable>
      * @param columns 列名
      * @return 所有记录
      */
-    List<E> findAll(String columns) throws Exception;
+    List<Object[]> findAll(String[] columns) throws Exception;
+
 
     /**
      * 查找所有，并分页
@@ -58,10 +59,17 @@ public interface BaseService <E, PK extends Serializable>
      */
     void delete(E e)throws Exception;;
 
+    Integer deleteAll();
+
+
+    void deleteById(PK pk);
+
     /**
      * 删除属性名为propertyName，属性值为value的记录
      */
     void deleteByProperty(String propertyName, Object value)throws Exception;
+
+    void deleteByProperties(Map<String, Object> constraintMap);
 
     /**
      * 通过属性查找并返回需要的列
@@ -70,7 +78,7 @@ public interface BaseService <E, PK extends Serializable>
      * @param value 属性的值
      * @return
      */
-    List<E> findByProperty(String columns,String propertyName, Object value)throws Exception;
+    List<E> findByProperty(String[] columns,String propertyName, Object value)throws Exception;
 
     /**
      * 通过属性查找并返回所有列
@@ -90,7 +98,7 @@ public interface BaseService <E, PK extends Serializable>
      * @param values 属性值数组
      * @return
      */
-    List<E> findByProperties(String columns,String[] propertyNames, Object[] values)throws Exception;
+    List<E> findByProperties(String[] columns,Map<String, Object> constraintMap)throws Exception;
 
 
     /**
@@ -101,7 +109,7 @@ public interface BaseService <E, PK extends Serializable>
      * @return
      */
     @Deprecated
-    List<E> findByProperties(String[] propertyNames, Object[] values)throws Exception;
+    List<E> findByProperties(Map<String, Object> constraintMap)throws Exception;
 
     /**
      * 通过属性模糊查找并指定的所有列
@@ -110,7 +118,7 @@ public interface BaseService <E, PK extends Serializable>
      * @param value 属性的值
      * @return
      */
-    List<E> findByPropertyFuzzy(String columns,String propertyName, Object value)throws Exception;
+    List<E> findByPropertyFuzzy(String[] columns,String propertyName, Object value)throws Exception;
 
     /**
      * 通过属性模糊查找并返回所有列
@@ -130,7 +138,7 @@ public interface BaseService <E, PK extends Serializable>
      * @param values 属性值数组
      * @return
      */
-    List<E> findByPropertiesFuzzy(String columns,String[] propertyNames, Object[] values)throws Exception;
+    List<E> findByPropertiesFuzzy(String[] columns,Map<String, Object> constraintMap)throws Exception;
 
     /**
      * 通过多个属性模糊查找并返回所有列
@@ -140,7 +148,7 @@ public interface BaseService <E, PK extends Serializable>
      * @return
      */
     @Deprecated
-    List<E> findByPropertiesFuzzy(String[] propertyNames, Object[] values)throws Exception;
+    List<E> findByPropertiesFuzzy(Map<String, Object> constraintMap)throws Exception;
 
 
     /**
@@ -222,7 +230,7 @@ public interface BaseService <E, PK extends Serializable>
      * @param values
      * @return
      */
-    int countByProperties(String[] propertyNames, Object[] values)throws Exception;
+    int countByProperties(Map<String, Object> constraintMap)throws Exception;
 
 
     /**
@@ -241,7 +249,7 @@ public interface BaseService <E, PK extends Serializable>
      * @param values
      * @return
      */
-    int countByPropertiesFuzzy(String[] propertyNames, Object[] values)throws Exception;
+    int countByPropertiesFuzzy(Map<String, Object> constraintMap)throws Exception;
 
 
     /**
