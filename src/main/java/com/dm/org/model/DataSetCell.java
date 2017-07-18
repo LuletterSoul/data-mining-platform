@@ -1,5 +1,6 @@
 package com.dm.org.model;
 
+import com.dm.org.enums.CellType;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;

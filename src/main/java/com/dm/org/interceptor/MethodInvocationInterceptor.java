@@ -5,8 +5,6 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import sun.rmi.runtime.Log;
 
 
 /**
@@ -16,7 +14,6 @@ import sun.rmi.runtime.Log;
  * @modified by:
  */
 
-@Component(value = "methodInvocationInterceptor")
 public class MethodInvocationInterceptor implements MethodInterceptor
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(
@@ -25,10 +22,9 @@ public class MethodInvocationInterceptor implements MethodInterceptor
     public Object invoke(MethodInvocation invocation)
         throws Throwable
     {
-        Object result = null;
+        Object result = invocation.proceed();
         try
         {
-            result = invocation.proceed();
             // get current invoked method name
             String methodName = invocation.getThis().toString() + "|"
                                 + invocation.getMethod().getName();

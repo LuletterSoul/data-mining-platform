@@ -2,6 +2,8 @@ package com.dm.org.dao;
 
 import com.dm.org.query.PaginationDescriptor;
 
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,25 @@ public interface BaseRepository<E, PK extends Serializable>
     // void delete(Object entity);
     // void update(Object entity);
     // List getList(String queryString);
+
+    /**
+     * 基于JPA2.0规范的Criteria新型查询,函数<code>createCriteria()</code>
+     * 已被建议弃用
+     * 利用SessionFactory返回的Session<code>getCriteriaBuilder()</code>
+     * 建立新型的<code>CriteriaQuery</></code>
+     * 利于应付良好的domain model的架构
+     * 以及更完整的type-safe标准查询
+     * @return 当前Session下criteria query object
+     * {@link org.hibernate}
+     * @see org.hibernate.Criteria
+     * @see javax.persistence.criteria.CriteriaBuilder
+     * @see javax.persistence.criteria.CriteriaQuery
+     */
+    CriteriaQuery<E> buildCriteriaQuery();
+
+
+    CriteriaDelete<E> buildCriteriaDelete();
+
     /**
      * 保存对象
      *
@@ -28,7 +49,7 @@ public interface BaseRepository<E, PK extends Serializable>
      *
      * @return
      */
-    Serializable save(E entity);
+    Serializable save(E entity) throws Exception;
 
     /**
      * 批量保存对象
@@ -43,6 +64,9 @@ public interface BaseRepository<E, PK extends Serializable>
 
     void delete(E entity);
 
+    Integer deleteAll();
+
+    void deleteById(PK pk);
     /**
      * 删除propertyName == value 的记录
      */
@@ -51,18 +75,27 @@ public interface BaseRepository<E, PK extends Serializable>
     /**
      * 通过ID查询对象
      *
+     * @param constraintMap where子句约束调节
+     *            主键
+     * @return
+     */
+    int deleteByProperties(Map<String, Object> constraintMap);
+
+    /**
+     * 通过ID查询对象
+     *
      * @param id
      *            主键
      * @return
      */
-    E findById(PK id) throws Exception;
+    E findById(PK id) throws Exception ;
 
     /**
      * 获取当前对象的所有记录 @ columns 需要返回的列名 @ pagination 分页信息
      *
      * @return 所有记录
      */
-    List<E> findAll(String columns, PaginationDescriptor pagination);
+    List<Object[]> findAll(String[] columns, PaginationDescriptor pagination);
 
     /**
      * 通过多个属性查找
@@ -73,7 +106,7 @@ public interface BaseRepository<E, PK extends Serializable>
      *            属性值数组
      * @return
      */
-    List<E> findByProperties(String columns, String[] propertyNames, Object[] values,
+    List<E> findByProperties(String[] columns, Map<String,Object> constraintMap,
                              PaginationDescriptor pagination);
 
     /**
@@ -85,7 +118,7 @@ public interface BaseRepository<E, PK extends Serializable>
      *            属性值数组
      * @return
      */
-    List<E> findByProperty(String columns, String propertyName, Object value,
+    List<E> findByProperty(String[] column, String propertyName, Object value,
                            PaginationDescriptor pagination);
 
     /**
@@ -97,7 +130,7 @@ public interface BaseRepository<E, PK extends Serializable>
      *            属性值数组
      * @return
      */
-    List<E> findByPropertiesFuzzy(String columns, String[] propertyNames, Object[] values,
+    List<E> findByPropertiesFuzzy(String[] columns, Map<String,Object> constraintMap,
                                   PaginationDescriptor pagination);
 
     /**
@@ -109,7 +142,7 @@ public interface BaseRepository<E, PK extends Serializable>
      *            属性值
      * @return  属性值数组
      */
-    List<E> findByPropertyFuzzy(String columns, String propertyName, Object value,
+    List<E> findByPropertyFuzzy(String[] columns, String propertyName, Object value,
                                 PaginationDescriptor pagination);
 
     /**
@@ -126,7 +159,7 @@ public interface BaseRepository<E, PK extends Serializable>
      * @param values
      * @return
      */
-    int countByProperties(String[] propertyNames, Object[] values);
+    int countByProperties(Map<String,Object> constraintMap);
 
 
     /**
@@ -139,7 +172,7 @@ public interface BaseRepository<E, PK extends Serializable>
     int countByProperty(String propertyName, Object value);
 
 
-    int countByPropertiesFuzzy(String[] propertyNames, Object[] values);
+    int countByPropertiesFuzzy(Map<String,Object> constraintMap);
 
     // /**
     // * 根据SQL查询记录数

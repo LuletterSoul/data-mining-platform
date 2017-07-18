@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/DataMiningPlatformWebAppInitializer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/base/BaseServiceInitializer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/UserControllerTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/supprot/DataSetAttributeDaoTest.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/supprot/DataSetCollectionDaoTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/supprot/DataSetContainerDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetAttributeDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetCollectionDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetContainerDaoTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/DataSetContainerServiceImplTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/utils/HibernateQueryAdapterTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/RoleServiceImplTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/UserServiceImplTest.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

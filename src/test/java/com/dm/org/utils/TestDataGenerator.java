@@ -28,7 +28,7 @@ public class TestDataGenerator
         Random random = new Random();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < length; i++) {
-            int number = random.nextInt(base.length());
+            int number = random.nextInt(base.length()-1);
             sb.append(base.charAt(number));
         }
         return sb.toString();
@@ -36,6 +36,7 @@ public class TestDataGenerator
     public static DataSetCollection buildDataSetCollection()
     {
         dataSetCollection = new DataSetCollection();
+        //dataSetCollection.setCollectionId(UUID.randomUUID().toString());
         dataSetCollection.setAbstractInfo("test collection"+ getRamdomUUID(4));
         dataSetCollection.setArea("Computer");
         dataSetCollection.setAssociatedTasks("Regression "+ getRamdomUUID(4));
@@ -45,19 +46,18 @@ public class TestDataGenerator
         dataSetCollection.setTopics("test "+ getRamdomUUID(4));
         return dataSetCollection;
     }
-
     public static DataSetContainer buildDataSetContainer()
     {
         dataSetContainer = new DataSetContainer();
         Random random = new Random();
-        dataSetContainer.setData(getRandomString(random.nextInt()).getBytes());
+        dataSetContainer.setData(getRandomString(4).getBytes());
         dataSetContainer.setAttributeTypes(getRamdomUUID(8));
         dataSetContainer.setFileType("text");
+        dataSetContainer.setSize(random.nextDouble());
         dataSetContainer.setInstances(Long.MIN_VALUE);
         dataSetContainer.setSetName("data set container " + getRandomString(4));
         return dataSetContainer;
     }
-
     public static DataSetAttribute buildDataSetAttribute()
     {
         dataSetAttribute = new DataSetAttribute();

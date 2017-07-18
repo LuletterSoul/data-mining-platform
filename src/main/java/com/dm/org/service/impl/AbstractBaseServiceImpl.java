@@ -1,16 +1,19 @@
 package com.dm.org.service.impl;
 
-import com.dm.org.dao.BaseRepository;
-import com.dm.org.dao.supprot.BaseDao;
-import com.dm.org.service.BaseService;
-import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dm.org.dao.impl.*;
+import com.dm.org.exception.DataAccessObjectException;
+import com.dm.org.exception.DataObjectNotFoundException;
+import com.dm.org.service.BaseService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -19,15 +22,22 @@ import java.util.Set;
  * @modified by:
  */
 @Service
+@SuppressWarnings("unchecked")
+@Transactional
 public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implements BaseService<E, PK>
 {
-
     protected BaseDao<E, PK> baseDao;
 
-    public Session getOperableSession()
-    {
-        return baseDao.getSession();
-    }
+    protected DataSetContainerDao containerDao;
+
+    protected DataSetCollectionDao collectionDao;
+
+    protected UserDao userDao;
+
+    protected PermissionDao permissionDao;
+
+    protected RoleDao roleDao;
+
 
     @Autowired
     public void setBaseDao(BaseDao<E, PK> baseDao)
@@ -35,13 +45,40 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         this.baseDao = baseDao;
     }
 
+    @Autowired
+    public void setContainerDao(DataSetContainerDao containerDao) {
+        this.containerDao = containerDao;
+    }
+
+    @Autowired
+    public void setCollectionDao(DataSetCollectionDao collectionDao) {
+        this.collectionDao = collectionDao;
+    }
+
+    @Autowired
+    public void setPermissionDao(PermissionDao permissionDao) {
+        this.permissionDao = permissionDao;
+    }
+
+    @Autowired
+    public void setRoleDao(RoleDao roleDao) {
+        this.roleDao = roleDao;
+    }
+
+    @Autowired
+    public void setUserDao(UserDao userDao)
+    {
+        this.userDao = userDao;
+    }
+
     public List<E> findAll()
             throws Exception
     {
-        return baseDao.findAll("", null);
+        return(List<E>)baseDao.findAll(null, null);
     }
 
-    public List<E> findAll(String columns)
+
+    public List<Object[]> findAll(String[] columns)
             throws Exception
     {
         return baseDao.findAll(columns, null);
@@ -64,13 +101,28 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         baseDao.delete(e);
     }
 
+    @Override
+    public Integer deleteAll()
+     {
+         return baseDao.deleteAll();
+    }
+
+    public void deleteById(PK pk) {
+        baseDao.deleteById(pk);
+    }
+
     public void deleteByProperty(String propertyName, Object value)
             throws Exception
     {
         baseDao.deleteByProperty(propertyName, value);
     }
 
-    public List<E> findByProperty(String columns, String propertyName, Object value)
+    public void deleteByProperties(Map<String, Object> constraintMap)
+    {
+        baseDao.deleteByProperties(constraintMap);
+    }
+
+    public List<E> findByProperty(String []columns, String propertyName, Object value)
             throws Exception
     {
         return baseDao.findByProperty(columns, propertyName, value, null);
@@ -79,22 +131,22 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     public List<E> findByProperty(String propertyName, Object value)
             throws Exception
     {
-        return baseDao.findByProperty("", propertyName, value, null);
+        return baseDao.findByProperty(null, propertyName, value, null);
     }
 
-    public List<E> findByProperties(String columns, String[] propertyNames, Object[] values)
+    public List<E> findByProperties(String[]columns, Map<String, Object> constraintMap)
             throws Exception
     {
-        return baseDao.findByProperties(columns, propertyNames, values, null);
+        return baseDao.findByProperties(columns, constraintMap, null);
     }
 
-    public List<E> findByProperties(String[] propertyNames, Object[] values)
+    public List<E> findByProperties(Map<String, Object> constraintMap)
             throws Exception
     {
-        return baseDao.findByProperties("", propertyNames, values, null);
+        return baseDao.findByProperties(null, constraintMap, null);
     }
 
-    public List<E> findByPropertyFuzzy(String columns, String propertyName, Object value)
+    public List<E> findByPropertyFuzzy(String []columns, String propertyName, Object value)
             throws Exception
     {
         return baseDao.findByPropertyFuzzy(columns, propertyName, value, null);
@@ -103,19 +155,19 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     public List<E> findByPropertyFuzzy(String propertyName, Object value)
             throws Exception
     {
-        return baseDao.findByPropertyFuzzy("", propertyName, value, null);
+        return baseDao.findByPropertyFuzzy(null, propertyName, value, null);
     }
 
-    public List<E> findByPropertiesFuzzy(String columns, String[] propertyNames, Object[] values)
+    public List<E> findByPropertiesFuzzy(String[] columns,  Map<String, Object> constraintMap)
             throws Exception
     {
-        return baseDao.findByProperties(columns, propertyNames, values, null);
+        return baseDao.findByProperties(columns, constraintMap, null);
     }
 
-    public List<E> findByPropertiesFuzzy(String[] propertyNames, Object[] values)
+    public List<E> findByPropertiesFuzzy(Map<String, Object> constraintMap)
             throws Exception
     {
-        return baseDao.findByProperties("", propertyNames, values, null);
+        return baseDao.findByProperties(null, constraintMap, null);
     }
 
     public int updateEntityBatch(Map<String, Object> updateMapping,
@@ -143,24 +195,24 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         return baseDao.countByProperty(propertyName, value);
     }
 
-    public int countByProperties(String[] propertyNames, Object[] values)
+    public int countByProperties(Map<String, Object> constraintMap)
             throws Exception
     {
-        return baseDao.countByProperties(propertyNames, values);
+        return baseDao.countByProperties(constraintMap);
     }
 
     public int countByPropertiesFuzzy(String propertyName, Object value)
             throws Exception
     {
-        String[] properNames = {propertyName};
-        Object[] values = {value};
-        return baseDao.countByProperties(properNames, values);
+        Map<String, Object> constraintMap = new HashMap<String, Object>();
+        constraintMap.put(propertyName, value);
+        return baseDao.countByProperties(constraintMap);
     }
 
-    public int countByPropertiesFuzzy(String[] propertyNames, Object[] values)
+    public int countByPropertiesFuzzy(Map<String, Object> constraintMap)
             throws Exception
     {
-        return baseDao.countByProperties(propertyNames, values);
+        return baseDao.countByProperties(constraintMap);
     }
 
     public void saveOrUpdate(E e)
@@ -169,10 +221,15 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         baseDao.save(e);
     }
 
-    public E findById(PK id)
-            throws Exception
+    public E findById(PK id) throws DataObjectNotFoundException
     {
-        return baseDao.findById(id);
+        try {
+            return baseDao.findById(id);
+        } catch (DataAccessObjectException e)
+        {
+            e.printStackTrace();
+            throw new DataObjectNotFoundException(e);
+        }
     }
 
     public void update(E e)

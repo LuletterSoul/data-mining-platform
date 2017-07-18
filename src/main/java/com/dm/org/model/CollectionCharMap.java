@@ -2,11 +2,10 @@ package com.dm.org.model;
 
 import javax.persistence.Entity;
 
+import com.dm.org.enums.DataSetCharacteristic;
 import com.dm.org.identifier.EntityIdentifier;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .

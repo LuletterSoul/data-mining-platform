@@ -23,12 +23,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class DataSetAttributeServiceImplTest extends BaseServiceInitializer
 {
-    private DataSetAttributeServiceImplAbstract dataSetAttributeService;
+    private DataSetAttributeServiceImpl dataSetAttributeService;
 
     private DataSetAttribute dataSetAttribute;
 
     @Autowired
-    public void setDataSetAttributeService(DataSetAttributeServiceImplAbstract dataSetAttributeService)
+    public void setDataSetAttributeService(DataSetAttributeServiceImpl dataSetAttributeService)
     {
         this.dataSetAttributeService = dataSetAttributeService;
     }

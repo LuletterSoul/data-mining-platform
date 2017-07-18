@@ -6,7 +6,10 @@ import com.dm.org.model.DataSetContainer;
 import com.dm.org.utils.TestDataGenerator;
 import org.junit.Before;
 import org.junit.After;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.Assert.*;
+import java.util.List;
 
 
 /**
@@ -23,12 +26,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class DataSetContainerServiceImplTest extends BaseServiceInitializer
 {
-    private DataSetContainerServiceImplAbstract dataSetContainerService;
+    private DataSetContainerServiceImpl dataSetContainerService;
 
     private DataSetContainer dataSetContainer;
 
     @Autowired
-    public void setDataSetContainerService(DataSetContainerServiceImplAbstract dataSetContainerService)
+    public void setDataSetContainerService(DataSetContainerServiceImpl dataSetContainerService)
     {
         this.dataSetContainerService = dataSetContainerService;
     }
@@ -45,6 +48,47 @@ public class DataSetContainerServiceImplTest extends BaseServiceInitializer
         throws Exception
     {
 
+    }
+    
+    /**
+     * Method: deleteById()
+     */
+    @Test
+    public void testDeleteById()
+                throws Exception
+    {
+        dataSetContainerService.deleteById("402881e95d260ab2015d260abc8d0000");
+    }
+    
+    /**
+     * Method: fetchDataSetContainers()
+     */
+    @Test
+    public void testFetchDataSetContainers()
+                throws Exception
+    {
+        List<DataSetContainer> containers = dataSetContainerService
+                .fetchDataSetContainers("402881e45d252234015d25223e310000");
+
+        for (DataSetContainer container :containers
+                )
+        {
+            System.out.println(container);
+        }
+    }
+    /**
+     * Method: findAll()
+     */
+    @Test
+    public void testFindAll()
+                throws Exception
+    {
+        List<DataSetContainer> containers = dataSetContainerService.findAll();
+        for (DataSetContainer container :
+                containers)
+        {
+            System.out.println(container);
+        }
     }
 
 }

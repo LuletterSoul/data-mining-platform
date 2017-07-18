@@ -58,6 +58,11 @@
         <appender-ref ref="SYNC_FILE" />
     </logger>
 
+    <logger name="org.hibernate.type" level="ALL" />
+
+    <logger name="org.hibernate" level="DEBUG" />
+
+
     <root>
         <level value="DEBUG" />
         <appender-ref ref="STDOUT" />
