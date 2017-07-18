@@ -1,47 +1,65 @@
 package com.dm.org.model;
 
 
+import java.util.Set;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+
+import com.dm.org.enums.UserAccessStatus;
+import org.hibernate.annotations.GenericGenerator;
+
+import com.dm.org.identifier.EntityIdentifier;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 
 /**
- * @author ����� qq313700046@icloud.com .
+ * @author XiangDe Liu qq313700046@icloud.com .
  * @date created in 22:55 2017/6/28.
  * @description
  * @modified by:
  */
 @Entity
 @Table(name = "user_info", catalog = "")
-public class User
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "serviceLevel",discriminatorType = DiscriminatorType.STRING)
+public class User implements EntityIdentifier
 {
     private String userId;
 
-    private String name;
+    private String userName;
 
-    private String gender;
+    private String password;
 
-    private Integer age;
+    private String salt;
+
+    private UserAccessStatus status = UserAccessStatus.AVAILABLE;
+
+    private Set<Role> roleSet;
 
     public User()
     {
+
     }
 
-    public User(String userId, String name, String gender, Integer age) {
-        this.userId = userId;
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
+    public User(String userName, String password, String salt, UserAccessStatus status)
+    {
+        this.userName = userName;
+        this.password = password;
+        this.salt = salt;
+        this.status = status;
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
     @Id
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "uuidGenerator")
     @Column(name = "userId", nullable = false, length = 32)
-    @NotNull
-    @Size(max = 16, min = 8)
     public String getUserId()
     {
         return userId;
@@ -52,44 +70,70 @@ public class User
         this.userId = userId;
     }
 
-    @Basic
-    @NotNull
+
     @Size(max = 16,min = 2)
-    @Column(name = "name", nullable = true, length = 32)
-    public String getName()
+    @Column(name = "userName", length = 32)
+    public String getUserName()
     {
-        return name;
+        return userName;
     }
 
-    public void setName(String name)
+    public void setUserName(String name)
     {
-        this.name = name;
+        this.userName = name;
     }
 
-    @Basic
-    @Column(name = "gender", nullable = true, length = 20)
-    @NotNull
-    public String getGender()
+    @Column(name = "password",nullable = false)
+    public String getPassword()
     {
-        return gender;
+        return password;
     }
 
-    public void setGender(String gender)
+    public void setPassword(String password)
     {
-        this.gender = gender;
+        this.password = password;
     }
 
-    @Basic
-    @Column(name = "age", nullable = true)
-    @NotNull
-    public Integer getAge()
+    @Column(name = "salt")
+    public String getSalt()
     {
-        return age;
+        return salt;
     }
 
-    public void setAge(Integer age)
+
+
+    public void setSalt(String salt)
+     {
+        this.salt = salt;
+    }
+
+    @Transient
+    public String getCredentialsSalt()
     {
-        this.age = age;
+        return userName + salt;
+    }
+
+    @Enumerated
+    @Column(name = "status")
+    public UserAccessStatus getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(UserAccessStatus status)
+     {
+        this.status = status;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role_re",joinColumns = @JoinColumn(name = "userId"),
+    inverseJoinColumns = @JoinColumn(name = "roleId"))
+    public Set<Role> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
     }
 
     @Override
@@ -98,9 +142,9 @@ public class User
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User that = (User)o;
+        User that = (User) o;
 
-        return Objects.equal(this.userId, that.userId);
+        return Objects.equal(this.userId, that.userId) ;
     }
 
     @Override
@@ -109,10 +153,17 @@ public class User
         return Objects.hashCode(userId);
     }
 
+
     @Override
     public String toString()
     {
-        return MoreObjects.toStringHelper(this).add("userId", userId).add("name", name).add(
-            "gender", gender).add("age", age).toString();
+        return MoreObjects.toStringHelper(this)
+                .add("userId", userId)
+                .add("userName", userName)
+                .add("password", password)
+                .add("salt", salt)
+                .add("status", status)
+                .add("roleSet", roleSet)
+                .toString();
     }
 }
