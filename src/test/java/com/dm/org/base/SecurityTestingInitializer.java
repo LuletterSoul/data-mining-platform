@@ -1,25 +1,16 @@
 package com.dm.org.base;
 
 
+import com.dm.org.enums.UserAccessStatus;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
 import com.dm.org.model.User;
-import com.dm.org.enums.UserAccessStatus;
+import com.dm.org.security.UserPasswordService;
 import com.dm.org.service.PermissionService;
 import com.dm.org.service.RoleService;
 import com.dm.org.service.UserService;
-import com.dm.org.webconfig.DataMiningPlatformWebAppInitializer;
-import com.dm.org.webconfig.dataSource.impl.ComboPooledDataSourceConfig;
-import com.dm.org.webconfig.hibernate.HibernateConfiguration;
-import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
-import com.dm.org.webconfig.springMvc.SpringMvcConfiguration;
-import com.dm.org.webconfig.transaction.HibernateTransactionConfig;
 import org.junit.Before;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 
 /**
@@ -29,21 +20,20 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * @modified by:
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = {DataMiningPlatformWebAppInitializer.class,
-                                HibernateTransactionConfig.class,
-        HibernateConfiguration.class,
-        SpringMvcConfiguration.class,
-        ShiroSecurityConfiguration.class,
-        ComboPooledDataSourceConfig.class})
-public class SecurityServiceTestInitializer
+// @ContextHierarchy
+// ({
+// @ContextConfiguration(classes = DataMiningPlatformWebAppInitializer.class),
+// @ContextConfiguration(classes = SpringMvcConfiguration.class)
+// })
+public class SecurityTestingInitializer extends ConfigurationWirer
 {
     protected UserService userService;
 
     protected RoleService roleService;
 
     protected PermissionService permissionService;
+
+    protected UserPasswordService passwordService;
 
     protected String password = "123";
 
@@ -83,6 +73,11 @@ public class SecurityServiceTestInitializer
         this.permissionService = permissionService;
     }
 
+    @Autowired
+    public void setPasswordService(UserPasswordService passwordService) {
+        this.passwordService = passwordService;
+    }
+
     @Before
     public void initialize()
         throws Exception
@@ -105,12 +100,17 @@ public class SecurityServiceTestInitializer
         roleService.save(r1);
         roleService.save(r2);
 
+        // 新增用户
 
-       //新增用户
         u1 = new User("zhang", password);
-        u2 = new User("li", password);
-        u3 = new User("wu", password);
-        u4 = new User("wang", password);
+        String randomSalt = passwordService.generateRandomSalt(16) + u1.getUserName();
+        String encryptedPassword = passwordService.encryptPasswordWithSalt(password, randomSalt);
+        u1.setSalt(randomSalt);
+        u1.setPassword(encryptedPassword);
+
+        u2 = new User("li", passwordService.encryptPassword(password));
+        u3 = new User("wu", passwordService.encryptPassword(password));
+        u4 = new User("wang", passwordService.encryptPassword(password));
         u4.setStatus(UserAccessStatus.LOCKED);
     }
 

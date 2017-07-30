@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.dm.org.exception.DataObjectNotFoundException;
+import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
 import com.dm.org.service.RoleService;

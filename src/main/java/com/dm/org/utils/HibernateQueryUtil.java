@@ -1,10 +1,10 @@
 package com.dm.org.utils;
 
 
-import com.dm.org.exception.ColumnMappingNotExistException;
-import com.dm.org.exception.ConstrainMappingNotNullException;
-import com.dm.org.exception.DataAccessObjectException;
-import com.dm.org.exception.DataObjectNotFoundException;
+import com.dm.org.exceptions.ColumnMappingNotExistException;
+import com.dm.org.exceptions.ConstrainMappingNotNullException;
+import com.dm.org.exceptions.DataAccessObjectException;
+import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.identifier.EntityIdentifier;
 import org.hibernate.Metamodel;
 import org.hibernate.SessionFactory;
@@ -14,7 +14,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.AssertTrue;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,7 +26,8 @@ import java.util.Set;
  * @modified by:
  */
 @Component
-public class HibernateQueryUtil {
+public class HibernateQueryUtil
+ {
 
     private static int currentPlaceholder;
 

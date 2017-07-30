@@ -127,45 +127,6 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <!--Spring Web Flow start-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.webflow</groupId>-->
-            <!--<artifactId>spring-binding</artifactId>-->
-            <!--<version>2.4.4.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.webflow</groupId>-->
-            <!--<artifactId>spring-faces</artifactId>-->
-            <!--<version>2.4.4.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.webflow</groupId>-->
-            <!--<artifactId>spring-js</artifactId>-->
-            <!--<version>2.4.4.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.webflow</groupId>-->
-            <!--<artifactId>spring-js-resources</artifactId>-->
-            <!--<version>2.4.4.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.webflow</groupId>-->
-            <!--<artifactId>spring-webflow</artifactId>-->
-            <!--<version>2.4.4.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!--Spring Web Flow end-->
-
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -191,6 +152,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -223,6 +190,8 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+
         <!-- spring framework end -->
 
         <!-- shiro security begin-->
@@ -236,16 +205,43 @@
             <artifactId>shiro-web</artifactId>
             <version>${org.apache.shiro.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${org.apache.shiro.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-ehcache</artifactId>
             <version>${org.apache.shiro.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+            <version>${org.apache.shiro.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.opensymphony.quartz</groupId>
+                    <artifactId>quartz</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${org.apache.shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.4</version>
+        </dependency>
+
         <!--shiro security end-->
 
         <!-- log begin -->
@@ -258,7 +254,7 @@
         <dependency>
             <groupId>org.logback-extensions</groupId>
             <artifactId>logback-ext-spring</artifactId>
-            <version>0.1.2</version>
+            <version>0.1.4</version>
         </dependency>
 
         <dependency>
@@ -301,6 +297,11 @@
             <version>1.9</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
     </dependencies>
 
     <build>

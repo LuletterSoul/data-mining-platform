@@ -1,12 +1,12 @@
 package com.dm.org.service;
 
 
-import com.dm.org.exception.DataObjectNotFoundException;
+import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
 import com.dm.org.model.User;
+import com.dm.org.security.credentials.DisposableSaltEntry;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,11 +21,17 @@ public interface UserService extends BaseService<User, String>
 {
     User registerUser(User user);
 
+    User doUserCredentialsMatch(User user, DisposableSaltEntry entry);
+
+    DisposableSaltEntry  getRandomVerifySaltEntry(String preSaltId);
+
     List<Long> findRoleIdListByUserId(String userId);
 
     Set<String> findPermissionNameSet(String userName);
 
     User fetchUserJoinRolesById(String userId);
+
+    String findPasswordByUserName(String userName);
 
     void updatePassword(String userName, String newPassword)
         throws DataObjectNotFoundException;
@@ -35,6 +41,8 @@ public interface UserService extends BaseService<User, String>
     void correlateRoles(String userId, List<Long> roleIdList);
 
     User findByUserName(String userName);
+
+    User fetchByUserName(String userName);
 
     List<Permission> findPermissionByUserName(String userName);
 

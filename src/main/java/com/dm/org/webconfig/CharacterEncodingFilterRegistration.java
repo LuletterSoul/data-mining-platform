@@ -13,7 +13,7 @@ import java.util.Map;
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5
  *          created in  12:37 2017/7/18.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
 
 public class CharacterEncodingFilterRegistration implements WebApplicationInitializer

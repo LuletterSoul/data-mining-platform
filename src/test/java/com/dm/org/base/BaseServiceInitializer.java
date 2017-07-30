@@ -21,13 +21,8 @@ import java.util.Map;
  * @modified by:
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@TransactionConfiguration(transactionManager = "transactionManager")
-@ContextConfiguration(locations = "classpath:spring-context.xml")
-public class BaseServiceInitializer
+public class BaseServiceInitializer extends ConfigurationWirer
 {
-
     protected WebApplicationContext webApplicationContext;
     protected Map<String, Object> updateMapping = new HashMap<String, Object>();
     protected Map<String, Object> conditonMapping = new HashMap<String, Object>();

@@ -7,6 +7,8 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -24,5 +26,13 @@ public class DelegatingProxyFilterRegistration implements WebApplicationInitiali
         FilterRegistration.Dynamic delegatingFilter = servletContext.addFilter("shiroFilter",
             DelegatingFilterProxy.class);
         delegatingFilter.addMappingForUrlPatterns(null, false, "/*");
+        setInitParameters(delegatingFilter);
+    }
+
+    private void setInitParameters(FilterRegistration.Dynamic filterRegistration)
+    {
+        Map<String, String> initParameters = new LinkedHashMap<String, String>();
+        initParameters.put("targetFilterLifecycle", "true");
+        filterRegistration.setInitParameters(initParameters);
     }
 }

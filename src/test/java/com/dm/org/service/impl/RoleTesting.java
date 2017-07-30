@@ -4,12 +4,12 @@ package com.dm.org.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dm.org.base.SecurityTestingInitializer;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dm.org.base.SecurityServiceTestInitializer;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
 
@@ -26,7 +26,7 @@ import com.dm.org.model.Role;
  * 
  * @version 1.0
  */
-public class RoleServiceImplTest extends SecurityServiceTestInitializer
+public class RoleTesting extends SecurityTestingInitializer
 {
 
     @Before

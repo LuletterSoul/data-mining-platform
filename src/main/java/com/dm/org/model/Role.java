@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.google.common.base.MoreObjects;
@@ -29,6 +30,7 @@ public class Role
 
     private boolean isAvailable;
 
+    @JsonIgnore
     private Set<Permission> permissionSet;
 
     public Role()

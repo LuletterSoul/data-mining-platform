@@ -10,8 +10,8 @@
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetCollectionDaoTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetContainerDaoTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/DataSetContainerServiceImplTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/RoleServiceImplTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/UserServiceImplTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/RoleTesting.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/UserTesting.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

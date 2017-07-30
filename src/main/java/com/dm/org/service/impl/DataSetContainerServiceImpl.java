@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.dm.org.exception.DataAccessObjectException;
-import com.dm.org.exception.DataObjectNotFoundException;
+import com.dm.org.exceptions.DataAccessObjectException;
+import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
 import com.dm.org.service.DataSetContainerService;

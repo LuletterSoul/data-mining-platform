@@ -1,17 +1,16 @@
 package com.dm.org.model;
 
 
-import java.util.Set;
+import com.dm.org.enums.UserAccessStatus;
+import com.dm.org.identifier.EntityIdentifier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-
-import com.dm.org.enums.UserAccessStatus;
-import org.hibernate.annotations.GenericGenerator;
-
-import com.dm.org.identifier.EntityIdentifier;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import java.util.Set;
 
 
 /**
@@ -107,11 +106,6 @@ public class User implements EntityIdentifier
         this.salt = salt;
     }
 
-    @Transient
-    public String getCredentialsSalt()
-    {
-        return userName + salt;
-    }
 
     @Enumerated
     @Column(name = "status")
@@ -128,6 +122,7 @@ public class User implements EntityIdentifier
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role_re",joinColumns = @JoinColumn(name = "userId"),
     inverseJoinColumns = @JoinColumn(name = "roleId"))
+    @JsonIgnore
     public Set<Role> getRoleSet() {
         return roleSet;
     }
@@ -161,7 +156,7 @@ public class User implements EntityIdentifier
                 .add("userId", userId)
                 .add("userName", userName)
                 .add("password", password)
-                .add("salt", salt)
+                .add("saltEntry", salt)
                 .add("status", status)
                 .add("roleSet", roleSet)
                 .toString();

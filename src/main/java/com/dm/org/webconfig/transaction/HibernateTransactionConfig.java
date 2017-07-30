@@ -33,7 +33,6 @@ public class HibernateTransactionConfig
     @Resource
     private DataSource dataSource;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HibernateConfiguration.class);
 
     @Bean
     public HibernateTransactionManager transactionManager()

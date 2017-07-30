@@ -1,22 +1,19 @@
 package com.dm.org.webconfig.hibernate;
 
 
-import java.io.IOException;
-import java.util.Properties;
-
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
 import com.dm.org.dao.DaoScanningMarker;
 import com.dm.org.service.ServiceScanningMarker;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Properties;
 
 
 /**
@@ -37,12 +34,6 @@ public class HibernateConfiguration
     @Resource
     private DataSource dataSource;
 
-    @Autowired
-
-    public void setEnvironment(Environment environment)
-    {
-        this.environment = environment;
-    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer()
@@ -75,6 +66,8 @@ public class HibernateConfiguration
         properties.setProperty("current_session_context_class",
                 environment.getProperty("current_session_context_class"));
         properties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
+//        properties.setProperty("hibernate.cache.region.factory_class",
+//            environment.getProperty("hibernate.cache.region.factory_class"));
         properties.setProperty("hibernate.show_sql",
                 environment.getProperty("hibernate.show_sql"));
         properties.setProperty("hibernate.format_sql",

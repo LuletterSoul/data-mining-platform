@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dm.org.dao.impl.*;
-import com.dm.org.exception.DataAccessObjectException;
-import com.dm.org.exception.DataObjectNotFoundException;
+import com.dm.org.exceptions.DataAccessObjectException;
+import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.service.BaseService;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -416,37 +416,41 @@ permissionId</ColNames>
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="114" parent="29" name="PRIMARY">
+    <column id="114" parent="29" name="saltEntry">
+      <Position>10</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="115" parent="29" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="115" parent="30" name="userId">
+    <column id="116" parent="30" name="userId">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="116" parent="30" name="roleId">
+    <column id="117" parent="30" name="roleId">
       <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="117" parent="30" name="FKlpntrxj3k2touihec453gvgqw">
+    <index id="118" parent="30" name="FKlpntrxj3k2touihec453gvgqw">
       <ColNames>roleId</ColNames>
     </index>
-    <key id="118" parent="30" name="PRIMARY">
+    <key id="119" parent="30" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId
 roleId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="119" parent="30" name="FKctw1d0pbo86kw4vflc7t68w44">
+    <foreign-key id="120" parent="30" name="FKctw1d0pbo86kw4vflc7t68w44">
       <ColNames>userId</ColNames>
       <RefSchemaName>data_mining</RefSchemaName>
       <RefTableName>user_info</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <foreign-key id="120" parent="30" name="FKlpntrxj3k2touihec453gvgqw">
+    <foreign-key id="121" parent="30" name="FKlpntrxj3k2touihec453gvgqw">
       <ColNames>roleId</ColNames>
       <RefSchemaName>data_mining</RefSchemaName>
       <RefTableName>role_info</RefTableName>

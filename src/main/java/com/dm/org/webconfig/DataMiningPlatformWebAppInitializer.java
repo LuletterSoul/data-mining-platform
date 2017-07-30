@@ -2,7 +2,7 @@ package com.dm.org.webconfig;
 
 
 import com.dm.org.webconfig.aop.AopConfiguration;
-import com.dm.org.webconfig.dataSource.DataSourceConfiguration;
+import com.dm.org.webconfig.cache.EhCacheConfiguration;
 import com.dm.org.webconfig.dataSource.impl.ComboPooledDataSourceConfig;
 import com.dm.org.webconfig.hibernate.HibernateConfiguration;
 import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
@@ -10,8 +10,9 @@ import com.dm.org.webconfig.springMvc.SpringMvcConfiguration;
 import com.dm.org.webconfig.transaction.HibernateTransactionConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
-import javax.sql.DataSource;
+import javax.servlet.ServletRegistration;
+
+//import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
 
 /**
  * @author  qq313700046@icloud.com .
@@ -30,7 +31,8 @@ public class DataMiningPlatformWebAppInitializer extends AbstractAnnotationConfi
                 ComboPooledDataSourceConfig.class,
                 HibernateConfiguration.class,
                 HibernateTransactionConfig.class,
-                ShiroSecurityConfiguration.class,
+                EhCacheConfiguration.class,
+                ShiroSecurityConfiguration.class
         };
     }
 
@@ -44,9 +46,9 @@ public class DataMiningPlatformWebAppInitializer extends AbstractAnnotationConfi
         return new String[] {"/"};
     }
 
-
     @Override
-    protected Filter[] getServletFilters() {
-        return super.getServletFilters();
+    protected void customizeRegistration(ServletRegistration.Dynamic registration)
+    {
+        registration.setLoadOnStartup(5);
     }
 }
