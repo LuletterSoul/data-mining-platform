@@ -53,7 +53,8 @@ public class UserRealm extends AuthorizingRealm
         User user = userService.findByUserName(username);
         if (user == null)
         {
-            throw new UnknownAccountException();// 没找到帐号
+            String message = "User "+username+" is unknown or password not correct.Please try again or contact adminstractor.";
+            throw new UnknownAccountException(message);// 没找到帐号
         }
 
         if (user.getStatus().equals(UserAccessStatus.LOCKED))
@@ -61,46 +62,45 @@ public class UserRealm extends AuthorizingRealm
             throw new LockedAccountException(); // 帐号锁定
         }
 
-        // 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         return new SimpleAuthenticationInfo(user.getUserName(), // 用户名
             user.getPassword(), // 密码
-            ByteSource.Util.bytes(user.getCredentialsSalt()), // salt=username+salt
-            getName() // realm name
+            ByteSource.Util.bytes(user.getSalt()),
+            getName()
         );
     }
-
-    @Override
-    public void clearCachedAuthorizationInfo(PrincipalCollection principals)
-    {
-        super.clearCachedAuthorizationInfo(principals);
-    }
-
-    @Override
-    public void clearCachedAuthenticationInfo(PrincipalCollection principals)
-    {
-        super.clearCachedAuthenticationInfo(principals);
-    }
-
-    @Override
-    public void clearCache(PrincipalCollection principals)
-    {
-        super.clearCache(principals);
-    }
-
-    public void clearAllCachedAuthorizationInfo()
-    {
-        getAuthorizationCache().clear();
-    }
-
-    public void clearAllCachedAuthenticationInfo()
-    {
-        getAuthenticationCache().clear();
-    }
-
-    public void clearAllCache()
-    {
-        clearAllCachedAuthenticationInfo();
-        clearAllCachedAuthorizationInfo();
-    }
+    //
+    // @Override
+    // public void clearCachedAuthorizationInfo(PrincipalCollection principals)
+    // {
+    // super.clearCachedAuthorizationInfo(principals);
+    // }
+    //
+    // @Override
+    // public void clearCachedAuthenticationInfo(PrincipalCollection principals)
+    // {
+    // super.clearCachedAuthenticationInfo(principals);
+    // }
+    //
+    // @Override
+    // public void clearCache(PrincipalCollection principals)
+    // {
+    // super.clearCache(principals);
+    // }
+    //
+    // public void clearAllCachedAuthorizationInfo()
+    // {
+    // getAuthorizationCache().clear();
+    // }
+    //
+    // public void clearAllCachedAuthenticationInfo()
+    // {
+    // getAuthenticationCache().clear();
+    // }
+    //
+    // public void clearAllCache()
+    // {
+    // clearAllCachedAuthenticationInfo();
+    // clearAllCachedAuthorizationInfo();
+    // }
 
 }
