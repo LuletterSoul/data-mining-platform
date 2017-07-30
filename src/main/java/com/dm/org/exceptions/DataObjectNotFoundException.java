@@ -1,4 +1,4 @@
-package com.dm.org.exception;
+package com.dm.org.exceptions;
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
