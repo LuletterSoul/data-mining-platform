@@ -44,7 +44,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
 
     public void addResourceHandlers(ResourceHandlerRegistry registry)
     {
-        registry.addResourceHandler("/static/*").addResourceLocations("/static/");
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
         super.addResourceHandlers(registry);
     }
 
@@ -53,10 +53,10 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     {
         registry.addRedirectViewController("/", "/static/index.html");
         registry.addRedirectViewController("/index", "/static/index.html");
-        registry.addRedirectViewController("/login", "/static/login/login.html");
-        registry.addRedirectViewController("/manager/data_set", "/static/manager/data_set.html");
-        registry.addRedirectViewController("/manager/student", "/static/manager/student.html");
-        registry.addRedirectViewController("/manager/data_set", "/static/manager/data_set.html");
+//        registry.addRedirectViewController("/login", "/static/login/login.html");
+        registry.addRedirectViewController("/manager/data_set", "/static/manager/data_sets.html");
+        registry.addRedirectViewController("/manager/student", "/static/manager/students.html");
+        registry.addRedirectViewController("/manager/data_set", "/static/manager/data_sets.html");
     }
 
     @Bean

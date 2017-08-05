@@ -43,19 +43,13 @@ public class LoginController
         this.userService = userService;
     }
 
-
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public void login(@RequestBody UserAndToken userAndToken, HttpServletRequest request)
+    @ResponseBody
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public User login(@RequestBody UserAndToken userAndToken, HttpServletRequest request)
     {
         try
         {
-            userService.doUserCredentialsMatch(userAndToken.user, userAndToken.entry);
-//            SavedRequest savedRequest = WebUtils.getSavedRequest(request);
-//            if (savedRequest == null || savedRequest.getRequestUrl() == null)
-//            {
-//                return "redirect:/static/manager/data_set.html";
-//            }
-//            return "redirect:" + savedRequest.getRequestUrl();
+            return userService.doUserCredentialsMatch(userAndToken.user, userAndToken.entry);
         }
         catch (UnknownAccountException e)
         {
@@ -73,7 +67,8 @@ public class LoginController
         {
             e.printStackTrace();
         }
-//        return "redirect:/static/manager/data_set.html";
+        // return "redirect:/static/manager/data_sets.html";
+        return null;
     }
 
     @RequestMapping(value = "/disposableSalt.json", method = RequestMethod.POST)
@@ -87,14 +82,12 @@ public class LoginController
     @RequiresAuthentication
     public String doLogin()
     {
-        return "redirect:/static/manager/data_set.html";
+        return "redirect:/static/manager/data_sets.html";
     }
-
 
     static class UserAndToken
     {
         public User user;
-
         public DisposableSaltEntry entry;
     }
 }
