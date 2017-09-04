@@ -1,6 +1,7 @@
 package com.dm.org.controller;
 
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,18 +31,21 @@ public class StaticResourcesMappingController
         return "forward:/static/manager";
     }
 
+    @RequiresAuthentication
     @RequestMapping(value = "/manager/data_sets", method = RequestMethod.GET)
     public String dataSet()
     {
         return "forward:/static/manager/data_sets.html";
     }
 
+    @RequiresAuthentication
     @RequestMapping(value = "/manager/students", method = RequestMethod.GET)
     public String manageStudent()
     {
         return "forward:/static/manager/students.html";
     }
 
+    @RequiresAuthentication
     @RequestMapping(value = "/manager/tasks", method = RequestMethod.GET)
     public String manageTask()
     {

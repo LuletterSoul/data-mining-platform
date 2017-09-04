@@ -51,7 +51,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
-        registry.addRedirectViewController("/", "/static/index.html");
+        registry.addRedirectViewController("/", "/login");
         registry.addRedirectViewController("/index", "/static/index.html");
 //        registry.addRedirectViewController("/login", "/static/login/login.html");
         registry.addRedirectViewController("/manager/data_set", "/static/manager/data_sets.html");

@@ -1,14 +1,22 @@
 var saltEntry={tmpId:null,disposableSalt:''};
 var contextPath;
+$("#form-signin").submit(function (e)
+{
+    e.preventDefault();
+    console.log("submit login form");
+    postLoginForm();
+});
 $(function()
 {
     contextPath = getContextPath();
 });
+
 function getEncryption(password,rowKey)
 {
     var key = CryptoJS.enc.Utf8.parse(rowKey);
     var submittedPlaitText = CryptoJS.enc.Utf8.parse(password);
     var encrypted = CryptoJS.AES.encrypt(submittedPlaitText, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+    console.log("complete simple encrypt");
     return encrypted.toString();
 }
 function getDisposableSalt()
@@ -37,10 +45,9 @@ function getDisposableSalt()
 function postLoginForm()
 {
     getDisposableSalt();
-    var username = $('input.username').val();
-    var password = $('input.password').val();
+    var username = $('#username').val();
+    var password = $('#password').val();
     var passwordEncryption = getEncryption(password,saltEntry.disposableSalt);
-    //alert(passwordEncryption);
     var loginInfo =
         {
             'user':
@@ -66,7 +73,7 @@ function postLoginForm()
                 // alert(data.userName);
                 window.location.href=contextPath+'/manager/data_sets';
             },
-            async:false
+            async:true
         }
     );
 }
