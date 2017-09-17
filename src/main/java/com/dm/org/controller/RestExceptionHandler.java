@@ -1,8 +1,10 @@
-package com.dm.org.exceptions;
+package com.dm.org.controller;
 
 
 import com.dm.org.exceptions.error.ErrorInfo;
+import org.apache.shiro.authc.ExpiredCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.dao.DataAccessException;
@@ -19,6 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -96,6 +99,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             new HttpHeaders(), NOT_FOUND, request);
     }
 
+    @ExceptionHandler(NoResultException.class)
+    protected ResponseEntity<Object> handleResultNotFound(final NoResultException ex,
+                                                          final WebRequest request)
+    {
+        return handleExceptionInternal(ex, "Required / requested resource not found!",
+            new HttpHeaders(), NOT_FOUND, request);
+    }
+
     // 409
 
     @ExceptionHandler({ConstraintViolationException.class})
@@ -134,5 +145,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), NOT_FOUND, request);
     }
 
+    @ExceptionHandler(UnsupportedTokenException.class)
+    public ResponseEntity<Object> handleUnsupportedTokenException(final UnsupportedTokenException ex,
+                                                                  final WebRequest request)
+    {
+        return handleExceptionInternal(ex,
+            "Server can't resolve corresponding negotiation content with client.Please make sure request has include correct params.",
+            new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
 
+    @ExceptionHandler(ExpiredCredentialsException.class)
+    public ResponseEntity<Object> handleExpiredCredentialsException(final ExpiredCredentialsException ex,
+                                                                    final WebRequest request)
+    {
+        return handleExceptionInternal(ex, "Expired credentials.", new HttpHeaders(),
+            HttpStatus.FORBIDDEN, request);
+    }
 }

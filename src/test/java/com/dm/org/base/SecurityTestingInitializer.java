@@ -8,6 +8,7 @@ import com.dm.org.model.User;
 import com.dm.org.security.UserPasswordService;
 import com.dm.org.service.PermissionService;
 import com.dm.org.service.RoleService;
+import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class SecurityTestingInitializer extends ConfigurationWirer
     protected PermissionService permissionService;
 
     protected UserPasswordService passwordService;
+
+    protected StatelessCredentialsService credentialsService;
 
     protected String password = "123";
 
@@ -74,6 +77,11 @@ public class SecurityTestingInitializer extends ConfigurationWirer
     }
 
     @Autowired
+    public void setCredentialsService(StatelessCredentialsService credentialsService) {
+        this.credentialsService = credentialsService;
+    }
+
+    @Autowired
     public void setPasswordService(UserPasswordService passwordService) {
         this.passwordService = passwordService;
     }
@@ -103,10 +111,15 @@ public class SecurityTestingInitializer extends ConfigurationWirer
         // 新增用户
 
         u1 = new User("zhang", password);
-        String randomSalt = passwordService.generateRandomSalt(16) + u1.getUserName();
-        String encryptedPassword = passwordService.encryptPasswordWithSalt(password, randomSalt);
-        u1.setSalt(randomSalt);
+//        String randomSalt = passwordService.generateRandomSalt(16) + u1.getUserName();
+//        String encryptedPassword = passwordService.encryptPasswordWithSalt(password, randomSalt);
+        String publicSalt = credentialsService.generateRandomSalt(32);
+        String privateSalt = credentialsService.generateRandomSalt(32);
+        String encryptedPassword = credentialsService.encryptPassword(password, publicSalt);
+        u1.setPublicSalt(publicSalt);
         u1.setPassword(encryptedPassword);
+        u1.setPrivateSalt(privateSalt);
+
 
         u2 = new User("li", passwordService.encryptPassword(password));
         u3 = new User("wu", passwordService.encryptPassword(password));

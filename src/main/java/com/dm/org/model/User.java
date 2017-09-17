@@ -29,9 +29,14 @@ public class User implements EntityIdentifier
 
     private String userName;
 
+    @JsonIgnore
     private String password;
 
-    private String salt;
+    @JsonIgnore
+    private String publicSalt;
+
+    @JsonIgnore
+    private String privateSalt;
 
     private UserAccessStatus status = UserAccessStatus.AVAILABLE;
 
@@ -42,11 +47,11 @@ public class User implements EntityIdentifier
 
     }
 
-    public User(String userName, String password, String salt, UserAccessStatus status)
+    public User(String userName, String password, String publicSalt, UserAccessStatus status)
     {
         this.userName = userName;
         this.password = password;
-        this.salt = salt;
+        this.publicSalt = publicSalt;
         this.status = status;
     }
 
@@ -93,19 +98,26 @@ public class User implements EntityIdentifier
         this.password = password;
     }
 
-    @Column(name = "salt")
-    public String getSalt()
+    @Column(name = "publicSalt")
+    public String getPublicSalt()
     {
-        return salt;
+        return publicSalt;
     }
 
 
 
-    public void setSalt(String salt)
+    public void setPublicSalt(String salt)
      {
-        this.salt = salt;
+        this.publicSalt = salt;
     }
 
+    public String getPrivateSalt() {
+        return privateSalt;
+    }
+
+    public void setPrivateSalt(String privateSalt) {
+        this.privateSalt = privateSalt;
+    }
 
     @Enumerated
     @Column(name = "status")
@@ -156,7 +168,7 @@ public class User implements EntityIdentifier
                 .add("userId", userId)
                 .add("userName", userName)
                 .add("password", password)
-                .add("saltEntry", salt)
+                .add("saltEntry", publicSalt)
                 .add("status", status)
                 .add("roleSet", roleSet)
                 .toString();

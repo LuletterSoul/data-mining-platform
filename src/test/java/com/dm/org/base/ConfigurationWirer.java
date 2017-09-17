@@ -9,10 +9,12 @@ import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
 import com.dm.org.webconfig.springMvc.SpringMvcConfiguration;
 import com.dm.org.webconfig.transaction.HibernateTransactionConfig;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.context.WebApplicationContext;
 
 
 /**
@@ -23,21 +25,22 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-//@ContextConfiguration(classes = {DataMiningPlatformWebAppInitializer.class,
-//    ShiroSecurityConfiguration.class, HibernateTransactionConfig.class,
-//    HibernateConfiguration.class, SpringMvcConfiguration.class, EhCacheConfiguration.class,
-//    ComboPooledDataSourceConfig.class})
+// @ContextConfiguration(classes = {DataMiningPlatformWebAppInitializer.class,
+// ShiroSecurityConfiguration.class, HibernateTransactionConfig.class,
+// HibernateConfiguration.class, SpringMvcConfiguration.class, EhCacheConfiguration.class,
+// ComboPooledDataSourceConfig.class})
 @ContextHierarchy({
-@ContextConfiguration(name = "parent",
-classes = { ShiroSecurityConfiguration.class,
-            HibernateTransactionConfig.class,
-            HibernateConfiguration.class,
-            EhCacheConfiguration.class,
-            ComboPooledDataSourceConfig.class
-        }),
-@ContextConfiguration(name = "child",classes = SpringMvcConfiguration.class)
-})
+    @ContextConfiguration(name = "parent", classes = {ShiroSecurityConfiguration.class,
+        HibernateTransactionConfig.class, HibernateConfiguration.class, EhCacheConfiguration.class,
+        ComboPooledDataSourceConfig.class}),
+    @ContextConfiguration(name = "child", classes = SpringMvcConfiguration.class)})
 public class ConfigurationWirer
 {
+    protected WebApplicationContext webApplicationContext;
 
+    @Autowired
+    public void setWebApplicationContext(WebApplicationContext webApplicationContext)
+    {
+        this.webApplicationContext = webApplicationContext;
+    }
 }

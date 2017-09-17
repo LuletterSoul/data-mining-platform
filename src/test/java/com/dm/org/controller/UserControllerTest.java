@@ -1,174 +1,77 @@
-//package com.dm.org.controller;
-//
-//
-//import com.dm.org.base.BaseServiceInitializer;
-//import com.dm.org.model.User;
-//import org.junit.Test;
-//import org.junit.Before;
-//import org.junit.After;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.MockitoAnnotations;
-//import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-//import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-//
-//import java.util.ArrayList;
-//import java.util.UUID;
-//
-//import static org.mockito.Mockito.*;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-//
-///**
-// * UserController Tester.
-// *
-// * @author XiangDe Liu qq313700046@icloud.com
-// * @since
-// *
-// *        <pre>
-// * 七月 1, 2017
-// *        </pre>
-// *
-// * @version 1.0
-// */
-//
-//public class UserControllerTest extends BaseServiceInitializer
-//{
-//    private MockMvc mockMvc;
-//
-//    @Mock
-//    private UserDao userDao;
-//
-//    @Mock
-//    private UserService userService;
-//
-//
-//
-//    @InjectMocks
-//    private UserController userController;
-//
-//    @Before
-//    public void before()
-//        throws Exception
-//    {
-//        MockitoAnnotations.initMocks(this);
-//        mockMvc = MockMvcBuilders.standaloneSetup(userController).
-//                build();
-//    }
-//
-//    @After
-//    public void after()
-//        throws Exception
-//    {}
-//
-//    /**
-//     * Method: setUserService(UserService userService)
-//     */
-//    @Test
-//    public void testSetUserService()
-//        throws Exception
-//    {
-//        // TODO: Test goes here...
-//    }
-//
-//    /**
-//     * Method: saveUser()
-//     */
-//    @Test
-//    public void testSaveUser()
-//        throws Exception
-//    {
-//        // TODO: Test goes here...
-//    }
-//
-//    /**
-//     * Method: findAllUsers()
-//     */
-//    @Test
-//    public void testFindAllUsers()
-//        throws Exception
-//    {
-//        // TODO: Test goes here...
-//    }
-//
-//    /**
-//     * Method: mockTest()
-//     */
-//    @Test
-//    public void testMockTest()
-//        throws Exception
-//    {
-//        ArrayList<User> userArrayList = new ArrayList<User>();
-//                userArrayList.add(getMockUser());
-//        when(userController.findAllUsers()).thenReturn(userArrayList);
-//        mockMvc.perform(get("/demo/test"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("test"))
-////                .andExpect(model().attributeExists("userList"))
-//                .andDo(MockMvcResultHandlers.print());
-//        verify(userService).findAllUsers();
-////        System.out.println(userController.findAllUsers());
-//    }
-//
-//    /**
-//     * Method: showRegistrationForm()
-//     */
-//    @Test
-//    public void testShowRegistrationForm()
-//                throws Exception
-//    {
-//        User unSavedUser = getMockUser();
-//        User savedUser = getMockUser();
-//        when(userService.save(unSavedUser)).thenReturn(savedUser);
-//        mockMvc.perform(post("/user/register")
-//                .param("userId", unSavedUser.getUserId())
-//                .param("age", "100")
-//                .param("gender", "男")
-//                .param("name", UUID.randomUUID().toString().substring(0, 8))
-//        )
-//                .andExpect(status().isFound())
-//                .andExpect(redirectedUrl("/user/" + unSavedUser.getUserId()))
-//               .andExpect(flash().attributeExists("user"))
-//                .andDo(MockMvcResultHandlers.print());
-//        verify(userService, atLeastOnce()).save(unSavedUser);
-//    }
-//
-//    private User getMockUser()
-//    {
-//        User user = new User(UUID.randomUUID().toString().substring(0, 8),
-//                UUID.randomUUID().toString().substring(0, 8),
-//                null, 100);
-//        return user;
-//    }
-//
-//    /**
-//     * Method: processRegistration()
-//     */
-//    @Test
-//    public void testProcessRegistration()
-//                throws Exception
-//    {
-//        User findUser = getMockUser();
-//        User foundUser = getMockUser();
-//        when(userService.getUserById(findUser.getUserId())).thenReturn(foundUser);
-//        mockMvc.perform(get("/user/" + findUser.getUserId()))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("profile"))
-//                .andExpect(model().attributeExists("userId"))
-//                .andDo(MockMvcResultHandlers.print());
-//        verify(userService, atLeastOnce()).getUserById(findUser.getUserId());
-//    }
-//
-//    /**
-//     * Method: showUserProfile()
-//     */
-//    @Test
-//    public void testShowUserProfile()
-//                throws Exception
-//    {
-//
-//    }
-//
-//
-//}
+package com.dm.org.controller;
+
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.dm.org.model.User;
+import com.dm.org.utils.DateStyle;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.dm.org.base.ConfigurationWirer;
+import com.dm.org.security.constants.Constants;
+
+
+/**
+ * @author XiangDe Liu qq313700046@icloud.com .
+ * @version 1.5 created in 1:11 2017/9/15.
+ * @since data-mining-platform
+ */
+
+public class UserControllerTest extends ConfigurationWirer
+{
+
+    private MockMvc mockMvc;
+
+    @Before
+    public void setUp()
+        throws Exception
+    {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+
+    /*
+     * Test client send get time out token request.And result expect request accepted by server.
+     */
+    @Test
+    public void getToken()
+        throws Exception
+    {
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
+        String timestamp = format.format(now);
+        String username = "zhang";
+        mockMvc.perform(post("/user/token").accept(MediaType.APPLICATION_JSON_UTF8).header(
+            Constants.HEADER_TIMESTAMP, timestamp).param(Constants.PARAM_USERNAME,
+                username)).andExpect(status().isOk()).andExpect(
+                    content().contentType(MediaType.APPLICATION_JSON_UTF8)).andDo(print());
+    }
+
+    // /**
+    // * Method: getToken()
+    // * Test client send GET time out token request.And result expect request denied by
+    // server,return 40
+    // */
+    // @Test
+    // public void testAndExpect(status().isOk()).()
+    // throws Exception
+    // {
+    //
+    // }
+    /**
+     * Method: testLogin()
+     */
+
+
+
+}

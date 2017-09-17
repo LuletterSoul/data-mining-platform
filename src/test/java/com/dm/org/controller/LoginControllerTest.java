@@ -1,6 +1,7 @@
 package com.dm.org.controller;
 
 
+import com.dm.org.base.ConfigurationWirer;
 import com.dm.org.base.ControllerTestingInitializer;
 import org.junit.Test;
 import org.junit.Before;
@@ -10,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 
  * @version 1.0
  */
-public class LoginControllerTest extends ControllerTestingInitializer
+public class LoginControllerTest extends ConfigurationWirer
 {
     private MockMvc loginControllerMcvMock;
 
@@ -36,7 +38,7 @@ public class LoginControllerTest extends ControllerTestingInitializer
 
     {
         MockitoAnnotations.initMocks(this);
-        loginControllerMcvMock = MockMvcBuilders.standaloneSetup(LoginController.class).build();
+        loginControllerMcvMock = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
     @After
@@ -52,6 +54,16 @@ public class LoginControllerTest extends ControllerTestingInitializer
         throws Exception
     {
         loginControllerMcvMock.perform(get("/doLogin/random_salt")).andDo(print());
+    }
+
+    /**
+     * Method: login()
+     */
+    @Test
+    public void testLogin()
+                throws Exception
+    {
+        loginControllerMcvMock.perform(post("/login")).andDo(print());
     }
 
 }

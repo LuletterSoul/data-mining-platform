@@ -9,7 +9,7 @@ import org.apache.shiro.util.ByteSource;
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5 created in 14:22 2017/7/24.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
 
 public interface UserPasswordService extends HashingPasswordService

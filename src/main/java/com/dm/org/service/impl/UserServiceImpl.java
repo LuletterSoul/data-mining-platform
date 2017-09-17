@@ -11,9 +11,11 @@ import com.dm.org.security.credentials.EncryptUtils;
 import com.dm.org.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
@@ -73,7 +75,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
          * 及时清除缓存;
          */
         loginDisposableSaltCache.remove(entry.getTmpId());
-        //解密
+        // 解密
         String submittedPlait = EncryptUtils.aesDecrypt(user.getPassword(), disposableSalt);
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),
             submittedPlait);
@@ -218,4 +220,41 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         // List<Role> roleList = roleDao.fetchRoleListByIdList(roleIdList);
         userDao.removeRoles(userId, roleIdList);
     }
+
+    @Override
+    public String getPublicSalt(String username)
+    {
+        return null;
+    }
+
+    @Override
+    public String fetchPublicSalt(String username)
+    {
+        try
+        {
+            return userDao.getPublicSalt(username);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw new UnknownAccountException(
+                "Unknown account.Please ensure your account is registered and correct.");
+        }
+    }
+
+    @Override
+    public String fetchPrivateSalt(String username)
+    {
+        try
+        {
+            return userDao.getPrivateSalt(username);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw new UnknownAccountException(
+                "Unknown account.Please ensure your account is registered and correct.");
+        }
+    }
+
 }

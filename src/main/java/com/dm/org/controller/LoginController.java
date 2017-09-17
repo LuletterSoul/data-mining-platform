@@ -4,6 +4,7 @@ package com.dm.org.controller;
 import com.dm.org.model.User;
 import com.dm.org.security.credentials.DisposableSaltEntry;
 import com.dm.org.service.UserService;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -45,36 +46,36 @@ public class LoginController
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public User login(@RequestBody UserAndToken userAndToken, HttpServletRequest request)
+    public void login(HttpServletRequest request)
     {
-        try
-        {
-            return userService.doUserCredentialsMatch(userAndToken.user, userAndToken.entry);
-        }
-        catch (UnknownAccountException e)
-        {
-            e.printStackTrace();
-        }
-        catch (LockedAccountException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ExcessiveAttemptsException e)
-        {
-            e.printStackTrace();
-        }
-        catch (AuthenticationException e)
-        {
-            e.printStackTrace();
-        }
-        // return "redirect:/static/manager/data_sets.html";
-        return null;
+//        try
+//        {
+//            return userService.doUserCredentialsMatch(userAndToken.user, userAndToken.entry);
+//        }
+//        catch (UnknownAccountException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch (LockedAccountException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch (ExcessiveAttemptsException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch (AuthenticationException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        return null;
     }
 
     @RequestMapping(value = "/disposableSalt.json", method = RequestMethod.POST)
     @ResponseBody
     public DisposableSaltEntry generateDisposableSalted(@RequestBody String preSaltId)
     {
+
         return userService.getRandomVerifySaltEntry(preSaltId);
     }
 
@@ -90,4 +91,5 @@ public class LoginController
         public User user;
         public DisposableSaltEntry entry;
     }
+
 }

@@ -1,307 +1,297 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MySQL - test_db@localhost driver - @localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
     <root id="1"/>
-    <schema id="2" parent="1" name="exam">
+    <schema id="2" parent="1" name="data_mining">
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <schema id="3" parent="1" name="information_schema"/>
-    <schema id="4" parent="1" name="mysql"/>
-    <schema id="5" parent="1" name="performance_schema"/>
-    <schema id="6" parent="1" name="sakila"/>
-    <schema id="7" parent="1" name="sc_system_db"/>
-    <schema id="8" parent="1" name="selection_course_system_db"/>
-    <schema id="9" parent="1" name="sgw"/>
-    <schema id="10" parent="1" name="sys"/>
-    <schema id="11" parent="1" name="system_db"/>
-    <schema id="12" parent="1" name="te_employee"/>
-    <schema id="13" parent="1" name="world"/>
-    <schema id="14" parent="1" name="data_mining">
-      <Current>1</Current>
-      <Visible>1</Visible>
-    </schema>
-    <table id="15" parent="2" name="user"/>
-    <table id="16" parent="14" name="attr_feature_info"/>
-    <table id="17" parent="14" name="attr_feature_rela"/>
-    <table id="18" parent="14" name="collec_char_info"/>
-    <table id="19" parent="14" name="collec_char_rela"/>
-    <table id="20" parent="14" name="data_set_attribute"/>
-    <table id="21" parent="14" name="data_set_cell"/>
-    <table id="22" parent="14" name="data_set_collection"/>
-    <table id="23" parent="14" name="data_set_container"/>
-    <table id="24" parent="14" name="data_set_row"/>
-    <table id="25" parent="14" name="hibernate_sequence"/>
-    <table id="26" parent="14" name="permission_info"/>
-    <table id="27" parent="14" name="role_info"/>
-    <table id="28" parent="14" name="role_permission_re"/>
-    <table id="29" parent="14" name="user_info"/>
-    <table id="30" parent="14" name="user_role_re"/>
-    <column id="31" parent="15" name="username">
-      <Position>1</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="32" parent="15" name="userId">
-      <Position>2</Position>
-      <DataType>varchar(45)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="33" parent="15" name="password">
-      <Position>3</Position>
-      <DataType>varchar(45)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="34" parent="15" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>userId</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="35" parent="16" name="attrFeatureId">
+    <schema id="3" parent="1" name="exam"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="sakila"/>
+    <schema id="8" parent="1" name="sc_system_db"/>
+    <schema id="9" parent="1" name="selection_course_system_db"/>
+    <schema id="10" parent="1" name="sgw"/>
+    <schema id="11" parent="1" name="sys"/>
+    <schema id="12" parent="1" name="system_db"/>
+    <schema id="13" parent="1" name="te_employee"/>
+    <schema id="14" parent="1" name="world"/>
+    <table id="15" parent="2" name="attr_feature_info"/>
+    <table id="16" parent="2" name="attr_feature_rela"/>
+    <table id="17" parent="2" name="collec_char_info"/>
+    <table id="18" parent="2" name="collec_char_rela"/>
+    <table id="19" parent="2" name="data_set_attribute"/>
+    <table id="20" parent="2" name="data_set_cell"/>
+    <table id="21" parent="2" name="data_set_collection"/>
+    <table id="22" parent="2" name="data_set_container"/>
+    <table id="23" parent="2" name="data_set_row"/>
+    <table id="24" parent="2" name="hibernate_sequence"/>
+    <table id="25" parent="2" name="permission_info"/>
+    <table id="26" parent="2" name="role_info"/>
+    <table id="27" parent="2" name="role_permission_re"/>
+    <table id="28" parent="2" name="user_info"/>
+    <table id="29" parent="2" name="user_role_re"/>
+    <column id="30" parent="15" name="attrFeatureId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="16" name="feature">
+    <column id="31" parent="15" name="feature">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="37" parent="16" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="32" parent="15" name="PRIMARY">
       <ColNames>attrFeatureId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="38" parent="17" name="containerId">
+    <column id="33" parent="16" name="containerId">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="17" name="feature">
+    <column id="34" parent="16" name="feature">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="40" parent="17" name="UK_juqedid5ufq35bnngsacnym95">
+    <index id="35" parent="16" name="UK_juqedid5ufq35bnngsacnym95">
       <ColNames>feature</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="41" parent="17" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="36" parent="16" name="PRIMARY">
       <ColNames>containerId
 feature</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="42" parent="17" name="UK_juqedid5ufq35bnngsacnym95">
+    <key id="37" parent="16" name="UK_juqedid5ufq35bnngsacnym95">
       <ColNames>feature</ColNames>
       <UnderlyingIndexName>UK_juqedid5ufq35bnngsacnym95</UnderlyingIndexName>
     </key>
-    <column id="43" parent="18" name="charId">
+    <column id="38" parent="17" name="charId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="18" name="characteristic">
+    <column id="39" parent="17" name="characteristic">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="45" parent="18" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="40" parent="17" name="PRIMARY">
       <ColNames>charId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="19" name="collectionId">
+    <column id="41" parent="18" name="collectionId">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="19" name="charId">
+    <column id="42" parent="18" name="charId">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="48" parent="19" name="UK_e4lmy7ddyd1sln08pd7x0iv3a">
+    <index id="43" parent="18" name="UK_e4lmy7ddyd1sln08pd7x0iv3a">
       <ColNames>charId</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="49" parent="19" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="44" parent="18" name="PRIMARY">
       <ColNames>collectionId
 charId</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="50" parent="19" name="UK_e4lmy7ddyd1sln08pd7x0iv3a">
+    <key id="45" parent="18" name="UK_e4lmy7ddyd1sln08pd7x0iv3a">
       <ColNames>charId</ColNames>
       <UnderlyingIndexName>UK_e4lmy7ddyd1sln08pd7x0iv3a</UnderlyingIndexName>
     </key>
-    <column id="51" parent="20" name="attributeId">
+    <column id="46" parent="19" name="attributeId">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="52" parent="20" name="description">
+    <column id="47" parent="19" name="description">
       <Position>2</Position>
       <DataType>longblob|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="20" name="fieldName">
+    <column id="48" parent="19" name="fieldName">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="54" parent="20" name="containerId">
+    <column id="49" parent="19" name="containerId">
       <Position>4</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <index id="55" parent="20" name="CONTAINER_ID_FK">
+    <index id="50" parent="19" name="CONTAINER_ID_FK">
       <ColNames>containerId</ColNames>
     </index>
-    <key id="56" parent="20" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="51" parent="19" name="PRIMARY">
       <ColNames>attributeId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="57" parent="21" name="cellId">
+    <column id="52" parent="20" name="cellId">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="21" name="cellType">
+    <column id="53" parent="20" name="cellType">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="59" parent="21" name="rowId">
+    <column id="54" parent="20" name="rowId">
       <Position>3</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <column id="60" parent="21" name="attributeId">
+    <column id="55" parent="20" name="attributeId">
       <Position>4</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <index id="61" parent="21" name="ATTRIBUTE_FK_ID">
+    <index id="56" parent="20" name="ATTRIBUTE_FK_ID">
       <ColNames>attributeId</ColNames>
     </index>
-    <index id="62" parent="21" name="ROW_FK_ID">
+    <index id="57" parent="20" name="ROW_FK_ID">
       <ColNames>rowId</ColNames>
     </index>
-    <key id="63" parent="21" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="58" parent="20" name="PRIMARY">
       <ColNames>cellId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="64" parent="22" name="collectionId">
+    <column id="59" parent="21" name="collectionId">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="65" parent="22" name="abstractInfo">
+    <column id="60" parent="21" name="abstractInfo">
       <Position>2</Position>
       <DataType>varchar(600)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="66" parent="22" name="area">
+    <column id="61" parent="21" name="area">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="67" parent="22" name="associatedTasks">
+    <column id="62" parent="21" name="associatedTasks">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="68" parent="22" name="dataDonated">
+    <column id="63" parent="21" name="dataDonated">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="69" parent="22" name="description">
+    <column id="64" parent="21" name="description">
       <Position>6</Position>
       <DataType>longtext|0</DataType>
     </column>
-    <column id="70" parent="22" name="enableMissing">
+    <column id="65" parent="21" name="enableMissing">
       <Position>7</Position>
       <DataType>tinyint(4)|0</DataType>
     </column>
-    <column id="71" parent="22" name="relevantPapers">
+    <column id="66" parent="21" name="relevantPapers">
       <Position>8</Position>
       <DataType>longtext|0</DataType>
     </column>
-    <column id="72" parent="22" name="topics">
+    <column id="67" parent="21" name="topics">
       <Position>9</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="73" parent="22" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="68" parent="21" name="PRIMARY">
       <ColNames>collectionId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="74" parent="23" name="containerId">
+    <column id="69" parent="22" name="containerId">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="75" parent="23" name="attributeTypes">
+    <column id="70" parent="22" name="attributeTypes">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="23" name="data">
+    <column id="71" parent="22" name="data">
       <Position>3</Position>
       <DataType>longblob|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="23" name="fileType">
+    <column id="72" parent="22" name="fileType">
       <Position>4</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="78" parent="23" name="instances">
+    <column id="73" parent="22" name="instances">
       <Position>5</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="23" name="setName">
+    <column id="74" parent="22" name="setName">
       <Position>6</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="23" name="size">
+    <column id="75" parent="22" name="size">
       <Position>7</Position>
       <DataType>double|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="81" parent="23" name="collectionId">
+    <column id="76" parent="22" name="collectionId">
       <Position>8</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <index id="82" parent="23" name="COLLECTION_ID_FK">
+    <index id="77" parent="22" name="COLLECTION_ID_FK">
       <ColNames>collectionId</ColNames>
     </index>
-    <key id="83" parent="23" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="78" parent="22" name="PRIMARY">
       <ColNames>containerId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="84" parent="24" name="rowId">
+    <column id="79" parent="23" name="rowId">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="85" parent="24" name="containerId">
+    <column id="80" parent="23" name="containerId">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <index id="86" parent="24" name="CONTAINER_ID_FK">
+    <index id="81" parent="23" name="CONTAINER_ID_FK">
       <ColNames>containerId</ColNames>
     </index>
-    <key id="87" parent="24" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="82" parent="23" name="PRIMARY">
       <ColNames>rowId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="88" parent="25" name="next_val">
+    <column id="83" parent="24" name="next_val">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <column id="89" parent="26" name="permissionId">
+    <column id="84" parent="25" name="permissionId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="25" name="available">
+      <Position>2</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <column id="86" parent="25" name="description">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="87" parent="25" name="permissionName">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="88" parent="25" name="PRIMARY">
+      <ColNames>permissionId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="89" parent="26" name="roleId">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
@@ -314,14 +304,12 @@ charId</ColNames>
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="92" parent="26" name="permissionName">
+    <column id="92" parent="26" name="roleName">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <key id="93" parent="26" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>permissionId</ColNames>
+      <ColNames>roleId</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="94" parent="27" name="roleId">
@@ -329,128 +317,103 @@ charId</ColNames>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="27" name="available">
-      <Position>2</Position>
-      <DataType>bit(1)|0</DataType>
-    </column>
-    <column id="96" parent="27" name="description">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="97" parent="27" name="roleName">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <key id="98" parent="27" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>roleId</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="99" parent="28" name="roleId">
-      <Position>1</Position>
-      <DataType>bigint(20)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="100" parent="28" name="permissionId">
+    <column id="95" parent="27" name="permissionId">
       <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="101" parent="28" name="FKfomycha2oxu73lt0b3kpf1ggx">
+    <index id="96" parent="27" name="FKfomycha2oxu73lt0b3kpf1ggx">
       <ColNames>permissionId</ColNames>
     </index>
-    <key id="102" parent="28" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="97" parent="27" name="PRIMARY">
       <ColNames>roleId
 permissionId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="103" parent="28" name="FKjruhvwe23ahtsonpq4nbsygpt">
+    <foreign-key id="98" parent="27" name="FKjruhvwe23ahtsonpq4nbsygpt">
       <ColNames>roleId</ColNames>
       <RefSchemaName>data_mining</RefSchemaName>
       <RefTableName>role_info</RefTableName>
       <RefColNames>roleId</RefColNames>
     </foreign-key>
-    <foreign-key id="104" parent="28" name="FKfomycha2oxu73lt0b3kpf1ggx">
+    <foreign-key id="99" parent="27" name="FKfomycha2oxu73lt0b3kpf1ggx">
       <ColNames>permissionId</ColNames>
       <RefSchemaName>data_mining</RefSchemaName>
       <RefTableName>permission_info</RefTableName>
       <RefColNames>permissionId</RefColNames>
     </foreign-key>
-    <column id="105" parent="29" name="serviceLevel">
+    <column id="100" parent="28" name="serviceLevel">
       <Position>1</Position>
       <DataType>varchar(31)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="106" parent="29" name="userId">
+    <column id="101" parent="28" name="userId">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="107" parent="29" name="password">
+    <column id="102" parent="28" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="108" parent="29" name="salt">
+    <column id="103" parent="28" name="privateSalt">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="109" parent="29" name="status">
+    <column id="104" parent="28" name="publicSalt">
       <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="110" parent="29" name="userName">
-      <Position>6</Position>
-      <DataType>varchar(16)|0</DataType>
-    </column>
-    <column id="111" parent="29" name="studentId">
-      <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="112" parent="29" name="studentName">
+    <column id="105" parent="28" name="status">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="106" parent="28" name="userName">
+      <Position>7</Position>
+      <DataType>varchar(16)|0</DataType>
+    </column>
+    <column id="107" parent="28" name="studentId">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="113" parent="29" name="teacherName">
+    <column id="108" parent="28" name="studentName">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="114" parent="29" name="saltEntry">
+    <column id="109" parent="28" name="teacherName">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="115" parent="29" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="110" parent="28" name="PRIMARY">
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="116" parent="30" name="userId">
+    <column id="111" parent="29" name="userId">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="117" parent="30" name="roleId">
+    <column id="112" parent="29" name="roleId">
       <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="118" parent="30" name="FKlpntrxj3k2touihec453gvgqw">
+    <index id="113" parent="29" name="FKlpntrxj3k2touihec453gvgqw">
       <ColNames>roleId</ColNames>
     </index>
-    <key id="119" parent="30" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <key id="114" parent="29" name="PRIMARY">
       <ColNames>userId
 roleId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="120" parent="30" name="FKctw1d0pbo86kw4vflc7t68w44">
+    <foreign-key id="115" parent="29" name="FKctw1d0pbo86kw4vflc7t68w44">
       <ColNames>userId</ColNames>
       <RefSchemaName>data_mining</RefSchemaName>
       <RefTableName>user_info</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <foreign-key id="121" parent="30" name="FKlpntrxj3k2touihec453gvgqw">
+    <foreign-key id="116" parent="29" name="FKlpntrxj3k2touihec453gvgqw">
       <ColNames>roleId</ColNames>
       <RefSchemaName>data_mining</RefSchemaName>
       <RefTableName>role_info</RefTableName>

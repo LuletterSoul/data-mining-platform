@@ -11,4 +11,6 @@ public class Constants
     public static final String PARAM_DIGEST = "digest";
     public static final String PARAM_USERNAME = "username";
     public static final String DISPOSABLE_SALT = "_SaltId";
+    public static final String PARAM_DATETIME = "dateTimeSent";
+    public static final String HEADER_TIMESTAMP = "X-timestamp";
 }

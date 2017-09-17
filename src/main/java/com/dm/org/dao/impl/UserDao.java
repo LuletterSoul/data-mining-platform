@@ -129,4 +129,15 @@ public class UserDao extends BaseDao<User, String>
         // criteriaDelete.where(whereRestriction);
         // getSession().createQuery(criteriaDelete).executeUpdate();
     }
+
+    public String getPublicSalt(String username) {
+        String hqlString = "select u.publicSalt from User u "
+                + "where u.userName = :username";
+        return (String) getSession().createQuery(hqlString).setParameter("username", username).getSingleResult();
+    }
+
+    public String getPrivateSalt(String username) {
+        String hqlString = "select u.privateSalt from User u " + "where u.userName = :username";
+        return (String) getSession().createQuery(hqlString).setParameter("username", username).getSingleResult();
+    }
 }

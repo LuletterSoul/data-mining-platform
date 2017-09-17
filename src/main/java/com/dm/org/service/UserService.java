@@ -53,4 +53,10 @@ public interface UserService extends BaseService<User, String>
     void removeRole(String userId, Long roleId);
 
     void removeRoles(String userId, List<Long> roleIdList);
+
+    String getPublicSalt(String username);
+
+    String fetchPublicSalt(String username);
+
+    String fetchPrivateSalt(String username);
 }

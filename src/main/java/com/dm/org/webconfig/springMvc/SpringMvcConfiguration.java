@@ -2,12 +2,14 @@ package com.dm.org.webconfig.springMvc;
 
 
 import com.dm.org.controller.ControllerScanningMarker;
+import com.dm.org.utils.DateStyle;
 import com.dm.org.utils.UtilClassScanningMarker;
 import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.hibernate.type.DateType;
 import org.springframework.context.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -80,7 +82,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     {
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
         mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapperFactoryBean.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        mapperFactoryBean.setDateFormat(new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM.getValue()));
         mapperFactoryBean.afterPropertiesSet();
         return mapperFactoryBean.getObject();
     }

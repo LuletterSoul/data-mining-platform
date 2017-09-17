@@ -62,12 +62,6 @@
 
     <logger name="org.hibernate" level="DEBUG" />
 
-    <logger name="org.apache.shiro.web.filter" level="ALL"/>
-
-    <logger name = "org.springframework.http.converter" level="ALL"/>
-
-    <logger name= "org.springframework.web.servlet.DispatcherServlet" level="DEBUG"/>
-
     <logger name="org.apache.shiro.web" level="ALL"/>
 
     <root>

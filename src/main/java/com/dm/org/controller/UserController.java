@@ -3,11 +3,17 @@ package com.dm.org.controller;
 
 import com.dm.org.model.User;
 import com.dm.org.security.UserPasswordService;
+import com.dm.org.security.constants.Constants;
+import com.dm.org.security.credentials.TimeOutToken;
+import com.dm.org.security.credentials.TokenManager;
 import com.dm.org.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -23,6 +29,8 @@ public class UserController
 
     private UserPasswordService passwordService;
 
+    private TokenManager tokenManager;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
@@ -37,20 +45,43 @@ public class UserController
         this.passwordService = passwordService;
     }
 
+    @Autowired
+    public void setTokenManager(TokenManager tokenManager)
+    {
+        this.tokenManager = tokenManager;
+    }
+
     @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
     public User profile(@PathVariable String userName)
     {
         return userService.fetchByUserName(userName);
     }
 
-
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public User register(@RequestBody User user)
     {
         String randomSalt = passwordService.generateRandomSalt(16) + user.getUserName();
-        String encryptedPassword = passwordService.encryptPasswordWithSalt(user.getPassword(), randomSalt);
-        user.setSalt(randomSalt);
+        String encryptedPassword = passwordService.encryptPasswordWithSalt(user.getPassword(),
+            randomSalt);
+        user.setPublicSalt(randomSalt);
         user.setPassword(encryptedPassword);
         return userService.registerUser(user);
     }
+
+    @RequestMapping(value = "/token", method = RequestMethod.POST)
+    public TimeOutToken getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
+                                 @RequestParam(Constants.PARAM_USERNAME) String username)
+    {
+        return tokenManager.getTimeOutToken(username, timestamp);
+    }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Map<String, User> login(@RequestParam(Constants.PARAM_USERNAME) String username)
+    {
+        Map<String, User> userMap = new LinkedHashMap<String, User>();
+        userMap.put("userProfile", userService.fetchByUserName(username));
+        return userMap;
+    }
+
 }

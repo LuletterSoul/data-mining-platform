@@ -1,6 +1,11 @@
 package com.dm.org.dao;
 
 
+import com.dm.org.security.HmacSHA256Utils;
+import org.apache.shiro.crypto.hash.DefaultHashService;
+import org.apache.shiro.crypto.hash.Hash;
+import org.apache.shiro.crypto.hash.HashRequest;
+import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -13,7 +18,7 @@ import org.junit.After;
  * @since
  * 
  *        <pre>
- * ÁùÔÂ 29, 2017
+ * ï¿½ï¿½ï¿½ï¿½ 29, 2017
  *        </pre>
  * 
  * @version 1.0
@@ -48,7 +53,19 @@ public class UserDaoTest
     public void testGetSessionFactory()
         throws Exception
     {
-        // TODO: Test goes here...
+        String key = "123";
+        String content = "1";
+        DefaultHashService hashService = new DefaultHashService();
+        hashService.setHashAlgorithmName("SHA-256");
+        hashService.setGeneratePublicSalt(false);
+        hashService.setHashIterations(5);
+//        Hash hash =hashService.computeHashWithParams(request);
+//        System.out.println(hash.toBase64());
+//        HmacSHA256Utils.digest(salt, key);
+//        content = HmacSHA256Utils.digest(key, content);
+        HashRequest request = new HashRequest.Builder().setSource(ByteSource.Util.bytes(content+key)).build();
+                Hash hash =hashService.computeHash(request);
+        System.out.println(hash.toBase64());
     }
 
     /**
