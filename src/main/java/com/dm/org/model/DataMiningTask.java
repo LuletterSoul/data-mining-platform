@@ -1,6 +1,8 @@
 package com.dm.org.model;
 
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -117,5 +119,34 @@ public class DataMiningTask
     public void setAlgorithms(Set<Algorithm> algorithms)
     {
         this.algorithms = algorithms;
+    }
+
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("taskId", taskId)
+                .add("type", type)
+                .add("taskDescription", taskDescription)
+                .add("duration", duration)
+                .add("startTime", startTime)
+                .add("finishTime", finishTime)
+                .toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DataMiningTask that = (DataMiningTask) o;
+
+        return Objects.equal(this.taskId, that.taskId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(taskId, type, taskDescription, duration, startTime, finishTime);
     }
 }

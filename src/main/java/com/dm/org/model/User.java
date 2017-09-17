@@ -25,22 +25,22 @@ import java.util.Set;
 @DiscriminatorColumn(name = "serviceLevel",discriminatorType = DiscriminatorType.STRING)
 public class User implements EntityIdentifier
 {
-    private String userId;
+    protected String userId;
 
-    private String userName;
-
-    @JsonIgnore
-    private String password;
+    protected String userName;
 
     @JsonIgnore
-    private String publicSalt;
+    protected String password;
 
     @JsonIgnore
-    private String privateSalt;
+    protected String publicSalt;
 
-    private UserAccessStatus status = UserAccessStatus.AVAILABLE;
+    @JsonIgnore
+    protected String privateSalt;
 
-    private Set<Role> roleSet;
+    protected UserAccessStatus status = UserAccessStatus.AVAILABLE;
+
+    protected Set<Role> roleSet;
 
     public User()
     {
@@ -144,21 +144,17 @@ public class User implements EntityIdentifier
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         User that = (User) o;
 
-        return Objects.equal(this.userId, that.userId) ;
+        return Objects.equal(this.userId, that.userId);
     }
 
-    @Override
-    public int hashCode()
-    {
-        return Objects.hashCode(userId);
-    }
+
+
 
 
     @Override
@@ -170,7 +166,11 @@ public class User implements EntityIdentifier
                 .add("password", password)
                 .add("saltEntry", publicSalt)
                 .add("status", status)
-                .add("roleSet", roleSet)
                 .toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(userId, userName, password, publicSalt, privateSalt, status);
     }
 }

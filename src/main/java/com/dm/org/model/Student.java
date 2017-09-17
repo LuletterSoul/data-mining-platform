@@ -1,5 +1,7 @@
 package com.dm.org.model;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -36,6 +38,7 @@ public class Student extends User
          this.studentName = studentName;
      }
 
+     @Column(unique = true)
      public String getStudentId()
      {
          return studentId;
@@ -77,5 +80,23 @@ public class Student extends User
 
      public void setGroupInfos(Set<GroupInfo> groupInfos) {
          this.groupInfos = groupInfos;
+     }
+
+
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+
+         Student that = (Student) o;
+
+         return Objects.equal(this.studentId, that.studentId) &&
+                 Objects.equal(this.userId, that.userId);
+     }
+
+     @Override
+     public int hashCode() {
+         return Objects.hashCode(studentName, studentId, grade, className, profession,
+                 userId, userName, password, publicSalt, privateSalt);
      }
  }

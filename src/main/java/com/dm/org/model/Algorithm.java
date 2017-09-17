@@ -1,6 +1,8 @@
 package com.dm.org.model;
 
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -66,5 +68,31 @@ public class Algorithm
     public void setAlgorithmParameters(Set<AlgorithmParameter> algorithmParameters)
     {
         this.algorithmParameters = algorithmParameters;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Algorithm that = (Algorithm) o;
+
+        return Objects.equal(this.algorithmId, that.algorithmId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(algorithmId);
+    }
+
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("algorithmId", algorithmId)
+                .add("interfaceDescription", interfaceDescription)
+                .add("type", type)
+                .toString();
     }
 }

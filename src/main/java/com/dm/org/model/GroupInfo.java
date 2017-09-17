@@ -1,6 +1,9 @@
 package com.dm.org.model;
 
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -57,5 +60,34 @@ public class GroupInfo implements Serializable
     public void setSetUpDate(Date setUpDate)
     {
         this.setUpDate = setUpDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("serialVersionUID", serialVersionUID)
+                .add("student", student)
+                .add("group", group)
+                .add("setUpDate", setUpDate)
+                .toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupInfo that = (GroupInfo) o;
+
+        return  Objects.equal(this.student, that.student) &&
+                Objects.equal(this.group, that.group) &&
+                Objects.equal(this.setUpDate, that.setUpDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(serialVersionUID, student, group, setUpDate);
     }
 }

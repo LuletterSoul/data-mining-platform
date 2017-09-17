@@ -1,6 +1,8 @@
 package com.dm.org.model;
 
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -88,5 +90,37 @@ public class DataMiningGroup
 
     public void setDataMiningTask(DataMiningTask dataMiningTask) {
         this.dataMiningTask = dataMiningTask;
+    }
+
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("groupId", groupId)
+                .add("groupName", groupName)
+                .add("setUpDate", setUpDate)
+                .add("groupLeader", groupLeader)
+                .add("dataMiningTask", dataMiningTask)
+                .toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DataMiningGroup that = (DataMiningGroup) o;
+
+        return Objects.equal(this.groupId, that.groupId) &&
+                Objects.equal(this.groupName, that.groupName) &&
+                Objects.equal(this.setUpDate, that.setUpDate) &&
+                Objects.equal(this.groupLeader, that.groupLeader) &&
+                Objects.equal(this.dataMiningTask, that.dataMiningTask);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(groupId, groupName, setUpDate, groupLeader, dataMiningTask);
     }
 }
