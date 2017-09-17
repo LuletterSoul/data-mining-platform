@@ -50,17 +50,6 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
         super.addResourceHandlers(registry);
     }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry)
-    {
-        registry.addRedirectViewController("/", "/login");
-        registry.addRedirectViewController("/index", "/static/index.html");
-//        registry.addRedirectViewController("/login", "/static/login/login.html");
-        registry.addRedirectViewController("/manager/data_set", "/static/manager/data_sets.html");
-        registry.addRedirectViewController("/manager/student", "/static/manager/students.html");
-        registry.addRedirectViewController("/manager/data_set", "/static/manager/data_sets.html");
-    }
-
     @Bean
     public ViewResolver internalResourceViewResolver()
     {

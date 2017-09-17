@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dm.org.exceptions.error.ErrorInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -32,8 +33,6 @@ import org.springframework.http.HttpStatus;
  */
 public class StatelessAuthenticatingFilter extends AccessControlFilter
 {
-
-
     private static final Logger LOGGER = LoggerFactory.getLogger(
         StatelessAuthenticatingFilter.class);
     private ObjectMapper objectMapper;
@@ -65,7 +64,14 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
             // 客户端传入的用户身份
             String username = httpRequest.getParameter(Constants.PARAM_USERNAME);
 
-            assertNegotiationContentNotNull(clientDigest, username, timestamp);
+            try {
+                assertNegotiationContentNotNull(clientDigest, username, timestamp);
+            } catch (ServletException e) {
+                LOGGER.error(e.getMessage());
+                onAccessFailed(response, e);
+                e.printStackTrace();
+                return false;
+            }
             // 客户端请求的参数列表
             StatelessToken token = generateAuthenticationToken(request, clientDigest, username);
             LOGGER.info("System generate authentication token: {}", token);
@@ -128,14 +134,21 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
     }
 
     // 登录失败时默认返回401状态码
-    private void onLoginFail(ServletResponse response,Throwable ex)
-        throws IOException
-    {
-        String message = "Authentication Failed.Please check your username or password  is correct or not.";
+    private void onLoginFail(ServletResponse response,Throwable ex) throws IOException {
+        String message = "Authentication Failed.Please check your username or password is correct or not.";
         ErrorInfo errorInfo = new ErrorInfo(ex, message, HttpStatus.UNAUTHORIZED);
         String jsonMessage = objectMapper.writeValueAsString(errorInfo);
         HttpServletResponse httpResponse = (HttpServletResponse)response;
         httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        httpResponse.getWriter().write(jsonMessage);
+    }
+
+    private void onAccessFailed(ServletResponse response, Throwable ex) throws IOException {
+        String message = "Access Failed.Request don't match negotiation content.";
+        HttpServletResponse httpResponse = (HttpServletResponse)response;
+        ErrorInfo errorInfo = new ErrorInfo(ex, message, HttpStatus.BAD_REQUEST);
+        String jsonMessage = objectMapper.writeValueAsString(errorInfo);
+        httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         httpResponse.getWriter().write(jsonMessage);
     }
 }
