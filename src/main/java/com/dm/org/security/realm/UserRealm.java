@@ -10,6 +10,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.dm.org.service.UserService;
@@ -28,6 +29,7 @@ public class UserRealm extends AuthorizingRealm
     private UserService userService;
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)
     {
         this.userService = userService;
@@ -57,7 +59,7 @@ public class UserRealm extends AuthorizingRealm
             throw new UnknownAccountException(message);// 没找到帐号
         }
 
-        if (user.getStatus().equals(UserAccessStatus.LOCKED))
+        if (user.getAccountStatus().equals(UserAccessStatus.LOCKED))
         {
             throw new LockedAccountException(); // 帐号锁定
         }

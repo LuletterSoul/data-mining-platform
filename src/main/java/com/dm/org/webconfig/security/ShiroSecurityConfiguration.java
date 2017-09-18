@@ -280,6 +280,9 @@ public class ShiroSecurityConfiguration
     {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/user/token", "anon");
+        filterChainDefinitionMap.put("/user/salt", "anon");
+        filterChainDefinitionMap.put("/student/**", "anon");
+        filterChainDefinitionMap.put("/student", "anon");
         filterChainDefinitionMap.put("/**", "statelessFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

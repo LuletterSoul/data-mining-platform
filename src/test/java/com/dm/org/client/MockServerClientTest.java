@@ -32,7 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5 created in 17:24 2017/9/14.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
 
 public class MockServerClientTest extends AbstractClientTest

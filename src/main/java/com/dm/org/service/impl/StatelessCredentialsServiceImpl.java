@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.dm.org.security.realm.StatelessInfo;
 import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -43,6 +44,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     }
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService) {
         this.userService = userService;
     }

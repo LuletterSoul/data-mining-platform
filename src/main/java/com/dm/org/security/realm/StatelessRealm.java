@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.dm.org.model.User;
 import com.dm.org.security.credentials.TokenManager;
 import com.dm.org.service.UserService;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 /**
@@ -30,6 +31,7 @@ public class StatelessRealm extends AuthorizingRealm
 
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)
     {
         this.userService = userService;

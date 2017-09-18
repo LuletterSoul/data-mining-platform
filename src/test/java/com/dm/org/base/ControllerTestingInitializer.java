@@ -9,6 +9,7 @@ import com.dm.org.service.UserService;
 import org.junit.Before;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 /**
@@ -34,6 +35,7 @@ public class ControllerTestingInitializer extends ConfigurationWirer
     }
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)
     {
         this.userService = userService;

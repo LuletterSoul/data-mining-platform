@@ -16,6 +16,7 @@ import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import com.dm.org.utils.DateStyle;
 import com.dm.org.utils.DateUtil;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 /**
@@ -61,6 +62,7 @@ public class TokenManager
     }
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)
     {
         this.userService = userService;

@@ -18,17 +18,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 /**
+ * Controller 层集成环境测试基类
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5 created in 0:36 2017/7/22.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-// @ContextConfiguration(classes = {DataMiningPlatformWebAppInitializer.class,
-// ShiroSecurityConfiguration.class, HibernateTransactionConfig.class,
-// HibernateConfiguration.class, SpringMvcConfiguration.class, EhCacheConfiguration.class,
-// ComboPooledDataSourceConfig.class})
 @ContextHierarchy({
     @ContextConfiguration(name = "parent", classes = {ShiroSecurityConfiguration.class,
         HibernateTransactionConfig.class, HibernateConfiguration.class, EhCacheConfiguration.class,

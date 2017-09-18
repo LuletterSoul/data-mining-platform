@@ -1,6 +1,8 @@
 package com.dm.org.dao;
 
 import com.dm.org.query.PaginationDescriptor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,8 +31,8 @@ public interface BaseRepository<E, PK extends Serializable>
      * 已被建议弃用
      * 利用SessionFactory返回的Session<code>getCriteriaBuilder()</code>
      * 建立新型的<code>CriteriaQuery</></code>
-     * 利于应付良好的domain model的架构
-     * 以及更完整的type-safe标准查询
+     * 利于构建良好的domain model的架构
+     * 执行更完整的type-safe标准查询
      * @return 当前Session下criteria query object
      * {@link org.hibernate}
      * @see org.hibernate.Criteria
@@ -63,6 +65,20 @@ public interface BaseRepository<E, PK extends Serializable>
     void update(E entity);
 
     void delete(E entity);
+
+    /**
+     * 与{@link Pageable}结合的分页查询机制
+     * 通用的分页查询
+     * @param pageable 分页的基础信息
+     * @return 指定页面的数据
+     */
+    Page<E> get(Pageable pageable);
+
+    /**
+     * 获取到所有列表
+     * @return 所有结果集
+     */
+    List<E> findAll();
 
     Integer deleteAll();
 

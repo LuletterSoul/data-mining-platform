@@ -12,6 +12,7 @@ import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 /**
@@ -59,6 +60,7 @@ public class SecurityTestingInitializer extends ConfigurationWirer
     protected User u4;
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)
     {
         this.userService = userService;
@@ -113,18 +115,18 @@ public class SecurityTestingInitializer extends ConfigurationWirer
         u1 = new User("zhang", password);
 //        String randomSalt = passwordService.generateRandomSalt(16) + u1.getUserName();
 //        String encryptedPassword = passwordService.encryptPasswordWithSalt(password, randomSalt);
-        String publicSalt = credentialsService.generateRandomSalt(32);
-        String privateSalt = credentialsService.generateRandomSalt(32);
-        String encryptedPassword = credentialsService.encryptPassword(password, publicSalt);
-        u1.setPublicSalt(publicSalt);
-        u1.setPassword(encryptedPassword);
-        u1.setPrivateSalt(privateSalt);
+//        String publicSalt = credentialsService.generateRandomSalt(32);
+//        String privateSalt = credentialsService.generateRandomSalt(32);
+//        String encryptedPassword = credentialsService.encryptPassword(password, publicSalt);
+//        u1.setPublicSalt(publicSalt);
+//        u1.setPassword(encryptedPassword);
+//        u1.setPrivateSalt(privateSalt);
 
 
         u2 = new User("li", passwordService.encryptPassword(password));
         u3 = new User("wu", passwordService.encryptPassword(password));
         u4 = new User("wang", passwordService.encryptPassword(password));
-        u4.setStatus(UserAccessStatus.LOCKED);
+        u4.setAccountStatus(UserAccessStatus.LOCKED);
     }
 
 }

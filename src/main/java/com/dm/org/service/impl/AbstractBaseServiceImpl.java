@@ -34,6 +34,8 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
     protected UserDao userDao;
 
+    protected StudentDao studentDao;
+
     protected PermissionDao permissionDao;
 
     protected RoleDao roleDao;
@@ -69,6 +71,11 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     public void setUserDao(UserDao userDao)
     {
         this.userDao = userDao;
+    }
+
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+        this.studentDao = studentDao;
     }
 
     public List<E> findAll()

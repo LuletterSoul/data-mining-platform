@@ -6,10 +6,12 @@ import com.dm.org.security.UserPasswordService;
 import com.dm.org.security.constants.Constants;
 import com.dm.org.security.credentials.TimeOutToken;
 import com.dm.org.security.credentials.TokenManager;
+import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
@@ -31,9 +33,12 @@ public class UserController
 
     private TokenManager tokenManager;
 
+    private StatelessCredentialsService credentialsService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
+    @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)
     {
         this.userService = userService;
@@ -51,6 +56,11 @@ public class UserController
         this.tokenManager = tokenManager;
     }
 
+    @Autowired
+    public void setCredentialsService(StatelessCredentialsService credentialsService) {
+        this.credentialsService = credentialsService;
+    }
+
     @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
     public User profile(@PathVariable String userName)
     {
@@ -60,11 +70,6 @@ public class UserController
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public User register(@RequestBody User user)
     {
-        String randomSalt = passwordService.generateRandomSalt(16) + user.getUserName();
-        String encryptedPassword = passwordService.encryptPasswordWithSalt(user.getPassword(),
-            randomSalt);
-        user.setPublicSalt(randomSalt);
-        user.setPassword(encryptedPassword);
         return userService.registerUser(user);
     }
 
@@ -83,5 +88,4 @@ public class UserController
         userMap.put("userProfile", userService.fetchByUserName(username));
         return userMap;
     }
-
 }

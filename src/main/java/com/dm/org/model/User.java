@@ -29,22 +29,22 @@ public class User implements EntityIdentifier
 
     protected String userName;
 
-    @JsonIgnore
+    protected byte[] avatar;
+
+    protected String gender;
+
     protected String password;
 
-    @JsonIgnore
     protected String publicSalt;
 
-    @JsonIgnore
     protected String privateSalt;
 
-    protected UserAccessStatus status = UserAccessStatus.AVAILABLE;
+    protected UserAccessStatus accountStatus = UserAccessStatus.AVAILABLE;
 
     protected Set<Role> roleSet;
 
-    public User()
-    {
 
+    public User() {
     }
 
     public User(String userName, String password, String publicSalt, UserAccessStatus status)
@@ -52,7 +52,7 @@ public class User implements EntityIdentifier
         this.userName = userName;
         this.password = password;
         this.publicSalt = publicSalt;
-        this.status = status;
+        this.accountStatus = status;
     }
 
     public User(String userName, String password) {
@@ -75,8 +75,7 @@ public class User implements EntityIdentifier
     }
 
 
-    @Size(max = 16,min = 2)
-    @Column(name = "userName", length = 32)
+    @Column(name = "userName")
     public String getUserName()
     {
         return userName;
@@ -105,10 +104,25 @@ public class User implements EntityIdentifier
     }
 
 
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
 
     public void setPublicSalt(String salt)
      {
         this.publicSalt = salt;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getPrivateSalt() {
@@ -121,14 +135,14 @@ public class User implements EntityIdentifier
 
     @Enumerated
     @Column(name = "status")
-    public UserAccessStatus getStatus()
+    public UserAccessStatus getAccountStatus()
     {
-        return status;
+        return accountStatus;
     }
 
-    public void setStatus(UserAccessStatus status)
+    public void setAccountStatus(UserAccessStatus status)
      {
-        this.status = status;
+        this.accountStatus = status;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -165,12 +179,12 @@ public class User implements EntityIdentifier
                 .add("userName", userName)
                 .add("password", password)
                 .add("saltEntry", publicSalt)
-                .add("status", status)
+                .add("status", accountStatus)
                 .toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(userId, userName, password, publicSalt, privateSalt, status);
+        return Objects.hashCode(userId, userName, password, publicSalt, privateSalt, accountStatus);
     }
 }

@@ -11,16 +11,20 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.hibernate.type.DateType;
 import org.springframework.context.annotation.*;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -58,6 +62,21 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
         resolver.setSuffix(".jsp");
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
+    }
+
+//    @Bean
+//    public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+//        RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
+//        List<HandlerMethodArgumentResolver> argumentResolvers = new LinkedList<HandlerMethodArgumentResolver>();
+//        argumentResolvers.add(pageableHandlerMethodArgumentResolver());
+//        adapter.setCustomArgumentResolvers(argumentResolvers);
+//        return adapter;
+//    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        super.addArgumentResolvers(argumentResolvers);
+        argumentResolvers.add(pageableHandlerMethodArgumentResolver());
     }
 
     @Override
@@ -103,4 +122,9 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
 //    {
 //        return new SimpleMappingExceptionResolver();
 //    }
+
+    @Bean
+    public PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver() {
+        return new PageableHandlerMethodArgumentResolver();
+    }
 }

@@ -56,22 +56,4 @@ public class UserControllerTest extends ConfigurationWirer
                 username)).andExpect(status().isOk()).andExpect(
                     content().contentType(MediaType.APPLICATION_JSON_UTF8)).andDo(print());
     }
-
-    // /**
-    // * Method: getToken()
-    // * Test client send GET time out token request.And result expect request denied by
-    // server,return 40
-    // */
-    // @Test
-    // public void testAndExpect(status().isOk()).()
-    // throws Exception
-    // {
-    //
-    // }
-    /**
-     * Method: testLogin()
-     */
-
-
-
 }

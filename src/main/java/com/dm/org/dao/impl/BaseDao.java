@@ -10,6 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -70,7 +73,7 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
         return baseBuilder;
     }
 
-    public CriteriaQuery<E> buildCriteriaQuery()
+    public synchronized CriteriaQuery<E> buildCriteriaQuery()
     {
         this.baseBuilder = getSession().getCriteriaBuilder();
         this.criteriaQuery = this.baseBuilder.createQuery(getClazz());
@@ -81,7 +84,6 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
     @Override
     public CriteriaDelete<E> buildCriteriaDelete()
     {
-
         this.baseBuilder = getSession().getCriteriaBuilder();
         this.criteriaDelete = this.baseBuilder.createCriteriaDelete(getClazz());
         this.baseRoot = criteriaDelete.from(getClazz());
@@ -122,6 +124,24 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
     public void delete(E e)
     {
         getSession().delete(e);
+    }
+
+    @Override
+    public Page<E> get(Pageable pageable) {
+        buildCriteriaQuery();
+        criteriaQuery.select(baseRoot);
+        List<E> entityList = getSession().createQuery(criteriaQuery)
+                                        .setFirstResult(pageable.getOffset())
+                                        .setMaxResults(pageable.getPageSize())
+                                        .list();
+        return new PageImpl<E>(entityList, pageable, entityList.size());
+    }
+
+    @Override
+    public List<E> findAll() {
+        buildCriteriaQuery();
+        criteriaQuery.select(baseRoot);
+        return getSession().createQuery(criteriaQuery).list();
     }
 
     public Integer deleteAll()

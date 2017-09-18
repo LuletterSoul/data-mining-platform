@@ -8,6 +8,7 @@ import com.dm.org.model.User;
 import com.dm.org.security.UserPasswordService;
 import com.dm.org.security.credentials.DisposableSaltEntry;
 import com.dm.org.security.credentials.EncryptUtils;
+import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -40,6 +41,8 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    private StatelessCredentialsService credentialsService;
+
     private Cache<String, ByteSource> loginDisposableSaltCache;
 
     private UserPasswordService passwordService;
@@ -56,8 +59,19 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         this.passwordService = passwordService;
     }
 
+    @Autowired
+    public void setCredentialsService(StatelessCredentialsService credentialsService) {
+        this.credentialsService = credentialsService;
+    }
+
     public User registerUser(User user)
     {
+        String publicSalt = credentialsService.generateRandomSalt(32);
+        String privateSalt = credentialsService.generateRandomSalt(32);
+        String encryptedPassword = credentialsService.encryptPassword(user.getPassword(), publicSalt);
+        user.setPassword(encryptedPassword);
+        user.setPrivateSalt(privateSalt);
+        user.setPublicSalt(publicSalt);
         userDao.save(user);
         return user;
     }
