@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.dm.org.security.filter.AllowOriginFilter;
 import com.dm.org.webconfig.springMvc.SpringMvcConfiguration;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
@@ -248,6 +249,11 @@ public class ShiroSecurityConfiguration
         return new StatelessAuthenticatingFilter();
     }
 
+    @Bean("originFilter")
+    public AllowOriginFilter allowOriginFilter(){
+        return new AllowOriginFilter();
+    }
+
     @Bean
     public UserPasswordServiceImpl passwordService()
     {
@@ -279,11 +285,11 @@ public class ShiroSecurityConfiguration
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean)
     {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        filterChainDefinitionMap.put("/user/token", "anon");
-        filterChainDefinitionMap.put("/user/salt", "anon");
-        filterChainDefinitionMap.put("/student/**", "anon");
-        filterChainDefinitionMap.put("/student", "anon");
-        filterChainDefinitionMap.put("/**", "statelessFilter");
+        filterChainDefinitionMap.put("/user/**", "anon,originFilter");
+        filterChainDefinitionMap.put("/student/**", "anon,originFilter");
+        filterChainDefinitionMap.put("/student", "anon,originFilter");
+        filterChainDefinitionMap.put("/*", "statelessFilter");
+        filterChainDefinitionMap.put("/*", "originFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 

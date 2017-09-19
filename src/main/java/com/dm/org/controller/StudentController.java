@@ -28,8 +28,7 @@ import com.dm.org.service.StudentService;
 
 @RestController
 @RequestMapping(value = "/student"
-        ,produces = MediaType.APPLICATION_JSON_UTF8_VALUE
-        ,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+        ,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class StudentController
 {
     private StudentService studentService;

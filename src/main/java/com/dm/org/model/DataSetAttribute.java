@@ -27,7 +27,7 @@ public class DataSetAttribute implements EntityIdentifier
 
     private byte[] description;
 
-    private Set<AttributeFeatureMap> features;
+    private Set<AttributeFeature> features;
 
     private DataSetContainer dataSetContainer;
 
@@ -74,13 +74,13 @@ public class DataSetAttribute implements EntityIdentifier
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     @JoinTable(name = "attr_feature_rela",
             joinColumns = @JoinColumn(name = "containerId"),
-            inverseJoinColumns = @JoinColumn(name = "feature"))
-    public Set<AttributeFeatureMap> getFeatures()
+            inverseJoinColumns = @JoinColumn(name = "featureId"))
+    public Set<AttributeFeature> getFeatures()
     {
         return features;
     }
 
-    public void setFeatures(Set<AttributeFeatureMap> features) {
+    public void setFeatures(Set<AttributeFeature> features) {
         this.features = features;
     }
 

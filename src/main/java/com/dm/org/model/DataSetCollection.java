@@ -4,14 +4,12 @@ package com.dm.org.model;
 import com.dm.org.identifier.EntityIdentifier;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
-import java.util.UUID;
 
 
 /**
@@ -27,23 +25,27 @@ public class DataSetCollection implements EntityIdentifier
 {
     private String collectionId;
 
+    private String collectionName;
+
     private Byte enableMissing;
 
     private String description;
 
-    private Timestamp dateDonated;
+    private Date dateDonated;
 
     private String relevantPapers;
 
     private String abstractInfo;
 
-    private String associatedTasks;
+    private Set<MiningTaskType> associatedTasks;
 
     private String topics;
 
-    private String area;
+    private int hits;
 
-    private Set<CollectionCharMap> characteristics;
+    private AreaType area;
+
+    private Set<DataSetCharacteristic> characteristics;
 
     private Set<DataSetContainer> dataSets;
 
@@ -93,18 +95,17 @@ public class DataSetCollection implements EntityIdentifier
 
     @Basic
     @Column(name = "dataDonated", nullable = true)
-    public Timestamp getDateDonated()
+    public Date getDateDonated()
     {
         return dateDonated;
     }
 
-    public void setDateDonated(Timestamp dataDonated)
+    public void setDateDonated(Date dataDonated)
     {
         this.dateDonated = dataDonated;
     }
 
     @Lob
-   //@Basic(fetch = FetchType.LAZY)
     @Column(name = "relevantPapers", nullable = true)
     public String getRelevantPapers() {
         return relevantPapers;
@@ -126,14 +127,16 @@ public class DataSetCollection implements EntityIdentifier
         this.abstractInfo = abstractInfo;
     }
 
-    @Basic
-    @Column(name = "associatedTasks", nullable = false, length = 50)
-    public String getAssociatedTasks()
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "set_task_rel",
+            joinColumns = @JoinColumn(name = "collectionId"),
+            inverseJoinColumns = @JoinColumn(name = "typeId"))
+    public Set<MiningTaskType> getAssociatedTasks()
     {
         return associatedTasks;
     }
 
-    public void setAssociatedTasks(String associatedTasks)
+    public void setAssociatedTasks(Set<MiningTaskType> associatedTasks)
     {
         this.associatedTasks = associatedTasks;
     }
@@ -150,14 +153,13 @@ public class DataSetCollection implements EntityIdentifier
         this.topics = topics;
     }
 
-    @Basic
-    @Column(name = "area", nullable = true, length = 30)
-    public String getArea()
-    {
+    @ManyToOne
+    @JoinColumn(name = "areaId",foreignKey = @ForeignKey(name="AREA_TYPE_FK"))
+    public AreaType getArea() {
         return area;
     }
 
-    public void setArea(String area)
+    public void setArea(AreaType area)
     {
         this.area = area;
     }
@@ -175,16 +177,16 @@ public class DataSetCollection implements EntityIdentifier
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "collec_char_rela",
             joinColumns = @JoinColumn(name = "collectionId"),
             inverseJoinColumns = @JoinColumn(name = "charId"))
-    public Set<CollectionCharMap>  getCharacteristics()
+    public Set<DataSetCharacteristic>  getCharacteristics()
     {
         return characteristics;
     }
 
-    public void setCharacteristics(Set<CollectionCharMap> characteristics) {
+    public void setCharacteristics(Set<DataSetCharacteristic> characteristics) {
         this.characteristics = characteristics;
     }
 
@@ -233,5 +235,21 @@ public class DataSetCollection implements EntityIdentifier
                 .add("topics", topics)
                 .add("area", area)
                 .toString();
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public void setHits(int hits) {
+        this.hits = hits;
+    }
+
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
     }
 }
