@@ -23,27 +23,15 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
 {
     public void setOrUpdateContainerCategorization(String collectionId,String containerId)
     {
-        try
-        {
-            DataSetCollection collection = collectionDao.findById(collectionId);
-            DataSetContainer container = findById(containerId);
-            container.setDataSetCollection(collection);
-            collection.addDataSetContainer(container);
-        } catch (DataObjectNotFoundException e) {
-            e.printStackTrace();
-        } catch (DataAccessObjectException e) {
-            e.printStackTrace();
-        }
+        DataSetCollection collection = collectionDao.findById(collectionId);
+        DataSetContainer container = findById(containerId);
+        container.setDataSetCollection(collection);
+        collection.addDataSetContainer(container);
     }
 
     @Override
     public void deleteById(String s) {
-        try {
             DataSetContainer container = findById(s);
-        } catch (DataObjectNotFoundException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override

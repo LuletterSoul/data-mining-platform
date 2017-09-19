@@ -152,14 +152,7 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
 
     public void deleteById(PK pk)
     {
-        try
-        {
-            delete(findById(pk));
-        }
-        catch (DataAccessObjectException e)
-        {
-            e.printStackTrace();
-        }
+        delete(findById(pk));
     }
 
     public void deleteByProperty(String propertyName, Object value)
@@ -180,17 +173,8 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
     }
 
     public E findById(PK id)
-        throws DataObjectNotFoundException
     {
-        try
-        {
-            return getSession().load(getClazz(), id);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            throw new DataObjectNotFoundException("Not found specified object by Id.", e);
-        }
+        return getSession().find(getClazz(), id);
     }
 
     public List<Object[]> findAll(String[] columns, PaginationDescriptor pagination)

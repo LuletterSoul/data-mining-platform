@@ -1,7 +1,10 @@
 package com.dm.org.service;
 
 import com.dm.org.exceptions.DataObjectNotFoundException;
+import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
+
+import java.util.List;
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -9,16 +12,15 @@ import com.dm.org.model.DataSetContainer;
  * @description
  * @modified by:
  */
-public interface DataSetCollectionService
+public interface DataSetCollectionService extends BaseService<DataSetCollection, String>
 {
     /**
      * 为当前数据集集合增加新的数据容器
      *
-     * @param collectionId  集合
-     *@param  containerId   容器
+     * @param collectionId 集合
+     * @param containerId  容器
      */
-    public void addDataSetContainer(String collectionId,DataSetContainer container)
-            throws DataObjectNotFoundException;
+    DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container);
 
     /**
      * 删除某一容器
@@ -26,5 +28,19 @@ public interface DataSetCollectionService
      * @param containerId 容器Id
      *
      */
-    public void removeDataSetContainer(String collectionId,String containerId);
+    DataSetContainer removeDataSetContainer(String collectionId,String containerId);
+
+    DataSetCollection getCollectionByName(String collectionName);
+
+    DataSetCollection saveCollection(DataSetCollection collection);
+
+    DataSetCollection deleteByName(String collectionName);
+
+    DataSetCollection deleteByCollectionId(String collectionId);
+
+    DataSetCollection updateCollection(DataSetCollection dataSetCollection);
+
+    List<DataSetContainer> getContainers(String collectionId);
+
+    List<String> getCollectionNames();
 }

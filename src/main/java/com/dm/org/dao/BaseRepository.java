@@ -104,7 +104,7 @@ public interface BaseRepository<E, PK extends Serializable>
      *            主键
      * @return
      */
-    E findById(PK id) throws Exception ;
+    E findById(PK id);
 
     /**
      * 获取当前对象的所有记录 @ columns 需要返回的列名 @ pagination 分页信息

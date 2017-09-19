@@ -2,11 +2,17 @@ package com.dm.org.webconfig.springMvc;
 
 
 import com.dm.org.controller.ControllerScanningMarker;
+import com.dm.org.security.credentials.StatelessCredentialsMatcher;
+import com.dm.org.service.StatelessCredentialsService;
+import com.dm.org.service.impl.StatelessCredentialsServiceImpl;
 import com.dm.org.utils.DateStyle;
 import com.dm.org.utils.UtilClassScanningMarker;
 import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.shiro.authc.credential.DefaultPasswordService;
+import org.apache.shiro.crypto.hash.DefaultHashService;
+import org.apache.shiro.crypto.hash.HashService;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.hibernate.type.DateType;
@@ -17,6 +23,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -37,7 +45,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@Import(ShiroSecurityConfiguration.class)
+//@Import(ShiroSecurityConfiguration.class)
 @ComponentScan(basePackageClasses = {ControllerScanningMarker.class, UtilClassScanningMarker.class})
 public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
 {
@@ -62,6 +70,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
         resolver.setSuffix(".jsp");
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        return new StandardServletMultipartResolver();
     }
 
 //    @Bean
@@ -123,8 +136,19 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
 //        return new SimpleMappingExceptionResolver();
 //    }
 
+//    @Bean
+//    public StatelessCredentialsService statelessCredentialsService()
+//    {
+//        StatelessCredentialsServiceImpl service = new StatelessCredentialsServiceImpl();
+//        DefaultPasswordService defaultPasswordService = (DefaultPasswordService)service;
+//        HashService hashService = defaultPasswordService.getHashService();
+//        ((DefaultHashService)hashService).setGeneratePublicSalt(false);
+//        return service;
+//    }
+//
     @Bean
     public PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver() {
         return new PageableHandlerMethodArgumentResolver();
     }
+
 }

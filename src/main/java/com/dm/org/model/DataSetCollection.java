@@ -2,6 +2,7 @@ package com.dm.org.model;
 
 
 import com.dm.org.identifier.EntityIdentifier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
@@ -47,6 +48,7 @@ public class DataSetCollection implements EntityIdentifier
 
     private Set<DataSetCharacteristic> characteristics;
 
+    @JsonIgnore
     private Set<DataSetContainer> dataSets;
 
     public DataSetCollection()
@@ -69,7 +71,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "enableMissing", nullable = true)
+    @Column(name = "enableMissing")
     public Byte getEnableMissing()
     {
         return enableMissing;
@@ -82,7 +84,7 @@ public class DataSetCollection implements EntityIdentifier
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "description", nullable = true, length = -1)
+    @Column(name = "description")
     public String getDescription()
     {
         return description;
@@ -94,7 +96,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "dataDonated", nullable = true)
+    @Column(name = "dataDonated")
     public Date getDateDonated()
     {
         return dateDonated;
@@ -106,7 +108,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @Lob
-    @Column(name = "relevantPapers", nullable = true)
+    @Column(name = "relevantPapers")
     public String getRelevantPapers() {
         return relevantPapers;
     }
@@ -116,7 +118,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "abstractInfo", nullable = false, length = 600)
+    @Column(name = "abstractInfo")
     public String getAbstractInfo()
     {
         return abstractInfo;
@@ -142,7 +144,7 @@ public class DataSetCollection implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "topics", nullable = false, length = 30)
+    @Column(name = "topics")
     public String getTopics()
     {
         return topics;
@@ -204,21 +206,17 @@ public class DataSetCollection implements EntityIdentifier
 
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DataSetCollection that = (DataSetCollection)o;
+        DataSetCollection that = (DataSetCollection) o;
 
         return Objects.equal(this.collectionId, that.collectionId);
     }
 
-    @Override
-    public int hashCode()
-    {
-        return Objects.hashCode(collectionId);
-    }
+
+
 
     @Override
     public String toString()
@@ -251,5 +249,11 @@ public class DataSetCollection implements EntityIdentifier
 
     public void setCollectionName(String collectionName) {
         this.collectionName = collectionName;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(collectionId, collectionName, enableMissing, description, dateDonated, relevantPapers,
+                abstractInfo,topics, hits, area);
     }
 }

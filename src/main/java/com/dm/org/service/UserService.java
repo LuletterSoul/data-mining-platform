@@ -21,9 +21,9 @@ public interface UserService extends BaseService<User, String>
 {
     User registerUser(User user);
 
-    User doUserCredentialsMatch(User user, DisposableSaltEntry entry);
+//    User doUserCredentialsMatch(User user, DisposableSaltEntry entry);
 
-    DisposableSaltEntry  getRandomVerifySaltEntry(String preSaltId);
+//    DisposableSaltEntry  getRandomVerifySaltEntry(String preSaltId);
 
     List<Long> findRoleIdListByUserId(String userId);
 

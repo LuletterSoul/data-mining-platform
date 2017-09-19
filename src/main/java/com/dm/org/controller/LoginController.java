@@ -73,13 +73,13 @@ public class LoginController
 //        return null;
     }
 
-    @RequestMapping(value = "/disposableSalt.json", method = RequestMethod.POST)
-    @ResponseBody
-    public DisposableSaltEntry generateDisposableSalted(@RequestBody String preSaltId)
-    {
-
-        return userService.getRandomVerifySaltEntry(preSaltId);
-    }
+//    @RequestMapping(value = "/disposableSalt.json", method = RequestMethod.POST)
+//    @ResponseBody
+//    public DisposableSaltEntry generateDisposableSalted(@RequestBody String preSaltId)
+//    {
+//
+////        return userService.getRandomVerifySaltEntry(preSaltId);
+//    }
 
     @RequestMapping(value = "/doLogin")
     @RequiresAuthentication

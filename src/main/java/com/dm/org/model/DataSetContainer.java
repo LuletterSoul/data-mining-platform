@@ -2,6 +2,7 @@ package com.dm.org.model;
 
 
 import com.dm.org.identifier.EntityIdentifier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
@@ -40,12 +41,10 @@ public class DataSetContainer implements EntityIdentifier
 
     private List<DataSetRow> rowList;
 
-
-
     @Id
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
     @GeneratedValue(generator = "uuidGenerator")
-    @Column(name = "containerId", nullable = false,length = 32)
+    @Column(name = "containerId")
     public String getContainerId() {
         return containerId;
     }
@@ -56,7 +55,7 @@ public class DataSetContainer implements EntityIdentifier
 
 
     @Basic
-    @Column(name = "setName", nullable = false, length = 100)
+    @Column(name = "setName")
     public String getSetName()
     {
         return setName;
@@ -68,7 +67,7 @@ public class DataSetContainer implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "attributeTypes", nullable = false, length = 50)
+    @Column(name = "attributeTypes")
     public String getAttributeTypes()
     {
         return attributeTypes;
@@ -80,7 +79,7 @@ public class DataSetContainer implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "size", nullable = false, precision = 0)
+    @Column(name = "size")
     public Double getSize()
     {
         return size;
@@ -92,7 +91,7 @@ public class DataSetContainer implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "instances", nullable = false)
+    @Column(name = "instances")
     public Long getInstances()
     {
         return instances;
@@ -104,7 +103,7 @@ public class DataSetContainer implements EntityIdentifier
     }
 
     @Basic
-    @Column(name = "fileType", nullable = false, length = 20)
+    @Column(name = "fileType")
     public String getFileType()
     {
         return fileType;
@@ -116,7 +115,7 @@ public class DataSetContainer implements EntityIdentifier
     }
 
     @Lob
-    @Column(name = "data", nullable = false)
+    @Column(name = "data")
     public byte[] getData()
     {
         return data;
@@ -130,6 +129,7 @@ public class DataSetContainer implements EntityIdentifier
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "collectionId",
             foreignKey = @ForeignKey(name = "COLLECTION_ID_FK"))
+    @JsonIgnore
     public DataSetCollection getDataSetCollection()
     {
         return dataSetCollection;
@@ -142,6 +142,7 @@ public class DataSetContainer implements EntityIdentifier
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetContainer"
             ,orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnore
     public Set<DataSetAttribute> getAttributeSet() {
         return attributeSet;
     }
@@ -153,6 +154,7 @@ public class DataSetContainer implements EntityIdentifier
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetContainer"
             ,orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnore
     public List<DataSetRow> getRowList()
     {
         return rowList;
@@ -174,10 +176,6 @@ public class DataSetContainer implements EntityIdentifier
     }
 
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(containerId);
-    }
 
 
     @Override
@@ -191,7 +189,12 @@ public class DataSetContainer implements EntityIdentifier
                 .add("instances", instances)
                 .add("fileType", fileType)
                 .add("data", data)
-                .add("dataSetCollection", dataSetCollection)
                 .toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(containerId, setName, attributeTypes, size, instances, fileType,
+                data);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -29,7 +30,7 @@ public class DataSetContainerController {
         this.containerService = containerService;
     }
 
-    @RequestMapping(value = "{collectionId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{collectionId}", method = RequestMethod.DELETE)
     public ResponseEntity<DataSetContainer> delete(@PathVariable("collectionId") String collectionId) {
         return null;
     }
@@ -43,4 +44,10 @@ public class DataSetContainerController {
     public ResponseEntity<DataSetContainer> create(@RequestBody DataSetContainer setContainer) {
         return null;
     }
+
+    @RequestMapping(value = "/{containerId}/uploadSetData", method = RequestMethod.POST)
+    public ResponseEntity<String> uploadFile(@RequestPart(name = "file") MultipartFile file, @PathVariable("containerId") String containerId) {
+        return null;
+    }
+
 }

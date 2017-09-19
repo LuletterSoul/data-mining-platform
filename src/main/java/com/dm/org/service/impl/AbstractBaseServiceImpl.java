@@ -78,6 +78,8 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         this.studentDao = studentDao;
     }
 
+
+
     public List<E> findAll()
             throws Exception
     {
@@ -92,12 +94,11 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     }
 
     public Serializable save(E e)
-            throws Exception
     {
        return baseDao.save(e);
     }
 
-    public void saveBatch(Set<E> e) throws Exception
+    public void saveBatch(Set<E> e)
     {
         baseDao.saveBatch(e);
     }
@@ -228,19 +229,12 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         baseDao.save(e);
     }
 
-    public E findById(PK id) throws DataObjectNotFoundException
+    public E findById(PK id)
     {
-        try {
             return baseDao.findById(id);
-        } catch (DataAccessObjectException e)
-        {
-            e.printStackTrace();
-            throw new DataObjectNotFoundException(e);
-        }
     }
 
     public void update(E e)
-            throws Exception
     {
         baseDao.update(e);
     }

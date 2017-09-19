@@ -44,14 +44,14 @@ public interface BaseService <E, PK extends Serializable>
      * 保存对象
      * @param e 对象
      */
-    Serializable save(E e)throws Exception;
+    Serializable save(E e);
 
     /**
      * 批量保存对象
      * @param set 对象集合
      */
 
-    void saveBatch(Set<E> set)throws Exception;
+    void saveBatch(Set<E> set);
 
     /**
      * 删除对象
@@ -265,21 +265,20 @@ public interface BaseService <E, PK extends Serializable>
     void saveOrUpdate(E e)throws Exception;
 
 
-
-
     /**
      * 通过ID查询对象
+     *
      * @param id 主键编号
      * @return
      */
-    E findById(PK id)throws Exception;
+    E findById(PK id);
 
     /**
      * 更新对象
      * @param e
      * @throws Exception
      */
-    void update(E e) throws Exception;
+    void update(E e);
 
     /**
      * 获得持久化对象的类型
