@@ -127,14 +127,13 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
     }
 
     @Override
-    public Page<E> get(Pageable pageable) {
+    public List<E> get(Pageable pageable) {
         buildCriteriaQuery();
         criteriaQuery.select(baseRoot);
-        List<E> entityList = getSession().createQuery(criteriaQuery)
+        return getSession().createQuery(criteriaQuery)
                                         .setFirstResult(pageable.getOffset())
                                         .setMaxResults(pageable.getPageSize())
                                         .list();
-        return new PageImpl<E>(entityList, pageable, entityList.size());
     }
 
     @Override

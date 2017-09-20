@@ -10,6 +10,7 @@ import com.dm.org.webconfig.springMvc.SpringMvcConfiguration;
 import com.dm.org.webconfig.transaction.HibernateTransactionConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
 //import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
@@ -50,5 +51,6 @@ public class DataMiningPlatformWebAppInitializer extends AbstractAnnotationConfi
     protected void customizeRegistration(ServletRegistration.Dynamic registration)
     {
         registration.setLoadOnStartup(5);
+        registration.setMultipartConfig(new MultipartConfigElement("/tmp/dm"));
     }
 }

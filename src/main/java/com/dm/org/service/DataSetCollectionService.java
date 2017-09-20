@@ -3,6 +3,7 @@ package com.dm.org.service;
 import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -14,6 +15,12 @@ import java.util.List;
  */
 public interface DataSetCollectionService extends BaseService<DataSetCollection, String>
 {
+
+    /**
+     *
+     */
+    List<DataSetCollection> getPageableCollection(Pageable pageable);
+
     /**
      * 为当前数据集集合增加新的数据容器
      *
@@ -43,4 +50,6 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
     List<DataSetContainer> getContainers(String collectionId);
 
     List<String> getCollectionNames();
+
+    DataSetContainer relateContainer(String collectionId, String containerId);
 }

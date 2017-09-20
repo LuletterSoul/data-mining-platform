@@ -72,7 +72,7 @@ public interface BaseRepository<E, PK extends Serializable>
      * @param pageable 分页的基础信息
      * @return 指定页面的数据
      */
-    Page<E> get(Pageable pageable);
+    List<E> get(Pageable pageable);
 
     /**
      * 获取到所有列表

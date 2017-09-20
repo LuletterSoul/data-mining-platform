@@ -28,14 +28,14 @@ import com.dm.org.service.StudentService;
 
 @RestController
 @RequestMapping(value = "/student"
-        ,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+        )
 public class StudentController
-{
-    private StudentService studentService;
+    {
+        private StudentService studentService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
+        private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-    @Autowired
+        @Autowired
     @Qualifier("studentServiceImpl")
     public void setStudentService(StudentService studentService)
     {
@@ -94,7 +94,7 @@ public class StudentController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<Student> studentsPageable(@PageableDefault(size = 20,
+    public Page<StudentDTO> studentsPageable(@PageableDefault(size = 20,
             page = 0,
             sort = {"studentId"},
             direction = Sort.Direction.DESC) Pageable pageable) {

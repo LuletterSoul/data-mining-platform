@@ -130,22 +130,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
         return aasa;
     }
 
-//    @Bean
-//    public SimpleMappingExceptionResolver simpleMappingExceptionResolver()
-//    {
-//        return new SimpleMappingExceptionResolver();
-//    }
 
-//    @Bean
-//    public StatelessCredentialsService statelessCredentialsService()
-//    {
-//        StatelessCredentialsServiceImpl service = new StatelessCredentialsServiceImpl();
-//        DefaultPasswordService defaultPasswordService = (DefaultPasswordService)service;
-//        HashService hashService = defaultPasswordService.getHashService();
-//        ((DefaultHashService)hashService).setGeneratePublicSalt(false);
-//        return service;
-//    }
-//
     @Bean
     public PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver() {
         return new PageableHandlerMethodArgumentResolver();

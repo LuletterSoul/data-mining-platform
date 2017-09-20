@@ -3,16 +3,12 @@ package com.dm.org.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.dm.org.base.ConfigurationWirer;
-import com.dm.org.base.ControllerEnvWirer;
-import com.dm.org.model.AreaType;
 import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
 import com.dm.org.service.DataSetCollectionService;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,10 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.sql.Date;
 import java.util.*;
-
-import static org.junit.Assert.*;
 
 
 /**
@@ -92,7 +85,7 @@ public class DataSetCollectionControllerTest extends ConfigurationWirer
     {
         List<String> collectionNames = collectionService.getCollectionNames();
         String queryName = collectionNames.get(0);
-        mockMvc.perform(delete(baseUrl + "/" + queryName)).andExpect(status().isOk()).andDo(print());
+        mockMvc.perform(delete(baseUrl + "/" + queryName)).andExpect(status().isNoContent()).andDo(print());
     }
 
     @Test
@@ -130,9 +123,9 @@ public class DataSetCollectionControllerTest extends ConfigurationWirer
                 .andExpect(status().isCreated()).andDo(print());
     }
 
-    private DataSetContainer buildContainer() {
+    public static DataSetContainer buildContainer() {
         DataSetContainer container = new DataSetContainer();
-        container.setSetName(UUID.randomUUID().toString());
+        container.setFileName(UUID.randomUUID().toString());
         container.setData(UUID.randomUUID().toString().getBytes());
         container.setFileType(UUID.randomUUID().toString());
         container.setInstances(1000L);

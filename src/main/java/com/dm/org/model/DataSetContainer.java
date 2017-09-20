@@ -23,7 +23,9 @@ public class DataSetContainer implements EntityIdentifier
 {
     private String containerId;
 
-    private String setName;
+    private String fileName;
+
+    private String containerName;
 
     private String attributeTypes;
 
@@ -36,6 +38,10 @@ public class DataSetContainer implements EntityIdentifier
     private byte[] data;
 
     private DataSetCollection dataSetCollection;
+
+//    private Map<String, String> filePathMapping;
+
+    private String filePath;
 
     private Set<DataSetAttribute> attributeSet;
 
@@ -55,15 +61,15 @@ public class DataSetContainer implements EntityIdentifier
 
 
     @Basic
-    @Column(name = "setName")
-    public String getSetName()
+    @Column(name = "fileName")
+    public String getFileName()
     {
-        return setName;
+        return fileName;
     }
 
-    public void setSetName(String setName)
+    public void setFileName(String setName)
     {
-        this.setName = setName;
+        this.fileName = setName;
     }
 
     @Basic
@@ -183,7 +189,7 @@ public class DataSetContainer implements EntityIdentifier
     {
         return MoreObjects.toStringHelper(this)
                 .add("containerId", containerId)
-                .add("setName", setName)
+                .add("setName", fileName)
                 .add("attributeTypes", attributeTypes)
                 .add("size", size)
                 .add("instances", instances)
@@ -194,7 +200,37 @@ public class DataSetContainer implements EntityIdentifier
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(containerId, setName, attributeTypes, size, instances, fileType,
+        return Objects.hashCode(containerId, fileName, attributeTypes, size, instances, fileType,
                 data);
+    }
+
+
+//    @ElementCollection
+//    @JoinTable(name = "file_path_rel")
+//    @MapKeyColumn(name = "fileName")
+//    @JoinColumn(name = "containerId", referencedColumnName = "containerId")
+//    @Column(name = "filePath")
+//    public Map<String, String> getFilePathMapping() {
+//        return filePathMapping;
+//    }
+//
+//    public void setFilePathMapping(Map<String, String> filePathMapping) {
+//        this.filePathMapping = filePathMapping;
+//    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getContainerName() {
+        return containerName;
+    }
+
+    public void setContainerName(String setName) {
+        this.containerName = setName;
     }
 }

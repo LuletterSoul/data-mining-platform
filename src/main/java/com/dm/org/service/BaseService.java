@@ -1,5 +1,7 @@
 package com.dm.org.service;
 
+import org.springframework.data.domain.Pageable;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,15 @@ import java.util.Set;
 
 public interface BaseService <E, PK extends Serializable>
 {
+
+    /**
+     *
+     * @param pageable
+     * @return
+     */
+    public List<E> get(Pageable pageable);
+
+
 
     /**
      * 不推荐使用全列查询除非必要（如：你当前无法知道有哪些列）

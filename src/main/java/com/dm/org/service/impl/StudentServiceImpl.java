@@ -9,6 +9,7 @@ import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -44,9 +45,15 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public Page<Student> getStudentList(Pageable pageable)
+    public Page<StudentDTO> getStudentList(Pageable pageable)
     {
-        return studentDao.get(pageable);
+        List<Student> students = studentDao.get(pageable);
+        List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
+        for (Student s :
+                students) {
+            studentDTOS.add(StudentDTO.build(s));
+        }
+        return new PageImpl<StudentDTO>(studentDTOS, pageable, studentDTOS.size());
     }
 
     @Override

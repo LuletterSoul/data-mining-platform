@@ -18,7 +18,7 @@ public interface StudentService extends UserService{
 
     List<String> getStudentIds();
 
-    Page<Student> getStudentList(Pageable pageable);
+    Page<StudentDTO> getStudentList(Pageable pageable);
 
     StudentDTO deleteByStudentId(String studentId);
 

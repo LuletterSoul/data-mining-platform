@@ -1,6 +1,7 @@
 package com.dm.org.service.impl;
 
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dm.org.exceptions.DataAccessObjectException;
@@ -30,6 +31,11 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
 
     public void saveBatchCollection(Set<DataSetCollection> collections) {
         this.saveBatch(collections);
+    }
+
+    @Override
+    public List<DataSetCollection> getPageableCollection(Pageable pageable) {
+        return collectionDao.get(pageable);
     }
 
     public DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container)
@@ -90,5 +96,11 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public List<String> getCollectionNames() {
         return collectionDao.getSetNames();
+    }
+
+    @Override
+    public DataSetContainer relateContainer(String collectionId, String containerId) {
+        DataSetContainer container = containerDao.findById(containerId);
+        return this.addDataSetContainer(collectionId, container);
     }
 }

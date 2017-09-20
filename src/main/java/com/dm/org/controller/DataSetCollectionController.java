@@ -7,6 +7,8 @@ import com.dm.org.service.DataSetCollectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/dataSet", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/dataSet",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetCollectionController {
     private DataSetCollectionService collectionService;
 
@@ -32,6 +34,17 @@ public class DataSetCollectionController {
     @Autowired
     public void setCollectionService(DataSetCollectionService collectionService) {
         this.collectionService = collectionService;
+    }
+
+
+    /**
+     *
+     * @param pageable 分页参数
+     * @return  当前页的集合信息
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public List<DataSetCollection> getPageable(@PageableDefault Pageable pageable) {
+        return collectionService.get(pageable);
     }
 
     /**
@@ -52,7 +65,7 @@ public class DataSetCollectionController {
     @RequestMapping(value = "{collectionId}", method = RequestMethod.DELETE)
     public ResponseEntity<DataSetCollection> delete(@PathVariable("collectionId") String collectionId) {
         DataSetCollection collection = collectionService.deleteByCollectionId(collectionId);
-        return new ResponseEntity<DataSetCollection>(collection, HttpStatus.OK);
+        return new ResponseEntity<DataSetCollection>(collection, HttpStatus.NO_CONTENT);
     }
 
 
@@ -108,6 +121,12 @@ public class DataSetCollectionController {
     @RequestMapping(value = "/{collectionId}/container",method = RequestMethod.GET)
     public List<DataSetContainer> getContainer(@PathVariable("collectionId") String collectionId) {
         return collectionService.getContainers(collectionId);
+    }
+
+    @RequestMapping(value = "{collectionId}/{containerId}",method = RequestMethod.POST)
+    public DataSetContainer relateContainer(@PathVariable("collectionId") String collectionId,
+                                                  @PathVariable("containerId") String containerId) {
+        return collectionService.relateContainer(collectionId, containerId);
     }
 }
 

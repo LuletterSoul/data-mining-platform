@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dm.org.dao.impl.*;
@@ -78,6 +79,10 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         this.studentDao = studentDao;
     }
 
+
+    public List<E> get(Pageable pageable) {
+        return baseDao.get(pageable);
+    }
 
 
     public List<E> findAll()
