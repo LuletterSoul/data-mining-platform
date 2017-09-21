@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,13 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
     protected DataSetCollectionDao collectionDao;
 
+    protected MiningTaskDao miningTaskDao;
+
     protected UserDao userDao;
 
     protected StudentDao studentDao;
+
+    protected GroupDao groupDao;
 
     protected PermissionDao permissionDao;
 
@@ -79,6 +84,15 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
         this.studentDao = studentDao;
     }
 
+    @Autowired
+    public void setGroupDao(GroupDao groupDao) {
+        this.groupDao = groupDao;
+    }
+
+    @Autowired
+    public void setMiningTaskDao(MiningTaskDao miningTaskDao) {
+        this.miningTaskDao = miningTaskDao;
+    }
 
     public List<E> get(Pageable pageable) {
         return baseDao.get(pageable);

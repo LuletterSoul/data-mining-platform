@@ -31,7 +31,7 @@ public class DataSetCollectionControllerTest extends ConfigurationWirer
 
     private MockMvc mockMvc;
 
-    private String baseUrl = "/dataSet";
+    private String baseUrl = "/dataSets";
 
     private DataSetCollectionService collectionService;
 

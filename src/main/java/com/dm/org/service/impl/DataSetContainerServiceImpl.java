@@ -64,6 +64,11 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
         return containerDao.getContainerNames();
     }
 
+    @Override
+    public String getFileName(String containerId) {
+        return containerDao.getFileName(containerId);
+    }
+
     public DataSetContainer getContainerByName(String containerName)
     {
         return containerDao.getContainerByName(containerName);

@@ -17,7 +17,9 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.io.File;
@@ -42,7 +44,7 @@ public class DataSetContainerControllerTest extends ConfigurationWirer {
 
     private DataSetCollectionService collectionService;
 
-    private String baseUrl = "/dataSetContainer";
+    private String baseUrl = "/dataSetContainers";
 
     private MockMvc mockMvc;
 
@@ -175,12 +177,12 @@ public class DataSetContainerControllerTest extends ConfigurationWirer {
                 throws Exception
     {
         String containerId = fetchContainerTestCase();
-
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
                 .get(baseUrl + "/" + containerId + "/filePath")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk()).andDo(print()).andReturn();
         String filePath = mvcResult.getResponse().getContentAsString();
+
         mockMvc.perform(get(baseUrl + "/" + containerId)
                 .param("filePath",filePath)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())

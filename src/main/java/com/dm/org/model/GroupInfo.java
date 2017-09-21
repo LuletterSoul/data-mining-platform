@@ -24,7 +24,6 @@ public class GroupInfo implements Serializable
 
     private DataMiningGroup group;
 
-    private Date setUpDate;
 
     @Id
     @ManyToOne
@@ -52,16 +51,6 @@ public class GroupInfo implements Serializable
         this.student = student;
     }
 
-    public Date getSetUpDate()
-    {
-        return setUpDate;
-    }
-
-    public void setSetUpDate(Date setUpDate)
-    {
-        this.setUpDate = setUpDate;
-    }
-
 
     @Override
     public String toString() {
@@ -69,7 +58,6 @@ public class GroupInfo implements Serializable
                 .add("serialVersionUID", serialVersionUID)
                 .add("student", student)
                 .add("group", group)
-                .add("setUpDate", setUpDate)
                 .toString();
     }
 
@@ -81,13 +69,12 @@ public class GroupInfo implements Serializable
 
         GroupInfo that = (GroupInfo) o;
 
-        return  Objects.equal(this.student, that.student) &&
-                Objects.equal(this.group, that.group) &&
-                Objects.equal(this.setUpDate, that.setUpDate);
+        return Objects.equal(this.student, that.student) &&
+                Objects.equal(this.group, that.group);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(serialVersionUID, student, group, setUpDate);
+        return Objects.hashCode(serialVersionUID, student, group);
     }
 }

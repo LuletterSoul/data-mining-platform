@@ -31,6 +31,8 @@ public interface  DataSetContainerService extends BaseService<DataSetContainer, 
 
     List<String> getContainerNames();
 
+    String getFileName(String containerId);
+
     DataSetContainer getContainerByName(String containerName);
 
     DataSetContainer getContainerByFileName(String fileName);

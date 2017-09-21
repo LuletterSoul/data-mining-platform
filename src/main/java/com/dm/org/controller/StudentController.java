@@ -27,7 +27,7 @@ import com.dm.org.service.StudentService;
  */
 
 @RestController
-@RequestMapping(value = "/student"
+@RequestMapping(value = "/students"
         )
 public class StudentController
     {

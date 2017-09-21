@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping(value = "/dataSetContainer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/dataSetContainers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetContainerController
 {
     private DataSetContainerService containerService;
@@ -74,7 +75,8 @@ public class DataSetContainerController
      *            对应的容器Id
      * @return
      */
-    @RequestMapping(value = "/{containerId}/uploadSetData", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "/{containerId}/uploadSetData", method = RequestMethod.POST,
+                    consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> uploadFile(@RequestPart("file") MultipartFile file,
                                              @PathVariable("containerId") String containerId)
     {
@@ -86,9 +88,13 @@ public class DataSetContainerController
     public ResponseEntity<byte[]> downloadFile(@RequestParam("filePath") String filePath,
                                                @PathVariable("containerId") String containerId)
     {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION,
+                    "attachment;filename="+containerService.getFileName(containerId));
         return new ResponseEntity<byte[]>(containerService.downloadData(containerId, filePath),
             HttpStatus.OK);
     }
+
 
     /**
      * 返回与固定Id数据容器关联的数据集合信息

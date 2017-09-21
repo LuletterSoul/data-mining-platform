@@ -4,6 +4,9 @@ import com.dm.org.model.FavoriteStatus;
 import com.dm.org.model.Student;
 import com.dm.org.model.StudentStatus;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5
@@ -58,6 +61,15 @@ public class StudentDTO {
                 student.getClassName(),
                 student.getStatus(),
                 student.getFavorite());
+    }
+
+    public static List<StudentDTO> build(List<Student> students) {
+        List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
+        for (Student student:
+             students) {
+            studentDTOS.add(StudentDTO.build(student));
+        }
+        return studentDTOS;
     }
 
     public static Student wrap(StudentDTO studentDTO) {

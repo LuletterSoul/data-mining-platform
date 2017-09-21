@@ -120,7 +120,7 @@ public class StudentControllerTest extends ConfigurationWirer
     public void testStudentListPageable()
         throws Exception
     {
-        String url = "/student";
+        String url = "/students";
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("size", "10");
         params.add("page", "1");
@@ -134,7 +134,7 @@ public class StudentControllerTest extends ConfigurationWirer
         throws Exception
     {
         studentService.deleteByStudentId("915106840327");
-        String url = "/student";
+        String url = "/students";
         Student student = new Student();
         student.setUserName("qq313700046@icloud.com");
         student.setStudentId("915106840327");
@@ -152,7 +152,7 @@ public class StudentControllerTest extends ConfigurationWirer
     public void update()
         throws Exception
     {
-        String url = "/student";
+        String url = "/students";
         StudentDTO studentDTO = studentService.getStudentById("915106840327");
         studentDTO.setClassName("软工二班");
         String jsonString = mapper.writeValueAsString(studentDTO);
@@ -165,7 +165,7 @@ public class StudentControllerTest extends ConfigurationWirer
             throws Exception
     {
         List<String> studentIds = studentService.getStudentIds();
-        String url = "/student";
+        String url = "/students";
         mockMvc.perform(delete(url + "/" + studentIds.get(0)).contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk()).andDo(print());
     }
@@ -189,7 +189,7 @@ public class StudentControllerTest extends ConfigurationWirer
         List<String> studentIds = studentService.getStudentIds();
         List<String> subStudentIdS = studentIds.subList(0, 5);
         String jsonString = mapper.writeValueAsString(subStudentIdS);
-        String url = "/student/deleteWithIdArray";
+        String url = "/students/deleteWithIdArray";
         mockMvc.perform(delete(url).content(jsonString)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk()).andDo(print());

@@ -23,7 +23,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/dataSet",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/dataSets",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetCollectionController {
     private DataSetCollectionService collectionService;
 

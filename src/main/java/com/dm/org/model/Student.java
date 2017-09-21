@@ -32,6 +32,8 @@ public class Student extends User
 
      private FavoriteStatus favorite;
 
+     private Set<DataMiningGroup> miningGroups;
+
      public Student() {
      }
 
@@ -130,5 +132,16 @@ public class Student extends User
 
      public void setFavorite(FavoriteStatus favorite) {
          this.favorite = favorite;
+     }
+
+     @ManyToMany(cascade = CascadeType.ALL)
+     @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(name = "studentUid", referencedColumnName = "studentId"),
+             inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
+     public Set<DataMiningGroup> getMiningGroups() {
+         return miningGroups;
+     }
+
+     public void setMiningGroups(Set<DataMiningGroup> miningGroups) {
+         this.miningGroups = miningGroups;
      }
  }

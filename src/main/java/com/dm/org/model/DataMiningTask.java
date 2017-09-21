@@ -22,6 +22,8 @@ public class DataMiningTask
 {
     private String taskId;
 
+    private String taskName;
+
     private String type;
 
     private String taskDescription;
@@ -33,6 +35,8 @@ public class DataMiningTask
     private Date finishTime;
 
     private Set<DataMiningGroup> groups;
+
+    private Set<DataSetContainer> dataSetContainers;
 
     private Set<Algorithm> algorithms;
 
@@ -47,6 +51,14 @@ public class DataMiningTask
     public void setTaskId(String taskId)
     {
         this.taskId = taskId;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
     public String getType()
@@ -148,5 +160,16 @@ public class DataMiningTask
     @Override
     public int hashCode() {
         return Objects.hashCode(taskId, type, taskDescription, duration, startTime, finishTime);
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "task_data_set_ref",joinColumns = @JoinColumn(name = "taskId",referencedColumnName = "taskId"),
+    inverseJoinColumns = @JoinColumn(name = "containerId",referencedColumnName = "containerId"))
+    public Set<DataSetContainer> getDataSetContainers() {
+        return dataSetContainers;
+    }
+
+    public void setDataSetContainers(Set<DataSetContainer> dataSetContainers) {
+        this.dataSetContainers = dataSetContainers;
     }
 }

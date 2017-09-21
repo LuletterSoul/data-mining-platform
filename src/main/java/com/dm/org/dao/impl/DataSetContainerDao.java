@@ -7,9 +7,7 @@ import com.dm.org.model.DataSetContainer;
 import com.dm.org.model.DataSetContainer_;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.*;
 import java.util.List;
 import java.util.Map;
 
@@ -93,6 +91,16 @@ public class DataSetContainerDao extends BaseDao<DataSetContainer, String>
     public String getDataSetPath(String containerId) {
         String hqlString = "select c.filePath from DataSetContainer c where containerId = :containerId";
         return (String) getSession().createQuery(hqlString).setParameter("containerId", containerId).getSingleResult();
+    }
+
+    public String getFileName(String containerId) {
+//        CriteriaBuilder builder =  getSession().getCriteriaBuilder();
+//        CriteriaQuery<String> stringCriteriaQuery = builder.createQuery(String.class);
+//        stringCriteriaQuery.select(baseRoot.get(DataSetContainer_.fileName))
+//                .where(builder.equal(baseRoot.get(DataSetContainer_.containerId), containerId));
+        String hqlString = "select c.fileName from DataSetContainer c where c.containerId = :containerId";
+        return (String) getSession().createQuery(hqlString)
+                .setParameter("containerId", containerId).getSingleResult();
     }
 
 

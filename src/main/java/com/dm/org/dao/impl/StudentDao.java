@@ -19,7 +19,7 @@ import java.util.Set;
  */
 
 @Repository
-@RestController
+@SuppressWarnings("unchecked")
 public class StudentDao extends BaseDao<Student,String> {
     protected StudentDao() {
         super(Student.class);
@@ -93,5 +93,10 @@ public class StudentDao extends BaseDao<Student,String> {
     public int deleteByArray(List<String> studentIds) {
         String hqlString = "DELETE Student s where s.studentId in :studentIds";
         return getSession().createQuery(hqlString).setParameter("studentIds", studentIds).executeUpdate();
+    }
+
+    public List<Student> getStudentsWithList(List<String> studentIds) {
+        String hqlString = "select s from Student s where s.studentId in :studentIds";
+        return getSession().createQuery(hqlString).setParameter("studentIds", studentIds).getResultList();
     }
 }

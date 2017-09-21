@@ -29,9 +29,12 @@ public class DataMiningGroup
 
     private Set<GroupInfo> groupInfos;
 
+    private Set<Student> groupMembers;
+
     private Student groupLeader;
 
     private DataMiningTask dataMiningTask;
+
 
 
     @Id
@@ -47,7 +50,7 @@ public class DataMiningGroup
         this.groupId = groupId;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="groupLeaderId",foreignKey = @ForeignKey(name="LEADER_FK_ID"))
     public Student getGroupLeader() {
         return groupLeader;
@@ -122,5 +125,17 @@ public class DataMiningGroup
     @Override
     public int hashCode() {
         return Objects.hashCode(groupId, groupName, setUpDate, groupLeader, dataMiningTask);
+    }
+
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(name = "group_student_rel",joinColumns =
+    @JoinColumn(name = "groupId",referencedColumnName = "groupId"),
+    inverseJoinColumns = @JoinColumn(name = "studentUId",referencedColumnName = "userId"))
+    public Set<Student> getGroupMembers() {
+        return groupMembers;
+    }
+
+    public void setGroupMembers(Set<Student> groupMembers) {
+        this.groupMembers = groupMembers;
     }
 }
