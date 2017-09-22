@@ -79,7 +79,7 @@ public class AlgorithmParameter {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(paramId, paramDesc, dataType, isNecessary, algorithm);
+        return Objects.hashCode(paramId, paramDesc, dataType, isNecessary);
     }
 
 
@@ -90,7 +90,6 @@ public class AlgorithmParameter {
                 .add("paramDesc", paramDesc)
                 .add("dataType", dataType)
                 .add("isNecessary", isNecessary)
-                .add("algorithm", algorithm)
                 .toString();
     }
 }

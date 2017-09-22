@@ -1,6 +1,9 @@
 package com.dm.org.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,13 +14,15 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table(name = "mining_task_type")
 public class MiningTaskType {
     private int typeId;
     private String chineseName;
     private String englishName;
 
     @Id
+    @GenericGenerator(name = "identityGenerator",strategy = "identity")
+    @GeneratedValue(generator = "identityGenerator")
     public int getTypeId() {
         return typeId;
     }

@@ -21,7 +21,9 @@ public interface  DataSetContainerService extends BaseService<DataSetContainer, 
      */
     public void setOrUpdateContainerCategorization(String collectionId,String containerId);
 
-    public List<DataSetContainer> fetchDataSetContainers(String collectionId);
+    List<String> getContainerIds();
+
+    List<DataSetContainer> fetchDataSetContainers(String collectionId);
 
     DataSetContainer deleteByContainerId(String containerId);
 

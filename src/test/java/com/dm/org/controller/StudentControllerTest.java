@@ -85,18 +85,22 @@ public class StudentControllerTest extends ConfigurationWirer
     public void before()
         throws Exception
     {
-         studentService.deleteAll();
-         for(int i =0;i<20;i++) {
-         Student student = new Student();
-         FavoriteStatus favoriteStatus = new FavoriteStatus();
-         favoriteStatus.setFavoriteId(1);
-         student.setUserName("qq313700046@icloud.com");
-         student.setStudentId(UUID.randomUUID().toString().substring(0, 16));
-         student.setPassword("liuxiangde");
-         student.setStudentName("刘祥德");
-         student.setFavorite(favoriteStatus);
-         studentService.registerUser(student);
-         }
+        generateTestingStudents();
+    }
+
+    private void generateTestingStudents() {
+        studentService.deleteAll();
+        for(int i =0;i<20;i++) {
+        Student student = new Student();
+        FavoriteStatus favoriteStatus = new FavoriteStatus();
+        favoriteStatus.setFavoriteId(1);
+        student.setUserName("qq313700046@icloud.com");
+        student.setStudentId(UUID.randomUUID().toString().substring(0, 16));
+        student.setPassword("liuxiangde");
+        student.setStudentName(UUID.randomUUID().toString().substring(0, 8));
+        student.setFavorite(favoriteStatus);
+        studentService.registerUser(student);
+        }
     }
 
     @After

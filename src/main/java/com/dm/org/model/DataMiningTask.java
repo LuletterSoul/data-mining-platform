@@ -1,12 +1,14 @@
 package com.dm.org.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 
@@ -30,9 +32,9 @@ public class DataMiningTask
 
     private int duration;
 
-    private Date startTime;
+    private Timestamp startTime;
 
-    private Date finishTime;
+    private Timestamp finishTime;
 
     private Set<DataMiningGroup> groups;
 
@@ -91,27 +93,28 @@ public class DataMiningTask
         this.duration = duration;
     }
 
-    public Date getStartTime()
+    public Timestamp getStartTime()
     {
         return startTime;
     }
 
-    public void setStartTime(Date startTime)
+    public void setStartTime(Timestamp startTime)
     {
         this.startTime = startTime;
     }
 
-    public Date getFinishTime()
+    public Timestamp getFinishTime()
     {
         return finishTime;
     }
 
-    public void setFinishTime(Date finishTime)
+    public void setFinishTime(Timestamp finishTime)
     {
         this.finishTime = finishTime;
     }
 
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, mappedBy = "dataMiningTask")
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE}, mappedBy = "dataMiningTask")
     public Set<DataMiningGroup> getGroups()
     {
         return groups;
@@ -122,8 +125,10 @@ public class DataMiningTask
         this.groups = groups;
     }
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "task_algorithm_rela", joinColumns = @JoinColumn(name = "taskId"), inverseJoinColumns = @JoinColumn(name = "algorithmId"))
+    @JoinTable(name = "task_algorithm_rela", joinColumns = @JoinColumn(name = "taskId",referencedColumnName = "taskId")
+            , inverseJoinColumns = @JoinColumn(name = "algorithmId",referencedColumnName = "algorithmId"))
     public Set<Algorithm> getAlgorithms() {
         return algorithms;
     }
@@ -162,7 +167,8 @@ public class DataMiningTask
         return Objects.hashCode(taskId, type, taskDescription, duration, startTime, finishTime);
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name = "task_data_set_ref",joinColumns = @JoinColumn(name = "taskId",referencedColumnName = "taskId"),
     inverseJoinColumns = @JoinColumn(name = "containerId",referencedColumnName = "containerId"))
     public Set<DataSetContainer> getDataSetContainers() {

@@ -50,7 +50,7 @@ public class DataSetCollectionDao extends BaseDao<DataSetCollection, String>
     public List<DataSetContainer> getContainers(String collectionId)
     {
         String hqlString = "select c from DataSetCollection collect " +
-                            "left join collect.dataSets c " +
+                            "left join fetch collect.dataSets c " +
                             "where collect.collectionId = :collectionId";
         return getSession().createQuery(hqlString).setParameter("collectionId", collectionId).getResultList();
     }

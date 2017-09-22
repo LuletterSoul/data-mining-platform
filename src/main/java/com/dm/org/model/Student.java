@@ -1,9 +1,11 @@
 package com.dm.org.model;
 
 import com.dm.org.enums.UserAccessStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -14,8 +16,9 @@ import java.util.Set;
  */
 @Entity
 @DiscriminatorValue(value = "Student")
-public class Student extends User
+public class Student extends User implements Serializable
  {
+     private static final long serialVersionUID = 8479971255524788081L;
      private String studentName;
 
      private String studentId;
@@ -26,7 +29,7 @@ public class Student extends User
 
      private String profession;
 
-     private Set<GroupInfo> groupInfos;
+//     private Set<GroupInfo> groupInfos;
 
      private StudentStatus status;
 
@@ -87,14 +90,14 @@ public class Student extends User
          this.profession = profession;
      }
 
-     @OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
-     public Set<GroupInfo> getGroupInfos() {
-         return groupInfos;
-     }
-
-     public void setGroupInfos(Set<GroupInfo> groupInfos) {
-         this.groupInfos = groupInfos;
-     }
+//     @OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
+//     public Set<GroupInfo> getGroupInfos() {
+//         return groupInfos;
+//     }
+//
+//     public void setGroupInfos(Set<GroupInfo> groupInfos) {
+//         this.groupInfos = groupInfos;
+//     }
 
 
      @Override
@@ -135,6 +138,7 @@ public class Student extends User
      }
 
      @ManyToMany(cascade = CascadeType.ALL)
+     @JsonIgnore
      @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(name = "studentUid", referencedColumnName = "studentId"),
              inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
      public Set<DataMiningGroup> getMiningGroups() {

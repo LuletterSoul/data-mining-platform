@@ -36,6 +36,8 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
     protected MiningTaskDao miningTaskDao;
 
+    protected AlgorithmDao algorithmDao;
+
     protected UserDao userDao;
 
     protected StudentDao studentDao;
@@ -92,6 +94,11 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     @Autowired
     public void setMiningTaskDao(MiningTaskDao miningTaskDao) {
         this.miningTaskDao = miningTaskDao;
+    }
+
+    @Autowired
+    public void setAlgorithmDao(AlgorithmDao algorithmDao) {
+        this.algorithmDao = algorithmDao;
     }
 
     public List<E> get(Pageable pageable) {

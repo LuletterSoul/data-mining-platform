@@ -2,7 +2,6 @@ package com.dm.org.service.impl;
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,6 +30,11 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
         DataSetContainer container = findById(containerId);
         container.setDataSetCollection(collection);
         collection.addDataSetContainer(container);
+    }
+
+    @Override
+    public List<String> getContainerIds() {
+        return containerDao.getContainerIds();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.dm.org.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
@@ -20,11 +21,22 @@ public class Algorithm
 {
     private String algorithmId;
 
+    private String algorithmName;
+
     private String interfaceDescription;
 
-    private String type;
+    private AlgorithmType type;
 
     private Set<AlgorithmParameter> algorithmParameters;
+
+    public Algorithm() {
+    }
+
+    public Algorithm(String algorithmName, String interfaceDescription, AlgorithmType type) {
+        this.algorithmName = algorithmName;
+        this.interfaceDescription = interfaceDescription;
+        this.type = type;
+    }
 
     @Id
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
@@ -49,16 +61,7 @@ public class Algorithm
         this.interfaceDescription = interfaceDescription;
     }
 
-    public String getType()
-    {
-        return type;
-    }
-
-    public void setType(String type)
-    {
-        this.type = type;
-    }
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "algorithm",fetch = FetchType.LAZY,orphanRemoval = true)
     public Set<AlgorithmParameter> getAlgorithmParameters() {
 
@@ -93,6 +96,26 @@ public class Algorithm
                 .add("algorithmId", algorithmId)
                 .add("interfaceDescription", interfaceDescription)
                 .add("type", type)
+                .add("algorithmName",algorithmName)
                 .toString();
+    }
+
+    public String getAlgorithmName() {
+        return algorithmName;
+    }
+
+    public void setAlgorithmName(String algorithmName) {
+        this.algorithmName = algorithmName;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade =CascadeType.PERSIST)
+    @JoinTable(name = "algorithm_type_rel",joinColumns = @JoinColumn(name ="algorithmId",referencedColumnName = "algorithmId")
+            ,inverseJoinColumns = @JoinColumn(name = "typeId",referencedColumnName = "typeId"))
+    public AlgorithmType getType() {
+        return type;
+    }
+
+    public void setType(AlgorithmType type) {
+        this.type = type;
     }
 }

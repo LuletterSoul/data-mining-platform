@@ -18,8 +18,16 @@ public class GroupDao extends BaseDao<DataMiningGroup,String> {
     public GroupDao() {
         super(DataMiningGroup.class);
     }
+
+    public List<DataMiningGroup> fetchGroups(List<String> groupIds) {
+        String hqlString = "select distinct g from DataMiningGroup g " +
+                "left join  g.groupMembers where g.groupId in :groupIds";
+        return getSession().createQuery(hqlString)
+                .setParameterList("groupIds",groupIds)
+                .getResultList();
+    }
     public DataMiningGroup fetchGroup(String groupId) {
-        String hqlString = "select g from DataMiningGroup g " +
+        String hqlString = "select distinct g from DataMiningGroup g " +
                 "left join g.groupMembers " +
                 "left join DataMiningTask t " +
                 "left join t.algorithms " +
@@ -27,6 +35,14 @@ public class GroupDao extends BaseDao<DataMiningGroup,String> {
         return (DataMiningGroup) getSession().createQuery(hqlString)
                 .setParameter("groupId",groupId)
                 .getSingleResult();
+    }
+
+    public List<DataMiningGroup> getGroups(List<String> groupIds) {
+        String hqlString = "select g from DataMiningGroup g " +
+                "where g.groupId in :groupIds";
+        return getSession().createQuery(hqlString)
+                .setParameterList("groupIds",groupIds)
+                .getResultList();
     }
 
     public List<Student> fetchGroupMembers(String groupId) {

@@ -34,7 +34,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup,St
     @Override
     public StudentDTO setGroupLeader(String studentId, String groupId) {
         Student leader = this.studentDao.getStudentById(studentId);
-        DataMiningGroup group = groupDao.findById(studentId);
+        DataMiningGroup group = groupDao.findById(groupId);
         group.setGroupLeader(leader);
         return StudentDTO.build(leader);
     }

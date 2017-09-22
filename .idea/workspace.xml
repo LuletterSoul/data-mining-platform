@@ -6,34 +6,40 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/dm/org/security/credentials/TokenManager.java" line="102" />
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetContainerController.java" line="37" />
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/GroupController.java" line="39" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java" description="List&lt;DataMiningGroup&gt; groups = groupDao.fetchGroup..." line="70" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="031959d7-0fe8-40ed-b496-f9ae4e1bcc84" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/GroupController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/GroupService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/AlgorithmDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/AlgorithmTypeDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/AlgorithmService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/AlgorithmTypeService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AlgorithmServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AlgorithmTypeServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/MiningTaskControllerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/06597c0b-3929-498e-8508-53e009bc70a4.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/06597c0b-3929-498e-8508-53e009bc70a4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetCollectionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetCollectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetContainerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetContainerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/StudentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/StudentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetCollectionDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetCollectionDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/StudentDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/StudentDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/dto/StudentDTO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/dto/StudentDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/Algorithm.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/Algorithm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmParameter.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmParameter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AreaType.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AreaType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AttributeFeature.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/AttributeFeature.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/GroupInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/GroupInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/MiningTaskType.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/MiningTaskType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetContainerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetContainerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AbstractBaseServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AbstractBaseServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetContainerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetContainerServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetCollectionControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetCollectionControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetContainerControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetContainerControllerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -46,6 +52,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/data-minning-platform$MiningTaskControllerTest_create.coverage" NAME="MiningTaskControllerTest.create Coverage Results" MODIFIED="1506099140828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.dm.org.controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/data-minning-platform$StudentControllerTest_testStudentList.coverage" NAME="StudentControllerTest.testStudentList Coverage Results" MODIFIED="1505662421901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.dm.org.controller.*</FILTER>
     </SUITE>
@@ -86,195 +95,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="94">
-      <file leaf-file-name="GroupDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="967">
-              <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#287#317#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#616#617#0" expanded="true" />
-                <element signature="e#667#668#0" expanded="true" />
-                <element signature="e#2213#2225#0" expanded="true" />
-                <element signature="e#3228#3229#0" expanded="true" />
-                <element signature="e#3255#3256#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dto/StudentDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
-              <folding>
-                <element signature="e#1968#1980#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataMiningGroup.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataMiningTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="967">
-              <caret line="168" column="33" lean-forward="false" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
-              <folding>
-                <element signature="e#3798#3799#0" expanded="true" />
-                <element signature="e#3838#3839#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MiningTaskController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="70" column="72" lean-forward="false" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
+            <state relative-caret-position="340">
+              <caret line="125" column="82" lean-forward="false" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2334#2335#0" expanded="true" />
-                <element signature="e#2361#2362#0" expanded="true" />
-                <element signature="e#2523#2524#0" expanded="true" />
-                <element signature="e#2550#2551#0" expanded="true" />
-                <element signature="e#3240#3241#0" expanded="true" />
-                <element signature="e#3267#3268#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_mining.task_data_set_ref" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
-          <provider editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
+      <file leaf-file-name="MiningTaskService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_mining.favorite_status" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.favorite_status">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_mining.favorite_stu_rel" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.favorite_stu_rel">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_mining.group_info" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_info">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/GroupController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2547">
-              <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#957#958#0" expanded="true" />
-                <element signature="e#1005#1006#0" expanded="true" />
-                <element signature="e#1137#1138#0" expanded="true" />
-                <element signature="e#1186#1187#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_mining.group_student_rel" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_student_rel">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/GroupService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state relative-caret-position="276">
+              <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -285,8 +122,8 @@
       <file leaf-file-name="MiningTaskServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+            <state relative-caret-position="189">
+              <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -294,31 +131,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractBaseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AbstractBaseServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
-              <folding>
-                <element signature="e#2150#2151#0" expanded="true" />
-                <element signature="e#2190#2191#0" expanded="true" />
-                <element signature="e#2365#2366#0" expanded="true" />
-                <element signature="e#2409#2410#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="data_mining.miningtasktype" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.miningtasktype">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MiningTaskDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="924">
-              <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#421#422#0" expanded="true" />
-                <element signature="e#464#465#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="data_mining.task_data_set_ref" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -326,47 +164,299 @@
       <file leaf-file-name="DataSetContainerDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="737">
-              <caret line="102" column="76" lean-forward="false" selection-start-line="102" selection-start-column="76" selection-end-line="102" selection-end-column="76" />
+            <state relative-caret-position="352">
+              <caret line="113" column="50" lean-forward="false" selection-start-line="113" selection-start-column="50" selection-end-line="113" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#613#614#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/StudentDao.java">
+      <file leaf-file-name="DataSetContainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataSetContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+            <state relative-caret-position="-168">
+              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionInterceptor.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
-                <element signature="e#542#572#0" expanded="true" />
+                <element signature="e#3928#3929#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/BaseDao.java">
+      <file leaf-file-name="AlgorithmDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/AlgorithmDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="129" column="19" lean-forward="false" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
+            <state relative-caret-position="263">
+              <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
               <folding>
-                <element signature="e#4527#4528#0" expanded="true" />
-                <element signature="e#4583#4584#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/BaseService.java">
+      <file leaf-file-name="data_mining.data_set_collection" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_set_collection">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.data_set_container" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_set_container">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/LoginControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+            <state relative-caret-position="279">
+              <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionAspectSupport.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="284" column="42" lean-forward="false" selection-start-line="284" selection-start-column="42" selection-end-line="284" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataMiningTask.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1140">
+              <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+              <folding>
+                <element signature="e#2313#2314#0" expanded="true" />
+                <element signature="e#2342#2343#0" expanded="true" />
+                <element signature="e#2769#2770#0" expanded="true" />
+                <element signature="e#2802#2803#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.group_info" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_info">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MiningTaskControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/MiningTaskControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="161" column="79" lean-forward="false" selection-start-line="161" selection-start-column="63" selection-end-line="161" selection-end-column="79" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataMiningGroup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1306">
+              <caret line="142" column="48" lean-forward="false" selection-start-line="142" selection-start-column="48" selection-end-line="142" selection-end-column="48" />
+              <folding>
+                <element signature="e#2354#2355#0" expanded="true" />
+                <element signature="e#2389#2390#0" expanded="true" />
+                <element signature="e#2682#2683#0" expanded="true" />
+                <element signature="e#2719#2720#0" expanded="true" />
+                <marker date="1506108359383" expanded="false" signature="3165:3176" ph=" { " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlgorithmType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="808">
+              <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MiningTaskType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/MiningTaskType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.mining_group" pinned="false" current-in-tab="true">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.mining_group">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.mining_task_type" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.mining_task_type">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Algorithm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/Algorithm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="63" column="15" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttributeFeature.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AttributeFeature.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-196">
+              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AreaType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AreaType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlgorithmParameter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmParameter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="29" column="44" lean-forward="false" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.task_algorithm_rela" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_algorithm_rela">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataSetAttribute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataSetAttribute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="762">
+              <caret line="102" column="9" lean-forward="false" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -386,14 +476,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>toHTTP</find>
-      <find>build</find>
-      <find>yyyy-MM-dd HH:mm:ss</find>
-      <find>dependency</find>
-      <find>dependencies</find>
-      <find>/dependencies</find>
-      <find>P</find>
-      <find>salt</find>
       <find>token</find>
       <find>cache</find>
       <find>ByteSources</find>
@@ -416,6 +498,14 @@
       <find>copyIn</find>
       <find>Content-Disposition</find>
       <find>url</find>
+      <find>Containers</find>
+      <find>g</find>
+      <find>algorithimId</find>
+      <find>2c948a825eaabd8b015eaabdb5b7000c</find>
+      <find>201</find>
+      <find>in</find>
+      <find>involveWithArray</find>
+      <find>addSetsWithArray</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -429,57 +519,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/dm/org/base/ConfigurationWirer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetCollectionDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataSetCollection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningAlgorithm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/BaseRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/BaseDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/StudentService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/StudentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningAlgorithmController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/AlgorithmController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetCollectionService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetCollectionServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/BaseService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/springMvc/SpringMvcConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/FileUploadRegistration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/DataMiningPlatformWebAppInitializer.java" />
-        <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.file_path_rel" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataSetContainer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetContainerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetContainerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetContainerController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetContainerControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/StudentController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetCollectionController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetCollectionControllerTest.java" />
         <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_mining_task" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/GroupInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/GroupService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AbstractBaseServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/StudentDao.java" />
         <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_student_rel" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dto/StudentDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/GroupController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java" />
         <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref" />
         <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.favorite_status" />
         <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_info" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/AlgorithmService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AlgorithmServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AbstractBaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/dm/org/controller/LoginControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmParameter.java" />
+        <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.algorithm_info" />
+        <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.algorithm_type_rel" />
+        <option value="$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetContainerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetContainerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/StudentDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/AlgorithmTypeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AlgorithmTypeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/AlgorithmTypeDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/AttributeFeature.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/AreaType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java" />
+        <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_algorithm_rela" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetCollectionDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/dm/org/controller/MiningTaskControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java" />
+        <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.mining_group" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/Algorithm.java" />
+        <option value="dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.miningtasktype" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/model/MiningTaskType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/AlgorithmDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java" />
       </list>
     </option>
   </component>
@@ -534,8 +624,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="2578" />
-    <option name="height" value="1420" />
+    <option name="width" value="1938" />
+    <option name="height" value="1060" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -831,40 +921,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-minning-platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data-minning-platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -965,8 +1021,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -1070,6 +1126,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dm.org.service.impl" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1083,7 +1142,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DataSetContainerControllerTest.testDownloadFile">
+  <component name="RunManager" selected="JUnit.MiningTaskControllerTest.create">
     <configuration default="false" name="DataSetContainerControllerTest.generateTestContainer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="chronon">
         <include>
@@ -1105,40 +1164,6 @@
       <option name="PACKAGE_NAME" value="com.dm.org.controller" />
       <option name="MAIN_CLASS_NAME" value="com.dm.org.controller.DataSetContainerControllerTest" />
       <option name="METHOD_NAME" value="generateTestContainer" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="DataSetContainerControllerTest.testGetList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="chronon">
-        <include>
-          <pattern>
-            <option name="PATTERN" value="com.dm.org.controller.**" />
-            <option name="ENABLED" value="true" />
-          </pattern>
-        </include>
-      </extension>
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.dm.org.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="data-minning-platform" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.dm.org.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.dm.org.controller.DataSetContainerControllerTest" />
-      <option name="METHOD_NAME" value="testGetList" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1241,6 +1266,40 @@
       <option name="PACKAGE_NAME" value="com.dm.org.controller" />
       <option name="MAIN_CLASS_NAME" value="com.dm.org.controller.DataSetContainerControllerTest" />
       <option name="METHOD_NAME" value="testDownloadFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="MiningTaskControllerTest.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="chronon">
+        <include>
+          <pattern>
+            <option name="PATTERN" value="com.dm.org.controller.**" />
+            <option name="ENABLED" value="true" />
+          </pattern>
+        </include>
+      </extension>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.dm.org.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="data-minning-platform" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.dm.org.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.dm.org.controller.MiningTaskControllerTest" />
+      <option name="METHOD_NAME" value="create" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1791,18 +1850,18 @@
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.dm-platform" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.generateTestContainer" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testGetList" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testUploadFile" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testFileLink" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testDownloadFile" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testUploadFile" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testFileLink" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testDownloadFile" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.MiningTaskControllerTest.create" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testDownloadFile" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testFileLink" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testUploadFile" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.generateTestContainer" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testGetList" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.MiningTaskControllerTest.create" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testDownloadFile" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testFileLink" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.testUploadFile" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.DataSetContainerControllerTest.generateTestContainer" />
       </list>
     </recent_temporary>
   </component>
@@ -1856,44 +1915,45 @@
       <workItem from="1505737923665" duration="14692000" />
       <workItem from="1505793712662" duration="8616000" />
       <workItem from="1505809981220" duration="26991000" />
-      <workItem from="1505881036522" duration="53190000" />
+      <workItem from="1505881036522" duration="86022000" />
+      <workItem from="1506101971242" duration="7635000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 10h 05m 03s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 19m 43s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 10h 06m 59s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 20m 15s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 10h 08m 10s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 21m 33s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 10h 10m 09s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 27m 02s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 22h 02m 43s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 27m 57s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 22h 12m 28s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 30m 12s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 22h 14m 26s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 35m 23s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 22h 15m 27s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 39m 48s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.21 at 22h 16m 33s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 42m 04s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DataSetContainerControllerTest_testDownloadFile - 2017.09.22 at 00h 04m 43s.xml">
-      <configuration name="DataSetContainerControllerTest.testDownloadFile" configurationId="JUnit" />
+    <history-entry file="MiningTaskControllerTest_create - 2017.09.23 at 03h 44m 03s.xml">
+      <configuration name="MiningTaskControllerTest.create" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="330073000" />
+    <option name="totallyTimeSpent" value="370540000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1905,42 +1965,41 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="2578" height="1420" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1060" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.77814937" sideWeight="0.49840257" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08353222" sideWeight="0.46448523" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44816053" sideWeight="0.46516612" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08035004" sideWeight="0.49361533" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16520351" sideWeight="0.49615383" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16505896" sideWeight="0.49615383" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.116242036" sideWeight="0.49840382" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14205906" sideWeight="0.48704663" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18167202" sideWeight="0.47843942" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980047" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10501193" sideWeight="0.5355148" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.53483385" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40572792" sideWeight="0.49401435" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1272872" sideWeight="0.40822026" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5819398" sideWeight="0.40822026" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32856005" sideWeight="0.49521148" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16945107" sideWeight="0.6907422" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18729097" sideWeight="0.5961692" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08361204" sideWeight="0.4968051" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.49840257" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20550679" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15083799" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21757771" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1505895" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29435164" sideWeight="0.49361533" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
@@ -1948,8 +2007,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15762171" sideWeight="0.4966443" order="10" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14884278" sideWeight="0.51295334" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13665594" sideWeight="0.52156055" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29435164" sideWeight="0.49361533" order="12" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1991,11 +2051,17 @@
           <properties />
           <option name="timeStamp" value="321" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java</url>
+          <line>135</line>
+          <properties />
+          <option name="timeStamp" value="411" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="359" />
+      <option name="time" value="412" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -2008,181 +2074,204 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/EntityManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/BaseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="819" column="27" lean-forward="false" selection-start-line="819" selection-start-column="27" selection-end-line="819" selection-end-column="27" />
+        <state relative-caret-position="784">
+          <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/criteria/CriteriaBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetContainerService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="407" column="14" lean-forward="false" selection-start-line="407" selection-start-column="14" selection-end-line="407" selection-end-column="14" />
+        <state relative-caret-position="342">
+          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE-sources.jar!/org/springframework/http/HttpHeaders.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetContainerServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.3.9.RELEASE/spring-test-4.3.9.RELEASE-sources.jar!/org/springframework/test/web/servlet/result/MockMvcResultHandlers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
+        <state relative-caret-position="-2575">
+          <caret line="35" column="24" lean-forward="false" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
           <folding>
-            <element signature="e#2058#2059#0" expanded="false" />
-            <element signature="e#2089#2090#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.3.9.RELEASE/spring-test-4.3.9.RELEASE-sources.jar!/org/springframework/test/web/servlet/result/MockMvcResultMatchers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="157" column="39" lean-forward="false" selection-start-line="157" selection-start-column="39" selection-end-line="157" selection-end-column="39" />
-          <folding>
-            <element signature="e#4471#4472#0" expanded="false" />
-            <element signature="e#4511#4512#0" expanded="false" />
-            <element signature="e#4611#4612#0" expanded="false" />
-            <element signature="e#4651#4652#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_set_container">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="215" column="0" lean-forward="false" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.3.9.RELEASE/spring-webmvc-4.3.9.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="834" column="0" lean-forward="false" selection-start-line="834" selection-start-column="0" selection-end-line="834" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.3.9.RELEASE/spring-webmvc-4.3.9.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="1001" column="0" lean-forward="false" selection-start-line="1001" selection-start-column="0" selection-end-line="1001" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_algorithm_rela">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_set_attribute">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.collec_char_rela">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/StudentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-          <folding>
-            <element signature="method#deleteBatch#0;class#StudentController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="191" column="31" lean-forward="false" selection-start-line="191" selection-start-column="31" selection-end-line="191" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/LoginControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetCollectionControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetContainerControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="46" column="48" lean-forward="false" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2316#2334#0" expanded="true" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1106#1107#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetCollectionServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-652">
-          <caret line="60" column="38" lean-forward="false" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
+        <state relative-caret-position="389">
+          <caret line="101" column="28" lean-forward="false" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetCollectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetCollectionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.9.RELEASE/spring-aop-4.3.9.RELEASE-sources.jar!/org/springframework/aop/framework/CglibAopProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="737" column="0" lean-forward="false" selection-start-line="737" selection-start-column="0" selection-end-line="737" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.9.RELEASE/spring-aop-4.3.9.RELEASE-sources.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding>
+            <element signature="e#3928#3929#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="284" column="42" lean-forward="false" selection-start-line="284" selection-start-column="42" selection-end-line="284" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmParameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AlgorithmType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="808">
+          <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AreaType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/AttributeFeature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataSetAttribute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="63" column="15" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1306">
+          <caret line="142" column="48" lean-forward="false" selection-start-line="142" selection-start-column="48" selection-end-line="142" selection-end-column="48" />
+          <folding>
+            <element signature="e#2354#2355#0" expanded="true" />
+            <element signature="e#2389#2390#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#2719#2720#0" expanded="true" />
+            <marker date="1506108359383" expanded="false" signature="3165:3176" ph=" { " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="762">
+          <caret line="102" column="9" lean-forward="false" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataSetContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="113" column="50" lean-forward="false" selection-start-line="113" selection-start-column="50" selection-end-line="113" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2191,376 +2280,335 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/MiningTaskType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/DataSetContainerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/DataSetContainerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="42" column="28" lean-forward="false" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1656#1657#0" expanded="true" />
-            <element signature="e#1715#1716#0" expanded="true" />
-            <element signature="e#1776#1777#0" expanded="true" />
-            <element signature="e#1831#1832#0" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1958#1959#0" expanded="true" />
-            <element signature="e#3760#3761#0" expanded="true" />
-            <element signature="e#3823#3824#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetCollectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-608">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_mining_task">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-858">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/DataSetContainerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="992">
-          <caret line="69" column="7" lean-forward="true" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1745#1746#0" expanded="true" />
-            <element signature="e#1798#1799#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/GroupInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="922">
-          <caret line="42" column="24" lean-forward="false" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
-          <folding>
-            <element signature="e#647#648#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/CascadeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#1137#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="141" column="6" lean-forward="true" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
-          <folding>
-            <element signature="e#3559#3560#0" expanded="true" />
-            <element signature="e#3596#3597#0" expanded="true" />
-            <element signature="e#3667#3668#0" expanded="true" />
-            <element signature="e#3717#3718#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/RestExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        <state relative-caret-position="250">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/MiningTaskService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="276">
+          <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/StudentDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding>
-            <element signature="e#542#572#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_student_rel">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/DataSetContainerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="102" column="76" lean-forward="false" selection-start-line="102" selection-start-column="76" selection-end-line="102" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dto/StudentDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
-          <folding>
-            <element signature="e#1968#1980#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/GroupService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/GroupServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#2213#2225#0" expanded="true" />
-            <element signature="e#3228#3229#0" expanded="true" />
-            <element signature="e#3255#3256#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/BaseDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="129" column="19" lean-forward="false" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
-          <folding>
-            <element signature="e#4527#4528#0" expanded="true" />
-            <element signature="e#4583#4584#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/AbstractBaseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
-          <folding>
-            <element signature="e#2150#2151#0" expanded="true" />
-            <element signature="e#2190#2191#0" expanded="true" />
-            <element signature="e#2365#2366#0" expanded="true" />
-            <element signature="e#2409#2410#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/BaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="967">
-          <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#287#317#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/MiningTaskDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#421#422#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/GroupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2547">
-          <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#957#958#0" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1186#1187#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="967">
-          <caret line="168" column="33" lean-forward="false" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
-          <folding>
-            <element signature="e#3798#3799#0" expanded="true" />
-            <element signature="e#3838#3839#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/MiningTaskController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="70" column="72" lean-forward="false" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
+        <state relative-caret-position="340">
+          <caret line="125" column="82" lean-forward="false" selection-start-line="125" selection-start-column="82" selection-end-line="125" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2334#2335#0" expanded="true" />
-            <element signature="e#2361#2362#0" expanded="true" />
-            <element signature="e#2523#2524#0" expanded="true" />
-            <element signature="e#2550#2551#0" expanded="true" />
-            <element signature="e#3240#3241#0" expanded="true" />
-            <element signature="e#3267#3268#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
-      <provider editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/AlgorithmDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="263">
+          <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.favorite_status">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_set_collection">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.favorite_stu_rel">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.data_set_container">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/LoginControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/MiningTaskControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="161" column="79" lean-forward="false" selection-start-line="161" selection-start-column="63" selection-end-line="161" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/service/impl/MiningTaskServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/dao/impl/GroupDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="29" column="44" lean-forward="false" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_algorithm_rela">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.mining_task_type">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.miningtasktype">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.set_task_rel">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.set_task_rel">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.set_task_rel">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.task_data_set_ref">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/model/DataMiningTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1140">
+          <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+          <folding>
+            <element signature="e#2313#2314#0" expanded="true" />
+            <element signature="e#2342#2343#0" expanded="true" />
+            <element signature="e#2769#2770#0" expanded="true" />
+            <element signature="e#2802#2803#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.set_task_rel">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_info">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.group_info">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/e7cc149a/06597c0b-3929-498e-8508-53e009bc70a4/data_mining.mining_group">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

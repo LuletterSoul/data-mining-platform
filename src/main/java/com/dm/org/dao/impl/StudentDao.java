@@ -51,10 +51,10 @@ public class StudentDao extends BaseDao<Student,String> {
      * @return 学生信息
      */
     public Student getStudentById(String studentId) {
-        buildCriteriaQuery();
-        criteriaQuery.select(baseRoot)
-                .where(baseBuilder.equal(baseRoot.get(Student_.studentId), studentId));
-        return getSession().createQuery(criteriaQuery).getSingleResult();
+        String hqlString = "select s from Student s where s.studentId =:studentId";
+        return (Student) getSession()
+                            .createQuery(hqlString)
+                                .setParameter("studentId", studentId).getSingleResult();
     }
 
     /**

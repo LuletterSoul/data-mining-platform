@@ -1,6 +1,9 @@
 package com.dm.org.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +22,8 @@ public class AttributeFeature
     private String englishName;
 
     @Id
+    @GenericGenerator(name = "identityGenerator",strategy = "identity")
+    @GeneratedValue(generator = "identityGenerator")
     public int getFeatureId() {
         return featureId;
     }

@@ -1,6 +1,9 @@
 package com.dm.org.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +22,8 @@ public class AreaType {
     private String englishName;
 
     @Id
+    @GenericGenerator(name = "identityGenerator",strategy = "identity")
+    @GeneratedValue(generator = "identityGenerator")
     public int getAreaId() {
         return areaId;
     }

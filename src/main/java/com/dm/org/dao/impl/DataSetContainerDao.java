@@ -48,6 +48,12 @@ public class DataSetContainerDao extends BaseDao<DataSetContainer, String>
         return container.getDataSetCollection();
     }
 
+    public List<String> getContainerIds() {
+        String hqlString = "select c.containerId from DataSetContainer c";
+        return getSession().createQuery(hqlString).getResultList();
+
+    }
+
     public List<String> getContainerFileNames()
     {
         String hqlString = "select c.fileName from DataSetContainer c";
@@ -101,6 +107,12 @@ public class DataSetContainerDao extends BaseDao<DataSetContainer, String>
         String hqlString = "select c.fileName from DataSetContainer c where c.containerId = :containerId";
         return (String) getSession().createQuery(hqlString)
                 .setParameter("containerId", containerId).getSingleResult();
+    }
+
+    public List<DataSetContainer> fetchContainers(List<String> containerIds) {
+        String hqlString = "from DataSetContainer c where c.containerId in :containerIds";
+        return getSession().createQuery(hqlString)
+                            .setParameter("containerIds",containerIds).getResultList();
     }
 
 
