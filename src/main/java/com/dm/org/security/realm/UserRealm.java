@@ -15,6 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.dm.org.service.UserService;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -40,7 +43,8 @@ public class UserRealm extends AuthorizingRealm
     {
         String username = (String)principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoleNameSetByUserName(username));
+        Set<String> roleNames = new LinkedHashSet<String>(userService.findRoleNameSetByUserName(username));
+        authorizationInfo.setRoles(roleNames);
         authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
         return authorizationInfo;
     }
@@ -64,7 +68,7 @@ public class UserRealm extends AuthorizingRealm
             throw new LockedAccountException(); // 帐号锁定
         }
 
-        return new SimpleAuthenticationInfo(user.getUserName(), // 用户名
+        return new SimpleAuthenticationInfo(user.getUsername(), // 用户名
             user.getPassword(), // 密码
             ByteSource.Util.bytes(user.getPublicSalt()),
             getName()

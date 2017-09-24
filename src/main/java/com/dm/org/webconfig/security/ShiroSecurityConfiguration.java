@@ -249,10 +249,10 @@ public class ShiroSecurityConfiguration
         return new StatelessAuthenticatingFilter();
     }
 
-    @Bean("originFilter")
-    public AllowOriginFilter allowOriginFilter(){
-        return new AllowOriginFilter();
-    }
+//    @Bean("originFilter")
+//    public AllowOriginFilter allowOriginFilter(){
+//        return new AllowOriginFilter();
+//    }
 
     @Bean
     public UserPasswordServiceImpl passwordService()
@@ -285,11 +285,11 @@ public class ShiroSecurityConfiguration
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean)
     {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        filterChainDefinitionMap.put("/user/**", "anon,originFilter");
-        filterChainDefinitionMap.put("/student/**", "anon,originFilter");
-        filterChainDefinitionMap.put("/student", "anon,originFilter");
+        filterChainDefinitionMap.put("/user/{username}/token", "anon");
+//        filterChainDefinitionMap.put("/student/**", "anon");
+//        filterChainDefinitionMap.put("/student", "anon");
         filterChainDefinitionMap.put("/*", "statelessFilter");
-        filterChainDefinitionMap.put("/*", "originFilter");
+//        filterChainDefinitionMap.put("/*", "originFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 
@@ -299,7 +299,7 @@ public class ShiroSecurityConfiguration
         DefaultHashService hashService = new DefaultHashService();
         hashService.setGeneratePublicSalt(false);
         hashService.setHashAlgorithmName("SHA-256");
-        hashService.setHashIterations(50000);
+        hashService.setHashIterations(1000);
         return hashService;
     }
 

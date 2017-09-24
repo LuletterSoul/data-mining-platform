@@ -1,9 +1,5 @@
 package com.dm.org.security.credentials;
 
-import com.dm.org.security.realm.SimpleHash;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.apache.shiro.crypto.hash.Hash;
-
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5
@@ -14,8 +10,7 @@ import org.apache.shiro.crypto.hash.Hash;
 
 public class TimeOutToken{
     private String publicSalt;
-    @JsonDeserialize(as = SimpleHash.class)
-    private Hash timeOutTokenHash;
+    private String timeOutToken;
     private String timestamp;
 
 
@@ -27,17 +22,18 @@ public class TimeOutToken{
         this.publicSalt = publicSalt;
     }
 
-    public Hash getTimeOutTokenHash() {
-        return timeOutTokenHash;
+    public String getTimeOutToken() {
+        return timeOutToken;
     }
+
     /**
      *
-     * 混入了私盐、用户名、时间戳的一次性服务器要返回的证书；
-     * @param timeOutTokenHash {@link TokenManager} 根据用户名以及当前时间生成的封装验证信息;
+     * 混入了私盐、用户名、时间戳的一次性证书；
+     * @param timeOutToken {@link TokenManager} 根据用户名以及当前时间生成的封装验证信息;
      *客户端必须提前申请到一次性证书，进行无状态授权验证
      */
-    public void setTimeOutTokenHash(Hash timeOutTokenHash) {
-        this.timeOutTokenHash = timeOutTokenHash;
+    public void setTimeOutToken(String timeOutToken) {
+        this.timeOutToken = timeOutToken;
     }
 
     public String getTimestamp() {

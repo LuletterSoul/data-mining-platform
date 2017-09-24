@@ -28,7 +28,7 @@ public class AllowOriginFilter extends AdviceFilter {
 
     public final static String ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
 
-    public final static String DEFAULT_ALLOW_HEADERS = "Origin, X-Requested-With, Content-Type, Accept, token";
+    public final static String DEFAULT_ALLOW_HEADERS = "Origin, X-Requested-With, Content-Type, Accept, token, X-timestamp, Username";
 
     public final static String DEFAULT_ALLOW_METHODS = "GET, POST, PUT, OPTIONS, DELETE";
 

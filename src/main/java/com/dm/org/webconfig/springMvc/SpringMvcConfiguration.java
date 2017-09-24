@@ -2,20 +2,13 @@ package com.dm.org.webconfig.springMvc;
 
 
 import com.dm.org.controller.ControllerScanningMarker;
-import com.dm.org.security.credentials.StatelessCredentialsMatcher;
-import com.dm.org.service.StatelessCredentialsService;
-import com.dm.org.service.impl.StatelessCredentialsServiceImpl;
+import com.dm.org.interceptor.AccessProcessInterceptor;
 import com.dm.org.utils.DateStyle;
 import com.dm.org.utils.UtilClassScanningMarker;
-import com.dm.org.webconfig.security.ShiroSecurityConfiguration;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.shiro.authc.credential.DefaultPasswordService;
-import org.apache.shiro.crypto.hash.DefaultHashService;
-import org.apache.shiro.crypto.hash.HashService;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.hibernate.type.DateType;
 import org.springframework.context.annotation.*;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -25,14 +18,13 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -62,6 +54,12 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
         super.addResourceHandlers(registry);
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        super.addInterceptors(registry);
+        registry.addInterceptor(originalAccessHandler());
+    }
+
     @Bean
     public ViewResolver internalResourceViewResolver()
     {
@@ -85,6 +83,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
 //        adapter.setCustomArgumentResolvers(argumentResolvers);
 //        return adapter;
 //    }
+
+    @Bean
+    public HandlerInterceptor originalAccessHandler() {
+        return new AccessProcessInterceptor();
+    }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {

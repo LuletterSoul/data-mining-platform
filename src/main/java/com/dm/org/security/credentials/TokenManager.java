@@ -7,7 +7,6 @@ import java.util.Date;
 import org.apache.shiro.authc.ExpiredCredentialsException;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
-import org.apache.shiro.crypto.hash.Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public class TokenManager
 {
-    private Cache<String, Hash> tokenCache;
+    private Cache<String, String> tokenCache;
 
     private UserService userService;
 
@@ -69,20 +68,20 @@ public class TokenManager
     }
 
 
-    public TimeOutToken generateTimeOutToken(String username)
+    public String generateTimeOutToken(String username)
     {
         TimeOutToken token = new TimeOutToken();
         Date date = new Date();
         String formattedDate = dateToString(date);
         String privateSalt = userService.fetchPrivateSalt(username);
-        String publicSalt = userService.fetchPublicSalt(username);
-        token.setPublicSalt(publicSalt);
+//        String publicSalt = userService.fetchPublicSalt(username);
+//        token.setPublicSalt(publicSalt);
         token.setTimestamp(formattedDate);
-        token.setTimeOutTokenHash(generateEncryptedToken(privateSalt,username, formattedDate));
-        return token;
+        token.setTimeOutToken(generateEncryptedToken(privateSalt,username, formattedDate));
+        return generateEncryptedToken(privateSalt,username, formattedDate);
     }
-    private Hash generateEncryptedToken(String privateSalt, String username, String formattedDate) {
-        return credentialsService.digest(privateSalt+username, formattedDate);
+    private String generateEncryptedToken(String privateSalt, String username, String formattedDate) {
+        return credentialsService.digest(privateSalt+username, formattedDate).toBase64();
     }
 
     private String dateToString(Date date)
@@ -90,19 +89,19 @@ public class TokenManager
         return DateUtil.DateToString(date, DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
     }
 
-    public TimeOutToken getTimeOutToken(String username, String dateString)
+    public String getTimeOutToken(String username, String dateString)
     {
         if (!checkTokenValidity(dateString))
         {
             throw new ExpiredCredentialsException("Invalid token.");
         }
-        TimeOutToken token = generateTimeOutToken(username);
+        String token = generateTimeOutToken(username);
         LOGGER.info("User: " + username + " attempt to login system.");
-        tokenCache.put(username,token.getTimeOutTokenHash());
+        tokenCache.put(username,token);
         return token;
     }
 
-    public Hash getHashToken(String username)
+    public String getHashToken(String username)
     {
         return tokenCache.get(username);
     }
@@ -127,7 +126,7 @@ public class TokenManager
     }
 
     public boolean cleanTokenCache(String username) {
-        Hash tokenHash = tokenCache.get(username);
+        String tokenHash = tokenCache.get(username);
         if (tokenHash !=  null) {
             tokenCache.remove(username);
             return true;
