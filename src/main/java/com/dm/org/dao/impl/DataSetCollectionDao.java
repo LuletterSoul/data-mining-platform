@@ -39,12 +39,22 @@ public class DataSetCollectionDao extends BaseDao<DataSetCollection, String>
             collectionName).executeUpdate();
     }
 
+    public int deleteBatch(List<String> collectionIds) {
+        String hqlString = "DELETE from DataSetCollection  s where s.collectionId in :collectionIds";
+        return getSession().createQuery(hqlString).setParameterList("collectionIds", collectionIds).executeUpdate();
+    }
+
     public DataSetCollection getCollectionByName(String collectionName)
     {
         buildCriteriaQuery();
         criteriaQuery.select(baseRoot).where(
             baseBuilder.equal(baseRoot.get(DataSetCollection_.collectionName), collectionName));
         return getSession().createQuery(criteriaQuery).getSingleResult();
+    }
+
+    public List<DataSetCollection> getCollectionByIds(List<String> collectionIds) {
+        String hqlString = "select distinct s from DataSetCollection s where s.collectionId in :collectionIds";
+        return getSession().createQuery(hqlString).setParameterList("collectionIds", collectionIds).getResultList();
     }
 
     public List<DataSetContainer> getContainers(String collectionId)

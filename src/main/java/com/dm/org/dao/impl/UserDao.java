@@ -33,24 +33,24 @@ public class UserDao extends BaseDao<User, String>
     public User fetchUserJoinRolesById(String userId)
     {
         buildCriteriaQuery();
-        baseRoot.fetch(User_.roleSet, JoinType.LEFT);
+        baseRoot.fetch(User_.roles, JoinType.LEFT);
         Predicate whereRestriction = baseBuilder.equal(baseRoot.get(User_.userId), userId);
         criteriaQuery.where(whereRestriction);
         return getSession().createQuery(criteriaQuery).getSingleResult();
     }
 
-    public User findByUserName(String userName)
+    public User findByUserName(String username)
     {
         buildCriteriaQuery();
-        criteriaQuery.where(baseBuilder.equal(baseRoot.get(User_.userName), userName));
+        criteriaQuery.where(baseBuilder.equal(baseRoot.get(User_.username), username));
         return getSession().createQuery(criteriaQuery).getSingleResult();
     }
 
-    public User fetchByUserName(String userName)
+    public User fetchByUserName(String username)
     {
         buildCriteriaQuery();
-        baseRoot.fetch(User_.roleSet, JoinType.LEFT).fetch(Role_.permissionSet, JoinType.LEFT);
-        criteriaQuery.where(baseBuilder.equal(baseRoot.get(User_.userName), userName));
+        baseRoot.fetch(User_.roles, JoinType.LEFT).fetch(Role_.permissionSet, JoinType.LEFT);
+        criteriaQuery.where(baseBuilder.equal(baseRoot.get(User_.username), username));
         return getSession().createQuery(criteriaQuery).getSingleResult();
     }
 
@@ -60,48 +60,48 @@ public class UserDao extends BaseDao<User, String>
         CriteriaQuery<String> stringCriteriaQuery = getSession().getCriteriaBuilder().createQuery(
             String.class);
         baseRoot = stringCriteriaQuery.from(User.class);
-        Predicate whereRestriction = baseBuilder.equal(baseRoot.get(User_.userName), userName);
+        Predicate whereRestriction = baseBuilder.equal(baseRoot.get(User_.username), userName);
         stringCriteriaQuery.select(baseRoot.get(User_.password)).where(whereRestriction);
         return getSession().createQuery(stringCriteriaQuery).getSingleResult();
     }
 
     public List<Permission> findPermissionByUserName(String userName)
     {
-        String hqlString = "select p from User u " + "left join u.roleSet r "
-                           + "left join r.permissionSet p " + "where u.userName = :userName";
+        String hqlString = "select p from User u " + "left join u.roles r "
+                           + "left join r.permissionSet p " + "where u.username = :userName";
         return getSession().createQuery(hqlString).setParameter("userName",
             userName).getResultList();
     }
 
     public Set<String> findPermissionNameSet(String userName)
     {
-        String hqlString = "select p.permissionName from User u " + "left join u.roleSet r "
-                           + "left join r.permissionSet p " + "where u.userName = :userName";
+        String hqlString = "select p.permissionName from User u " + "left join u.roles r "
+                           + "left join r.permissionSet p " + "where u.username = :userName";
         return new HashSet<String>(getSession().createQuery(hqlString).setParameter("userName",
             userName).getResultList());
     }
 
-    public List<Role> findRolesByUserName(String userName)
+    public List<Role> findRolesByUserName(String username)
     {
         buildCriteriaQuery();
-        baseRoot.fetch(User_.roleSet, JoinType.LEFT);
+        baseRoot.fetch(User_.roles, JoinType.LEFT);
         criteriaQuery.select(baseRoot).where(
-            baseBuilder.equal(baseRoot.get(User_.userName), userName));
+            baseBuilder.equal(baseRoot.get(User_.username), username));
         User user = getSession().createQuery(criteriaQuery).getSingleResult();
-        return new ArrayList<Role>(user.getRoleSet());
+        return new ArrayList<Role>(user.getRoles());
     }
 
-    public Set<String> findRoleNameSetByUserName(String userName)
+    public List<String> findRoleNameSetByUserName(String userName)
     {
-        String hqlString = "select r.roleName from User u " + "left join u.roleSet r "
-                           + "where u.userName = :userName";
-        return new HashSet<String>(getSession().createQuery(hqlString).setParameter("userName",
-            userName).getResultList());
+        String hqlString = "select r.roleName from User u " + "left join u.roles r "
+                           + "where u.username = :userName";
+        return getSession().createQuery(hqlString).setParameter("userName",
+                userName).getResultList();
     }
 
     public List<Long> findRoleIdListByUserId(String userId)
     {
-        String hqlString = "select r.roleId from " + "User u left join u.roleSet r "
+        String hqlString = "select r.roleId from " + "User u left join u.roles r "
                            + "where u.userId = :userId";
         return getSession().createQuery(hqlString).setParameter("userId", userId).getResultList();
     }
@@ -132,12 +132,12 @@ public class UserDao extends BaseDao<User, String>
 
     public String getPublicSalt(String username) {
         String hqlString = "select u.publicSalt from User u "
-                + "where u.userName = :username";
+                + "where u.username = :username";
         return (String) getSession().createQuery(hqlString).setParameter("username", username).getSingleResult();
     }
 
     public String getPrivateSalt(String username) {
-        String hqlString = "select u.privateSalt from User u " + "where u.userName = :username";
+        String hqlString = "select u.privateSalt from User u " + "where u.username = :username";
         return (String) getSession().createQuery(hqlString).setParameter("username", username).getSingleResult();
     }
 }

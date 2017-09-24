@@ -43,6 +43,8 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
 
     DataSetCollection deleteByName(String collectionName);
 
+    List<DataSetCollection> deleteBatch(List<String> collectionIds);
+
     DataSetCollection deleteByCollectionId(String collectionId);
 
     DataSetCollection updateCollection(DataSetCollection dataSetCollection);

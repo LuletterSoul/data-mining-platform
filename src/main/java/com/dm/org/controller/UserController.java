@@ -1,6 +1,7 @@
 package com.dm.org.controller;
 
 
+import com.dm.org.dto.UserDTO;
 import com.dm.org.model.User;
 import com.dm.org.security.UserPasswordService;
 import com.dm.org.security.constants.Constants;
@@ -12,16 +13,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5 created in 15:40 2017/7/20.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
 @RestController
 @RequestMapping(value = "/user")
@@ -29,11 +33,11 @@ public class UserController
 {
     private UserService userService;
 
-    private UserPasswordService passwordService;
+//    private UserPasswordService passwordService;
 
     private TokenManager tokenManager;
 
-    private StatelessCredentialsService credentialsService;
+//    private StatelessCredentialsService credentialsService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -44,11 +48,11 @@ public class UserController
         this.userService = userService;
     }
 
-    @Autowired
-    public void setPasswordService(UserPasswordService passwordService)
-    {
-        this.passwordService = passwordService;
-    }
+//    @Autowired
+//    public void setPasswordService(UserPasswordService passwordService)
+//    {
+//        this.passwordService = passwordService;
+//    }
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -56,30 +60,41 @@ public class UserController
         this.tokenManager = tokenManager;
     }
 
-    @Autowired
-    public void setCredentialsService(StatelessCredentialsService credentialsService) {
-        this.credentialsService = credentialsService;
-    }
+//    @Autowired
+//    public void setCredentialsService(StatelessCredentialsService credentialsService) {
+//        this.credentialsService = credentialsService;
+//    }
 
-    @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
-    public User profile(@PathVariable String userName)
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    public UserDTO profile(@PathVariable("username") String username)
     {
-        return userService.fetchByUserName(userName);
+        return UserDTO.build(userService.findByUserName(username));
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User register(@RequestBody User user)
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<UserDTO> register(@RequestBody User user)
     {
-        return userService.registerUser(user);
+        UserDTO userDTO = UserDTO.build(userService.registerUser(user));
+        return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public TimeOutToken getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
-                                 @RequestParam(Constants.PARAM_USERNAME) String username)
+    @RequestMapping(value = "/{username}/roles",method = RequestMethod.GET)
+    public List<String> roles(@PathVariable("username") String username) {
+        return userService.findRoleNameSetByUserName(username);
+    }
+
+
+    @RequestMapping(value = "/{username}/token",method = RequestMethod.GET)
+    public String getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
+                                 @PathVariable("username") String username)
     {
         return tokenManager.getTimeOutToken(username, timestamp);
     }
 
+    @RequestMapping(value = "/{username}/publicSalt",method = RequestMethod.GET)
+    public String publicSalt(@PathVariable("username") String username) {
+        return userService.fetchPublicSalt(username);
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map<String, User> login(@RequestParam(Constants.PARAM_USERNAME) String username)
@@ -87,5 +102,11 @@ public class UserController
         Map<String, User> userMap = new LinkedHashMap<String, User>();
         userMap.put("userProfile", userService.fetchByUserName(username));
         return userMap;
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(@RequestParam("username") String username) {
+        tokenManager.cleanTokenCache(username);
+        return "Logout Success";
     }
 }

@@ -126,7 +126,7 @@ public class MiningTaskControllerTest extends ConfigurationWirer{
         //生成组员信息
         for(int i =0;i<10;i++) {
             Student student = new Student();
-            student.setUserName("有追求的继承者们"+UUID.randomUUID().toString().substring(0,4));
+            student.setUsername("有追求的继承者们"+UUID.randomUUID().toString().substring(0,4));
             student.setStudentId(UUID.randomUUID().toString().substring(0, 16));
             student.setPassword("liuxiangde");
             student.setStudentName(UUID.randomUUID().toString().substring(0, 8));

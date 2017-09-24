@@ -69,7 +69,7 @@ public class MockServerClientTest extends AbstractClientTest
     public void before()
         throws Exception
     {
-        user.setUserName("zhang");
+        user.setUsername("zhang");
         user.setPassword("123");
         currentDate =  DateUtil.DateToString(new Date(),
                 DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
@@ -90,7 +90,7 @@ public class MockServerClientTest extends AbstractClientTest
     public void testGetTokenFailed()
                 throws Exception
     {
-        user.setUserName("zhang11");
+        user.setUsername("zhang11");
         token();
         Assert.assertEquals(tokenStatus, HttpStatus.SC_NOT_FOUND);
     }
@@ -125,11 +125,11 @@ public class MockServerClientTest extends AbstractClientTest
         // 用于证书生成的服务类，生成消息摘要;
         Map<String, String> paramsDigest = new LinkedHashMap<String, String>();
         // 模拟前端消息摘要的生成;
-        paramsDigest.put(Constants.PARAM_USERNAME, user.getUserName());
+        paramsDigest.put(Constants.PARAM_USERNAME, user.getUsername());
         String clientDigest = service.digestMultipleParams(user.getPassword(),
             paramsDigest).toBase64();
         params.add(new BasicNameValuePair(Constants.PARAM_DIGEST, clientDigest));
-        params.add(new BasicNameValuePair(Constants.PARAM_USERNAME, user.getUserName()));
+        params.add(new BasicNameValuePair(Constants.PARAM_USERNAME, user.getUsername()));
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "utf-8");
         // 写入前后端协商好的请求头
         httpPost.setHeader(Constants.HEADER_TIMESTAMP, currentDate);
@@ -154,14 +154,14 @@ public class MockServerClientTest extends AbstractClientTest
                 timeOutToken.getPublicSalt());
         //哈希迭代次数;
         paramsDigest = new LinkedHashMap<String, String>();
-        paramsDigest.put("username", user.getUserName());
+        paramsDigest.put("username", user.getUsername());
         //抽取服务器返回的一次性令牌;
-        String tokenTimeOut = timeOutToken.getTimeOutTokenHash().toBase64();
+        String tokenTimeOut = timeOutToken.getTimeOutToken();
         String message =tokenTimeOut +enryptedPassWord;
         //生成客户端的消息摘要
         String digestSources = service.digestMultipleParams(message, paramsDigest).toBase64();
         String clientDigest = service.computeHash(digestSources).toBase64();
-        httpClientParamsList.add(new BasicNameValuePair(Constants.PARAM_USERNAME, user.getUserName()));
+        httpClientParamsList.add(new BasicNameValuePair(Constants.PARAM_USERNAME, user.getUsername()));
         httpClientParamsList.add(new BasicNameValuePair(Constants.PARAM_DIGEST, clientDigest));
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(httpClientParamsList, "utf-8");
         httpLoginPost.setHeader(Constants.HEADER_TIMESTAMP, currentDate);

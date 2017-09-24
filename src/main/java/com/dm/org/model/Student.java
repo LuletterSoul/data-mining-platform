@@ -114,7 +114,7 @@ public class Student extends User implements Serializable
      @Override
      public int hashCode() {
          return Objects.hashCode(studentName, studentId, grade, className, profession,
-                 userId, userName, password, publicSalt, privateSalt);
+                 userId, username, password, publicSalt, privateSalt);
      }
 
      @ManyToOne(fetch = FetchType.EAGER)

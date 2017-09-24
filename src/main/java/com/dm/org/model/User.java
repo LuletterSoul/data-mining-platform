@@ -9,7 +9,8 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 
@@ -27,7 +28,9 @@ public class User implements EntityIdentifier
 {
     protected String userId;
 
-    protected String userName;
+    protected String username;
+
+    protected String name;
 
     protected byte[] avatar;
 
@@ -35,28 +38,36 @@ public class User implements EntityIdentifier
 
     protected String password;
 
+    protected Date birthday;
+
     protected String publicSalt;
 
     protected String privateSalt;
 
     protected UserAccessStatus accountStatus = UserAccessStatus.AVAILABLE;
 
-    protected Set<Role> roleSet;
+    protected Set<Role> roles;
+
+    protected String regionCode;
+
+    protected String introduction;
+
+    protected Timestamp lastLoginTime;
 
 
     public User() {
     }
 
-    public User(String userName, String password, String publicSalt, UserAccessStatus status)
+    public User(String username, String password, String publicSalt, UserAccessStatus status)
     {
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.publicSalt = publicSalt;
         this.accountStatus = status;
     }
 
-    public User(String userName, String password) {
-        this.userName = userName;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -75,15 +86,15 @@ public class User implements EntityIdentifier
     }
 
 
-    @Column(name = "userName")
-    public String getUserName()
+    @Column(name = "username")
+    public String getUsername()
     {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String name)
+    public void setUsername(String name)
     {
-        this.userName = name;
+        this.username = name;
     }
 
     @Column(name = "password",nullable = false)
@@ -103,6 +114,13 @@ public class User implements EntityIdentifier
         return publicSalt;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
     public byte[] getAvatar() {
         return avatar;
@@ -149,12 +167,44 @@ public class User implements EntityIdentifier
     @JoinTable(name = "user_role_re",joinColumns = @JoinColumn(name = "userId"),
     inverseJoinColumns = @JoinColumn(name = "roleId"))
     @JsonIgnore
-    public Set<Role> getRoleSet() {
-        return roleSet;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRoleSet(Set<Role> roleSet) {
-        this.roleSet = roleSet;
+    public void setRoles(Set<Role> roleSet) {
+        this.roles = roleSet;
+    }
+
+    public String getRegionCode() {
+        return regionCode;
+    }
+
+    public void setRegionCode(String regionCode) {
+        this.regionCode = regionCode;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public Timestamp getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Timestamp lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -176,7 +226,7 @@ public class User implements EntityIdentifier
     {
         return MoreObjects.toStringHelper(this)
                 .add("userId", userId)
-                .add("userName", userName)
+                .add("userName", username)
                 .add("password", password)
                 .add("saltEntry", publicSalt)
                 .add("status", accountStatus)
@@ -185,6 +235,6 @@ public class User implements EntityIdentifier
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(userId, userName, password, publicSalt, privateSalt, accountStatus);
+        return Objects.hashCode(userId, username, password, publicSalt, privateSalt, accountStatus);
     }
 }

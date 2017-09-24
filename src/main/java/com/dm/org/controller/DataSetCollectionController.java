@@ -62,10 +62,16 @@ public class DataSetCollectionController {
      * @param collectionId 数据集Id
      * @return
      */
-    @RequestMapping(value = "{collectionId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{collectionId}", method = RequestMethod.DELETE)
     public ResponseEntity<DataSetCollection> delete(@PathVariable("collectionId") String collectionId) {
         DataSetCollection collection = collectionService.deleteByCollectionId(collectionId);
         return new ResponseEntity<DataSetCollection>(collection, HttpStatus.NO_CONTENT);
+    }
+
+
+    @RequestMapping(value = "/deleteWithArray", method = RequestMethod.DELETE)
+    public ResponseEntity<List<DataSetCollection>> deleteBatch(@RequestBody List<String> collectionIds) {
+        return new ResponseEntity<List<DataSetCollection>>(collectionService.deleteBatch(collectionIds), HttpStatus.NO_CONTENT);
     }
 
 

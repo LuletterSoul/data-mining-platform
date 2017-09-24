@@ -27,7 +27,7 @@ public class DataSetContainer implements EntityIdentifier
 
     private String containerName;
 
-    private String attributeTypes;
+//    private String attributeTypes;
 
     private Double size;
 
@@ -72,17 +72,17 @@ public class DataSetContainer implements EntityIdentifier
         this.fileName = setName;
     }
 
-    @Basic
-    @Column(name = "attributeTypes")
-    public String getAttributeTypes()
-    {
-        return attributeTypes;
-    }
-
-    public void setAttributeTypes(String attributeTypes)
-    {
-        this.attributeTypes = attributeTypes;
-    }
+//    @Basic
+//    @Column(name = "attributeTypes")
+//    public String getAttributeTypes()
+//    {
+//        return attributeTypes;
+//    }
+//
+//    public void setAttributeTypes(String attributeTypes)
+//    {
+//        this.attributeTypes = attributeTypes;
+//    }
 
     @Basic
     @Column(name = "size")
@@ -190,7 +190,6 @@ public class DataSetContainer implements EntityIdentifier
         return MoreObjects.toStringHelper(this)
                 .add("containerId", containerId)
                 .add("setName", fileName)
-                .add("attributeTypes", attributeTypes)
                 .add("size", size)
                 .add("instances", instances)
                 .add("fileType", fileType)
@@ -200,7 +199,7 @@ public class DataSetContainer implements EntityIdentifier
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(containerId, fileName, attributeTypes, size, instances, fileType,
+        return Objects.hashCode(containerId, fileName, size, instances, fileType,
                 data);
     }
 

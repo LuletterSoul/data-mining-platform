@@ -46,6 +46,8 @@ public class DataSetCollection implements EntityIdentifier
 
     private AreaType area;
 
+    private Set<AttributeType> attributeTypes;
+
     private Set<DataSetCharacteristic> characteristics;
 
     @JsonIgnore
@@ -255,5 +257,17 @@ public class DataSetCollection implements EntityIdentifier
     public int hashCode() {
         return Objects.hashCode(collectionId, collectionName, enableMissing, description, dateDonated, relevantPapers,
                 abstractInfo,topics, hits, area);
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "attr_type_rel",
+            joinColumns = @JoinColumn(name = "collectionId"),
+            inverseJoinColumns = @JoinColumn(name = "typeId"))
+    public Set<AttributeType> getAttributeTypes() {
+        return attributeTypes;
+    }
+
+    public void setAttributeTypes(Set<AttributeType> attributeTypes) {
+        this.attributeTypes = attributeTypes;
     }
 }

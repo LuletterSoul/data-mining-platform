@@ -82,7 +82,7 @@ public class Teacher extends User
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(teacherName, teacherId, favoriteStudent, userId, userName, password,
+        return Objects.hashCode(teacherName, teacherId, favoriteStudent, userId, username, password,
                 publicSalt, privateSalt, accountStatus);
     }
 }

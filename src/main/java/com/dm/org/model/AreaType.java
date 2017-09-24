@@ -16,7 +16,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "area_info")
 public class AreaType {
-    ;
     private int areaId;
     private String chineseName;
     private String englishName;
