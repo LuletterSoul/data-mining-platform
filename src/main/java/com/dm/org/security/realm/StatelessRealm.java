@@ -16,6 +16,9 @@ import com.dm.org.security.credentials.TokenManager;
 import com.dm.org.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -55,7 +58,8 @@ public class StatelessRealm extends AuthorizingRealm
     {
         String username = (String)principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoleNameSetByUserName(username));
+        Set<String> roleNames = new LinkedHashSet<String>(userService.findRoleNameSetByUserName(username));
+        authorizationInfo.setRoles(roleNames);
         authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
         return authorizationInfo;
     }
@@ -69,14 +73,14 @@ public class StatelessRealm extends AuthorizingRealm
         String username = statelessToken.getUsername();
         User user = userService.fetchByUserName(username);
         String password = user.getPassword();
-        Hash tokenSaltHash = tokenManager.getHashToken(username);
+        String tokenSaltHash = tokenManager.getHashToken(username);
         if (tokenSaltHash == null) {
             throw new AuthenticationException("Token is not valid.Please apply previous time out token firstly.");
         }
         return new StatelessInfo(
                 username,
                 //混入一次性token的证书;
-                tokenSaltHash.toBase64()+password,
+                tokenSaltHash+password,
                 statelessToken.getParams(),
                 getName()
         );

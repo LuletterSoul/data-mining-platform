@@ -66,7 +66,7 @@ public class UserTesting extends SecurityTestingInitializer
     {
         userService.correlateRole(u1.getUserId(), r1.getRoleId());
         User user = userService.fetchUserJoinRolesById(u1.getUserId());
-        Set<Role> roleList = user.getRoleSet();
+        Set<Role> roleList = user.getRoles();
         Assert.assertEquals(1, roleList.size());
         System.out.println(roleList);
     }
@@ -78,7 +78,7 @@ public class UserTesting extends SecurityTestingInitializer
     public void testUpdatePassword()
         throws Exception
     {
-        userService.updatePassword(u1.getUserName(), "1234");
+        userService.updatePassword(u1.getUsername(), "1234");
     }
 
     /**
@@ -90,7 +90,7 @@ public class UserTesting extends SecurityTestingInitializer
     {
         userService.correlateRole(u1.getUserId(), r1.getRoleId());
         userService.correlateRole(u1.getUserId(), r2.getRoleId());
-        List<Role> roleList = userService.findRolesByUserName(u1.getUserName());
+        List<Role> roleList = userService.findRolesByUserName(u1.getUsername());
         Assert.assertEquals(2, roleList.size());
         Assert.assertTrue(roleList.contains(r1));
         Assert.assertTrue(roleList.contains(r2));
@@ -107,7 +107,7 @@ public class UserTesting extends SecurityTestingInitializer
         roleIdList.add(r1.getRoleId());
         roleIdList.add(r2.getRoleId());
         userService.correlateRoles(u2.getUserId(), roleIdList);
-        List<Role> roleList = userService.findRolesByUserName(u2.getUserName());
+        List<Role> roleList = userService.findRolesByUserName(u2.getUsername());
         Assert.assertTrue(roleList.contains(r1));
         Assert.assertTrue(roleList.contains(r2));
     }
@@ -119,14 +119,14 @@ public class UserTesting extends SecurityTestingInitializer
     public void testFindByUserName()
         throws Exception
     {
-        User user = userService.findByUserName(u1.getUserName());
+        User user = userService.fetchByUserName(u1.getUsername());
         Assert.assertNotNull(user);
-        for (Role role : user.getRoleSet())
+        for (Role role : user.getRoles())
         {
             Set<Permission> permissionSet = role.getPermissionSet();
             System.out.println(permissionSet);
         }
-        System.out.println(user.getRoleSet());
+        System.out.println(user.getRoles());
 
     }
 
@@ -143,7 +143,7 @@ public class UserTesting extends SecurityTestingInitializer
         roleService.correlatePermission(r2.getRoleId(), p1.getPermissionId());
         roleService.correlatePermission(r2.getRoleId(), p2.getPermissionId());
         userService.correlateRole(u1.getUserId(), r1.getRoleId());
-        List<Permission> permissionList = userService.findPermissionByUserName(u1.getUserName());
+        List<Permission> permissionList = userService.findPermissionByUserName(u1.getUsername());
         for (Permission permission : permissionList)
         {
             System.out.println(permission);
@@ -160,7 +160,7 @@ public class UserTesting extends SecurityTestingInitializer
         throws Exception
     {
         userService.correlateRole(u1.getUserId(), r1.getRoleId());
-        List<Role> roleList = userService.findRolesByUserName(u1.getUserName());
+        List<Role> roleList = userService.findRolesByUserName(u1.getUsername());
         Assert.assertEquals(1, roleList.size());
         Assert.assertTrue(roleList.contains(r1));
     }
@@ -174,7 +174,7 @@ public class UserTesting extends SecurityTestingInitializer
     {
         testCorrelateRoles();
         userService.removeRole(u2.getUserId(), r1.getRoleId());
-        List<Role> roleList = userService.findRolesByUserName(u2.getUserName());
+        List<Role> roleList = userService.findRolesByUserName(u2.getUsername());
         Assert.assertTrue(!roleList.contains(r1));
         Assert.assertEquals(roleList.size(), 1);
     }
@@ -191,7 +191,7 @@ public class UserTesting extends SecurityTestingInitializer
         roleIdList.add(r1.getRoleId());
         roleIdList.add(r2.getRoleId());
         userService.removeRoles(u2.getUserId(), roleIdList);
-        List<Role> roleList = userService.findRolesByUserName(u2.getUserName());
+        List<Role> roleList = userService.findRolesByUserName(u2.getUsername());
         Assert.assertEquals(roleList.size(), 0);
     }
 
@@ -224,7 +224,7 @@ public class UserTesting extends SecurityTestingInitializer
         roleService.correlatePermission(r2.getRoleId(), p2.getPermissionId());
         userService.correlateRole(u1.getUserId(), r1.getRoleId());
 
-        Set<String> permissionNameList = userService.findPermissionNameSet(u1.getUserName());
+        Set<String> permissionNameList = userService.findPermissionNameSet(u1.getUsername());
 
         for (String permissionName : permissionNameList)
         {
@@ -243,7 +243,7 @@ public class UserTesting extends SecurityTestingInitializer
         throws Exception
     {
         userService.correlateRole(u1.getUserId(), r1.getRoleId());
-        Set<String> roleNameList = userService.findRoleNameSetByUserName(u1.getUserName());
+        List<String> roleNameList = userService.findRoleNameSetByUserName(u1.getUsername());
         Assert.assertEquals(1, roleNameList.size());
         Assert.assertTrue(roleNameList.contains(r1.getRoleName()));
     }
@@ -255,7 +255,7 @@ public class UserTesting extends SecurityTestingInitializer
     public void testFindPasswordByUserName()
         throws Exception
     {
-        String password = userService.findPasswordByUserName(u1.getUserName());
+        String password = userService.findPasswordByUserName(u1.getUsername());
         System.out.println(password);
         Assert.assertEquals(password, u1.getPassword());
     }
@@ -269,12 +269,12 @@ public class UserTesting extends SecurityTestingInitializer
     {
         testFindPermissionNameSet();
 
-        User user = userService.fetchByUserName(u1.getUserName());
-        for (Role role : user.getRoleSet())
+        User user = userService.fetchByUserName(u1.getUsername());
+        for (Role role : user.getRoles())
         {
             Set<Permission> permissionSet = role.getPermissionSet();
             System.out.println(permissionSet);
         }
-        System.out.println(user.getRoleSet());
+        System.out.println(user.getRoles());
     }
 }

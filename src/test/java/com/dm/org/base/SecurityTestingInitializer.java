@@ -14,6 +14,9 @@ import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -39,7 +42,7 @@ public class SecurityTestingInitializer extends ConfigurationWirer
 
     protected StatelessCredentialsService credentialsService;
 
-    protected String password = "123";
+    protected String password = "liuxiangde";
 
     protected Permission p1;
 
@@ -112,7 +115,13 @@ public class SecurityTestingInitializer extends ConfigurationWirer
 
         // 新增用户
 
-        u1 = new User("zhang", password);
+        u1 = new User("qq313700046", password);
+        u1.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
+        u1.setName("未闻奇楠");
+        u1.setIntroduction("为天地立心,为生民立命,为往圣继绝,为万世开太平");
+        u1.setGender("男");
+        u1.setRegionCode("450981");
+        u1.setAccountStatus(UserAccessStatus.AVAILABLE);
 //        String randomSalt = passwordService.generateRandomSalt(16) + u1.getUserName();
 //        String encryptedPassword = passwordService.encryptPasswordWithSalt(password, randomSalt);
 //        String publicSalt = credentialsService.generateRandomSalt(32);

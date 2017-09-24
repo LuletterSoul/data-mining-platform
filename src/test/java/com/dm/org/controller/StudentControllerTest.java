@@ -3,7 +3,6 @@ package com.dm.org.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.dm.org.dto.StudentDTO;
@@ -94,7 +93,7 @@ public class StudentControllerTest extends ConfigurationWirer
         Student student = new Student();
         FavoriteStatus favoriteStatus = new FavoriteStatus();
         favoriteStatus.setFavoriteId(1);
-        student.setUserName("qq313700046@icloud.com");
+        student.setUsername("qq313700046@icloud.com");
         student.setStudentId(UUID.randomUUID().toString().substring(0, 16));
         student.setPassword("liuxiangde");
         student.setStudentName(UUID.randomUUID().toString().substring(0, 8));
@@ -140,7 +139,7 @@ public class StudentControllerTest extends ConfigurationWirer
         studentService.deleteByStudentId("915106840327");
         String url = "/students";
         Student student = new Student();
-        student.setUserName("qq313700046@icloud.com");
+        student.setUsername("qq313700046@icloud.com");
         student.setStudentId("915106840327");
         student.setPassword("liuxiangde");
         student.setStudentName("刘祥德");

@@ -5,20 +5,9 @@ import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
 import com.dm.org.model.User;
-import com.dm.org.security.UserPasswordService;
-import com.dm.org.security.credentials.DisposableSaltEntry;
-import com.dm.org.security.credentials.EncryptUtils;
 import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
-import org.apache.shiro.crypto.hash.Hash;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 
 /**
@@ -161,7 +149,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
             User user = userDao.fetchUserJoinRolesById(userId);
             for (Long roleId : roleIdList)
             {
-                user.getRoleSet().add(roleDao.findById(roleId));
+                user.getRoles().add(roleDao.findById(roleId));
             }
             userDao.update(user);
     }
@@ -210,7 +198,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         return userDao.findRolesByUserName(userName);
     }
 
-    public Set<String> findRoleNameSetByUserName(String userName)
+    public List<String> findRoleNameSetByUserName(String userName)
     {
         return userDao.findRoleNameSetByUserName(userName);
     }

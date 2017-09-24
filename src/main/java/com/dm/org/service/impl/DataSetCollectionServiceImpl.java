@@ -38,6 +38,10 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return collectionDao.get(pageable);
     }
 
+    public List<DataSetCollection> getCollectionByIds(List<String> collectionIds) {
+        return collectionDao.getCollectionByIds(collectionIds);
+    }
+
     public DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container)
     {
         DataSetCollection collection = findById(collectionId);
@@ -74,6 +78,13 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         DataSetCollection collection = getCollectionByName(collectionName);
         collectionDao.deleteByName(collectionName);
         return collection;
+    }
+
+    @Override
+    public List<DataSetCollection> deleteBatch(List<String> collectionIds) {
+        List<DataSetCollection> collections = this.getCollectionByIds(collectionIds);
+        collectionDao.deleteBatch(collectionIds);
+        return collections;
     }
 
     @Override

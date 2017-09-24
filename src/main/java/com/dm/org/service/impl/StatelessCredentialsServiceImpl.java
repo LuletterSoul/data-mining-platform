@@ -56,7 +56,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
         HashRequest request = new HashRequest.Builder()
                 .setSource(createByteSource(credential + paramsString))
                 .setAlgorithmName(DEFAULT_HASH_ALGORITHM)
-                .setIterations(iterations).build();
+                .setIterations(1000).build();
         return  getHashService().computeHash(request);
     }
 
@@ -70,7 +70,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     public String encryptPassword(String plaintext, String customSalt) {
         HashRequest request = new HashRequest.Builder().setSource(plaintext + customSalt)
                 .setAlgorithmName(DEFAULT_HASH_ALGORITHM)
-                .setIterations(DEFAULT_HASH_ITERATIONS).build();
+                .setIterations(1000).build();
         return getHashService().computeHash(request).toBase64();
     }
     @Override
@@ -81,7 +81,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
         HashRequest request = new HashRequest.Builder()
                 .setSource(createByteSource(serverDigest))
                 .setAlgorithmName(DEFAULT_HASH_ALGORITHM)
-                .setIterations(iterations).build();
+                .setIterations(1000).build();
         return  getHashService().computeHash(request);
     }
 
@@ -95,7 +95,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
         HashRequest request = new HashRequest.Builder()
                 .setSource(createByteSource(source))
                 .setAlgorithmName(DEFAULT_HASH_ALGORITHM)
-                .setIterations(DEFAULT_HASH_ITERATIONS).build();
+                .setIterations(1000).build();
         return getHashService().computeHash(request);
     }
 

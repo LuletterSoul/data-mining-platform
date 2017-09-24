@@ -48,7 +48,8 @@ public interface UserService extends BaseService<User, String>
 
     List<Role> findRolesByUserName(String userName);
 
-    Set<String> findRoleNameSetByUserName(String userName);
+
+    List<String> findRoleNameSetByUserName(String userName);
 
     void removeRole(String userId, Long roleId);
 

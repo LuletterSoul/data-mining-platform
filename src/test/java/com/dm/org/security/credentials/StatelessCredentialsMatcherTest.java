@@ -83,7 +83,7 @@ public class StatelessCredentialsMatcherTest
         String username = "admin";
         String password = "123";
         User user = new User();
-        user.setUserName(username);
+        user.setUsername(username);
 
         //generate a public salt.
         String publicSalt = service.generateRandomSalt(32);
@@ -104,7 +104,7 @@ public class StatelessCredentialsMatcherTest
         Hash clientDigest = service.computeHash(hmacDigest.toBase64());
 
         StatelessToken token = new StatelessToken("admin",params, clientDigest.toBase64());
-        StatelessInfo info = new StatelessInfo(user.getUserName(), user.getPassword(), params, "TEST_REALM");
+        StatelessInfo info = new StatelessInfo(user.getUsername(), user.getPassword(), params, "TEST_REALM");
 
         Assert.assertTrue(matcher.doCredentialsMatch(token, info));
     }
