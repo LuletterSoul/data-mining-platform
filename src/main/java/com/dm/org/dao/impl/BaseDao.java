@@ -131,7 +131,7 @@ public class BaseDao<E, PK extends Serializable> implements BaseRepository<E, PK
         buildCriteriaQuery();
         criteriaQuery.select(baseRoot);
         return getSession().createQuery(criteriaQuery)
-                                        .setFirstResult(pageable.getOffset())
+                                        .setFirstResult((pageable.getPageNumber()-1)*pageable.getPageSize())
                                         .setMaxResults(pageable.getPageSize())
                                         .list();
     }

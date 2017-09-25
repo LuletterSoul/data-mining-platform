@@ -1,6 +1,7 @@
 package com.dm.org.controller;
 
 
+import com.dm.org.dto.CollectionDTO;
 import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
 import com.dm.org.service.DataSetCollectionService;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -96,9 +98,9 @@ public class DataSetCollectionController {
      * @return 创建成功的返回体
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<DataSetCollection> create(@RequestBody DataSetCollection setCollection) {
+    public ResponseEntity<DataSetCollection> create(@RequestBody CollectionDTO collectionDTO) {
         return new ResponseEntity<DataSetCollection>(
-                collectionService.saveCollection(setCollection), HttpStatus.CREATED);
+                collectionService.saveCollection(collectionDTO), HttpStatus.CREATED);
     }
 
     /**

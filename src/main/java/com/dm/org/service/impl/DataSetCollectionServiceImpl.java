@@ -1,19 +1,18 @@
 package com.dm.org.service.impl;
 
 
-import com.dm.org.model.MiningTaskType;
+import com.dm.org.dto.CollectionDTO;
+import com.dm.org.model.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dm.org.exceptions.DataAccessObjectException;
 import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.exceptions.DataSetCollectionNoFoundException;
-import com.dm.org.model.DataSetCollection;
-import com.dm.org.model.DataSetContainer;
 import com.dm.org.service.DataSetCollectionService;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -66,11 +65,19 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return collectionDao.getCollectionByName(collectionName);
     }
 
-
     @Override
-    public DataSetCollection saveCollection(DataSetCollection collection)
-    {
-        this.save(collection);
+    public DataSetCollection saveCollection(CollectionDTO collectionDTO) {
+        List<MiningTaskType> miningTaskTypes = miningTaskTypeDao.getTaskTypes(collectionDTO.getAssociatedTaskIds());
+        List<AttributeType> attributeTypes = attributeTypeDao.getAttrTypes(collectionDTO.getAttributeTypeIds());
+        List<DataSetCharacteristic> characteristics = collectionCharDao.getCharTypes(collectionDTO.getCharacteristicIds());
+        AreaType areaType = areaTypeDao.findById(collectionDTO.getAreaId());
+        DataSetCollection collection = new DataSetCollection();
+        BeanUtils.copyProperties(collectionDTO, collection);
+        collectionDao.save(collection);
+        collection.setAssociatedTasks(new LinkedHashSet<MiningTaskType>(miningTaskTypes));
+        collection.setAttributeTypes(new LinkedHashSet<AttributeType>(attributeTypes));
+        collection.setCharacteristics(new LinkedHashSet<DataSetCharacteristic>(characteristics));
+        collection.setArea(areaType);
         return collection;
     }
 
@@ -115,6 +122,20 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     public DataSetContainer relateContainer(String collectionId, String containerId) {
         DataSetContainer container = containerDao.findById(containerId);
         return this.addDataSetContainer(collectionId, container);
+    }
+
+    @Override
+    public Map<String, List<?>> getOptions() {
+        List<AreaType> areaTypeOptions = areaTypeDao.findAll();
+        List<DataSetCharacteristic> charOptions = collectionCharDao.findAll();
+        List<AttributeType> attributeTypeOptions = attributeTypeDao.findAll();
+        List<MiningTaskType> miningTaskTypeOptions = miningTaskTypeDao.findAll();
+        Map<String, List<?>> optionsMap = new LinkedHashMap<String, List<?>>();
+        optionsMap.put("areaTypeOptions", areaTypeOptions);
+        optionsMap.put("charOptions", charOptions);
+        optionsMap.put("attributeTypeOptions", attributeTypeOptions);
+        optionsMap.put("miningTaskTypeOptions", miningTaskTypeOptions);
+        return optionsMap;
     }
 
 }

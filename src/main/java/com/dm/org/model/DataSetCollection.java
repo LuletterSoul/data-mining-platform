@@ -87,8 +87,7 @@ public class DataSetCollection implements EntityIdentifier
         this.enableMissing = enableMissing;
     }
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
+
     @Column(name = "description")
     public String getDescription()
     {
@@ -100,7 +99,6 @@ public class DataSetCollection implements EntityIdentifier
         this.description = description;
     }
 
-    @Basic
     @Column(name = "dataDonated")
     public Date getDateDonated()
     {
@@ -112,7 +110,6 @@ public class DataSetCollection implements EntityIdentifier
         this.dateDonated = dataDonated;
     }
 
-    @Lob
     @Column(name = "relevantPapers")
     public String getRelevantPapers() {
         return relevantPapers;
@@ -160,7 +157,7 @@ public class DataSetCollection implements EntityIdentifier
         this.topics = topics;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "areaId", foreignKey = @ForeignKey(name = "AREA_TYPE_FK"))
     public AreaType getArea() {
         return area;
@@ -171,7 +168,7 @@ public class DataSetCollection implements EntityIdentifier
         this.area = area;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "dataSetCollection",
+    @OneToMany(mappedBy = "dataSetCollection",
             orphanRemoval = true, fetch = FetchType.EAGER)
     public Set<DataSetContainer> getDataSets()
     {

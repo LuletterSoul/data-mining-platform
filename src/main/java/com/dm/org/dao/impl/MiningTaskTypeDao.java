@@ -18,8 +18,8 @@ public class MiningTaskTypeDao extends BaseDao<MiningTaskType, Integer> {
         super(MiningTaskType.class);
     }
 
-    public List<MiningTaskType> fetchOptionalTaskType() {
-        String hqlString = "from MiningTaskType ";
-        return getSession().createQuery(hqlString).getResultList();
+    public List<MiningTaskType> getTaskTypes(List<Integer> taskIds) {
+        String hqlString = "select distinct t from MiningTaskType t where t.typeId in :taskIds";
+        return getSession().createQuery(hqlString).setParameterList("taskIds",taskIds).getResultList();
     }
 }

@@ -30,7 +30,7 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 {
     protected BaseDao<E, PK> baseDao;
 
-    private FavoriteStatusDao favoriteStatusDao;
+    protected FavoriteStatusDao favoriteStatusDao;
 
     protected DataSetContainerDao containerDao;
 
@@ -51,6 +51,13 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     protected RoleDao roleDao;
 
     protected MiningTaskTypeDao miningTaskTypeDao;
+
+    protected AreaTypeDao areaTypeDao;
+
+    protected CollectionCharDao collectionCharDao;
+
+    protected AttributeTypeDao attributeTypeDao;
+
 
 
     @Autowired
@@ -114,6 +121,21 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     @Autowired
     public void setAlgorithmDao(AlgorithmDao algorithmDao) {
         this.algorithmDao = algorithmDao;
+    }
+
+    @Autowired
+    public void setAreaTypeDao(AreaTypeDao areaTypeDao) {
+        this.areaTypeDao = areaTypeDao;
+    }
+
+    @Autowired
+    public void setCollectionCharDao(CollectionCharDao collectionCharDao) {
+        this.collectionCharDao = collectionCharDao;
+    }
+
+    @Autowired
+    public void setAttributeTypeDao(AttributeTypeDao attributeTypeDao) {
+        this.attributeTypeDao = attributeTypeDao;
     }
 
     public List<E> get(Pageable pageable) {

@@ -5,6 +5,7 @@ import com.dm.org.model.DataSetCollection;
 
 import com.dm.org.model.DataSetCollection_;
 import com.dm.org.model.DataSetContainer;
+import com.dm.org.model.MiningTaskType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -64,5 +65,4 @@ public class DataSetCollectionDao extends BaseDao<DataSetCollection, String>
                             "where collect.collectionId = :collectionId";
         return getSession().createQuery(hqlString).setParameter("collectionId", collectionId).getResultList();
     }
-
 }

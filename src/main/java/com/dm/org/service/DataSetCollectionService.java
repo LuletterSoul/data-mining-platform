@@ -1,5 +1,6 @@
 package com.dm.org.service;
 
+import com.dm.org.dto.CollectionDTO;
 import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
@@ -7,6 +8,7 @@ import com.dm.org.model.MiningTaskType;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -41,7 +43,7 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
     DataSetCollection getCollectionByName(String collectionName);
 
 
-    DataSetCollection saveCollection(DataSetCollection collection);
+    DataSetCollection saveCollection(CollectionDTO collectionDTO);
 
     DataSetCollection deleteByName(String collectionName);
 
@@ -56,5 +58,7 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
     List<String> getCollectionNames();
 
     DataSetContainer relateContainer(String collectionId, String containerId);
+
+    Map<String, List<?>> getOptions();
 
 }

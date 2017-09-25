@@ -1,13 +1,17 @@
 package com.dm.org.controller;
 
+import com.dm.org.model.AreaType;
+import com.dm.org.model.AttributeType;
 import com.dm.org.model.DataSetCharacteristic;
-import com.dm.org.service.CollectionCharService;
+import com.dm.org.model.MiningTaskType;
+import com.dm.org.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -16,18 +20,17 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/collectionChars")
-public class CollectionCharacteristicController {
-
-    private CollectionCharService collectionCharService;
+@RequestMapping(value = "/options")
+public class MultipleOptionsController {
+    private DataSetCollectionService collectionService;
 
     @Autowired
-    public void setCollectionCharService(CollectionCharService collectionCharService) {
-        this.collectionCharService = collectionCharService;
+    public void setCollectionService(DataSetCollectionService collectionService) {
+        this.collectionService = collectionService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<DataSetCharacteristic> getOptionalList() {
-        return collectionCharService.findAll();
+    public Map<String, List<?>> getOptions() {
+        return collectionService.getOptions();
     }
 }
