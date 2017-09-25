@@ -87,7 +87,7 @@ public class StudentController
         return new ResponseEntity<Integer>(studentService.unMarkStudents(studentIds), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteWithIdArray", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteWithArray", method = RequestMethod.DELETE)
     public ResponseEntity<Integer> deleteBatch(@RequestBody List<String> studentIds)
     {
         return new ResponseEntity<Integer>(studentService.deleteWithIdArray(studentIds), HttpStatus.OK);

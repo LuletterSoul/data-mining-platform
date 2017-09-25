@@ -91,7 +91,7 @@ public class DataSetContainerController
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION,
                     "attachment;filename="+containerService.getFileName(containerId));
-        return new ResponseEntity<byte[]>(containerService.downloadData(containerId, filePath),
+        return new ResponseEntity<byte[]>(containerService.downloadData(containerId, filePath),headers,
             HttpStatus.OK);
     }
 

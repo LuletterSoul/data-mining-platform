@@ -16,18 +16,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "area_info")
 public class AreaType {
-    private int areaId;
+    private Integer areaId;
     private String chineseName;
     private String englishName;
 
     @Id
     @GenericGenerator(name = "identityGenerator",strategy = "identity")
     @GeneratedValue(generator = "identityGenerator")
-    public int getAreaId() {
+    public Integer getAreaId() {
         return areaId;
     }
 
-    public void setAreaId(int areaId) {
+    public void setAreaId(Integer areaId) {
         this.areaId = areaId;
     }
 

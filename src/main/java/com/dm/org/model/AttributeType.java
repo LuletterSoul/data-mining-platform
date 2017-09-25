@@ -16,34 +16,34 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "attr_type", catalog = "")
 public class AttributeType {
-    private int typeId;
-    private String chineseValue;
-    private String englishValue;
+    private Integer typeId;
+    private String chineseName;
+    private String englishName;
 
     @Id
     @GenericGenerator(name = "identityGenerator",strategy = "identity")
     @GeneratedValue(generator = "identityGenerator")
-    public int getTypeId() {
+    public Integer getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
 
-    public String getChineseValue() {
-        return chineseValue;
+    public String getChineseName() {
+        return chineseName;
     }
 
-    public void setChineseValue(String chineseValue) {
-        this.chineseValue = chineseValue;
+    public void setChineseName(String chineseValue) {
+        this.chineseName = chineseValue;
     }
 
-    public String getEnglishValue() {
-        return englishValue;
+    public String getEnglishName() {
+        return englishName;
     }
 
-    public void setEnglishValue(String englishValue) {
-        this.englishValue = englishValue;
+    public void setEnglishName(String englishValue) {
+        this.englishName = englishValue;
     }
 }

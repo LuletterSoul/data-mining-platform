@@ -3,6 +3,7 @@ package com.dm.org.security.filter;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ import com.dm.org.security.realm.StatelessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import static org.springframework.web.bind.annotation.RequestMethod.OPTIONS;
+
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -36,6 +39,7 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
     private static final Logger LOGGER = LoggerFactory.getLogger(
         StatelessAuthenticatingFilter.class);
     private ObjectMapper objectMapper;
+
 
     public StatelessAuthenticatingFilter() {
         this.objectMapper = new ObjectMapper();
@@ -55,15 +59,17 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         HttpServletRequest httpRequest = null;
         try
         {
-
             httpRequest = assertHttpRequest(request);
+            if (httpRequest.getMethod().equals("OPTIONS")) {
+                ((HttpServletResponse) response).setStatus(200);
+                return true;
+            }
             // 获取请求发送的时间戳
             String timestamp = httpRequest.getHeader(Constants.HEADER_TIMESTAMP);
             // 客户端生成的消息摘要
             String clientDigest = httpRequest.getParameter(Constants.PARAM_DIGEST);
             // 客户端传入的用户身份
             String username = httpRequest.getParameter(Constants.PARAM_USERNAME);
-
             try {
                 assertNegotiationContentNotNull(clientDigest, username, timestamp);
             } catch (ServletException e) {
@@ -79,6 +85,7 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
             {
                 // 委托给Realm进行登录
                 getSubject(request, response).login(token);
+                LOGGER.info("{}: authenticate successfully.", username);
             }
             catch (Exception e)
             {
@@ -99,7 +106,7 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
     private StatelessToken generateAuthenticationToken(ServletRequest request, String clientDigest,
                                                        String username)
     {
-        Map<String, String[]> params = new HashMap<String, String[]>(request.getParameterMap());
+        Map<String, String[]> params = new LinkedHashMap<String, String[]>(request.getParameterMap());
         params.remove(Constants.PARAM_DIGEST);
         // 生成无状态Token
         return new StatelessToken(username, params, clientDigest);

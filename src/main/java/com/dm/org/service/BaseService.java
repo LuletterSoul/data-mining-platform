@@ -31,8 +31,7 @@ public interface BaseService <E, PK extends Serializable>
      * 获取当前对象的所有记录的所有属性
      * @return 所有记录
      */
-    @Deprecated
-    List<E> findAll() throws Exception;
+    List<E> findAll();
 
     /**
      * 获取当前对象的所有记录(只返回指定的列,列名以“，”号隔开）

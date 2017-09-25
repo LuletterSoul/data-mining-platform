@@ -1,7 +1,9 @@
 package com.dm.org.service;
 
 import com.dm.org.dto.StudentDTO;
+import com.dm.org.model.FavoriteStatus;
 import com.dm.org.model.Student;
+import com.dm.org.model.StudentStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -33,6 +35,14 @@ public interface StudentService extends UserService{
     int unMarkStudents(List<String> studentIds);
 
     int deleteWithIdArray(List<String> studentIds);
+
+    FavoriteStatus getFavoriteStatusPersisted(Integer statusId);
+
+    /**
+     * @param statusId
+     * @return
+     */
+    StudentStatus getStudentStatusPersisted(Integer statusId);
 
 
 }

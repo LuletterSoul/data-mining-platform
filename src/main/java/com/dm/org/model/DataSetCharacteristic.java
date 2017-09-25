@@ -13,16 +13,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "set_char_info")
 public class DataSetCharacteristic {
-    private String charId;
+    private Integer charId;
     private String chineseName;
     private String englishName;
 
     @Id
-    public String getCharId() {
+    public Integer getCharId() {
         return charId;
     }
 
-    public void setCharId(String charId) {
+    public void setCharId(Integer charId) {
         this.charId = charId;
     }
 

@@ -30,6 +30,8 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 {
     protected BaseDao<E, PK> baseDao;
 
+    private FavoriteStatusDao favoriteStatusDao;
+
     protected DataSetContainerDao containerDao;
 
     protected DataSetCollectionDao collectionDao;
@@ -48,6 +50,8 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
     protected RoleDao roleDao;
 
+    protected MiningTaskTypeDao miningTaskTypeDao;
+
 
     @Autowired
     public void setBaseDao(BaseDao<E, PK> baseDao)
@@ -58,6 +62,11 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     @Autowired
     public void setContainerDao(DataSetContainerDao containerDao) {
         this.containerDao = containerDao;
+    }
+
+    @Autowired
+    public void setFavoriteStatusDao(FavoriteStatusDao favoriteStatusDao) {
+        this.favoriteStatusDao = favoriteStatusDao;
     }
 
     @Autowired
@@ -73,6 +82,12 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     @Autowired
     public void setRoleDao(RoleDao roleDao) {
         this.roleDao = roleDao;
+    }
+
+
+    @Autowired
+    public void setMiningTaskTypeDao(MiningTaskTypeDao miningTaskTypeDao) {
+        this.miningTaskTypeDao = miningTaskTypeDao;
     }
 
     @Autowired
@@ -107,9 +122,8 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
 
     public List<E> findAll()
-            throws Exception
     {
-        return(List<E>)baseDao.findAll(null, null);
+        return baseDao.findAll();
     }
 
 

@@ -57,6 +57,11 @@ public class DataSetCollectionController {
         return collectionService.getCollectionByName(collectionName);
     }
 
+    @RequestMapping(value = "/{collectionId}",method = RequestMethod.GET)
+    public DataSetCollection getById(@PathVariable("collectionId") String collectionId) {
+        return collectionService.findById(collectionId);
+    }
+
     /**
      * 根据数据集Id删除该集
      * @param collectionId 数据集Id

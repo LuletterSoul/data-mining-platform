@@ -28,7 +28,7 @@ public class DataSetCollection implements EntityIdentifier
 
     private String collectionName;
 
-    private Byte enableMissing;
+    private String enableMissing;
 
     private String description;
 
@@ -38,6 +38,7 @@ public class DataSetCollection implements EntityIdentifier
 
     private String abstractInfo;
 
+    @JsonIgnore
     private Set<MiningTaskType> associatedTasks;
 
     private String topics;
@@ -46,8 +47,10 @@ public class DataSetCollection implements EntityIdentifier
 
     private AreaType area;
 
+    @JsonIgnore
     private Set<AttributeType> attributeTypes;
 
+    @JsonIgnore
     private Set<DataSetCharacteristic> characteristics;
 
     @JsonIgnore
@@ -74,12 +77,12 @@ public class DataSetCollection implements EntityIdentifier
 
     @Basic
     @Column(name = "enableMissing")
-    public Byte getEnableMissing()
+    public String getEnableMissing()
     {
         return enableMissing;
     }
 
-    public void setEnableMissing(Byte enableMissing)
+    public void setEnableMissing(String enableMissing)
     {
         this.enableMissing = enableMissing;
     }
@@ -157,8 +160,8 @@ public class DataSetCollection implements EntityIdentifier
         this.topics = topics;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "areaId",foreignKey = @ForeignKey(name="AREA_TYPE_FK"))
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "areaId", foreignKey = @ForeignKey(name = "AREA_TYPE_FK"))
     public AreaType getArea() {
         return area;
     }

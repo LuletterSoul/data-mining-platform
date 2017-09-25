@@ -1,6 +1,7 @@
 package com.dm.org.service.impl;
 
 
+import com.dm.org.model.MiningTaskType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +66,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return collectionDao.getCollectionByName(collectionName);
     }
 
+
     @Override
     public DataSetCollection saveCollection(DataSetCollection collection)
     {
@@ -114,4 +116,5 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         DataSetContainer container = containerDao.findById(containerId);
         return this.addDataSetContainer(collectionId, container);
     }
+
 }

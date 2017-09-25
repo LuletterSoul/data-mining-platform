@@ -35,6 +35,8 @@ public class Student extends User implements Serializable
 
      private FavoriteStatus favorite;
 
+     private int finishedTaskCount;
+
      private Set<DataMiningGroup> miningGroups;
 
      public Student() {
@@ -147,5 +149,13 @@ public class Student extends User implements Serializable
 
      public void setMiningGroups(Set<DataMiningGroup> miningGroups) {
          this.miningGroups = miningGroups;
+     }
+
+     public int getFinishedTaskCount() {
+         return finishedTaskCount;
+     }
+
+     public void setFinishedTaskCount(int finishedTaskCount) {
+         this.finishedTaskCount = finishedTaskCount;
      }
  }

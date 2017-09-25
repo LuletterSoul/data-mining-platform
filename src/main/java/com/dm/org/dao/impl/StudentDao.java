@@ -1,7 +1,9 @@
 package com.dm.org.dao.impl;
 
 import com.dm.org.dto.StudentDTO;
+import com.dm.org.model.FavoriteStatus;
 import com.dm.org.model.Student;
+import com.dm.org.model.StudentStatus;
 import com.dm.org.model.Student_;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -98,5 +100,15 @@ public class StudentDao extends BaseDao<Student,String> {
     public List<Student> getStudentsWithList(List<String> studentIds) {
         String hqlString = "select s from Student s where s.studentId in :studentIds";
         return getSession().createQuery(hqlString).setParameter("studentIds", studentIds).getResultList();
+    }
+
+    public FavoriteStatus getFavoriteStatusPersisted(Integer statusId) {
+        String hqlString = "from FavoriteStatus f where f.favoriteId = :statusId";
+        return (FavoriteStatus) getSession().createQuery(hqlString).setParameter("statusId", statusId).getSingleResult();
+    }
+
+    public StudentStatus getStudentStatus(Integer statusId) {
+        String hqlString = "from StudentStatus s where s.statusId = :statusId";
+        return (StudentStatus) getSession().createQuery(hqlString).setParameter("statusId", statusId).getSingleResult();
     }
 }
