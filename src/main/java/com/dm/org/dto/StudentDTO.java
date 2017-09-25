@@ -72,17 +72,17 @@ public class StudentDTO {
         return studentDTOS;
     }
 
-    public static Student wrap(StudentDTO studentDTO) {
-        Student student =new Student();
-        student.setStudentName(student.getStudentName());
-        student.setClassName(student.getClassName());
-        student.setStudentId(student.getStudentId());
-        student.setGrade(student.getGrade());
-        student.setFavorite(student.getFavorite());
-        student.setStatus(student.getStatus());
-        student.setProfession(student.getProfession());
-        return student;
-    }
+//    public static Student clone(StudentDTO studentDTO) {
+//        Student student =new Student();
+//        student.setStudentName(student.getStudentName());
+//        student.setClassName(student.getClassName());
+//        student.setStudentId(student.getStudentId());
+//        student.setGrade(student.getGrade());
+//        student.setFavorite(student.getFavorite());
+//        student.setStatus(student.getStatus());
+//        student.setProfession(student.getProfession());
+//        return student;
+//    }
 
     public String getStudentId() {
         return studentId;

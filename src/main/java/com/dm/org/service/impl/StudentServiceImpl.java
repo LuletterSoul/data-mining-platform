@@ -1,19 +1,18 @@
 package com.dm.org.service.impl;
 
 
-import com.dm.org.dao.impl.StudentDao;
 import com.dm.org.dto.StudentDTO;
+import com.dm.org.model.FavoriteStatus;
 import com.dm.org.model.Student;
-import com.dm.org.model.User;
-import com.dm.org.service.StatelessCredentialsService;
+import com.dm.org.model.StudentStatus;
 import com.dm.org.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,6 +65,10 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
 
     public StudentDTO save(Student student)
     {
+        FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(student.getFavorite().getFavoriteId());
+        StudentStatus studentStatus = this.getStudentStatusPersisted(student.getStatus().getStatusId());
+        student.setFavorite(favoriteStatus);
+        student.setStatus(studentStatus);
         this.registerUser(student);
         return new StudentDTO(student);
     }
@@ -74,11 +77,8 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public StudentDTO update(StudentDTO studentDTO)
     {
         Student student = studentDao.getStudentById(studentDTO.getStudentId());
-        Student studentUpdated = StudentDTO.wrap(studentDTO);
-        studentUpdated.setPassword(student.getPassword());
-        studentUpdated.setPublicSalt(student.getPublicSalt());
-        studentUpdated.setPrivateSalt(student.getPrivateSalt());
-        studentDao.update(studentUpdated);
+        BeanUtils.copyProperties(studentDTO,student , "status", "favorite");
+        studentDao.update(student);
         return new StudentDTO(student);
     }
 
@@ -104,5 +104,14 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public int deleteWithIdArray(List<String> studentIds)
     {
         return studentDao.deleteByArray(studentIds);
+    }
+
+    @Override
+    public FavoriteStatus getFavoriteStatusPersisted(Integer statusId) {
+        return studentDao.getFavoriteStatusPersisted(statusId);
+    }
+    @Override
+    public StudentStatus getStudentStatusPersisted(Integer statusId) {
+        return studentDao.getStudentStatus(statusId);
     }
 }
