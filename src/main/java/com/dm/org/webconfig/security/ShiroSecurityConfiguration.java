@@ -125,7 +125,7 @@ public class ShiroSecurityConfiguration
     public StatelessCredentialsMatcher statelessCredentialsMatcher()
     {
         StatelessCredentialsMatcher matcher = new StatelessCredentialsMatcher();
-        matcher.setHashIterations(DefaultPasswordService.DEFAULT_HASH_ITERATIONS);
+        matcher.setHashIterations(1000);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
         matcher.setStatelessCredentialsService(statelessCredentialsService());
         return matcher;
@@ -286,10 +286,7 @@ public class ShiroSecurityConfiguration
     {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/user/{username}/token", "anon");
-//        filterChainDefinitionMap.put("/student/**", "anon");
-//        filterChainDefinitionMap.put("/student", "anon");
         filterChainDefinitionMap.put("/*", "statelessFilter");
-//        filterChainDefinitionMap.put("/*", "originFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 
