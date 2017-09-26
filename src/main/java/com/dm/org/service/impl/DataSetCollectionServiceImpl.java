@@ -4,6 +4,8 @@ package com.dm.org.service.impl;
 import com.dm.org.dto.CollectionDTO;
 import com.dm.org.model.*;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,9 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public List<DataSetCollection> getPageableCollection(Pageable pageable) {
-        return collectionDao.get(pageable);
+    public Page<DataSetCollection> getPageableCollection(Pageable pageable) {
+        Integer totalElements = collectionDao.countAll();
+        return new PageImpl<DataSetCollection>(collectionDao.get(pageable),pageable,totalElements);
     }
 
     public List<DataSetCollection> getCollectionByIds(List<String> collectionIds) {
@@ -57,10 +60,14 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         }
         List<DataSetContainer> containers = containerDao.fetchContainers(containerIds);
         DataSetCollection collection = findById(collectionId);
+        if (collection.getDataSets() == null) {
+            collection.setDataSets(new LinkedHashSet<DataSetContainer>());
+        }
         collection.getDataSets().addAll(containers);
         for (DataSetContainer container :
                 containers) {
             container.setDataSetCollection(collection);
+            containerDao.update(container);
         }
         return containers;
     }
@@ -119,7 +126,9 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public DataSetCollection deleteByCollectionId(String collectionId)
     {
-        return this.findById(collectionId);
+        DataSetCollection collection = this.findById(collectionId);
+        this.deleteById(collectionId);
+        return collection;
     }
 
     @Override

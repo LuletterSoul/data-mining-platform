@@ -5,6 +5,7 @@ import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
 import com.dm.org.model.MiningTaskType;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
     /**
      *
      */
-    List<DataSetCollection> getPageableCollection(Pageable pageable);
+    Page<DataSetCollection> getPageableCollection(Pageable pageable);
 
     /**
      * 为当前数据集集合增加新的数据容器

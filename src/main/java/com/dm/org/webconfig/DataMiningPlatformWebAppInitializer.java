@@ -51,6 +51,6 @@ public class DataMiningPlatformWebAppInitializer extends AbstractAnnotationConfi
     protected void customizeRegistration(ServletRegistration.Dynamic registration)
     {
         registration.setLoadOnStartup(5);
-        registration.setMultipartConfig(new MultipartConfigElement("/tmp/dm"));
+//        registration.setMultipartConfig(new MultipartConfigElement());
     }
 }

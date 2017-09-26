@@ -75,8 +75,7 @@ public class DataSetContainerController
      *            对应的容器Id
      * @return
      */
-    @RequestMapping(value = "/{containerId}/uploadSetData", method = RequestMethod.POST,
-                    consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "/{containerId}/uploadSetData", method = RequestMethod.POST)
     public ResponseEntity<String> uploadFile(@RequestPart MultipartFile file,
                                              @PathVariable("containerId") String containerId)
     {

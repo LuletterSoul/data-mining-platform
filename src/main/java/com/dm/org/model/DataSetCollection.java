@@ -38,7 +38,6 @@ public class DataSetCollection implements EntityIdentifier
 
     private String abstractInfo;
 
-    @JsonIgnore
     private Set<MiningTaskType> associatedTasks;
 
     private String topics;
@@ -47,13 +46,10 @@ public class DataSetCollection implements EntityIdentifier
 
     private AreaType area;
 
-    @JsonIgnore
     private Set<AttributeType> attributeTypes;
 
-    @JsonIgnore
     private Set<DataSetCharacteristic> characteristics;
 
-    @JsonIgnore
     private Set<DataSetContainer> dataSets;
 
     public DataSetCollection()

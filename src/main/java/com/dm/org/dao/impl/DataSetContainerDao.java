@@ -110,7 +110,7 @@ public class DataSetContainerDao extends BaseDao<DataSetContainer, String>
     }
 
     public List<DataSetContainer> fetchContainers(List<String> containerIds) {
-        String hqlString = "from DataSetContainer c where c.containerId in :containerIds";
+        String hqlString = "select distinct c from DataSetContainer c where c.containerId in :containerIds";
         return getSession().createQuery(hqlString)
                             .setParameter("containerIds",containerIds).getResultList();
     }
