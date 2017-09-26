@@ -50,6 +50,24 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return container;
     }
 
+    @Override
+    public List<DataSetContainer> addDataSetContainers(String collectionId, List<String> containerIds) {
+        if (containerIds.isEmpty()) {
+            return null;
+        }
+        List<DataSetContainer> containers = containerDao.fetchContainers(containerIds);
+        DataSetCollection collection = findById(collectionId);
+        collection.getDataSets().addAll(containers);
+        for (DataSetContainer container :
+                containers) {
+            container.setDataSetCollection(collection);
+        }
+        return containers;
+    }
+
+
+
+
     public DataSetContainer removeDataSetContainer(String collectionId, String containerId)
     {
         DataSetContainer container = containerDao.findById(containerId);
@@ -70,10 +88,12 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         List<MiningTaskType> miningTaskTypes = miningTaskTypeDao.getTaskTypes(collectionDTO.getAssociatedTaskIds());
         List<AttributeType> attributeTypes = attributeTypeDao.getAttrTypes(collectionDTO.getAttributeTypeIds());
         List<DataSetCharacteristic> characteristics = collectionCharDao.getCharTypes(collectionDTO.getCharacteristicIds());
+//        List<DataSetContainer> containers = containerDao.fetchContainers(collectionDTO.getContainerIds());
         AreaType areaType = areaTypeDao.findById(collectionDTO.getAreaId());
         DataSetCollection collection = new DataSetCollection();
         BeanUtils.copyProperties(collectionDTO, collection);
         collectionDao.save(collection);
+        this.addDataSetContainers(collection.getCollectionId(), collectionDTO.getContainerIds());
         collection.setAssociatedTasks(new LinkedHashSet<MiningTaskType>(miningTaskTypes));
         collection.setAttributeTypes(new LinkedHashSet<AttributeType>(attributeTypes));
         collection.setCharacteristics(new LinkedHashSet<DataSetCharacteristic>(characteristics));

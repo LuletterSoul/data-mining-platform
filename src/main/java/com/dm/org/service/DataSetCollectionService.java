@@ -32,6 +32,8 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
      */
     DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container);
 
+    List<DataSetContainer> addDataSetContainers(String collectionId, List<String> containerIds);
+
     /**
      * 删除某一容器
      *

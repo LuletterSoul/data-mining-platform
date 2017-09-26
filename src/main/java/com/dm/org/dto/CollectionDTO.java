@@ -1,7 +1,5 @@
 package com.dm.org.dto;
 
-import com.dm.org.model.AreaType;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -32,6 +30,8 @@ public class CollectionDTO {
     private List<Integer> attributeTypeIds;
 
     private List<Integer> characteristicIds;
+
+    private List<String> containerIds;
 
     private String topics;
 
@@ -143,5 +143,13 @@ public class CollectionDTO {
 
     public void setAreaId(Integer areaId) {
         this.areaId = areaId;
+    }
+
+    public List<String> getContainerIds() {
+        return containerIds;
+    }
+
+    public void setContainerIds(List<String> containerIds) {
+        this.containerIds = containerIds;
     }
 }

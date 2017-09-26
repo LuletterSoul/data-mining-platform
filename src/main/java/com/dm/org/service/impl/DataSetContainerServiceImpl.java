@@ -11,7 +11,10 @@ import com.dm.org.model.DataSetCollection;
 import com.dm.org.model.DataSetContainer;
 import com.dm.org.service.DataSetContainerService;
 import org.apache.commons.io.FileUtils;
+import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletContext;
 
 
 /**
@@ -87,24 +90,24 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     public String uploadData(String containerId, MultipartFile file)
     {
         DataSetContainer container = this.findById(containerId);
-        // ServletContext context =
-        // ContextLoader.getCurrentWebApplicationContext().getServletContext();
-        String relativePath = "\\dataSetContainer\\" + container.getFileName();
-        // String realPath = context.getRealPath(relativePath);
-        String realPath ="D:\\Program Files\\Java\\apache-tomcat-8.0.36\\temp";
-        StringBuilder stringBuffer = new StringBuilder();
-        stringBuffer.append(realPath).append(relativePath).append("\\").append(file.getOriginalFilename());
+         ServletContext context =
+         ContextLoader.getCurrentWebApplicationContext().getServletContext();
+        String relativePath = "\\dataSetContainer\\" + container.getContainerId();
+         String realPath = context.getRealPath(relativePath);
+//        String realPath ="D:\\Program Files\\Java\\apache-tomcat-8.0.36\\temp";
+//        StringBuilder stringBuffer = new StringBuilder();
+//        stringBuffer.append(realPath).append(relativePath).append("\\").append(file.getOriginalFilename());
         try
         {
             FileUtils.copyInputStreamToFile(file.getInputStream(),
-                    new File(stringBuffer.toString()));
+                    new File(realPath));
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
         String containerName = file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."));
-        return containerDao.linkPath(containerId, containerName, file.getOriginalFilename(), stringBuffer.toString());
+        return containerDao.linkPath(containerId, containerName, file.getOriginalFilename(), realPath);
     }
 
     @Override

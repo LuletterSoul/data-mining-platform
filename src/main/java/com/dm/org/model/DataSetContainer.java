@@ -27,6 +27,8 @@ public class DataSetContainer implements EntityIdentifier
 
     private String containerName;
 
+    private String fileDescription;
+
 //    private String attributeTypes;
 
     private Double size;
@@ -108,7 +110,7 @@ public class DataSetContainer implements EntityIdentifier
         this.instances = instances;
     }
 
-    @Basic
+
     @Column(name = "fileType")
     public String getFileType()
     {
@@ -231,5 +233,13 @@ public class DataSetContainer implements EntityIdentifier
 
     public void setContainerName(String setName) {
         this.containerName = setName;
+    }
+
+    public String getFileDescription() {
+        return fileDescription;
+    }
+
+    public void setFileDescription(String fileDescription) {
+        this.fileDescription = fileDescription;
     }
 }
