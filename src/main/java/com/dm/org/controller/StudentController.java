@@ -94,7 +94,7 @@ public class StudentController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<StudentDTO> studentsPageable(@PageableDefault(size = 20,
+    public Page<StudentDTO> studentsPageable(@PageableDefault(size = 10,
             page = 0,
             sort = {"studentId"},
             direction = Sort.Direction.DESC) Pageable pageable) {

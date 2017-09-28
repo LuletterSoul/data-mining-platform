@@ -65,4 +65,9 @@ public class DataSetCollectionDao extends BaseDao<DataSetCollection, String>
                             "where collect.collectionId = :collectionId";
         return getSession().createQuery(hqlString).setParameter("collectionId", collectionId).getResultList();
     }
+
+    public List<DataSetContainer> fetchRefContainers(String taskId) {
+        String hqlString = "select c from DataMiningTask t left join t.collections c";
+        return getSession().createQuery(hqlString).setParameter("taskId", taskId).getResultList();
+    }
 }

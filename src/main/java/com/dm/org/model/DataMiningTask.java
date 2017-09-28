@@ -7,7 +7,6 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -32,13 +31,13 @@ public class DataMiningTask
 
     private int duration;
 
-    private Timestamp startTime;
+    private String startTime;
 
-    private Timestamp finishTime;
+    private String finishTime;
 
     private Set<DataMiningGroup> groups;
 
-    private Set<DataSetContainer> dataSetContainers;
+    private Set<DataSetCollection> collections;
 
     private Set<Algorithm> algorithms;
 
@@ -93,22 +92,22 @@ public class DataMiningTask
         this.duration = duration;
     }
 
-    public Timestamp getStartTime()
+    public String getStartTime()
     {
         return startTime;
     }
 
-    public void setStartTime(Timestamp startTime)
+    public void setStartTime(String startTime)
     {
         this.startTime = startTime;
     }
 
-    public Timestamp getFinishTime()
+    public String getFinishTime()
     {
         return finishTime;
     }
 
-    public void setFinishTime(Timestamp finishTime)
+    public void setFinishTime(String finishTime)
     {
         this.finishTime = finishTime;
     }
@@ -170,12 +169,12 @@ public class DataMiningTask
     @JsonIgnore
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name = "task_data_set_ref",joinColumns = @JoinColumn(name = "taskId",referencedColumnName = "taskId"),
-    inverseJoinColumns = @JoinColumn(name = "containerId",referencedColumnName = "containerId"))
-    public Set<DataSetContainer> getDataSetContainers() {
-        return dataSetContainers;
+    inverseJoinColumns = @JoinColumn(name = "collectionId",referencedColumnName = "collectionId"))
+    public Set<DataSetCollection> getCollections() {
+        return collections;
     }
 
-    public void setDataSetContainers(Set<DataSetContainer> dataSetContainers) {
-        this.dataSetContainers = dataSetContainers;
+    public void setCollections(Set<DataSetCollection> dataSetContainers) {
+        this.collections = dataSetContainers;
     }
 }

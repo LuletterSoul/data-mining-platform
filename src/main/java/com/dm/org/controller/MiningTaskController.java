@@ -1,11 +1,11 @@
 package com.dm.org.controller;
 
-import com.dm.org.model.Algorithm;
-import com.dm.org.model.DataMiningGroup;
-import com.dm.org.model.DataMiningTask;
-import com.dm.org.model.DataSetContainer;
+import com.dm.org.dao.impl.MiningTaskDao;
+import com.dm.org.dto.MiningTaskDTO;
+import com.dm.org.model.*;
 import com.dm.org.service.MiningTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -39,9 +39,9 @@ public class MiningTaskController
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<DataMiningTask> getList(@PageableDefault Pageable pageable)
+    public Page<DataMiningTask> getList(@PageableDefault Pageable pageable)
     {
-        return miningTaskService.get(pageable);
+        return miningTaskService.fetchTaskList(pageable);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -52,10 +52,9 @@ public class MiningTaskController
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<DataMiningTask> create(@RequestBody DataMiningTask dataMiningTask)
+    public ResponseEntity<DataMiningTask> create(@RequestBody MiningTaskDTO miningTaskDTO)
     {
-        miningTaskService.save(dataMiningTask);
-        return new ResponseEntity<DataMiningTask>(dataMiningTask, HttpStatus.CREATED);
+        return new ResponseEntity<DataMiningTask>(miningTaskService.saveMiningTask(miningTaskDTO), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{taskId}/groups", method = RequestMethod.GET)
@@ -116,29 +115,29 @@ public class MiningTaskController
         return new ResponseEntity<List<Algorithm>>(miningTaskService.removeAlgorithms(taskId, algorithmIds),HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/{taskId}/containers", method = RequestMethod.POST)
-    public ResponseEntity<DataSetContainer> arrangeMiningSet(@PathVariable("taskId") String taskId, @RequestBody String containerId) {
-        return new ResponseEntity<DataSetContainer>(miningTaskService.arrangeMiningSet(taskId, containerId), HttpStatus.CREATED);
+    @RequestMapping(value = "/{taskId}/collections", method = RequestMethod.POST)
+    public ResponseEntity<DataSetCollection> arrangeMiningSet(@PathVariable("taskId") String taskId, @RequestBody String collectionId) {
+        return new ResponseEntity<DataSetCollection>(miningTaskService.arrangeMiningSet(taskId, collectionId), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{taskId}/containers/addSetsWithArray", method = RequestMethod.POST)
-    public ResponseEntity<List<DataSetContainer>> arrangeMiningSets(@PathVariable("taskId") String taskId, @RequestBody List<String> containerIds) {
-        return new ResponseEntity<List<DataSetContainer>>(miningTaskService.arrangeMiningSets(taskId, containerIds), HttpStatus.CREATED);
+    @RequestMapping(value = "/{taskId}/collections/addSetsWithArray", method = RequestMethod.POST)
+    public ResponseEntity<List<DataSetCollection>> arrangeMiningSets(@PathVariable("taskId") String taskId, @RequestBody List<String> collectionIds) {
+        return new ResponseEntity<List<DataSetCollection>>(miningTaskService.arrangeMiningSets(taskId, collectionIds), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{taskId}/containers",method = RequestMethod.GET)
-    public List<DataSetContainer> getInvolvedSets(@PathVariable("taskId") String taskId) {
-        return miningTaskService.fetchRefContainers(taskId);
+    @RequestMapping(value = "/{taskId}/collections",method = RequestMethod.GET)
+    public List<DataSetCollection> getInvolvedSets(@PathVariable("taskId") String taskId) {
+        return miningTaskService.fetchRefCollections(taskId);
     }
 
-    @RequestMapping(value = "/{taskId}/containers",method = RequestMethod.DELETE)
-    public ResponseEntity<List<DataSetContainer>> deleteAllRelContainers(@PathVariable("taskId") String taskId) {
-        return new ResponseEntity<List<DataSetContainer>>(miningTaskService.removeAllMiningSets(taskId),HttpStatus.NO_CONTENT);
+    @RequestMapping(value = "/{taskId}/collections",method = RequestMethod.DELETE)
+    public ResponseEntity<List<DataSetCollection>> deleteAllRelContainers(@PathVariable("taskId") String taskId) {
+        return new ResponseEntity<List<DataSetCollection>>(miningTaskService.removeAllMiningSets(taskId),HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/{taskId}/containers/deleteBathWithArray",method = RequestMethod.DELETE)
-    public ResponseEntity<List<DataSetContainer>> deleteContainersWithArray(@PathVariable("taskId") String taskId, @RequestBody List<String> containerIds) {
-        return new ResponseEntity<List<DataSetContainer>>(miningTaskService.removeMiningSets(taskId, containerIds), HttpStatus.NO_CONTENT);
+    @RequestMapping(value = "/{taskId}/collections/deleteBathWithArray",method = RequestMethod.DELETE)
+    public ResponseEntity<List<DataSetCollection>> deleteContainersWithArray(@PathVariable("taskId") String taskId, @RequestBody List<String> collectionIds) {
+        return new ResponseEntity<List<DataSetCollection>>(miningTaskService.removeMiningSets(taskId, collectionIds), HttpStatus.NO_CONTENT);
     }
 
 

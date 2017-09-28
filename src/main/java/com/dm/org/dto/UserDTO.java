@@ -16,7 +16,7 @@ public class UserDTO  {
     private String userId;
     private String username;
     private String name;
-    private byte[] avatar;
+    private String avatar;
     private String gender;
     private String regionCode;
     private String introduction;
@@ -24,7 +24,7 @@ public class UserDTO  {
     private UserAccessStatus accessStatus;
     private Date lastLoginTime;
 
-    public UserDTO(String userId, String username,String name, byte[] avatar, String gender, String regionCode, String introduction, UserAccessStatus accessStatus,Timestamp lastLoginTime) {
+    public UserDTO(String userId, String username,String name, String avatar, String gender, String regionCode, String introduction, UserAccessStatus accessStatus,Timestamp lastLoginTime) {
         this.userId = userId;
         this.username = username;
         this.name = name;
@@ -39,20 +39,20 @@ public class UserDTO  {
     public UserDTO() {
     }
 
-    public static UserDTO build(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setName(user.getName());
-        userDTO.setAvatar(user.getAvatar());
-        userDTO.setBirthday(user.getBirthday());
-        userDTO.setGender(user.getGender());
-        userDTO.setIntroduction(user.getIntroduction());
-        userDTO.setRegionCode(user.getRegionCode());
-        userDTO.setAccessStatus(user.getAccountStatus());
-        userDTO.setLastLoginTime(new Date(user.getLastLoginTime().getTime()));
-        return userDTO;
-    }
+//    public static UserDTO build(User user) {
+////        UserDTO userDTO = new UserDTO();
+////        userDTO.setUserId(user.getUserId());
+////        userDTO.setUsername(user.getUsername());
+////        userDTO.setName(user.getName());
+////        userDTO.setAvatar(user.getAvatar());
+////        userDTO.setBirthday(user.getBirthday());
+////        userDTO.setGender(user.getGender());
+////        userDTO.setIntroduction(user.getIntroduction());
+////        userDTO.setRegionCode(user.getRegionCode());
+////        userDTO.setAccessStatus(user.getAccountStatus());
+////        userDTO.setLastLoginTime(new Date(user.getLastLoginTime().getTime()));
+////        return userDTO;
+//    }
 
     public String getUserId() {
         return userId;
@@ -70,11 +70,11 @@ public class UserDTO  {
         this.username = username;
     }
 
-    public byte[] getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(byte[] avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

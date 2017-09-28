@@ -122,6 +122,8 @@ public class User implements EntityIdentifier
         this.birthday = birthday;
     }
 
+    @Lob
+    @Basic(fetch = FetchType.EAGER)
     public byte[] getAvatar() {
         return avatar;
     }
@@ -151,7 +153,7 @@ public class User implements EntityIdentifier
         this.privateSalt = privateSalt;
     }
 
-    @Enumerated
+
     @Column(name = "status")
     public UserAccessStatus getAccountStatus()
     {

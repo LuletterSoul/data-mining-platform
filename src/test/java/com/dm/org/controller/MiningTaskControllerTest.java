@@ -103,7 +103,7 @@ public class MiningTaskControllerTest extends ConfigurationWirer{
         //构建模拟的数据挖掘任务
         DataMiningTask miningTask = new DataMiningTask();
         miningTask.setTaskName("基于C4.5算法的研究与PRSA数据集的分类分析统计");
-        miningTask.setStartTime(setUpDate);
+//        miningTask.setStartTime(setUpDate);
 
         String serializedMiningTask = objectMapper.writeValueAsString(miningTask);
         //模拟管理员提交实践任务的申请通知

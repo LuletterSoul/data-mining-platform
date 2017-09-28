@@ -1,6 +1,7 @@
 package com.dm.org.service;
 
 
+import com.dm.org.dto.UserDTO;
 import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
@@ -21,6 +22,10 @@ public interface UserService extends BaseService<User, String>
 {
     User registerUser(User user);
 
+    UserDTO getUserProfile(String username);
+
+
+    UserDTO updateUser(UserDTO userDTO);
 //    User doUserCredentialsMatch(User user, DisposableSaltEntry entry);
 
 //    DisposableSaltEntry  getRandomVerifySaltEntry(String preSaltId);

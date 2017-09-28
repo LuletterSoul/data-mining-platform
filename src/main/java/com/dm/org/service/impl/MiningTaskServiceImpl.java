@@ -1,10 +1,12 @@
 package com.dm.org.service.impl;
 
-import com.dm.org.model.Algorithm;
-import com.dm.org.model.DataMiningGroup;
-import com.dm.org.model.DataMiningTask;
-import com.dm.org.model.DataSetContainer;
+import com.dm.org.dto.MiningTaskDTO;
+import com.dm.org.model.*;
 import com.dm.org.service.MiningTaskService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +21,25 @@ import java.util.List;
 public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTask, String> implements MiningTaskService {
 
     @Override
+    public DataMiningTask saveMiningTask(MiningTaskDTO miningTaskDTO) {
+        DataMiningTask task = new DataMiningTask();
+        BeanUtils.copyProperties(task, miningTaskDTO);
+        List<DataSetCollection> collections = this.collectionDao.getCollectionByIds(miningTaskDTO.getCollectionIds());
+        this.miningTaskDao.save(task);
+        return task;
+    }
+
+    @Override
     public DataMiningTask deleteByTaskId(String taskId) {
         DataMiningTask task = this.findById(taskId);
         this.deleteById(taskId);
         return task;
+    }
+
+    @Override
+    public Page<DataMiningTask> fetchTaskList(Pageable pageable) {
+        int totalElements = miningTaskDao.countAll();
+        return new PageImpl<DataMiningTask>(miningTaskDao.get(pageable), pageable, totalElements);
     }
 
     @Override
@@ -125,42 +142,42 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
 
 
     @Override
-    public DataSetContainer arrangeMiningSet(String taskId, String containerId) {
-        DataSetContainer container = containerDao.findById(containerId);
-        miningTaskDao.findById(taskId).getDataSetContainers().add(container);
-        return container;
+    public DataSetCollection arrangeMiningSet(String taskId, String collectionId) {
+        DataSetCollection collection = collectionDao.findById(collectionId);
+        miningTaskDao.findById(taskId).getCollections().add(collection);
+        return collection;
     }
 
     @Override
-    public List<DataSetContainer> arrangeMiningSets(String taskId, List<String> containerIds) {
-        List<DataSetContainer> containers = containerDao.fetchContainers(containerIds);
-        this.findById(taskId).getDataSetContainers().addAll(containers);
-        return containers;
+    public List<DataSetCollection> arrangeMiningSets(String taskId, List<String> collectionIds) {
+        List<DataSetCollection> collections = collectionDao.getCollectionByIds(collectionIds);
+        this.findById(taskId).getCollections().addAll(collections);
+        return collections;
     }
 
     @Override
-    public List<DataSetContainer> fetchRefContainers(String taskId) {
-        return miningTaskDao.fetchRefContainers(taskId);
+    public List<DataSetCollection> fetchRefCollections(String taskId) {
+        return miningTaskDao.fetchRefCollections(taskId);
     }
 
     @Override
-    public DataSetContainer removeMiningSet(String taskId, String containerId) {
-        DataSetContainer container = containerDao.findById(containerId);
-        this.findById(taskId).getDataSetContainers().remove(container);
-        return container;
+    public DataSetCollection removeMiningSet(String taskId, String collectionId) {
+        DataSetCollection collection = collectionDao.findById(collectionId);
+        this.findById(taskId).getCollections().remove(collection);
+        return collection;
     }
 
     @Override
-    public List<DataSetContainer> removeMiningSets(String taskId, List<String> containerIds) {
-        List<DataSetContainer> containers = miningTaskDao.fetchPartRefSets(taskId, containerIds);
-        this.findById(taskId).getDataSetContainers().removeAll(containers);
-        return containers;
+    public List<DataSetCollection> removeMiningSets(String taskId, List<String> collectionIds) {
+        List<DataSetCollection> collections = miningTaskDao.fetchPartRefSets(taskId, collectionIds);
+        this.findById(taskId).getCollections().removeAll(collections);
+        return collections;
     }
 
     @Override
-    public List<DataSetContainer> removeAllMiningSets(String taskId) {
-        List<DataSetContainer> containers = this.fetchRefContainers(taskId);
+    public List<DataSetCollection> removeAllMiningSets(String taskId) {
+        List<DataSetCollection> collections = this.fetchRefCollections(taskId);
         miningTaskDao.removeAllRefSet(taskId);
-        return containers;
+        return collections;
     }
 }

@@ -1,9 +1,6 @@
 package com.dm.org.dao.impl;
 
-import com.dm.org.model.Algorithm;
-import com.dm.org.model.DataMiningGroup;
-import com.dm.org.model.DataMiningTask;
-import com.dm.org.model.DataSetContainer;
+import com.dm.org.model.*;
 import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.stereotype.Repository;
 
@@ -43,8 +40,8 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                 .setParameter("groupIds", groupIds).getResultList();
     }
 
-    public List<DataSetContainer> fetchRefContainers(String taskId) {
-        String hqlString = "select c from DataMiningTask t left join fetch t.dataSetContainers c";
+    public List<DataSetCollection> fetchRefCollections(String taskId) {
+        String hqlString = "select c from DataMiningTask t left join t.collections c";
         return getSession().createQuery(hqlString).setParameter("taskId", taskId).getResultList();
     }
 
@@ -93,7 +90,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
     }
 
     public int removeRefSets(String taskId, List<String> containerIds) {
-        String hqlString = "delete DataMiningTask .dataSetContainers c " +
+        String hqlString = "delete DataMiningTask .collections c " +
                             "where DataMiningTask .taskId =:taskId " +
                             "and c.containerId in :containerIds";
         return getSession().createQuery(hqlString).setParameter("taskId", taskId)
@@ -101,16 +98,15 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
     }
 
     public int removeAllRefSet(String taskId) {
-        String hqlString = "delete DataMiningTask .dataSetContainers where DataMiningTask .taskId = :taskId";
+        String hqlString = "delete DataMiningTask .collections where DataMiningTask .taskId = :taskId";
         return getSession().createQuery(hqlString)
                             .setParameter("taskId", taskId)
                             .executeUpdate();
     }
 
-    public List<DataSetContainer> fetchPartRefSets(String taskId, List<String> containerIds) {
+    public List<DataSetCollection> fetchPartRefSets(String taskId, List<String> containerIds) {
         String hqlString = "select c from DataMiningTask t " +
-                                "left join fetch t.dataSetContainers c " +
-                                    "where c.containerId in :containerIds and t.taskId = :taskId";
+                                "left join fetch  t.collections c";
         return getSession().createQuery(hqlString).setParameter("taskId", taskId)
                 .setParameter("containerIds", containerIds).getResultList();
     }

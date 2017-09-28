@@ -11,6 +11,7 @@ import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -68,14 +69,20 @@ public class UserController
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public UserDTO profile(@PathVariable("username") String username)
     {
-        return UserDTO.build(userService.findByUserName(username));
+        return userService.getUserProfile(username);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserDTO> register(@RequestBody User user)
     {
-        UserDTO userDTO = UserDTO.build(userService.registerUser(user));
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(user, userDTO);
         return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public UserDTO update(@RequestBody UserDTO userDTO) {
+        return userService.updateUser(userDTO);
     }
 
     @RequestMapping(value = "/{username}/roles",method = RequestMethod.GET)

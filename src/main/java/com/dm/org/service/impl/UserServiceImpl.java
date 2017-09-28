@@ -1,6 +1,7 @@
 package com.dm.org.service.impl;
 
 
+import com.dm.org.dto.UserDTO;
 import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.model.Permission;
 import com.dm.org.model.Role;
@@ -10,6 +11,7 @@ import com.dm.org.service.UserService;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +64,26 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         user.setPublicSalt(publicSalt);
         userDao.save(user);
         return user;
+    }
+
+    @Override
+    public UserDTO getUserProfile(String username) {
+        User user = userDao.fetchByUserName(username);
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(user, userDTO);
+        if (user.getAvatar() != null) {
+            userDTO.setAvatar(new String(user.getAvatar()));
+        }
+        return userDTO;
+    }
+
+    @Override
+    public UserDTO updateUser(UserDTO userDTO) {
+        User user = this.findById(userDTO.getUserId());
+        BeanUtils.copyProperties(userDTO, user);
+        user.setAvatar(userDTO.getAvatar().getBytes());
+        userDao.save(user);
+        return userDTO;
     }
 //
 //    public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)

@@ -9,9 +9,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.dm.org.exceptions.DataAccessObjectException;
-import com.dm.org.exceptions.DataObjectNotFoundException;
-import com.dm.org.exceptions.DataSetCollectionNoFoundException;
 import com.dm.org.service.DataSetCollectionService;
 
 import java.util.*;
@@ -54,7 +51,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public List<DataSetContainer> addDataSetContainers(String collectionId, List<String> containerIds) {
+    public List<DataSetContainer> saveOrUpdateContainers(String collectionId, List<String> containerIds) {
         if (containerIds.isEmpty()) {
             return null;
         }
@@ -92,21 +89,26 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
 
     @Override
     public DataSetCollection saveCollection(CollectionDTO collectionDTO) {
-        List<MiningTaskType> miningTaskTypes = miningTaskTypeDao.getTaskTypes(collectionDTO.getAssociatedTaskIds());
-        List<AttributeType> attributeTypes = attributeTypeDao.getAttrTypes(collectionDTO.getAttributeTypeIds());
-        List<DataSetCharacteristic> characteristics = collectionCharDao.getCharTypes(collectionDTO.getCharacteristicIds());
 //        List<DataSetContainer> containers = containerDao.fetchContainers(collectionDTO.getContainerIds());
-        AreaType areaType = areaTypeDao.findById(collectionDTO.getAreaId());
         DataSetCollection collection = new DataSetCollection();
         BeanUtils.copyProperties(collectionDTO, collection);
         collectionDao.save(collection);
-        this.addDataSetContainers(collection.getCollectionId(), collectionDTO.getContainerIds());
+        this.saveOrUpdateContainers(collection.getCollectionId(), collectionDTO.getContainerIds());
+        updateCollectionMultipleTypes(collectionDTO, collection);
+        return collection;
+    }
+
+    private void updateCollectionMultipleTypes(CollectionDTO collectionDTO, DataSetCollection collection) {
+        List<MiningTaskType> miningTaskTypes = miningTaskTypeDao.getTaskTypes(collectionDTO.getAssociatedTaskIds());
+        List<AttributeType> attributeTypes = attributeTypeDao.getAttrTypes(collectionDTO.getAttributeTypeIds());
+        List<DataSetCharacteristic> characteristics = collectionCharDao.getCharTypes(collectionDTO.getCharacteristicIds());
+        AreaType areaType = areaTypeDao.findById(collectionDTO.getAreaId());
         collection.setAssociatedTasks(new LinkedHashSet<MiningTaskType>(miningTaskTypes));
         collection.setAttributeTypes(new LinkedHashSet<AttributeType>(attributeTypes));
         collection.setCharacteristics(new LinkedHashSet<DataSetCharacteristic>(characteristics));
         collection.setArea(areaType);
-        return collection;
     }
+
 
     @Override
     public DataSetCollection deleteByName(String collectionName)
@@ -132,11 +134,14 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetCollection updateCollection(DataSetCollection dataSetCollection)
-    {
-        this.update(dataSetCollection);
-        return dataSetCollection;
+    public DataSetCollection updateCollection(CollectionDTO dataSetCollection) {
+        DataSetCollection collection = this.findById(dataSetCollection.getCollectionId());
+        BeanUtils.copyProperties(dataSetCollection, collection);
+        updateCollectionMultipleTypes(dataSetCollection, collection);
+        this.update(collection);
+        return collection;
     }
+
 
     @Override
     public List<DataSetContainer> getContainers(String collectionId) {

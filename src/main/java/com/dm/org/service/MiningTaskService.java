@@ -1,9 +1,10 @@
 package com.dm.org.service;
 
-import com.dm.org.model.Algorithm;
-import com.dm.org.model.DataMiningGroup;
-import com.dm.org.model.DataMiningTask;
-import com.dm.org.model.DataSetContainer;
+import com.dm.org.dao.impl.MiningTaskDao;
+import com.dm.org.dto.MiningTaskDTO;
+import com.dm.org.model.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,7 +16,11 @@ import java.util.List;
 
 public interface MiningTaskService extends BaseService<DataMiningTask,String>{
 
+    DataMiningTask saveMiningTask(MiningTaskDTO miningTaskDTO);
+
     DataMiningTask deleteByTaskId(String taskId);
+
+    Page<DataMiningTask> fetchTaskList(Pageable pageable);
 
     List<DataMiningGroup> fetchInvolvedGroups(String taskId);
 
@@ -45,15 +50,15 @@ public interface MiningTaskService extends BaseService<DataMiningTask,String>{
 
     List<Algorithm> removeAllAlgorithms(String taskId);
 
-    DataSetContainer arrangeMiningSet(String taskId, String containerId);
+    DataSetCollection arrangeMiningSet(String taskId, String collectionId);
 
-    List<DataSetContainer> arrangeMiningSets(String taskId, List<String> containerIds);
+    List<DataSetCollection> arrangeMiningSets(String taskId, List<String> collectionIds);
 
-    List<DataSetContainer> fetchRefContainers(String taskId);
+    List<DataSetCollection> fetchRefCollections(String taskId);
 
-    DataSetContainer removeMiningSet(String taskId, String containerId);
+    DataSetCollection removeMiningSet(String taskId, String collectionId);
 
-    List<DataSetContainer> removeMiningSets(String taskId, List<String> containerIds);
+    List<DataSetCollection> removeMiningSets(String taskId, List<String> collectionIds);
 
-    List<DataSetContainer> removeAllMiningSets(String taskId);
+    List<DataSetCollection> removeAllMiningSets(String taskId);
 }

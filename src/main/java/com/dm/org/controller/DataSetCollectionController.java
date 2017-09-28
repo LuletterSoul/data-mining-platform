@@ -55,10 +55,11 @@ public class DataSetCollectionController {
      * @param collectionName 数据集名
      * @return
      */
-    @RequestMapping(value = "/{collectionName}", method = RequestMethod.GET)
-    public DataSetCollection get(@PathVariable("collectionName") String collectionName) {
-        return collectionService.getCollectionByName(collectionName);
-    }
+//    @RequestMapping(value = "/{collectionName}", method = RequestMethod.GET)
+//    public DataSetCollection getByCollectionName(@PathVariable("collectionName") String collectionName) {
+//        return collectionService.getCollectionByName(collectionName);
+//    }
+
 
     @RequestMapping(value = "/{collectionId}",method = RequestMethod.GET)
     public DataSetCollection getById(@PathVariable("collectionId") String collectionId) {
@@ -89,7 +90,7 @@ public class DataSetCollectionController {
      * @return 更新后的数据集信息
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public DataSetCollection update(@RequestBody DataSetCollection setCollection) {
+    public DataSetCollection update(@RequestBody CollectionDTO setCollection) {
         return collectionService.updateCollection(setCollection);
     }
 

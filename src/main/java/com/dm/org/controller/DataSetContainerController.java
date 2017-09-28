@@ -81,7 +81,7 @@ public class DataSetContainerController
     {
         return new ResponseEntity<String>(containerService.uploadData(containerId, file),
             HttpStatus.CREATED);
-    }
+}
 
     @RequestMapping(value = "/{containerId}")
     public ResponseEntity<byte[]> downloadFile(@RequestParam("filePath") String filePath,

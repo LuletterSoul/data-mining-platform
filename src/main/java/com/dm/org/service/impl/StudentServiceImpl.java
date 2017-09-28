@@ -2,6 +2,7 @@ package com.dm.org.service.impl;
 
 
 import com.dm.org.dto.StudentDTO;
+import com.dm.org.dto.UserDTO;
 import com.dm.org.model.FavoriteStatus;
 import com.dm.org.model.Student;
 import com.dm.org.model.StudentStatus;
@@ -46,13 +47,14 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     @Override
     public Page<StudentDTO> getStudentList(Pageable pageable)
     {
+        int counts = studentDao.countAll();
         List<Student> students = studentDao.get(pageable);
         List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
         for (Student s :
                 students) {
             studentDTOS.add(StudentDTO.build(s));
         }
-        return new PageImpl<StudentDTO>(studentDTOS, pageable, studentDTOS.size());
+        return new PageImpl<StudentDTO>(studentDTOS, pageable, counts);
     }
 
     @Override
