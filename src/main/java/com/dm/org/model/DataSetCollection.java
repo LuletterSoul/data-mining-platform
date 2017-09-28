@@ -48,7 +48,7 @@ public class DataSetCollection implements EntityIdentifier
 
     private Set<AttributeType> attributeTypes;
 
-        private Set<DataSetCharacteristic> characteristics;
+    private Set<DataSetCharacteristic> characteristics;
 
     private Set<DataSetContainer> dataSets;
 

@@ -33,4 +33,9 @@ public class AlgorithmDao extends BaseDao<Algorithm, String> {
                     .setParameter("algorithmIds",algorithmIds).getResultList();
     }
 
+    public List<String> fetchAlgorithmNames() {
+        String hqlString = "select a.algorithmName from Algorithm a";
+        return getSession().createQuery(hqlString).getResultList();
+    }
+
 }

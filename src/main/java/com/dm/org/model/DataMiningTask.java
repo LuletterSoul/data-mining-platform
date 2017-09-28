@@ -124,7 +124,7 @@ public class DataMiningTask
         this.groups = groups;
     }
 
-    @JsonIgnore
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "task_algorithm_rela", joinColumns = @JoinColumn(name = "taskId",referencedColumnName = "taskId")
             , inverseJoinColumns = @JoinColumn(name = "algorithmId",referencedColumnName = "algorithmId"))
@@ -174,7 +174,7 @@ public class DataMiningTask
         return collections;
     }
 
-    public void setCollections(Set<DataSetCollection> dataSetContainers) {
-        this.collections = dataSetContainers;
+    public void setCollections(Set<DataSetCollection> collections) {
+        this.collections = collections;
     }
 }

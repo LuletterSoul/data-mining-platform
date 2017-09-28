@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -23,8 +24,11 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     @Override
     public DataMiningTask saveMiningTask(MiningTaskDTO miningTaskDTO) {
         DataMiningTask task = new DataMiningTask();
-        BeanUtils.copyProperties(task, miningTaskDTO);
+        BeanUtils.copyProperties(miningTaskDTO,task);
         List<DataSetCollection> collections = this.collectionDao.getCollectionByIds(miningTaskDTO.getCollectionIds());
+        List<Algorithm> algorithms = this.algorithmDao.fetchAlgorithms(miningTaskDTO.getAlgorithmIds());
+        task.setAlgorithms(new LinkedHashSet<Algorithm>(algorithms));
+        task.setCollections(new LinkedHashSet<DataSetCollection>(collections));
         this.miningTaskDao.save(task);
         return task;
     }
