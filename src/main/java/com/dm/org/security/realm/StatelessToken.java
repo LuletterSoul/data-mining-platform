@@ -21,13 +21,16 @@ public class StatelessToken implements AuthenticationToken,SaltedAuthenticationI
 
     private String username;
 
+    private String apiKey;
+
     private Map<String, ?> params;
 
     private String clientDigest;
 
-    public StatelessToken(String username, Map<String, ?> params, String clientDigest)
+    public StatelessToken(String username, String key,Map<String, ?> params, String clientDigest)
     {
         this.username = username;
+        this.apiKey = key;
         this.params = params;
         this.clientDigest = clientDigest;
     }
@@ -67,6 +70,14 @@ public class StatelessToken implements AuthenticationToken,SaltedAuthenticationI
         return clientDigest;
     }
 
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
 
     @Override
     public Object getCredentials() {

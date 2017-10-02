@@ -71,9 +71,10 @@ public class StatelessRealm extends AuthorizingRealm
     {
         StatelessToken statelessToken = (StatelessToken)token;
         String username = statelessToken.getUsername();
+        String apiKey = statelessToken.getApiKey();
         User user = userService.fetchByUserName(username);
         String password = user.getPassword();
-        String tokenSaltHash = tokenManager.getHashToken(username);
+        String tokenSaltHash = tokenManager.getHashToken(apiKey);
         if (tokenSaltHash == null) {
             throw new AuthenticationException("Token is not valid.Please apply previous time out token firstly.");
         }

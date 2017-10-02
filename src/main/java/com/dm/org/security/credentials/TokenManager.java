@@ -3,6 +3,7 @@ package com.dm.org.security.credentials;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import org.apache.shiro.authc.ExpiredCredentialsException;
 import org.apache.shiro.cache.Cache;
@@ -68,16 +69,13 @@ public class TokenManager
     }
 
 
-    public String generateTimeOutToken(String username)
+    public  String generateTimeOutToken(String username)
     {
-        TimeOutToken token = new TimeOutToken();
         Date date = new Date();
         String formattedDate = dateToString(date);
         String privateSalt = userService.fetchPrivateSalt(username);
 //        String publicSalt = userService.fetchPublicSalt(username);
 //        token.setPublicSalt(publicSalt);
-        token.setTimestamp(formattedDate);
-        token.setTimeOutToken(generateEncryptedToken(privateSalt,username, formattedDate));
         return generateEncryptedToken(privateSalt,username, formattedDate);
     }
     private String generateEncryptedToken(String privateSalt, String username, String formattedDate) {
@@ -89,7 +87,7 @@ public class TokenManager
         return DateUtil.DateToString(date, DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
     }
 
-    public String getTimeOutToken(String username, String dateString)
+    public ClientToken getTimeOutToken(String username, String dateString)
     {
         if (!checkTokenValidity(dateString))
         {
@@ -97,13 +95,14 @@ public class TokenManager
         }
         String token = generateTimeOutToken(username);
         LOGGER.info("User: " + username + " attempt to login system.");
-        tokenCache.put(username,token);
-        return token;
+        String apiKey = UUID.randomUUID().toString();
+        tokenCache.put(apiKey,token);
+        return new ClientToken(token,apiKey);
     }
 
-    public String getHashToken(String username)
+    public  String  getHashToken(String key)
     {
-        return tokenCache.get(username);
+        return tokenCache.get(key);
     }
 
     /**

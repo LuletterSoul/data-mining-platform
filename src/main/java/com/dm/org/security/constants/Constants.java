@@ -13,4 +13,6 @@ public class Constants
     public static final String DISPOSABLE_SALT = "_SaltId";
     public static final String PARAM_DATETIME = "dateTimeSent";
     public static final String HEADER_TIMESTAMP = "X-timestamp";
+    public static final String API_KEY = "X-ApiKey";
+
 }

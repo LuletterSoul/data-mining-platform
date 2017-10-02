@@ -5,6 +5,7 @@ import com.dm.org.dto.UserDTO;
 import com.dm.org.model.User;
 import com.dm.org.security.UserPasswordService;
 import com.dm.org.security.constants.Constants;
+import com.dm.org.security.credentials.ClientToken;
 import com.dm.org.security.credentials.TimeOutToken;
 import com.dm.org.security.credentials.TokenManager;
 import com.dm.org.service.StatelessCredentialsService;
@@ -92,8 +93,8 @@ public class UserController
 
 
     @RequestMapping(value = "/{username}/token",method = RequestMethod.GET)
-    public String getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
-                                 @PathVariable("username") String username)
+    public ClientToken getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
+                                @PathVariable("username") String username)
     {
         return tokenManager.getTimeOutToken(username, timestamp);
     }

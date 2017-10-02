@@ -167,7 +167,7 @@ public class DataMiningTask
     }
 
     @JsonIgnore
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany
     @JoinTable(name = "task_data_set_ref",joinColumns = @JoinColumn(name = "taskId",referencedColumnName = "taskId"),
     inverseJoinColumns = @JoinColumn(name = "collectionId",referencedColumnName = "collectionId"))
     public Set<DataSetCollection> getCollections() {

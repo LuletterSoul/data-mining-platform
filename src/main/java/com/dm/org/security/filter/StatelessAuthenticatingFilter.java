@@ -60,8 +60,8 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         try
         {
             httpRequest = assertHttpRequest(request);
-            if (httpRequest.getMethod().equals("OPTIONS")) {
-                ((HttpServletResponse) response).setStatus(200);
+            if (httpRequest.getMethod().equals("OPTIONS"))
+            {
                 return true;
             }
             // 获取请求发送的时间戳
@@ -70,8 +70,10 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
             String clientDigest = httpRequest.getParameter(Constants.PARAM_DIGEST);
             // 客户端传入的用户身份
             String username = httpRequest.getParameter(Constants.PARAM_USERNAME);
+
+            String apiKey = httpRequest.getHeader(Constants.API_KEY);
             try {
-                assertNegotiationContentNotNull(clientDigest, username, timestamp);
+                assertNegotiationContentNotNull(clientDigest, username, timestamp,apiKey);
             } catch (ServletException e) {
                 LOGGER.error(e.getMessage());
                 onAccessFailed(response, e);
@@ -79,7 +81,7 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
                 return false;
             }
             // 客户端请求的参数列表
-            StatelessToken token = generateAuthenticationToken(request, clientDigest, username);
+            StatelessToken token = generateAuthenticationToken(request, clientDigest, username,apiKey);
             LOGGER.info("System generate authentication token: {}", token);
             try
             {
@@ -104,19 +106,19 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
     }
 
     private StatelessToken generateAuthenticationToken(ServletRequest request, String clientDigest,
-                                                       String username)
+                                                       String username,String apiKey)
     {
         Map<String, String[]> params = new LinkedHashMap<String, String[]>(request.getParameterMap());
         params.remove(Constants.PARAM_DIGEST);
         // 生成无状态Token
-        return new StatelessToken(username, params, clientDigest);
+        return new StatelessToken(username,apiKey, params, clientDigest);
     }
 
     private void assertNegotiationContentNotNull(String clientDigest, String username,
-                                                 String timestamp)
+                                                 String timestamp,String apiKey)
         throws ServletException
     {
-        if (clientDigest == null || username == null || timestamp == null)
+        if (clientDigest == null || username == null || timestamp == null ||apiKey == null)
         {
             throw new ServletException(
                 "User token shouldn't be empty.Make sure your account info has been linked with request.");
