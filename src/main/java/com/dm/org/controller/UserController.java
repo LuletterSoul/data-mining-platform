@@ -76,9 +76,7 @@ public class UserController
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserDTO> register(@RequestBody User user)
     {
-        UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(user, userDTO);
-        return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
+        return new ResponseEntity<UserDTO>(userService.registerUser(user), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

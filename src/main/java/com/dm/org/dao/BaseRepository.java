@@ -54,6 +54,15 @@ public interface BaseRepository<E, PK extends Serializable>
     Serializable save(E entity) throws Exception;
 
     /**
+     * 通过ID查询对象
+     *
+     * @param id
+     *            主键
+     * @return
+     */
+    E findById(PK id);
+
+    /**
      * 批量保存对象
      *
      * @param set 对象实例
@@ -97,14 +106,6 @@ public interface BaseRepository<E, PK extends Serializable>
      */
     int deleteByProperties(Map<String, Object> constraintMap);
 
-    /**
-     * 通过ID查询对象
-     *
-     * @param id
-     *            主键
-     * @return
-     */
-    E findById(PK id);
 
     /**
      * 获取当前对象的所有记录 @ columns 需要返回的列名 @ pagination 分页信息

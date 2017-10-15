@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public interface UserService extends BaseService<User, String>
 {
-    User registerUser(User user);
+    UserDTO registerUser(User user);
 
     UserDTO getUserProfile(String username);
 

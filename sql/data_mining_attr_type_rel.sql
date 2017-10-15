@@ -1,0 +1,15 @@
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec408fc015ec85a2c3a001d', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec408fc015ec86463000021', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec99a00015ecb05dd7e0002', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881ef5ecb1bf1015ecb3285000003', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('8ae483f15ec86a01015ec8714a760008', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('8ae483f15ec86a01015ec873eb62000e', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('8ae483f15ec86a01015ec87784190012', 0);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec408fc015ec85a2c3a001d', 1);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec408fc015ec86463000021', 1);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec99a00015ecb05dd7e0002', 1);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881ef5ecb1bf1015ecb3285000003', 1);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('8ae483f15ec86a01015ec873eb62000e', 1);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('8ae483f15ec86a01015ec87784190012', 1);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('402881e85ec408fc015ec85a2c3a001d', 2);
+INSERT INTO data_mining.attr_type_rel (collectionId, typeId) VALUES ('8ae483f15ec86a01015ec87784190012', 2);

@@ -1,12 +1,18 @@
 package com.dm.org.service.impl;
 
 import com.dm.org.dto.StudentDTO;
+import com.dm.org.dto.TaskConfigParam;
 import com.dm.org.model.DataMiningGroup;
 import com.dm.org.model.DataMiningTask;
 import com.dm.org.model.Student;
 import com.dm.org.service.GroupService;
+import com.dm.org.utils.DateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,6 +24,56 @@ import java.util.List;
 
 @Service
 public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup,String> implements GroupService {
+
+    private SimpleDateFormat dateFormat;
+
+    private  Integer DEFAULT_GRADIENT = 12;
+
+    public void setDefaultGradient(Integer defaultGradient) {
+        DEFAULT_GRADIENT = defaultGradient;
+    }
+
+
+    //默认简单分组方法
+    public List<DataMiningGroup> initDefaultGroupsDividenStrategy(TaskConfigParam params) {
+        //将要被分配的任务;
+        List<DataMiningGroup> previewDefaultGropus = new LinkedList<DataMiningGroup>();
+        DataMiningTask task = miningTaskDao.findById(params.getTaskId());
+        //前端传入的时间参数，要求在此时间端内，学生没有处于其他实践任务分组执行数据挖掘任务；
+        Date beginDate = DateUtil.GetSQLDate(params.getBeginDate());
+        Date endDate = DateUtil.GetSQLDate(params.getEndDate());
+        //获取符合要求的学生
+        List<String> studentIds = studentDao.fetchStudentWithoutGroup(beginDate, endDate);
+        //用户要求的每个组的总人数,如果用户未配置，默认值为12；
+        if (params.getGradient() != 0) {
+            this.setDefaultGradient(params.getGradient());
+        }
+        if (studentIds.size() >= DEFAULT_GRADIENT) {
+            int groupNum = studentIds.size() / DEFAULT_GRADIENT;
+            int i = 1;
+            List<String> groupStudentIds = new LinkedList<String>();
+            for (String studentId : studentIds
+                    ) {
+                groupStudentIds.add(studentId);
+                //到达固定人数分一组;
+                if (i % DEFAULT_GRADIENT == 0) {
+                    DataMiningGroup group = new DataMiningGroup();
+                    List<Student> students = studentDao.getStudentsWithList(groupStudentIds);
+                    group.setGroupMembers(new LinkedHashSet<Student>(students));
+                    //生成预览分组情况，待管理员确认;
+                    previewDefaultGropus.add(group);
+                    groupStudentIds.clear();
+                }
+                i++;
+            }
+            //组员人数非偶数，将后面不足分组基数的学生全加入到最后一个队伍；
+            if (studentIds.size() % DEFAULT_GRADIENT != 0) {
+                List<Student> students = studentDao.getStudentsWithList(groupStudentIds);
+                previewDefaultGropus.get(previewDefaultGropus.size() - 1).getGroupMembers().addAll(students);
+            }
+        }
+        return previewDefaultGropus;
+    }
 
     @Override
     public DataMiningGroup fetchGroupDetails(String groupId) {

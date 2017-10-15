@@ -54,7 +54,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         this.credentialsService = credentialsService;
     }
 
-    public User registerUser(User user)
+    public UserDTO registerUser(User user)
     {
         String publicSalt = credentialsService.generateRandomSalt(32);
         String privateSalt = credentialsService.generateRandomSalt(32);
@@ -63,7 +63,9 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         user.setPrivateSalt(privateSalt);
         user.setPublicSalt(publicSalt);
         userDao.save(user);
-        return user;
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(user, userDTO);
+        return userDTO;
     }
 
     @Override

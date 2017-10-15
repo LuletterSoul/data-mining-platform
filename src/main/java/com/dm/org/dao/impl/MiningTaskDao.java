@@ -1,7 +1,7 @@
 package com.dm.org.dao.impl;
 
+import com.dm.org.dao.MiningTaskRepository;
 import com.dm.org.model.*;
-import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,12 +14,13 @@ import java.util.List;
 
 @Repository
 @SuppressWarnings("unchecked")
-public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
+public class MiningTaskDao extends BaseDao<DataMiningTask, String> implements MiningTaskRepository {
     public MiningTaskDao() {
         super(DataMiningTask.class);
     }
 
 
+    @Override
     public List<DataMiningGroup> fetchInvolvedGroups(String taskId) {
         String hqlString = "select t.groups from DataMiningTask t " +
                             "left join fetch t.groups g " +
@@ -30,6 +31,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                             .getResultList();
     }
 
+    @Override
     public List<DataMiningGroup> fetchPartInvolvedGroups(String taskId, List<String> groupIds) {
         String hqlString = "select t.groups from DataMiningTask t " +
                 "left join fetch t.groups g " +
@@ -40,11 +42,13 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                 .setParameter("groupIds", groupIds).getResultList();
     }
 
+    @Override
     public List<DataSetCollection> fetchRefCollections(String taskId) {
         String hqlString = "select c from DataMiningTask t left join t.collections c";
         return getSession().createQuery(hqlString).setParameter("taskId", taskId).getResultList();
     }
 
+    @Override
     public int removeInvolvedGroups(String taskId, List<String> groupIds) {
         String hqlString = "delete DataMiningTask.groups g " +
                             "where DataMiningTask.taskId = :taskId and g.groupId in :groupIds";
@@ -53,6 +57,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                 .setParameter("groupIds", groupIds).executeUpdate();
     }
 
+    @Override
     public Algorithm getConfiguredAlgorithm(String taskId, String algorithmId) {
         String hqlString = "select a from DataMiningTask t " +
                 "left join fetch t.algorithms a " +
@@ -64,6 +69,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
     }
 
 
+    @Override
     public List<Algorithm> getConfiguredAlgorithms(String taskId) {
         String hqlString = "select a from DataMiningTask t " +
                 "left join fetch t.algorithms a " +
@@ -73,6 +79,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                 .getResultList();
     }
 
+    @Override
     public int removeAllInvolvedAlgorithm(String taskId) {
         String hqlString = "delete DataMiningTask.algorithms where DataMiningTask .taskId = :taskId";
         return getSession().createQuery(hqlString)
@@ -80,6 +87,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                             .executeUpdate();
     }
 
+    @Override
     public int removePartInvolvedAlgorithms(String taskId, List<String> algorithmIds) {
         String hqlString = "delete DataMiningTask.algorithms a " +
                             "where a.algorithmId " +
@@ -89,6 +97,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                 .setParameter("taskId", taskId).executeUpdate();
     }
 
+    @Override
     public int removeRefSets(String taskId, List<String> containerIds) {
         String hqlString = "delete DataMiningTask .collections c " +
                             "where DataMiningTask .taskId =:taskId " +
@@ -97,6 +106,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                 .setParameter("containerIds", containerIds).executeUpdate();
     }
 
+    @Override
     public int removeAllRefSet(String taskId) {
         String hqlString = "delete DataMiningTask .collections where DataMiningTask .taskId = :taskId";
         return getSession().createQuery(hqlString)
@@ -104,6 +114,7 @@ public class MiningTaskDao extends BaseDao<DataMiningTask, String> {
                             .executeUpdate();
     }
 
+    @Override
     public List<DataSetCollection> fetchPartRefSets(String taskId, List<String> containerIds) {
         String hqlString = "select c from DataMiningTask t " +
                                 "left join fetch  t.collections c";

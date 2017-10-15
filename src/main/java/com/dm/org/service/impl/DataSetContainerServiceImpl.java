@@ -90,13 +90,12 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     public String uploadData(String containerId, MultipartFile file)
     {
         DataSetContainer container = this.findById(containerId);
+        //获取应用部署到服务器之后的应用上下文，为文件保存的路径做基础规划；
          ServletContext context =
          ContextLoader.getCurrentWebApplicationContext().getServletContext();
+        //获取到绝对路径
         String relativePath = "\\dataSetContainer\\" + container.getContainerId();
          String realPath = context.getRealPath(relativePath);
-//        String realPath ="D:\\Program Files\\Java\\apache-tomcat-8.0.36\\temp";
-//        StringBuilder stringBuffer = new StringBuilder();
-//        stringBuffer.append(realPath).append(relativePath).append("\\").append(file.getOriginalFilename());
         try
         {
             FileUtils.copyInputStreamToFile(file.getInputStream(),
@@ -106,7 +105,9 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
         {
             e.printStackTrace();
         }
+        //获取文件名
         String containerName = file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."));
+        //保存到数据库，并返回文件容器的描述
         return containerDao.linkPath(containerId, containerName, file.getOriginalFilename(), realPath);
     }
 

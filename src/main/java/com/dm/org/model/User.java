@@ -123,7 +123,7 @@ public class User implements EntityIdentifier
     }
 
     @Lob
-    @Basic(fetch = FetchType.EAGER)
+    @Basic(fetch = FetchType.LAZY)
     public byte[] getAvatar() {
         return avatar;
     }

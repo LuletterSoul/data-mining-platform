@@ -26,6 +26,11 @@ public class DateUtil {
         return new SimpleDateFormat(parttern);
     }
 
+    public static java.sql.Date GetSQLDate(String dateString) {
+        Date date = StringToDate(dateString);
+        return new java.sql.Date(date.getTime());
+    }
+
     /**
      * 获取日期中的某数值。如获取月份
      * @param date 日期

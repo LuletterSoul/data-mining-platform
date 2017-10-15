@@ -1,0 +1,2 @@
+INSERT INTO data_mining.task_algorithm_rela (taskId, algorithmId) VALUES ('ff8080815ed2cdf4015ed2d0ee6b0001', '10');
+INSERT INTO data_mining.task_algorithm_rela (taskId, algorithmId) VALUES ('ff8080815ed2cdf4015ed2d0ee6b0001', '3');

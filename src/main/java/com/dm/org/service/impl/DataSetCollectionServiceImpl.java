@@ -91,9 +91,12 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     public DataSetCollection saveCollection(CollectionDTO collectionDTO) {
 //        List<DataSetContainer> containers = containerDao.fetchContainers(collectionDTO.getContainerIds());
         DataSetCollection collection = new DataSetCollection();
+        //DTO对象相似属性克隆到真正Entity
         BeanUtils.copyProperties(collectionDTO, collection);
         collectionDao.save(collection);
+        //关联多个以保存到系统中的数据文件
         this.saveOrUpdateContainers(collection.getCollectionId(), collectionDTO.getContainerIds());
+        //保存多选值
         updateCollectionMultipleTypes(collectionDTO, collection);
         return collection;
     }

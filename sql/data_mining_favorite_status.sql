@@ -1,0 +1,2 @@
+INSERT INTO data_mining.favorite_status (favoriteId, chineseValue, englishValue) VALUES (0, '已收藏', 'favorite');
+INSERT INTO data_mining.favorite_status (favoriteId, chineseValue, englishValue) VALUES (1, '未收藏', 'isNotFavorite');

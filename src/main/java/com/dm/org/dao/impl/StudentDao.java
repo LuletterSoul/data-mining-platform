@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -111,4 +112,11 @@ public class StudentDao extends BaseDao<Student,String> {
         String hqlString = "from StudentStatus s where s.statusId = :statusId";
         return (StudentStatus) getSession().createQuery(hqlString).setParameter("statusId", statusId).getSingleResult();
     }
+
+    public List<String> fetchStudentWithoutGroup(Date begin, Date end) {
+        String hqlString = "";
+        return getSession().createQuery(hqlString).getResultList();
+    }
+
+
 }

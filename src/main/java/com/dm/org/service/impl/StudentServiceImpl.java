@@ -75,6 +75,8 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         return new StudentDTO(student);
     }
 
+
+
     @Override
     public StudentDTO update(StudentDTO studentDTO)
     {
@@ -115,5 +117,9 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     @Override
     public StudentStatus getStudentStatusPersisted(Integer statusId) {
         return studentDao.getStudentStatus(statusId);
+    }
+
+    public List<Student> fetchStudentWithoutTasks() {
+        return null;
     }
 }
