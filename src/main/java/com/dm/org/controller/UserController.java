@@ -3,16 +3,12 @@ package com.dm.org.controller;
 
 import com.dm.org.dto.UserDTO;
 import com.dm.org.model.User;
-import com.dm.org.security.UserPasswordService;
-import com.dm.org.security.constants.Constants;
+import com.vero.dm.security.constants.Constants;
 import com.dm.org.security.credentials.ClientToken;
-import com.dm.org.security.credentials.TimeOutToken;
 import com.dm.org.security.credentials.TokenManager;
-import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

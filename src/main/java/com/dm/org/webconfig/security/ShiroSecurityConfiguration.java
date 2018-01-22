@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.dm.org.security.filter.AllowOriginFilter;
-import com.dm.org.webconfig.springMvc.SpringMvcConfiguration;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -17,8 +15,6 @@ import org.apache.shiro.crypto.hash.HashService;
 import org.apache.shiro.crypto.hash.format.HexFormat;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
-import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
@@ -30,7 +26,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.dm.org.security.UserPasswordServiceImpl;
-import com.dm.org.security.credentials.RetryLimitHashedCredentialsMatcher;
 import com.dm.org.security.credentials.StatelessCredentialsMatcher;
 import com.dm.org.security.credentials.TokenManager;
 import com.dm.org.security.filter.StatelessAuthenticatingFilter;

@@ -5,11 +5,7 @@ import com.dm.org.service.impl.StatelessCredentialsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.shiro.authc.credential.DefaultPasswordService;
-import org.apache.shiro.crypto.hash.DefaultHashService;
-import org.apache.shiro.crypto.hash.HashService;
 import org.junit.Before;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .

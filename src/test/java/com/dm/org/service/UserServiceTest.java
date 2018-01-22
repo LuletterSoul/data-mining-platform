@@ -2,7 +2,7 @@
 //
 //
 //import com.dm.org.base.BaseServiceInitializer;
-//import com.dm.org.model.User;
+//import com.vero.dm.model.User;
 //import org.junit.Test;
 //import org.junit.Before;
 //import org.junit.After;

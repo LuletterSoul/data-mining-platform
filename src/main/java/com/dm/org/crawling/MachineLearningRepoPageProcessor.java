@@ -16,7 +16,6 @@ public class MachineLearningRepoPageProcessor implements PageProcessor{
 
     @Override
     public void process(Page page) {
-        http://archive.ics.uci.edu/ml/datasets.html
         page.addTargetRequests(page.getHtml().links().regex("(http://archive\\.ics\\.uci\\.edu/\\ml/\\datasets/\\)").all());
         if (page.getResultItems().get("name")==null){
             //skip this page

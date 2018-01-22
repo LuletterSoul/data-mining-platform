@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.dm.org.base.ConfigurationWirer;
-import com.dm.org.security.constants.Constants;
+import com.vero.dm.security.constants.Constants;
 
 
 /**

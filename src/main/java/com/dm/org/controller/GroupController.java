@@ -1,20 +1,15 @@
 package com.dm.org.controller;
 
 import com.dm.org.dto.StudentDTO;
-import com.dm.org.model.*;
+import com.dm.org.dto.TaskConfigParams;
 import com.dm.org.service.GroupService;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RestController;
-import com.dm.org.service.DataSetContainerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 /**
@@ -27,7 +22,6 @@ import java.util.List;
 @RequestMapping(value = "/groups")
 public class GroupController
 {
-
     private GroupService groupService;
     @Autowired
     public void setGroupService(GroupService groupService) {
@@ -39,6 +33,11 @@ public class GroupController
         return groupService.get(pageable);
     }
 
+
+    @RequestMapping(value = "/grouping",method = RequestMethod.GET)
+    public List<DataMiningGroup> previewDefaultGroupings(TaskConfigParams params) {
+        return groupService.initDefaultGroupingStrategy(params);
+    }
 
     @RequestMapping(value = "/{groupId}", method = RequestMethod.GET)
     public DataMiningGroup get(@PathVariable("groupId") String groupId) {

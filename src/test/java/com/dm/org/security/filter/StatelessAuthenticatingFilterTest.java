@@ -4,7 +4,6 @@ package com.dm.org.security.filter;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
-import org.springframework.http.HttpRequest;
 
 
 /**

@@ -1,8 +1,6 @@
 package com.dm.org.controller;
 
-import com.dm.org.dao.impl.MiningTaskTypeDao;
 import com.dm.org.model.MiningTaskType;
-import com.dm.org.service.MiningTaskService;
 import com.dm.org.service.MiningTaskTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

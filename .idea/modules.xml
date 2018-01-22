@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/data-minning-platform.iml" filepath="$PROJECT_DIR$/data-minning-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-exception/dm-exception.iml" filepath="$PROJECT_DIR$/dm-exception/dm-exception.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-model/dm-model.iml" filepath="$PROJECT_DIR$/dm-model/dm-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-repository/dm-repository.iml" filepath="$PROJECT_DIR$/dm-repository/dm-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-security/dm-security.iml" filepath="$PROJECT_DIR$/dm-security/dm-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-service/dm-service.iml" filepath="$PROJECT_DIR$/dm-service/dm-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-util/dm-util.iml" filepath="$PROJECT_DIR$/dm-util/dm-util.iml" />
     </modules>
   </component>
 </project>

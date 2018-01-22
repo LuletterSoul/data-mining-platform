@@ -8,7 +8,7 @@
     <!--</bean>-->
 
     <!--&lt;!&ndash; 凭证匹配器 &ndash;&gt;-->
-    <!--<bean id="credentialsMatcher" class="com.dm.org.security.credentials.RetryLimitHashedCredentialsMatcher">-->
+    <!--<bean id="credentialsMatcher" class="RetryLimitHashedCredentialsMatcher">-->
         <!--<constructor-arg ref="cacheManager"/>-->
         <!--<property name="hashAlgorithmName" value="md5"/>-->
         <!--<property name="hashIterations" value="2"/>-->
@@ -16,7 +16,7 @@
     <!--</bean>-->
 
     <!--&lt;!&ndash; Realm实现 &ndash;&gt;-->
-    <!--<bean id="userRealm" class="com.dm.org.security.realm.UserRealm">-->
+    <!--<bean id="userRealm" class="UserRealm">-->
         <!--<property name="userService" ref="userServiceImpl"/>-->
         <!--<property name="name" value="userRealm"/>-->
         <!--<property name="credentialsMatcher" ref="credentialsMatcher"/>-->

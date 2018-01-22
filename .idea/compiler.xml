@@ -5,16 +5,27 @@
       <profile default="true" name="Default" enabled="true">
         <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
       </profile>
-      <profile name="Annotation profile for data-mining-platform" enabled="true">
-        <sourceOutputDir name="target/generated-sources/apt" />
-        <sourceTestOutputDir name="target/generated-sources/apt-test" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
-        <module name="data-minning-platform" />
+        <module name="dm-domain" />
+        <module name="dm-exception" />
+        <module name="dm-model" />
+        <module name="dm-repository" />
+        <module name="dm-security" />
+        <module name="dm-service" />
+        <module name="dm-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="data-minning-platform" target="1.6" />
+      <module name="data-minning-platform" target="1.8" />
+      <module name="dm-exception" target="1.8" />
+      <module name="dm-model" target="1.8" />
+      <module name="dm-repository" target="1.8" />
+      <module name="dm-security" target="1.8" />
+      <module name="dm-service" target="1.8" />
+      <module name="dm-util" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -6,9 +6,7 @@ import com.dm.org.exceptions.ConstrainMappingNotNullException;
 import com.dm.org.exceptions.DataAccessObjectException;
 import com.dm.org.exceptions.DataObjectNotFoundException;
 import com.dm.org.identifier.EntityIdentifier;
-import org.hibernate.Metamodel;
 import org.hibernate.SessionFactory;
-import org.hibernate.metamodel.internal.MetamodelImpl;
 import org.hibernate.persister.entity.AbstractEntityPersister;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -213,9 +211,10 @@ public class HibernateQueryUtil
     }
 
     private static AbstractEntityPersister buildAbstractEntityPersister(Class clazz) {
-        Metamodel metaModel = factory.getMetamodel();
-        MetamodelImpl metamodelImpl = (MetamodelImpl) metaModel;
-        return (AbstractEntityPersister) metamodelImpl.entityPersister(clazz);
+//        Metamodel metaModel = factory.getMetamodel();
+//        MetamodelImpl metamodelImpl = (MetamodelImpl) metaModel;
+//        return (AbstractEntityPersister) metamodelImpl.entityPersister(clazz);
+        return null;
     }
 
     private static boolean resolvePropertyMapExistence(String[] propertyNames, String column,

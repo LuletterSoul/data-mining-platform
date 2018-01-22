@@ -1,8 +1,6 @@
 package com.dm.org.controller;
 
 import com.dm.org.base.ConfigurationWirer;
-import com.dm.org.model.*;
-import com.dm.org.service.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,6 @@ import com.dm.org.model.AreaType;
 import com.dm.org.model.AttributeType;
 import com.dm.org.model.DataSetCharacteristic;
 import com.dm.org.model.MiningTaskType;
-import com.dm.org.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

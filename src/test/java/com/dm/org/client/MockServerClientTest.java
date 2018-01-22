@@ -4,11 +4,17 @@ package com.dm.org.client;
 import java.io.IOException;
 import java.util.*;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.dm.org.model.Student;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -21,7 +27,7 @@ import org.junit.Test;
 import org.springframework.test.web.client.MockRestServiceServer;
 
 import com.dm.org.model.User;
-import com.dm.org.security.constants.Constants;
+import com.vero.dm.security.constants.Constants;
 import com.dm.org.security.credentials.TimeOutToken;
 import com.dm.org.utils.DateStyle;
 import com.dm.org.utils.DateUtil;
@@ -117,6 +123,42 @@ public class MockServerClientTest extends AbstractClientTest
         login();
         Assert.assertEquals(loginStatus, HttpStatus.SC_OK);
     }
+
+    @Test
+    public void testAPI() throws IOException {
+        HttpGet httpGet= new HttpGet("https://www.easy-mock.com/mock/5a30cff931962351da28fb56/easy-class/students");
+        HttpResponse response = client.execute(httpGet);
+        HttpEntity httpEntity = response.getEntity();
+        String jsonString  = EntityUtils.toString(httpEntity);
+//        JavaType javaType = getCollectionType(HashMap<String,Student>,Student.class);
+        Map<String,List<Student>> studentMap = objectMapper.readValue(jsonString,new TypeReference<Map<String,List<Student>>>(){});
+        List<Student> students = studentMap.get("students");
+        for (Student student :
+                students) {
+            System.out.println(student);
+        }
+        System.out.print(jsonString);
+        JSONObject object = JSONObject.parseObject(jsonString);
+        JSONArray jsonArray = (JSONArray) object.get("students");
+        List<Student> students1 = jsonArray.toJavaList(Student.class);
+        for (Student student:students1) {
+            System.out.println(students1);
+        }
+    }
+
+    @Test
+    public void testApiDocs() throws IOException {
+        String baseUrl = "https://www.easy-mock.com/mock/5a35249db3739f4feec705ac/api/v1";
+        HttpGet httpGet= new HttpGet(baseUrl + "/students/"+"123");
+        HttpResponse response = client.execute(httpGet);
+        HttpEntity httpEntity = response.getEntity();
+        String jsonString  = EntityUtils.toString(httpEntity);
+        System.out.print(jsonString);
+    }
+
+    public JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {
+        return objectMapper.getTypeFactory().constructParametricType(collectionClass, elementClasses);
+     }
 
     private TimeOutToken token() throws IOException {
         HttpPost httpPost = new HttpPost(baseURL + "/user/token");

@@ -2,7 +2,7 @@
 //
 //
 //import com.dm.org.base.BaseServiceInitializer;
-//import com.dm.org.model.DataSetAttribute;
+//import com.vero.dm.model.DataSetAttribute;
 //import com.dm.org.utils.TestDataGenerator;
 //import org.junit.Before;
 //import org.junit.After;

@@ -6,7 +6,6 @@ import org.apache.shiro.crypto.hash.DefaultHashService;
 import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.HashService;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -15,7 +14,6 @@ import org.springframework.util.MultiValueMap;
 
 import com.dm.org.model.User;
 import com.dm.org.security.realm.StatelessInfo;
-import com.dm.org.security.realm.StatelessToken;
 import com.dm.org.service.StatelessCredentialsService;
 import com.dm.org.service.UserService;
 import com.dm.org.service.impl.StatelessCredentialsServiceImpl;
