@@ -7,123 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/pom.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/swagger/Swagger2Configuration.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_2.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_2.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_7.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_7.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_2_1.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_3_4.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_dbcp_commons_dbcp_1_4.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_pool_commons_pool_1_5_4.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_1.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_30.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_6_14.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_2_4_Final.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_0_3_Final.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_0_1_Final.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_2_8_47.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_5.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_10.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_4_3_9_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_portlet_4_3_9_RELEASE.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/data-minning-platform.iml" afterPath="$PROJECT_DIR$/data-minning-platform.iml" />
-      <change beforePath="$PROJECT_DIR$/dm-api/pom.xml" afterPath="$PROJECT_DIR$/dm-api/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/AlgorithmController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/AlgorithmController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/ControllerScanningMarker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/DataSetCollectionController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/DataSetContainerController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetContainerController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/GroupController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/LoginController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/LoginController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/MiningTaskController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/MiningTaskTypeController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskTypeController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/MultipleOptionsController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/RestExceptionHandler.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/StaticResourcesMappingController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StaticResourcesMappingController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/StatisticsController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StatisticsController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/StudentController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/UserController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-exception/pom.xml" afterPath="$PROJECT_DIR$/dm-exception/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/impl/UserDao.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/impl/UserDao.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/pom.xml" afterPath="$PROJECT_DIR$/dm-security/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsServiceImpl.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenManager.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenManager.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/UserRealm.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/UserRealm.java" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/crawling/MachineLearningRepoPageProcessor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/interceptor/AccessProcessInterceptor.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/interceptor/AccessProcessInterceptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/interceptor/MethodInvocationInterceptor.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/interceptor/MethodInvocationInterceptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/DateStyle.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/DateUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/GetRequestJsonUtils.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/GetSpringBeanUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/HibernateQueryUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/JsonUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/UtilClassScanningMarker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/utils/Week.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/CharacterEncodingFilterRegistration.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/DataMiningPlatformWebAppInitializer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/DelegatingProxyFilterRegistration.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/LogbackConfiguration.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/LoggerInitializer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/aop/AopConfiguration.java" afterPath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/aop/AopConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/aop/AspectScanningMarker.java" afterPath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/aop/AspectScanningMarker.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/aop/aspect/WebServiceAspect.aj" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/cache/EhCacheConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/EhCacheConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/dataSource/DataSourceConfiguration.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/dataSource/impl/ComboPooledDataSourceConfig.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/hibernate/HibernateConfiguration.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfig.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/security/ShiroSecurityConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/springMvc/SpringMvcConfiguration.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/SpringMvcConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/transaction/HibernateTransactionConfig.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateTransactionConfig.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dataSource.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ehcache.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-context.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-shiro.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/base/BaseDaoInitializer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/base/BaseServiceInitializer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/base/ConfigurationWirer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/base/ControllerEnvWirer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/base/ControllerTestingInitializer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/base/SecurityTestingInitializer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/client/AbstractClientTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/client/MockServerClientTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetCollectionControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/DataSetContainerControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/LoginControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/MiningTaskControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/StudentControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/controller/UserControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/crawling/MachineLearningRepoPageProcessorTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/dao/UserDaoTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetAttributeDaoTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetCollectionDaoTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/dao/impl/DataSetContainerDaoTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/security/credentials/StatelessCredentialsMatcherTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/security/filter/StatelessAuthenticatingFilterTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/UserServiceTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/DataSetAttributeServiceImplTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/DataSetCollectionServiceImplTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/DataSetContainerServiceImplTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/GroupServiceImplTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/PermissionServiceImplTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/RoleTesting.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/service/impl/UserTesting.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/utils/ByteStreamTranslator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/utils/JsonUtilTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dm/org/utils/TestDataGenerator.java" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -151,20 +36,25 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data_mining@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="EhCacheConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/EhCacheConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="32" column="80" lean-forward="false" selection-start-line="32" selection-start-column="80" selection-end-line="32" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ShiroSecurityConfiguration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="-8927">
               <caret line="41" column="3" lean-forward="false" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
               <folding>
                 <element signature="e#2208#2209#0" expanded="true" />
@@ -179,43 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatelessCredentialsService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsService.java">
+      <file leaf-file-name="ehcache.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatelessCredentialsServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="27" selection-end-line="97" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatelessAuthenticatingFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="141" column="12" lean-forward="false" selection-start-line="141" selection-start-column="12" selection-end-line="141" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EhCacheConfiguration.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/EhCacheConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+            <state relative-caret-position="653">
+              <caret line="85" column="34" lean-forward="false" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -264,6 +122,46 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="712">
               <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datasource.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/datasource.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining_algorithm_info.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sql/data_mining_algorithm_info.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining_algorithm_info0.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sql/data_mining_algorithm_info0.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -463,26 +361,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractBaseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/AbstractBaseServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/impl/UserDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BaseDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/impl/BaseDao.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -533,7 +411,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/EncryptUtils.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/RetryLimitHashedCredentialsMatcher.java" />
@@ -584,6 +461,7 @@
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" />
         <option value="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" />
       </list>
     </option>
   </component>
@@ -677,42 +555,7 @@
             <path>
               <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-minning-platform" type="b2602c69:ProjectViewProjectNode" />
@@ -1038,7 +881,7 @@
       <workItem from="1516605501142" duration="76000" />
       <workItem from="1516605674796" duration="252000" />
       <workItem from="1516606133630" duration="86000" />
-      <workItem from="1516606264966" duration="3634000" />
+      <workItem from="1516606264966" duration="4198000" />
     </task>
     <task id="LOCAL-00001" summary="重构Service层、API层的工程目录，优化了依赖关系">
       <created>1516603039105</created>
@@ -1047,7 +890,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516603039105</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="完成部分目录重构">
+      <created>1516609974498</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1516609974498</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1059,7 +909,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35532000" />
+    <option name="totallyTimeSpent" value="36096000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1072,21 +922,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8967033" sideWeight="0.5193133" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990506" sideWeight="0.49840128" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.041309014" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.041309014" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.098712444" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2532189" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08791209" sideWeight="0.4870968" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06703297" sideWeight="0.4870968" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64725274" sideWeight="0.48924732" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1166,7 +1015,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="重构Service层、API层的工程目录，优化了依赖关系" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构Service层、API层的工程目录，优化了依赖关系" />
+    <MESSAGE value="完成部分目录重构" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成部分目录重构" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1179,56 +1029,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="732">
-          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1317#1318#0" expanded="false" />
-            <element signature="e#1363#1364#0" expanded="false" />
-            <element signature="e#1603#1604#0" expanded="false" />
-            <element signature="e#1651#1652#0" expanded="false" />
-            <element signature="e#1971#1972#0" expanded="false" />
-            <element signature="e#2030#2031#0" expanded="false" />
-            <element signature="e#2367#2368#0" expanded="false" />
-            <element signature="e#2421#2422#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/interceptor/AccessProcessInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/interceptor/MethodInvocationInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/DateStyle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/SpringMvcConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -1336,22 +1136,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="41" column="3" lean-forward="false" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
-          <folding>
-            <element signature="e#2208#2209#0" expanded="true" />
-            <element signature="e#2249#2250#0" expanded="true" />
-            <element signature="e#9242#9243#0" expanded="true" />
-            <element signature="e#9300#9301#0" expanded="true" />
-            <element signature="e#10462#10478#0" expanded="true" />
-            <element signature="e#11108#11109#0" expanded="true" />
-            <element signature="e#11163#11164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/DataMiningPlatformWebAppInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1063">
@@ -1397,7 +1181,7 @@
         <state relative-caret-position="564">
           <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="27" selection-end-line="97" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1406,14 +1190,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="141" column="12" lean-forward="false" selection-start-line="141" selection-start-column="12" selection-end-line="141" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1659,10 +1435,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="653">
+          <caret line="85" column="34" lean-forward="false" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/EhCacheConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+        <state relative-caret-position="347">
+          <caret line="32" column="80" lean-forward="false" selection-start-line="32" selection-start-column="80" selection-end-line="32" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8927">
+          <caret line="41" column="3" lean-forward="false" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
+          <folding>
+            <element signature="e#2208#2209#0" expanded="true" />
+            <element signature="e#2249#2250#0" expanded="true" />
+            <element signature="e#9242#9243#0" expanded="true" />
+            <element signature="e#9300#9301#0" expanded="true" />
+            <element signature="e#10462#10478#0" expanded="true" />
+            <element signature="e#11108#11109#0" expanded="true" />
+            <element signature="e#11163#11164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/datasource.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/data_mining_algorithm_info.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/data_mining_algorithm_info0.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
