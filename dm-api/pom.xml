@@ -9,17 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dm-security</artifactId>
+    <artifactId>dm-api</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.vero.dm</groupId>
             <artifactId>dm-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vero.dm</groupId>
-            <artifactId>data-mining-platform</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

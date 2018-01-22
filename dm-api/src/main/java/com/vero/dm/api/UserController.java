@@ -1,12 +1,10 @@
-package com.dm.org.controller;
+package com.vero.dm.api;
 
 
-import com.dm.org.dto.UserDTO;
-import com.dm.org.model.User;
-import com.vero.dm.security.constants.Constants;
-import com.dm.org.security.credentials.ClientToken;
-import com.dm.org.security.credentials.TokenManager;
-import com.dm.org.service.UserService;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.UserDTO;
+import com.vero.dm.security.constants.Constants;
+import com.vero.dm.security.credentials.ClientToken;
+import com.vero.dm.security.credentials.TokenManager;
+import com.vero.dm.service.UserService;
 
 
 /**
@@ -31,11 +32,11 @@ public class UserController
 {
     private UserService userService;
 
-//    private UserPasswordService passwordService;
+    // private UserPasswordService passwordService;
 
     private TokenManager tokenManager;
 
-//    private StatelessCredentialsService credentialsService;
+    // private StatelessCredentialsService credentialsService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -46,11 +47,11 @@ public class UserController
         this.userService = userService;
     }
 
-//    @Autowired
-//    public void setPasswordService(UserPasswordService passwordService)
-//    {
-//        this.passwordService = passwordService;
-//    }
+    // @Autowired
+    // public void setPasswordService(UserPasswordService passwordService)
+    // {
+    // this.passwordService = passwordService;
+    // }
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -58,10 +59,10 @@ public class UserController
         this.tokenManager = tokenManager;
     }
 
-//    @Autowired
-//    public void setCredentialsService(StatelessCredentialsService credentialsService) {
-//        this.credentialsService = credentialsService;
-//    }
+    // @Autowired
+    // public void setCredentialsService(StatelessCredentialsService credentialsService) {
+    // this.credentialsService = credentialsService;
+    // }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public UserDTO profile(@PathVariable("username") String username)
@@ -76,25 +77,27 @@ public class UserController
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public UserDTO update(@RequestBody UserDTO userDTO) {
+    public UserDTO update(@RequestBody UserDTO userDTO)
+    {
         return userService.updateUser(userDTO);
     }
 
-    @RequestMapping(value = "/{username}/roles",method = RequestMethod.GET)
-    public List<String> roles(@PathVariable("username") String username) {
+    @RequestMapping(value = "/{username}/roles", method = RequestMethod.GET)
+    public List<String> roles(@PathVariable("username") String username)
+    {
         return userService.findRoleNameSetByUserName(username);
     }
 
-
-    @RequestMapping(value = "/{username}/token",method = RequestMethod.GET)
+    @RequestMapping(value = "/{username}/token", method = RequestMethod.GET)
     public ClientToken getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
                                 @PathVariable("username") String username)
     {
         return tokenManager.getTimeOutToken(username, timestamp);
     }
 
-    @RequestMapping(value = "/{username}/publicSalt",method = RequestMethod.GET)
-    public String publicSalt(@PathVariable("username") String username) {
+    @RequestMapping(value = "/{username}/publicSalt", method = RequestMethod.GET)
+    public String publicSalt(@PathVariable("username") String username)
+    {
         return userService.fetchPublicSalt(username);
     }
 
@@ -107,7 +110,8 @@ public class UserController
     }
 
     @RequestMapping(value = "/logout")
-    public String logout(@RequestParam("username") String username) {
+    public String logout(@RequestParam("username") String username)
+    {
         tokenManager.cleanTokenCache(username);
         return "Logout Success";
     }

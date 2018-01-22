@@ -11,12 +11,12 @@ import org.apache.shiro.util.ByteSource;
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
- *@date created in 12:07 2017/7/17.
+ * @date created in 12:07 2017/7/17.
  * @description
  * @modified by:
  */
 
-public class StatelessToken implements AuthenticationToken,SaltedAuthenticationInfo
+public class StatelessToken implements AuthenticationToken, SaltedAuthenticationInfo
 {
 
     private String username;
@@ -27,7 +27,7 @@ public class StatelessToken implements AuthenticationToken,SaltedAuthenticationI
 
     private String clientDigest;
 
-    public StatelessToken(String username, String key,Map<String, ?> params, String clientDigest)
+    public StatelessToken(String username, String key, Map<String, ?> params, String clientDigest)
     {
         this.username = username;
         this.apiKey = key;
@@ -62,31 +62,35 @@ public class StatelessToken implements AuthenticationToken,SaltedAuthenticationI
     }
 
     @Override
-    public PrincipalCollection getPrincipals() {
+    public PrincipalCollection getPrincipals()
+    {
         return null;
     }
 
-    public String getClientDigest() {
+    public String getClientDigest()
+    {
         return clientDigest;
     }
 
-
-    public void setApiKey(String apiKey) {
+    public void setApiKey(String apiKey)
+    {
         this.apiKey = apiKey;
     }
 
-    public String getApiKey() {
+    public String getApiKey()
+    {
         return apiKey;
     }
 
     @Override
-    public Object getCredentials() {
+    public Object getCredentials()
+    {
         return getClientDigest();
     }
 
-
     @Override
-    public ByteSource getCredentialsSalt() {
+    public ByteSource getCredentialsSalt()
+    {
         return null;
     }
 }

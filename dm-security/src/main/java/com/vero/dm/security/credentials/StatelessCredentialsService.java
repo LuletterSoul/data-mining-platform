@@ -3,12 +3,11 @@ package com.vero.dm.security.credentials;
 
 import java.util.Map;
 
-import com.vero.dm.security.realm.StatelessInfo;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.crypto.hash.Hash;
 
-import com.dm.org.security.realm.StatelessInfo;
+import com.vero.dm.security.realm.StatelessInfo;
 
 
 /**

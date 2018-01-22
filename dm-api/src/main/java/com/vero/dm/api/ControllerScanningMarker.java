@@ -1,4 +1,4 @@
-package com.dm.org.controller;
+package com.vero.dm.api;
 
 import com.dm.org.dao.DaoScanningMarker;
 import org.springframework.stereotype.Component;

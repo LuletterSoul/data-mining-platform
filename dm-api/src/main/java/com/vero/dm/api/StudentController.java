@@ -1,9 +1,8 @@
-package com.dm.org.controller;
+package com.vero.dm.api;
 
 
 import java.util.List;
 
-import com.dm.org.model.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.dm.org.dto.StudentDTO;
-import com.dm.org.service.StudentService;
+import com.vero.dm.model.Student;
+import com.vero.dm.repository.dto.StudentDTO;
+import com.vero.dm.service.StudentService;
 
 
 /**

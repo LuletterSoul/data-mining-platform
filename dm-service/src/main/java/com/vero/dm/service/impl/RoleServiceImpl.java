@@ -7,9 +7,9 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.dm.org.model.Permission;
-import com.dm.org.model.Role;
-import com.dm.org.service.RoleService;
+import com.vero.dm.model.Permission;
+import com.vero.dm.model.Role;
+import com.vero.dm.service.RoleService;
 
 
 /**

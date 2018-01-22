@@ -1,15 +1,10 @@
 package com.vero.dm.service.impl;
 
 
-import com.dm.org.dto.UserDTO;
-import com.dm.org.exceptions.DataObjectNotFoundException;
-import com.dm.org.model.Permission;
-import com.dm.org.model.Role;
-import com.dm.org.model.User;
-import com.dm.org.service.StatelessCredentialsService;
-import com.dm.org.service.UserService;
-import com.vero.dm.model.User;
-import com.vero.dm.service.UserService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +12,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import com.vero.dm.exception.DataObjectNotFoundException;
+import com.vero.dm.model.Permission;
+import com.vero.dm.model.Role;
+import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.UserDTO;
+import com.vero.dm.security.credentials.StatelessCredentialsService;
+import com.vero.dm.service.UserService;
 
 
 /**

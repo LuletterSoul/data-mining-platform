@@ -1,8 +1,9 @@
 package com.vero.dm.security.realm;
 
 
-import com.dm.org.model.User;
-import com.dm.org.enums.UserAccessStatus;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -13,10 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.dm.org.service.UserService;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
+import com.vero.dm.model.User;
+import com.vero.dm.model.UserAccessStatus;
+import com.vero.dm.service.UserService;
 
 
 /**
@@ -43,7 +43,8 @@ public class UserRealm extends AuthorizingRealm
     {
         String username = (String)principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        Set<String> roleNames = new LinkedHashSet<String>(userService.findRoleNameSetByUserName(username));
+        Set<String> roleNames = new LinkedHashSet<String>(
+            userService.findRoleNameSetByUserName(username));
         authorizationInfo.setRoles(roleNames);
         authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
         return authorizationInfo;
@@ -59,7 +60,8 @@ public class UserRealm extends AuthorizingRealm
         User user = userService.findByUserName(username);
         if (user == null)
         {
-            String message = "User "+username+" is unknown or password not correct.Please try again or contact adminstractor.";
+            String message = "User " + username
+                             + " is unknown or password not correct.Please try again or contact adminstractor.";
             throw new UnknownAccountException(message);// 没找到帐号
         }
 
@@ -70,9 +72,7 @@ public class UserRealm extends AuthorizingRealm
 
         return new SimpleAuthenticationInfo(user.getUsername(), // 用户名
             user.getPassword(), // 密码
-            ByteSource.Util.bytes(user.getPublicSalt()),
-            getName()
-        );
+            ByteSource.Util.bytes(user.getPublicSalt()), getName());
     }
     //
     // @Override

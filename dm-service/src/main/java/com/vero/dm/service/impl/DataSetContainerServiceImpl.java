@@ -5,16 +5,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import javax.servlet.ServletContext;
 
-import com.dm.org.model.DataSetCollection;
-import com.dm.org.model.DataSetContainer;
-import com.dm.org.service.DataSetContainerService;
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
+import com.vero.dm.model.DataSetCollection;
+import com.vero.dm.model.DataSetContainer;
+import com.vero.dm.service.DataSetContainerService;
 
 
 /**
@@ -36,7 +36,8 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
-    public List<String> getContainerIds() {
+    public List<String> getContainerIds()
+    {
         return containerDao.getContainerIds();
     }
 
@@ -67,12 +68,14 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
-    public List<String> getContainerNames() {
+    public List<String> getContainerNames()
+    {
         return containerDao.getContainerNames();
     }
 
     @Override
-    public String getFileName(String containerId) {
+    public String getFileName(String containerId)
+    {
         return containerDao.getFileName(containerId);
     }
 
@@ -82,7 +85,8 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
-    public DataSetContainer getContainerByFileName(String fileName) {
+    public DataSetContainer getContainerByFileName(String fileName)
+    {
         return containerDao.getContainerByFileName(fileName);
     }
 
@@ -90,41 +94,45 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     public String uploadData(String containerId, MultipartFile file)
     {
         DataSetContainer container = this.findById(containerId);
-        //获取应用部署到服务器之后的应用上下文，为文件保存的路径做基础规划；
-         ServletContext context =
-         ContextLoader.getCurrentWebApplicationContext().getServletContext();
-        //获取到绝对路径
+        // 获取应用部署到服务器之后的应用上下文，为文件保存的路径做基础规划；
+        ServletContext context = ContextLoader.getCurrentWebApplicationContext().getServletContext();
+        // 获取到绝对路径
         String relativePath = "\\dataSetContainer\\" + container.getContainerId();
-         String realPath = context.getRealPath(relativePath);
+        String realPath = context.getRealPath(relativePath);
         try
         {
-            FileUtils.copyInputStreamToFile(file.getInputStream(),
-                    new File(realPath));
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath));
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-        //获取文件名
-        String containerName = file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."));
-        //保存到数据库，并返回文件容器的描述
-        return containerDao.linkPath(containerId, containerName, file.getOriginalFilename(), realPath);
+        // 获取文件名
+        String containerName = file.getOriginalFilename().substring(
+            file.getOriginalFilename().indexOf("."));
+        // 保存到数据库，并返回文件容器的描述
+        return containerDao.linkPath(containerId, containerName, file.getOriginalFilename(),
+            realPath);
     }
 
     @Override
-    public byte[] downloadData(String containerId, String filePath) {
+    public byte[] downloadData(String containerId, String filePath)
+    {
         File file = new File(filePath);
-        try {
+        try
+        {
             return FileUtils.readFileToByteArray(file);
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         return null;
     }
 
-
     @Override
-    public String getDataSetPath(String containerId) {
+    public String getDataSetPath(String containerId)
+    {
         return containerDao.getDataSetPath(containerId);
     }
 

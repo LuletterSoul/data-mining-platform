@@ -9,6 +9,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="dm-api" />
         <module name="dm-domain" />
         <module name="dm-exception" />
         <module name="dm-model" />
@@ -20,12 +21,14 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="data-minning-platform" target="1.8" />
+      <module name="dm-api" target="1.8" />
       <module name="dm-exception" target="1.8" />
       <module name="dm-model" target="1.8" />
       <module name="dm-repository" target="1.8" />
       <module name="dm-security" target="1.8" />
       <module name="dm-service" target="1.8" />
       <module name="dm-util" target="1.8" />
+      <module name="dm-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

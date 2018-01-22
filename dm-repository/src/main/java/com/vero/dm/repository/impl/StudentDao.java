@@ -34,7 +34,7 @@ public class StudentDao extends BaseDao<Student, String>
     {
         buildCriteriaQuery();
         criteriaQuery.select(baseRoot);
-        return getSession().createQuery(criteriaQuery).list();
+        return getSession().createQuery(criteriaQuery).getResultList();
     }
 
     public int deleteStudentById(String studentId)
@@ -133,7 +133,7 @@ public class StudentDao extends BaseDao<Student, String>
 
     public List<String> fetchStudentWithoutGroup(Date begin, Date end)
     {
-        String hqlString = "select s from Student s left join s.miningGroups g left join g.dataMiningTask t where t.startTime>= :begin and";
+        String hqlString = "select s from Student s left join s.miningGroups g left join g.dataMiningTask t where t.startTime>= :begin";
         return getSession().createQuery(hqlString).getResultList();
     }
 

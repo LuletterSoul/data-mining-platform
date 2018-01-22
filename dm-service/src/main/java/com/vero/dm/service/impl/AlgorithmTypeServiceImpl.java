@@ -1,8 +1,9 @@
 package com.vero.dm.service.impl;
 
-import com.dm.org.model.AlgorithmType;
-import com.dm.org.service.AlgorithmTypeService;
 import org.springframework.stereotype.Service;
+
+import com.vero.dm.model.AlgorithmType;
+import com.vero.dm.service.AlgorithmTypeService;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .

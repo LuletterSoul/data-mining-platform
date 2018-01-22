@@ -13,6 +13,7 @@
         <module>dm-exception</module>
         <module>dm-util</module>
         <module>dm-security</module>
+        <module>dm-api</module>
     </modules>
 
     <parent>

@@ -1,4 +1,4 @@
-package com.dm.org.controller;
+package com.vero.dm.api;
 
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -51,6 +51,7 @@ public class StaticResourcesMappingController
     {
         return "forward:/static/manager/students.html";
     }
+
     @RequestMapping(value = "/manager/data_mining", method = RequestMethod.GET)
     public String forwardDataMining()
     {

@@ -1,4 +1,4 @@
-package com.vero.dm.repository.comfig;
+package com.vero.dm.repository.config;
 
 
 import java.util.HashMap;

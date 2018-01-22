@@ -1,19 +1,20 @@
 package com.vero.dm.service.impl;
 
 
-import com.dm.org.dto.StudentDTO;
-import com.dm.org.model.FavoriteStatus;
-import com.dm.org.model.Student;
-import com.dm.org.model.StudentStatus;
-import com.dm.org.service.StudentService;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.vero.dm.model.FavoriteStatus;
+import com.vero.dm.model.Student;
+import com.vero.dm.model.StudentStatus;
+import com.vero.dm.repository.dto.StudentDTO;
+import com.vero.dm.service.StudentService;
 
 
 /**
@@ -48,8 +49,8 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         int counts = studentDao.countAll();
         List<Student> students = studentDao.get(pageable);
         List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
-        for (Student s :
-                students) {
+        for (Student s : students)
+        {
             studentDTOS.add(StudentDTO.build(s));
         }
         return new PageImpl<StudentDTO>(studentDTOS, pageable, counts);
@@ -65,21 +66,21 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
 
     public StudentDTO save(Student student)
     {
-        FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(student.getFavorite().getFavoriteId());
-        StudentStatus studentStatus = this.getStudentStatusPersisted(student.getStatus().getStatusId());
+        FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(
+            student.getFavorite().getFavoriteId());
+        StudentStatus studentStatus = this.getStudentStatusPersisted(
+            student.getStatus().getStatusId());
         student.setFavorite(favoriteStatus);
         student.setStatus(studentStatus);
         this.registerUser(student);
         return new StudentDTO(student);
     }
 
-
-
     @Override
     public StudentDTO update(StudentDTO studentDTO)
     {
         Student student = studentDao.getStudentById(studentDTO.getStudentId());
-        BeanUtils.copyProperties(studentDTO,student , "status", "favorite");
+        BeanUtils.copyProperties(studentDTO, student, "status", "favorite");
         studentDao.update(student);
         return new StudentDTO(student);
     }
@@ -109,15 +110,19 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public FavoriteStatus getFavoriteStatusPersisted(Integer statusId) {
+    public FavoriteStatus getFavoriteStatusPersisted(Integer statusId)
+    {
         return studentDao.getFavoriteStatusPersisted(statusId);
     }
+
     @Override
-    public StudentStatus getStudentStatusPersisted(Integer statusId) {
+    public StudentStatus getStudentStatusPersisted(Integer statusId)
+    {
         return studentDao.getStudentStatus(statusId);
     }
 
-    public List<Student> fetchStudentWithoutTasks() {
+    public List<Student> fetchStudentWithoutTasks()
+    {
         return null;
     }
 }

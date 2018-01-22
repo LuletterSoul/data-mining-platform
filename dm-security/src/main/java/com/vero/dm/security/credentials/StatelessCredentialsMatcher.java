@@ -1,7 +1,6 @@
 package com.vero.dm.security.credentials;
 
 
-import com.vero.dm.security.realm.StatelessRealm;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -11,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vero.dm.security.realm.StatelessInfo;
+import com.vero.dm.security.realm.StatelessRealm;
 import com.vero.dm.security.realm.StatelessToken;
-import com.dm.org.service.StatelessCredentialsService;
 
 
 /**

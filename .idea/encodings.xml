@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dm-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dm-exception" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dm-model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/User.java" charset="UTF-8" />
@@ -9,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/dm-security" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dm-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dm-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dm-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/dm/org/webconfig/DataMiningPlatformWebAppInitializer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/base/BaseServiceInitializer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/dm/org/controller/UserControllerTest.java" charset="UTF-8" />

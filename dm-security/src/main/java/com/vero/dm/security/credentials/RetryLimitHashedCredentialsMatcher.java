@@ -1,7 +1,8 @@
 package com.vero.dm.security.credentials;
 
 
-import com.dm.org.security.UserPasswordService;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
@@ -9,7 +10,7 @@ import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import com.vero.dm.security.UserPasswordService;
 
 
 /**
@@ -41,7 +42,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info)
     {
         String username = (String)token.getPrincipal();
-        String accountCredentials = (String) info.getCredentials();
+        String accountCredentials = (String)info.getCredentials();
         Object submittedCredential = token.getCredentials();
         ByteSource credentialsSalt = getCredentialsSalt(info);
         AtomicInteger retryCount = getPasswordRetryCount(username);
@@ -51,7 +52,8 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
             throw new ExcessiveAttemptsException();
         }
 
-        boolean isMatched = passwordService.passwordMatch(submittedCredential,accountCredentials,credentialsSalt);
+        boolean isMatched = passwordService.passwordMatch(submittedCredential, accountCredentials,
+            credentialsSalt);
         if (isMatched)
         {
             passwordRetryCache.remove(username);
@@ -60,11 +62,11 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
     }
 
     private ByteSource getCredentialsSalt(AuthenticationInfo info)
-     {
-         if(info instanceof SaltedAuthenticationInfo)
-        return ((SaltedAuthenticationInfo) info).getCredentialsSalt();
-         else
-             throw new  AuthenticationException();
+    {
+        if (info instanceof SaltedAuthenticationInfo)
+            return ((SaltedAuthenticationInfo)info).getCredentialsSalt();
+        else
+            throw new AuthenticationException();
     }
 
     private AtomicInteger getPasswordRetryCount(String username)

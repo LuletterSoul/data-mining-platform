@@ -1,21 +1,24 @@
 package com.vero.dm.service;
 
-import com.dm.org.dto.StudentDTO;
-import com.dm.org.model.FavoriteStatus;
-import com.dm.org.model.Student;
-import com.dm.org.model.StudentStatus;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.vero.dm.model.FavoriteStatus;
+import com.vero.dm.model.Student;
+import com.vero.dm.model.StudentStatus;
+import com.vero.dm.repository.dto.StudentDTO;
+
+
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
- * @version 1.5
- *          created in
+ * @version 1.5 created in
  */
 
-public interface StudentService extends UserService{
+public interface StudentService extends UserService
+{
     List<StudentDTO> getStudentList();
 
     List<String> getStudentIds();
@@ -43,6 +46,5 @@ public interface StudentService extends UserService{
      * @return
      */
     StudentStatus getStudentStatusPersisted(Integer statusId);
-
 
 }

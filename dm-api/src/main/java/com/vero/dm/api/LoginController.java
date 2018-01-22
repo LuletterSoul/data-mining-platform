@@ -1,9 +1,8 @@
-package com.dm.org.controller;
+package com.vero.dm.api;
 
 
-import com.dm.org.model.User;
-import com.dm.org.security.credentials.DisposableSaltEntry;
-import com.dm.org.service.UserService;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
+import com.vero.dm.model.User;
+import com.vero.dm.security.credentials.DisposableSaltEntry;
+import com.vero.dm.service.UserService;
 
 
 /**

@@ -1,7 +1,7 @@
-package com.dm.org.controller;
+package com.vero.dm.api;
 
-import com.dm.org.dto.MiningTaskDTO;
-import com.dm.org.service.MiningTaskService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.vero.dm.model.Algorithm;
+import com.vero.dm.model.DataMiningGroup;
+import com.vero.dm.model.DataMiningTask;
+import com.vero.dm.model.DataSetCollection;
+import com.vero.dm.repository.dto.MiningTaskDTO;
+import com.vero.dm.service.MiningTaskService;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -30,7 +35,7 @@ public class MiningTaskController
     }
 
     @RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE)
-    public ResponseEntity<DataMiningTask> deleteById( @PathVariable("taskId") String taskId)
+    public ResponseEntity<DataMiningTask> deleteById(@PathVariable("taskId") String taskId)
     {
         return new ResponseEntity<DataMiningTask>(miningTaskService.deleteByTaskId(taskId), HttpStatus.NO_CONTENT);
     }

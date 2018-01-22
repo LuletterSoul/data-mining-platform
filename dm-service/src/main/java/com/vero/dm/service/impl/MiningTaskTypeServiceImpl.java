@@ -1,8 +1,9 @@
 package com.vero.dm.service.impl;
 
-import com.dm.org.model.MiningTaskType;
-import com.dm.org.service.MiningTaskTypeService;
 import org.springframework.stereotype.Service;
+
+import com.vero.dm.model.MiningTaskType;
+import com.vero.dm.service.MiningTaskTypeService;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
