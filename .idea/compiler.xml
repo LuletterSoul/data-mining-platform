@@ -17,6 +17,7 @@
         <module name="dm-security" />
         <module name="dm-service" />
         <module name="dm-util" />
+        <module name="dm-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

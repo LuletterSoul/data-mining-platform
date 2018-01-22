@@ -14,11 +14,8 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.HashRequest;
 import org.apache.shiro.crypto.hash.SimpleHash;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.vero.dm.security.realm.StatelessInfo;
-import com.vero.dm.service.UserService;
 
 
 /**
@@ -32,7 +29,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
 
     private Mac mac;
 
-    private UserService userService;
+//    private UserService userService;
 
     public final static String MAC_DEFAULT_ALGORITHM = "HmacSHA256";
 
@@ -52,12 +49,12 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
         }
     }
 
-    @Autowired
-    @Qualifier("userServiceImpl")
-    public void setUserService(UserService userService)
-    {
-        this.userService = userService;
-    }
+//    @Autowired
+//    @Qualifier("userServiceImpl")
+//    public void setUserService(UserService userService)
+//    {
+//        this.userService = userService;
+//    }
 
     @Override
     public Hash computeHashWithParams(Object credentials, Map<String, ?> params, int iterations)

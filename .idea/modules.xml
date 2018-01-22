@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/dm-security/dm-security.iml" filepath="$PROJECT_DIR$/dm-security/dm-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/dm-service/dm-service.iml" filepath="$PROJECT_DIR$/dm-service/dm-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/dm-util/dm-util.iml" filepath="$PROJECT_DIR$/dm-util/dm-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dm-web/dm-web.iml" filepath="$PROJECT_DIR$/dm-web/dm-web.iml" />
     </modules>
   </component>
 </project>

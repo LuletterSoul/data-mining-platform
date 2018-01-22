@@ -11,9 +11,8 @@ import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.vero.dm.service.UserService;
+import com.vero.dm.repository.impl.UserDao;
 import com.vero.dm.util.DateStyle;
 import com.vero.dm.util.DateUtil;
 
@@ -28,7 +27,9 @@ public class TokenManager
 {
     private Cache<String, String> tokenCache;
 
-    private UserService userService;
+    // private UserService userService;
+
+    private UserDao userDao;
 
     public final static int DEFAULT_TIME_OUT_LIMIT = 3;
 
@@ -54,23 +55,29 @@ public class TokenManager
     }
 
     @Autowired
+    public void setUserDao(UserDao userDao)
+    {
+        this.userDao = userDao;
+    }
+
+    @Autowired
     public void setCredentialsService(StatelessCredentialsService credentialsService)
     {
         this.credentialsService = credentialsService;
     }
 
-    @Autowired
-    @Qualifier("userServiceImpl")
-    public void setUserService(UserService userService)
-    {
-        this.userService = userService;
-    }
+    // @Autowired
+    // @Qualifier("userServiceImpl")
+    // public void setUserService(UserService userService)
+    // {
+    // this.userService = userService;
+    // }
 
     public String generateTimeOutToken(String username)
     {
         Date date = new Date();
         String formattedDate = dateToString(date);
-        String privateSalt = userService.fetchPrivateSalt(username);
+        String privateSalt = userDao.getPrivateSalt(username);
         // String publicSalt = userService.fetchPublicSalt(username);
         // token.setPublicSalt(publicSalt);
         return generateEncryptedToken(privateSalt, username, formattedDate);

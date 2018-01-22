@@ -14,11 +14,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.vero.dm.model.User;
+import com.vero.dm.repository.impl.UserDao;
 import com.vero.dm.security.credentials.TokenManager;
-import com.vero.dm.service.UserService;
 
 
 /**
@@ -29,18 +28,21 @@ import com.vero.dm.service.UserService;
  */
 public class StatelessRealm extends AuthorizingRealm
 {
-    private UserService userService;
+    // private UserService userService;
+
+    @Autowired
+    private UserDao userDao;
 
     private TokenManager tokenManager;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StatelessRealm.class);
 
-    @Autowired
-    @Qualifier("userServiceImpl")
-    public void setUserService(UserService userService)
-    {
-        this.userService = userService;
-    }
+    // @Autowired
+    // @Qualifier("userServiceImpl")
+    // public void setUserService(UserService userService)
+    // {
+    // this.userService = userService;
+    // }
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -60,9 +62,9 @@ public class StatelessRealm extends AuthorizingRealm
         String username = (String)principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         Set<String> roleNames = new LinkedHashSet<String>(
-            userService.findRoleNameSetByUserName(username));
+            userDao.findRoleNameSetByUserName(username));
         authorizationInfo.setRoles(roleNames);
-        authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
+        authorizationInfo.setStringPermissions(userDao.findPermissionNameSet(username));
         return authorizationInfo;
     }
 
@@ -73,7 +75,7 @@ public class StatelessRealm extends AuthorizingRealm
         StatelessToken statelessToken = (StatelessToken)token;
         String username = statelessToken.getUsername();
         String apiKey = statelessToken.getApiKey();
-        User user = userService.fetchByUserName(username);
+        User user = userDao.fetchByUserName(username);
         String password = user.getPassword();
         String tokenSaltHash = tokenManager.getHashToken(apiKey);
         LOGGER.info("API_KEY:{},TOKEN:{}", apiKey, tokenSaltHash);
