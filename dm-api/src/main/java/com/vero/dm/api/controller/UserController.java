@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.security.credentials.TokenManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import com.vero.dm.model.User;
 import com.vero.dm.repository.dto.UserDTO;
 import com.vero.dm.security.constants.Constants;
 import com.vero.dm.security.credentials.ClientToken;
-import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.service.UserService;
 
 
@@ -27,7 +27,7 @@ import com.vero.dm.service.UserService;
  * @since data-mining-platform
  */
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = ApiVersion.API_VERSION + "/user")
 public class UserController
 {
     private UserService userService;
@@ -39,6 +39,11 @@ public class UserController
     // private StatelessCredentialsService credentialsService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    public void setTokenManager(TokenManager tokenManager) {
+        this.tokenManager = tokenManager;
+    }
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -53,11 +58,11 @@ public class UserController
     // this.passwordService = passwordService;
     // }
 
-    @Autowired
-    public void setTokenManager(TokenManager tokenManager)
-    {
-        this.tokenManager = tokenManager;
-    }
+//     @Autowired
+        // public void setTokenManager(TokenManager tokenManager)
+        // {
+        // this.tokenManager = tokenManager;
+        // }
 
     // @Autowired
     // public void setCredentialsService(StatelessCredentialsService credentialsService) {

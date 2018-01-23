@@ -19,12 +19,12 @@
         </dependency>
         <dependency>
             <groupId>com.vero.dm</groupId>
-            <artifactId>dm-repository</artifactId>
+            <artifactId>dm-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.vero.dm</groupId>
-            <artifactId>dm-util</artifactId>
+            <artifactId>dm-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

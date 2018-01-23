@@ -17,7 +17,7 @@ import com.vero.dm.service.DataSetCollectionService;
  */
 
 @RestController
-@RequestMapping(value = "/options")
+@RequestMapping(value = ApiVersion.API_VERSION+"/options")
 public class MultipleOptionsController {
     private DataSetCollectionService collectionService;
 

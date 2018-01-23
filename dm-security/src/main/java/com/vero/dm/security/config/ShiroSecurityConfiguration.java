@@ -12,23 +12,24 @@ import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.crypto.hash.DefaultHashService;
 import org.apache.shiro.crypto.hash.HashService;
-import org.apache.shiro.crypto.hash.format.HexFormat;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.filter.DelegatingFilterProxy;
 
-import com.vero.dm.security.UserPasswordServiceImpl;
 import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
 import com.vero.dm.security.credentials.StatelessCredentialsServiceImpl;
-import com.vero.dm.security.credentials.TokenManager;
+import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 import com.vero.dm.security.manager.StatelessDefaultSubjectFactory;
 import com.vero.dm.security.realm.StatelessRealm;
@@ -58,11 +59,11 @@ public class ShiroSecurityConfiguration
         return shiroCacheManager;
     }
 
-    @Bean
-    public TokenManager tokenManager()
-    {
-        return new TokenManager();
-    }
+    // @Bean
+    // public TokenManager tokenManager()
+    // {
+    // return new TokenManager();
+    // }
 
     // @Bean
     // public RetryLimitHashedCredentialsMatcher retryLimitHashedCredentialsMatcher()
@@ -133,9 +134,10 @@ public class ShiroSecurityConfiguration
      * corresponding embed hash service,reset it's boolean generate public salt configuration.
      * Developer will generate salt by himself via
      * {@link StatelessCredentialsServiceImpl#generateRandomSalt(int)}
-     * 
+     *
      * @since
      */
+
     @Bean
     public StatelessCredentialsServiceImpl statelessCredentialsService()
     {
@@ -176,7 +178,7 @@ public class ShiroSecurityConfiguration
 
     /**
      * Shiro 权限管理框架核心处理器
-     * 
+     *
      * @return
      */
     @Bean
@@ -195,7 +197,7 @@ public class ShiroSecurityConfiguration
     /**
      * {@link ModularRealmAuthenticator}是Shiro 官方默认提供的鉴权器 但默认的初始化后，其不具有授权成功、失败、登出等操作的监听器
      * {@link AuthenticationListener} 这里实现了监听器简单的注册逻辑
-     * 
+     *
      * @return 重新配置的统一鉴权器
      */
     // @Bean
@@ -244,19 +246,25 @@ public class ShiroSecurityConfiguration
         return new StatelessAuthenticatingFilter();
     }
 
+    @Bean
+    public AllowOriginFilter allowOriginFilter()
+    {
+        return new AllowOriginFilter();
+    }
+
     // @Bean("originFilter")
     // public AllowOriginFilter allowOriginFilter(){
     // return new AllowOriginFilter();
     // }
 
-    @Bean
-    public UserPasswordServiceImpl passwordService()
-    {
-        UserPasswordServiceImpl passwordService = new UserPasswordServiceImpl();
-        passwordService.setHashService(hashService());
-        passwordService.setHashFormat(new HexFormat());
-        return passwordService;
-    }
+    // @Bean
+    // public UserPasswordServiceImpl passwordService()
+    // {
+    // UserPasswordServiceImpl passwordService = new UserPasswordServiceImpl();
+    // passwordService.setHashService(hashService());
+    // passwordService.setHashFormat(new HexFormat());
+    // return passwordService;
+    // }
 
     @Bean
     public ShiroFilterFactoryBean shiroFilter()
@@ -268,20 +276,23 @@ public class ShiroSecurityConfiguration
         return shiroFilter;
     }
 
-    @Bean
-    public LogoutFilter logout()
-    {
-        LogoutFilter logoutFilter = new LogoutFilter();
-        logoutFilter.setPostOnlyLogout(true);
-        logoutFilter.setRedirectUrl("/static/index.html");
-        return logoutFilter;
-    }
+    // @Bean
+    // public LogoutFilter logout()
+    // {
+    // LogoutFilter logoutFilter = new LogoutFilter();
+    // logoutFilter.setPostOnlyLogout(true);
+    // logoutFilter.setRedirectUrl("/static/index.html");
+    // return logoutFilter;
+    // }
 
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean)
     {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        filterChainDefinitionMap.put("/user/{username}/token", "anon");
-        filterChainDefinitionMap.put("/*", "statelessFilter");
+        filterChainDefinitionMap.put("/token/**", "anon");
+        filterChainDefinitionMap.put("/public_salt/**", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+//        filterChainDefinitionMap.put("/api/**", "statelessFilter");
+        filterChainDefinitionMap.put("/**", "allowOriginFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 
@@ -293,6 +304,27 @@ public class ShiroSecurityConfiguration
         hashService.setHashAlgorithmName("SHA-256");
         hashService.setHashIterations(1000);
         return hashService;
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor()
+    {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
+        return authorizationAttributeSourceAdvisor;
+    }
+
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean()
+    {
+        FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
+        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
+        // 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理
+        filterRegistration.addInitParameter("targetFilterLifecycle", "true");
+        filterRegistration.setEnabled(true);
+        filterRegistration.addUrlPatterns("/*");
+        filterRegistration.setOrder(1);
+        return filterRegistration;
     }
 
     @Bean

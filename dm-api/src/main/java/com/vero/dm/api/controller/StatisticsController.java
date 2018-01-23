@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping(value = "/statistics")
+@RequestMapping(value = ApiVersion.API_VERSION+"/statistics")
 public class StatisticsController
 {
     @RequestMapping(value = "/systemStatistics", method = RequestMethod.GET)

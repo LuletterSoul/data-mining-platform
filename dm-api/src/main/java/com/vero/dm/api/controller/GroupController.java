@@ -23,7 +23,7 @@ import com.vero.dm.service.GroupService;
  */
 
 @RestController
-@RequestMapping(value = "/groups")
+@RequestMapping(value =ApiVersion.API_VERSION+"/groups")
 public class GroupController
 {
     private GroupService groupService;

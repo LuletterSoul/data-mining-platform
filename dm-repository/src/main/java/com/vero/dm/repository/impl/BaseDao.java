@@ -17,6 +17,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vero.dm.exception.DataAccessObjectException;
 import com.vero.dm.repository.BaseRepository;

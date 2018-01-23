@@ -70,8 +70,7 @@ public class UserDao extends BaseDao<User, String>
     {
         String hqlString = "select p from User u " + "left join u.roles r "
                            + "left join r.permissionSet p " + "where u.username = :userName";
-        return getSession().createQuery(hqlString).setParameter("userName",
-            userName).list();
+        return getSession().createQuery(hqlString).setParameter("userName", userName).list();
     }
 
     public Set<String> findPermissionNameSet(String userName)

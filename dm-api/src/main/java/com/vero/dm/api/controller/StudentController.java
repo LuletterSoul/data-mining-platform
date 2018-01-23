@@ -26,7 +26,7 @@ import com.vero.dm.service.StudentService;
  */
 
 @RestController
-@RequestMapping(value = "/students"
+@RequestMapping(value = ApiVersion.API_VERSION+"/students"
         )
 public class StudentController
     {

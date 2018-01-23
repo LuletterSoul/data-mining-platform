@@ -27,8 +27,8 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
 
     private TokenManager tokenManager;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StatelessCredentialsMatcher.class);
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        StatelessCredentialsMatcher.class);
 
     @Autowired
     public void setStatelessCredentialsService(StatelessCredentialsService statelessCredentialsService)
@@ -37,12 +37,12 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
     }
 
     /**
-     *
      * 客户端与服务器协商好的验证算法;
-     * @param token 客户端传入的加密证书
-     * @param info 服务器已知的用户信息
-     * 如果得到服务器摘要与客户端的摘要一致，则返回<code>true</code>
-     *
+     * 
+     * @param token
+     *            客户端传入的加密证书
+     * @param info
+     *            服务器已知的用户信息 如果得到服务器摘要与客户端的摘要一致，则返回<code>true</code>
      * @see StatelessInfo
      * @see StatelessToken
      * @return 用于验证验证的成功与否.
@@ -51,8 +51,8 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info)
     {
-        StatelessInfo statelessInfo = (StatelessInfo) info;
-        StatelessToken statelessToken = (StatelessToken) token;
+        StatelessInfo statelessInfo = (StatelessInfo)info;
+        StatelessToken statelessToken = (StatelessToken)token;
         Hash serverDigestHash = computeServerDigest(statelessInfo);
         return equals(statelessToken.getClientDigest(), serverDigestHash);
     }
@@ -64,9 +64,10 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
     }
 
     /**
-     *
      * 客户端与服务器协商好的加密算法;
-     * @param statelessInfo 用以生成客户端的消息摘要
+     * 
+     * @param statelessInfo
+     *            用以生成客户端的消息摘要
      * @see StatelessRealm#doGetAuthenticationInfo(AuthenticationToken)
      */
     private Hash computeServerDigest(StatelessInfo statelessInfo)
@@ -75,11 +76,12 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
             getHashIterations());
     }
 
-
     @Override
-    protected boolean equals(Object tokenCredentials, Object accountCredentials) {
-        String accountBase64 = ((Hash) accountCredentials).toBase64();
-        LOGGER.info("tokenCredentials:{},  accountCredentials:{}", tokenCredentials, ((Hash) accountCredentials).toBase64());
+    protected boolean equals(Object tokenCredentials, Object accountCredentials)
+    {
+        String accountBase64 = ((Hash)accountCredentials).toBase64();
+        LOGGER.info("tokenCredentials:{},  accountCredentials:{}", tokenCredentials,
+            ((Hash)accountCredentials).toBase64());
         return tokenCredentials.equals(accountBase64);
     }
 }

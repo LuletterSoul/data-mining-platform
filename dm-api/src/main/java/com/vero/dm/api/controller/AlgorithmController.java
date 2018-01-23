@@ -19,7 +19,7 @@ import com.vero.dm.service.AlgorithmService;
  */
 
 @RestController
-@RequestMapping(value = "/algorithms", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = ApiVersion.API_VERSION+"/algorithms", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AlgorithmController
 {
 

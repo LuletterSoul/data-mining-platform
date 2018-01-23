@@ -3,7 +3,6 @@ package com.vero.dm.api.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.vero.dm.model.User;
-import com.vero.dm.security.credentials.DisposableSaltEntry;
 import com.vero.dm.service.UserService;
 
 
@@ -76,17 +73,17 @@ public class LoginController
 ////        return userService.getRandomVerifySaltEntry(preSaltId);
 //    }
 
-    @RequestMapping(value = "/doLogin")
-    @RequiresAuthentication
-    public String doLogin()
-    {
-        return "redirect:/static/manager/data_sets.html";
-    }
-
-    static class UserAndToken
-    {
-        public User user;
-        public DisposableSaltEntry entry;
-    }
+//    @RequestMapping(value = "/doLogin")
+//    @RequiresAuthentication
+//    public String doLogin()
+//    {
+//        return "redirect:/static/manager/data_sets.html";
+//    }
+//
+//    static class UserAndToken
+//    {
+//        public User user;
+//        public DisposableSaltEntry entry;
+//    }
 
 }

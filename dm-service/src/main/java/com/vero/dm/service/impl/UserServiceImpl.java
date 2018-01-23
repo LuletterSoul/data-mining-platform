@@ -9,7 +9,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vero.dm.exception.DataObjectNotFoundException;
@@ -17,7 +16,6 @@ import com.vero.dm.model.Permission;
 import com.vero.dm.model.Role;
 import com.vero.dm.model.User;
 import com.vero.dm.repository.dto.UserDTO;
-import com.vero.dm.security.credentials.StatelessCredentialsService;
 import com.vero.dm.service.UserService;
 
 
@@ -32,106 +30,112 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    private StatelessCredentialsService credentialsService;
+    // private StatelessCredentialsService credentialsService;
 
-//    private Cache<String, ByteSource> loginDisposableSaltCache;
+    // private Cache<String, ByteSource> loginDisposableSaltCache;
 
-//    private UserPasswordService passwordService;
+    // private UserPasswordService passwordService;
 
-//    @Autowired
-//    public void setEhCacheManager(EhCacheManager ehCacheManager)
-//    {
-//        loginDisposableSaltCache = ehCacheManager.getCache("loginDisposableSaltCache");
-//    }
+    // @Autowired
+    // public void setEhCacheManager(EhCacheManager ehCacheManager)
+    // {
+    // loginDisposableSaltCache = ehCacheManager.getCache("loginDisposableSaltCache");
+    // }
 
-//    @Autowired
-//    public void setPasswordService(UserPasswordService passwordService)
-//    {
-//        this.passwordService = passwordService;
-//    }
+    // @Autowired
+    // public void setPasswordService(UserPasswordService passwordService)
+    // {
+    // this.passwordService = passwordService;
+    // }
 
-    @Autowired
-    public void setCredentialsService(StatelessCredentialsService credentialsService) {
-        this.credentialsService = credentialsService;
-    }
+    // @Autowired
+    // public void setCredentialsService(StatelessCredentialsService credentialsService)
+    // {
+    // this.credentialsService = credentialsService;
+    // }
 
     public UserDTO registerUser(User user)
     {
-        String publicSalt = credentialsService.generateRandomSalt(32);
-        String privateSalt = credentialsService.generateRandomSalt(32);
-        String encryptedPassword = credentialsService.encryptPassword(user.getPassword(), publicSalt);
-        user.setPassword(encryptedPassword);
-        user.setPrivateSalt(privateSalt);
-        user.setPublicSalt(publicSalt);
-        userDao.save(user);
-        UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(user, userDTO);
-        return userDTO;
+        // String publicSalt = credentialsService.generateRandomSalt(32);
+        // String privateSalt = credentialsService.generateRandomSalt(32);
+        // String encryptedPassword = credentialsService.encryptPassword(user.getPassword(),
+        // publicSalt);
+        // user.setPassword(encryptedPassword);
+        // user.setPrivateSalt(privateSalt);
+        // user.setPublicSalt(publicSalt);
+        // userDao.save(user);
+        // UserDTO userDTO = new UserDTO();
+        // BeanUtils.copyProperties(user, userDTO);
+        // return userDTO;
+        return null;
     }
 
     @Override
-    public UserDTO getUserProfile(String username) {
+    public UserDTO getUserProfile(String username)
+    {
         User user = userDao.fetchByUserName(username);
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(user, userDTO);
-        if (user.getAvatar() != null) {
+        if (user.getAvatar() != null)
+        {
             userDTO.setAvatar(new String(user.getAvatar()));
         }
         return userDTO;
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO) {
+    public UserDTO updateUser(UserDTO userDTO)
+    {
         User user = this.findById(userDTO.getUserId());
         BeanUtils.copyProperties(userDTO, user);
         user.setAvatar(userDTO.getAvatar().getBytes());
         userDao.save(user);
         return userDTO;
     }
-//
-//    public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)
-//    {
-//        Subject subject = SecurityUtils.getSubject();
-//        String disposableSalt = loginDisposableSaltCache.get(entry.getTmpId()).toHex();
-//        if (disposableSalt == null)
-//        {
-//            throw new AuthenticationException(
-//                "The disposable salt can't  be retrieve in current cache.");
-//        }
-//        /*
-//         * 及时清除缓存;
-//         */
-//        loginDisposableSaltCache.remove(entry.getTmpId());
-//        // 解密
-//        String submittedPlait = EncryptUtils.aesDecrypt(user.getPassword(), disposableSalt);
-//        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),
-//            submittedPlait);
-//        subject.login(token);
-//        return userDao.findByUserName(user.getUserName());
-//    }
+    //
+    // public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)
+    // {
+    // Subject subject = SecurityUtils.getSubject();
+    // String disposableSalt = loginDisposableSaltCache.get(entry.getTmpId()).toHex();
+    // if (disposableSalt == null)
+    // {
+    // throw new AuthenticationException(
+    // "The disposable salt can't be retrieve in current cache.");
+    // }
+    // /*
+    // * 及时清除缓存;
+    // */
+    // loginDisposableSaltCache.remove(entry.getTmpId());
+    // // 解密
+    // String submittedPlait = EncryptUtils.aesDecrypt(user.getPassword(), disposableSalt);
+    // UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),
+    // submittedPlait);
+    // subject.login(token);
+    // return userDao.findByUserName(user.getUserName());
+    // }
 
-//    @Override
-//    public DisposableSaltEntry getRandomVerifySaltEntry(String preSaltId)
-//    {
-//        /*
-//         * 清除上一次缓存的校验随机盐;
-//         */
-//        LOGGER.info("Receive pre salt id [{}] at front end.", preSaltId);
-//        if (preSaltId != null && !preSaltId.equals("\"\""))
-//        {
-//            loginDisposableSaltCache.remove(preSaltId);
-//            LOGGER.info("Remove pre-salt from cache.");
-//        }
-//        ByteSource randomSalt = passwordService.generateRandomSalt(8);
-//        String tmpId = UUID.randomUUID().toString();
-//        /*
-//         * 重新生成校验随机盐到前台
-//         */
-//        loginDisposableSaltCache.put(tmpId, randomSalt);
-//        LOGGER.info("Put disposable salt entry to cache.Id:[{}],Salt:[{}].", tmpId,
-//            randomSalt.toHex());
-//        return new DisposableSaltEntry(tmpId, randomSalt.toHex());
-//    }
+    // @Override
+    // public DisposableSaltEntry getRandomVerifySaltEntry(String preSaltId)
+    // {
+    // /*
+    // * 清除上一次缓存的校验随机盐;
+    // */
+    // LOGGER.info("Receive pre salt id [{}] at front end.", preSaltId);
+    // if (preSaltId != null && !preSaltId.equals("\"\""))
+    // {
+    // loginDisposableSaltCache.remove(preSaltId);
+    // LOGGER.info("Remove pre-salt from cache.");
+    // }
+    // ByteSource randomSalt = passwordService.generateRandomSalt(8);
+    // String tmpId = UUID.randomUUID().toString();
+    // /*
+    // * 重新生成校验随机盐到前台
+    // */
+    // loginDisposableSaltCache.put(tmpId, randomSalt);
+    // LOGGER.info("Put disposable salt entry to cache.Id:[{}],Salt:[{}].", tmpId,
+    // randomSalt.toHex());
+    // return new DisposableSaltEntry(tmpId, randomSalt.toHex());
+    // }
 
     public User fetchUserJoinRolesById(String userId)
     {
@@ -171,12 +175,12 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
 
     public void correlateRoles(String userId, List<Long> roleIdList)
     {
-            User user = userDao.fetchUserJoinRolesById(userId);
-            for (Long roleId : roleIdList)
-            {
-                user.getRoles().add(roleDao.findById(roleId));
-            }
-            userDao.update(user);
+        User user = userDao.fetchUserJoinRolesById(userId);
+        for (Long roleId : roleIdList)
+        {
+            user.getRoles().add(roleDao.findById(roleId));
+        }
+        userDao.update(user);
     }
 
     // public void removeRoles(String userId, List<Long> roleIdList)

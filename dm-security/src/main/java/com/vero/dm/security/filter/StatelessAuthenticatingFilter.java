@@ -33,10 +33,11 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(
         StatelessAuthenticatingFilter.class);
+
     private ObjectMapper objectMapper;
 
-
-    public StatelessAuthenticatingFilter() {
+    public StatelessAuthenticatingFilter()
+    {
         this.objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
@@ -48,17 +49,36 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         return false;
     }
 
+    @Override
+    public boolean onPreHandle(ServletRequest request, ServletResponse response,
+                               Object mappedValue)
+        throws Exception
+    {
+
+        return super.onPreHandle(request, response, mappedValue);
+    }
+
+    private boolean isHttpOptionRequest(ServletRequest request, ServletResponse response)
+    {
+        HttpServletRequest httpRequest = (HttpServletRequest)request;
+        HttpServletResponse httpResponse = (HttpServletResponse)response;
+        String method = httpRequest.getMethod();
+        if (method.equals("OPTIONS"))
+        {
+            httpResponse.setStatus(200);
+            return true;
+        }
+        return false;
+    }
+
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response)
         throws Exception
     {
         HttpServletRequest httpRequest = null;
+        if (isHttpOptionRequest(request, response)) return true;
         try
         {
             httpRequest = assertHttpRequest(request);
-            if (httpRequest.getMethod().equals("OPTIONS"))
-            {
-                return true;
-            }
             // 获取请求发送的时间戳
             String timestamp = httpRequest.getHeader(Constants.HEADER_TIMESTAMP);
             // 客户端生成的消息摘要
@@ -66,53 +86,66 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
             // 客户端传入的用户身份
             String username = httpRequest.getParameter(Constants.PARAM_USERNAME);
             String apiKey = httpRequest.getHeader(Constants.API_KEY);
-            try {
-                assertNegotiationContentNotNull(clientDigest, username, timestamp,apiKey);
-            } catch (ServletException e) {
+            try
+            {
+                assertNegotiationContentNotNull(clientDigest, username, timestamp, apiKey);
+            }
+            catch (ServletException e)
+            {
                 LOGGER.error(e.getMessage());
                 onAccessFailed(response, e);
                 e.printStackTrace();
                 return false;
             }
             // 客户端请求的参数列表
-            StatelessToken token = generateAuthenticationToken(request, clientDigest, username,apiKey);
-            LOGGER.info("System generate authentication token: {}", token);
-            try
-            {
-                // 委托给Realm进行登录
-                getSubject(request, response).login(token);
-                LOGGER.info("{}: authenticate successfully.", username);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-                LOGGER.info("Authentication Fail:{}", e.getMessage());
-                onLoginFail(response,e); // 6、登录失败
-                return false;
-            }
+            StatelessToken token = generateAuthenticationToken(request, clientDigest, username,
+                apiKey);
+            if (doRestApiAccess(request, response, username, token)) return false;
         }
         catch (IOException e)
         {
             e.printStackTrace();
-            return false;
+            return true;
         }
         return true;
     }
 
-    private StatelessToken generateAuthenticationToken(ServletRequest request, String clientDigest,
-                                                       String username,String apiKey)
+    private boolean doRestApiAccess(ServletRequest request, ServletResponse response,
+                                    String username, StatelessToken token)
+        throws IOException
     {
-        Map<String, String[]> params = new LinkedHashMap<String, String[]>(request.getParameterMap());
+        LOGGER.info("System generate authentication token: {}", token);
+        try
+        {
+            // 委托给Realm进行登录
+            getSubject(request, response).login(token);
+            LOGGER.info("{}: authenticate successfully.", username);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            LOGGER.info("Authentication Fail:{}", e.getMessage());
+            onLoginFail(response, e); // 6、登录失败
+            return true;
+        }
+        return false;
+    }
+
+    private StatelessToken generateAuthenticationToken(ServletRequest request, String clientDigest,
+                                                       String username, String apiKey)
+    {
+        Map<String, String[]> params = new LinkedHashMap<String, String[]>(
+            request.getParameterMap());
         params.remove(Constants.PARAM_DIGEST);
         // 生成无状态Token
-        return new StatelessToken(username,apiKey, params, clientDigest);
+        return new StatelessToken(username, apiKey, params, clientDigest);
     }
 
     private void assertNegotiationContentNotNull(String clientDigest, String username,
-                                                 String timestamp,String apiKey)
+                                                 String timestamp, String apiKey)
         throws ServletException
     {
-        if (clientDigest == null || username == null || timestamp == null ||apiKey == null)
+        if (clientDigest == null || username == null || timestamp == null || apiKey == null)
         {
             throw new ServletException(
                 "User token shouldn't be empty.Make sure your account info has been linked with request.");
@@ -137,7 +170,9 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
     }
 
     // 登录失败时默认返回401状态码
-    private void onLoginFail(ServletResponse response,Throwable ex) throws IOException {
+    private void onLoginFail(ServletResponse response, Throwable ex)
+        throws IOException
+    {
         String message = "Authentication Failed.Please check your username or password is correct or not.";
         ErrorInfo errorInfo = new ErrorInfo(ex, message, HttpStatus.UNAUTHORIZED);
         String jsonMessage = objectMapper.writeValueAsString(errorInfo);
@@ -146,7 +181,9 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         httpResponse.getWriter().write(jsonMessage);
     }
 
-    private void onAccessFailed(ServletResponse response, Throwable ex) throws IOException {
+    private void onAccessFailed(ServletResponse response, Throwable ex)
+        throws IOException
+    {
         String message = "Access Failed.Request don't match negotiation content.";
         HttpServletResponse httpResponse = (HttpServletResponse)response;
         ErrorInfo errorInfo = new ErrorInfo(ex, message, HttpStatus.BAD_REQUEST);

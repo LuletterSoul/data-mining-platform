@@ -19,8 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@EnableTransactionManagement(proxyTargetClass =true)
-@Import(HibernateConfig.class)
+@Import(DataAccessConfiguration.class)
 public class HibernateTransactionConfig
 {
     @Resource

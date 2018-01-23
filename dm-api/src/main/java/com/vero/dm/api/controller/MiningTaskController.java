@@ -24,7 +24,7 @@ import com.vero.dm.service.MiningTaskService;
  */
 
 @RestController
-@RequestMapping(value = "/tasks")
+@RequestMapping(value = ApiVersion.API_VERSION+"/tasks")
 public class MiningTaskController
 {
     private MiningTaskService miningTaskService;

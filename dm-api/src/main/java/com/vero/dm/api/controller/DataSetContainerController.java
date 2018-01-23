@@ -26,7 +26,7 @@ import com.vero.dm.service.DataSetContainerService;
  */
 
 @RestController
-@RequestMapping(value = "/dataSetContainers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = ApiVersion.API_VERSION+"/dataSetContainers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetContainerController
 {
     private DataSetContainerService containerService;

@@ -26,7 +26,7 @@ import com.vero.dm.service.DataSetCollectionService;
  */
 
 @RestController
-@RequestMapping(value = "/dataSets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value =ApiVersion.API_VERSION+"/dataSets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetCollectionController
 {
     private DataSetCollectionService collectionService;
@@ -156,7 +156,7 @@ public class DataSetCollectionController
         return collectionService.getContainers(collectionId);
     }
 
-    @RequestMapping(value = "{collectionId}/{containerId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{collectionId}/{containerId}", method = RequestMethod.POST)
     public DataSetContainer relateContainer(@PathVariable("collectionId") String collectionId,
                                             @PathVariable("containerId") String containerId)
     {
