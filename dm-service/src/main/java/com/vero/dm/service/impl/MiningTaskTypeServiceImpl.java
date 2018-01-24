@@ -1,8 +1,8 @@
 package com.vero.dm.service.impl;
 
+import com.vero.dm.model.AssociatedTask;
 import org.springframework.stereotype.Service;
 
-import com.vero.dm.model.MiningTaskType;
 import com.vero.dm.service.MiningTaskTypeService;
 
 /**
@@ -13,7 +13,7 @@ import com.vero.dm.service.MiningTaskTypeService;
 
 @Service
 public class MiningTaskTypeServiceImpl
-        extends AbstractBaseServiceImpl<MiningTaskType,Integer>
+        extends AbstractBaseServiceImpl<AssociatedTask,Integer>
         implements MiningTaskTypeService {
 
 }

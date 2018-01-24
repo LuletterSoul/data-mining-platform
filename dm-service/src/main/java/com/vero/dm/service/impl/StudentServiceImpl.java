@@ -28,40 +28,44 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     @Override
     public List<StudentDTO> getStudentList()
     {
-        List<Student> students = studentDao.getStudentList();
-        List<StudentDTO> list = new LinkedList<StudentDTO>();
-        for (Student student : students)
-        {
-            list.add(StudentDTO.build(student));
-        }
-        return list;
+//        List<Student> students = studentDao.getStudentList();
+//        List<StudentDTO> list = new LinkedList<StudentDTO>();
+//        for (Student student : students)
+//        {
+//            list.add(StudentDTO.build(student));
+//        }
+//        return list;
+        return null;
     }
 
     @Override
     public List<String> getStudentIds()
     {
-        return studentDao.getStudentIds();
+//        return studentDao.getStudentIds();
+        return null;
     }
 
     @Override
     public Page<StudentDTO> getStudentList(Pageable pageable)
     {
-        int counts = studentDao.countAll();
-        List<Student> students = studentDao.get(pageable);
-        List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
-        for (Student s : students)
-        {
-            studentDTOS.add(StudentDTO.build(s));
-        }
-        return new PageImpl<StudentDTO>(studentDTOS, pageable, counts);
+//        int counts = studentDao.countAll();
+//        List<Student> students = studentDao.get(pageable);
+//        List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
+//        for (Student s : students)
+//        {
+//            studentDTOS.add(StudentDTO.build(s));
+//        }
+//        return new PageImpl<StudentDTO>(studentDTOS, pageable, counts);
+        return null;
     }
 
     @Override
     public StudentDTO deleteByStudentId(String studentId)
     {
-        Student student = studentDao.getStudentById(studentId);
-        studentDao.deleteStudentById(studentId);
-        return StudentDTO.build(student);
+//        Student student = studentDao.getStudentById(studentId);
+//        studentDao.deleteStudentById(studentId);
+//        return StudentDTO.build(student);
+        return null;
     }
 
     public StudentDTO save(Student student)
@@ -79,46 +83,53 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     @Override
     public StudentDTO update(StudentDTO studentDTO)
     {
-        Student student = studentDao.getStudentById(studentDTO.getStudentId());
-        BeanUtils.copyProperties(studentDTO, student, "status", "favorite");
-        studentDao.update(student);
-        return new StudentDTO(student);
+//        Student student = studentDao.getStudentById(studentDTO.getStudentId());
+//        BeanUtils.copyProperties(studentDTO, student, "status", "favorite");
+//        studentDao.update(student);
+//        return new StudentDTO(student);
+        return studentDTO;
     }
 
     @Override
     public StudentDTO getStudentById(String studentId)
     {
-        return StudentDTO.build(studentDao.getStudentById(studentId));
+//        return StudentDTO.build(studentDao.getStudentById(studentId));
+        return null;
     }
 
     @Override
     public int markStudents(List<String> studentIds)
     {
-        return studentDao.markStudents(studentIds);
+//        return studentDao.markStudents(studentIds);
+        return 0;
     }
 
     @Override
     public int unMarkStudents(List<String> studentIds)
     {
-        return studentDao.unMarkStudents(studentIds);
+//        return studentDao.unMarkStudents(studentIds);
+        return 0;
     }
 
     @Override
     public int deleteWithIdArray(List<String> studentIds)
     {
-        return studentDao.deleteByArray(studentIds);
+//        return studentDao.deleteByArray(studentIds);
+        return 0;
     }
 
     @Override
     public FavoriteStatus getFavoriteStatusPersisted(Integer statusId)
     {
-        return studentDao.getFavoriteStatusPersisted(statusId);
+//        return studentDao.getFavoriteStatusPersisted(statusId);
+        return null;
     }
 
     @Override
     public StudentStatus getStudentStatusPersisted(Integer statusId)
     {
-        return studentDao.getStudentStatus(statusId);
+//        return studentDao.getStudentStatus(statusId);
+        return null;
     }
 
     public List<Student> fetchStudentWithoutTasks()

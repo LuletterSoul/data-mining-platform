@@ -58,7 +58,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     public void addInterceptors(InterceptorRegistry registry)
     {
         super.addInterceptors(registry);
-        registry.addInterceptor(originalAccessHandler());
+//        registry.addInterceptor(originalAccessHandler());
     }
 
     // @Bean
@@ -87,11 +87,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     // return adapter;
     // }
 
-    @Bean
-    public HandlerInterceptor originalAccessHandler()
-    {
-        return new AccessProcessInterceptor();
-    }
+//    @Bean
+//    public HandlerInterceptor originalAccessHandler()
+//    {
+//        return new AccessProcessInterceptor();
+//    }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers)

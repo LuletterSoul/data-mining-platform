@@ -4,11 +4,12 @@ package com.vero.dm.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vero.dm.model.MiningTaskType;
+import com.vero.dm.model.AssociatedTask;
 import com.vero.dm.service.MiningTaskTypeService;
 
 
@@ -30,8 +31,8 @@ public class MiningTaskTypeController
         this.miningTaskTypeService = miningTaskTypeService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    List<MiningTaskType> getOptionnalMiningTaskTypes()
+    @GetMapping
+    List<AssociatedTask> getOptionnalMiningTaskTypes()
     {
         return miningTaskTypeService.findAll();
     }

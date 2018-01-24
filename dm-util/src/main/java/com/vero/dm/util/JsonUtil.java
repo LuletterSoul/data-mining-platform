@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @since data-minning-platform
  */
 
-@Component
 public class JsonUtil
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);

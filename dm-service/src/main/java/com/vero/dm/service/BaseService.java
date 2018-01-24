@@ -27,14 +27,14 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 不推荐使用全列查询除非必要（如：你当前无法知道有哪些列） 获取当前对象的所有记录的所有属性
-     * 
+     *
      * @return 所有记录
      */
     List<E> findAll();
 
     /**
      * 获取当前对象的所有记录(只返回指定的列,列名以“，”号隔开）
-     * 
+     *
      * @param columns
      *            列名
      * @return 所有记录
@@ -55,7 +55,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 保存对象
-     * 
+     *
      * @param e
      *            对象
      */
@@ -63,7 +63,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 批量保存对象
-     * 
+     *
      * @param set
      *            对象集合
      */
@@ -72,7 +72,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 删除对象
-     * 
+     *
      * @param e
      *            对象
      */
@@ -93,7 +93,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过属性查找并返回需要的列
-     * 
+     *
      * @param 需要返回的列名以“，”号隔开
      * @param propertyName
      *            属性名称
@@ -106,7 +106,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过属性查找并返回所有列 不推荐使用全列查询除非必要（如：你当前无法知道有哪些列）
-     * 
+     *
      * @param 需要返回的列名以“，”号隔开
      * @param propertyName
      *            属性名称
@@ -120,7 +120,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过多个属性查找并指定的所有列
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyNames
@@ -134,7 +134,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过多个属性查找并返回所有列 不推荐使用全列查询除非必要（如：你当前无法知道有哪些列）
-     * 
+     *
      * @param propertyNames
      *            属性名称数组
      * @param values
@@ -147,7 +147,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过属性模糊查找并指定的所有列
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyName
@@ -161,7 +161,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过属性模糊查找并返回所有列 不推荐使用全列查询除非必要（如：你当前无法知道有哪些列）
-     * 
+     *
      * @param propertyName
      *            属性名称
      * @param value
@@ -174,7 +174,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过多个属性模糊查找并返回指定的列
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyNames
@@ -188,7 +188,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过多个属性模糊查找并返回所有列 不推荐使用全列查询除非必要（如：你当前无法知道有哪些列）
-     * 
+     *
      * @param propertyNames
      *            属性名称数组
      * @param values
@@ -210,7 +210,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过多个属性查找，并分页， 属性名称数组和属性值数组的序列要对应
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyNames
@@ -226,7 +226,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过属性查找，并分页， 属性名称数组和属性值数组的序列要对应
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyNames
@@ -241,7 +241,7 @@ public interface BaseService<E, PK extends Serializable>
     // pagination)throws Exception;
     /**
      * 通过多个属性模糊查找，并分页， 属性名称数组和属性值数组的序列要对应
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyNames
@@ -257,7 +257,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 通过属性模糊查找，并分页， 属性名称数组和属性值数组的序列要对应
-     * 
+     *
      * @param columns
      *            需要返回的列名
      * @param propertyNames
@@ -331,14 +331,14 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 根据SQL语句查询结果集条数
-     * 
+     *
      * @return
      */
     // int countBySql(SqlBean sql)throws Exception;
 
     /**
      * 保存或更新
-     * 
+     *
      * @param e
      */
     void saveOrUpdate(E e)
@@ -355,7 +355,7 @@ public interface BaseService<E, PK extends Serializable>
 
     /**
      * 更新对象
-     * 
+     *
      * @param e
      * @throws Exception
      */

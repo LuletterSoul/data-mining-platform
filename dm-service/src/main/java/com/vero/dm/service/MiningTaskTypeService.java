@@ -1,7 +1,7 @@
 package com.vero.dm.service;
 
 
-import com.vero.dm.model.MiningTaskType;
+import com.vero.dm.model.AssociatedTask;
 
 
 /**
@@ -9,7 +9,7 @@ import com.vero.dm.model.MiningTaskType;
  * @version 1.5 created in
  */
 
-public interface MiningTaskTypeService extends BaseService<MiningTaskType, Integer>
+public interface MiningTaskTypeService extends BaseService<AssociatedTask, Integer>
 {
 
 }

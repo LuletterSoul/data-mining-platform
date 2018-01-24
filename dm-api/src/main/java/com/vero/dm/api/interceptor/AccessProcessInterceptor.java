@@ -1,11 +1,11 @@
 package com.vero.dm.api.interceptor;
 
 
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -24,21 +24,17 @@ public class AccessProcessInterceptor implements HandlerInterceptor
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
 
         httpServletResponse.setHeader("Access-Control-Allow-Headers",
-                "Content-Type,Content-Length, Authorization, Accept,X-Requested-With,X-timestamp,Username,X-ApiKey");
+            "Content-Type,Content-Length, Authorization, Accept,X-Requested-With,X-timestamp,Username,X-ApiKey");
 
         httpServletResponse.setHeader("Access-Control-Allow-Methods",
             "PUT,POST,GET,DELETE,OPTIONS");
 
         String method = httpServletRequest.getMethod();
-
         if (method.equals("OPTIONS"))
         {
             httpServletResponse.setStatus(200);
             return false;
         }
-
-        System.out.println(method);
-
         return true;
     }
 

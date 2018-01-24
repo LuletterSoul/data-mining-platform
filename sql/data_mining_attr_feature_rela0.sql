@@ -26,7 +26,7 @@ CREATE TABLE `attr_feature_rela` (
   `containerId` bigint(20) NOT NULL,
   `featureId` int(11) NOT NULL,
   PRIMARY KEY (`containerId`,`featureId`),
-  UNIQUE KEY `UK_r4uqgmfvop92of6qonqs7n61r` (`featureId`),
+  UNIQUE KEY `UK_r4uqgmfvop92of6qonqs7n61r` (`charId`),
   CONSTRAINT `FK5k9m8ty13h0wbg9c50a2rup1s` FOREIGN KEY (`containerId`) REFERENCES `data_set_attribute` (`attributeId`),
   CONSTRAINT `FKdt47smsvoifd679iwsq2dsxxp` FOREIGN KEY (`featureId`) REFERENCES `attr_feature_info` (`featureId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

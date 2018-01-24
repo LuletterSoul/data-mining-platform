@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.vero.dm.exception.DataObjectNotFoundException;
@@ -73,23 +71,25 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     @Override
     public UserDTO getUserProfile(String username)
     {
-        User user = userDao.fetchByUserName(username);
-        UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(user, userDTO);
-        if (user.getAvatar() != null)
-        {
-            userDTO.setAvatar(new String(user.getAvatar()));
-        }
-        return userDTO;
+        // User user = userDao.fetchByUserName(username);
+        // UserDTO userDTO = new UserDTO();
+        // BeanUtils.copyProperties(user, userDTO);
+        // if (user.getAvatar() != null)
+        // {
+        // userDTO.setAvatar(new String(user.getAvatar()));
+        // }
+        // return userDTO;
+        return null;
     }
 
     @Override
     public UserDTO updateUser(UserDTO userDTO)
     {
-        User user = this.findById(userDTO.getUserId());
-        BeanUtils.copyProperties(userDTO, user);
-        user.setAvatar(userDTO.getAvatar().getBytes());
-        userDao.save(user);
+        // User user = this.findById(userDTO.getUserId());
+        // BeanUtils.copyProperties(userDTO, user);
+        // user.setAvatar(userDTO.getAvatar().getBytes());
+        // userDao.save(user);
+        // return userDTO;
         return userDTO;
     }
     //
@@ -139,31 +139,35 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
 
     public User fetchUserJoinRolesById(String userId)
     {
-        return userDao.fetchUserJoinRolesById(userId);
+        // return userDao.fetchUserJoinRolesById(userId);
+        return null;
     }
 
     @Override
     public String findPasswordByUserName(String userName)
     {
-        return userDao.findPasswordByUserName(userName);
+        // return userDao.findPasswordByUserName(userName);
+        return userName;
     }
 
     public List<Long> findRoleIdListByUserId(String userId)
     {
-        return userDao.findRoleIdListByUserId(userId);
+        // return userDao.findRoleIdListByUserId(userId);
+        return null;
     }
 
     public Set<String> findPermissionNameSet(String userName)
     {
-        return userDao.findPermissionNameSet(userName);
+        // return userDao.findPermissionNameSet(userName);
+        return null;
     }
 
     public void updatePassword(String userName, String newPassword)
         throws DataObjectNotFoundException
     {
-        User user = userDao.findByUserName(userName);
-        user.setPassword(newPassword);
-        userDao.update(user);
+        // User user = userDao.findByUserName(userName);
+        // user.setPassword(newPassword);
+        // userDao.update(user);
     }
 
     public void correlateRole(String userId, Long roleId)
@@ -175,12 +179,12 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
 
     public void correlateRoles(String userId, List<Long> roleIdList)
     {
-        User user = userDao.fetchUserJoinRolesById(userId);
-        for (Long roleId : roleIdList)
-        {
-            user.getRoles().add(roleDao.findById(roleId));
-        }
-        userDao.update(user);
+        // User user = userDao.fetchUserJoinRolesById(userId);
+        // for (Long roleId : roleIdList)
+        // {
+        // user.getRoles().add(roleDao.findById(roleId));
+        // }
+        // userDao.update(user);
     }
 
     // public void removeRoles(String userId, List<Long> roleIdList)
@@ -208,28 +212,33 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
 
     public User findByUserName(String userName)
     {
-        return userDao.findByUserName(userName);
+        // return userDao.findByUserName(userName);
+        return null;
     }
 
     @Override
     public User fetchByUserName(String userName)
     {
-        return userDao.fetchByUserName(userName);
+        // return userDao.fetchByUserName(userName);
+        return null;
     }
 
     public List<Permission> findPermissionByUserName(String userName)
     {
-        return userDao.findPermissionByUserName(userName);
+        // return userDao.findPermissionByUserName(userName);
+        return null;
     }
 
     public List<Role> findRolesByUserName(String userName)
     {
-        return userDao.findRolesByUserName(userName);
+        // return userDao.findRolesByUserName(userName);
+        return null;
     }
 
     public List<String> findRoleNameSetByUserName(String userName)
     {
-        return userDao.findRoleNameSetByUserName(userName);
+        // return userDao.findRoleNameSetByUserName(userName);
+        return null;
     }
 
     public void removeRole(String userId, Long roleId)
@@ -242,7 +251,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     public void removeRoles(String userId, List<Long> roleIdList)
     {
         // List<Role> roleList = roleDao.fetchRoleListByIdList(roleIdList);
-        userDao.removeRoles(userId, roleIdList);
+        // userDao.removeRoles(userId, roleIdList);
     }
 
     @Override
@@ -254,31 +263,33 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     @Override
     public String fetchPublicSalt(String username)
     {
-        try
-        {
-            return userDao.getPublicSalt(username);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            throw new UnknownAccountException(
-                "Unknown account.Please ensure your account is registered and correct.");
-        }
+        // try
+        // {
+        // return userDao.getPublicSalt(username);
+        // }
+        // catch (Exception e)
+        // {
+        // e.printStackTrace();
+        // throw new UnknownAccountException(
+        // "Unknown account.Please ensure your account is registered and correct.");
+        // }
+        return null;
     }
 
     @Override
     public String fetchPrivateSalt(String username)
     {
-        try
-        {
-            return userDao.getPrivateSalt(username);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            throw new UnknownAccountException(
-                "Unknown account.Please ensure your account is registered and correct.");
-        }
+        // try
+        // {
+        // return userDao.getPrivateSalt(username);
+        // }
+        // catch (Exception e)
+        // {
+        // e.printStackTrace();
+        // throw new UnknownAccountException(
+        // "Unknown account.Please ensure your account is registered and correct.");
+        // }
+        return null;
     }
 
 }

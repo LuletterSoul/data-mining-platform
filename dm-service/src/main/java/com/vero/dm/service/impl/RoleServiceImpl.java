@@ -23,12 +23,14 @@ public class RoleServiceImpl extends AbstractBaseServiceImpl<Role, Long> impleme
 {
     public List<Role> fetchRoleListByIdList(List<Long> roleIdList)
     {
-        return roleDao.fetchRoleListByIdList(roleIdList);
+        // return roleDao.fetchRoleListByIdList(roleIdList);
+        return null;
     }
 
     public Role fetchRoleJoinPermissions(Long roleId)
     {
-        return roleDao.fetchRoleJoinPermission(roleId);
+        // return roleDao.fetchRoleJoinPermission(roleId);
+        return null;
     }
 
     public List<Permission> fetchPermissionListById(Long roleId)
@@ -39,12 +41,12 @@ public class RoleServiceImpl extends AbstractBaseServiceImpl<Role, Long> impleme
 
     public void correlatePermissions(Long roleId, List<Long> permissionList)
     {
-        Role role = roleDao.fetchRoleJoinPermission(roleId);
-        for (Long permissionId : permissionList)
-        {
-            role.getPermissionSet().add(permissionDao.findById(permissionId));
-        }
-        roleDao.update(role);
+        // Role role = roleDao.fetchRoleJoinPermission(roleId);
+        // for (Long permissionId : permissionList)
+        // {
+        // role.getPermissionSet().add(permissionDao.findById(permissionId));
+        // }
+        // roleDao.update(role);
     }
 
     public void correlatePermission(Long roleId, Long permissionId)
@@ -63,7 +65,7 @@ public class RoleServiceImpl extends AbstractBaseServiceImpl<Role, Long> impleme
 
     public void removePermissions(Long roleId, List<Long> permissionIdList)
     {
-        roleDao.removePermissions(roleId, permissionIdList);
+        // roleDao.removePermissions(roleId, permissionIdList);
     }
 
 }

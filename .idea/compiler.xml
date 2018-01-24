@@ -21,6 +21,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="data-mining-platform" target="1.8" />
       <module name="data-minning-platform" target="1.8" />
       <module name="dm-api" target="1.8" />
       <module name="dm-exception" target="1.8" />

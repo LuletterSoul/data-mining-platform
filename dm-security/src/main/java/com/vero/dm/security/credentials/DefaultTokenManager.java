@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vero.dm.repository.impl.UserDao;
+import com.vero.dm.service.UserService;
 import com.vero.dm.util.DateStyle;
 import com.vero.dm.util.DateUtil;
 
@@ -31,9 +31,9 @@ public class DefaultTokenManager implements TokenManager
 {
     private Cache<String, String> tokenCache;
 
-    // private UserService userService;
+    private UserService userService;
 
-    private UserDao userDao;
+    // private UserDao userDao;
 
     public final static int DEFAULT_TIME_OUT_LIMIT = 3;
 
@@ -58,11 +58,11 @@ public class DefaultTokenManager implements TokenManager
         this.tokenCache = ehCacheManager.getCache("tokenCache");
     }
 
-    @Autowired
-    public void setUserDao(UserDao userDao)
-    {
-        this.userDao = userDao;
-    }
+    // @Autowired
+    // public void setUserDao(UserDao userDao)
+    // {
+    // this.userDao = userDao;
+    // }
 
     @Autowired
     public void setCredentialsService(StatelessCredentialsService credentialsService)
@@ -82,7 +82,7 @@ public class DefaultTokenManager implements TokenManager
     {
         Date date = new Date();
         String formattedDate = dateToString(date);
-        String privateSalt = userDao.getPrivateSalt(username);
+        String privateSalt = userService.fetchPrivateSalt(username);
         // String publicSalt = userService.fetchPublicSalt(username);
         // token.setPublicSalt(publicSalt);
         return generateEncryptedToken(privateSalt, username, formattedDate);

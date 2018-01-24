@@ -11,11 +11,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.model.User;
 import com.vero.dm.model.UserAccessStatus;
-import com.vero.dm.repository.impl.UserDao;
+import com.vero.dm.service.UserService;
 
 
 /**
@@ -28,22 +29,22 @@ import com.vero.dm.repository.impl.UserDao;
 public class UserRealm extends AuthorizingRealm
 {
 
-    // private UserService userService;
-
-    private UserDao userDao;
+    private UserService userService;
+    //
+    // private UserDao userDao;
+    //
+    // @Autowired
+    // public void setUserDao(UserDao userDao)
+    // {
+    // this.userDao = userDao;
+    // }
 
     @Autowired
-    public void setUserDao(UserDao userDao)
+    @Qualifier("userServiceImpl")
+    public void setUserService(UserService userService)
     {
-        this.userDao = userDao;
+        this.userService = userService;
     }
-
-    // @Autowired
-    // @Qualifier("userServiceImpl")
-    // public void setUserService(UserService userService)
-    // {
-    // this.userService = userService;
-    // }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)
@@ -51,9 +52,9 @@ public class UserRealm extends AuthorizingRealm
         String username = (String)principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         Set<String> roleNames = new LinkedHashSet<String>(
-            userDao.findRoleNameSetByUserName(username));
+            userService.findRoleNameSetByUserName(username));
         authorizationInfo.setRoles(roleNames);
-        authorizationInfo.setStringPermissions(userDao.findPermissionNameSet(username));
+        authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
         return authorizationInfo;
     }
 
@@ -64,7 +65,7 @@ public class UserRealm extends AuthorizingRealm
 
         String username = (String)token.getPrincipal();
 
-        User user = userDao.findByUserName(username);
+        User user = userService.findByUserName(username);
         if (user == null)
         {
             String message = "User " + username

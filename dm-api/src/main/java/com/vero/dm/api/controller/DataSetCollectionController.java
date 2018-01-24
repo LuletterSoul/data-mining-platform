@@ -3,11 +3,10 @@ package com.vero.dm.api.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +18,11 @@ import com.vero.dm.model.DataSetContainer;
 import com.vero.dm.repository.dto.CollectionDTO;
 import com.vero.dm.service.DataSetCollectionService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -26,13 +30,12 @@ import com.vero.dm.service.DataSetCollectionService;
  */
 
 @RestController
-@RequestMapping(value =ApiVersion.API_VERSION+"/dataSets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Slf4j
+@RequestMapping(value = ApiVersion.API_VERSION
+                        + "/dataSets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetCollectionController
 {
     private DataSetCollectionService collectionService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(
-        DataSetCollectionController.class);
 
     @Autowired
     public void setCollectionService(DataSetCollectionService collectionService)
@@ -40,43 +43,24 @@ public class DataSetCollectionController
         this.collectionService = collectionService;
     }
 
-    /**
-     * @param pageable
-     *            分页参数
-     * @return 当前页的集合信息
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    public Page<DataSetCollection> getPageable(@PageableDefault Pageable pageable)
+    @ApiOperation(value = "分页查询数据集")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", required = false, defaultValue = "10"),
+        @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", required = false, defaultValue = "collectionId"),
+        @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", required = false, defaultValue = "DESC")})
+    @GetMapping
+    public Page<DataSetCollection> getPageable(@PageableDefault(size = 15, sort = {
+        "collectionId"}, direction = Sort.Direction.DESC) Pageable pageable)
     {
         return collectionService.getPageableCollection(pageable);
     }
 
-    /**
-     * 根据数据集名删除
-     * 
-     * @param collectionName
-     *            数据集名
-     * @return
-     */
-    // @RequestMapping(value = "/{collectionName}", method = RequestMethod.GET)
-    // public DataSetCollection getByCollectionName(@PathVariable("collectionName") String
-    // collectionName) {
-    // return collectionService.getCollectionByName(collectionName);
-    // }
-
-    @RequestMapping(value = "/{collectionId}", method = RequestMethod.GET)
+    @GetMapping(value = "/{collectionId}")
     public DataSetCollection getById(@PathVariable("collectionId") String collectionId)
     {
         return collectionService.findById(collectionId);
     }
 
-    /**
-     * 根据数据集Id删除该集
-     * 
-     * @param collectionId
-     *            数据集Id
-     * @return
-     */
     @RequestMapping(value = "/{collectionId}", method = RequestMethod.DELETE)
     public ResponseEntity<DataSetCollection> delete(@PathVariable("collectionId") String collectionId)
     {

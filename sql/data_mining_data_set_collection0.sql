@@ -28,7 +28,7 @@ CREATE TABLE `data_set_collection` (
   `collectionName` varchar(255) DEFAULT NULL,
   `dataDonated` date DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `enableMissing` varchar(255) DEFAULT NULL,
+  `isMissingValues` varchar(255) DEFAULT NULL,
   `hits` int(11) NOT NULL,
   `relevantPapers` varchar(255) DEFAULT NULL,
   `topics` varchar(255) DEFAULT NULL,
