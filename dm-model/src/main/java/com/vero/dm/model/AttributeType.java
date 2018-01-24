@@ -27,7 +27,6 @@ public class AttributeType
     private Integer typeId;
 
     private String chineseName;
-
     private String englishName;
 
 }

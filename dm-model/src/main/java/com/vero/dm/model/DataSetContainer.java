@@ -1,14 +1,9 @@
 package com.vero.dm.model;
 
 
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -24,77 +19,42 @@ import lombok.Data;
 @Table(name = "data_set_container", catalog = "")
 public class DataSetContainer implements EntityIdentifier
 {
+    /**
+     * 文件容器Id
+     */
     @Id
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
     @GeneratedValue(generator = "uuidGenerator")
     @Column(name = "containerId")
     private String containerId;
 
-    @Basic
-    @Column(name = "fileName")
+    /**
+     * 文件名
+     */
     private String fileName;
 
-    private String containerName;
+    /**
+     * 文件描述
+     */
+    private String description;
 
-    private String fileDescription;
-
-    // private String attributeTypes;
-
-    @Basic
-    @Column(name = "size")
+    /**
+     * 文件大小
+     */
     private Double size;
 
-    @Basic
-    @Column(name = "instances")
-    private Long instances;
-
-    @Column(name = "fileType")
+    /**
+     * 文件类型
+     */
     private String fileType;
 
-    @Lob
-    @Column(name = "data")
-    private byte[] data;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    /**
+     * 文件的所属的数据集
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "collectionId", foreignKey = @ForeignKey(name = "COLLECTION_ID_FK"))
-    @JsonIgnore
     private DataSetCollection dataSetCollection;
 
-    // private Map<String, String> filePathMapping;
-
     private String filePath;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dataSetContainer", orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<DataSetAttribute> attributeSet;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dataSetContainer", orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<DataSetRow> rowList;
-
-    // @Basic
-    // @Column(name = "attributeTypes")
-    // public String getAttributeTypes()
-    // {
-    // return attributeTypes;
-    // }
-    //
-    // public void setAttributeTypes(String attributeTypes)
-    // {
-    // this.attributeTypes = attributeTypes;
-    // }
-
-    // @ElementCollection
-    // @JoinTable(name = "file_path_rel")
-    // @MapKeyColumn(name = "fileName")
-    // @JoinColumn(name = "containerId", referencedColumnName = "containerId")
-    // @Column(name = "filePath")
-    // public Map<String, String> getFilePathMapping() {
-    // return filePathMapping;
-    // }
-    //
-    // public void setFilePathMapping(Map<String, String> filePathMapping) {
-    // this.filePathMapping = filePathMapping;
-    // }
 
 }

@@ -21,7 +21,14 @@ public class Teacher extends User
 {
     private String teacherName;
 
+    @Column(unique = true)
     private String teacherId;
+
+    /**
+     * 一个老师可建多个分组
+     */
+    @OneToMany(mappedBy = "groupBuilder")
+    private Set<DataMiningGroup> buildGroups;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "favorite_stu_rel", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "studentId"))

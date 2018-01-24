@@ -1,12 +1,11 @@
 package com.vero.dm.model;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import lombok.*;
+import javax.persistence.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import lombok.Data;
 
 
 /**

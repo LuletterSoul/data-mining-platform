@@ -20,15 +20,19 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "attr_feature_info")
-public class AttributeFeature
+public class AttributeCharacteristic
 {
     @Id
     @GenericGenerator(name = "identityGenerator", strategy = "identity")
     @GeneratedValue(generator = "identityGenerator")
-    private int featureId;
+    private int charId;
 
     private String chineseName;
 
     private String englishName;
 
+    /**
+     * 缩写
+     */
+    private String abbreviation;
 }

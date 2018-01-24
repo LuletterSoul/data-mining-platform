@@ -30,4 +30,6 @@ public class AreaType
 
     private String englishName;
 
+    private String abbreviation;
+
 }

@@ -19,7 +19,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "mining_task_type")
-public class MiningTaskType
+public class AssociatedTask
 {
     @Id
     @GenericGenerator(name = "identityGenerator", strategy = "identity")

@@ -44,17 +44,14 @@ public class User implements EntityIdentifier
 
     protected String gender;
 
-    @Column(name = "password", nullable = false)
     protected String password;
 
     protected Date birthday;
 
-    @Column(name = "publicSalt")
     protected String publicSalt;
 
     protected String privateSalt;
 
-    @Column(name = "status")
     protected UserAccessStatus accountStatus = UserAccessStatus.AVAILABLE;
 
     @ManyToMany(fetch = FetchType.LAZY)

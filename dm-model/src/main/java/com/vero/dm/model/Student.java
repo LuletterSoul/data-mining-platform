@@ -26,6 +26,9 @@ public class Student extends User implements Serializable
 
     private String studentName;
 
+    /**
+     * 学号唯一
+     */
     @Column(unique = true)
     private String studentId;
 
@@ -35,8 +38,6 @@ public class Student extends User implements Serializable
 
     private String profession;
 
-    // private Set<GroupInfo> groupInfos;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "statusId", foreignKey = @ForeignKey(name = "STATUS_FOREIGN_KEY"))
     private StudentStatus status;
@@ -45,11 +46,23 @@ public class Student extends User implements Serializable
     @JoinColumn(name = "favoriteId", foreignKey = @ForeignKey(name = "FAVORITE_FOREIGN_KEY"))
     private FavoriteStatus favorite;
 
-    private int finishedTaskCount;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    /**
+     * 一个学生可以管理多个分组
+     */
     @JsonIgnore
-    @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(name = "studentUid", referencedColumnName = "studentId"), inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
+    @OneToMany(mappedBy = "groupLeader")
+    private Set<DataMiningGroup> ruleMiningGroups;
+
+
+    /**
+     * 一个学生在不同时段可以位于不同的分组 不同分组也有不同学生 需要校验合法性
+     */
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(
+            name = "memberId", referencedColumnName = "studentId"),
+            inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
     private Set<DataMiningGroup> miningGroups;
 
     public Student()
@@ -61,14 +74,4 @@ public class Student extends User implements Serializable
         super(userName, password, publicSalt, status);
         this.studentName = studentName;
     }
-
-    // @OneToMany(cascade = CascadeType.ALL,mappedBy = "student",fetch = FetchType.EAGER)
-    // public Set<GroupInfo> getGroupInfos() {
-    // return groupInfos;
-    // }
-    //
-    // public void setGroupInfos(Set<GroupInfo> groupInfos) {
-    // this.groupInfos = groupInfos;
-    // }
-
 }
