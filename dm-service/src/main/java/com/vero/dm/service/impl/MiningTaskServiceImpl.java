@@ -30,7 +30,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         // DataMiningTask task = new DataMiningTask();
         // BeanUtils.copyProperties(miningTaskDTO,task);
         // List<DataSetCollection> collections =
-        // this.collectionDao.getCollectionByIds(miningTaskDTO.getCollectionIds());
+        // this.collectionDao.findCollectionsByIds(miningTaskDTO.getCollectionIds());
         // List<Algorithm> algorithms =
         // this.algorithmDao.fetchAlgorithms(miningTaskDTO.getAlgorithmIds());
         // task.setAlgorithms(new LinkedHashSet<Algorithm>(algorithms));
@@ -194,7 +194,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     @Override
     public List<DataSetCollection> arrangeMiningSets(String taskId, List<String> collectionIds)
     {
-        // List<DataSetCollection> collections = collectionDao.getCollectionByIds(collectionIds);
+        // List<DataSetCollection> collections = collectionDao.findCollectionsByIds(collectionIds);
         // this.findById(taskId).getArrangedCollections().addAll(collections);
         // return collections;
         return null;

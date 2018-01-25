@@ -10,9 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 
 /**
@@ -21,11 +19,9 @@ import lombok.Data;
  * @description 数据集实体
  * @modified by: 2018.1.24
  */
-@Data
 @Entity
-@ApiModel
 @Table(name = "data_set_collection", catalog = "")
-public class DataSetCollection implements EntityIdentifier
+public class DataSetCollection
 
 {
     /**
@@ -69,7 +65,7 @@ public class DataSetCollection implements EntityIdentifier
     /**
      * 数据集详情
      */
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "dataSetCollection")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dataSetCollection")
     private Set<DataSetDescription> descriptions;
 
     /**
@@ -112,4 +108,159 @@ public class DataSetCollection implements EntityIdentifier
     @ApiModelProperty(hidden = true)
     @OneToMany(mappedBy = "dataSetCollection", orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<DataSetContainer> dataSetContainers;
+
+    public DataSetCollection()
+    {}
+
+    @Override
+    public String toString()
+    {
+        return "DataSetCollection{" + "collectionId='" + collectionId + '\'' + ", collectionName='"
+               + collectionName + '\'' + ", isMissingValues='" + isMissingValues + '\''
+               + ", dateDonated=" + dateDonated + ", numberOfInstances=" + numberOfInstances
+               + ", numberOfAttributes=" + numberOfAttributes + ", numberOfWebHits="
+               + numberOfWebHits + ", dataSetFolderPath='" + dataSetFolderPath + '\'' + ", area="
+               + area + '}';
+    }
+
+    public String getCollectionId()
+    {
+        return this.collectionId;
+    }
+
+    public String getCollectionName()
+    {
+        return this.collectionName;
+    }
+
+    public String getIsMissingValues()
+    {
+        return this.isMissingValues;
+    }
+
+    public Date getDateDonated()
+    {
+        return this.dateDonated;
+    }
+
+    public Long getNumberOfInstances()
+    {
+        return this.numberOfInstances;
+    }
+
+    public Long getNumberOfAttributes()
+    {
+        return this.numberOfAttributes;
+    }
+
+    public Long getNumberOfWebHits()
+    {
+        return this.numberOfWebHits;
+    }
+
+    public Set<DataSetDescription> getDescriptions()
+    {
+        return this.descriptions;
+    }
+
+    public String getDataSetFolderPath()
+    {
+        return this.dataSetFolderPath;
+    }
+
+    public Set<AssociatedTask> getAssociatedTasks()
+    {
+        return this.associatedTasks;
+    }
+
+    public Set<AttributeCharacteristic> getAttributeCharacteristics()
+    {
+        return this.attributeCharacteristics;
+    }
+
+    public AreaType getArea()
+    {
+        return this.area;
+    }
+
+    public Set<DataSetCharacteristic> getDataSetCharacteristics()
+    {
+        return this.dataSetCharacteristics;
+    }
+
+    public Set<DataSetContainer> getDataSetContainers()
+    {
+        return this.dataSetContainers;
+    }
+
+    public void setCollectionId(String collectionId)
+    {
+        this.collectionId = collectionId;
+    }
+
+    public void setCollectionName(String collectionName)
+    {
+        this.collectionName = collectionName;
+    }
+
+    public void setIsMissingValues(String isMissingValues)
+    {
+        this.isMissingValues = isMissingValues;
+    }
+
+    public void setDateDonated(Date dateDonated)
+    {
+        this.dateDonated = dateDonated;
+    }
+
+    public void setNumberOfInstances(Long numberOfInstances)
+    {
+        this.numberOfInstances = numberOfInstances;
+    }
+
+    public void setNumberOfAttributes(Long numberOfAttributes)
+    {
+        this.numberOfAttributes = numberOfAttributes;
+    }
+
+    public void setNumberOfWebHits(Long numberOfWebHits)
+    {
+        this.numberOfWebHits = numberOfWebHits;
+    }
+
+    public void setDescriptions(Set<DataSetDescription> descriptions)
+    {
+        this.descriptions = descriptions;
+    }
+
+    public void setDataSetFolderPath(String dataSetFolderPath)
+    {
+        this.dataSetFolderPath = dataSetFolderPath;
+    }
+
+    public void setAssociatedTasks(Set<AssociatedTask> associatedTasks)
+    {
+        this.associatedTasks = associatedTasks;
+    }
+
+    public void setAttributeCharacteristics(Set<AttributeCharacteristic> attributeCharacteristics)
+    {
+        this.attributeCharacteristics = attributeCharacteristics;
+    }
+
+    public void setArea(AreaType area)
+    {
+        this.area = area;
+    }
+
+    public void setDataSetCharacteristics(Set<DataSetCharacteristic> dataSetCharacteristics)
+    {
+        this.dataSetCharacteristics = dataSetCharacteristics;
+    }
+
+    public void setDataSetContainers(Set<DataSetContainer> dataSetContainers)
+    {
+        this.dataSetContainers = dataSetContainers;
+    }
+
 }

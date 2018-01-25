@@ -110,7 +110,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     public ObjectMapper objectMapper()
     {
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
-        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapperFactoryBean.setDateFormat(
             new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM.getValue()));
         mapperFactoryBean.afterPropertiesSet();

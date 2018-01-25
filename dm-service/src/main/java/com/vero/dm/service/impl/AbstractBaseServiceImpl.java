@@ -7,10 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vero.dm.repository.*;
@@ -63,9 +60,6 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     // protected CollectionCharDao collectionCharDao;
     //
     // protected AttributeTypeDao attributeTypeDao;
-
-//    @Autowired
-//    protected JpaRepository<E, PK> simpleJpaRepository;
 
     @Autowired
     protected DataMiningTaskJpaRepository taskJpaRepository;

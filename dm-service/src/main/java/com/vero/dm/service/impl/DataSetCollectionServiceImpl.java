@@ -3,7 +3,6 @@ package com.vero.dm.service.impl;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,24 +29,26 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return null;
     }
 
-    public void saveBatchCollection(Set<DataSetCollection> collections)
+    @Override
+    public DataSetCollection findById(String id)
     {
-        // this.saveBatch(collections);
+        return collectionJpaRepository.findOne(id);
     }
+
+    // public List<DataSetCollection> saveBatchCollection(Set<DataSetCollection> collections)
+    //// {
+    //// return collectionJpaRepository.save(collections);
+    //// }
 
     @Override
     public Page<DataSetCollection> getPageableCollection(Pageable pageable)
     {
-        // Integer totalElements = collectionDao.countAll();
-        // return new PageImpl<DataSetCollection>(collectionDao.get(pageable), pageable,
-        // totalElements);
         return collectionJpaRepository.findAll(pageable);
     }
 
-    public List<DataSetCollection> getCollectionByIds(List<String> collectionIds)
+    public List<DataSetCollection> findCollectionsByIds(List<String> collectionIds)
     {
-        // return collectionDao.getCollectionByIds(collectionIds);
-        return null;
+        return collectionJpaRepository.findAll(collectionIds);
     }
 
     public DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container)
@@ -101,21 +102,15 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetCollection saveCollection(CollectionDTO collectionDTO)
+    public DataSetCollection saveCollection(DataSetCollection collection)
     {
-        // // List<DataSetContainer> containers =
-        // // containerDao.fetchContainers(collectionDTO.getContainerIds());
-        // DataSetCollection collection = new DataSetCollection();
-        // // DTO对象相似属性克隆到真正Entity
-        // BeanUtils.copyProperties(collectionDTO, collection);
-        // collectionDao.save(collection);
-        // // 关联多个以保存到系统中的数据文件
-        // this.saveOrUpdateContainers(collection.getCollectionId(),
-        // collectionDTO.getContainerIds());
-        // // 保存多选值
-        // updateCollectionMultipleTypes(collectionDTO, collection);
-        // return collection;
         return null;
+    }
+
+    @Override
+    public List<DataSetCollection> saveCollections(List<DataSetCollection> collections)
+    {
+        return collectionJpaRepository.save(collections);
     }
 
     private void updateCollectionMultipleTypes(CollectionDTO collectionDTO,
@@ -147,31 +142,35 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public List<DataSetCollection> deleteBatch(List<String> collectionIds)
     {
-        // List<DataSetCollection> collections = this.getCollectionByIds(collectionIds);
-        //// collectionDao.deleteBatch(collectionIds);
-        //// return collections;
-        return null;
+        List<DataSetCollection> collections = findCollectionsByIds(collectionIds);
+        collectionJpaRepository.delete(findCollectionsByIds(collectionIds));
+        return collections;
     }
 
     @Override
     public DataSetCollection deleteByCollectionId(String collectionId)
     {
-        // DataSetCollection collection = this.findById(collectionId);
-        // this.deleteById(collectionId);
-        // return collection;
-        return null;
+        DataSetCollection collection = findById(collectionId);
+        collectionJpaRepository.delete(collectionId);
+        return collection;
     }
 
     @Override
-    public DataSetCollection updateCollection(CollectionDTO dataSetCollection)
+    public DataSetCollection updateCollection(DataSetCollection collection)
     {
-        // DataSetCollection collection = this.findById(dataSetCollection.getCollectionId());
-        // BeanUtils.copyProperties(dataSetCollection, collection);
-        // updateCollectionMultipleTypes(dataSetCollection, collection);
-        // this.update(collection);
-        // return collection;
-        return null;
+        return collectionJpaRepository.saveAndFlush(collection);
     }
+
+    // @Override
+    // public DataSetCollection updateCollection(CollectionDTO dataSetCollection)
+    // {
+    //// DataSetCollection collection = this.findById(dataSetCollection.getCollectionId());
+    //// BeanUtils.copyProperties(dataSetCollection, collection);
+    //// updateCollectionMultipleTypes(dataSetCollection, collection);
+    //// this.update(collection);
+    //// return collection;
+    // return null;
+    // }
 
     @Override
     public List<DataSetContainer> getContainers(String collectionId)

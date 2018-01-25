@@ -33,7 +33,9 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
 
     DataSetCollection getCollectionByName(String collectionName);
 
-    DataSetCollection saveCollection(CollectionDTO collectionDTO);
+    DataSetCollection saveCollection(DataSetCollection collection);
+
+    List<DataSetCollection> saveCollections(List<DataSetCollection> collections);
 
     DataSetCollection deleteByName(String collectionName);
 
@@ -41,7 +43,7 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
 
     DataSetCollection deleteByCollectionId(String collectionId);
 
-    DataSetCollection updateCollection(CollectionDTO dataSetCollection);
+    DataSetCollection updateCollection(DataSetCollection collection);
 
     List<DataSetContainer> getContainers(String collectionId);
 
