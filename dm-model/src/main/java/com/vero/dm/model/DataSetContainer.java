@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "data_set_container", catalog = "")
-public class DataSetContainer implements EntityIdentifier
+public class DataSetContainer
 {
     /**
      * 文件容器Id

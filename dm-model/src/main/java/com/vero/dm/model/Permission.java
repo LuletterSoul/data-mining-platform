@@ -20,8 +20,8 @@ import lombok.Data;
 public class Permission
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private Long permissionId;
 
     @Column(name = "permissionName", nullable = false)

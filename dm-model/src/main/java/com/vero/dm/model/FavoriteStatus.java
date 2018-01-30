@@ -21,8 +21,8 @@ import lombok.Data;
 public class FavoriteStatus
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private int favoriteId;
 
     private String chineseValue;

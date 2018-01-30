@@ -22,8 +22,8 @@ import lombok.Data;
 public class SystemStatistics
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private int statisticId;
 
 }

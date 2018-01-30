@@ -22,8 +22,8 @@ import lombok.Data;
 public class AreaType
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private Integer areaId;
 
     private String chineseName;

@@ -19,8 +19,8 @@ import lombok.Data;
 public class AlgorithmParameter
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private Long paramId;
 
     private String paramDesc;

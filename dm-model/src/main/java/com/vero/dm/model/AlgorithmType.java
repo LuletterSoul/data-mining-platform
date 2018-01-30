@@ -21,8 +21,8 @@ import javax.persistence.Table;
 public class AlgorithmType
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private int typeId;
 
     private String chTypeName;

@@ -22,8 +22,8 @@ import lombok.Data;
 public class AttributeType
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private Integer typeId;
 
     private String chineseName;

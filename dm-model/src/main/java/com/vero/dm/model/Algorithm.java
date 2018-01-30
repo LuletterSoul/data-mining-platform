@@ -22,8 +22,8 @@ import java.util.Set;
 public class Algorithm
 {
     @Id
-    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
-    @GeneratedValue(generator = "uuidGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private String algorithmId;
 
     private String algorithmName;

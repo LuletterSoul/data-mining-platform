@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Role
 {
     @Id
-    @GenericGenerator(name = "identityGenerator", strategy = "identity")
-    @GeneratedValue(generator = "identityGenerator")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     @Column(name = "roleId")
     private Long roleId;
 
