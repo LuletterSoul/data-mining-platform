@@ -3,11 +3,16 @@ package com.vero.dm.api.config;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
@@ -15,15 +20,12 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vero.dm.api.interceptor.AccessProcessInterceptor;
 import com.vero.dm.util.DateStyle;
 
 
@@ -58,7 +60,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     public void addInterceptors(InterceptorRegistry registry)
     {
         super.addInterceptors(registry);
-//        registry.addInterceptor(originalAccessHandler());
+        // registry.addInterceptor(originalAccessHandler());
     }
 
     // @Bean
@@ -87,11 +89,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     // return adapter;
     // }
 
-//    @Bean
-//    public HandlerInterceptor originalAccessHandler()
-//    {
-//        return new AccessProcessInterceptor();
-//    }
+    // @Bean
+    // public HandlerInterceptor originalAccessHandler()
+    // {
+    // return new AccessProcessInterceptor();
+    // }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers)
@@ -110,7 +112,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     public ObjectMapper objectMapper()
     {
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
-//        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        // mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapperFactoryBean.setDateFormat(
             new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM.getValue()));
         mapperFactoryBean.afterPropertiesSet();

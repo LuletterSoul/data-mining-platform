@@ -26,15 +26,14 @@ import com.vero.dm.service.StudentService;
  */
 
 @RestController
-@RequestMapping(value = ApiVersion.API_VERSION+"/students"
-        )
+@RequestMapping(value = ApiVersion.API_VERSION + "/students")
 public class StudentController
-    {
-        private StudentService studentService;
+{
+    private StudentService studentService;
 
-        private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-        @Autowired
+    @Autowired
     @Qualifier("studentServiceImpl")
     public void setStudentService(StudentService studentService)
     {
@@ -49,8 +48,8 @@ public class StudentController
     }
 
     /**
-     * 后续需要处理好修改密码等敏感操作
-     * DTO跟
+     * 后续需要处理好修改密码等敏感操作 DTO跟
+     * 
      * @param studentDTO
      * @return
      */
@@ -73,7 +72,6 @@ public class StudentController
         return studentService.getStudentById(studentId);
     }
 
-
     @RequestMapping(value = "/markStudentsWithArray", method = RequestMethod.PUT)
     public ResponseEntity<Integer> markStudent(@RequestBody List<String> studentIds)
     {
@@ -83,20 +81,21 @@ public class StudentController
     @RequestMapping(value = "/unMarkStudentWithArray", method = RequestMethod.PUT)
     public ResponseEntity<Integer> unMarkStudent(@RequestBody List<String> studentIds)
     {
-        return new ResponseEntity<Integer>(studentService.unMarkStudents(studentIds), HttpStatus.OK);
+        return new ResponseEntity<Integer>(studentService.unMarkStudents(studentIds),
+            HttpStatus.OK);
     }
 
     @RequestMapping(value = "/deleteWithArray", method = RequestMethod.DELETE)
     public ResponseEntity<Integer> deleteBatch(@RequestBody List<String> studentIds)
     {
-        return new ResponseEntity<Integer>(studentService.deleteWithIdArray(studentIds), HttpStatus.OK);
+        return new ResponseEntity<Integer>(studentService.deleteWithIdArray(studentIds),
+            HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<StudentDTO> studentsPageable(@PageableDefault(size = 10,
-            page = 0,
-            sort = {"studentId"},
-            direction = Sort.Direction.DESC) Pageable pageable) {
+    public Page<StudentDTO> studentsPageable(@PageableDefault(size = 10, page = 0, sort = {
+        "studentId"}, direction = Sort.Direction.DESC) Pageable pageable)
+    {
         return studentService.getStudentList(pageable);
     }
 }

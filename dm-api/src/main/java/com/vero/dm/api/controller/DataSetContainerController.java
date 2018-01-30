@@ -1,23 +1,22 @@
 package com.vero.dm.api.controller;
 
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
 import com.vero.dm.service.DataSetContainerService;
+import com.vero.dm.service.constant.ResourcePath;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -26,13 +25,11 @@ import com.vero.dm.service.DataSetContainerService;
  */
 
 @RestController
-@RequestMapping(value = ApiVersion.API_VERSION+"/dataSetContainers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = ApiVersion.API_VERSION
+                        + ResourcePath.CONTAINER_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DataSetContainerController
 {
     private DataSetContainerService containerService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(
-        DataSetCollectionController.class);
 
     @Autowired
     public void setContainerService(DataSetContainerService containerService)
@@ -40,82 +37,40 @@ public class DataSetContainerController
         this.containerService = containerService;
     }
 
-    @RequestMapping(value = "/{containerId}", method = RequestMethod.DELETE)
+    @ApiOperation(value = "根据Id删除数据集文件")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "containerId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
+    @DeleteMapping(value = "/{containerId}")
     public ResponseEntity<DataSetContainer> delete(@PathVariable("containerId") String containerId)
     {
-        return new ResponseEntity<DataSetContainer>(
-            containerService.deleteByContainerId(containerId), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(containerService.deleteByContainerId(containerId),
+            HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<DataSetContainer> getList(@PageableDefault Pageable pageable)
+    @ApiOperation(value = "分页查询数据集文件信息")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "containerId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
+    @GetMapping
+    public ResponseEntity<Page<DataSetContainer>> get(@PageableDefault Pageable pageable)
     {
-        return containerService.get(pageable);
+        return new ResponseEntity<>(containerService.getPageableContainers(pageable),
+            HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public DataSetContainer update(@RequestBody DataSetContainer setContainer)
     {
         containerService.update(setContainer);
         return setContainer;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<DataSetContainer> create(@RequestBody DataSetContainer setContainer)
-    {
-        containerService.save(setContainer);
-        return new ResponseEntity<DataSetContainer>(setContainer, HttpStatus.CREATED);
-    }
-
-    /**
-     * 上传容器装载的数据
-     * 
-     * @param file
-     * @param containerId
-     *            对应的容器Id
-     * @return
-     */
-    @RequestMapping(value = "/{containerId}/uploadSetData", method = RequestMethod.POST)
-    public ResponseEntity<String> uploadFile(@RequestPart MultipartFile file,
-                                             @PathVariable("containerId") String containerId)
-    {
-        return new ResponseEntity<String>(containerService.uploadData(containerId, file),
-            HttpStatus.CREATED);
-}
-
-    @RequestMapping(value = "/{containerId}")
-    public ResponseEntity<byte[]> downloadFile(@RequestParam("filePath") String filePath,
-                                               @PathVariable("containerId") String containerId)
-    {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION,
-                    "attachment;filename="+containerService.getFileName(containerId));
-        return new ResponseEntity<byte[]>(containerService.downloadData(containerId, filePath),headers,
-            HttpStatus.OK);
-    }
-
-
-    /**
-     * 返回与固定Id数据容器关联的数据集合信息
-     * 
-     * @param 数据容器Id
-     * @return 与传入参数关联的数据容器
-     */
-    @RequestMapping(value = "/{containerId}/collection")
-    public DataSetCollection getCollection(@PathVariable("containerId") String containerId)
-    {
-        return containerService.fetchCollectionRef(containerId);
-    }
-
-    /**
-     * 获取容器的数据路径
-     * 
-     * @param containerId
-     * @return 对应的文件路径
-     */
-    @RequestMapping(value = "/{containerId}/filePath", method = RequestMethod.GET)
+    @ApiOperation(value = "获取数据集的数据库路径")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "containerId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
+    @GetMapping(value = "/{containerId}/filePath")
     public String filePath(@PathVariable("containerId") String containerId)
     {
+
         return containerService.getDataSetPath(containerId);
     }
 }

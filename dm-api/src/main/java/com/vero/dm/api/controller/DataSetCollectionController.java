@@ -1,6 +1,8 @@
 package com.vero.dm.api.controller;
 
 
+import static com.vero.dm.service.constant.ResourcePath.COLLECTION_PATH;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
@@ -30,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-@RequestMapping(value = ApiVersion.API_VERSION + "/dataSets")
+@RequestMapping(value = ApiVersion.API_VERSION + COLLECTION_PATH)
 public class DataSetCollectionController
 {
     private DataSetCollectionService collectionService;
@@ -89,55 +92,45 @@ public class DataSetCollectionController
     @PutMapping
     public ResponseEntity<DataSetCollection> update(@RequestBody DataSetCollection dataSetCollection)
     {
-        return new ResponseEntity<>(collectionService.updateCollection(dataSetCollection),HttpStatus.OK);
+        return new ResponseEntity<>(collectionService.updateCollection(dataSetCollection),
+            HttpStatus.OK);
     }
 
     @ApiOperation(value = "创建数据集")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "setCollection", value = "数据集编号", dataType = "CollectionDTO", paramType = "body", required = true)})
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<DataSetCollection> create(@RequestBody DataSetCollection collection)
+        @ApiImplicitParam(name = "collectionDTO", value = "数据集DTO", dataType = "CollectionDTO", paramType = "body", required = true)})
+    @PostMapping
+    public ResponseEntity<DataSetCollection> create(@RequestBody CollectionDTO collectionDTO)
     {
-        return new ResponseEntity<DataSetCollection>(
-            collectionService.saveCollection(collection), HttpStatus.CREATED);
+        return new ResponseEntity<>(collectionService.saveCollection(collectionDTO),
+            HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{collectionId}", method = RequestMethod.POST)
-    public ResponseEntity<DataSetContainer> addContainer(@RequestBody DataSetContainer container,
+    @ApiOperation(value = "上传数据集文件")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
+    @PostMapping(value = "/{collectionId}/containers")
+    public ResponseEntity<DataSetContainer> addContainer(@RequestPart MultipartFile file,
                                                          @PathVariable("collectionId") String collectionId)
     {
-        return new ResponseEntity<DataSetContainer>(
-            collectionService.addDataSetContainer(collectionId, container), HttpStatus.CREATED);
+        return new ResponseEntity<>(collectionService.addDataSetContainer(collectionId, file),
+            HttpStatus.CREATED);
     }
 
-    /**
-     * @param collectionId
-     * @param containerId
-     * @return
-     */
-    @RequestMapping(value = "/{collectionId}/{containerId}", method = RequestMethod.DELETE)
-    public DataSetContainer removeContainer(@PathVariable("collectionId") String collectionId,
-                                            @PathVariable("containerId") String containerId)
-    {
-        return collectionService.removeDataSetContainer(collectionId, containerId);
-    }
+    // @RequestMapping(value = "/{collectionId}/containers/{containerId}", method =
+    // RequestMethod.DELETE)
+    // public DataSetContainer removeContainer(@PathVariable("collectionId") String collectionId,
+    // @PathVariable("containerId") String containerId)
+    // {
+    // return collectionService.removeDataSetContainer(collectionId, containerId);
+    // }
 
-    /**
-     * 获取该数据集下的所有数据容器信息
-     * 
-     * @param collectionId
-     * @return
-     */
-    @RequestMapping(value = "/{collectionId}/container", method = RequestMethod.GET)
+    @ApiOperation(value = "获取所有数据集文件信息")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
+    @GetMapping(value = "/{collectionId}/containers")
     public List<DataSetContainer> getContainer(@PathVariable("collectionId") String collectionId)
     {
         return collectionService.getContainers(collectionId);
-    }
-
-    @RequestMapping(value = "/{collectionId}/{containerId}", method = RequestMethod.POST)
-    public DataSetContainer relateContainer(@PathVariable("collectionId") String collectionId,
-                                            @PathVariable("containerId") String containerId)
-    {
-        return collectionService.relateContainer(collectionId, containerId);
     }
 }

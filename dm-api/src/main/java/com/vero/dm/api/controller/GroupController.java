@@ -3,7 +3,6 @@ package com.vero.dm.api.controller;
 
 import java.util.List;
 
-import com.vero.dm.model.DataMiningTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.model.DataMiningGroup;
+import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.repository.dto.StudentDTO;
 import com.vero.dm.repository.dto.TaskConfigParams;
 import com.vero.dm.service.GroupService;
@@ -23,7 +23,7 @@ import com.vero.dm.service.GroupService;
  */
 
 @RestController
-@RequestMapping(value =ApiVersion.API_VERSION+"/groups")
+@RequestMapping(value = ApiVersion.API_VERSION + "/groups")
 public class GroupController
 {
     private GroupService groupService;

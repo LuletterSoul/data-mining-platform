@@ -5,12 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vero.dm.model.Algorithm;
 import com.vero.dm.service.AlgorithmService;
+import com.vero.dm.service.constant.ResourcePath;
+
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -19,7 +22,8 @@ import com.vero.dm.service.AlgorithmService;
  */
 
 @RestController
-@RequestMapping(value = ApiVersion.API_VERSION+"/algorithms", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = ApiVersion.API_VERSION
+                        + ResourcePath.ALGORITHIM_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AlgorithmController
 {
 
@@ -31,7 +35,8 @@ public class AlgorithmController
         this.algorithmService = algorithmService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation("查找所有算法名称")
+    @GetMapping
     public List<Algorithm> get()
     {
         return algorithmService.findAll();
