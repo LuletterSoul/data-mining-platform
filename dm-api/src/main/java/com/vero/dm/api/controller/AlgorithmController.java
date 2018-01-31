@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = ApiVersion.API_VERSION
-                        + ResourcePath.ALGORITHIM_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+                        + ResourcePath.ALGORITHM_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AlgorithmController
 {
 

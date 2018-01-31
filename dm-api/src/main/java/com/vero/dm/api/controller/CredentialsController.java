@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5 created in 14:27 2018/1/23.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
 @Slf4j
 @RestController

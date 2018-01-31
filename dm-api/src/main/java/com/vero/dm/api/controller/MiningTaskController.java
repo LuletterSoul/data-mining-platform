@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,11 @@ import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.repository.dto.MiningTaskDTO;
 import com.vero.dm.service.MiningTaskService;
+import com.vero.dm.service.constant.ResourcePath;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -25,7 +31,7 @@ import com.vero.dm.service.MiningTaskService;
  */
 
 @RestController
-@RequestMapping(value = ApiVersion.API_VERSION + "/tasks")
+@RequestMapping(value = ApiVersion.API_VERSION + ResourcePath.TASK_PATH)
 public class MiningTaskController
 {
     private MiningTaskService miningTaskService;
@@ -36,150 +42,121 @@ public class MiningTaskController
         this.miningTaskService = miningTaskService;
     }
 
-    @RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE)
+    @ApiOperation("根据ID获取数据挖掘任务的信息")
+    @GetMapping(value = "/{taskId}")
+    public ResponseEntity<DataMiningTask> get(@PathVariable("taskId") String taskId)
+    {
+        return new ResponseEntity<>(miningTaskService.findById(taskId), HttpStatus.OK);
+    }
+
+    @ApiOperation("根据ID删除一个数据挖掘任务")
+    @DeleteMapping(value = "/{taskId}")
     public ResponseEntity<DataMiningTask> deleteById(@PathVariable("taskId") String taskId)
     {
-        return new ResponseEntity<DataMiningTask>(miningTaskService.deleteByTaskId(taskId),
+        return new ResponseEntity<>(miningTaskService.deleteByTaskId(taskId),
             HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Page<DataMiningTask> getList(@PageableDefault Pageable pageable)
+    @ApiOperation("分页获取任务列表")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
+        @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "taskId"),
+        @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC")})
+    @GetMapping
+    public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
+        "taskId"}, direction = Sort.Direction.DESC) Pageable pageable)
     {
         return miningTaskService.fetchTaskList(pageable);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public DataMiningTask update(@RequestBody DataMiningTask dataMiningTask)
+    @ApiOperation("更新数据挖掘任务的信息")
+    @PutMapping
+    public ResponseEntity<DataMiningTask> update(@RequestBody MiningTaskDTO miningTaskDTO)
     {
-        miningTaskService.update(dataMiningTask);
-        return dataMiningTask;
+        return new ResponseEntity<>(miningTaskService.saveOrUpdateMiningTask(miningTaskDTO),
+            HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @ApiOperation("创建一个数据挖掘任务")
+    @PostMapping
     public ResponseEntity<DataMiningTask> create(@RequestBody MiningTaskDTO miningTaskDTO)
     {
-        return new ResponseEntity<DataMiningTask>(miningTaskService.saveMiningTask(miningTaskDTO),
+        return new ResponseEntity<>(miningTaskService.saveOrUpdateMiningTask(miningTaskDTO),
             HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{taskId}/groups", method = RequestMethod.GET)
-    public List<DataMiningGroup> groups(@PathVariable("taskId") String taskId)
+    @ApiOperation("获取与此任务相关联的分组")
+    @GetMapping(value = "/{taskId}/groups")
+    public ResponseEntity<List<DataMiningGroup>> groups(@PathVariable("taskId") String taskId)
     {
-        return miningTaskService.fetchInvolvedGroups(taskId);
+        return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{taskId}/groups/{groupId}", method = RequestMethod.GET)
-    public DataMiningGroup getInvolvedGroup(@PathVariable("taskId") String taskId,
-                                            @PathVariable("groupId") String groupId)
-    {
-        return miningTaskService.getInvolvedGroup(taskId, groupId);
-    }
+//    @ApiOperation("为分组分配一个数据挖掘任务")
+////    @PostMapping(value = "/{taskId}/groups")
+////    public ResponseEntity<DataMiningGroup> involveGroup(@PathVariable("taskId") String taskId,
+////                                                        @RequestBody String groupId)
+////    {
+////        return new ResponseEntity<>(miningTaskService.involveGroup(taskId, groupId),
+////            HttpStatus.CREATED);
+////    }
 
-    @RequestMapping(value = "/{taskId}/groups/{groupId}", method = RequestMethod.DELETE)
-    public ResponseEntity<DataMiningGroup> removeGroup(@PathVariable("taskId") String taskId,
-                                                       @PathVariable("groupId") String groupId)
-    {
-        return new ResponseEntity<DataMiningGroup>(
-            miningTaskService.removeInvolvedGroup(taskId, groupId), HttpStatus.NO_CONTENT);
-    }
-
+    @ApiOperation("为多个分组批量分配任务")
     @RequestMapping(value = "/{taskId}/groups", method = RequestMethod.POST)
-    public ResponseEntity<DataMiningGroup> involveGroup(@PathVariable("taskId") String taskId,
-                                                        @RequestBody String groupId)
-    {
-        return new ResponseEntity<DataMiningGroup>(miningTaskService.involveGroup(taskId, groupId),
-            HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value = "/{taskId}/groups/involveWithArray", method = RequestMethod.POST)
     public ResponseEntity<List<DataMiningGroup>> involveGroups(@PathVariable("taskId") String taskId,
                                                                @RequestBody List<String> groupIds)
     {
-        return new ResponseEntity<List<DataMiningGroup>>(
-            miningTaskService.involveGroups(taskId, groupIds), HttpStatus.CREATED);
+        return new ResponseEntity<>(miningTaskService.involveGroups(taskId, groupIds),
+            HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{taskId}/groups/removeWithArray", method = RequestMethod.DELETE)
+    @ApiOperation("批量移除任务")
+    @RequestMapping(value = "/{taskId}/groups", method = RequestMethod.DELETE)
     public ResponseEntity<List<DataMiningGroup>> removeGroups(@PathVariable("taskId") String taskId,
                                                               @RequestBody List<String> groupIds)
     {
-        return new ResponseEntity<List<DataMiningGroup>>(
-            miningTaskService.removeInvolvedGroups(taskId, groupIds), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(miningTaskService.removeInvolvedGroups(taskId, groupIds),
+            HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/{taskId}/algorithms/{algorithmId}", method = RequestMethod.GET)
-    public Algorithm getAlgorithm(@PathVariable("taskId") String taskId,
-                                  @PathVariable("algorithmId") String algorithmId)
-    {
-        return miningTaskService.getAlgorithm(taskId, algorithmId);
-    }
-
-    @RequestMapping(value = "/{taskId}/algorithms", method = RequestMethod.GET)
-    public List<Algorithm> getAlgorithms(@PathVariable("taskId") String taskId)
-    {
-        return miningTaskService.fetchConfiguredAlgorithms(taskId);
-    }
-
-    @RequestMapping(value = "/{taskId}/algorithms/configWithArray", method = RequestMethod.POST)
+    @ApiOperation("配置算法")
+    @PostMapping(value = "/{taskId}/algorithms")
     public ResponseEntity<List<Algorithm>> configAlgorithms(@PathVariable("taskId") String taskId,
-                                                            @RequestBody List<String> algorithmIds)
+                                                            @RequestBody List<Integer> algorithmIds)
     {
-        return new ResponseEntity<List<Algorithm>>(
-            miningTaskService.configureAlgorithms(taskId, algorithmIds), HttpStatus.CREATED);
+        return new ResponseEntity<>(miningTaskService.configureAlgorithms(taskId, algorithmIds),
+            HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{taskId}/algorithms/{algorithmId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Algorithm> cancelAlgorithm(@PathVariable("taskId") String taskId,
-                                                     @PathVariable("algorithmId") String algorithmId)
-    {
-        return new ResponseEntity<Algorithm>(
-            miningTaskService.configureAlgorithm(taskId, algorithmId), HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value = "/{taskId}/algorithms/deleteWithArray", method = RequestMethod.DELETE)
-    public ResponseEntity<List<Algorithm>> cancelAlgorithms(@PathVariable("taskId") String taskId,
-                                                            @RequestBody List<String> algorithmIds)
-    {
-        return new ResponseEntity<List<Algorithm>>(
-            miningTaskService.removeAlgorithms(taskId, algorithmIds), HttpStatus.NO_CONTENT);
-    }
-
-    @RequestMapping(value = "/{taskId}/collections", method = RequestMethod.POST)
-    public ResponseEntity<DataSetCollection> arrangeMiningSet(@PathVariable("taskId") String taskId,
-                                                              @RequestBody String collectionId)
-    {
-        return new ResponseEntity<DataSetCollection>(
-            miningTaskService.arrangeMiningSet(taskId, collectionId), HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value = "/{taskId}/collections/addSetsWithArray", method = RequestMethod.POST)
+    @ApiOperation("分配数据集")
+    @PostMapping(value = "/{taskId}/collections")
     public ResponseEntity<List<DataSetCollection>> arrangeMiningSets(@PathVariable("taskId") String taskId,
                                                                      @RequestBody List<String> collectionIds)
     {
-        return new ResponseEntity<List<DataSetCollection>>(
-            miningTaskService.arrangeMiningSets(taskId, collectionIds), HttpStatus.CREATED);
+        return new ResponseEntity<>(miningTaskService.configureMiningSets(taskId, collectionIds),
+            HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{taskId}/collections", method = RequestMethod.GET)
-    public List<DataSetCollection> getInvolvedSets(@PathVariable("taskId") String taskId)
+    @ApiOperation("获取数据集")
+    @GetMapping(value = "/{taskId}/collections")
+    public ResponseEntity<List<DataSetCollection>> getInvolvedSets(@PathVariable("taskId") String taskId)
     {
-        return miningTaskService.fetchRefCollections(taskId);
+        return new ResponseEntity<>(miningTaskService.fetchRefCollections(taskId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{taskId}/collections", method = RequestMethod.DELETE)
+    @ApiOperation("取消所有数据集与该任务的关联")
+    @DeleteMapping(value = "/{taskId}/collections")
     public ResponseEntity<List<DataSetCollection>> deleteAllRelContainers(@PathVariable("taskId") String taskId)
     {
-        return new ResponseEntity<List<DataSetCollection>>(
-            miningTaskService.removeAllMiningSets(taskId), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(miningTaskService.removeAllMiningSets(taskId),
+            HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/{taskId}/collections/deleteBathWithArray", method = RequestMethod.DELETE)
-    public ResponseEntity<List<DataSetCollection>> deleteContainersWithArray(@PathVariable("taskId") String taskId,
-                                                                             @RequestBody List<String> collectionIds)
+    @ApiOperation("获取该任务配置的算法")
+    @GetMapping(value = "/{taskId}/algorithms")
+    public ResponseEntity<List<Algorithm>> fetchConfiguredAlgorithms(@PathVariable("taskId") String taskId)
     {
-        return new ResponseEntity<List<DataSetCollection>>(
-            miningTaskService.removeMiningSets(taskId, collectionIds), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(miningTaskService.fetchConfiguredAlgorithms(taskId), HttpStatus.OK);
     }
 
 }
