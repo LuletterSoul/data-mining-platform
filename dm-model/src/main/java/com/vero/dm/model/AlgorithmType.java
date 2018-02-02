@@ -23,7 +23,7 @@ public class AlgorithmType
     @Id
     @GenericGenerator(name = "increment", strategy = "increment")
     @GeneratedValue(generator = "increment")
-    private int typeId;
+    private Integer typeId;
 
     private String chTypeName;
 

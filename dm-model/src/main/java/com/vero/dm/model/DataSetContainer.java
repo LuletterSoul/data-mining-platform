@@ -3,6 +3,9 @@ package com.vero.dm.model;
 
 import javax.persistence.*;
 
+import com.google.common.base.Objects;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
@@ -41,7 +44,7 @@ public class DataSetContainer
     /**
      * 文件大小
      */
-    private Double size;
+    private Long size;
 
     /**
      * 文件类型
@@ -57,4 +60,17 @@ public class DataSetContainer
 
     private String filePath;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DataSetContainer container = (DataSetContainer) o;
+        return Objects.equal(containerId, container.containerId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(super.hashCode(), containerId);
+    }
 }

@@ -3,8 +3,10 @@ package com.vero.dm.model;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 
 import lombok.Data;
 
@@ -33,4 +35,20 @@ public class DataSetDescription
     private String title;
 
     private String detail;
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DataSetDescription that = (DataSetDescription)o;
+        return Objects.equal(descriptionId, that.descriptionId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(super.hashCode(), descriptionId);
+    }
 }

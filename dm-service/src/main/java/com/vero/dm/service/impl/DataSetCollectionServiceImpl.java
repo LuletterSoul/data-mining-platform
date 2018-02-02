@@ -1,17 +1,26 @@
 package com.vero.dm.service.impl;
 
 
-import java.util.List;
-import java.util.Map;
+import static com.vero.dm.util.PathUtils.concat;
+import static com.vero.dm.util.PathUtils.getAbsolutePath;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.*;
+
+import com.vero.dm.repository.dto.CollectionDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.vero.dm.model.DataSetCollection;
-import com.vero.dm.model.DataSetContainer;
-import com.vero.dm.repository.dto.CollectionDTO;
+import com.vero.dm.model.*;
 import com.vero.dm.service.DataSetCollectionService;
+import com.vero.dm.service.constant.ResourcePath;
+import com.vero.dm.util.PathUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -21,6 +30,7 @@ import com.vero.dm.service.DataSetCollectionService;
  * @modified by:
  */
 @Service
+@Slf4j
 public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSetCollection, String> implements DataSetCollectionService
 {
 
@@ -46,18 +56,53 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return collectionJpaRepository.findAll(pageable);
     }
 
+    @Override
+    public DataSetContainer addDataSetContainer(String collectionId, MultipartFile multipartFile)
+    {
+        DataSetCollection collection = findById(collectionId);
+        String absolutePath = concat(collection.getDataSetFolderPath(),
+            multipartFile.getOriginalFilename());
+        DataSetContainer container = new DataSetContainer();
+        String fileType = handleFileTransfer(multipartFile, absolutePath);
+        container.setFileName(multipartFile.getOriginalFilename());
+        container.setDataSetCollection(findById(collectionId));
+        container.setFilePath(absolutePath);
+        container.setFileType(fileType);
+        container.setSize(multipartFile.getSize());
+        containerJpaRepository.save(container);
+        return container;
+    }
+
+    private String handleFileTransfer(MultipartFile multipartFile, String absolutePath)
+    {
+        try
+        {
+            FileOutputStream outputStream = new FileOutputStream(absolutePath);
+            outputStream.write(multipartFile.getBytes());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        // try
+        // {
+        // FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+        // new File(absolutePath));
+        // }
+        // catch (IOException e)
+        // {
+        // e.printStackTrace();
+        // }
+        String originalFileName = multipartFile.getOriginalFilename();
+        String fileType = originalFileName.substring(originalFileName.lastIndexOf("."),
+            originalFileName.length());
+        log.debug("Uploaded file type is [{}]", fileType);
+        return fileType;
+    }
+
     public List<DataSetCollection> findCollectionsByIds(List<String> collectionIds)
     {
         return collectionJpaRepository.findAll(collectionIds);
-    }
-
-    public DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container)
-    {
-        // DataSetCollection collection = findById(collectionId);
-        ////// collection.getDataSets().add(container);
-        ////// container.setDataSetCollection(collection);
-        //// return container;
-        return null;
     }
 
     @Override
@@ -84,15 +129,12 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return null;
     }
 
-    public DataSetContainer removeDataSetContainer(String collectionId, String containerId)
-    {
-        // DataSetContainer container = containerDao.findById(containerId);
-        // DataSetCollection collection = findById(collectionId);
-        //// collection.getDataSets().remove(container);
-        // container.setDataSetCollection(null);
-        // return container;
-        return null;
-    }
+//    public DataSetContainer removeDataSetContainer(String collectionId, String containerId)
+//    {
+//        DataSetContainer
+//        containerJpaRepository.delete(containerId);
+//        return null;
+//    }
 
     @Override
     public DataSetCollection getCollectionByName(String collectionName)
@@ -102,27 +144,29 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetCollection saveCollection(DataSetCollection collection)
+    public DataSetCollection saveCollection(CollectionDto collectionDto)
     {
-        return null;
+        return collectionJpaRepository.save(convert(collectionDto));
     }
 
     @Override
-    public List<DataSetCollection> saveCollections(List<DataSetCollection> collections)
+    public List<DataSetCollection> saveCollections(List<CollectionDto> collectionDtos)
     {
-        return collectionJpaRepository.save(collections);
+        List<DataSetCollection> dataSetCollections = new LinkedList<>();
+        collectionDtos.forEach(c -> dataSetCollections.add(convert(c)));
+        return collectionJpaRepository.save(dataSetCollections);
     }
 
-    private void updateCollectionMultipleTypes(CollectionDTO collectionDTO,
+    private void updateCollectionMultipleTypes(CollectionDto collectionDto,
                                                DataSetCollection collection)
     {
         // List<AssociatedTask> associatedTasks = miningTaskTypeDao.getTaskTypes(
-        // collectionDTO.getAssociatedTaskIds());
+        // collectionDto.getAssociatedTaskIds());
         // List<AttributeType> attributeTypes = attributeTypeDao.getAttrTypes(
-        // collectionDTO.getAttributeTypeIds());
+        // collectionDto.getAttributeTypeIds());
         // List<DataSetCharacteristic> characteristics = collectionCharDao.getCharTypes(
-        // collectionDTO.getCharacteristicIds());
-        // AreaType areaType = areaTypeDao.findById(collectionDTO.getAreaId());
+        // collectionDto.getCharacteristicIds());
+        // AreaType areaType = areaTypeDao.findById(collectionDto.getAreaId());
         // collection.setAssociatedTasks(new LinkedHashSet<AssociatedTask>(associatedTasks));
         //// collection.setAttributeTypes(new LinkedHashSet<AttributeType>(attributeTypes));
         //// collection.setCharacteristics(new
@@ -162,7 +206,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     // @Override
-    // public DataSetCollection updateCollection(CollectionDTO dataSetCollection)
+    // public DataSetCollection updateCollection(CollectionDto dataSetCollection)
     // {
     //// DataSetCollection collection = this.findById(dataSetCollection.getCollectionId());
     //// BeanUtils.copyProperties(dataSetCollection, collection);
@@ -175,8 +219,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public List<DataSetContainer> getContainers(String collectionId)
     {
-        // return collectionDao.getContainers(collectionId);
-        return null;
+        return new ArrayList<>(findById(collectionId).getDataSetContainers());
     }
 
     @Override
@@ -208,6 +251,83 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         // optionsMap.put("miningTaskTypeOptions", associatedTaskOptions);
         // return optionsMap;
         return null;
+    }
+
+    public DataSetCollection convert(CollectionDto source)
+    {
+        List<DataSetDescription> descriptions = descriptionJpaRepository.findAll(
+            source.getDescriptionIds());
+        AreaType areaType = areaJpaRepository.findOne(source.getAreaId());
+        List<AttributeCharacteristic> attributeCharacteristics = attributeCharJpaRepository.findAll(
+            source.getAttrCharIds());
+        List<AssociatedTask> associatedTasks = associatedTaskJpaRepository.findAll(
+            source.getAssociatedTaskIds());
+        List<DataSetCharacteristic> dataSetCharacteristics = setCharJpaRepository.findAll(
+            source.getDataSetCharIds());
+        Boolean isValidDtoParams = isValidDtoParams(areaType, attributeCharacteristics,
+            associatedTasks, dataSetCharacteristics);
+        // if (!isValidDtoParams)
+        // {
+        // throw new HttpMessageNotReadableException(
+        // "The provided request body is not readable!");
+        // }
+        return convertResult(source, descriptions, areaType, attributeCharacteristics,
+            associatedTasks, dataSetCharacteristics);
+    }
+
+    private DataSetCollection convertResult(CollectionDto source,
+                                            List<DataSetDescription> descriptions,
+                                            AreaType areaType,
+                                            List<AttributeCharacteristic> attributeCharacteristics,
+                                            List<AssociatedTask> associatedTasks,
+                                            List<DataSetCharacteristic> dataSetCharacteristics)
+    {
+        if (source.getIsUpdated())
+        {
+            return updatedCollectionModel(source);
+        }
+        else
+        {
+            return newCollectionModel(source, descriptions, areaType, attributeCharacteristics,
+                associatedTasks, dataSetCharacteristics);
+        }
+    }
+
+    private boolean isValidDtoParams(AreaType areaType,
+                                     List<AttributeCharacteristic> attributeCharacteristics,
+                                     List<AssociatedTask> associatedTasks,
+                                     List<DataSetCharacteristic> dataSetCharacteristics)
+    {
+        return areaType != null && attributeCharacteristics != null && associatedTasks != null
+               && dataSetCharacteristics != null;
+    }
+
+    private DataSetCollection newCollectionModel(CollectionDto source,
+                                                 List<DataSetDescription> descriptions,
+                                                 AreaType areaType,
+                                                 List<AttributeCharacteristic> attributeCharacteristics,
+                                                 List<AssociatedTask> associatedTasks,
+                                                 List<DataSetCharacteristic> dataSetCharacteristics)
+    {
+        DataSetCollection newCollection = new DataSetCollection();
+        BeanUtils.copyProperties(source, newCollection);
+        newCollection.setArea(areaType);
+        newCollection.setAssociatedTasks(new LinkedHashSet<>(associatedTasks));
+        newCollection.setAttributeCharacteristics(new LinkedHashSet<>(attributeCharacteristics));
+        // newCollection.setDescriptions(new LinkedHashSet<>(descriptions));
+        descriptions.forEach(d -> d.setDataSetCollection(newCollection));
+        newCollection.setDataSetCharacteristics(new LinkedHashSet<>(dataSetCharacteristics));
+        collectionJpaRepository.save(newCollection);
+        String folderPath = concat(ResourcePath.COLLECTION_PATH, newCollection.getCollectionId());
+        newCollection.setDataSetFolderPath(PathUtils.getAbsolutePath(folderPath));
+        return newCollection;
+    }
+
+    private DataSetCollection updatedCollectionModel(CollectionDto source)
+    {
+        DataSetCollection collection = collectionJpaRepository.findOne(source.getCollectionId());
+        BeanUtils.copyProperties(source, collection);
+        return collection;
     }
 
 }

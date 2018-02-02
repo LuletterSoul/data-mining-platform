@@ -31,35 +31,6 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 {
     public AbstractBaseServiceImpl()
     {}
-    // protected BaseDao<E, PK> baseDao;
-    //
-    // protected FavoriteStatusDao favoriteStatusDao;
-    //
-    // protected DataSetContainerDao containerDao;
-    //
-    // protected DataSetCollectionDao collectionDao;
-    //
-    // protected MiningTaskDao miningTaskDao;
-    //
-    // protected AlgorithmDao algorithmDao;
-    //
-    // protected UserDao userDao;
-    //
-    // protected StudentDao studentDao;
-    //
-    // protected GroupDao groupDao;
-    //
-    // protected PermissionDao permissionDao;
-    //
-    // protected RoleDao roleDao;
-    //
-    // protected MiningTaskTypeDao miningTaskTypeDao;
-    //
-    // protected AreaTypeDao areaTypeDao;
-    //
-    // protected CollectionCharDao collectionCharDao;
-    //
-    // protected AttributeTypeDao attributeTypeDao;
 
     @Autowired
     protected DataMiningTaskJpaRepository taskJpaRepository;
@@ -87,6 +58,24 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
     @Autowired
     protected UserJpaRepository userJpaRepository;
+
+    @Autowired
+    protected DataSetDescriptionJpaRepository descriptionJpaRepository;
+
+    @Autowired
+    protected AreaJpaRepository areaJpaRepository;
+
+    @Autowired
+    protected AttributeCharJpaRepository attributeCharJpaRepository;
+
+    @Autowired
+    protected AssociatedTaskJpaRepository associatedTaskJpaRepository;
+
+    @Autowired
+    protected DataSetCharJpaRepository setCharJpaRepository;
+
+    @Autowired
+    protected AlgorithmJpaRepository algorithmJpaRepository;
 
     @Override
     public List<E> get(Pageable pageable)

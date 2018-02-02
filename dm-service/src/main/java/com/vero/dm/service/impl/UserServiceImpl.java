@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.vero.dm.repository.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import com.vero.dm.exception.DataObjectNotFoundException;
 import com.vero.dm.model.Permission;
 import com.vero.dm.model.Role;
 import com.vero.dm.model.User;
-import com.vero.dm.repository.dto.UserDTO;
 import com.vero.dm.service.UserService;
 
 
@@ -52,7 +52,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     // this.credentialsService = credentialsService;
     // }
 
-    public UserDTO registerUser(User user)
+    public UserDto registerUser(User user)
     {
         // String publicSalt = credentialsService.generateRandomSalt(32);
         // String privateSalt = credentialsService.generateRandomSalt(32);
@@ -62,17 +62,17 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         // user.setPrivateSalt(privateSalt);
         // user.setPublicSalt(publicSalt);
         // userDao.save(user);
-        // UserDTO userDTO = new UserDTO();
+        // UserDto userDTO = new UserDto();
         // BeanUtils.copyProperties(user, userDTO);
         // return userDTO;
         return null;
     }
 
     @Override
-    public UserDTO getUserProfile(String username)
+    public UserDto getUserProfile(String username)
     {
         // User user = userDao.fetchByUserName(username);
-        // UserDTO userDTO = new UserDTO();
+        // UserDto userDTO = new UserDto();
         // BeanUtils.copyProperties(user, userDTO);
         // if (user.getAvatar() != null)
         // {
@@ -83,14 +83,14 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO)
+    public UserDto updateUser(UserDto userDto)
     {
-        // User user = this.findById(userDTO.getUserId());
-        // BeanUtils.copyProperties(userDTO, user);
-        // user.setAvatar(userDTO.getAvatar().getBytes());
+        // User user = this.findById(userDto.getUserId());
+        // BeanUtils.copyProperties(userDto, user);
+        // user.setAvatar(userDto.getAvatar().getBytes());
         // userDao.save(user);
-        // return userDTO;
-        return userDTO;
+        // return userDto;
+        return userDto;
     }
     //
     // public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)

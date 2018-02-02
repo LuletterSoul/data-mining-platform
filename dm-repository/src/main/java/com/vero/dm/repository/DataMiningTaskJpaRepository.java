@@ -1,9 +1,12 @@
 package com.vero.dm.repository;
 
 
+import com.vero.dm.model.DataMiningGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.vero.dm.model.DataMiningTask;
+
+import java.util.List;
 
 
 /**
@@ -13,4 +16,6 @@ import com.vero.dm.model.DataMiningTask;
  */
 
 public interface DataMiningTaskJpaRepository extends JpaRepository<DataMiningTask, String>
-{}
+{
+
+}

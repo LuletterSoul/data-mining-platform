@@ -9,8 +9,10 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 
 import lombok.Data;
+import lombok.ToString;
 
 
 /**
@@ -22,6 +24,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "data_mining_group")
+@ToString(exclude = {"groupMembers","groupLeader"})
 public class DataMiningGroup
 {
     /**
@@ -69,11 +72,26 @@ public class DataMiningGroup
     @JoinColumn(name = "teacherUserId", foreignKey = @ForeignKey(name = "BUILDER_FK_ID"))
     private Teacher groupBuilder;
 
-
     /**
      * 每个分组只能持有一个发掘任务
      */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taskId", foreignKey = @ForeignKey(name = "TASK_FOREIGN_KEY"))
     private DataMiningTask dataMiningTask;
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DataMiningGroup group = (DataMiningGroup)o;
+        return Objects.equal(groupId, group.groupId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(super.hashCode(), groupId);
+    }
 }

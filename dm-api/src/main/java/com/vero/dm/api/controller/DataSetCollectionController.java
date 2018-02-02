@@ -5,6 +5,7 @@ import static com.vero.dm.service.constant.ResourcePath.COLLECTION_PATH;
 
 import java.util.List;
 
+import com.vero.dm.repository.dto.CollectionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
-import com.vero.dm.repository.dto.CollectionDTO;
 import com.vero.dm.service.DataSetCollectionService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -88,7 +88,7 @@ public class DataSetCollectionController
 
     @ApiOperation(value = "更新数据集")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "setCollection", value = "数据集编号", dataType = "CollectionDTO", paramType = "body", required = true)})
+        @ApiImplicitParam(name = "setCollection", value = "数据集编号", dataType = "CollectionDto", paramType = "body", required = true)})
     @PutMapping
     public ResponseEntity<DataSetCollection> update(@RequestBody DataSetCollection dataSetCollection)
     {
@@ -98,11 +98,11 @@ public class DataSetCollectionController
 
     @ApiOperation(value = "创建数据集")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "collectionDTO", value = "数据集DTO", dataType = "CollectionDTO", paramType = "body", required = true)})
+        @ApiImplicitParam(name = "collectionDto", value = "数据集DTO", dataType = "CollectionDto", paramType = "body", required = true)})
     @PostMapping
-    public ResponseEntity<DataSetCollection> create(@RequestBody CollectionDTO collectionDTO)
+    public ResponseEntity<DataSetCollection> create(@RequestBody CollectionDto collectionDto)
     {
-        return new ResponseEntity<>(collectionService.saveCollection(collectionDTO),
+        return new ResponseEntity<>(collectionService.saveCollection(collectionDto),
             HttpStatus.CREATED);
     }
 

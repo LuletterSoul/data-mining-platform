@@ -1,14 +1,15 @@
 package com.vero.dm.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import java.util.Set;
 
 import javax.persistence.*;
-import java.util.Set;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
 
 
 /**
@@ -24,7 +25,7 @@ public class Algorithm
     @Id
     @GenericGenerator(name = "increment", strategy = "increment")
     @GeneratedValue(generator = "increment")
-    private String algorithmId;
+    private Integer algorithmId;
 
     private String algorithmName;
 
@@ -47,5 +48,7 @@ public class Algorithm
         this.interfaceDescription = interfaceDescription;
         this.type = type;
     }
+
+
 
 }

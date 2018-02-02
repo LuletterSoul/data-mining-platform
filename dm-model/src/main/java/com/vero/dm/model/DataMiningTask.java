@@ -9,8 +9,10 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 
 import lombok.Data;
+import lombok.ToString;
 
 
 /**
@@ -25,6 +27,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "data_mining_task")
+@ToString(exclude = {"groups", "arrangedCollections", "algorithms"})
 public class DataMiningTask
 {
     /**
@@ -35,6 +38,9 @@ public class DataMiningTask
     @GeneratedValue(generator = "uuidGenerator")
     private String taskId;
 
+    /**
+     * 任务名称
+     */
     private String taskName;
 
     /**
@@ -117,4 +123,19 @@ public class DataMiningTask
     @JoinTable(name = "task_algorithm_rel", joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "taskId"), inverseJoinColumns = @JoinColumn(name = "algorithmId", referencedColumnName = "algorithmId"))
     private Set<Algorithm> algorithms;
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DataMiningTask task = (DataMiningTask)o;
+        return Objects.equal(taskId, task.taskId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(super.hashCode(), taskId);
+    }
 }

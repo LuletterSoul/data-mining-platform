@@ -8,7 +8,7 @@ import com.vero.dm.exception.DataObjectNotFoundException;
 import com.vero.dm.model.Permission;
 import com.vero.dm.model.Role;
 import com.vero.dm.model.User;
-import com.vero.dm.repository.dto.UserDTO;
+import com.vero.dm.repository.dto.UserDto;
 
 
 /**
@@ -19,11 +19,11 @@ import com.vero.dm.repository.dto.UserDTO;
  */
 public interface UserService extends BaseService<User, String>
 {
-    UserDTO registerUser(User user);
+    UserDto registerUser(User user);
 
-    UserDTO getUserProfile(String username);
+    UserDto getUserProfile(String username);
 
-    UserDTO updateUser(UserDTO userDTO);
+    UserDto updateUser(UserDto userDto);
     // User doUserCredentialsMatch(User user, DisposableSaltEntry entry);
 
     // DisposableSaltEntry getRandomVerifySaltEntry(String preSaltId);

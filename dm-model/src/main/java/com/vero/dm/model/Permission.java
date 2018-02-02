@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.common.base.Objects;
+
 import lombok.Data;
 
 
@@ -55,4 +57,19 @@ public class Permission
         isAvailable = available;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Permission that = (Permission)o;
+        return Objects.equal(permissionId, that.permissionId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(super.hashCode(), permissionId);
+    }
 }

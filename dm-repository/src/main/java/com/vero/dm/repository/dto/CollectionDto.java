@@ -24,7 +24,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 
 @ApiModel
 @Data
-public class CollectionDTO
+public class CollectionDto
 {
     /**
      * 数据集的ID

@@ -3,6 +3,8 @@ package com.vero.dm.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vero.dm.model.DataSetCollection;
@@ -17,14 +19,9 @@ import com.vero.dm.model.DataSetContainer;
  */
 public interface DataSetContainerService extends BaseService<DataSetContainer, String>
 {
-    /**
-     * @param collectionId
-     *            要更新的分类集合
-     * @return 集合ID
-     */
-    public void setOrUpdateContainerCategorization(String collectionId, String containerId);
-
     List<String> getContainerIds();
+
+    Page<DataSetContainer> getPageableContainers(Pageable pageable);
 
     List<DataSetContainer> fetchDataSetContainers(String collectionId);
 
@@ -41,8 +38,6 @@ public interface DataSetContainerService extends BaseService<DataSetContainer, S
     DataSetContainer getContainerByName(String containerName);
 
     DataSetContainer getContainerByFileName(String fileName);
-
-    String uploadData(String containerId, MultipartFile file);
 
     byte[] downloadData(String containerId, String filePath);
 

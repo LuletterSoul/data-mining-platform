@@ -9,6 +9,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
 /**
@@ -17,9 +19,11 @@ import lombok.Data;
  * @description
  * @modified by:
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @DiscriminatorValue(value = "Student")
+@ToString(exclude = {"ruleMiningGroups", "miningGroups"})
 public class Student extends User implements Serializable
 {
     private static final long serialVersionUID = 8479971255524788081L;
@@ -46,7 +50,6 @@ public class Student extends User implements Serializable
     @JoinColumn(name = "favoriteId", foreignKey = @ForeignKey(name = "FAVORITE_FOREIGN_KEY"))
     private FavoriteStatus favorite;
 
-
     /**
      * 一个学生可以管理多个分组
      */
@@ -54,15 +57,12 @@ public class Student extends User implements Serializable
     @OneToMany(mappedBy = "groupLeader")
     private Set<DataMiningGroup> ruleMiningGroups;
 
-
     /**
      * 一个学生在不同时段可以位于不同的分组 不同分组也有不同学生 需要校验合法性
      */
     @ManyToMany
     @JsonIgnore
-    @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(
-            name = "memberId", referencedColumnName = "studentId"),
-            inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
+    @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(name = "memberId", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
     private Set<DataMiningGroup> miningGroups;
 
     public Student()
@@ -74,4 +74,5 @@ public class Student extends User implements Serializable
         super(userName, password, publicSalt, status);
         this.studentName = studentName;
     }
+
 }

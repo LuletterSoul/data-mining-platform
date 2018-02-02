@@ -9,7 +9,8 @@ import org.springframework.data.domain.Pageable;
 
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
-import com.vero.dm.repository.dto.CollectionDTO;
+import com.vero.dm.repository.dto.CollectionDto;
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -25,17 +26,17 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
     Page<DataSetCollection> getPageableCollection(Pageable pageable);
 
 
-    DataSetContainer addDataSetContainer(String collectionId, DataSetContainer container);
+    DataSetContainer addDataSetContainer(String collectionId, MultipartFile multipartFile);
 
     List<DataSetContainer> saveOrUpdateContainers(String collectionId, List<String> containerIds);
 
-    DataSetContainer removeDataSetContainer(String collectionId, String containerId);
+//    DataSetContainer removeDataSetContainer(String collectionId, String containerId);
 
     DataSetCollection getCollectionByName(String collectionName);
 
-    DataSetCollection saveCollection(DataSetCollection collection);
+    DataSetCollection saveCollection(CollectionDto collectionDto);
 
-    List<DataSetCollection> saveCollections(List<DataSetCollection> collections);
+    List<DataSetCollection> saveCollections(List<CollectionDto> collectionDtos);
 
     DataSetCollection deleteByName(String collectionName);
 

@@ -7,7 +7,7 @@ package com.vero.dm.model;
  */
 
 public enum MiningTaskStatus {
-    attendtionRequried("任务需推进"),
+    attentionRequried("任务需推进"),
     completed("任务完成"),
     inProgress("任务进行中"),
     incomplete("任务未完成"),

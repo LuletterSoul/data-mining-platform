@@ -5,7 +5,11 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
 /**
@@ -14,8 +18,10 @@ import lombok.Data;
  * @description
  * @modified by:
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@ToString(exclude = {"buildGroups"})
 @DiscriminatorValue(value = "Teacher")
 public class Teacher extends User
 {
@@ -27,11 +33,13 @@ public class Teacher extends User
     /**
      * 一个老师可建多个分组
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "groupBuilder")
     private Set<DataMiningGroup> buildGroups;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "favorite_stu_rel", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "studentId"))
+    @JoinTable(name = "favorite_stu_rel", joinColumns = @JoinColumn(name = "t_userId", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "s_userId", referencedColumnName = "userId"))
     private Set<Student> favoriteStudent;
 
 }

@@ -23,4 +23,9 @@ public class AlgorithmServiceImpl extends AbstractBaseServiceImpl<Algorithm, Str
         // return this.algorithmDao.fetchAlgorithmNames();
         return null;
     }
+
+    @Override
+    public List<Algorithm> findAll() {
+        return algorithmJpaRepository.findAll();
+    }
 }

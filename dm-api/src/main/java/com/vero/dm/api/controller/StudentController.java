@@ -3,6 +3,7 @@ package com.vero.dm.api.controller;
 
 import java.util.List;
 
+import com.vero.dm.repository.dto.StudentDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.model.Student;
-import com.vero.dm.repository.dto.StudentDTO;
 import com.vero.dm.service.StudentService;
 
 
@@ -41,33 +41,33 @@ public class StudentController
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<StudentDTO> create(@RequestBody Student student)
+    public ResponseEntity<StudentDto> create(@RequestBody Student student)
     {
-        StudentDTO studentDTO = studentService.save(student);
-        return new ResponseEntity<StudentDTO>(studentDTO, HttpStatus.CREATED);
+        StudentDto studentDto = studentService.save(student);
+        return new ResponseEntity<StudentDto>(studentDto, HttpStatus.CREATED);
     }
 
     /**
      * 后续需要处理好修改密码等敏感操作 DTO跟
      * 
-     * @param studentDTO
+     * @param studentDto
      * @return
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<StudentDTO> update(@RequestBody StudentDTO studentDTO)
+    public ResponseEntity<StudentDto> update(@RequestBody StudentDto studentDto)
     {
-        return new ResponseEntity<StudentDTO>(studentService.update(studentDTO), HttpStatus.OK);
+        return new ResponseEntity<StudentDto>(studentService.update(studentDto), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{studentId}", method = RequestMethod.DELETE)
-    public ResponseEntity<StudentDTO> delete(@PathVariable("studentId") String studentId)
+    public ResponseEntity<StudentDto> delete(@PathVariable("studentId") String studentId)
     {
-        StudentDTO studentDTO = studentService.deleteByStudentId(studentId);
-        return new ResponseEntity<StudentDTO>(studentDTO, HttpStatus.OK);
+        StudentDto studentDto = studentService.deleteByStudentId(studentId);
+        return new ResponseEntity<StudentDto>(studentDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{studentId}", method = RequestMethod.GET)
-    public StudentDTO get(@PathVariable("studentId") String studentId)
+    public StudentDto get(@PathVariable("studentId") String studentId)
     {
         return studentService.getStudentById(studentId);
     }
@@ -93,7 +93,7 @@ public class StudentController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<StudentDTO> studentsPageable(@PageableDefault(size = 10, page = 0, sort = {
+    public Page<StudentDto> studentsPageable(@PageableDefault(size = 10, page = 0, sort = {
         "studentId"}, direction = Sort.Direction.DESC) Pageable pageable)
     {
         return studentService.getStudentList(pageable);

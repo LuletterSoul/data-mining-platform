@@ -10,7 +10,7 @@ import com.vero.dm.model.Algorithm;
 import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.DataSetCollection;
-import com.vero.dm.repository.dto.MiningTaskDTO;
+import com.vero.dm.repository.dto.MiningTaskDto;
 
 
 /**
@@ -21,7 +21,7 @@ import com.vero.dm.repository.dto.MiningTaskDTO;
 public interface MiningTaskService extends BaseService<DataMiningTask, String>
 {
 
-    DataMiningTask saveMiningTask(MiningTaskDTO miningTaskDTO);
+    DataMiningTask saveOrUpdateMiningTask(MiningTaskDto miningTaskDto);
 
     DataMiningTask deleteByTaskId(String taskId);
 
@@ -29,41 +29,19 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     List<DataMiningGroup> fetchInvolvedGroups(String taskId);
 
-    DataMiningGroup getInvolvedGroup(String taskId, String groupId);
-
-    DataMiningGroup removeInvolvedGroup(String taskId, String groupId);
-
     List<DataMiningGroup> removeInvolvedGroups(String taskId, List<String> groupIds);
-
-    List<DataMiningGroup> getInvolvedGroups(String taskId);
 
     DataMiningGroup involveGroup(String taskId, String groupId);
 
     List<DataMiningGroup> involveGroups(String taskId, List<String> groupIds);
 
-    Algorithm getAlgorithm(String taskId, String algorithmId);
-
     List<Algorithm> fetchConfiguredAlgorithms(String taskId);
 
-    Algorithm configureAlgorithm(String taskId, String algorithmId);
+    List<Algorithm> configureAlgorithms(String taskId, List<Integer> algorithmIds);
 
-    List<Algorithm> configureAlgorithms(String taskId, List<String> algorithmIds);
-
-    Algorithm removeAlgorithm(String taskId, String algorithmId);
-
-    List<Algorithm> removeAlgorithms(String taskId, List<String> algorithmIds);
-
-    List<Algorithm> removeAllAlgorithms(String taskId);
-
-    DataSetCollection arrangeMiningSet(String taskId, String collectionId);
-
-    List<DataSetCollection> arrangeMiningSets(String taskId, List<String> collectionIds);
+    List<DataSetCollection> configureMiningSets(String taskId, List<String> collectionIds);
 
     List<DataSetCollection> fetchRefCollections(String taskId);
-
-    DataSetCollection removeMiningSet(String taskId, String collectionId);
-
-    List<DataSetCollection> removeMiningSets(String taskId, List<String> collectionIds);
 
     List<DataSetCollection> removeAllMiningSets(String taskId);
 }

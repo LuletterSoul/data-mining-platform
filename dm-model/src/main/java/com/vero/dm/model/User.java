@@ -10,6 +10,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 
 import lombok.Data;
 
@@ -44,12 +45,14 @@ public class User implements EntityIdentifier
 
     protected String gender;
 
+    @JsonIgnore
     protected String password;
 
     protected Date birthday;
 
     protected String publicSalt;
 
+    @JsonIgnore
     protected String privateSalt;
 
     protected UserAccessStatus accountStatus = UserAccessStatus.AVAILABLE;
@@ -82,4 +85,19 @@ public class User implements EntityIdentifier
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        User user = (User)o;
+        return Objects.equal(userId, user.userId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(super.hashCode(), userId);
+    }
 }

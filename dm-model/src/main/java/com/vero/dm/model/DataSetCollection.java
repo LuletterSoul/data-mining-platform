@@ -6,12 +6,14 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.ToString;
 
 
 /**
@@ -23,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Data
 @Entity
 @Table(name = "data_set_collection", catalog = "")
+@ToString(exclude = {"dataSetContainers"})
 public class DataSetCollection
 
 {
@@ -114,4 +117,19 @@ public class DataSetCollection
     public DataSetCollection()
     {}
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DataSetCollection that = (DataSetCollection)o;
+        return Objects.equal(collectionId, that.collectionId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(super.hashCode(), collectionId);
+    }
 }

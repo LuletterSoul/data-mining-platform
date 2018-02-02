@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.credentials.TokenManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.model.User;
-import com.vero.dm.repository.dto.UserDTO;
 import com.vero.dm.security.constants.Constants;
 import com.vero.dm.security.credentials.ClientToken;
 import com.vero.dm.service.UserService;
@@ -70,21 +70,21 @@ public class UserController
     // }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public UserDTO profile(@PathVariable("username") String username)
+    public UserDto profile(@PathVariable("username") String username)
     {
         return userService.getUserProfile(username);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserDTO> register(@RequestBody User user)
+    public ResponseEntity<UserDto> register(@RequestBody User user)
     {
-        return new ResponseEntity<UserDTO>(userService.registerUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<UserDto>(userService.registerUser(user), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public UserDTO update(@RequestBody UserDTO userDTO)
+    public UserDto update(@RequestBody UserDto userDto)
     {
-        return userService.updateUser(userDTO);
+        return userService.updateUser(userDto);
     }
 
     @RequestMapping(value = "/{username}/roles", method = RequestMethod.GET)

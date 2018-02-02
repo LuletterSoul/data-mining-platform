@@ -16,7 +16,7 @@ import com.vero.dm.model.Algorithm;
 import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.DataSetCollection;
-import com.vero.dm.repository.dto.MiningTaskDTO;
+import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
 import com.vero.dm.service.constant.ResourcePath;
 
@@ -71,17 +71,17 @@ public class MiningTaskController
 
     @ApiOperation("更新数据挖掘任务的信息")
     @PutMapping
-    public ResponseEntity<DataMiningTask> update(@RequestBody MiningTaskDTO miningTaskDTO)
+    public ResponseEntity<DataMiningTask> update(@RequestBody MiningTaskDto miningTaskDto)
     {
-        return new ResponseEntity<>(miningTaskService.saveOrUpdateMiningTask(miningTaskDTO),
+        return new ResponseEntity<>(miningTaskService.saveOrUpdateMiningTask(miningTaskDto),
             HttpStatus.OK);
     }
 
     @ApiOperation("创建一个数据挖掘任务")
     @PostMapping
-    public ResponseEntity<DataMiningTask> create(@RequestBody MiningTaskDTO miningTaskDTO)
+    public ResponseEntity<DataMiningTask> create(@RequestBody MiningTaskDto miningTaskDto)
     {
-        return new ResponseEntity<>(miningTaskService.saveOrUpdateMiningTask(miningTaskDTO),
+        return new ResponseEntity<>(miningTaskService.saveOrUpdateMiningTask(miningTaskDto),
             HttpStatus.CREATED);
     }
 

@@ -17,7 +17,7 @@ import lombok.Data;
  */
 
 @Data
-public class StudentDTO
+public class StudentDto
 {
     private String studentId;
 
@@ -35,7 +35,7 @@ public class StudentDTO
 
     private long finishedTaskCount;
 
-    public StudentDTO(Student student)
+    public StudentDto(Student student)
     {
         setStudentId(student.getStudentId());
         setClassName(student.getClassName());
@@ -46,16 +46,17 @@ public class StudentDTO
         setFavorite(student.getFavorite());
     }
 
-    public StudentDTO()
+    public StudentDto(String studentName, String grade, String profession, String className,
+                      StudentStatus status, FavoriteStatus favorite)
     {}
 
-    public StudentDTO(Student student, long count)
+    public StudentDto(Student student, long count)
     {
         this(student);
         setFinishedTaskCount(count);
     }
 
-    public StudentDTO(String studentId, String studentName, String grade, String profession,
+    public StudentDto(String studentId, String studentName, String grade, String profession,
                       String className, StudentStatus status, FavoriteStatus favorite)
     {
         this.studentId = studentId;
@@ -67,24 +68,24 @@ public class StudentDTO
         this.favorite = favorite;
     }
 
-    public static StudentDTO build(Student student)
+    public static StudentDto build(Student student)
     {
-        return new StudentDTO(student.getStudentId(), student.getStudentName(), student.getGrade(),
+        return new StudentDto(student.getStudentId(), student.getStudentName(), student.getGrade(),
             student.getProfession(), student.getClassName(), student.getStatus(),
             student.getFavorite());
     }
 
-    public static List<StudentDTO> build(List<Student> students)
+    public static List<StudentDto> build(List<Student> students)
     {
-        List<StudentDTO> studentDTOS = new LinkedList<StudentDTO>();
+        List<StudentDto> studentDtos = new LinkedList<StudentDto>();
         for (Student student : students)
         {
-            studentDTOS.add(StudentDTO.build(student));
+            studentDtos.add(StudentDto.build(student));
         }
-        return studentDTOS;
+        return studentDtos;
     }
 
-    // public static Student clone(StudentDTO studentDTO) {
+    // public static Student clone(StudentDto studentDTO) {
     // Student student =new Student();
     // student.setStudentName(student.getStudentName());
     // student.setClassName(student.getClassName());

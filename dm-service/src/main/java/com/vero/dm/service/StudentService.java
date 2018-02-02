@@ -3,13 +3,13 @@ package com.vero.dm.service;
 
 import java.util.List;
 
+import com.vero.dm.repository.dto.StudentDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.vero.dm.model.FavoriteStatus;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.StudentStatus;
-import com.vero.dm.repository.dto.StudentDTO;
 
 
 /**
@@ -19,19 +19,19 @@ import com.vero.dm.repository.dto.StudentDTO;
 
 public interface StudentService extends UserService
 {
-    List<StudentDTO> getStudentList();
+    List<StudentDto> getStudentList();
 
     List<String> getStudentIds();
 
-    Page<StudentDTO> getStudentList(Pageable pageable);
+    Page<StudentDto> getStudentList(Pageable pageable);
 
-    StudentDTO deleteByStudentId(String studentId);
+    StudentDto deleteByStudentId(String studentId);
 
-    StudentDTO save(Student student);
+    StudentDto save(Student student);
 
-    StudentDTO update(StudentDTO studentDTO);
+    StudentDto update(StudentDto studentDto);
 
-    StudentDTO getStudentById(String studentId);
+    StudentDto getStudentById(String studentId);
 
     int markStudents(List<String> studentIds);
 

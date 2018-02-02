@@ -1,8 +1,11 @@
 package com.vero.dm.service.impl;
 
 
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,8 +14,10 @@ import com.vero.dm.model.Algorithm;
 import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.DataSetCollection;
-import com.vero.dm.repository.dto.MiningTaskDTO;
+import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -20,218 +25,144 @@ import com.vero.dm.service.MiningTaskService;
  * @version 1.5 created in
  */
 
+@Slf4j
 @Service
 public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTask, String> implements MiningTaskService
 {
+    @Override
+    public DataMiningTask findById(String id)
+    {
+        return taskJpaRepository.findOne(id);
+    }
 
     @Override
-    public DataMiningTask saveMiningTask(MiningTaskDTO miningTaskDTO)
+    public DataMiningTask saveOrUpdateMiningTask(MiningTaskDto miningTaskDto)
     {
-        // DataMiningTask task = new DataMiningTask();
-        // BeanUtils.copyProperties(miningTaskDTO,task);
-        // List<DataSetCollection> collections =
-        // this.collectionDao.findCollectionsByIds(miningTaskDTO.getCollectionIds());
-        // List<Algorithm> algorithms =
-        // this.algorithmDao.fetchAlgorithms(miningTaskDTO.getAlgorithmIds());
-        // task.setAlgorithms(new LinkedHashSet<Algorithm>(algorithms));
-        // task.setArrangedCollections(new LinkedHashSet<DataSetCollection>(collections));
-        // this.miningTaskDao.save(task);
-        // return task;
-        return null;
+        DataMiningTask task = new DataMiningTask();
+        BeanUtils.copyProperties(miningTaskDto, task);
+        List<DataSetCollection> collections = collectionJpaRepository.findAll(
+            miningTaskDto.getCollectionIds());
+        List<Algorithm> algorithms = this.algorithmJpaRepository.findAll(
+            miningTaskDto.getAlgorithmIds());
+        task.setAlgorithms(new LinkedHashSet<>(algorithms));
+        task.setArrangedCollections(new LinkedHashSet<>(collections));
+        this.taskJpaRepository.save(task);
+        return task;
     }
 
     @Override
     public DataMiningTask deleteByTaskId(String taskId)
     {
-        // DataMiningTask task = this.findById(taskId);
-        // this.deleteById(taskId);
-        // return task;
-        return null;
+        DataMiningTask task = this.findById(taskId);
+        task.setAlgorithms(null);
+        task.setArrangedCollections(null);
+        task.setGroups(null);
+        taskJpaRepository.saveAndFlush(task);
+        taskJpaRepository.delete(taskId);
+        return task;
     }
 
     @Override
     public Page<DataMiningTask> fetchTaskList(Pageable pageable)
     {
-        // int totalElements = miningTaskDao.countAll();
-        // return new PageImpl<DataMiningTask>(miningTaskDao.get(pageable), pageable,
-        // totalElements);
-        return null;
+        return taskJpaRepository.findAll(pageable);
     }
 
     @Override
     public List<DataMiningGroup> fetchInvolvedGroups(String taskId)
     {
         // return miningTaskDao.fetchInvolvedGroups(taskId);
-        return null;
-    }
-
-    @Override
-    public DataMiningGroup getInvolvedGroup(String taskId, String groupId)
-    {
-        // DataMiningGroup group = groupDao.fetchGroup(groupId);
-        // miningTaskDao.findById(taskId).getGroups().add(group);
-        // return group;
-        return null;
-    }
-
-    @Override
-    public DataMiningGroup removeInvolvedGroup(String taskId, String groupId)
-    {
-        // DataMiningGroup group = groupDao.findById(groupId);
-        // miningTaskDao.findById(taskId).getGroups().remove(group);
-        // return group;
-        return null;
+        return groupJpaRepository.findByDataMiningTaskId(taskId);
     }
 
     @Override
     public List<DataMiningGroup> removeInvolvedGroups(String taskId, List<String> groupIds)
     {
-        // List<DataMiningGroup> groups = miningTaskDao.fetchPartInvolvedGroups(taskId, groupIds);
-        // miningTaskDao.removeInvolvedGroups(taskId, groupIds);
-        // return groups;
-        return null;
-    }
-
-    @Override
-    public List<DataMiningGroup> getInvolvedGroups(String taskId)
-    {
-        // return miningTaskDao.fetchInvolvedGroups(taskId);
-        return null;
+        List<DataMiningGroup> groups = groupJpaRepository.findAll(groupIds);
+        groups.forEach(g -> doArrangeTask(null, g));
+        groupJpaRepository.save(groups);
+        return groups;
     }
 
     @Override
     public DataMiningGroup involveGroup(String taskId, String groupId)
     {
-        // DataMiningGroup group = groupDao.fetchGroup(groupId);
-        // DataMiningTask miningTask = miningTaskDao.findById(taskId);
-        // group.setDataMiningTask(miningTask);
-        // miningTask.getGroups().add(group);
-        // return group;
-        return null;
+        DataMiningGroup group = groupJpaRepository.findOne(groupId);
+        DataMiningTask miningTask = taskJpaRepository.findOne(taskId);
+        doArrangeTask(miningTask, group);
+        groupJpaRepository.saveAndFlush(group);
+        return group;
     }
 
     @Override
     public List<DataMiningGroup> involveGroups(String taskId, List<String> groupIds)
     {
-        // List<DataMiningGroup> groups = groupDao.fetchGroups(groupIds);
-        // DataMiningTask miningTask = miningTaskDao.findById(taskId);
-        // for (DataMiningGroup group :
-        // groups) {
-        // group.setDataMiningTask(miningTask);
-        // }
-        // return groups;
-        return null;
+        List<DataMiningGroup> groups = groupJpaRepository.findAll(groupIds);
+        DataMiningTask miningTask = taskJpaRepository.findOne(taskId);
+        groups.forEach(g -> doArrangeTask(miningTask, g));
+        groupJpaRepository.save(groups);
+        return groups;
     }
 
-    @Override
-    public Algorithm getAlgorithm(String taskId, String algorithmId)
+    private void doArrangeTask(DataMiningTask miningTask, DataMiningGroup g)
     {
-        // return miningTaskDao.getConfiguredAlgorithm(taskId, algorithmId);
-        return null;
+        if (g.getDataMiningTask() == null)
+        {
+            g.setDataMiningTask(miningTask);
+        }
+        else
+        {
+            log.error(
+                "Group [{}] has arranged a task [].Please revoke their relationship firstly.",
+                g.getGroupName(), g.getDataMiningTask().getTaskName());
+        }
     }
 
     @Override
     public List<Algorithm> fetchConfiguredAlgorithms(String taskId)
     {
-        // return miningTaskDao.getConfiguredAlgorithms(taskId);
-        return null;
+        return new LinkedList<>(findById(taskId).getAlgorithms());
     }
 
     @Override
-    public Algorithm configureAlgorithm(String taskId, String algorithmId)
+    public List<Algorithm> configureAlgorithms(String taskId, List<Integer> algorithmIds)
     {
-        // Algorithm algorithm = algorithmDao.fetchAlgorithm(algorithmId);
-        // miningTaskDao.findById(taskId).getAlgorithms().add(algorithm);
-        // return algorithm;
-        return null;
+        DataMiningTask task = findById(taskId);
+        List<Algorithm> algorithms = algorithmJpaRepository.findAll(algorithmIds);
+        if (algorithmIds == null || algorithmIds.isEmpty())
+        {
+            task.setAlgorithms(new LinkedHashSet<>());
+            taskJpaRepository.save(task);
+            return new LinkedList<>();
+        }
+        task.setAlgorithms(new LinkedHashSet<>(algorithms));
+        taskJpaRepository.save(task);
+        return algorithms;
     }
 
     @Override
-    public List<Algorithm> configureAlgorithms(String taskId, List<String> algorithmIds)
+    public List<DataSetCollection> configureMiningSets(String taskId, List<String> collectionIds)
     {
-        // List<Algorithm> algorithms = algorithmDao.fetchAlgorithms(algorithmIds);
-        // miningTaskDao.findById(taskId).getAlgorithms().addAll(algorithms);
-        // return algorithms;
-        return null;
-    }
-
-    @Override
-    public Algorithm removeAlgorithm(String taskId, String algorithmId)
-    {
-        // Algorithm algorithm = algorithmDao.fetchAlgorithm(algorithmId);
-        // this.findById(taskId).getAlgorithms().remove(algorithm);
-        // return algorithm;
-        return null;
-    }
-
-    @Override
-    public List<Algorithm> removeAlgorithms(String taskId, List<String> algorithmIds)
-    {
-        // List<Algorithm> algorithms = algorithmDao.fetchAlgorithms(algorithmIds);
-        // miningTaskDao.removePartInvolvedAlgorithms(taskId,algorithmIds);
-        // return algorithms;
-        return null;
-    }
-
-    @Override
-    public List<Algorithm> removeAllAlgorithms(String taskId)
-    {
-        // List<Algorithm> algorithms = this.fetchConfiguredAlgorithms(taskId);
-        // miningTaskDao.removeAllInvolvedAlgorithm(taskId);
-        // return algorithms;
-        return null;
-    }
-
-    @Override
-    public DataSetCollection arrangeMiningSet(String taskId, String collectionId)
-    {
-        // DataSetCollection collection = collectionDao.findById(collectionId);
-        // miningTaskDao.findById(taskId).getArrangedCollections().add(collection);
-        // return collection;
-        return null;
-    }
-
-    @Override
-    public List<DataSetCollection> arrangeMiningSets(String taskId, List<String> collectionIds)
-    {
-        // List<DataSetCollection> collections = collectionDao.findCollectionsByIds(collectionIds);
-        // this.findById(taskId).getArrangedCollections().addAll(collections);
-        // return collections;
-        return null;
+        List<DataSetCollection> collections = collectionJpaRepository.findAll(collectionIds);
+        DataMiningTask task = findById(taskId);
+        task.setArrangedCollections(new LinkedHashSet<>(collections));
+        taskJpaRepository.save(task);
+        return collections;
     }
 
     @Override
     public List<DataSetCollection> fetchRefCollections(String taskId)
     {
-        // return miningTaskDao.fetchRefCollections(taskId);
-        return null;
-    }
-
-    @Override
-    public DataSetCollection removeMiningSet(String taskId, String collectionId)
-    {
-        // DataSetCollection collection = collectionDao.findById(collectionId);
-        // this.findById(taskId).getArrangedCollections().remove(collection);
-        // return collection;
-        return null;
-    }
-
-    @Override
-    public List<DataSetCollection> removeMiningSets(String taskId, List<String> collectionIds)
-    {
-        // List<DataSetCollection> collections = miningTaskDao.fetchPartRefSets(taskId,
-        // collectionIds);
-        // this.findById(taskId).getArrangedCollections().removeAll(collections);
-        // return collections;
-        return null;
+        return new LinkedList<>(findById(taskId).getArrangedCollections());
     }
 
     @Override
     public List<DataSetCollection> removeAllMiningSets(String taskId)
     {
-        // List<DataSetCollection> collections = this.fetchRefCollections(taskId);
-        // miningTaskDao.removeAllRefSet(taskId);
-        // return collections;
-        return null;
+        DataMiningTask task = findById(taskId);
+        List<DataSetCollection> collections = fetchRefCollections(taskId);
+        task.setArrangedCollections(null);
+        taskJpaRepository.save(task);
+        return collections;
     }
 }

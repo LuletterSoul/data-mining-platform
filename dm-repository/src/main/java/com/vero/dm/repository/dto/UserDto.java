@@ -15,7 +15,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserDTO
+public class UserDto
 {
     private String userId;
 
@@ -37,7 +37,7 @@ public class UserDTO
 
     private Date lastLoginTime;
 
-    public UserDTO(String userId, String username, String name, String avatar, String gender,
+    public UserDto(String userId, String username, String name, String avatar, String gender,
                    String regionCode, String introduction, UserAccessStatus accessStatus,
                    Timestamp lastLoginTime)
     {
@@ -52,11 +52,11 @@ public class UserDTO
         this.lastLoginTime = new Date(lastLoginTime.getTime());
     }
 
-    public UserDTO()
+    public UserDto()
     {}
 
-    // public static UserDTO build(User user) {
-    //// UserDTO userDTO = new UserDTO();
+    // public static UserDto build(User user) {
+    //// UserDto userDTO = new UserDto();
     //// userDTO.setUserId(user.getUserId());
     //// userDTO.setUsername(user.getUsername());
     //// userDTO.setName(user.getName());
