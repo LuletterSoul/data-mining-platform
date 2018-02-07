@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import com.vero.dm.model.FavoriteStatus;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.StudentStatus;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -20,6 +23,10 @@ import com.vero.dm.model.StudentStatus;
 public interface StudentService extends UserService
 {
     List<StudentDto> getStudentList();
+
+    List<Student> importStudents(MultipartFile file);
+
+    byte[] handleStudentExcelModuleDownload();
 
     List<String> getStudentIds();
 
@@ -46,5 +53,6 @@ public interface StudentService extends UserService
      * @return
      */
     StudentStatus getStudentStatusPersisted(Integer statusId);
+
 
 }

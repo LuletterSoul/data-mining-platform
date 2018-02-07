@@ -3,9 +3,6 @@ package com.vero.dm.api.controller;
 
 import java.util.List;
 
-import com.vero.dm.repository.dto.StudentDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -15,9 +12,15 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.vero.dm.api.progress.UploadProgressListener;
 import com.vero.dm.model.Student;
+import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.StudentService;
+
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -26,12 +29,11 @@ import com.vero.dm.service.StudentService;
  */
 
 @RestController
+@Slf4j
 @RequestMapping(value = ApiVersion.API_VERSION + "/students")
 public class StudentController
 {
     private StudentService studentService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
     @Autowired
     @Qualifier("studentServiceImpl")
@@ -46,6 +48,16 @@ public class StudentController
         StudentDto studentDto = studentService.save(student);
         return new ResponseEntity<StudentDto>(studentDto, HttpStatus.CREATED);
     }
+
+    @ApiOperation("上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供")
+    @PostMapping(value = "/excel_students")
+    public ResponseEntity<List<Student>> importStudents(@RequestPart MultipartFile file,
+                                                        @RequestParam(UploadProgressListener.PROC_QUERY_KEY) String progressQueryId)
+    {
+        return new ResponseEntity<>(studentService.importStudents(file), HttpStatus.OK);
+    }
+
+
 
     /**
      * 后续需要处理好修改密码等敏感操作 DTO跟

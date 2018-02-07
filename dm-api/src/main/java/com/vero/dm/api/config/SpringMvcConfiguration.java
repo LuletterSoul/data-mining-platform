@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.vero.dm.api.progress.CustomMultipartResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;
@@ -73,11 +74,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     // return resolver;
     // }
 
-    @Bean
-    public MultipartResolver multipartResolver()
-    {
-        return new StandardServletMultipartResolver();
-    }
+//    @Bean
+//    public MultipartResolver multipartResolver()
+//    {
+//        return new CustomMultipartResolver();
+//    }
 
     // @Bean
     // public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {

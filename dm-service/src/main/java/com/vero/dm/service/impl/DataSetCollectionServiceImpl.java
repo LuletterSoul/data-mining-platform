@@ -2,13 +2,10 @@ package com.vero.dm.service.impl;
 
 
 import static com.vero.dm.util.PathUtils.concat;
-import static com.vero.dm.util.PathUtils.getAbsolutePath;
+import static com.vero.dm.util.PathUtils.handleFileTransfer;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.*;
 
-import com.vero.dm.repository.dto.CollectionDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vero.dm.model.*;
+import com.vero.dm.repository.dto.CollectionDto;
 import com.vero.dm.service.DataSetCollectionService;
 import com.vero.dm.service.constant.ResourcePath;
 import com.vero.dm.util.PathUtils;
@@ -73,33 +71,6 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return container;
     }
 
-    private String handleFileTransfer(MultipartFile multipartFile, String absolutePath)
-    {
-        try
-        {
-            FileOutputStream outputStream = new FileOutputStream(absolutePath);
-            outputStream.write(multipartFile.getBytes());
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        // try
-        // {
-        // FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
-        // new File(absolutePath));
-        // }
-        // catch (IOException e)
-        // {
-        // e.printStackTrace();
-        // }
-        String originalFileName = multipartFile.getOriginalFilename();
-        String fileType = originalFileName.substring(originalFileName.lastIndexOf("."),
-            originalFileName.length());
-        log.debug("Uploaded file type is [{}]", fileType);
-        return fileType;
-    }
-
     public List<DataSetCollection> findCollectionsByIds(List<String> collectionIds)
     {
         return collectionJpaRepository.findAll(collectionIds);
@@ -129,12 +100,12 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return null;
     }
 
-//    public DataSetContainer removeDataSetContainer(String collectionId, String containerId)
-//    {
-//        DataSetContainer
-//        containerJpaRepository.delete(containerId);
-//        return null;
-//    }
+    // public DataSetContainer removeDataSetContainer(String collectionId, String containerId)
+    // {
+    // DataSetContainer
+    // containerJpaRepository.delete(containerId);
+    // return null;
+    // }
 
     @Override
     public DataSetCollection getCollectionByName(String collectionName)
