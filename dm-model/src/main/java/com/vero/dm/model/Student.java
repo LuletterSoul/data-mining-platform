@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.vero.dm.importer.annotations.ExcelColumn;
+import com.vero.dm.importer.annotations.ExcelModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -22,24 +24,30 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@ExcelModel(title = "学生信息导入模板")
 @DiscriminatorValue(value = "Student")
 @ToString(exclude = {"ruleMiningGroups", "miningGroups"})
 public class Student extends User implements Serializable
 {
     private static final long serialVersionUID = 8479971255524788081L;
 
+    @ExcelColumn(name = "学生姓名")
     private String studentName;
 
     /**
      * 学号唯一
      */
+    @ExcelColumn(name = "学号")
     @Column(unique = true)
     private String studentId;
 
+    @ExcelColumn(name = "年级")
     private String grade;
 
+    @ExcelColumn(name = "班级")
     private String className;
 
+    @ExcelColumn(name = "专业")
     private String profession;
 
     @ManyToOne(fetch = FetchType.EAGER)

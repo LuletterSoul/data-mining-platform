@@ -4,6 +4,7 @@ package com.vero.dm.web.entry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @ComponentScan(basePackages = {"com.vero.dm"}) // 扫描该包路径下的所有spring组件
-@SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class})
+@SpringBootApplication(exclude = {MultipartAutoConfiguration.class})
 @EnableTransactionManagement(proxyTargetClass = true)
 public class DataMiningPlatformWebApplication
 {

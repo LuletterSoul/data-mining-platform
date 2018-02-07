@@ -11,6 +11,13 @@
 
     <artifactId>dm-model</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.vero.dm</groupId>
+            <artifactId>dm-import</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

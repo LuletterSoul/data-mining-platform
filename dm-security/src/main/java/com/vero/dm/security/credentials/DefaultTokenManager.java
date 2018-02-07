@@ -41,9 +41,6 @@ public class DefaultTokenManager implements TokenManager
 
     private StatelessCredentialsService credentialsService;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat(
-        DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
-
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultTokenManager.class);
 
     public DefaultTokenManager()
@@ -128,16 +125,10 @@ public class DefaultTokenManager implements TokenManager
      */
     private boolean checkTokenValidity(String dateString)
     {
-        Date date = null;
-        date = stringToDate(dateString);
+        Date date = DateUtil.StringToDate(dateString, DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
         Date now = new Date();
         float internal = (now.getTime() - (date != null ? date.getTime() : 0)) / 60000;
         return !(internal > timeOutInternal);
-    }
-
-    private Date stringToDate(String dateString)
-    {
-        return DateUtil.StringToDate(dateString, DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
     }
 
     @Override

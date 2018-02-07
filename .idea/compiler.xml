@@ -12,6 +12,7 @@
         <module name="dm-api" />
         <module name="dm-domain" />
         <module name="dm-exception" />
+        <module name="dm-import" />
         <module name="dm-model" />
         <module name="dm-repository" />
         <module name="dm-security" />
@@ -25,6 +26,7 @@
       <module name="data-minning-platform" target="1.8" />
       <module name="dm-api" target="1.8" />
       <module name="dm-exception" target="1.8" />
+      <module name="dm-import" target="1.8" />
       <module name="dm-model" target="1.8" />
       <module name="dm-repository" target="1.8" />
       <module name="dm-security" target="1.8" />

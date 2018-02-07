@@ -3,10 +3,13 @@ package com.vero.dm.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import org.springframework.util.ResourceUtils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -75,6 +78,33 @@ public class PathUtils
 
     public static String getAbsolutePath(String relativePath, String... suffixes) {
         return concat(getAbsolutePath(relativePath), suffixes);
+    }
+
+    public static String handleFileTransfer(MultipartFile multipartFile, String absolutePath)
+    {
+        try
+        {
+            FileOutputStream outputStream = new FileOutputStream(absolutePath);
+            outputStream.write(multipartFile.getBytes());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        // try
+        // {
+        // FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+        // new File(absolutePath));
+        // }
+        // catch (IOException e)
+        // {
+        // e.printStackTrace();
+        // }
+        String originalFileName = multipartFile.getOriginalFilename();
+        String fileType = originalFileName.substring(originalFileName.lastIndexOf("."),
+                originalFileName.length());
+        log.debug("Uploaded file type is [{}]", fileType);
+        return fileType;
     }
 
 //    public static String makeDir(String realPath) {

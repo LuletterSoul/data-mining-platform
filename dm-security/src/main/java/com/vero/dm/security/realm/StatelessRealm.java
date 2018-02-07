@@ -4,6 +4,7 @@ package com.vero.dm.security.realm;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -27,6 +28,7 @@ import com.vero.dm.service.UserService;
  * @description
  * @modified by:
  */
+@Slf4j
 public class StatelessRealm extends AuthorizingRealm
 {
     private UserService userService;

@@ -5,13 +5,13 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Hash;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vero.dm.security.realm.StatelessInfo;
 import com.vero.dm.security.realm.StatelessRealm;
 import com.vero.dm.security.realm.StatelessToken;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -20,15 +20,13 @@ import com.vero.dm.security.realm.StatelessToken;
  * @since data-mining-platform
  */
 
+@Slf4j
 public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
 {
     // private UserPasswordService passwordService;
     private StatelessCredentialsService statelessCredentialsService;
 
     private TokenManager tokenManager;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(
-        StatelessCredentialsMatcher.class);
 
     @Autowired
     public void setStatelessCredentialsService(StatelessCredentialsService statelessCredentialsService)
@@ -80,7 +78,7 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
     protected boolean equals(Object tokenCredentials, Object accountCredentials)
     {
         String accountBase64 = ((Hash)accountCredentials).toBase64();
-        LOGGER.info("tokenCredentials:{},  accountCredentials:{}", tokenCredentials,
+        log.debug("tokenCredentials:{},  accountCredentials:{}", tokenCredentials,
             ((Hash)accountCredentials).toBase64());
         return tokenCredentials.equals(accountBase64);
     }
