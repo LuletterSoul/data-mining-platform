@@ -3,6 +3,8 @@ package com.vero.dm.security.credentials;
 
 import java.util.Map;
 
+import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.UserDto;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.crypto.hash.Hash;
@@ -19,12 +21,17 @@ import com.vero.dm.security.realm.StatelessInfo;
 public interface StatelessCredentialsService
 {
 
+    UserDto registerUser(User user);
+
     Hash computeHashWithParams(Object credentials, Map<String, ?> params, int iterations);
 
     String generateRandomSalt(int numBytes);
 
+
     /**
-     * 客户端与服务器已经协商好使用公盐进行简单的SHA-256 加密，用此方法加密后的非明文密码不可逆； 客户端需要知晓对应利用公盐的加密方式
+     * 客户端与服务器已经协商好使用公盐进行简单的SHA-256 加密，
+     *
+     * 用此方法加密后的非明文密码不可逆； 客户端需要知晓对应利用公盐的加密方式
      * 
      * @param plaintext
      *            用户传入的明文密码
@@ -34,7 +41,8 @@ public interface StatelessCredentialsService
     String encryptPassword(String plaintext, String customSalt);
 
     /**
-     * {@link com.dm.org.security.credentials.StatelessCredentialsMatcher#doCredentialsMatch(AuthenticationToken, AuthenticationInfo)}
+     * {@link StatelessCredentialsMatcher#doCredentialsMatch(AuthenticationToken, AuthenticationInfo)}
+     *
      * 进行鉴权时，会传入
      * 
      * @param info

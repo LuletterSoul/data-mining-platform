@@ -2,6 +2,9 @@ package com.vero.dm.repository;
 
 import com.vero.dm.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .

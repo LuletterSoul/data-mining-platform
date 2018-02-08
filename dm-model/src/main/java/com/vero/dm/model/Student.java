@@ -7,9 +7,9 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.vero.dm.importer.annotations.ExcelColumn;
 import com.vero.dm.importer.annotations.ExcelModel;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

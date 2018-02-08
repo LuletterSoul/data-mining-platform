@@ -1,13 +1,12 @@
 package com.vero.dm.service.impl;
 
 
+import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsByMultipleParams;
 import static com.vero.dm.util.PathUtils.*;
 
-import java.io.*;
-import java.net.URLEncoder;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +64,8 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         String relativePath = concat("students", "import");
         String dir = getAbsolutePath(relativePath);
         String absolutePath = concat(dir, file.getOriginalFilename());
-        String fileType = handleFileTransfer(file, absolutePath);
-        List<Student> students = null;
-        students = studentExcelImporter.importFromExcel(new File(absolutePath));
+        handleFileTransfer(file, absolutePath);
+        List<Student> students = studentExcelImporter.importFromExcel(new File(absolutePath));
         studentJpaRepository.save(students);
         log.debug("Import student data form excel file [{}].", file.getName());
         return students;
@@ -92,49 +90,49 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         return null;
     }
 
-//    @Override
-//    public void handleStudentExcelModuleDownload(HttpServletResponse response)
-//    {
-//        String filePath = excelModuleManager.getModulePath(Student.class);
-//        try
-//        {
-//            File file = new File(filePath);
-//            if (file.exists())
-//            {
-//                String filename = file.getName();
-//                InputStream fis = new BufferedInputStream(new FileInputStream(file));
-//                response.reset();
-//                response.setContentType("application/octet-stream");
-//                response.addHeader("Content-Disposition",
-//                    "attachment;filename=" + URLEncoder.encode(filename, "utf-8"));
-//                response.addHeader("Content-Length", "" + file.length());
-//                OutputStream out = new BufferedOutputStream(response.getOutputStream());
-//                byte[] buffer = new byte[1024 * 1024];
-//                int i = -1;
-//                while ((i = fis.read(buffer)) != -1)
-//                {
-//                    out.write(buffer, 0, i);
-//                    out.flush();
-//                }
-//                fis.close();
-//                out.flush();
-//                out.close();
-//                // try
-//                // {
-//                // response.wait();
-//                // }
-//                // catch (InterruptedException e)
-//                // {
-//                // // TODO Auto-generated catch block
-//                // e.printStackTrace();
-//                // }
-//            }
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
+    // @Override
+    // public void handleStudentExcelModuleDownload(HttpServletResponse response)
+    // {
+    // String filePath = excelModuleManager.getModulePath(Student.class);
+    // try
+    // {
+    // File file = new File(filePath);
+    // if (file.exists())
+    // {
+    // String filename = file.getName();
+    // InputStream fis = new BufferedInputStream(new FileInputStream(file));
+    // response.reset();
+    // response.setContentType("application/octet-stream");
+    // response.addHeader("Content-Disposition",
+    // "attachment;filename=" + URLEncoder.encode(filename, "utf-8"));
+    // response.addHeader("Content-Length", "" + file.length());
+    // OutputStream out = new BufferedOutputStream(response.getOutputStream());
+    // byte[] buffer = new byte[1024 * 1024];
+    // int i = -1;
+    // while ((i = fis.read(buffer)) != -1)
+    // {
+    // out.write(buffer, 0, i);
+    // out.flush();
+    // }
+    // fis.close();
+    // out.flush();
+    // out.close();
+    // // try
+    // // {
+    // // response.wait();
+    // // }
+    // // catch (InterruptedException e)
+    // // {
+    // // // TODO Auto-generated catch block
+    // // e.printStackTrace();
+    // // }
+    // }
+    // }
+    // catch (IOException e)
+    // {
+    // e.printStackTrace();
+    // }
+    // }
 
     @Override
     public List<String> getStudentIds()
@@ -144,17 +142,17 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public Page<StudentDto> getStudentList(Pageable pageable)
+    public List<Student> findAllStudents()
     {
-        // int counts = studentDao.countAll();
-        // List<Student> students = studentDao.get(pageable);
-        // List<StudentDto> studentDTOS = new LinkedList<StudentDto>();
-        // for (Student s : students)
-        // {
-        // studentDTOS.add(StudentDto.build(s));
-        // }
-        // return new PageImpl<StudentDto>(studentDTOS, pageable, counts);
-        return null;
+        return studentJpaRepository.findAll();
+    }
+
+    @Override
+    public Page<Student> getStudentList(Pageable pageable, String className, String profession,
+                                        String grade, String studentIdPrefix,String studentName)
+    {
+        return studentJpaRepository.findAll(
+            findStudentsByMultipleParams(className, profession, grade, studentIdPrefix,studentName), pageable);
     }
 
     @Override
@@ -210,10 +208,11 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public int deleteWithIdArray(List<String> studentIds)
+    public List<Student> deleteBatchByStudentIds(List<String> studentIds)
     {
-        // return studentDao.deleteByArray(studentIds);
-        return 0;
+        List<Student> students = studentJpaRepository.findByStudentIds(studentIds);
+        studentJpaRepository.deleteBatchStudentsById(studentIds);
+        return students;
     }
 
     @Override

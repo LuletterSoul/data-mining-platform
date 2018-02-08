@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,8 +21,10 @@ import com.vero.dm.api.progress.UploadProgressListener;
 import com.vero.dm.model.Student;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.StudentService;
+import com.vero.dm.service.constant.ResourcePath;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -30,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-@RequestMapping(value = ApiVersion.API_VERSION + "/students")
+@RequestMapping(value = ApiVersion.API_VERSION + ResourcePath.STUDENT_PATH)
 public class StudentController
 {
     private StudentService studentService;
@@ -42,11 +47,13 @@ public class StudentController
         this.studentService = studentService;
     }
 
+
+    @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<StudentDto> create(@RequestBody Student student)
     {
         StudentDto studentDto = studentService.save(student);
-        return new ResponseEntity<StudentDto>(studentDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(studentDto, HttpStatus.CREATED);
     }
 
     @ApiOperation("上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供")
@@ -57,57 +64,61 @@ public class StudentController
         return new ResponseEntity<>(studentService.importStudents(file), HttpStatus.OK);
     }
 
-
-
-    /**
-     * 后续需要处理好修改密码等敏感操作 DTO跟
-     * 
-     * @param studentDto
-     * @return
-     */
+    @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<StudentDto> update(@RequestBody StudentDto studentDto)
     {
-        return new ResponseEntity<StudentDto>(studentService.update(studentDto), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.update(studentDto), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{studentId}", method = RequestMethod.DELETE)
-    public ResponseEntity<StudentDto> delete(@PathVariable("studentId") String studentId)
-    {
-        StudentDto studentDto = studentService.deleteByStudentId(studentId);
-        return new ResponseEntity<StudentDto>(studentDto, HttpStatus.OK);
-    }
+    // @RequestMapping(value = "/{studentId}", method = RequestMethod.DELETE)
+    // public ResponseEntity<StudentDto> delete(@PathVariable("studentId") String studentId)
+    // {
+    // StudentDto studentDto = studentService.deleteByStudentId(studentId);
+    // return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    // }
 
-    @RequestMapping(value = "/{studentId}", method = RequestMethod.GET)
-    public StudentDto get(@PathVariable("studentId") String studentId)
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public StudentDto get(@PathVariable("userId") String userId)
     {
-        return studentService.getStudentById(studentId);
+        return studentService.getStudentById(userId);
     }
 
     @RequestMapping(value = "/markStudentsWithArray", method = RequestMethod.PUT)
     public ResponseEntity<Integer> markStudent(@RequestBody List<String> studentIds)
     {
-        return new ResponseEntity<Integer>(studentService.markStudents(studentIds), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.markStudents(studentIds), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/unMarkStudentWithArray", method = RequestMethod.PUT)
     public ResponseEntity<Integer> unMarkStudent(@RequestBody List<String> studentIds)
     {
-        return new ResponseEntity<Integer>(studentService.unMarkStudents(studentIds),
+        return new ResponseEntity<>(studentService.unMarkStudents(studentIds),
+                HttpStatus.OK);
+    }
+
+    @ApiOperation("根据学号删除学生")
+    @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
+    @DeleteMapping
+    public ResponseEntity<List<Student>> deleteBatch(@RequestBody List<String> studentIds)
+    {
+        return new ResponseEntity<>(studentService.deleteBatchByStudentIds(studentIds),
             HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteWithArray", method = RequestMethod.DELETE)
-    public ResponseEntity<Integer> deleteBatch(@RequestBody List<String> studentIds)
+    @ApiOperation("分页查询学生列表")
+    @GetMapping
+    @Cacheable(cacheNames = "studentPageableCache")
+    public ResponseEntity<Page<Student>> studentsPageable(@PageableDefault(size = 10, sort = {
+        "studentId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                                          @ApiParam("行政班") @RequestParam(name = "className", required = false, defaultValue = "") String className,
+                                                          @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
+                                                          @ApiParam("年级") @RequestParam(value = "grade", required = false, defaultValue = "") String grade,
+                                                          @ApiParam("学号前缀模糊查询") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentIdPrefix,
+                                                          @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName)
     {
-        return new ResponseEntity<Integer>(studentService.deleteWithIdArray(studentIds),
+        return new ResponseEntity<>(
+            studentService.getStudentList(pageable, className, profession, grade, studentIdPrefix,studentName),
             HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Page<StudentDto> studentsPageable(@PageableDefault(size = 10, page = 0, sort = {
-        "studentId"}, direction = Sort.Direction.DESC) Pageable pageable)
-    {
-        return studentService.getStudentList(pageable);
     }
 }

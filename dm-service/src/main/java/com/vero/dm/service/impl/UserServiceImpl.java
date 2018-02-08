@@ -1,19 +1,17 @@
 package com.vero.dm.service.impl;
 
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import com.vero.dm.repository.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.vero.dm.exception.DataObjectNotFoundException;
-import com.vero.dm.model.Permission;
 import com.vero.dm.model.Role;
 import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.service.UserService;
 
 
@@ -52,6 +50,12 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     // this.credentialsService = credentialsService;
     // }
 
+    @Override
+    public User findById(String id)
+    {
+        return userJpaRepository.findOne(id);
+    }
+
     public UserDto registerUser(User user)
     {
         // String publicSalt = credentialsService.generateRandomSalt(32);
@@ -71,25 +75,23 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     @Override
     public UserDto getUserProfile(String username)
     {
-        // User user = userDao.fetchByUserName(username);
-        // UserDto userDTO = new UserDto();
-        // BeanUtils.copyProperties(user, userDTO);
-        // if (user.getAvatar() != null)
-        // {
-        // userDTO.setAvatar(new String(user.getAvatar()));
-        // }
-        // return userDTO;
-        return null;
+        User user = userJpaRepository.findUserByUsername(username);
+        UserDto userDTO = new UserDto();
+        BeanUtils.copyProperties(user, userDTO);
+        if (user.getAvatar() != null)
+        {
+            userDTO.setAvatar(new String(user.getAvatar()));
+        }
+        return userDTO;
     }
 
     @Override
     public UserDto updateUser(UserDto userDto)
     {
-        // User user = this.findById(userDto.getUserId());
-        // BeanUtils.copyProperties(userDto, user);
-        // user.setAvatar(userDto.getAvatar().getBytes());
-        // userDao.save(user);
-        // return userDto;
+        User user = this.findById(userDto.getUserId());
+        BeanUtils.copyProperties(userDto, user);
+        user.setAvatar(userDto.getAvatar().getBytes());
+        userJpaRepository.save(user);
         return userDto;
     }
     //
@@ -137,46 +139,6 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     // return new DisposableSaltEntry(tmpId, randomSalt.toHex());
     // }
 
-    public User fetchUserJoinRolesById(String userId)
-    {
-        // return userDao.fetchUserJoinRolesById(userId);
-        return null;
-    }
-
-    @Override
-    public String findPasswordByUserName(String userName)
-    {
-        // return userDao.findPasswordByUserName(userName);
-        return userName;
-    }
-
-    public List<Long> findRoleIdListByUserId(String userId)
-    {
-        // return userDao.findRoleIdListByUserId(userId);
-        return null;
-    }
-
-    public Set<String> findPermissionNameSet(String userName)
-    {
-        // return userDao.findPermissionNameSet(userName);
-        return null;
-    }
-
-    public void updatePassword(String userName, String newPassword)
-        throws DataObjectNotFoundException
-    {
-        // User user = userDao.findByUserName(userName);
-        // user.setPassword(newPassword);
-        // userDao.update(user);
-    }
-
-    public void correlateRole(String userId, Long roleId)
-    {
-        List<Long> roleIdList = new ArrayList<Long>();
-        roleIdList.add(roleId);
-        correlateRoles(userId, roleIdList);
-    }
-
     public void correlateRoles(String userId, List<Long> roleIdList)
     {
         // User user = userDao.fetchUserJoinRolesById(userId);
@@ -210,42 +172,32 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     // removeRoles(userId,roleIdList);
     // }
 
-    public User findByUserName(String userName)
-    {
-        // return userDao.findByUserName(userName);
-        return null;
-    }
-
     @Override
-    public User fetchByUserName(String userName)
+    public User fetchByUserName(String username)
     {
-        // return userDao.fetchByUserName(userName);
-        return null;
+        return userJpaRepository.findUserByUsername(username);
     }
 
-    public List<Permission> findPermissionByUserName(String userName)
-    {
-        // return userDao.findPermissionByUserName(userName);
-        return null;
-    }
+    // public List<Permission> findPermissionByUserName(String userName)
+    // {
+    // // return userDao.findPermissionByUserName(userName);
+    // return null;
+    // }
 
     public List<Role> findRolesByUserName(String userName)
     {
-        // return userDao.findRolesByUserName(userName);
-        return null;
+        return userJpaRepository.findRolesByUsername(userName);
     }
 
-    public List<String> findRoleNameSetByUserName(String userName)
+    public List<String> findRoleNameSetByUserName(String username)
     {
-        // return userDao.findRoleNameSetByUserName(userName);
-        return null;
+        return userJpaRepository.findRoleNameSetByUsername(username);
     }
 
-    public void removeRole(String userId, Long roleId)
+    @Override
+    public List<String> findPermissionNameSet(String username)
     {
-        List<Long> roleIdList = new ArrayList<Long>();
-        roleIdList.add(roleId);
-        removeRoles(userId, roleIdList);
+        return userJpaRepository.findPermissionNameSet(username);
     }
 
     public void removeRoles(String userId, List<Long> roleIdList)
@@ -255,41 +207,16 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     }
 
     @Override
-    public String getPublicSalt(String username)
-    {
-        return null;
-    }
-
-    @Override
     public String fetchPublicSalt(String username)
     {
-        // try
-        // {
-        // return userDao.getPublicSalt(username);
-        // }
-        // catch (Exception e)
-        // {
-        // e.printStackTrace();
-        // throw new UnknownAccountException(
-        // "Unknown account.Please ensure your account is registered and correct.");
-        // }
-        return null;
+        return userJpaRepository.findPublicSaltByUsername(username);
     }
 
+    @Cacheable(cacheNames = "userPrivateSaltCache")
     @Override
     public String fetchPrivateSalt(String username)
     {
-        // try
-        // {
-        // return userDao.getPrivateSalt(username);
-        // }
-        // catch (Exception e)
-        // {
-        // e.printStackTrace();
-        // throw new UnknownAccountException(
-        // "Unknown account.Please ensure your account is registered and correct.");
-        // }
-        return null;
+        return userJpaRepository.findPrivateSaltByUsername(username);
     }
 
 }

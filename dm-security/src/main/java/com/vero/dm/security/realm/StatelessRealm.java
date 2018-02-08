@@ -4,7 +4,6 @@ package com.vero.dm.security.realm;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -20,6 +19,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.vero.dm.model.User;
 import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.service.UserService;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -53,14 +54,8 @@ public class StatelessRealm extends AuthorizingRealm
         this.tokenManager = tokenManager;
     }
 
-    // @Autowired
-    // public void setUserDao(UserDao userDao)
-    // {
-    // this.userDao = userDao;
-    // }
     public boolean supports(AuthenticationToken token)
     {
-        // 仅支持StatelessToken类型的Token
         return token instanceof StatelessToken;
     }
 
@@ -72,7 +67,9 @@ public class StatelessRealm extends AuthorizingRealm
         Set<String> roleNames = new LinkedHashSet<String>(
             userService.findRoleNameSetByUserName(username));
         authorizationInfo.setRoles(roleNames);
-        authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
+        Set<String> permissionNames = new LinkedHashSet<>(
+            userService.findPermissionNameSet(username));
+        authorizationInfo.setStringPermissions(permissionNames);
         return authorizationInfo;
     }
 

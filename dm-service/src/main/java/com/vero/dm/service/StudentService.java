@@ -30,7 +30,9 @@ public interface StudentService extends UserService
 
     List<String> getStudentIds();
 
-    Page<StudentDto> getStudentList(Pageable pageable);
+    List<Student> findAllStudents();
+
+    Page<Student> getStudentList(Pageable pageable,String className,String profession,String grade,String studentIdPrefix,String studentName);
 
     StudentDto deleteByStudentId(String studentId);
 
@@ -44,7 +46,7 @@ public interface StudentService extends UserService
 
     int unMarkStudents(List<String> studentIds);
 
-    int deleteWithIdArray(List<String> studentIds);
+    List<Student> deleteBatchByStudentIds(List<String> studentIds);
 
     FavoriteStatus getFavoriteStatusPersisted(Integer statusId);
 

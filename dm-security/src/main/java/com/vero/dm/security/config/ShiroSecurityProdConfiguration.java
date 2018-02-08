@@ -24,6 +24,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
@@ -43,9 +44,11 @@ import net.sf.ehcache.CacheManager;
  * @description
  * @modified by:
  */
+
 @Configuration
+@Profile("prod")
 @Import(value = EhCacheConfiguration.class)
-public class ShiroSecurityConfiguration
+public class ShiroSecurityProdConfiguration
 {
 
     @Resource
@@ -135,7 +138,7 @@ public class ShiroSecurityConfiguration
      * Developer will generate salt by himself via
      * {@link StatelessCredentialsServiceImpl#generateRandomSalt(int)}
      *
-     * @since
+     *
      */
 
     @Bean
@@ -291,7 +294,7 @@ public class ShiroSecurityConfiguration
         filterChainDefinitionMap.put("/token/**", "anon");
         filterChainDefinitionMap.put("/public_salt/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-//        filterChainDefinitionMap.put("/api/**", "statelessFilter");
+        filterChainDefinitionMap.put("/api/**", "statelessFilter");
         filterChainDefinitionMap.put("/**", "allowOriginFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

@@ -4,11 +4,13 @@ package com.vero.dm.service.impl;
 import static com.vero.dm.util.PathUtils.concat;
 import static com.vero.dm.util.PathUtils.handleFileTransfer;
 
+import java.io.File;
 import java.util.*;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -128,23 +130,6 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return collectionJpaRepository.save(dataSetCollections);
     }
 
-    private void updateCollectionMultipleTypes(CollectionDto collectionDto,
-                                               DataSetCollection collection)
-    {
-        // List<AssociatedTask> associatedTasks = miningTaskTypeDao.getTaskTypes(
-        // collectionDto.getAssociatedTaskIds());
-        // List<AttributeType> attributeTypes = attributeTypeDao.getAttrTypes(
-        // collectionDto.getAttributeTypeIds());
-        // List<DataSetCharacteristic> characteristics = collectionCharDao.getCharTypes(
-        // collectionDto.getCharacteristicIds());
-        // AreaType areaType = areaTypeDao.findById(collectionDto.getAreaId());
-        // collection.setAssociatedTasks(new LinkedHashSet<AssociatedTask>(associatedTasks));
-        //// collection.setAttributeTypes(new LinkedHashSet<AttributeType>(attributeTypes));
-        //// collection.setCharacteristics(new
-        // LinkedHashSet<DataSetCharacteristic>(characteristics));
-        // collection.setArea(areaType);
-    }
-
     @Override
     public DataSetCollection deleteByName(String collectionName)
     {
@@ -166,6 +151,13 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     public DataSetCollection deleteByCollectionId(String collectionId)
     {
         DataSetCollection collection = findById(collectionId);
+        File dataDir = new File(collection.getDataSetFolderPath());
+        if (dataDir.isDirectory())
+        {
+            dataDir.delete();
+            log.info("Delete [{}]:[{}] database index folder.", collection.getCollectionId(),
+                collection.getCollectionName());
+        }
         collectionJpaRepository.delete(collectionId);
         return collection;
     }
@@ -211,17 +203,16 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public Map<String, List<?>> getOptions()
     {
-        // List<AreaType> areaTypeOptions = areaTypeDao.findAll();
-        // List<DataSetCharacteristic> charOptions = collectionCharDao.findAll();
-        // List<AttributeType> attributeTypeOptions = attributeTypeDao.findAll();
-        // List<AssociatedTask> associatedTaskOptions = miningTaskTypeDao.findAll();
-        // Map<String, List<?>> optionsMap = new LinkedHashMap<String, List<?>>();
-        // optionsMap.put("areaTypeOptions", areaTypeOptions);
-        // optionsMap.put("charOptions", charOptions);
-        // optionsMap.put("attributeTypeOptions", attributeTypeOptions);
-        // optionsMap.put("miningTaskTypeOptions", associatedTaskOptions);
-        // return optionsMap;
-        return null;
+        List<AreaType> areaTypeOptions = areaJpaRepository.findAll();
+        List<DataSetCharacteristic> dataSetCharOptions = setCharJpaRepository.findAll();
+        List<AttributeCharacteristic> attrCharOptions = attributeCharJpaRepository.findAll();
+        List<AssociatedTask> associatedTaskOptions = associatedTaskJpaRepository.findAll();
+        Map<String, List<?>> optionsMap = new LinkedHashMap<String, List<?>>();
+        optionsMap.put("dataSetCharOptions", dataSetCharOptions);
+        optionsMap.put("attrCharOptions", attrCharOptions);
+        optionsMap.put("associatedTaskOptions", associatedTaskOptions);
+        optionsMap.put("areaTypeOptions", areaTypeOptions);
+        return optionsMap;
     }
 
     public DataSetCollection convert(CollectionDto source)
@@ -230,18 +221,18 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
             source.getDescriptionIds());
         AreaType areaType = areaJpaRepository.findOne(source.getAreaId());
         List<AttributeCharacteristic> attributeCharacteristics = attributeCharJpaRepository.findAll(
-            source.getAttrCharIds());
+            source.getAttributeCharIds());
         List<AssociatedTask> associatedTasks = associatedTaskJpaRepository.findAll(
             source.getAssociatedTaskIds());
         List<DataSetCharacteristic> dataSetCharacteristics = setCharJpaRepository.findAll(
             source.getDataSetCharIds());
         Boolean isValidDtoParams = isValidDtoParams(areaType, attributeCharacteristics,
             associatedTasks, dataSetCharacteristics);
-        // if (!isValidDtoParams)
-        // {
-        // throw new HttpMessageNotReadableException(
-        // "The provided request body is not readable!");
-        // }
+        if (!isValidDtoParams)
+        {
+            throw new HttpMessageNotReadableException(
+                "The provided request body is not readable!");
+        }
         return convertResult(source, descriptions, areaType, attributeCharacteristics,
             associatedTasks, dataSetCharacteristics);
     }

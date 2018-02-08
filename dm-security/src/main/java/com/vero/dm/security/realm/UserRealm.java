@@ -54,7 +54,9 @@ public class UserRealm extends AuthorizingRealm
         Set<String> roleNames = new LinkedHashSet<String>(
             userService.findRoleNameSetByUserName(username));
         authorizationInfo.setRoles(roleNames);
-        authorizationInfo.setStringPermissions(userService.findPermissionNameSet(username));
+        Set<String> permissionNames = new LinkedHashSet<>(
+            userService.findPermissionNameSet(username));
+        authorizationInfo.setStringPermissions(permissionNames);
         return authorizationInfo;
     }
 
@@ -65,7 +67,7 @@ public class UserRealm extends AuthorizingRealm
 
         String username = (String)token.getPrincipal();
 
-        User user = userService.findByUserName(username);
+        User user = userService.fetchByUserName(username);
         if (user == null)
         {
             String message = "User " + username

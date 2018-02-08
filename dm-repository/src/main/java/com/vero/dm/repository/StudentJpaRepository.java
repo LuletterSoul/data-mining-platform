@@ -4,7 +4,12 @@ package com.vero.dm.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -17,13 +22,23 @@ import com.vero.dm.model.Student;
  * @since data-mining-platform
  */
 
-public interface StudentJpaRepository extends JpaRepository<Student, String>
+public interface StudentJpaRepository extends JpaRepository<Student, String>,JpaSpecificationExecutor<Student>
 {
 
-    @Query(value = "select s2 from Student s2 where s2 not in (select s from Student s left join s.miningGroups g left join g.dataMiningTask t where t.plannedStartTime >= :beginDate and t.plannedFinishTime<= :endDate )")
+    @Query(value = "SELECT s2 FROM Student s2 where s2 not in (select s from Student s left join s.miningGroups g left join g.dataMiningTask t where t.plannedStartTime >= :beginDate and t.plannedFinishTime<= :endDate )")
     List<Student> fetchStudentWithoutGroup(@Param("beginDate") Date beginDate,
                                            @Param("endDate") Date endDate);
 
-    @Query(value = "select s.userId from Student s")
+    @Query(value = "SELECT s.userId from Student s")
     List<String> findAllStudentUserId();
+
+
+    @Query(value = "SELECT s from Student s where s.studentId in :studentIds")
+    List<Student> findByStudentIds(@Param("studentIds") List<String> studentIds);
+
+    Student findByStudentId(String studentId);
+
+    @Modifying
+    @Query(value = "DELETE FROM Student s WHERE s.studentId in :studentIds")
+    int deleteBatchStudentsById(@Param("studentIds") List<String> studentIds);
 }

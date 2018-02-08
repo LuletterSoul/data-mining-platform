@@ -1,6 +1,9 @@
 package com.vero.dm.api.config;
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -10,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -25,7 +27,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 
 @Configuration
-@EnableCaching
 public class RedisConfiguration extends CachingConfigurerSupport
 {
     @Value("${spring.redis.host}")
@@ -39,14 +40,19 @@ public class RedisConfiguration extends CachingConfigurerSupport
 
     // 自定义缓存key生成策略
     // @Bean
-    // public KeyGenerator keyGenerator() {
-    // return new KeyGenerator(){
+    // public KeyGenerator keyGenerator()
+    // {
+    // return new KeyGenerator()
+    // {
     // @Override
-    // public Object generate(Object target, java.lang.reflect.Method method, Object... params) {
+    // public Object generate(Object target, java.lang.reflect.Method method,
+    // Object... params)
+    // {
     // StringBuffer sb = new StringBuffer();
     // sb.append(target.getClass().getName());
     // sb.append(method.getName());
-    // for(Object obj:params){
+    // for (Object obj : params)
+    // {
     // sb.append(obj.toString());
     // }
     // return sb.toString();
@@ -55,13 +61,22 @@ public class RedisConfiguration extends CachingConfigurerSupport
     // }
 
     // 缓存管理器
-    @Bean
+    @Bean(name = "cacheManager")
     public CacheManager cacheManager(@SuppressWarnings("rawtypes") RedisTemplate redisTemplate)
     {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        cacheManager.setCacheNames(redisCacheNames());
         // 设置缓存过期时间
         cacheManager.setDefaultExpiration(10000);
         return cacheManager;
+    }
+
+    @Bean
+    public List<String> redisCacheNames()
+    {
+        List<String> cacheNames = new LinkedList<>();
+        cacheNames.add("studentPageableCache");
+        return cacheNames;
     }
 
     @Bean(name = "redisTemplate")

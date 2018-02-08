@@ -79,7 +79,7 @@ public class CollectionDto
     /**
      * 属性特征
      */
-    private List<Integer> attrCharIds;
+    private List<Integer> attributeCharIds;
 
     /**
      * 数据集相关的主题区域
@@ -95,7 +95,7 @@ public class CollectionDto
     /**
      * 标识书是否是已更新过的传输体
      */
-    private Boolean isUpdated;
+    private Boolean isUpdated = false;
 
     // /**
     // * 数据集的文件容器（包括文件详情、服务器的存储位置等）

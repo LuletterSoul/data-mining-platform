@@ -19,7 +19,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "attr_feature_info")
+@Table(name = "attr_char_info")
 public class AttributeCharacteristic
 {
     @Id

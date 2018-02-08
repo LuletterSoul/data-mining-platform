@@ -21,4 +21,8 @@ public class ResourcePath
     public static final String GROUP_PATH = "/groups";
 
     public static final String MODULE_PATH = "/excel_modules";
+
+    public static final String USER_PATH = "/users";
+
+    public static final String STUDENT_PATH = "/students";
 }

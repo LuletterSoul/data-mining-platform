@@ -7,6 +7,7 @@ import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 
@@ -18,7 +19,6 @@ import org.springframework.core.io.ClassPathResource;
  */
 
 @Configuration
-@EnableCaching
 public class EhCacheConfiguration
 {
     @Bean

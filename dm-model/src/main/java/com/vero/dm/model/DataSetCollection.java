@@ -82,14 +82,13 @@ public class DataSetCollection
      * 数据集相关的任务分类
      */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "set_task_rel", joinColumns = @JoinColumn(name = "collectionId"), inverseJoinColumns = @JoinColumn(name = "typeId"))
+    @JoinTable(name = "collection_task_rel", joinColumns = @JoinColumn(name = "collectionId"), inverseJoinColumns = @JoinColumn(name = "typeId"))
     private Set<AssociatedTask> associatedTasks;
-
     /**
      * 属性特征
      */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "attr_type_rel", joinColumns = @JoinColumn(name = "collectionId"), inverseJoinColumns = @JoinColumn(name = "typeId"))
+    @JoinTable(name = "collection_attr_char_rel", joinColumns = @JoinColumn(name = "collectionId"), inverseJoinColumns = @JoinColumn(name = "typeId"))
     private Set<AttributeCharacteristic> attributeCharacteristics;
 
     /**

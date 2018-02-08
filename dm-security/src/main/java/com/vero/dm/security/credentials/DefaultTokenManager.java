@@ -5,12 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.ExpiredCredentialsException;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,7 @@ import com.vero.dm.util.DateUtil;
  */
 
 @Service
+@Slf4j
 @Transactional
 public class DefaultTokenManager implements TokenManager
 {
@@ -55,11 +58,6 @@ public class DefaultTokenManager implements TokenManager
         this.tokenCache = ehCacheManager.getCache("tokenCache");
     }
 
-    // @Autowired
-    // public void setUserDao(UserDao userDao)
-    // {
-    // this.userDao = userDao;
-    // }
 
     @Autowired
     public void setCredentialsService(StatelessCredentialsService credentialsService)
@@ -67,12 +65,12 @@ public class DefaultTokenManager implements TokenManager
         this.credentialsService = credentialsService;
     }
 
-    // @Autowired
-    // @Qualifier("userServiceImpl")
-    // public void setUserService(UserService userService)
-    // {
-    // this.userService = userService;
-    // }
+     @Autowired
+     @Qualifier("userServiceImpl")
+     public void setUserService(UserService userService)
+     {
+     this.userService = userService;
+     }
 
     @Override
     public String generateTimeOutToken(String username)
@@ -104,7 +102,6 @@ public class DefaultTokenManager implements TokenManager
             throw new ExpiredCredentialsException("Invalid token.");
         }
         String token = generateTimeOutToken(username);
-        LOGGER.info("User: " + username + " attempt to login system.");
         String apiKey = UUID.randomUUID().toString();
         tokenCache.put(apiKey, token);
         return new ClientToken(token, apiKey);

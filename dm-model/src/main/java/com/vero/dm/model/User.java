@@ -26,7 +26,7 @@ import lombok.Data;
 @Table(name = "user_info", catalog = "")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "serviceLevel", discriminatorType = DiscriminatorType.STRING)
-public class User implements EntityIdentifier
+public class User
 {
     @Id
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
@@ -34,7 +34,7 @@ public class User implements EntityIdentifier
     @Column(name = "userId", nullable = false, length = 32)
     protected String userId;
 
-    @Column(name = "username")
+    @Column(unique = true)
     protected String username;
 
     protected String name;
@@ -45,7 +45,6 @@ public class User implements EntityIdentifier
 
     protected String gender;
 
-    @JsonIgnore
     protected String password;
 
     protected Date birthday;
@@ -66,7 +65,7 @@ public class User implements EntityIdentifier
 
     protected String introduction;
 
-    protected Timestamp lastLoginTime;
+    protected java.util.Date lastLoginTime;
 
     public User()
     {}

@@ -14,7 +14,13 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.HashRequest;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.vero.dm.model.User;
+import com.vero.dm.repository.UserJpaRepository;
+import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.realm.StatelessInfo;
 
 
@@ -24,12 +30,15 @@ import com.vero.dm.security.realm.StatelessInfo;
  * @since data-mining-platform
  */
 
+@Transactional
 public class StatelessCredentialsServiceImpl extends DefaultPasswordService implements StatelessCredentialsService
 {
 
     private Mac mac;
 
-//    private UserService userService;
+    // private UserService userService;
+    @Autowired
+    private UserJpaRepository userJpaRepository;
 
     public final static String MAC_DEFAULT_ALGORITHM = "HmacSHA256";
 
@@ -49,12 +58,27 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
         }
     }
 
-//    @Autowired
-//    @Qualifier("userServiceImpl")
-//    public void setUserService(UserService userService)
-//    {
-//        this.userService = userService;
-//    }
+    // @Autowired
+    // @Qualifier("userServiceImpl")
+    // public void setUserService(UserService userService)
+    // {
+    // this.userService = userService;
+    // }
+
+    @Override
+    public UserDto registerUser(User user)
+    {
+        String publicSalt = this.generateRandomSalt(32);
+        String privateSalt = this.generateRandomSalt(32);
+        String encryptedPassword = this.encryptPassword(user.getPassword(), publicSalt);
+        user.setPassword(encryptedPassword);
+        user.setPrivateSalt(privateSalt);
+        user.setPublicSalt(publicSalt);
+        userJpaRepository.save(user);
+        UserDto userDTO = new UserDto();
+        BeanUtils.copyProperties(user, userDTO);
+        return userDTO;
+    }
 
     @Override
     public Hash computeHashWithParams(Object credentials, Map<String, ?> params, int iterations)

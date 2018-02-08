@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.vero.dm.repository.dto.CollectionDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -44,6 +46,7 @@ public class DataSetCollectionController
         this.collectionService = collectionService;
     }
 
+    @Cacheable(cacheNames = "dataSetCollectionCache")
     @ApiOperation(value = "分页查询数据集")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
@@ -57,6 +60,7 @@ public class DataSetCollectionController
             HttpStatus.OK);
     }
 
+
     @ApiOperation(value = "根据id获取数据集")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
@@ -66,6 +70,8 @@ public class DataSetCollectionController
         return new ResponseEntity<>(collectionService.findById(collectionId), HttpStatus.OK);
     }
 
+
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "根据id删除数据集")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
@@ -76,6 +82,8 @@ public class DataSetCollectionController
         return new ResponseEntity<>(collection, HttpStatus.NO_CONTENT);
     }
 
+
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "批量删除数据集")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionIds", value = "数据集编号", dataType = "List", paramType = "body", required = true)})
@@ -86,6 +94,8 @@ public class DataSetCollectionController
             HttpStatus.NO_CONTENT);
     }
 
+
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "更新数据集")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "setCollection", value = "数据集编号", dataType = "CollectionDto", paramType = "body", required = true)})
@@ -96,6 +106,7 @@ public class DataSetCollectionController
             HttpStatus.OK);
     }
 
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "创建数据集")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionDto", value = "数据集DTO", dataType = "CollectionDto", paramType = "body", required = true)})
@@ -117,13 +128,6 @@ public class DataSetCollectionController
             HttpStatus.CREATED);
     }
 
-    // @RequestMapping(value = "/{collectionId}/containers/{containerId}", method =
-    // RequestMethod.DELETE)
-    // public DataSetContainer removeContainer(@PathVariable("collectionId") String collectionId,
-    // @PathVariable("containerId") String containerId)
-    // {
-    // return collectionService.removeDataSetContainer(collectionId, containerId);
-    // }
 
     @ApiOperation(value = "获取所有数据集文件信息")
     @ApiImplicitParams({
