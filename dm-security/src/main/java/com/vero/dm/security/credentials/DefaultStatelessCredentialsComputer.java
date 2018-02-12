@@ -31,7 +31,7 @@ import com.vero.dm.security.realm.StatelessInfo;
  */
 
 @Transactional
-public class StatelessCredentialsServiceImpl extends DefaultPasswordService implements StatelessCredentialsService
+public class DefaultStatelessCredentialsComputer extends DefaultPasswordService implements StatelessCredentialsComputer
 {
 
     private Mac mac;
@@ -46,7 +46,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
 
     private SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 
-    public StatelessCredentialsServiceImpl()
+    public DefaultStatelessCredentialsComputer()
     {
         try
         {
@@ -85,9 +85,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     {
         String credential = (String)credentials;
         String paramsString = buildParamsString(params);
-        HashRequest request = new HashRequest.Builder().setSource(
-            createByteSource(credential + paramsString)).setAlgorithmName(
-                DEFAULT_HASH_ALGORITHM).setIterations(1000).build();
+        HashRequest request = buildRequest(credential + paramsString);
         return getHashService().computeHash(request);
     }
 
@@ -107,14 +105,19 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     }
 
     @Override
+    public String computeNegotiatedApplyToken(String password, String publicSalt)
+    {
+        HashRequest request = buildRequest(password + publicSalt);
+        return getHashService().computeHash(request).toBase64();
+    }
+
+    @Override
     public Hash computeHashWithParams(StatelessInfo info, int iterations)
     {
         String credentials = (String)info.getCredentials();
         String paramsString = buildParamsString(info.getClientParams());
         String serverDigest = digest(credentials, paramsString).toBase64();
-        HashRequest request = new HashRequest.Builder().setSource(
-            createByteSource(serverDigest)).setAlgorithmName(DEFAULT_HASH_ALGORITHM).setIterations(
-                1000).build();
+        HashRequest request = buildRequest(serverDigest);
         return getHashService().computeHash(request);
     }
 
@@ -124,10 +127,26 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     @Override
     public Hash computeHash(String source)
     {
-        HashRequest request = new HashRequest.Builder().setSource(
-            createByteSource(source)).setAlgorithmName(DEFAULT_HASH_ALGORITHM).setIterations(
-                1000).build();
+        HashRequest request = buildRequest(source);
         return getHashService().computeHash(request);
+    }
+
+    private HashRequest buildRequest(String source)
+    {
+        return new HashRequest.Builder().setSource(createByteSource(source)).setAlgorithmName(
+            DEFAULT_HASH_ALGORITHM).setIterations(1000).build();
+    }
+
+    private HashRequest buildRequest(String source, Integer iterations)
+    {
+        return new HashRequest.Builder().setSource(createByteSource(source)).setAlgorithmName(
+            DEFAULT_HASH_ALGORITHM).setIterations(iterations).build();
+    }
+
+    @Override
+    public Hash computeHash(String source, Integer iterations)
+    {
+        return getHashService().computeHash(buildRequest(source, iterations));
     }
 
     /**
@@ -159,7 +178,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
 
     private String buildParamsString(Map<String, ?> map)
     {
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder("X-init");
         for (Object values : map.values())
         {
             if (values instanceof String[])

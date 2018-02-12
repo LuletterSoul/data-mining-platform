@@ -30,6 +30,9 @@ import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 public class StatelessInfo extends SimpleAuthenticationInfo
 {
 
+    private static final long serialVersionUID = -4140362315755317128L;
+
+
     private Map<String, ?> clientParams;
 
     public StatelessInfo()

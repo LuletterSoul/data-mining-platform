@@ -16,8 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.credentials.TokenManager;
+import com.vero.dm.security.credentials.UserProfileAccessor;
 import com.vero.dm.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,8 @@ public class StatelessRealm extends AuthorizingRealm
 
     private TokenManager tokenManager;
 
+    private UserProfileAccessor profileAccessor;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(StatelessRealm.class);
 
     @Autowired
@@ -52,6 +55,12 @@ public class StatelessRealm extends AuthorizingRealm
     public void setTokenManager(TokenManager tokenManager)
     {
         this.tokenManager = tokenManager;
+    }
+
+    @Autowired
+    public void setProfileAccessor(UserProfileAccessor profileAccessor)
+    {
+        this.profileAccessor = profileAccessor;
     }
 
     public boolean supports(AuthenticationToken token)
@@ -79,18 +88,29 @@ public class StatelessRealm extends AuthorizingRealm
     {
         StatelessToken statelessToken = (StatelessToken)token;
         String username = statelessToken.getUsername();
-        String apiKey = statelessToken.getApiKey();
-        User user = userService.fetchByUserName(username);
-        String password = user.getPassword();
-        String tokenSaltHash = tokenManager.getHashToken(apiKey);
-        LOGGER.info("API_KEY:{},TOKEN:{}", apiKey, tokenSaltHash);
-        if (tokenSaltHash == null)
+        String accessToken = statelessToken.getAccessToken();
+        //如果是按照当前令牌授权,则从缓存中拉取对应的用户信息
+        if (statelessToken.getIsAccessByAvailableToken())
         {
-            throw new AuthenticationException(
-                "Token is not valid.Please apply previous time out token firstly.");
+            UserDto userDto = profileAccessor.fetchProfile(statelessToken.getAccessToken());
+            return new StatelessInfo(userDto.getUsername(), accessToken,
+                statelessToken.getParams(), getName());
         }
-        return new StatelessInfo(username,
-            // 混入一次性token的证书;
-            tokenSaltHash + password, statelessToken.getParams(), getName());
+        String credentials = buildCredentials(username, accessToken);
+        return new StatelessInfo(username, credentials, statelessToken.getParams(), getName());
+    }
+
+    private String buildCredentials(String username, String accessToken)
+    {
+        String disposableToken = tokenManager.queryLatestDisposableToken(username, accessToken);
+        if (log.isDebugEnabled()) {
+            log.debug("Digest disposable token is [{}].", disposableToken);
+        }
+        StringBuilder credentialsBuilder = new StringBuilder(accessToken);
+        if (disposableToken != null)
+        {
+            credentialsBuilder.append(disposableToken);
+        }
+        return credentialsBuilder.toString();
     }
 }

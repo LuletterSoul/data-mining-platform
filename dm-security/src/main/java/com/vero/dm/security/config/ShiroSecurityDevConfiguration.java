@@ -1,6 +1,7 @@
 package com.vero.dm.security.config;
 
 
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.session.NoSessionCreationFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
@@ -25,14 +27,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
 import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
-import com.vero.dm.security.credentials.StatelessCredentialsServiceImpl;
+import com.vero.dm.security.credentials.TokenGenerator;
+import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 import com.vero.dm.security.manager.StatelessDefaultSubjectFactory;
 import com.vero.dm.security.realm.StatelessRealm;
+import com.vero.dm.util.DateStyle;
 
 import net.sf.ehcache.CacheManager;
 
@@ -80,10 +88,11 @@ public class ShiroSecurityDevConfiguration
     public StatelessRealm statelessRealm()
     {
         StatelessRealm statelessRealm = new StatelessRealm();
-        statelessRealm.setAuthenticationCachingEnabled(false);
+        statelessRealm.setAuthenticationCachingEnabled(true);
         statelessRealm.setAuthorizationCachingEnabled(true);
+        statelessRealm.setCachingEnabled(true);
+        statelessRealm.setAuthenticationCacheName("authenticationCache");
         statelessRealm.setAuthorizationCacheName("authorizationCache");
-        statelessRealm.setCachingEnabled(false);
         statelessRealm.setCredentialsMatcher(statelessCredentialsMatcher());
         return statelessRealm;
     }
@@ -124,25 +133,23 @@ public class ShiroSecurityDevConfiguration
         StatelessCredentialsMatcher matcher = new StatelessCredentialsMatcher();
         matcher.setHashIterations(1000);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
-        matcher.setStatelessCredentialsService(statelessCredentialsService());
+        matcher.setStatelessCredentialsComputer(statelessCredentialsService());
         return matcher;
     }
 
     /**
      * Define stateless credentials bean. {@link DefaultPasswordService#DefaultPasswordService()}
      * will set {@link DefaultHashService#setGeneratePublicSalt(boolean)} } true,and
-     * {@link StatelessCredentialsServiceImpl} extends {@link DefaultHashService},we have to get
-     * corresponding embed hash service,reset it's boolean generate public salt configuration.
+     * {@link DefaultStatelessCredentialsComputer} extends {@link DefaultHashService},we have to
+     * get corresponding embed hash service,reset it's boolean generate public salt configuration.
      * Developer will generate salt by himself via
-     * {@link StatelessCredentialsServiceImpl#generateRandomSalt(int)}
-     *
-     *
+     * {@link DefaultStatelessCredentialsComputer#generateRandomSalt(int)}
      */
 
     @Bean
-    public StatelessCredentialsServiceImpl statelessCredentialsService()
+    public DefaultStatelessCredentialsComputer statelessCredentialsService()
     {
-        StatelessCredentialsServiceImpl service = new StatelessCredentialsServiceImpl();
+        DefaultStatelessCredentialsComputer service = new DefaultStatelessCredentialsComputer();
         DefaultPasswordService defaultPasswordService = (DefaultPasswordService)service;
         HashService hashService = defaultPasswordService.getHashService();
         ((DefaultHashService)hashService).setGeneratePublicSalt(false);
@@ -232,6 +239,17 @@ public class ShiroSecurityDevConfiguration
     }
 
     @Bean
+    public ObjectMapper objectMapper()
+    {
+        Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
+        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapperFactoryBean.setDateFormat(
+            new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue()));
+        mapperFactoryBean.afterPropertiesSet();
+        return mapperFactoryBean.getObject();
+    }
+
+    @Bean
     public MethodInvokingFactoryBean bindingSecurityManager()
     {
         MethodInvokingFactoryBean methodInvokingFactoryBean = new MethodInvokingFactoryBean();
@@ -248,9 +266,16 @@ public class ShiroSecurityDevConfiguration
     }
 
     @Bean
-    public AllowOriginFilter allowOriginFilter()
+    public AllowOriginFilter allowOriginFilter(TokenManager tokenManager,
+                                               TokenGenerator tokenGenerator)
     {
-        return new AllowOriginFilter();
+        return new AllowOriginFilter(tokenManager, tokenGenerator);
+    }
+
+    @Bean(name = "noSess")
+    public NoSessionCreationFilter noSessionCreationFilter()
+    {
+        return new NoSessionCreationFilter();
     }
 
     // @Bean("originFilter")
@@ -292,8 +317,8 @@ public class ShiroSecurityDevConfiguration
         filterChainDefinitionMap.put("/token/**", "anon");
         filterChainDefinitionMap.put("/public_salt/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-//        filterChainDefinitionMap.put("/api/**", "statelessFilter");
-        filterChainDefinitionMap.put("/**", "allowOriginFilter");
+        filterChainDefinitionMap.put("/api/**", "noSess,allowOriginFilter,statelessFilter");
+        filterChainDefinitionMap.put("/**", "noSess,allowOriginFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 

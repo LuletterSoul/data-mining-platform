@@ -24,14 +24,14 @@ import lombok.extern.slf4j.Slf4j;
 public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
 {
     // private UserPasswordService passwordService;
-    private StatelessCredentialsService statelessCredentialsService;
+    private StatelessCredentialsComputer statelessCredentialsComputer;
 
     private TokenManager tokenManager;
 
     @Autowired
-    public void setStatelessCredentialsService(StatelessCredentialsService statelessCredentialsService)
+    public void setStatelessCredentialsComputer(StatelessCredentialsComputer statelessCredentialsComputer)
     {
-        this.statelessCredentialsService = statelessCredentialsService;
+        this.statelessCredentialsComputer = statelessCredentialsComputer;
     }
 
     /**
@@ -70,7 +70,7 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
      */
     private Hash computeServerDigest(StatelessInfo statelessInfo)
     {
-        return statelessCredentialsService.computeHashWithParams(statelessInfo,
+        return statelessCredentialsComputer.computeHashWithParams(statelessInfo,
             getHashIterations());
     }
 

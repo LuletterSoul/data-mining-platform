@@ -8,6 +8,7 @@ package com.vero.dm.security.credentials;
 /**
  * 客户端用于生成消息摘要的封装体
  */
+@Deprecated
 public class ClientToken
 {
     private String token;

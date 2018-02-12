@@ -1,24 +1,28 @@
 package com.vero.dm.security.credentials;
 
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authc.ExpiredCredentialsException;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vero.dm.exception.auth.AccessTokenNotExistException;
+import com.vero.dm.exception.auth.ExpiredCredentialsException;
+import com.vero.dm.exception.auth.IncorrectCredentialsException;
+import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.service.UserService;
 import com.vero.dm.util.DateStyle;
 import com.vero.dm.util.DateUtil;
+
+import lombok.extern.slf4j.Slf4j;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.Ehcache;
+import net.sf.ehcache.Element;
 
 
 /**
@@ -30,61 +34,122 @@ import com.vero.dm.util.DateUtil;
 @Service
 @Slf4j
 @Transactional
-public class DefaultTokenManager implements TokenManager
+public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
 {
-    private Cache<String, String> tokenCache;
 
+    /**
+     * Ehcache 缓存令牌 有效期为半小时
+     */
+    private Ehcache currentDisposableTokenCache;
+
+    private Ehcache accessTokenCache;
+
+    @Autowired
+    private TokenGenerator tokenGenerator;
+
+    private float timeOutInternal = 2;
+
+    @Autowired
+    @Qualifier("userServiceImpl")
     private UserService userService;
 
-    // private UserDao userDao;
+    @Autowired
+    private StatelessCredentialsComputer credentialsService;
 
-    public final static int DEFAULT_TIME_OUT_LIMIT = 3;
+    @Autowired
+    private TokenValidator tokenValidator;
 
-    private int timeOutInternal;
-
-    private StatelessCredentialsService credentialsService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultTokenManager.class);
-
-    public DefaultTokenManager()
+    @Autowired
+    public void setCurrentDisposableTokenCache(CacheManager cacheManager)
     {
-        // 默认有效期为3分钟
-        this.timeOutInternal = DEFAULT_TIME_OUT_LIMIT;
+        this.currentDisposableTokenCache = cacheManager.getCache("currentDisposableTokenCache");
     }
 
     @Autowired
-    public void setTokenCache(EhCacheManager ehCacheManager)
+    public void setAccessTokenCache(CacheManager cacheManager)
     {
-        this.tokenCache = ehCacheManager.getCache("tokenCache");
+        this.accessTokenCache = cacheManager.getCache("accessTokenCache");
     }
-
-
-    @Autowired
-    public void setCredentialsService(StatelessCredentialsService credentialsService)
-    {
-        this.credentialsService = credentialsService;
-    }
-
-     @Autowired
-     @Qualifier("userServiceImpl")
-     public void setUserService(UserService userService)
-     {
-     this.userService = userService;
-     }
 
     @Override
-    public String generateTimeOutToken(String username)
+    public String applyExpiredToken(String username, String providedCredential, String dateString)
     {
-        Date date = new Date();
-        String formattedDate = dateToString(date);
-        String privateSalt = userService.fetchPrivateSalt(username);
-        // String publicSalt = userService.fetchPublicSalt(username);
-        // token.setPublicSalt(publicSalt);
-        return generateEncryptedToken(privateSalt, username, formattedDate);
+        validateTokenDate(username, dateString);
+        // 先清除之前的令牌信息
+        cleanPreApplicationInfo(providedCredential);
+        if (tokenValidator.validate(username, providedCredential))
+        {
+            User user = userService.fetchByUserName(username);
+            // 生成访问证书
+            String accessToken = tokenGenerator.generateHighSecurityTAccessToken(username,
+                userService.fetchPrivateSalt(username));
+            // 签发证书,记录申请的令牌信息,进行超时记录;
+            signAccessToken(accessToken, user);
+            setOriginalDisposableToken(username, accessToken);
+            log.debug("Generate access token applied to [{}].", user.getUsername());
+            return accessToken;
+        }
+        else
+        {
+            String message = "Mismatch the correct password.";
+            throw new IncorrectCredentialsException(message, ExceptionCode.InvalidAccount);
+        }
     }
 
-    private String generateEncryptedToken(String privateSalt, String username,
-                                          String formattedDate)
+    private void setOriginalDisposableToken(String username, String accessToken)
+    {
+        String firstDisposableToken = tokenGenerator.generateExpiredToken(username,
+            userService.fetchPrivateSalt(username));
+        putDisposableToken(accessToken, firstDisposableToken);
+    }
+
+    /**
+     * 清空所有登录缓存
+     * 
+     * @param accessToken
+     *            令牌
+     */
+    private void cleanPreApplicationInfo(String accessToken)
+    {
+        if (!cleanTokenCache(accessToken))
+        {
+            log.debug("[{}] hasn't apply token during period time.", accessToken);
+        }
+    }
+
+    @Override
+    public void putDisposableToken(String key, String token)
+    {
+        currentDisposableTokenCache.put(new Element(key, token));
+    }
+
+    @Override
+    public void putNextDisposableToken(String key, String token)
+    {
+
+    }
+
+    private void validateTokenDate(String username, String dateString)
+    {
+        if (!checkTokenValidity(dateString))
+        {
+            log.info("Expired token from [{}].", username);
+            throw new ExpiredCredentialsException("Invalid token.", ExceptionCode.ExpiredToken);
+        }
+    }
+
+    /**
+     * 混入私盐、用户名、当前时间生成一个可传递的令牌
+     * 
+     * @param privateSalt
+     *            私盐
+     * @param username
+     *            用户名
+     * @param formattedDate
+     *            证书生成日期
+     * @return 生成的证书
+     */
+    private String generateMixedToken(String privateSalt, String username, String formattedDate)
     {
         return credentialsService.digest(privateSalt + username, formattedDate).toBase64();
     }
@@ -95,22 +160,15 @@ public class DefaultTokenManager implements TokenManager
     }
 
     @Override
-    public ClientToken getTimeOutToken(String username, String dateString)
+    public String queryLatestDisposableToken(String username, String key)
     {
-        if (!checkTokenValidity(dateString))
+        if (isTokenExpired(key))
         {
-            throw new ExpiredCredentialsException("Invalid token.");
+            log.info("[{}] post a expired token [{}].", username, key);
+            String message = key + " turned out expired,Please re-apply again.";
+            throw new ExpiredCredentialsException(message, ExceptionCode.ExpiredToken);
         }
-        String token = generateTimeOutToken(username);
-        String apiKey = UUID.randomUUID().toString();
-        tokenCache.put(apiKey, token);
-        return new ClientToken(token, apiKey);
-    }
-
-    @Override
-    public String getHashToken(String key)
-    {
-        return tokenCache.get(key);
+        return (String)currentDisposableTokenCache.get(key).getObjectValue();
     }
 
     /**
@@ -129,14 +187,45 @@ public class DefaultTokenManager implements TokenManager
     }
 
     @Override
-    public boolean cleanTokenCache(String username)
+    public boolean cleanTokenCache(String key)
     {
-        String tokenHash = tokenCache.get(username);
-        if (tokenHash != null)
-        {
-            tokenCache.remove(username);
-            return true;
-        }
-        return false;
+        return currentDisposableTokenCache.remove(key) && accessTokenCache.remove(key);
     }
+
+    @Override
+    public boolean isTokenExpired(String accessToken)
+    {
+        if (accessTokenCache.isKeyInCache(accessToken))
+        {
+            Element element = accessTokenCache.get(accessToken);
+            if (element == null || accessTokenCache.isExpired(element))
+            {
+                log.info("Detect a expired token [{}] from [{}].", accessToken);
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+        {
+            String message = accessToken + "is invalid.Required apply an access token before.";
+            throw new AccessTokenNotExistException(message, ExceptionCode.TokenNotExist);
+        }
+    }
+
+    @Override
+    public void signAccessToken(String accessToken, User user)
+    {
+        List<String> roleNames = userService.findRoleNameSetByUserName(user.getUsername());
+        List<String> permissionNames = userService.findPermissionNameSet(user.getUsername());
+        accessTokenCache.put(
+            new Element(accessToken, UserDto.build(user, roleNames, permissionNames)));
+    }
+
+    @Override
+    public boolean isAccessTokenRegistered(String accessToken)
+    {
+        return accessTokenCache.get(accessToken) != null;
+    }
+
 }
