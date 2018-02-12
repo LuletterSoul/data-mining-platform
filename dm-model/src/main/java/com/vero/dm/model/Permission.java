@@ -26,7 +26,7 @@ public class Permission
     @GeneratedValue(generator = "increment")
     private Long permissionId;
 
-    @Column(name = "permissionName", nullable = false)
+    @Column(name = "permissions", nullable = false)
     private String permissionName;
 
     @Column(name = "description")

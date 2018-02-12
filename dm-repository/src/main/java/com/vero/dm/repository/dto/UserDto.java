@@ -1,9 +1,12 @@
 package com.vero.dm.repository.dto;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
+import com.vero.dm.model.User;
 import com.vero.dm.model.UserAccessStatus;
 
 import lombok.Data;
@@ -15,7 +18,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserDto
+public class UserDto implements Serializable
 {
     private String userId;
 
@@ -37,6 +40,10 @@ public class UserDto
 
     private Date lastLoginTime;
 
+    private List<String> roles;
+
+    private List<String> permissions;
+
     public UserDto(String userId, String username, String name, String avatar, String gender,
                    String regionCode, String introduction, UserAccessStatus accessStatus,
                    Timestamp lastLoginTime)
@@ -55,19 +62,30 @@ public class UserDto
     public UserDto()
     {}
 
-    // public static UserDto build(User user) {
-    //// UserDto userDTO = new UserDto();
-    //// userDTO.setUserId(user.getUserId());
-    //// userDTO.setUsername(user.getUsername());
-    //// userDTO.setName(user.getName());
-    //// userDTO.setAvatar(user.getAvatar());
-    //// userDTO.setBirthday(user.getBirthday());
-    //// userDTO.setGender(user.getGender());
-    //// userDTO.setIntroduction(user.getIntroduction());
-    //// userDTO.setRegionCode(user.getRegionCode());
-    //// userDTO.setAccessStatus(user.getAccountStatus());
-    //// userDTO.setLastLoginTime(new Date(user.getLastLoginTime().getTime()));
-    //// return userDTO;
-    // }
+    public static UserDto build(User user)
+    {
+        UserDto userDto = new UserDto();
+        userDto.setUserId(user.getUserId());
+        userDto.setUsername(user.getUsername());
+        userDto.setName(user.getName());
+        userDto.setAvatar(new String(user.getAvatar()));
+        userDto.setBirthday(user.getBirthday());
+        userDto.setGender(user.getGender());
+        userDto.setIntroduction(user.getIntroduction());
+        userDto.setRegionCode(user.getRegionCode());
+        userDto.setAccessStatus(user.getAccountStatus());
+        userDto.setLastLoginTime(new Date(user.getLastLoginTime().getTime()));
+        return userDto;
+    }
+
+    public static UserDto build(User user, List<String> roleNames, List<String> permissionNames)
+    {
+        UserDto userDto = build(user);
+        userDto.setRoles(roleNames);
+        userDto.setPermissions(permissionNames);
+        return userDto;
+    }
+
+
 
 }

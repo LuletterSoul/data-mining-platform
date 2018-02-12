@@ -3,8 +3,7 @@ package com.vero.dm.service.impl;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.sf.ehcache.Ehcache;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,8 @@ import com.vero.dm.model.User;
 import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * @author 刘祥德 qq313700046@icloud.com .
@@ -22,33 +23,9 @@ import com.vero.dm.service.UserService;
  * @modified by:
  */
 @Service
+@Slf4j
 public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> implements UserService
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-
-    // private StatelessCredentialsService credentialsService;
-
-    // private Cache<String, ByteSource> loginDisposableSaltCache;
-
-    // private UserPasswordService passwordService;
-
-    // @Autowired
-    // public void setEhCacheManager(EhCacheManager ehCacheManager)
-    // {
-    // loginDisposableSaltCache = ehCacheManager.getCache("loginDisposableSaltCache");
-    // }
-
-    // @Autowired
-    // public void setPasswordService(UserPasswordService passwordService)
-    // {
-    // this.passwordService = passwordService;
-    // }
-
-    // @Autowired
-    // public void setCredentialsService(StatelessCredentialsService credentialsService)
-    // {
-    // this.credentialsService = credentialsService;
-    // }
 
     @Override
     public User findById(String id)
@@ -56,21 +33,6 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         return userJpaRepository.findOne(id);
     }
 
-    public UserDto registerUser(User user)
-    {
-        // String publicSalt = credentialsService.generateRandomSalt(32);
-        // String privateSalt = credentialsService.generateRandomSalt(32);
-        // String encryptedPassword = credentialsService.encryptPassword(user.getPassword(),
-        // publicSalt);
-        // user.setPassword(encryptedPassword);
-        // user.setPrivateSalt(privateSalt);
-        // user.setPublicSalt(publicSalt);
-        // userDao.save(user);
-        // UserDto userDTO = new UserDto();
-        // BeanUtils.copyProperties(user, userDTO);
-        // return userDTO;
-        return null;
-    }
 
     @Override
     public UserDto getUserProfile(String username)
@@ -101,7 +63,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     // String disposableSalt = loginDisposableSaltCache.get(entry.getTmpId()).toHex();
     // if (disposableSalt == null)
     // {
-    // throw new AuthenticationException(
+    // throw new InternalAuthenticationException(
     // "The disposable salt can't be retrieve in current cache.");
     // }
     // /*

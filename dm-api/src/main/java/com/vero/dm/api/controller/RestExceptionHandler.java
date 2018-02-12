@@ -6,8 +6,7 @@ import static org.springframework.http.HttpStatus.*;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
-import org.apache.shiro.authc.ExpiredCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
+import com.vero.dm.exception.constract.HeaderLostException;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
@@ -19,12 +18,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.vero.dm.exception.auth.*;
 import com.vero.dm.exception.error.ErrorInfo;
+import com.vero.dm.exception.error.ExceptionCode;
 
 
 /**
@@ -33,10 +34,9 @@ import com.vero.dm.exception.error.ErrorInfo;
  * @since data-mining-platform
  */
 
-@ControllerAdvice
+@RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler
 {
-
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body,
                                                              HttpHeaders headers,
@@ -44,6 +44,32 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     {
         return new ResponseEntity<Object>(
             new ErrorInfo(ex, (body != null) ? body.toString() : null, status), headers, status);
+    }
+
+    /**
+     * 处理业务异常
+     *
+     * @param ex
+     *            异常
+     * @param exceptionCode
+     *            业务码
+     * @param headers
+     *            响应体
+     * @param status
+     *            http响应码
+     * @param request
+     *            本次请求
+     * @return 业务异常信息
+     */
+    protected ResponseEntity<Object> handBusinessExceptionInternal(Exception ex,
+                                                                   ExceptionCode exceptionCode,
+                                                                   HttpHeaders headers,
+                                                                   HttpStatus status,
+                                                                   WebRequest request)
+    {
+        return new ResponseEntity<>(
+            new ErrorInfo(ex, exceptionCode.getCode(), exceptionCode.getTip(), status), headers,
+            status);
     }
 
     // API
@@ -139,14 +165,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             new HttpHeaders(), INTERNAL_SERVER_ERROR, request);
     }
 
-    @ExceptionHandler({UnknownAccountException.class})
-    public ResponseEntity<Object> handleUnknownAccountException(final UnknownAccountException ex,
-                                                                final WebRequest request)
-    {
-        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), NOT_FOUND, request);
-    }
+    // @ExceptionHandler({UnknownAccountException.class})
+    // public ResponseEntity<Object> handleUnknownAccountException(final UnknownAccountException
+    // ex,
+    // final WebRequest request)
+    // {
+    // return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), NOT_FOUND, request);
+    // }
 
-    @ExceptionHandler(UnsupportedTokenException.class)
+    @ExceptionHandler(value ={ UnsupportedTokenException.class})
     public ResponseEntity<Object> handleUnsupportedTokenException(final UnsupportedTokenException ex,
                                                                   final WebRequest request)
     {
@@ -155,11 +182,88 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(ExpiredCredentialsException.class)
-    public ResponseEntity<Object> handleExpiredCredentialsException(final ExpiredCredentialsException ex,
-                                                                    final WebRequest request)
+    /**
+     * @param ex
+     *            证书过期
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value ={ ExpiredCredentialsException.class})
+    public ResponseEntity<Object> handleHeaderLostException(final ExpiredCredentialsException ex,
+                                                            final WebRequest request)
     {
-        return handleExceptionInternal(ex, "Expired credentials.", new HttpHeaders(),
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
             HttpStatus.FORBIDDEN, request);
     }
+
+    /**
+     * @param ex
+     *            授权失败,账号或密码错误
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value ={ InternalAuthenticationException.class})
+    public ResponseEntity<Object> handleAuthenticationException(final InternalAuthenticationException ex,
+                                                                final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.UNAUTHORIZED, request);
+    }
+
+    /**
+     * @param ex
+     *            未知账号
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value ={ UnknownAccountException.class})
+    public ResponseEntity<Object> handleUnknownAccountException(final UnknownAccountException ex,
+                                                                final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.UNAUTHORIZED, request);
+    }
+
+    /**
+     * @param ex
+     *            证书不存在
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value = {AccessTokenNotExistException.class})
+    public ResponseEntity<Object> handleAccessTokenNotExistException(final AccessTokenNotExistException ex,
+                                                                     final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.UNAUTHORIZED, request);
+    }
+
+    /**
+     * @param ex
+     *            凭证不正确(密码不正确)
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value = {IncorrectCredentialsException.class})
+    public ResponseEntity<Object> handleCredentialsInCorrectException(final IncorrectCredentialsException ex,
+                                                                      final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.UNAUTHORIZED, request);
+    }
+
+    /**
+     * @param ex
+     *            请求头缺失
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value = {HeaderLostException.class})
+    public ResponseEntity<Object> handleHeaderLostException(final HeaderLostException ex,
+                                                            final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+                HttpStatus.UNAUTHORIZED, request);
+    }
+
 }

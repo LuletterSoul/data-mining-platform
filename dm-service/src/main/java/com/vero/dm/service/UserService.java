@@ -2,11 +2,7 @@ package com.vero.dm.service;
 
 
 import java.util.List;
-import java.util.Set;
 
-import com.vero.dm.exception.DataObjectNotFoundException;
-import com.vero.dm.model.Permission;
-import com.vero.dm.model.Role;
 import com.vero.dm.model.User;
 import com.vero.dm.repository.dto.UserDto;
 
@@ -19,7 +15,6 @@ import com.vero.dm.repository.dto.UserDto;
  */
 public interface UserService extends BaseService<User, String>
 {
-    UserDto registerUser(User user);
 
     UserDto getUserProfile(String username);
 
@@ -38,4 +33,5 @@ public interface UserService extends BaseService<User, String>
     String fetchPublicSalt(String username);
 
     String fetchPrivateSalt(String username);
+
 }
