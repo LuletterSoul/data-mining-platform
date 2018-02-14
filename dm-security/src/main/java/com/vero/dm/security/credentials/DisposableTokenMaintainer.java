@@ -23,7 +23,7 @@ public interface DisposableTokenMaintainer
      * @param key
      *            访问令牌
      */
-    void signToken(String key,String privateSalt);
+    String signToken(String key,String privateSalt);
 
     /**
      * 根据客户端的认证信息获取最后一次请求派发的
@@ -47,4 +47,7 @@ public interface DisposableTokenMaintainer
      * @return
      */
     List<String> retrieveTokenList(String key);
+
+
+    void cleanTokenList(String key);
 }

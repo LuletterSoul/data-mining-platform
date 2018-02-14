@@ -4,23 +4,25 @@ package com.vero.dm.security.filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vero.dm.exception.DefaultPreAuthExceptionHandler;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.StringUtils;
 
+import com.vero.dm.exception.DefaultExceptionHandler;
+import com.vero.dm.exception.ExceptionHandler;
 import com.vero.dm.exception.auth.InternalAuthenticationException;
 import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.security.constants.Constants;
 import com.vero.dm.security.credentials.DisposableTokenWriter;
-import com.vero.dm.exception.PreAuthExceptionHandler;
 import com.vero.dm.security.realm.StatelessToken;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,14 +32,13 @@ import lombok.extern.slf4j.Slf4j;
  * 无状态请求过滤器,该过滤器会检测请求头是否包含跟客户端协商好信息： 即用户名、时间戳、消息摘要、证书信息 对每个请求的鉴权/授权逻辑会交由
  * {@link com.vero.dm.security.realm.StatelessRealm}完成; 注意当前Filter在Shiro代理Filter的拦截路径中 尚未进入Spring
  * Mvc的体系，所以产生的异常不能够被 {@link org.springframework.web.client.RestClientException} 全局异常捕捉器捕捉到
- * 为了生成更友好、统一的信息则需要{@link DefaultPreAuthExceptionHandler}
- * 统一处理协商内容鉴定、身份认证过程抛出的异常; 在每次API授权后,{@link #afterAuthentication(HttpServletResponse, String)}
- * 会更新服务器端当前身份证书对应的一次性令牌 并将该一次性令牌写入response header 中去,这样有效减少了客户端频繁申请一次性令牌的请求,
+ * 为了生成更友好、统一的信息则需要{@link DefaultExceptionHandler} 统一处理协商内容鉴定、身份认证过程抛出的异常;
+ * 在每次API授权后,{@link #afterAuthentication(HttpServletResponse, String)} 会更新服务器端当前身份证书对应的一次性令牌
+ * 并将该一次性令牌写入response header 中去,这样有效减少了客户端频繁申请一次性令牌的请求,
  * 但这种会存在并发访问问题:一对一的关系确定了一次性令牌只针对“下一趟”请求,一趟{@link HttpServletRequest}结束后,
  * 对应的{@link HttpServletResponse}将最新的一次性token提交给客户端, 然而假设客户端在异步发出多个请求时,使用了同一个全局一次性Token(来自服务器签发),
  * 服务器针对每个请求更新了服务器端的“下一趟”一次性Token, 这时就出现了客户端与服务器端的一次性Token不同步的问题。
  * 解决方案见{@link com.vero.dm.security.credentials.DisposableTokenMaintainer}
- * 在对应的{@link HttpServletResponse}返回最新的一次性Token之前, 使用它认为是“最新”(实际时)Token异步同时发出多个请求, 客户端
  * 值得注意的是在{@link HttpServletResponse #setHeader}必须在response commit之前写入,否则在commit之后该操作会无效
  * 
  * @see com.vero.dm.security.credentials.DisposableTokenMaintainer
@@ -52,11 +53,11 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
 {
 
     @Autowired
-    private PreAuthExceptionHandler preAuthExceptionHandler;
+    @Qualifier("defaultExceptionHandler")
+    private ExceptionHandler exceptionHandler;
 
     @Autowired
     private DisposableTokenWriter disposableTokenWriter;
-
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response,
@@ -69,33 +70,36 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response)
         throws Exception
     {
-        HttpServletRequest httpRequest = null;
         try
         {
-            httpRequest = HttpServletRequestUtils.assertHttpRequest(request);
-            // 历史证书
-            String preToken = httpRequest.getHeader(Constants.ACCESS_BY_PRE_TOKEN);
-            // 获取请求发送的时间戳
-            String timestamp = httpRequest.getHeader(Constants.TIMESTAMP_HEADER);
-            // 客户端传入的认证信息
-            String accessToken = httpRequest.getHeader(Constants.ACCESS_TOKEN_HEADER);
-            // 客户端生成的消息摘要
-            String clientDigest = httpRequest.getHeader(Constants.CLIENT_DIGEST_HEADER);
-            // 客户端传入的用户身份
-            String username = httpRequest.getHeader(Constants.USERNAME_HEADER);
-            Boolean tokenAvailable = isAccessTokenAvailable(clientDigest, username, timestamp,
-                accessToken, preToken);
-            // 客户端请求的参数列表
-            StatelessToken token = generateStatelessToken(request, clientDigest, username,
-                accessToken, tokenAvailable);
-            if (doRestApiAccessAuthentication(request, response, token)) return false;
+            return !doRestApiAccessAuthentication(request, response, buildStatelessToken(request));
         }
         catch (Throwable e)
         {
-            preAuthExceptionHandler.dispatchInternalExceptions(request, response, e);
+            exceptionHandler.dispatchInternalExceptions(request, response, e);
             return false;
         }
-        return true;
+    }
+
+    private StatelessToken buildStatelessToken(ServletRequest request)
+        throws ServletException
+    {
+        HttpServletRequest httpRequest = HttpServletRequestUtils.assertHttpRequest(request);
+        // 历史证书
+        String preToken = httpRequest.getHeader(Constants.ACCESS_BY_PRE_TOKEN);
+        // 获取请求发送的时间戳
+        String timestamp = httpRequest.getHeader(Constants.TIMESTAMP_HEADER);
+        // 客户端传入的认证信息
+        String accessToken = httpRequest.getHeader(Constants.ACCESS_TOKEN_HEADER);
+        // 客户端生成的消息摘要
+        String clientDigest = httpRequest.getHeader(Constants.CLIENT_DIGEST_HEADER);
+        // 客户端传入的用户身份
+        String username = httpRequest.getHeader(Constants.USERNAME_HEADER);
+        Boolean tokenAvailable = isAccessTokenAvailable(clientDigest, username, timestamp,
+            accessToken, preToken);
+        // 客户端请求的参数列表
+        return generateStatelessToken(request, clientDigest, username, accessToken,
+            tokenAvailable);
     }
 
     private boolean doRestApiAccessAuthentication(ServletRequest request, ServletResponse response,
@@ -110,20 +114,24 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         }
         catch (AuthenticationException e)
         {
-            InternalAuthenticationException ex;
-            if (e instanceof InternalAuthenticationException)
-            {
-                ex = (InternalAuthenticationException)e;
-            }
-            else
-            {
-                String message = "Authentication Failed.";
-                ex = new InternalAuthenticationException(message,
-                    ExceptionCode.AuthenticationError);
-            }
-            throw ex;
+            return transferException(e);
         }
         return false;
+    }
+
+    private boolean transferException(AuthenticationException e)
+    {
+        InternalAuthenticationException ex;
+        if (e instanceof InternalAuthenticationException)
+        {
+            ex = (InternalAuthenticationException)e;
+        }
+        else
+        {
+            String message = "Authentication Failed.";
+            ex = new InternalAuthenticationException(message, ExceptionCode.AuthenticationError);
+        }
+        throw ex;
     }
 
     protected void afterAuthentication(HttpServletResponse httpServletResponse, String accessToken)

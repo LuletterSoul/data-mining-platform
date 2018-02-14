@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.exception.auth.ConcurrentAccessException;
+import com.vero.dm.exception.auth.EmptyTokenListException;
 import com.vero.dm.exception.auth.ExpiredCredentialsException;
 import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.service.UserService;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
@@ -27,12 +29,13 @@ import net.sf.ehcache.Element;
 @SuppressWarnings("unchecked")
 @Slf4j
 @Component
+@Getter
 public class DisposableTokenMaintainerImpl implements DisposableTokenMaintainer
 {
     /**
      * 每个一次性Token组的最大Size
      */
-    private Integer cacheListSize = 5;
+    private Integer cacheListSize = 20;
 
     /**
      * 写锁超时时间
@@ -60,13 +63,15 @@ public class DisposableTokenMaintainerImpl implements DisposableTokenMaintainer
     }
 
     @Override
-    public void signToken(String key, String privateSalt)
+    public String signToken(String key, String privateSalt)
     {
-        List<String> cachedList = (List<String>)disposableTokenCache.get(key).getObjectValue();
         try
         {
-            disposableTokenCache.tryWriteLockOnKey(key, writeLockTimeOut);
-            writeNewToken(key, privateSalt, cachedList);
+            disposableTokenCache.tryWriteLockOnKey(key, getWriteLockTimeOut());
+            Element element = disposableTokenCache.get(key);
+            element = insureTokenListNotNull(key, element);
+            LinkedList<String> cachedList = (LinkedList<String>)element.getObjectValue();
+            return writeNewToken(key, privateSalt, cachedList);
         }
         catch (InterruptedException e)
         {
@@ -79,24 +84,32 @@ public class DisposableTokenMaintainerImpl implements DisposableTokenMaintainer
         }
     }
 
-    private void writeNewToken(String key, String privateSalt, List<String> cachedList)
+    private Element insureTokenListNotNull(String key, Element element)
     {
-        if (cachedList == null)
+        if (element == null)
         {
-            cachedList = new LinkedList<>();
+            element = new Element(key, new LinkedList<String>());
+            disposableTokenCache.put(element);
         }
-        else
+        return element;
+    }
+
+    private String writeNewToken(String key, String privateSalt, LinkedList<String> cachedList)
+    {
+        String disposableToken = tokenGenerator.generateExpiredToken(key,
+            userService.fetchPrivateSalt(privateSalt));
+        // 超过阈值,删除列头
+        if (cachedList.size() + 1 > getCacheListSize())
         {
-            String disposableToken = tokenGenerator.generateExpiredToken(key,
-                userService.fetchPrivateSalt(privateSalt));
-            // 超过阈值,删除列头
-            if (cachedList.size() + 1 > cacheListSize)
-            {
-                cachedList.remove(0);
-            }
-            cachedList.add(disposableToken);
+            cachedList.removeFirst();
+        }
+        cachedList.addLast(disposableToken);
+        if (log.isDebugEnabled())
+        {
+            log.debug("Sign a new disposable [{}] token for [{}]", disposableToken, key);
         }
         disposableTokenCache.put(new Element(key, cachedList));
+        return disposableToken;
     }
 
     @Override
@@ -110,19 +123,47 @@ public class DisposableTokenMaintainerImpl implements DisposableTokenMaintainer
     {
         try
         {
-            disposableTokenCache.tryReadLockOnKey(key, readLockTimeOut);
+            disposableTokenCache.tryReadLockOnKey(key, getReadLockTimeOut());
             if (expiredChecker.isTokenExpired(key))
             {
-                log.info("Unexpected Expired access token [{}].", key);
+                log.error("Unexpected Expired access token [{}].", key);
                 String message = key + " turned out expired,Please re-apply again.";
                 throw new ExpiredCredentialsException(message, ExceptionCode.ExpiredToken);
             }
             else
-                return (List<String>)disposableTokenCache.get(key).getObjectValue();
+            {
+                List<String> tokenList = (List<String>)disposableTokenCache.get(
+                    key).getObjectValue();
+                if (tokenList == null || tokenList.isEmpty())
+                {
+                    String message = "Empty token list.";
+                    throw new EmptyTokenListException(message, ExceptionCode.TokenListNotFound);
+                }
+                return tokenList;
+            }
         }
         catch (InterruptedException e)
         {
             String message = "Could not fetch disposable token cache Read Lock.";
+            throw new ConcurrentAccessException(message, ExceptionCode.ConcurrencyError);
+        }
+        finally
+        {
+            disposableTokenCache.releaseReadLockOnKey(key);
+        }
+    }
+
+    @Override
+    public void cleanTokenList(String key)
+    {
+        try
+        {
+            disposableTokenCache.tryWriteLockOnKey(key, getWriteLockTimeOut());
+            disposableTokenCache.remove(key);
+        }
+        catch (InterruptedException e)
+        {
+            String message = "Could not fetch disposable token cache Write Lock.";
             throw new ConcurrentAccessException(message, ExceptionCode.ConcurrencyError);
         }
         finally

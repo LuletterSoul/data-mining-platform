@@ -9,6 +9,7 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Hash;
@@ -31,6 +32,7 @@ import com.vero.dm.security.realm.StatelessInfo;
  */
 
 @Transactional
+@Slf4j
 public class DefaultStatelessCredentialsComputer extends DefaultPasswordService implements StatelessCredentialsComputer
 {
 
@@ -48,14 +50,7 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
 
     public DefaultStatelessCredentialsComputer()
     {
-        try
-        {
-            mac = Mac.getInstance(MAC_DEFAULT_ALGORITHM);
-        }
-        catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
     // @Autowired
@@ -107,7 +102,7 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
     @Override
     public String computeNegotiatedApplyToken(String password, String publicSalt)
     {
-        HashRequest request = buildRequest(password + publicSalt);
+        HashRequest request = buildRequest(password + publicSalt,1000);
         return getHashService().computeHash(request).toBase64();
     }
 
@@ -134,7 +129,7 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
     private HashRequest buildRequest(String source)
     {
         return new HashRequest.Builder().setSource(createByteSource(source)).setAlgorithmName(
-            DEFAULT_HASH_ALGORITHM).setIterations(1000).build();
+            DEFAULT_HASH_ALGORITHM).setIterations(100).build();
     }
 
     private HashRequest buildRequest(String source, Integer iterations)
@@ -156,6 +151,14 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
     {
         try
         {
+            try
+            {
+                mac = Mac.getInstance(MAC_DEFAULT_ALGORITHM);
+            }
+            catch (NoSuchAlgorithmException e)
+            {
+                e.printStackTrace();
+            }
             byte[] secretByte = salt.getBytes();
             byte[] dataBytes = message.getBytes();
             SecretKey secret = new SecretKeySpec(secretByte, "HMACSHA256");

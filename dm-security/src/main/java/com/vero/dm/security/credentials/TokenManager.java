@@ -25,33 +25,7 @@ public interface TokenManager
      */
     String applyExpiredToken(String username, String providedCredential, String dateString);
 
-    /**
-     * 重置一次性令牌
-     * @param key 访问令牌
-     * @param token 新的一次性令牌
-     */
-    void putDisposableToken(String key, String token);
 
-
-    /**
-     * 更新一次性令牌
-     * @param key
-     * @param token
-     */
-    void putNextDisposableToken(String key, String token);
-
-
-
-    /**
-     * 根据客户端的认证信息获取一次性令牌 一次性令牌作为API访问的传递参数 用于客户端消息摘要的生成 以及服务器的认证授权
-     * 
-     * @param username
-     *            用户名
-     * @param key
-     *            access token
-     * @return
-     */
-    String queryLatestDisposableToken(String username, String key);
 
     /**
      * 根据用户清除对应用户的令牌

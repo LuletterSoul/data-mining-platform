@@ -249,10 +249,9 @@ public class ShiroSecurityProdConfiguration
     }
 
     @Bean
-    public AllowOriginFilter allowOriginFilter(TokenManager tokenManager,
-                                               TokenGenerator tokenGenerator)
+    public AllowOriginFilter allowOriginFilter()
     {
-        return new AllowOriginFilter(tokenManager, tokenGenerator);
+        return new AllowOriginFilter();
     }
 
     // @Bean("originFilter")
@@ -280,9 +279,9 @@ public class ShiroSecurityProdConfiguration
     }
 
     // @Bean
-    // public LogoutFilter logout()
+    // public PreLogoutFilter preLogout()
     // {
-    // LogoutFilter logoutFilter = new LogoutFilter();
+    // PreLogoutFilter logoutFilter = new PreLogoutFilter();
     // logoutFilter.setPostOnlyLogout(true);
     // logoutFilter.setRedirectUrl("/static/index.html");
     // return logoutFilter;

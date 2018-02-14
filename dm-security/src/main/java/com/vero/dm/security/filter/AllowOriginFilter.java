@@ -32,25 +32,6 @@ public class AllowOriginFilter extends AdviceFilter
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(AllowOriginFilter.class);
 
-    @Autowired
-    private TokenManager tokenManager;
-
-    @Autowired
-    private TokenGenerator tokenGenerator;
-
-    @Autowired
-    private UserProfileAccessor profileAccessor;
-
-    @Autowired
-    @Qualifier("userServiceImpl")
-    private UserService userService;
-
-    public AllowOriginFilter(TokenManager tokenManager, TokenGenerator tokenGenerator)
-    {
-        this.tokenGenerator = tokenGenerator;
-        this.tokenManager = tokenManager;
-    }
-
     public final static String ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
 
     public final static String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";

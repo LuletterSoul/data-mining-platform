@@ -86,6 +86,14 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
     overflowToDisk="true"
     statistics="true">
 </cache>
+    <cache name="disposableTokenCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           statistics="true">
+    </cache>
 
     <cache name="disposableToken"
            maxEntriesLocalHeap="2000"

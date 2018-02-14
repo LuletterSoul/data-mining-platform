@@ -2,6 +2,8 @@ package com.vero.dm.security.realm;
 
 
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.vero.dm.repository.dto.UserDto;
+import com.vero.dm.security.credentials.DisposableTokenMaintainer;
 import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.security.credentials.UserProfileAccessor;
 import com.vero.dm.service.UserService;
@@ -42,7 +45,15 @@ public class StatelessRealm extends AuthorizingRealm
 
     private UserProfileAccessor profileAccessor;
 
+    private DisposableTokenMaintainer disposableTokenMaintainer;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(StatelessRealm.class);
+
+    @Autowired
+    public void setDisposableTokenMaintainer(DisposableTokenMaintainer disposableTokenMaintainer)
+    {
+        this.disposableTokenMaintainer = disposableTokenMaintainer;
+    }
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -89,28 +100,32 @@ public class StatelessRealm extends AuthorizingRealm
         StatelessToken statelessToken = (StatelessToken)token;
         String username = statelessToken.getUsername();
         String accessToken = statelessToken.getAccessToken();
-        //如果是按照当前令牌授权,则从缓存中拉取对应的用户信息
+        // 如果是按照当前令牌授权,则从缓存中拉取对应的用户信息
         if (statelessToken.getIsAccessByAvailableToken())
         {
-            UserDto userDto = profileAccessor.fetchProfile(statelessToken.getAccessToken());
-            return new StatelessInfo(userDto.getUsername(), accessToken,
-                statelessToken.getParams(), getName());
+            return buildForCachedUserInfo(statelessToken, accessToken);
         }
-        String credentials = buildCredentials(username, accessToken);
-        return new StatelessInfo(username, credentials, statelessToken.getParams(), getName());
+        LinkedList<String> candidates = buildCredentialCandidates(accessToken);
+        return new StatelessInfo(username, candidates.getLast(),
+            statelessToken.getParams(), getName(),candidates ,
+            accessToken);
     }
 
-    private String buildCredentials(String username, String accessToken)
+    private AuthenticationInfo buildForCachedUserInfo(StatelessToken statelessToken,
+                                                      String accessToken)
     {
-        String disposableToken = tokenManager.queryLatestDisposableToken(username, accessToken);
-        if (log.isDebugEnabled()) {
-            log.debug("Digest disposable token is [{}].", disposableToken);
-        }
-        StringBuilder credentialsBuilder = new StringBuilder(accessToken);
-        if (disposableToken != null)
-        {
-            credentialsBuilder.append(disposableToken);
-        }
-        return credentialsBuilder.toString();
+        UserDto userDto = profileAccessor.fetchProfile(statelessToken.getAccessToken());
+        return new StatelessInfo(userDto.getUsername(), accessToken, statelessToken.getParams(),
+            getName());
+    }
+
+
+    private LinkedList<String> buildCredentialCandidates(String accessToken)
+    {
+        List<String> tokenList = disposableTokenMaintainer.retrieveTokenList(accessToken);
+        LinkedList<String> tokenListCandidates = new LinkedList<>();
+        tokenList.forEach(t ->
+                tokenListCandidates.add(accessToken + t));
+        return tokenListCandidates;
     }
 }

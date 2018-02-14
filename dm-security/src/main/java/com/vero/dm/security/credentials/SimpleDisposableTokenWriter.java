@@ -22,15 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SimpleDisposableTokenWriter implements DisposableTokenWriter
 {
-
-    @Autowired
-    private TokenManager tokenManager;
-
-    @Autowired
-    private TokenGenerator tokenGenerator;
-
     @Autowired
     private UserProfileAccessor profileAccessor;
+
+    @Autowired
+    private DisposableTokenMaintainer tokenMaintainer;
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -41,8 +37,7 @@ public class SimpleDisposableTokenWriter implements DisposableTokenWriter
     {
         String username = profileAccessor.fetchProfile(accessToken).getUsername();
         String privateSalt = userService.fetchPrivateSalt(username);
-        String disposableToken = tokenGenerator.generateExpiredToken(accessToken, privateSalt);
-        updateDisposableToken(httpServletResponse, accessToken, username, disposableToken);
+        updateDisposableToken(httpServletResponse, accessToken, username, privateSalt);
     }
 
     /**
@@ -51,17 +46,17 @@ public class SimpleDisposableTokenWriter implements DisposableTokenWriter
      * @param httpServletResponse
      * @param accessToken
      * @param username
-     * @param disposableToken
+     * @param privateSalt
      */
     private void updateDisposableToken(HttpServletResponse httpServletResponse, String accessToken,
-                                       String username, String disposableToken)
+                                       String username, String privateSalt)
     {
-        tokenManager.putDisposableToken(accessToken, disposableToken);
+        String newToken = tokenMaintainer.signToken(accessToken, privateSalt);
         // 写入一次性令牌附带返回客户端
-        httpServletResponse.setHeader(Constants.DISPOSABLE_TOKEN_HEADER, disposableToken);
+        httpServletResponse.setHeader(Constants.DISPOSABLE_TOKEN_HEADER, newToken);
         if (log.isDebugEnabled())
         {
-            log.debug("Update disposable token as [{}] form [{}].", disposableToken, username);
+            log.debug("Update disposable token as [{}] form [{}].", newToken, username);
         }
     }
 }

@@ -40,7 +40,9 @@ public class UserProfileAccessorImpl implements UserProfileAccessor
         if (!tokenExpiredChecker.isTokenExpired(accessToken))
         {
             UserDto userDto = (UserDto)accessTokenCache.get(accessToken).getObjectValue();
-            log.debug("[{}] fetch user profile.", userDto.getUsername());
+            if (log.isDebugEnabled()) {
+                log.debug("[{}] fetch user profile:{}", userDto.getUsername(),userDto);
+            }
             return userDto;
         }
         else

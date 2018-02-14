@@ -4,13 +4,13 @@ package com.vero.dm.security.credentials;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vero.dm.security.realm.StatelessInfo;
-import com.vero.dm.security.realm.StatelessRealm;
 import com.vero.dm.security.realm.StatelessToken;
+import com.vero.dm.security.strategy.StrategyMatchChain;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -21,17 +21,33 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
+@Setter
 public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
 {
-    // private UserPasswordService passwordService;
     private StatelessCredentialsComputer statelessCredentialsComputer;
 
-    private TokenManager tokenManager;
+    private StrategyMatchChain matchChain;
+
+    public StatelessCredentialsMatcher()
+    {
+
+    }
+
+    public StatelessCredentialsMatcher(StrategyMatchChain matchChain)
+    {
+        this.matchChain = matchChain;
+    }
 
     @Autowired
     public void setStatelessCredentialsComputer(StatelessCredentialsComputer statelessCredentialsComputer)
     {
         this.statelessCredentialsComputer = statelessCredentialsComputer;
+    }
+
+    @Autowired
+    public void setMatchChain(StrategyMatchChain matchChain)
+    {
+        this.matchChain = matchChain;
     }
 
     /**
@@ -51,35 +67,8 @@ public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
     {
         StatelessInfo statelessInfo = (StatelessInfo)info;
         StatelessToken statelessToken = (StatelessToken)token;
-        Hash serverDigestHash = computeServerDigest(statelessInfo);
-        return equals(statelessToken.getClientDigest(), serverDigestHash);
-    }
-
-    @Autowired
-    public void setTokenManager(TokenManager tokenManager)
-    {
-        this.tokenManager = tokenManager;
-    }
-
-    /**
-     * 客户端与服务器协商好的加密算法;
-     * 
-     * @param statelessInfo
-     *            用以生成客户端的消息摘要
-     * @see StatelessRealm#doGetAuthenticationInfo(AuthenticationToken)
-     */
-    private Hash computeServerDigest(StatelessInfo statelessInfo)
-    {
-        return statelessCredentialsComputer.computeHashWithParams(statelessInfo,
-            getHashIterations());
-    }
-
-    @Override
-    protected boolean equals(Object tokenCredentials, Object accountCredentials)
-    {
-        String accountBase64 = ((Hash)accountCredentials).toBase64();
-        log.debug("tokenCredentials:{},  accountCredentials:{}", tokenCredentials,
-            ((Hash)accountCredentials).toBase64());
-        return tokenCredentials.equals(accountBase64);
+        matchChain.reuse();
+        return matchChain.doMatch(statelessInfo.getCredentialCandidates(), statelessInfo,
+            statelessToken);
     }
 }

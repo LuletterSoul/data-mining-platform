@@ -85,7 +85,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
                 userService.fetchPrivateSalt(username));
             // 签发证书,记录申请的令牌信息,进行超时记录;
             signAccessToken(accessToken, user);
-            setOriginalDisposableToken(username, accessToken);
             log.debug("Generate access token applied to [{}].", user.getUsername());
             return accessToken;
         }
@@ -96,12 +95,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         }
     }
 
-    private void setOriginalDisposableToken(String username, String accessToken)
-    {
-        String firstDisposableToken = tokenGenerator.generateExpiredToken(username,
-            userService.fetchPrivateSalt(username));
-        putDisposableToken(accessToken, firstDisposableToken);
-    }
 
     /**
      * 清空所有登录缓存
@@ -117,17 +110,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         }
     }
 
-    @Override
-    public void putDisposableToken(String key, String token)
-    {
-        currentDisposableTokenCache.put(new Element(key, token));
-    }
-
-    @Override
-    public void putNextDisposableToken(String key, String token)
-    {
-
-    }
 
     private void validateTokenDate(String username, String dateString)
     {
@@ -159,17 +141,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         return DateUtil.DateToString(date, DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
     }
 
-    @Override
-    public String queryLatestDisposableToken(String username, String key)
-    {
-        if (isTokenExpired(key))
-        {
-            log.info("[{}] post a expired token [{}].", username, key);
-            String message = key + " turned out expired,Please re-apply again.";
-            throw new ExpiredCredentialsException(message, ExceptionCode.ExpiredToken);
-        }
-        return (String)currentDisposableTokenCache.get(key).getObjectValue();
-    }
 
     /**
      * 验证每个对一次行证书申请的时间，对于无效期内的request直接拒绝申请 主要是为了防止重放攻击，与试图申请过期证书的非法操作
