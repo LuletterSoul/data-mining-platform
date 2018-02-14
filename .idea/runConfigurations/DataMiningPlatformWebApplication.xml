@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DataMiningPlatformWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+      <pattern>
+        <option name="PATTERN" value="com.vero.dm.web.entry.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.vero.dm.web.entry.DataMiningPlatformWebApplication" />
+    <option name="PROGRAM_PARAMETERS" value="-Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=dev" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <module name="dm-web" />
+    <envs />
+    <method />
+  </configuration>
+</component>

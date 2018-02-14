@@ -1,11 +1,14 @@
 package com.vero.dm.security.config;
 
 
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.vero.dm.security.filter.AuthenticationExceptionFilter;
+import com.vero.dm.security.filter.PreLogoutFilter;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -17,6 +20,8 @@ import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.AuthenticationFilter;
+import org.apache.shiro.web.filter.session.NoSessionCreationFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
@@ -25,19 +30,27 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
 import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
-import com.vero.dm.security.credentials.StatelessCredentialsServiceImpl;
 import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 import com.vero.dm.security.manager.StatelessDefaultSubjectFactory;
 import com.vero.dm.security.realm.StatelessRealm;
+import com.vero.dm.security.strategy.*;
+import com.vero.dm.util.DateStyle;
 
 import net.sf.ehcache.CacheManager;
 
 
 /**
+ * 该类定义了shiro 安全体系的Bean组件
+ * 自定义的Filter必须放在{@link ShiroFilterFactoryBean}之前注册在spring容器中,
+ * 然后被它内部的逻辑启动扫描对应的filter,注册在自身维护的filters中
  * @author 刘祥德 qq313700046@icloud.com .
  * @date created in 15:02 2017/7/17.
  * @description
@@ -48,6 +61,8 @@ import net.sf.ehcache.CacheManager;
 @Import(value = EhCacheConfiguration.class)
 public class ShiroSecurityDevConfiguration
 {
+
+    private Integer hashIterations = 1000;
 
     @Resource
     private CacheManager ehCacheCacheManager;
@@ -60,89 +75,56 @@ public class ShiroSecurityDevConfiguration
         return shiroCacheManager;
     }
 
-    // @Bean
-    // public TokenManager tokenManager()
-    // {
-    // return new TokenManager();
-    // }
-
-    // @Bean
-    // public RetryLimitHashedCredentialsMatcher retryLimitHashedCredentialsMatcher()
-    // {
-    // RetryLimitHashedCredentialsMatcher matcher = new RetryLimitHashedCredentialsMatcher();
-    // matcher.setHashAlgorithmName("md5");
-    // matcher.setHashIterations(2);
-    // matcher.setStoredCredentialsHexEncoded(true);
-    // return matcher;
-    // }
 
     @Bean
     public StatelessRealm statelessRealm()
     {
         StatelessRealm statelessRealm = new StatelessRealm();
-        statelessRealm.setAuthenticationCachingEnabled(false);
+        statelessRealm.setAuthenticationCachingEnabled(true);
         statelessRealm.setAuthorizationCachingEnabled(true);
+        statelessRealm.setCachingEnabled(true);
+        statelessRealm.setAuthenticationCacheName("authenticationCache");
         statelessRealm.setAuthorizationCacheName("authorizationCache");
-        statelessRealm.setCachingEnabled(false);
         statelessRealm.setCredentialsMatcher(statelessCredentialsMatcher());
         return statelessRealm;
     }
 
-    // @Bean
-    // public UserRealm userRealm()
-    // {
-    // UserRealm userRealm = new UserRealm();
-    // userRealm.setCachingEnabled(true);
-    // userRealm.setCacheManager(shiroCacheManager());
-    // userRealm.setAuthenticationCachingEnabled(true);
-    // userRealm.setAuthenticationCacheName("authenticationCache");
-    // userRealm.setAuthorizationCachingEnabled(true);
-    // userRealm.setAuthorizationCacheName("authorizationCache");
-    // userRealm.setCredentialsMatcher(retryLimitHashedCredentialsMatcher());
-    // return userRealm;
-    // }
 
-    // @Bean
-    // public JavaUuidSessionIdGenerator javaUuidSessionIdGenerator()
-    // {
-    // return new JavaUuidSessionIdGenerator();
-    // }
-
-    // @Bean
-    // public EnterpriseCacheSessionDAO enterpriseCacheSessionDAO()
-    // {
-    // EnterpriseCacheSessionDAO sessionDAO = new EnterpriseCacheSessionDAO();
-    // sessionDAO.setCacheManager(shiroCacheManager());
-    // sessionDAO.setActiveSessionsCacheName("shiro-activeSessionCache");
-    // sessionDAO.setSessionIdGenerator(javaUuidSessionIdGenerator());
-    // return sessionDAO;
-    // }
+    @Bean
+    public StrategyMatchChain strategyMatchChain()
+    {
+        ApplicationStrategyMatchChain matchChain = new ApplicationStrategyMatchChain();
+        matchChain.addStrategy(
+            new DefaultMatchStrategyConfig(new SimpleMatchStrategy(computer()), "simple"));
+        matchChain.addStrategy(new DefaultMatchStrategyConfig(
+            new LimitedMatchAttemptsStrategy(computer()), "limited"));
+        matchChain.addStrategy(
+            new DefaultMatchStrategyConfig(new MatchAllCandidateStrategy(computer()), "all"));
+        return matchChain;
+    }
 
     @Bean
     public StatelessCredentialsMatcher statelessCredentialsMatcher()
     {
         StatelessCredentialsMatcher matcher = new StatelessCredentialsMatcher();
-        matcher.setHashIterations(1000);
+        matcher.setHashIterations(hashIterations);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
-        matcher.setStatelessCredentialsService(statelessCredentialsService());
+        matcher.setStatelessCredentialsComputer(computer());
         return matcher;
     }
 
     /**
      * Define stateless credentials bean. {@link DefaultPasswordService#DefaultPasswordService()}
      * will set {@link DefaultHashService#setGeneratePublicSalt(boolean)} } true,and
-     * {@link StatelessCredentialsServiceImpl} extends {@link DefaultHashService},we have to get
-     * corresponding embed hash service,reset it's boolean generate public salt configuration.
+     * {@link DefaultStatelessCredentialsComputer} extends {@link DefaultHashService},we have to
+     * get corresponding embed hash service,reset it's boolean generate public salt configuration.
      * Developer will generate salt by himself via
-     * {@link StatelessCredentialsServiceImpl#generateRandomSalt(int)}
-     *
-     *
+     * {@link DefaultStatelessCredentialsComputer#generateRandomSalt(int)}
      */
-
     @Bean
-    public StatelessCredentialsServiceImpl statelessCredentialsService()
+    public DefaultStatelessCredentialsComputer computer()
     {
-        StatelessCredentialsServiceImpl service = new StatelessCredentialsServiceImpl();
+        DefaultStatelessCredentialsComputer service = new DefaultStatelessCredentialsComputer();
         DefaultPasswordService defaultPasswordService = (DefaultPasswordService)service;
         HashService hashService = defaultPasswordService.getHashService();
         ((DefaultHashService)hashService).setGeneratePublicSalt(false);
@@ -232,6 +214,17 @@ public class ShiroSecurityDevConfiguration
     }
 
     @Bean
+    public ObjectMapper objectMapper()
+    {
+        Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
+        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapperFactoryBean.setDateFormat(
+            new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue()));
+        mapperFactoryBean.afterPropertiesSet();
+        return mapperFactoryBean.getObject();
+    }
+
+    @Bean
     public MethodInvokingFactoryBean bindingSecurityManager()
     {
         MethodInvokingFactoryBean methodInvokingFactoryBean = new MethodInvokingFactoryBean();
@@ -248,24 +241,29 @@ public class ShiroSecurityDevConfiguration
     }
 
     @Bean
+    public AuthenticationExceptionFilter exceFilter() {
+        return new AuthenticationExceptionFilter();
+    }
+
+    @Bean
     public AllowOriginFilter allowOriginFilter()
     {
         return new AllowOriginFilter();
     }
 
-    // @Bean("originFilter")
-    // public AllowOriginFilter allowOriginFilter(){
-    // return new AllowOriginFilter();
-    // }
+    @Bean(name = "noSess")
+    public NoSessionCreationFilter noSessionCreationFilter()
+    {
+        return new NoSessionCreationFilter();
+    }
 
-    // @Bean
-    // public UserPasswordServiceImpl passwordService()
-    // {
-    // UserPasswordServiceImpl passwordService = new UserPasswordServiceImpl();
-    // passwordService.setHashService(hashService());
-    // passwordService.setHashFormat(new HexFormat());
-    // return passwordService;
-    // }
+
+
+    @Bean(name = "preLogout")
+    public PreLogoutFilter preLogout()
+    {
+        return new PreLogoutFilter();
+    }
 
     @Bean
     public ShiroFilterFactoryBean shiroFilter()
@@ -277,23 +275,15 @@ public class ShiroSecurityDevConfiguration
         return shiroFilter;
     }
 
-    // @Bean
-    // public LogoutFilter logout()
-    // {
-    // LogoutFilter logoutFilter = new LogoutFilter();
-    // logoutFilter.setPostOnlyLogout(true);
-    // logoutFilter.setRedirectUrl("/static/index.html");
-    // return logoutFilter;
-    // }
-
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean)
     {
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/token/**", "anon");
         filterChainDefinitionMap.put("/public_salt/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-//        filterChainDefinitionMap.put("/api/**", "statelessFilter");
-        filterChainDefinitionMap.put("/**", "allowOriginFilter");
+        filterChainDefinitionMap.put("/api/**",
+            "noSess,allowOriginFilter,preLogout,statelessFilter");
+        filterChainDefinitionMap.put("/**", "noSess,allowOriginFilter,preLogout");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 

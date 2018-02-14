@@ -4,19 +4,17 @@ package com.vero.dm.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.security.constants.Constants;
-import com.vero.dm.security.credentials.ClientToken;
+import com.vero.dm.security.credentials.DisposableTokenMaintainer;
 import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.service.UserService;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,6 +31,14 @@ public class CredentialsController
 
     private TokenManager tokenManager;
 
+    private DisposableTokenMaintainer tokenMaintainer;
+
+    @Autowired
+    public void setTokenMaintainer(DisposableTokenMaintainer tokenMaintainer)
+    {
+        this.tokenMaintainer = tokenMaintainer;
+    }
+
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
     {
@@ -46,14 +52,25 @@ public class CredentialsController
         this.userService = userService;
     }
 
-    @ApiOperation("根据用户名获取访问令牌")
+    @ApiOperation("申请访问令牌")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "username", value = "用户名", dataType = "String", paramType = "path", required = true)})
+        @ApiImplicitParam(name = "timestamp", value = "请求时间戳", dataType = "String", paramType = "header", required = true),
+        @ApiImplicitParam(name = "providedCredential", value = "认证信息", dataType = "String", paramType = "header", required = true)})
     @GetMapping(value = "/tokens/{username}")
-    public ClientToken getToken(@RequestHeader(Constants.HEADER_TIMESTAMP) String timestamp,
-                                @PathVariable("username") String username)
+    public String getExpiredToken(@RequestHeader(Constants.TIMESTAMP_HEADER) String timestamp,
+                                  @RequestHeader(Constants.APPLY_CREDENTIAL) String providedCredential,
+                                  @PathVariable("username") String username)
     {
-        return tokenManager.getTimeOutToken(username, timestamp);
+        return tokenManager.applyExpiredToken(username, providedCredential, timestamp);
+    }
+
+    @ApiOperation("删除所有Token信息(用于微服务注销)")
+    @DeleteMapping(value = "/tokens")
+    public String deleteToken(@ApiParam(value = "访问令牌", required = true) @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    {
+        tokenManager.cleanTokenCache(accessToken);
+        tokenMaintainer.cleanTokenList(accessToken);
+        return accessToken;
     }
 
     @Cacheable(cacheNames = "userPublicSaltCache")

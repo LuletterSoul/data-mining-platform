@@ -1,6 +1,7 @@
 package com.vero.dm.model;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -26,7 +27,7 @@ import lombok.Data;
 @Table(name = "user_info", catalog = "")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "serviceLevel", discriminatorType = DiscriminatorType.STRING)
-public class User
+public class User implements Serializable
 {
     @Id
     @GenericGenerator(name = "uuidGenerator", strategy = "uuid")

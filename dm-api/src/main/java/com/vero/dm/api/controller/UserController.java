@@ -1,10 +1,7 @@
 package com.vero.dm.api.controller;
 
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.vero.dm.security.credentials.DisposableTokenMaintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -14,16 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import com.vero.dm.model.User;
 import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.constants.Constants;
-import com.vero.dm.security.credentials.ClientToken;
-import com.vero.dm.security.credentials.StatelessCredentialsService;
+import com.vero.dm.security.credentials.StatelessCredentialsComputer;
 import com.vero.dm.security.credentials.TokenManager;
+import com.vero.dm.security.credentials.UserProfileAccessor;
 import com.vero.dm.service.UserService;
 import com.vero.dm.service.constant.ResourcePath;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -43,7 +39,11 @@ public class UserController
 
     private TokenManager tokenManager;
 
-    private StatelessCredentialsService credentialsService;
+    private UserProfileAccessor profileAccessor;
+
+    private StatelessCredentialsComputer credentialsService;
+
+
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -59,18 +59,24 @@ public class UserController
     }
 
     @Autowired
-    public void setCredentialsService(StatelessCredentialsService credentialsService)
+    public void setCredentialsService(StatelessCredentialsComputer credentialsService)
     {
         this.credentialsService = credentialsService;
     }
 
+    @Autowired
+    public void setProfileAccessor(UserProfileAccessor profileAccessor)
+    {
+        this.profileAccessor = profileAccessor;
+    }
+
     @ApiOperation("根据用户名查询用户信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "username", value = "用户名", dataType = "String", paramType = "path", required = true)})
-    @GetMapping(value = "/{username}")
-    public UserDto profile(@ApiParam(value = "用户名", required = true) @PathVariable("username") String username)
+        @ApiImplicitParam(name = "accessToken", value = "令牌", dataType = "String", paramType = "header", required = true)})
+    @GetMapping(value = "/profile")
+    public UserDto profile(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
     {
-        return userService.getUserProfile(username);
+        return profileAccessor.fetchProfile(accessToken);
     }
 
     @ApiOperation("注册用户")
@@ -86,20 +92,19 @@ public class UserController
         return userService.updateUser(userDto);
     }
 
-    @ApiOperation("根据用户名的获取权限角色")
-    @GetMapping(value = "/{username}/roles")
-    public List<String> roles(@PathVariable("username") String username)
-    {
-        return userService.findRoleNameSetByUserName(username);
-    }
+    // @ApiOperation("根据用户名的获取权限角色")
+    // @GetMapping(value = "/roles")
+    // public List<String> roles(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    // {
+    // return userService.findRoleNameSetByUserName(username);
+    // }
 
-
-
-    @ApiOperation(value = "用户注销")
-    @PostMapping(value = "/logout")
-    public String logout(@RequestParam("username") String username)
-    {
-        tokenManager.cleanTokenCache(username);
-        return "Logout Success";
-    }
+//    @ApiOperation(value = "用户注销")
+//    @PostMapping(value = "/preLogout")
+//    public String preLogout(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+//    {
+//        tokenManager.cleanTokenCache(accessToken);
+//        tokenMaintainer.cleanTokenList(accessToken);
+//        return "Logout Success";
+//    }
 }

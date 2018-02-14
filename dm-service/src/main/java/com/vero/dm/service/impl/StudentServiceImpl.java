@@ -172,7 +172,7 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
             student.getStatus().getStatusId());
         student.setFavorite(favoriteStatus);
         student.setStatus(studentStatus);
-        this.registerUser(student);
+//        this.registerUser(student);
         return new StudentDto(student);
     }
 

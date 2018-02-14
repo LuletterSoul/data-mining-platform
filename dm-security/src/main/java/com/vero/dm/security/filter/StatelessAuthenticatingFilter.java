@@ -1,7 +1,6 @@
 package com.vero.dm.security.filter;
 
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,37 +10,56 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.AccessControlFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.util.StringUtils;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vero.dm.exception.error.ErrorInfo;
+import com.vero.dm.exception.DefaultExceptionHandler;
+import com.vero.dm.exception.ExceptionHandler;
+import com.vero.dm.exception.auth.InternalAuthenticationException;
+import com.vero.dm.exception.constract.HeaderLostException;
+import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.security.constants.Constants;
+import com.vero.dm.security.credentials.DisposableTokenWriter;
 import com.vero.dm.security.realm.StatelessToken;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
+ * 无状态请求过滤器,该过滤器会检测请求头是否包含跟客户端协商好信息： 即用户名、时间戳、消息摘要、证书信息 对每个请求的鉴权/授权逻辑会交由
+ * {@link com.vero.dm.security.realm.StatelessRealm}完成; 注意当前Filter在Shiro代理Filter的拦截路径中 尚未进入Spring
+ * Mvc的体系，所以产生的异常不能够被 {@link org.springframework.web.client.RestClientException} 全局异常捕捉器捕捉到
+ * 为了生成更友好、统一的信息则需要{@link DefaultExceptionHandler} 统一处理协商内容鉴定、身份认证过程抛出的异常;
+ * 在每次API授权后,{@link #afterAuthentication(HttpServletResponse, String)} 会更新服务器端当前身份证书对应的一次性令牌
+ * 并将该一次性令牌写入response header 中去,这样有效减少了客户端频繁申请一次性令牌的请求,
+ * 但这种会存在并发访问问题:一对一的关系确定了一次性令牌只针对“下一趟”请求,一趟{@link HttpServletRequest}结束后,
+ * 对应的{@link HttpServletResponse}将最新的一次性token提交给客户端, 然而假设客户端在异步发出多个请求时,使用了同一个全局一次性Token(来自服务器签发),
+ * 服务器针对每个请求更新了服务器端的“下一趟”一次性Token, 这时就出现了客户端与服务器端的一次性Token不同步的问题。
+ * 解决方案见{@link com.vero.dm.security.credentials.DisposableTokenMaintainer}
+ * 值得注意的是在{@link HttpServletResponse #setHeader}必须在response commit之前写入,否则在commit之后该操作会无效
+ * 
+ * @see com.vero.dm.security.credentials.DisposableTokenMaintainer
+ * @see com.vero.dm.security.credentials.DisposableTokenWriter
  * @author 刘祥德 qq313700046@icloud.com .
  * @date created in 12:04 2017/7/17.
  * @description
  * @modified by:
  */
+@Slf4j
 public class StatelessAuthenticatingFilter extends AccessControlFilter
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(
-        StatelessAuthenticatingFilter.class);
 
-    private ObjectMapper objectMapper;
+    @Autowired
+    @Qualifier("defaultExceptionHandler")
+    private ExceptionHandler exceptionHandler;
 
-    public StatelessAuthenticatingFilter()
-    {
-        this.objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    }
+    @Autowired
+    private DisposableTokenWriter disposableTokenWriter;
 
+    @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response,
                                       Object mappedValue)
         throws Exception
@@ -49,146 +67,104 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         return false;
     }
 
-    @Override
-    public boolean onPreHandle(ServletRequest request, ServletResponse response,
-                               Object mappedValue)
-        throws Exception
-    {
-
-        return super.onPreHandle(request, response, mappedValue);
-    }
-
-    private boolean isHttpOptionRequest(ServletRequest request, ServletResponse response)
-    {
-        HttpServletRequest httpRequest = (HttpServletRequest)request;
-        HttpServletResponse httpResponse = (HttpServletResponse)response;
-        String method = httpRequest.getMethod();
-        if (method.equals("OPTIONS"))
-        {
-            httpResponse.setStatus(200);
-            return true;
-        }
-        return false;
-    }
-
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response)
         throws Exception
     {
-        HttpServletRequest httpRequest = null;
-        if (isHttpOptionRequest(request, response)) return true;
         try
         {
-            httpRequest = assertHttpRequest(request);
-            // 获取请求发送的时间戳
-            String timestamp = httpRequest.getHeader(Constants.HEADER_TIMESTAMP);
-            // 客户端生成的消息摘要
-            String clientDigest = httpRequest.getParameter(Constants.PARAM_DIGEST);
-            // 客户端传入的用户身份
-            String username = httpRequest.getParameter(Constants.PARAM_USERNAME);
-            String apiKey = httpRequest.getHeader(Constants.API_KEY);
-            try
-            {
-                assertNegotiationContentNotNull(clientDigest, username, timestamp, apiKey);
-            }
-            catch (ServletException e)
-            {
-                LOGGER.error(e.getMessage());
-                onAccessFailed(response, e);
-                e.printStackTrace();
-                return false;
-            }
-            // 客户端请求的参数列表
-            StatelessToken token = generateAuthenticationToken(request, clientDigest, username,
-                apiKey);
-            if (doRestApiAccess(request, response, username, token)) return false;
+            return !doRestApiAccessAuthentication(request, response, buildStatelessToken(request));
         }
-        catch (IOException e)
+        catch (Throwable e)
         {
-            e.printStackTrace();
-            return true;
+            exceptionHandler.dispatchInternalExceptions(request, response, e);
+            return false;
         }
-        return true;
     }
 
-    private boolean doRestApiAccess(ServletRequest request, ServletResponse response,
-                                    String username, StatelessToken token)
-        throws IOException
+    private StatelessToken buildStatelessToken(ServletRequest request)
+        throws ServletException
     {
-        LOGGER.info("System generate authentication token: {}", token);
+        HttpServletRequest httpRequest = HttpServletRequestUtils.assertHttpRequest(request);
+        // 历史证书
+        String preToken = httpRequest.getHeader(Constants.ACCESS_BY_PRE_TOKEN);
+        // 获取请求发送的时间戳
+        String timestamp = httpRequest.getHeader(Constants.TIMESTAMP_HEADER);
+        // 客户端传入的认证信息
+        String accessToken = httpRequest.getHeader(Constants.ACCESS_TOKEN_HEADER);
+        // 客户端生成的消息摘要
+        String clientDigest = httpRequest.getHeader(Constants.CLIENT_DIGEST_HEADER);
+        // 客户端传入的用户身份
+        String username = httpRequest.getHeader(Constants.USERNAME_HEADER);
+        Boolean tokenAvailable = isAccessTokenAvailable(clientDigest, username, timestamp,
+            accessToken, preToken);
+        // 客户端请求的参数列表
+        return generateStatelessToken(request, clientDigest, username, accessToken,
+            tokenAvailable);
+    }
+
+    private boolean doRestApiAccessAuthentication(ServletRequest request, ServletResponse response,
+                                                  StatelessToken token)
+    {
         try
         {
             // 委托给Realm进行登录
             getSubject(request, response).login(token);
-            LOGGER.info("{}: authenticate successfully.", username);
+            // 授权后置处理
+            afterAuthentication((HttpServletResponse)response, token.getAccessToken());
         }
-        catch (Exception e)
+        catch (AuthenticationException e)
         {
-            e.printStackTrace();
-            LOGGER.info("Authentication Fail:{}", e.getMessage());
-            onLoginFail(response, e); // 6、登录失败
-            return true;
+            return transferException(e);
         }
         return false;
     }
 
-    private StatelessToken generateAuthenticationToken(ServletRequest request, String clientDigest,
-                                                       String username, String apiKey)
+    private boolean transferException(AuthenticationException e)
     {
-        Map<String, String[]> params = new LinkedHashMap<String, String[]>(
-            request.getParameterMap());
-        params.remove(Constants.PARAM_DIGEST);
-        // 生成无状态Token
-        return new StatelessToken(username, apiKey, params, clientDigest);
-    }
-
-    private void assertNegotiationContentNotNull(String clientDigest, String username,
-                                                 String timestamp, String apiKey)
-        throws ServletException
-    {
-        if (clientDigest == null || username == null || timestamp == null || apiKey == null)
+        InternalAuthenticationException ex;
+        if (e instanceof InternalAuthenticationException)
         {
-            throw new ServletException(
-                "User token shouldn't be empty.Make sure your account info has been linked with request.");
-        }
-    }
-
-    private HttpServletRequest assertHttpRequest(ServletRequest request)
-        throws ServletException
-    {
-        HttpServletRequest httpRequest;
-        if (request instanceof HttpServletRequest)
-        {
-            httpRequest = (HttpServletRequest)request;
+            ex = (InternalAuthenticationException)e;
         }
         else
         {
-            LOGGER.info("System deny request:server request should match HTTP protocol only.");
-            throw new ServletException(
-                "Server request must be HTTP only.Check your request validity and send it again.");
+            String message = "Authentication Failed.";
+            ex = new InternalAuthenticationException(message, ExceptionCode.AuthenticationError);
         }
-        return httpRequest;
+        throw ex;
     }
 
-    // 登录失败时默认返回401状态码
-    private void onLoginFail(ServletResponse response, Throwable ex)
-        throws IOException
+    protected void afterAuthentication(HttpServletResponse httpServletResponse, String accessToken)
     {
-        String message = "Authentication Failed.Please check your username or password is correct or not.";
-        ErrorInfo errorInfo = new ErrorInfo(ex, message, HttpStatus.UNAUTHORIZED);
-        String jsonMessage = objectMapper.writeValueAsString(errorInfo);
-        HttpServletResponse httpResponse = (HttpServletResponse)response;
-        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        httpResponse.getWriter().write(jsonMessage);
+        disposableTokenWriter.write(httpServletResponse, accessToken);
     }
 
-    private void onAccessFailed(ServletResponse response, Throwable ex)
-        throws IOException
+    private StatelessToken generateStatelessToken(ServletRequest request, String clientDigest,
+                                                  String username, String accessToken,
+                                                  Boolean tokenAvailable)
     {
-        String message = "Access Failed.Request don't match negotiation content.";
-        HttpServletResponse httpResponse = (HttpServletResponse)response;
-        ErrorInfo errorInfo = new ErrorInfo(ex, message, HttpStatus.BAD_REQUEST);
-        String jsonMessage = objectMapper.writeValueAsString(errorInfo);
-        httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        httpResponse.getWriter().write(jsonMessage);
+        Map<String, String[]> params = new LinkedHashMap<>(request.getParameterMap());
+        params.remove(Constants.CLIENT_DIGEST_HEADER);
+        // 生成无状态Token
+        return new StatelessToken(username, accessToken, params, clientDigest, tokenAvailable);
+    }
+
+    private boolean isAccessTokenAvailable(String clientDigest, String username, String timestamp,
+                                           String accessToken, String preToken)
+    {
+
+        Boolean isAccessByPreToken = StringUtils.isEmpty(preToken);
+        Boolean isNull = StringUtils.isEmpty(clientDigest) || StringUtils.isEmpty(username)
+                         || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(accessToken);
+        if (isNull)
+        {
+            if (!StringUtils.isEmpty(accessToken) && !isAccessByPreToken)
+            {
+                return true;
+            }
+            String message = "Some critical credentials required.Make sure your credentials has been linked with request.";
+            throw new HeaderLostException(message, ExceptionCode.HeaderLost);
+        }
+        return false;
     }
 }

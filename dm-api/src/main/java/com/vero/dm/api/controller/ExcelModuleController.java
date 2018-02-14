@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
  */
 
 @RestController
-@RequestMapping(value = ApiVersion.API_VERSION+ResourcePath.MODULE_PATH)
+@RequestMapping(value = ApiVersion.API_VERSION+ ResourcePath.MODULE_PATH)
 public class ExcelModuleController
 {
     @Autowired
@@ -39,7 +39,6 @@ public class ExcelModuleController
     {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment;filename=student.xlsx");
-        headers.add("X-Suggested-Filename", "student_module.xlsx");
         headers.setContentType(APPLICATION_OCTET_STREAM);
         byte[] fileBytes = studentService.handleStudentExcelModuleDownload();
         headers.setContentLength(fileBytes.length);

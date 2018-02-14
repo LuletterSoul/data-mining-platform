@@ -18,7 +18,7 @@ import com.vero.dm.security.realm.StatelessInfo;
  * @since data-minning-platform
  */
 
-public interface StatelessCredentialsService
+public interface StatelessCredentialsComputer
 {
 
     UserDto registerUser(User user);
@@ -40,6 +40,8 @@ public interface StatelessCredentialsService
      */
     String encryptPassword(String plaintext, String customSalt);
 
+    String computeNegotiatedApplyToken(String password,String publicSalt);
+
     /**
      * {@link StatelessCredentialsMatcher#doCredentialsMatch(AuthenticationToken, AuthenticationInfo)}
      *
@@ -53,6 +55,14 @@ public interface StatelessCredentialsService
     Hash computeHashWithParams(StatelessInfo info, int iterations);
 
     Hash computeHash(String source);
+
+    /**
+     *
+     * @param source
+     * @param iterations
+     * @return
+     */
+    Hash computeHash(String source, Integer iterations);
 
     Hash digest(String message, String salt);
 

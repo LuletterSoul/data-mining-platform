@@ -58,7 +58,7 @@ public class LoginController
 //        {
 //            e.printStackTrace();
 //        }
-//        catch (AuthenticationException e)
+//        catch (InternalAuthenticationException e)
 //        {
 //            e.printStackTrace();
 //        }

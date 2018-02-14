@@ -9,6 +9,7 @@ import java.util.Set;
 
 import com.vero.dm.api.progress.CustomMultipartResolver;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -21,13 +22,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vero.dm.util.DateStyle;
+import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
 
 /**
@@ -115,7 +114,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
         // mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapperFactoryBean.setDateFormat(
-            new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM.getValue()));
+            new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue()));
         mapperFactoryBean.afterPropertiesSet();
         return mapperFactoryBean.getObject();
     }
@@ -147,5 +146,6 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     {
         return new PageableHandlerMethodArgumentResolver();
     }
+
 
 }

@@ -25,11 +25,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
 import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
-import com.vero.dm.security.credentials.StatelessCredentialsServiceImpl;
+import com.vero.dm.security.credentials.TokenGenerator;
+import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 import com.vero.dm.security.manager.StatelessDefaultSubjectFactory;
@@ -126,25 +127,23 @@ public class ShiroSecurityProdConfiguration
         StatelessCredentialsMatcher matcher = new StatelessCredentialsMatcher();
         matcher.setHashIterations(1000);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
-        matcher.setStatelessCredentialsService(statelessCredentialsService());
+        matcher.setStatelessCredentialsComputer(statelessCredentialsService());
         return matcher;
     }
 
     /**
      * Define stateless credentials bean. {@link DefaultPasswordService#DefaultPasswordService()}
      * will set {@link DefaultHashService#setGeneratePublicSalt(boolean)} } true,and
-     * {@link StatelessCredentialsServiceImpl} extends {@link DefaultHashService},we have to get
-     * corresponding embed hash service,reset it's boolean generate public salt configuration.
+     * {@link DefaultStatelessCredentialsComputer} extends {@link DefaultHashService},we have to
+     * get corresponding embed hash service,reset it's boolean generate public salt configuration.
      * Developer will generate salt by himself via
-     * {@link StatelessCredentialsServiceImpl#generateRandomSalt(int)}
-     *
-     *
+     * {@link DefaultStatelessCredentialsComputer#generateRandomSalt(int)}
      */
 
     @Bean
-    public StatelessCredentialsServiceImpl statelessCredentialsService()
+    public DefaultStatelessCredentialsComputer statelessCredentialsService()
     {
-        StatelessCredentialsServiceImpl service = new StatelessCredentialsServiceImpl();
+        DefaultStatelessCredentialsComputer service = new DefaultStatelessCredentialsComputer();
         DefaultPasswordService defaultPasswordService = (DefaultPasswordService)service;
         HashService hashService = defaultPasswordService.getHashService();
         ((DefaultHashService)hashService).setGeneratePublicSalt(false);
@@ -280,9 +279,9 @@ public class ShiroSecurityProdConfiguration
     }
 
     // @Bean
-    // public LogoutFilter logout()
+    // public PreLogoutFilter preLogout()
     // {
-    // LogoutFilter logoutFilter = new LogoutFilter();
+    // PreLogoutFilter logoutFilter = new PreLogoutFilter();
     // logoutFilter.setPostOnlyLogout(true);
     // logoutFilter.setRedirectUrl("/static/index.html");
     // return logoutFilter;

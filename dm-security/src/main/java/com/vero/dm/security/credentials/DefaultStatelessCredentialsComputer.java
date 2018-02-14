@@ -9,6 +9,7 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Hash;
@@ -31,7 +32,8 @@ import com.vero.dm.security.realm.StatelessInfo;
  */
 
 @Transactional
-public class StatelessCredentialsServiceImpl extends DefaultPasswordService implements StatelessCredentialsService
+@Slf4j
+public class DefaultStatelessCredentialsComputer extends DefaultPasswordService implements StatelessCredentialsComputer
 {
 
     private Mac mac;
@@ -46,16 +48,9 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
 
     private SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 
-    public StatelessCredentialsServiceImpl()
+    public DefaultStatelessCredentialsComputer()
     {
-        try
-        {
-            mac = Mac.getInstance(MAC_DEFAULT_ALGORITHM);
-        }
-        catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
     // @Autowired
@@ -85,9 +80,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     {
         String credential = (String)credentials;
         String paramsString = buildParamsString(params);
-        HashRequest request = new HashRequest.Builder().setSource(
-            createByteSource(credential + paramsString)).setAlgorithmName(
-                DEFAULT_HASH_ALGORITHM).setIterations(1000).build();
+        HashRequest request = buildRequest(credential + paramsString);
         return getHashService().computeHash(request);
     }
 
@@ -107,14 +100,19 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     }
 
     @Override
+    public String computeNegotiatedApplyToken(String password, String publicSalt)
+    {
+        HashRequest request = buildRequest(password + publicSalt,1000);
+        return getHashService().computeHash(request).toBase64();
+    }
+
+    @Override
     public Hash computeHashWithParams(StatelessInfo info, int iterations)
     {
         String credentials = (String)info.getCredentials();
         String paramsString = buildParamsString(info.getClientParams());
         String serverDigest = digest(credentials, paramsString).toBase64();
-        HashRequest request = new HashRequest.Builder().setSource(
-            createByteSource(serverDigest)).setAlgorithmName(DEFAULT_HASH_ALGORITHM).setIterations(
-                1000).build();
+        HashRequest request = buildRequest(serverDigest);
         return getHashService().computeHash(request);
     }
 
@@ -124,10 +122,26 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     @Override
     public Hash computeHash(String source)
     {
-        HashRequest request = new HashRequest.Builder().setSource(
-            createByteSource(source)).setAlgorithmName(DEFAULT_HASH_ALGORITHM).setIterations(
-                1000).build();
+        HashRequest request = buildRequest(source);
         return getHashService().computeHash(request);
+    }
+
+    private HashRequest buildRequest(String source)
+    {
+        return new HashRequest.Builder().setSource(createByteSource(source)).setAlgorithmName(
+            DEFAULT_HASH_ALGORITHM).setIterations(100).build();
+    }
+
+    private HashRequest buildRequest(String source, Integer iterations)
+    {
+        return new HashRequest.Builder().setSource(createByteSource(source)).setAlgorithmName(
+            DEFAULT_HASH_ALGORITHM).setIterations(iterations).build();
+    }
+
+    @Override
+    public Hash computeHash(String source, Integer iterations)
+    {
+        return getHashService().computeHash(buildRequest(source, iterations));
     }
 
     /**
@@ -137,6 +151,14 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
     {
         try
         {
+            try
+            {
+                mac = Mac.getInstance(MAC_DEFAULT_ALGORITHM);
+            }
+            catch (NoSuchAlgorithmException e)
+            {
+                e.printStackTrace();
+            }
             byte[] secretByte = salt.getBytes();
             byte[] dataBytes = message.getBytes();
             SecretKey secret = new SecretKeySpec(secretByte, "HMACSHA256");
@@ -159,7 +181,7 @@ public class StatelessCredentialsServiceImpl extends DefaultPasswordService impl
 
     private String buildParamsString(Map<String, ?> map)
     {
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder("X-init");
         for (Object values : map.values())
         {
             if (values instanceof String[])
