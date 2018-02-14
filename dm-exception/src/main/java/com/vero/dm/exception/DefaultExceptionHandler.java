@@ -6,8 +6,10 @@ import java.io.OutputStream;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +31,7 @@ import com.vero.dm.exception.error.ExceptionCode;
  */
 
 @Component
-public class DefaultPreAuthExceptionHandler implements PreAuthExceptionHandler
+public class DefaultExceptionHandler implements ExceptionHandler
 {
     private ObjectMapper objectMapper;
 
@@ -43,48 +45,62 @@ public class DefaultPreAuthExceptionHandler implements PreAuthExceptionHandler
     public void dispatchInternalExceptions(ServletRequest request, ServletResponse response,
                                            Throwable exception)
     {
-        HttpServletResponse httpServletResponse = toHttpResponse(response);
+        HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
         ExceptionCode exceptionCode = getExceptionCode(exception);
+        // 如果子类要处理特殊的异常,忽略以下所有异常处理
+        if (handleSpecialException(WebUtils.toHttp(request), httpServletResponse, exceptionCode,
+            exception))
+        {
+            return;
+        }
+        exception.printStackTrace();
         if (exception instanceof ErrorCodeLostNotFoundException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.NOT_FOUND,
-                httpServletResponse, HttpServletResponse.SC_OK);
+                httpServletResponse, HttpStatus.NOT_FOUND);
         }
         else if (exception instanceof HeaderLostException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode,
-                HttpStatus.BAD_REQUEST, httpServletResponse, HttpServletResponse.SC_OK);
+                HttpStatus.BAD_REQUEST, httpServletResponse, HttpStatus.BAD_REQUEST);
         }
 
         else if (exception instanceof ExpiredCredentialsException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.FORBIDDEN,
-                httpServletResponse, HttpServletResponse.SC_OK);
+                httpServletResponse, HttpStatus.FORBIDDEN);
+        }
+        else if (exception instanceof EmptyTokenListException)
+        {
+            handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.NOT_FOUND,
+                httpServletResponse, HttpStatus.NOT_FOUND);
+
         }
         else if (exception instanceof UnknownAccountException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.FORBIDDEN,
-                httpServletResponse, HttpServletResponse.SC_OK);
+                httpServletResponse, HttpStatus.NOT_FOUND);
         }
         else if (exception instanceof IncorrectCredentialsException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.FORBIDDEN,
-                httpServletResponse, HttpServletResponse.SC_OK);
+                httpServletResponse, HttpStatus.FORBIDDEN);
         }
         else if (exception instanceof AccessTokenNotExistException)
         {
-            handPreAuthenticationInternalException(exception, exceptionCode,
-                HttpStatus.UNAUTHORIZED, httpServletResponse, HttpServletResponse.SC_OK);
+            handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.NOT_FOUND,
+                httpServletResponse, HttpStatus.NOT_FOUND);
         }
         else if (exception instanceof ConcurrentAccessException)
         {
-            handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.LOCKED,
-                httpServletResponse, HttpServletResponse.SC_OK);
+            handPreAuthenticationInternalException(exception, exceptionCode,
+                HttpStatus.INTERNAL_SERVER_ERROR, httpServletResponse,
+                HttpStatus.INTERNAL_SERVER_ERROR);
         }
         else if (exception instanceof InternalAuthenticationException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode,
-                HttpStatus.UNAUTHORIZED, httpServletResponse, HttpServletResponse.SC_OK);
+                HttpStatus.UNAUTHORIZED, httpServletResponse, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -118,7 +134,7 @@ public class DefaultPreAuthExceptionHandler implements PreAuthExceptionHandler
     public void handPreAuthenticationInternalException(Throwable ex, ExceptionCode exceptionCode,
                                                        HttpStatus status,
                                                        HttpServletResponse response,
-                                                       int responseCode)
+                                                       HttpStatus responseCode)
     {
         ErrorInfo errorInfo = new ErrorInfo(ex, exceptionCode.getCode(), exceptionCode.getTip(),
             status);
@@ -126,7 +142,7 @@ public class DefaultPreAuthExceptionHandler implements PreAuthExceptionHandler
         try
         {
             jsonMessage = objectMapper.writeValueAsString(errorInfo);
-            response.setStatus(responseCode);
+            response.setStatus(responseCode.value());
             response.setHeader("Content-type", MediaType.APPLICATION_JSON_UTF8_VALUE);
             try
             {
@@ -143,5 +159,12 @@ public class DefaultPreAuthExceptionHandler implements PreAuthExceptionHandler
             e.printStackTrace();
         }
 
+    }
+
+    protected boolean handleSpecialException(HttpServletRequest request,
+                                             HttpServletResponse response, ExceptionCode code,
+                                             Throwable exception)
+    {
+        return false;
     }
 }

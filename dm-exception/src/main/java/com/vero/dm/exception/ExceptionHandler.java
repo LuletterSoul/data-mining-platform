@@ -16,7 +16,7 @@ import com.vero.dm.exception.error.ExceptionCode;
  * @since data-mining-platform
  */
 
-public interface PreAuthExceptionHandler
+public interface ExceptionHandler
 {
 
     void dispatchInternalExceptions(ServletRequest request, ServletResponse response,
@@ -26,5 +26,5 @@ public interface PreAuthExceptionHandler
                                                 ExceptionCode exceptionCode,
                                                 HttpStatus status,
                                                 HttpServletResponse response,
-                                                int responseCode);
+                                                HttpStatus responseCode);
 }
