@@ -86,6 +86,20 @@ public class UserDto implements Serializable
         return userDto;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", regionCode='" + regionCode + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", birthday=" + birthday +
+                ", accessStatus=" + accessStatus +
+                ", lastLoginTime=" + lastLoginTime +
+                ", roles=" + roles +
+                ", permissions=" + permissions +
+                '}';
+    }
 }
