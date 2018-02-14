@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
 import com.vero.dm.exception.constract.HeaderLostException;
+import org.apache.http.HttpResponse;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
@@ -65,11 +66,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                                    ExceptionCode exceptionCode,
                                                                    HttpHeaders headers,
                                                                    HttpStatus status,
-                                                                   WebRequest request)
+                                                                   HttpStatus responseStatus,
+                                                                   final WebRequest request)
     {
         return new ResponseEntity<>(
-            new ErrorInfo(ex, exceptionCode.getCode(), exceptionCode.getTip(), status), headers,
-            status);
+            new ErrorInfo(ex, exceptionCode.getCode(), exceptionCode.getTip(), responseStatus), headers,
+                status);
     }
 
     // API
@@ -193,7 +195,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                             final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.FORBIDDEN, request);
+            HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
     }
 
     /**
@@ -207,7 +209,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                                 final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.UNAUTHORIZED, request);
+            HttpStatus.UNAUTHORIZED,HttpStatus.UNAUTHORIZED, request);
     }
 
     /**
@@ -221,7 +223,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                                 final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.UNAUTHORIZED, request);
+                HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
     }
 
     /**
@@ -235,7 +237,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                                      final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.UNAUTHORIZED, request);
+            HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
     }
 
     /**
@@ -249,7 +251,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                                       final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.UNAUTHORIZED, request);
+            HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED, request);
     }
 
     /**
@@ -263,7 +265,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                             final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-                HttpStatus.UNAUTHORIZED, request);
+                HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
     }
 
 }

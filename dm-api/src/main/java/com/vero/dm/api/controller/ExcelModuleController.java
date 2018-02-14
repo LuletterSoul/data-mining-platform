@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
  */
 
 @RestController
-@RequestMapping(value = ResourcePath.MODULE_PATH)
+@RequestMapping(value = ApiVersion.API_VERSION+ ResourcePath.MODULE_PATH)
 public class ExcelModuleController
 {
     @Autowired

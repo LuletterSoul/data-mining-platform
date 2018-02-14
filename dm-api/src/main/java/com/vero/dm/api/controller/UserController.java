@@ -1,6 +1,7 @@
 package com.vero.dm.api.controller;
 
 
+import com.vero.dm.security.credentials.DisposableTokenMaintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,8 @@ public class UserController
     private UserProfileAccessor profileAccessor;
 
     private StatelessCredentialsComputer credentialsService;
+
+
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -96,11 +99,12 @@ public class UserController
     // return userService.findRoleNameSetByUserName(username);
     // }
 
-    @ApiOperation(value = "用户注销")
-    @PostMapping(value = "/logout")
-    public String logout(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
-    {
-        tokenManager.cleanTokenCache(accessToken);
-        return "Logout Success";
-    }
+//    @ApiOperation(value = "用户注销")
+//    @PostMapping(value = "/preLogout")
+//    public String preLogout(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+//    {
+//        tokenManager.cleanTokenCache(accessToken);
+//        tokenMaintainer.cleanTokenList(accessToken);
+//        return "Logout Success";
+//    }
 }

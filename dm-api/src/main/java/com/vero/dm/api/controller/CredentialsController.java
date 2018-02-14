@@ -4,20 +4,17 @@ package com.vero.dm.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.constants.Constants;
+import com.vero.dm.security.credentials.DisposableTokenMaintainer;
 import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.service.UserService;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,6 +30,14 @@ public class CredentialsController
     private UserService userService;
 
     private TokenManager tokenManager;
+
+    private DisposableTokenMaintainer tokenMaintainer;
+
+    @Autowired
+    public void setTokenMaintainer(DisposableTokenMaintainer tokenMaintainer)
+    {
+        this.tokenMaintainer = tokenMaintainer;
+    }
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -59,6 +64,15 @@ public class CredentialsController
         return tokenManager.applyExpiredToken(username, providedCredential, timestamp);
     }
 
+    @ApiOperation("删除所有Token信息(用于微服务注销)")
+    @DeleteMapping(value = "/tokens")
+    public String deleteToken(@ApiParam(value = "访问令牌", required = true) @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    {
+        tokenManager.cleanTokenCache(accessToken);
+        tokenMaintainer.cleanTokenList(accessToken);
+        return accessToken;
+    }
+
     @Cacheable(cacheNames = "userPublicSaltCache")
     @ApiOperation("根据用户名获取公盐")
     @ApiImplicitParams({
@@ -68,15 +82,4 @@ public class CredentialsController
     {
         return userService.fetchPublicSalt(username);
     }
-
-//    @Cacheable(cacheNames = "userPublicSaltCache")
-//    @ApiOperation("根据用户名获取公盐")
-//    @ApiImplicitParams({
-//        @ApiImplicitParam(name = "username", value = "用户名", dataType = "String", paramType = "path", required = true)})
-//    @GetMapping(value = "/users/profile")
-//    public ResponseEntity<UserDto> profile(@RequestHeader(Constants.TIMESTAMP_HEADER) String timestamp,
-//                                           @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
-//    {
-//
-//    }
 }
