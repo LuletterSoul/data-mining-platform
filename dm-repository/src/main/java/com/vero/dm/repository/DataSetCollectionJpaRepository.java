@@ -4,6 +4,10 @@ package com.vero.dm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.vero.dm.model.DataSetCollection;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 
 /**
@@ -13,4 +17,8 @@ import com.vero.dm.model.DataSetCollection;
  */
 
 public interface DataSetCollectionJpaRepository extends JpaRepository<DataSetCollection, String>
-{}
+{
+    @Query(value = "select con.filePath from DataSetCollection c left join c.dataSetContainers con where c.collectionId in :collectionIds")
+    List<String> findAllDataSetsFilePaths(@Param("") List<String> collectionIds);
+
+}

@@ -1,18 +1,33 @@
 package com.vero.dm.service.impl;
 
 
+import static com.vero.dm.util.DownloadUtils.bigFileDownload;
+import static com.vero.dm.util.DownloadUtils.generateTimestampZipFileName;
+import static com.vero.dm.util.PathUtils.concat;
+import static com.vero.dm.util.PathUtils.getAbsolutePath;
+import static org.apache.commons.io.FileUtils.forceDelete;
+import static org.apache.commons.io.FileUtils.readFileToByteArray;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
-import org.apache.commons.io.FileUtils;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.exception.file.DataSetDeleteException;
+import com.vero.dm.exception.file.SetZipException;
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
 import com.vero.dm.service.DataSetContainerService;
+import com.vero.dm.service.constant.ResourcePath;
+import com.vero.dm.util.ZipUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,6 +57,49 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
+    public void downloadZip(List<String> containerIds, String collectionId,
+                            HttpServletResponse response)
+    {
+        List<DataSetContainer> dataSetContainers = containerJpaRepository.findAllByContainerIdIn(
+            containerIds);
+        DataSetCollection collection = collectionJpaRepository.findOne(collectionId);
+        List<String> filePaths = new LinkedList<>();
+        dataSetContainers.forEach(d -> filePaths.add(d.getFilePath()));
+        String zipRelativePath = concat(ResourcePath.COLLECTION_PATH, "zips");
+        String zipPath = getAbsolutePath(zipRelativePath);
+        // 生成临时压缩文件
+        String zipFileName = UUID.randomUUID().toString() + ".zip";
+        // 输出的压缩文件路径
+        String zipFilePath = concat(zipPath, zipFileName);
+        try
+        {
+            // 进行文件压缩
+            ZipUtil.zip(collection.getDataSetFolderPath(), zipPath, zipFileName, filePaths);
+            bigFileDownload(response, zipFilePath, generateTimestampZipFileName("data_set_"));
+            try
+            {
+                // 删除临时创建的压缩文件
+                forceDelete(new File(zipFilePath));
+            }
+            catch (IOException e)
+            {
+                throw new SetZipException("Could not delete temp zip files.",
+                    ExceptionCode.ZipSetError);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new SetZipException("Process zip operation error.", ExceptionCode.ZipSetError);
+        }
+    }
+
+    public void handleStudentExcelModuleDownload(HttpServletResponse response)
+    {
+        String filePath = "";
+        // bigFileDownload(response, filePath);
+    }
+
+    @Override
     public List<DataSetContainer> fetchDataSetContainers(String collectionId)
     {
         // return containerDao.fetchDataSetContainers(collectionId);
@@ -49,31 +107,22 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
-    public DataSetContainer deleteByContainerId(String containerId)
+    public List<DataSetContainer> deleteByContainerIds(List<String> containerIds)
     {
-        DataSetContainer container = containerJpaRepository.findOne(containerId);
-        deleteDataSetFile(container);
-        containerJpaRepository.delete(containerId);
-        return container;
-    }
-
-    private void deleteDataSetFile(DataSetContainer container)
-    {
-        File file = new File(container.getFilePath());
-        if (file.exists() && file.isFile())
-        {
-            if (file.delete())
+        List<DataSetContainer> containers = containerJpaRepository.findAllByContainerIdIn(
+            containerIds);
+        containerJpaRepository.deleteBatchContainersById(containerIds);
+        containers.forEach(c -> {
+            try
             {
-                log.debug("Delete data collection [{}] set:[{}]",
-                    container.getDataSetCollection().getCollectionName(), container.getFileName());
-
+                forceDelete(new File(c.getFilePath()));
             }
-            else
+            catch (IOException e)
             {
-                log.error("Delete data set [{}] failed.File don't exists.",
-                    container.getFileName());
+                e.printStackTrace();
             }
-        }
+        });
+        return containers;
     }
 
     @Override
@@ -123,7 +172,7 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
         File file = new File(filePath);
         try
         {
-            return FileUtils.readFileToByteArray(file);
+            return readFileToByteArray(file);
         }
         catch (IOException e)
         {

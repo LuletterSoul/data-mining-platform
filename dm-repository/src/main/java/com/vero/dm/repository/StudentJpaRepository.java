@@ -4,6 +4,7 @@ package com.vero.dm.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -31,6 +32,9 @@ public interface StudentJpaRepository extends JpaRepository<Student, String>,Jpa
 
     @Query(value = "SELECT s.userId from Student s")
     List<String> findAllStudentUserId();
+
+    @Query(value = "SELECT s.studentId from Student s")
+    List<String> findAllStudentIds();
 
 
     @Query(value = "SELECT s from Student s where s.studentId in :studentIds")

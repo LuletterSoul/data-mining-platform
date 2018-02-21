@@ -6,8 +6,10 @@ import static org.springframework.http.HttpStatus.*;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
-import com.vero.dm.exception.constract.HeaderLostException;
-import org.apache.http.HttpResponse;
+import com.vero.dm.exception.business.StudentIdDuplicatedException;
+import com.vero.dm.exception.file.ExcelModuleAnnotationNotFound;
+import com.vero.dm.exception.file.SetZipException;
+import com.vero.dm.exception.file.UnsupportedFileType;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
@@ -25,8 +27,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.vero.dm.exception.auth.*;
+import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.error.ErrorInfo;
 import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.exception.file.ExcelModuleInValidException;
 
 
 /**
@@ -70,8 +74,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                                    final WebRequest request)
     {
         return new ResponseEntity<>(
-            new ErrorInfo(ex, exceptionCode.getCode(), exceptionCode.getTip(), responseStatus), headers,
-                status);
+            new ErrorInfo(ex, exceptionCode.getCode(), exceptionCode.getTip(), responseStatus),
+            headers, status);
     }
 
     // API
@@ -154,6 +158,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             new HttpHeaders(), CONFLICT, request);
     }
 
+
+
     // 412
 
     // 500
@@ -175,7 +181,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     // return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), NOT_FOUND, request);
     // }
 
-    @ExceptionHandler(value ={ UnsupportedTokenException.class})
+    @ExceptionHandler(value = {UnsupportedTokenException.class})
     public ResponseEntity<Object> handleUnsupportedTokenException(final UnsupportedTokenException ex,
                                                                   final WebRequest request)
     {
@@ -190,7 +196,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
      * @param request
      * @return
      */
-    @ExceptionHandler(value ={ ExpiredCredentialsException.class})
+    @ExceptionHandler(value = {ExpiredCredentialsException.class})
     public ResponseEntity<Object> handleHeaderLostException(final ExpiredCredentialsException ex,
                                                             final WebRequest request)
     {
@@ -204,12 +210,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
      * @param request
      * @return
      */
-    @ExceptionHandler(value ={ InternalAuthenticationException.class})
+    @ExceptionHandler(value = {InternalAuthenticationException.class})
     public ResponseEntity<Object> handleAuthenticationException(final InternalAuthenticationException ex,
                                                                 final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.UNAUTHORIZED,HttpStatus.UNAUTHORIZED, request);
+            HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED, request);
     }
 
     /**
@@ -218,12 +224,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
      * @param request
      * @return
      */
-    @ExceptionHandler(value ={ UnknownAccountException.class})
+    @ExceptionHandler(value = {UnknownAccountException.class})
     public ResponseEntity<Object> handleUnknownAccountException(final UnknownAccountException ex,
                                                                 final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-                HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
+            HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
     }
 
     /**
@@ -265,7 +271,46 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                                                             final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-                HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
+            HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = {ExcelModuleInValidException.class})
+    public ResponseEntity<Object> handleExcelModuleInValidException(final ExcelModuleInValidException ex,
+                                                                    final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = {ExcelModuleAnnotationNotFound.class})
+    public ResponseEntity<Object> handleExcelModuleAnnotationNotFound(final ExcelModuleAnnotationNotFound ex,
+                                                                    final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+                HttpStatus.ACCEPTED, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler({UnsupportedFileType.class})
+    public ResponseEntity<Object> handleUnsupportedFileType(final UnsupportedFileType ex,
+                                                   final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(),
+                new HttpHeaders(), HttpStatus.FORBIDDEN,HttpStatus.FORBIDDEN, request);
+    }
+
+    @ExceptionHandler({StudentIdDuplicatedException.class})
+    public ResponseEntity<Object> handleStudentIdDuplicatedException(final StudentIdDuplicatedException ex,
+                                                   final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(),
+                new HttpHeaders(), HttpStatus.CONFLICT,HttpStatus.CONFLICT, request);
+    }
+    @ExceptionHandler({SetZipException.class})
+    public ResponseEntity<Object> handleSetZipException(final SetZipException ex,
+                                                                     final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(),
+                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR,HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
 }

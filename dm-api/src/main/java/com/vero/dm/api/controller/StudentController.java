@@ -57,6 +57,7 @@ public class StudentController
     }
 
     @ApiOperation("上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供")
+    @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
     @PostMapping(value = "/excel_students")
     public ResponseEntity<List<Student>> importStudents(@RequestPart MultipartFile file,
                                                         @RequestParam(UploadProgressListener.PROC_QUERY_KEY) String progressQueryId)
@@ -103,7 +104,7 @@ public class StudentController
     public ResponseEntity<List<Student>> deleteBatch(@RequestBody List<String> studentIds)
     {
         return new ResponseEntity<>(studentService.deleteBatchByStudentIds(studentIds),
-            HttpStatus.OK);
+                HttpStatus.NO_CONTENT);
     }
 
     @ApiOperation("分页查询学生列表")

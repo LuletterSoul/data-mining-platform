@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-@Component("multipartResolver")
 public class CustomMultipartResolver extends CommonsMultipartResolver
 {
     @Autowired
@@ -63,8 +62,9 @@ public class CustomMultipartResolver extends CommonsMultipartResolver
     {
         // 客户端的传入的查询参数,由此参数获取对应的进度记录
         String progressQueryKey = validateQueryKey(request);
-        //无查询参数，即无获取上传参数的需求,不装载监听器
-        if (progressQueryKey == null) {
+        // 无查询参数，即无获取上传参数的需求,不装载监听器
+        if (progressQueryKey == null)
+        {
             return;
         }
         fileUpload.setProgressListener(
@@ -77,7 +77,8 @@ public class CustomMultipartResolver extends CommonsMultipartResolver
         String progressQueryKey = request.getParameter(UploadProgressListener.PROC_QUERY_KEY);
         if (progressQueryKey == null)
         {
-            logger.error("Server could not provide asynchronous progress callback.");
+            logger.error(
+                "Server could not provide asynchronous progress callback.Because progress query key is Null.");
         }
         return progressQueryKey;
     }

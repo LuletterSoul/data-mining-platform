@@ -25,4 +25,17 @@ public class ExceptionUtil
         return error;
     }
 
+    public static Throwable getNestedCause(Throwable throwable) {
+        if (throwable == null)
+        {
+            return null;
+        }
+        Throwable nested = throwable;
+        while (nested.getCause() != null)
+        {
+            nested = nested.getCause();
+        }
+        return nested;
+    }
+
 }

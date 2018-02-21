@@ -9,6 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ import com.vero.dm.exception.error.ExceptionCode;
  */
 
 @Component
+@Slf4j
 public class DefaultExceptionHandler implements ExceptionHandler
 {
     private ObjectMapper objectMapper;
@@ -54,6 +56,7 @@ public class DefaultExceptionHandler implements ExceptionHandler
             return;
         }
         exception.printStackTrace();
+        log.error(exception.getMessage());
         if (exception instanceof ErrorCodeLostNotFoundException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.NOT_FOUND,
@@ -62,7 +65,7 @@ public class DefaultExceptionHandler implements ExceptionHandler
         else if (exception instanceof HeaderLostException)
         {
             handPreAuthenticationInternalException(exception, exceptionCode,
-                HttpStatus.BAD_REQUEST, httpServletResponse, HttpStatus.BAD_REQUEST);
+                HttpStatus.EXPECTATION_FAILED, httpServletResponse, HttpStatus.EXPECTATION_FAILED);
         }
 
         else if (exception instanceof ExpiredCredentialsException)

@@ -46,8 +46,6 @@ public class UploadProgressListener implements ProgressListener
     @Override
     public void update(long pBytesRead, long pContentLength, int pItems)
     {
-        log.debug("Request [{}] upload progress------------------->[{}]%", progressQueryKey,
-            (double)pBytesRead / pContentLength * 100);
         redisCache.opsForHash().put(PROC_ENTITY_HASH_KEY, progressQueryKey,
             new ProgressEntity(pBytesRead, pContentLength, pItems));
     }

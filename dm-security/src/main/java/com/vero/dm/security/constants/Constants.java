@@ -12,6 +12,7 @@ import lombok.Data;
 public class Constants
 {
     public static final String CLIENT_DIGEST_HEADER = "X-Client-Digest";
+    public static final String SUGGESTED_FILE_NAME = "X-Suggested-Filename";
     public static final String USERNAME_HEADER = "X-Username";
     public static final String TIMESTAMP_HEADER = "X-Timestamp";
     public static final String ACCESS_TOKEN_HEADER = "X-Access-Token";

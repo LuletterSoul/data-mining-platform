@@ -1,6 +1,10 @@
 package com.vero.dm.api.controller;
 
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +21,7 @@ import com.vero.dm.service.constant.ResourcePath;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 
 /**
@@ -25,8 +30,7 @@ import io.swagger.annotations.ApiOperation;
  */
 
 @RestController
-@RequestMapping(value = ApiVersion.API_VERSION
-                        + ResourcePath.CONTAINER_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = ApiVersion.API_VERSION + ResourcePath.CONTAINER_PATH)
 public class DataSetContainerController
 {
     private DataSetContainerService containerService;
@@ -40,24 +44,32 @@ public class DataSetContainerController
     @ApiOperation(value = "根据Id删除数据集文件")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "containerId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
-    @DeleteMapping(value = "/{containerId}")
-    public ResponseEntity<DataSetContainer> delete(@PathVariable("containerId") String containerId)
+    @DeleteMapping
+    public ResponseEntity<List<DataSetContainer>> delete(@RequestBody List<String> containerIds)
     {
-        return new ResponseEntity<>(containerService.deleteByContainerId(containerId),
-            HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(containerService.deleteByContainerIds(containerIds),
+            HttpStatus.OK);
     }
 
     @ApiOperation(value = "分页查询数据集文件信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "containerId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
-    @GetMapping
+    @GetMapping(value = "/details")
     public ResponseEntity<Page<DataSetContainer>> get(@PageableDefault Pageable pageable)
     {
         return new ResponseEntity<>(containerService.getPageableContainers(pageable),
             HttpStatus.OK);
     }
 
-    @PutMapping
+    @ApiOperation(value = "导出数据集的压缩文件")
+    @PostMapping(value = "/zips", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void downloadZip(@ApiParam(value = "数据集文件的标识号") @RequestBody List<String> containerIds,
+                            @RequestParam("collectionId") String collectionId,
+                            HttpServletResponse response)
+    {
+        containerService.downloadZip(containerIds, collectionId, response);
+    }
+
     public DataSetContainer update(@RequestBody DataSetContainer setContainer)
     {
         containerService.update(setContainer);

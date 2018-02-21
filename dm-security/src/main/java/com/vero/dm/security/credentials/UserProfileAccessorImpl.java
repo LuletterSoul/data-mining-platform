@@ -48,7 +48,7 @@ public class UserProfileAccessorImpl implements UserProfileAccessor
         else
         {
             log.info("A Request post a expired token [{}].", accessToken);
-            String message = accessToken + " turned out expired,Please re-apply again.";
+            String message = accessToken + " Turned Out Expired,Please Re-apply Again.";
             throw new ExpiredCredentialsException(message, ExceptionCode.ExpiredToken);
         }
     }

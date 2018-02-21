@@ -13,7 +13,16 @@ import java.util.Map;
 
 public enum ExceptionCode {
     CommonError(20000, "服务器响应信息丢失."),
-    ErrorCodeLost(20001,"找不到异常提示信息"),
+    ErrorCodeLost(20001,"找不到异常提示信息."),
+    FileOperationError(30000, "文件操作出错."),
+    ExcelModuleInvalid(30001, "Excel模板不符合导入规则."),
+    UnsupportedFileType(30002, "不支持的文件类型"),
+    ExcelAnnotationNotFound(30002, "找不到特定的Excel注解"),
+    DataSetDeleteError(30003, "无法删除该数据集"),
+    ZipSetError(30004, "压缩数据集时出错"),
+    BusinessLogicError(40000,"业务逻辑异常."),
+    StudentIdDuplicated(40001,"学号重复."),
+    DataDuplicated(40002,"数据重复"),
     AuthenticationError(50000, "权限认证出错,你不具备当前模块的访问权限."),
     InvalidCredentials(50001, "证书不合法,请确保你已登录系统."),
     ExpiredToken(50002, "证书已过期,请重新登录."),

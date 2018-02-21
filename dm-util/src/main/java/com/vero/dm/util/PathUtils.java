@@ -80,7 +80,7 @@ public class PathUtils
         return concat(getAbsolutePath(relativePath), suffixes);
     }
 
-    public static String handleFileTransfer(MultipartFile multipartFile, String absolutePath)
+    public static void handleFileTransfer(MultipartFile multipartFile, String absolutePath)
     {
         try
         {
@@ -100,11 +100,6 @@ public class PathUtils
         // {
         // e.printStackTrace();
         // }
-        String originalFileName = multipartFile.getOriginalFilename();
-        String fileType = originalFileName.substring(originalFileName.lastIndexOf("."),
-                originalFileName.length());
-        log.debug("Uploaded file type is [{}]", fileType);
-        return fileType;
     }
 
 //    public static String makeDir(String realPath) {

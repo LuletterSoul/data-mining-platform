@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.exception.file.ExcelModuleAnnotationNotFound;
 import org.apache.poi.hssf.usermodel.DVConstraint;
 import org.apache.poi.hssf.usermodel.HSSFDataValidation;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -39,12 +41,11 @@ public class SimpleExcelModuleGenerator implements ExcelModuleGenerator
 
     @Override
     public String generate(Class<?> clazz)
-        throws Exception
     {
         if (!clazz.isAnnotationPresent(ExcelModel.class))
         {
-
-            throw new Exception(clazz.getSimpleName() + "不能解析的注解类型.");
+            String message = "Unsupported Annotation for Excel Module Scanning .";
+            throw new ExcelModuleAnnotationNotFound(message, ExceptionCode.ExcelAnnotationNotFound);
         }
         ExcelModel excelModel = clazz.getAnnotation(ExcelModel.class);
         // 获取注解信息

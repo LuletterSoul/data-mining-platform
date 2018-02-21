@@ -21,7 +21,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 
 @ComponentScan(basePackages = {"com.vero.dm"}) // 扫描该包路径下的所有spring组件
-@SpringBootApplication(exclude = {MultipartAutoConfiguration.class})
+@SpringBootApplication
 @EnableTransactionManagement(proxyTargetClass = true)
 @EnableCaching(proxyTargetClass = true)
 public class DataMiningPlatformWebApplication

@@ -5,10 +5,11 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
+
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -23,9 +24,11 @@ public interface DataSetContainerService extends BaseService<DataSetContainer, S
 
     Page<DataSetContainer> getPageableContainers(Pageable pageable);
 
+    void downloadZip(List<String> containerIds, String collectionId, HttpServletResponse response);
+
     List<DataSetContainer> fetchDataSetContainers(String collectionId);
 
-    DataSetContainer deleteByContainerId(String containerId);
+    List<DataSetContainer> deleteByContainerIds(List<String> containerIds);
 
     DataSetCollection fetchCollectionRef(String containerId);
 

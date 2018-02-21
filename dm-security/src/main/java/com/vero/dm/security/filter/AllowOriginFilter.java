@@ -46,7 +46,7 @@ public class AllowOriginFilter extends AdviceFilter
 
     public final static String DEFAULT_ALLOW_METHODS = "PUT,POST,GET,DELETE,OPTIONS";
 
-    public final static String DEFAULT_EXPOSE_HEADER = "X-Disposable-Token";
+    public final static String DEFAULT_EXPOSE_HEADER = "X-Disposable-Token,X-Suggested-Filename";
 
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response)

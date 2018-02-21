@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -145,6 +146,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     public PageableHandlerMethodArgumentResolver pageableHandlerMethodArgumentResolver()
     {
         return new PageableHandlerMethodArgumentResolver();
+    }
+
+    @Bean
+    public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
+        return new ThreadPoolTaskExecutor();
     }
 
 

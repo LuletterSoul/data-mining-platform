@@ -5,12 +5,16 @@ import static com.vero.dm.util.PathUtils.concat;
 import static com.vero.dm.util.PathUtils.handleFileTransfer;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +37,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSetCollection, String> implements DataSetCollectionService
 {
+    @Autowired
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     public DataSetCollection fectchAllDataSetContainer()
     {
@@ -63,7 +69,17 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         String absolutePath = concat(collection.getDataSetFolderPath(),
             multipartFile.getOriginalFilename());
         DataSetContainer container = new DataSetContainer();
-        String fileType = handleFileTransfer(multipartFile, absolutePath);
+        threadPoolTaskExecutor.execute(() -> {
+            try {
+                multipartFile.transferTo(new File(absolutePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        String originalFileName = multipartFile.getOriginalFilename();
+        String fileType = originalFileName.substring(originalFileName.lastIndexOf("."),
+                originalFileName.length());
+        log.debug("Uploaded file type is [{}]", fileType);
         container.setFileName(multipartFile.getOriginalFilename());
         container.setDataSetCollection(findById(collectionId));
         container.setFilePath(absolutePath);
@@ -143,7 +159,15 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     public List<DataSetCollection> deleteBatch(List<String> collectionIds)
     {
         List<DataSetCollection> collections = findCollectionsByIds(collectionIds);
-        collectionJpaRepository.delete(findCollectionsByIds(collectionIds));
+//        List<String> setFilePaths = collectionJpaRepository.findAllDataSetsFilePaths(collectionIds);
+        collections.forEach( c -> {
+            try {
+                FileUtils.deleteDirectory(new File(c.getDataSetFolderPath()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        collectionJpaRepository.delete(collections);
         return collections;
     }
 
@@ -152,11 +176,12 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     {
         DataSetCollection collection = findById(collectionId);
         File dataDir = new File(collection.getDataSetFolderPath());
-        if (dataDir.isDirectory())
-        {
-            dataDir.delete();
+        try {
+            FileUtils.deleteDirectory(dataDir);
             log.info("Delete [{}]:[{}] database index folder.", collection.getCollectionId(),
-                collection.getCollectionName());
+                    collection.getCollectionName());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         collectionJpaRepository.delete(collectionId);
         return collection;

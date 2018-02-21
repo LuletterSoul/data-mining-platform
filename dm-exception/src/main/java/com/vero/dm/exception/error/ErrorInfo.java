@@ -23,7 +23,7 @@ public class ErrorInfo
     /**
      * 原生异常错误信息
      */
-    private String error;
+    private String reason;
 
     /**
      * 提示信息
@@ -49,7 +49,7 @@ public class ErrorInfo
 
     public ErrorInfo(Throwable throwable, String tip, HttpStatus status)
     {
-        this.error = ExceptionUtil.getRootMessage(throwable);
+        this.reason = ExceptionUtil.getRootMessage(throwable);
         this.tip = tip;
         this.date = dateFormat.format(new Date());
         this.status = status.value();
@@ -57,7 +57,7 @@ public class ErrorInfo
 
     public ErrorInfo(Throwable throwable, Integer errorCode, String tip, HttpStatus status)
     {
-        this.error = ExceptionUtil.getRootMessage(throwable);
+        this.reason = ExceptionUtil.getRootMessage(throwable);
         this.tip = tip;
         this.status = status.value();
         this.errorCode = errorCode;
@@ -67,18 +67,18 @@ public class ErrorInfo
     @Override
     public String toString()
     {
-        return "ErrorInfo{" + "error='" + error + '\'' + ", tip='" + tip + '\'' + ", status="
+        return "ErrorInfo{" + "reason='" + reason + '\'' + ", tip='" + tip + '\'' + ", status="
                + status + ", errorCode=" + errorCode + ", date='" + date + '\'' + '}';
     }
 
-    public String getError()
+    public String getReason()
     {
-        return error;
+        return reason;
     }
 
-    public void setError(String error)
+    public void setReason(String reason)
     {
-        this.error = error;
+        this.reason = reason;
     }
 
     public String getTip()
