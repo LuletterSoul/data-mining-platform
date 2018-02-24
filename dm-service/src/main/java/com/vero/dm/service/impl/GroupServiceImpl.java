@@ -58,7 +58,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         }
         BeanUtils.copyProperties(groupDto, group);
         group.setDataMiningTask(task);
-        group.setGroupBuilder(builder);
+        group.setTeacherBuilder(builder);
         group.setGroupMembers(new LinkedHashSet<>(members));
         group.setGroupLeader(leader);
         group.setBuiltTime(new Date());
@@ -141,7 +141,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setGroupMembers(new LinkedHashSet<>(perGroupStudents));
         group.setGroupLeader(perGroupStudents.get(0));
         group.setDataMiningTask(taskJpaRepository.findOne(taskId));
-        group.setGroupBuilder(teacherJpaRepository.findOne(builderId));
+        group.setTeacherBuilder(teacherJpaRepository.findOne(builderId));
         group.setBuiltTime(new Date());
         group.setGroupName("Group_" + group.getBuiltTime());
         group.setArrangementId(String.valueOf(arrangementId));
@@ -172,8 +172,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             // 前端传入的时间参数，要求在此时间端内，学生没有处于其他实践任务分组执行数据挖掘任务；
             // 以任务的计划时间为准
             // 获取符合要求的学生
-            return studentJpaRepository.fetchStudentWithoutGroup(params.getBeginDate(),
-                params.getEndDate());
+            return fetchStudentWithoutGroup(params.getBeginDate(), params.getEndDate());
         }
         else if (studentIds != null && !studentIds.isEmpty())
         {
@@ -188,6 +187,11 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
+    public List<Student> fetchStudentWithoutGroup(Date begin,Date end) {
+        return studentJpaRepository.fetchStudentWithoutGroup(begin,end);
+    }
+
+    @Override
     public DataMiningGroup fetchGroupDetails(String groupId)
     {
 
@@ -195,16 +199,33 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
+    public List<DataMiningGroup> fetchGroupDetails(List<String> groupIds) {
+        return groupJpaRepository.findAll(groupIds);
+    }
+
+    @Override
     public DataMiningGroup deleteMiningGroupById(String groupId)
     {
         DataMiningGroup group = fetchGroupDetails(groupId);
-        group.setGroupLeader(null);
-        group.setGroupMembers(null);
-        group.setGroupBuilder(null);
-        group.setDataMiningTask(null);
-        groupJpaRepository.save(group);
+        cancelGroupConfiguration(group);
         groupJpaRepository.delete(groupId);
         return group;
+    }
+
+    private void cancelGroupConfiguration(DataMiningGroup group) {
+        group.setGroupLeader(null);
+        group.setGroupMembers(null);
+        group.setStudentBuilder(null);
+        group.setDataMiningTask(null);
+        groupJpaRepository.save(group);
+    }
+
+    @Override
+    public List<DataMiningGroup> deleteGroupBatch(List<String> groupIds) {
+        List<DataMiningGroup> groups = fetchGroupDetails(groupIds);
+        groups.forEach(this::cancelGroupConfiguration);
+        groupJpaRepository.delete(groups);
+        return groups;
     }
 
     @Override

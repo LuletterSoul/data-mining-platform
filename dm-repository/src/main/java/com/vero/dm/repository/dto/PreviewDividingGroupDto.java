@@ -58,7 +58,12 @@ public class PreviewDividingGroupDto
     /**
      * 建立此分组的教师
      */
-    private Teacher groupBuilder;
+    private Teacher teacherBuilder;
+
+    /**
+     * 建立此分组的学生
+     */
+    private Student studentBuilder;
 
     /**
      * 每个分组只能持有一个发掘任务
@@ -71,7 +76,8 @@ public class PreviewDividingGroupDto
         dividingGroupDto.setArrangementId(group.getArrangementId());
         dividingGroupDto.setBuiltTime(group.getBuiltTime());
         dividingGroupDto.setGroupLeader(group.getGroupLeader());
-        dividingGroupDto.setGroupBuilder(group.getGroupBuilder());
+        dividingGroupDto.setTeacherBuilder(group.getTeacherBuilder());
+        dividingGroupDto.setStudentBuilder(group.getStudentBuilder());
         dividingGroupDto.setGroupMembers(new ArrayList<>(group.getGroupMembers()));
         dividingGroupDto.setDataMiningTask(group.getDataMiningTask());
         dividingGroupDto.setGroupId(group.getGroupId());

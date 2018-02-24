@@ -1,15 +1,14 @@
 package com.vero.dm.service;
 
 
+import java.util.Date;
 import java.util.List;
 
+import com.vero.dm.model.*;
+import com.vero.dm.model.enums.MiningTaskStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.vero.dm.model.Algorithm;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.repository.dto.MiningTaskDto;
 
 
@@ -25,7 +24,7 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     DataMiningTask deleteByTaskId(String taskId);
 
-    Page<DataMiningTask> fetchTaskList(Pageable pageable);
+    Page<DataMiningTask> fetchTaskList(String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, MiningTaskStatus taskStatus, Pageable pageable);
 
     List<DataMiningGroup> fetchInvolvedGroups(String taskId);
 

@@ -1,8 +1,8 @@
 package com.vero.dm.service.impl;
 
 
+import static com.vero.dm.repository.specifications.ContainerSpecifications.findContainersByCollectionId;
 import static com.vero.dm.util.PathUtils.concat;
-import static com.vero.dm.util.PathUtils.handleFileTransfer;
 
 import java.io.File;
 import java.io.IOException;
@@ -205,9 +205,9 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     // }
 
     @Override
-    public List<DataSetContainer> getContainers(String collectionId)
+    public Page<DataSetContainer> getContainers(String collectionId, Pageable pageable)
     {
-        return new ArrayList<>(findById(collectionId).getDataSetContainers());
+        return containerJpaRepository.findAll(findContainersByCollectionId(collectionId),pageable);
     }
 
     @Override

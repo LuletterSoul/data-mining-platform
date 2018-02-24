@@ -34,7 +34,7 @@ public class Teacher extends User
      * 一个老师可建多个分组
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "groupBuilder")
+    @OneToMany(mappedBy = "teacherBuilder")
     private Set<DataMiningGroup> buildGroups;
 
     @JsonIgnore

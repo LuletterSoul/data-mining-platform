@@ -1,23 +1,24 @@
 package com.vero.dm.service.impl;
 
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.vero.dm.model.*;
+import com.vero.dm.model.enums.MiningTaskStatus;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.vero.dm.model.Algorithm;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
 
 import lombok.extern.slf4j.Slf4j;
+
+import static com.vero.dm.repository.specifications.TaskSpecifications.*;
 
 
 /**
@@ -63,9 +64,16 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
-    public Page<DataMiningTask> fetchTaskList(Pageable pageable)
+    public Page<DataMiningTask> fetchTaskList(String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, MiningTaskStatus taskStatus, Pageable pageable)
     {
-        return taskJpaRepository.findAll(pageable);
+        return taskJpaRepository.findAll(tasksSpec(taskName,
+                                                    plannedBeginDate,
+                                                    plannedEndDate,
+                                                    builtTimeBegin,
+                                                    builtTimeEnd,
+                                                    taskStatus),
+                                                    pageable);
+
     }
 
     @Override

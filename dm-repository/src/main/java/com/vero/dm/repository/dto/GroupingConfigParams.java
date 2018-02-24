@@ -30,7 +30,7 @@ public class GroupingConfigParams
     private String taskId;
 
     /**
-     * 开始日期，此日期是为了筛选这段期间没有被分配任务的学生
+     * 开始日期，此日期是为了筛选这段期间没有被分配任务的学生algorithm_param
      */
 //    @ApiParam(value = "范围时间")
     private Date beginDate;

@@ -1,9 +1,11 @@
 package com.vero.dm.service;
 
 
+import java.util.Date;
 import java.util.List;
 
 import com.vero.dm.model.DataMiningGroup;
+import com.vero.dm.model.Student;
 import com.vero.dm.repository.dto.DataMiningGroupDto;
 import com.vero.dm.repository.dto.DividingGroupInfo;
 import com.vero.dm.repository.dto.StudentDto;
@@ -23,13 +25,19 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 
     Page<DataMiningGroup> fetchPageableGroups(Pageable pageable);
 
+    List<Student> fetchStudentWithoutGroup(Date begin, Date end);
+
     DividingGroupInfo initDefaultGroupingStrategy(GroupingConfigParams params);
 
     List<DataMiningGroup> sureDividingGroupRequest(String queryKey);
 
     DataMiningGroup fetchGroupDetails(String groupId);
 
+    List<DataMiningGroup> fetchGroupDetails(List<String> groupId);
+
     DataMiningGroup deleteMiningGroupById(String groupId);
+
+    List<DataMiningGroup> deleteGroupBatch(List<String> groupIds);
 
     StudentDto updateLeader(String studentId, String groupId);
 

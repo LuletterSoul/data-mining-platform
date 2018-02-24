@@ -69,8 +69,15 @@ public class DataMiningGroup
      * 建立此分组的教师
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacherUserId", foreignKey = @ForeignKey(name = "BUILDER_FK_ID"))
-    private Teacher groupBuilder;
+    @JoinColumn(name = "teacherUserId", foreignKey = @ForeignKey(name = "T_BUILDER_FK_ID"))
+    private Teacher teacherBuilder;
+
+    /**
+     * 建立此分组的学生
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "studentUserId", foreignKey = @ForeignKey(name = "S_BUILDER_FK_ID"))
+    private Student studentBuilder;
 
     /**
      * 每个分组只能持有一个发掘任务

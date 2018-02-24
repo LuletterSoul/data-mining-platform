@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.vero.dm.model.converter.MiningTaskStatusConverter;
+import com.vero.dm.model.enums.MiningTaskStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,6 +43,7 @@ public class DataMiningTask
     /**
      * 任务名称
      */
+    @Column(unique = true)
     private String taskName;
 
     /**
@@ -98,7 +101,7 @@ public class DataMiningTask
     /**
      * 任务状态
      */
-    @Enumerated(value = EnumType.STRING)
+    @Convert(converter = MiningTaskStatusConverter.class)
     private MiningTaskStatus status;
 
     /**

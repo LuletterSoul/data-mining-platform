@@ -4,7 +4,6 @@ package com.vero.dm.repository.dto;
 import java.sql.Date;
 import java.util.List;
 
-import com.vero.dm.model.MiningTaskStatus;
 import lombok.Data;
 
 

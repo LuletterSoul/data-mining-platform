@@ -1,6 +1,7 @@
 package com.vero.dm.service;
 
 
+import java.util.Date;
 import java.util.List;
 
 import com.vero.dm.repository.dto.StudentDto;
@@ -33,6 +34,9 @@ public interface StudentService extends UserService
     List<Student> findAllStudents();
 
     Page<Student> getStudentList(Pageable pageable,String className,String profession,String grade,String studentIdPrefix,String studentName);
+
+
+    Page<Student> getStudentList(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate,Date endDate);
 
     StudentDto deleteByStudentId(String studentId);
 

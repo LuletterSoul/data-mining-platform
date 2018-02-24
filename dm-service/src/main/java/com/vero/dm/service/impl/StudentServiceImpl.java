@@ -1,15 +1,16 @@
 package com.vero.dm.service.impl;
 
 
-import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsByMultipleParams;
-import static com.vero.dm.util.PathUtils.*;
+import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithParams;
+import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithoutGroup;
+import static com.vero.dm.util.PathUtils.concat;
+import static com.vero.dm.util.PathUtils.getAbsolutePath;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
-import com.vero.dm.exception.business.StudentIdDuplicatedException;
-import com.vero.dm.exception.error.ExceptionCode;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vero.dm.exception.business.StudentIdDuplicatedException;
+import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.importer.core.ExcelExporter;
 import com.vero.dm.importer.core.ExcelImporter;
 import com.vero.dm.importer.core.ExcelModuleManager;
@@ -66,9 +69,12 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         String relativePath = concat("students", "import");
         String dir = getAbsolutePath(relativePath);
         String absolutePath = concat(dir, file.getOriginalFilename());
-        try {
+        try
+        {
             file.transferTo(new File(absolutePath));
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         List<Student> students = studentExcelImporter.importFromExcel(new File(absolutePath));
@@ -78,19 +84,23 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         return students;
     }
 
-    private void checkStudentIdDuplication(List<Student> students) {
+    private void checkStudentIdDuplication(List<Student> students)
+    {
         List<String> existedStudentIds = getStudentIds();
         StringBuilder message = new StringBuilder("[");
-        students.forEach(s ->{
-            if(existedStudentIds.contains(s.getStudentId())){
+        students.forEach(s -> {
+            if (existedStudentIds.contains(s.getStudentId()))
+            {
                 message.append(s.getStudentId()).append(",");
             }
         });
-        if (!message.toString().equals("[")) {
+        if (!message.toString().equals("["))
+        {
             message.replace(message.length() - 1, message.length(), "]");
             message.append(" Student Id is Duplicated.");
             log.error(message.toString());
-            throw new StudentIdDuplicatedException(message.toString(), ExceptionCode.StudentIdDuplicated);
+            throw new StudentIdDuplicatedException(message.toString(),
+                ExceptionCode.StudentIdDuplicated);
         }
     }
 
@@ -113,49 +123,49 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         return null;
     }
 
-//     @Override
-//     public void handleStudentExcelModuleDownload(HttpServletResponse response)
-//     {
-//     String filePath = excelModuleManager.getModulePath(Student.class);
-//     try
-//     {
-//     File file = new File(filePath);
-//     if (file.exists())
-//     {
-//     String filename = file.getName();
-//     InputStream fis = new BufferedInputStream(new FileInputStream(file));
-//     response.reset();
-//     response.setContentType("application/octet-stream");
-//     response.addHeader("Content-Disposition",
-//     "attachment;filename=" + URLEncoder.encode(filename, "utf-8"));
-//     response.addHeader("Content-Length", "" + file.length());
-//     OutputStream out = new BufferedOutputStream(response.getOutputStream());
-//     byte[] buffer = new byte[1024 * 1024];
-//     int i = -1;
-//     while ((i = fis.read(buffer)) != -1)
-//     {
-//     out.write(buffer, 0, i);
-//     out.flush();
-//     }
-//     fis.close();
-//     out.flush();
-//     out.close();
-//     // try
-//     // {
-//     // response.wait();
-//     // }
-//     // catch (InterruptedException e)
-//     // {
-//     // // TODO Auto-generated catch block
-//     // e.printStackTrace();
-//     // }
-//     }
-//     }
-//     catch (IOException e)
-//     {
-//     e.printStackTrace();
-//     }
-//     }
+    // @Override
+    // public void handleStudentExcelModuleDownload(HttpServletResponse response)
+    // {
+    // String filePath = excelModuleManager.getModulePath(Student.class);
+    // try
+    // {
+    // File file = new File(filePath);
+    // if (file.exists())
+    // {
+    // String filename = file.getName();
+    // InputStream fis = new BufferedInputStream(new FileInputStream(file));
+    // response.reset();
+    // response.setContentType("application/octet-stream");
+    // response.addHeader("Content-Disposition",
+    // "attachment;filename=" + URLEncoder.encode(filename, "utf-8"));
+    // response.addHeader("Content-Length", "" + file.length());
+    // OutputStream out = new BufferedOutputStream(response.getOutputStream());
+    // byte[] buffer = new byte[1024 * 1024];
+    // int i = -1;
+    // while ((i = fis.read(buffer)) != -1)
+    // {
+    // out.write(buffer, 0, i);
+    // out.flush();
+    // }
+    // fis.close();
+    // out.flush();
+    // out.close();
+    // // try
+    // // {
+    // // response.wait();
+    // // }
+    // // catch (InterruptedException e)
+    // // {
+    // // // TODO Auto-generated catch block
+    // // e.printStackTrace();
+    // // }
+    // }
+    // }
+    // catch (IOException e)
+    // {
+    // e.printStackTrace();
+    // }
+    // }
 
     @Override
     public List<String> getStudentIds()
@@ -173,8 +183,18 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public Page<Student> getStudentList(Pageable pageable, String className, String profession,
                                         String grade, String studentIdPrefix, String studentName)
     {
-        return studentJpaRepository.findAll(findStudentsByMultipleParams(className, profession,
-            grade, studentIdPrefix, studentName), pageable);
+        return studentJpaRepository.findAll(
+            findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName),
+            pageable);
+    }
+
+    @Override
+    public Page<Student> getStudentList(Pageable pageable, String className, String profession,
+                                        String grade, String studentIdPrefix, String studentName,
+                                        Date beginDate, Date endDate)
+    {
+        return studentJpaRepository.findAll(findStudentsWithoutGroup(className, profession, grade,
+            studentIdPrefix, studentName, beginDate, endDate), pageable);
     }
 
     @Override

@@ -46,7 +46,7 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
 
     DataSetCollection updateCollection(DataSetCollection collection);
 
-    List<DataSetContainer> getContainers(String collectionId);
+    Page<DataSetContainer> getContainers(String collectionId, Pageable pageable);
 
     List<String> getCollectionNames();
 

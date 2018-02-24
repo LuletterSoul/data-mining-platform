@@ -1,9 +1,11 @@
 package com.vero.dm.repository;
 
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.vero.dm.model.DataSetContainer;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,7 +19,7 @@ import java.util.List;
  * @since data-mining-platform
  */
 
-public interface DataSetContainerJpaRepository extends JpaRepository<DataSetContainer, String>
+public interface DataSetContainerJpaRepository extends JpaRepository<DataSetContainer, String>,JpaSpecificationExecutor<DataSetContainer>
 {
     List<DataSetContainer> findAllByContainerIdIn(List<String> containerIds);
 
@@ -25,5 +27,6 @@ public interface DataSetContainerJpaRepository extends JpaRepository<DataSetCont
     @Query(value = "DELETE FROM DataSetContainer d WHERE d.containerId in :containerIds")
     int deleteBatchContainersById(@Param("containerIds") List<String> containerIds);
 
-    List<DataSetContainer> findByContainerIdIn(List<String> containerIds);
+    List<DataSetContainer>  findByContainerIdIn(List<String> containerIds);
+
 }
