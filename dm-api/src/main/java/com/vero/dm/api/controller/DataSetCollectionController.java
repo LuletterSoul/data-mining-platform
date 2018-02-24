@@ -133,8 +133,8 @@ public class DataSetCollectionController
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
     @GetMapping(value = "/{collectionId}/containers")
-    public List<DataSetContainer> getContainer(@PathVariable("collectionId") String collectionId)
+    public ResponseEntity<Page<DataSetContainer>> getContainer(@PageableDefault Pageable pageable,@PathVariable("collectionId") String collectionId)
     {
-        return collectionService.getContainers(collectionId);
+         return new ResponseEntity<>(collectionService.getContainers(collectionId,pageable),HttpStatus.OK);
     }
 }

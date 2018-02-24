@@ -1,28 +1,25 @@
 package com.vero.dm.api.controller;
 
 
+import java.util.Date;
 import java.util.List;
 
+import com.vero.dm.model.*;
+import com.vero.dm.model.enums.MiningTaskStatus;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.vero.dm.model.Algorithm;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
 import com.vero.dm.service.constant.ResourcePath;
-
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -59,14 +56,27 @@ public class MiningTaskController
 
     @ApiOperation("分页获取任务列表")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
-        @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "taskId"),
-        @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC")})
+            @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
+            @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "taskId"),
+            @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
     @GetMapping
     public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
-        "taskId"}, direction = Sort.Direction.DESC) Pageable pageable)
-    {
-        return miningTaskService.fetchTaskList(pageable);
+            "builtTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                        @ApiParam(value = "任务名称") @RequestParam(value = "taskName",required = false,defaultValue = "") String taskName,
+                                        @ApiParam(value = "计划开始时间")
+                                            @RequestParam(value = "plannedBeginDate",required = false,defaultValue = "")
+                                             Date plannedBeginDate,
+                                        @ApiParam(value = "计划结束时间")
+                                            @RequestParam(value = "plannedEndDate",required = false,defaultValue = "")
+                                            Date plannedEndDate,
+                                        @ApiParam(value = "建立时间区间起点")
+                                            @RequestParam(value = "builtTimeBegin",required = false,defaultValue = "")
+                                            Date builtTimeBegin,
+                                        @ApiParam(value = "建立时间区间结点")
+                                            @RequestParam(value = "builtTimeEnd",required = false,defaultValue = "")
+                                            Date builtTimeEnd,
+                                        @ApiParam(value = "任务状态")@RequestParam(value = "taskStatus") MiningTaskStatus taskStatus) {
+        return miningTaskService.fetchTaskList(taskName,plannedBeginDate,plannedEndDate,builtTimeBegin,builtTimeEnd , taskStatus, pageable);
     }
 
     @ApiOperation("更新数据挖掘任务的信息")

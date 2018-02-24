@@ -1,0 +1,4178 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "本文档说明了每个接口返回、接收的字段信息。并且制定相应的规范作为前后端交流的渠道。",
+    "version": "2.0",
+    "title": "易授微服务RESTful APIs说明文档",
+    "contact": {
+      "name": "刘祥德",
+      "url": "/",
+      "email": "luvletterU@njust.edu.cn"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "data-set-container-controller",
+      "description": "Data Set Container Controller"
+    },
+    {
+      "name": "file-upload-controller",
+      "description": "File Upload Controller"
+    },
+    {
+      "name": "group-controller",
+      "description": "Group Controller"
+    },
+    {
+      "name": "student-controller",
+      "description": "Student Controller"
+    },
+    {
+      "name": "statistics-controller",
+      "description": "Statistics Controller"
+    },
+    {
+      "name": "break-point-upload-controller",
+      "description": "Break Point Upload Controller"
+    },
+    {
+      "name": "mining-task-controller",
+      "description": "Mining Task Controller"
+    },
+    {
+      "name": "mining-task-type-controller",
+      "description": "Mining Task Type Controller"
+    },
+    {
+      "name": "multiple-options-controller",
+      "description": "Multiple Options Controller"
+    },
+    {
+      "name": "credentials-controller",
+      "description": "Credentials Controller"
+    },
+    {
+      "name": "excel-module-controller",
+      "description": "Excel Module Controller"
+    },
+    {
+      "name": "algorithm-controller",
+      "description": "Algorithm Controller"
+    },
+    {
+      "name": "login-controller",
+      "description": "Login Controller"
+    },
+    {
+      "name": "user-controller",
+      "description": "User Controller"
+    },
+    {
+      "name": "data-set-collection-controller",
+      "description": "Data Set Collection Controller"
+    }
+  ],
+  "paths": {
+    "/api/v1/algorithms": {
+      "get": {
+        "tags": [
+          "algorithm-controller"
+        ],
+        "summary": "查找所有算法名称",
+        "operationId": "getUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Algorithm"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/containers": {
+      "delete": {
+        "tags": [
+          "data-set-container-controller"
+        ],
+        "summary": "根据Id删除数据集文件",
+        "operationId": "deleteUsingDELETE_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "containerIds",
+            "description": "containerIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataSetContainer"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/containers/details": {
+      "get": {
+        "tags": [
+          "data-set-container-controller"
+        ],
+        "summary": "分页查询数据集文件信息",
+        "operationId": "getUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«DataSetContainer»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/containers/zips": {
+      "post": {
+        "tags": [
+          "data-set-container-controller"
+        ],
+        "summary": "导出数据集的压缩文件",
+        "operationId": "downloadZipUsingPOST",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "containerIds",
+            "description": "数据集文件的标识号",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "collectionId",
+            "in": "query",
+            "description": "collectionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/containers/{containerId}/filePath": {
+      "get": {
+        "tags": [
+          "data-set-container-controller"
+        ],
+        "summary": "获取数据集的数据库路径",
+        "operationId": "filePathUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/data_sets": {
+      "get": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "分页查询数据集",
+        "operationId": "getPageableUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "按某属性排序",
+            "required": false,
+            "type": "string",
+            "default": "collectionId"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "排序方式",
+            "required": false,
+            "type": "string",
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«DataSetCollection»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "创建数据集",
+        "operationId": "createUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "collectionDto",
+            "description": "数据集DTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CollectionDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataSetCollection"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "更新数据集",
+        "operationId": "updateUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dataSetCollection",
+            "description": "dataSetCollection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataSetCollection"
+            }
+          },
+          {
+            "in": "body",
+            "name": "setCollection",
+            "description": "数据集编号",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CollectionDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataSetCollection"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "批量删除数据集",
+        "operationId": "deleteBatchUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "collectionIds",
+            "description": "数据集编号",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/List"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataSetCollection"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/data_sets/{collectionId}": {
+      "get": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "根据id获取数据集",
+        "operationId": "getByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataSetCollection"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "根据id删除数据集",
+        "operationId": "deleteUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataSetCollection"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/data_sets/{collectionId}/containers": {
+      "get": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "获取所有数据集文件信息",
+        "operationId": "getContainerUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«DataSetContainer»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "data-set-collection-controller"
+        ],
+        "summary": "上传数据集文件",
+        "operationId": "addContainerUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "collectionId",
+            "in": "path",
+            "description": "数据集编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataSetContainer"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/excel_modules/student": {
+      "get": {
+        "tags": [
+          "excel-module-controller"
+        ],
+        "summary": "下载学生信息的导入模板",
+        "operationId": "downloadStudentExcelModuleUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/groups": {
+      "get": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "分页查询分组列表",
+        "operationId": "getPageableUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "按某属性排序",
+            "required": false,
+            "type": "string",
+            "default": "groupId"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "排序方式",
+            "required": false,
+            "type": "string",
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«DataMiningGroup»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "创建一个分组",
+        "operationId": "createUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "group",
+            "description": "group",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataMiningGroupDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningGroup"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "更新分组信息",
+        "operationId": "updateUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "miningGroup",
+            "description": "miningGroup",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataMiningGroup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningGroup"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "删除分组",
+        "operationId": "deleteUsingDELETE_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "groupIds",
+            "description": "groupIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMiningGroup"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/groups/dividing_groups": {
+      "post": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "获取系统帮助用户分组的信息",
+        "operationId": "previewDefaultGroupingsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "params",
+            "description": "params",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GroupingConfigParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DividingGroupInfo"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/groups/dividing_groups/{queryKey}": {
+      "post": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "创建系统先前分组,由用户确认",
+        "operationId": "createSystemDefaultGroupsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "queryKey",
+            "in": "path",
+            "description": "系统响应的查询Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMiningGroup"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/groups/{groupId}": {
+      "get": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "groupId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "删除一个分组",
+        "operationId": "deleteUsingDELETE_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "groupId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningGroup"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/groups/{groupId}/leader": {
+      "put": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "更新团队的组长",
+        "operationId": "updateLeaderUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "studentId",
+            "description": "studentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StudentDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/groups/{groupId}/members": {
+      "get": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "获取分组成员",
+        "operationId": "getGroupMembersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "groupId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StudentDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "group-controller"
+        ],
+        "summary": "更新分组成员(包括增加、删除)",
+        "operationId": "configureMembersUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "studentIds",
+            "description": "组员标识列表,size为零表示撤销所有组成员",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/List"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StudentDto"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/miningTaskTypes": {
+      "get": {
+        "tags": [
+          "mining-task-type-controller"
+        ],
+        "summary": "getOptionnalMiningTaskTypes",
+        "operationId": "getOptionnalMiningTaskTypesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssociatedTask"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/options": {
+      "get": {
+        "tags": [
+          "multiple-options-controller"
+        ],
+        "summary": "getOptions",
+        "operationId": "getOptionsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/statistics/systemStatistics": {
+      "get": {
+        "tags": [
+          "statistics-controller"
+        ],
+        "summary": "systemStatistics",
+        "operationId": "systemStatisticsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/students": {
+      "get": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "分页查询学生列表",
+        "operationId": "studentsPageableUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "query",
+            "description": "行政班",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profession",
+            "in": "query",
+            "description": "专业",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "grade",
+            "in": "query",
+            "description": "年级",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "学号前缀模糊查询",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "studentName",
+            "in": "query",
+            "description": "姓名",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«Student»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "create",
+        "operationId": "createUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "student",
+            "description": "student",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StudentDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPUT_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentDto",
+            "description": "studentDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudentDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StudentDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "根据学号删除学生",
+        "operationId": "deleteBatchUsingDELETE_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentIds",
+            "description": "studentIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Student"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/students/excel_students": {
+      "post": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供",
+        "operationId": "importStudentsUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "proc_query_key",
+            "in": "query",
+            "description": "proc_query_key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Student"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/students/markStudentsWithArray": {
+      "put": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "markStudent",
+        "operationId": "markStudentUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentIds",
+            "description": "studentIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/students/unMarkStudentWithArray": {
+      "put": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "unMarkStudent",
+        "operationId": "unMarkStudentUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentIds",
+            "description": "studentIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/students/{userId}": {
+      "get": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StudentDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/tasks": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "分页获取任务列表",
+        "operationId": "getListUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "按某属性排序",
+            "required": false,
+            "type": "string",
+            "default": "taskId"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "排序方式",
+            "required": false,
+            "type": "string",
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«DataMiningTask»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "创建一个数据挖掘任务",
+        "operationId": "createUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "miningTaskDto",
+            "description": "miningTaskDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MiningTaskDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningTask"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "更新数据挖掘任务的信息",
+        "operationId": "updateUsingPUT_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "miningTaskDto",
+            "description": "miningTaskDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MiningTaskDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningTask"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{taskId}": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "根据ID获取数据挖掘任务的信息",
+        "operationId": "getUsingGET_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningTask"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "根据ID删除一个数据挖掘任务",
+        "operationId": "deleteByIdUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DataMiningTask"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{taskId}/algorithms": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "获取该任务配置的算法",
+        "operationId": "fetchConfiguredAlgorithmsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Algorithm"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "配置算法",
+        "operationId": "configAlgorithmsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "algorithmIds",
+            "description": "algorithmIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Algorithm"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{taskId}/collections": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "获取数据集",
+        "operationId": "getInvolvedSetsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataSetCollection"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "分配数据集",
+        "operationId": "arrangeMiningSetsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "collectionIds",
+            "description": "collectionIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataSetCollection"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "取消所有数据集与该任务的关联",
+        "operationId": "deleteAllRelContainersUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataSetCollection"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{taskId}/groups": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "获取与此任务相关联的分组",
+        "operationId": "groupsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMiningGroup"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "为多个分组批量分配任务",
+        "operationId": "involveGroupsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "groupIds",
+            "description": "groupIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMiningGroup"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "批量移除任务",
+        "operationId": "removeGroupsUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "groupIds",
+            "description": "groupIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DataMiningGroup"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "注册用户",
+        "operationId": "registerUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPUT_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userDto",
+            "description": "userDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/users/profile": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "根据用户名查询用户信息",
+        "operationId": "profileUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Access-Token",
+            "in": "header",
+            "description": "X-Access-Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "令牌",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/files/pluploadUpload": {
+      "get": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "break-point-upload-controller"
+        ],
+        "summary": "upload",
+        "operationId": "uploadUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chunks",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "chunk",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "multipartFile",
+            "in": "query",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/files/progress/{proc_query_key}": {
+      "get": {
+        "tags": [
+          "file-upload-controller"
+        ],
+        "summary": "getProgressRecord",
+        "operationId": "getProgressRecordUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "proc_query_key",
+            "in": "path",
+            "description": "proc_query_key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProgressEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "login-controller"
+        ],
+        "summary": "login",
+        "operationId": "loginUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/public_salts/{username}": {
+      "get": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "根据用户名获取公盐",
+        "operationId": "publicSaltUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "用户名",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/tokens": {
+      "delete": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "删除所有Token信息(用于微服务注销)",
+        "operationId": "deleteTokenUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Access-Token",
+            "in": "header",
+            "description": "访问令牌",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/tokens/{username}": {
+      "get": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "申请访问令牌",
+        "operationId": "getExpiredTokenUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Timestamp",
+            "in": "header",
+            "description": "X-Timestamp",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Apply-Credential",
+            "in": "header",
+            "description": "X-Apply-Credential",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "description": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "请求时间戳",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "providedCredential",
+            "in": "header",
+            "description": "认证信息",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Algorithm": {
+      "type": "object",
+      "properties": {
+        "algorithmId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "algorithmName": {
+          "type": "string"
+        },
+        "interfaceDescription": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/AlgorithmType"
+        }
+      }
+    },
+    "AlgorithmType": {
+      "type": "object",
+      "properties": {
+        "chTypeName": {
+          "type": "string"
+        },
+        "enTypeName": {
+          "type": "string"
+        },
+        "typeId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AreaType": {
+      "type": "object",
+      "properties": {
+        "abbreviation": {
+          "type": "string"
+        },
+        "areaId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "chineseName": {
+          "type": "string"
+        },
+        "englishName": {
+          "type": "string"
+        }
+      }
+    },
+    "AssociatedTask": {
+      "type": "object",
+      "properties": {
+        "chineseName": {
+          "type": "string"
+        },
+        "englishName": {
+          "type": "string"
+        },
+        "typeId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AttributeCharacteristic": {
+      "type": "object",
+      "properties": {
+        "abbreviation": {
+          "type": "string"
+        },
+        "charId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "chineseName": {
+          "type": "string"
+        },
+        "englishName": {
+          "type": "string"
+        }
+      }
+    },
+    "CollectionDto": {
+      "type": "object",
+      "properties": {
+        "areaId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "associatedTaskIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "attributeCharIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "collectionId": {
+          "type": "string"
+        },
+        "collectionName": {
+          "type": "string"
+        },
+        "dataSetCharIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "dateDonated": {
+          "type": "string",
+          "format": "date"
+        },
+        "descriptionIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "isMissingValues": {
+          "type": "string"
+        },
+        "isUpdated": {
+          "type": "boolean"
+        },
+        "numberOfAttributes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfInstances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfWebHits": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DataMiningGroup": {
+      "type": "object",
+      "properties": {
+        "arrangementId": {
+          "type": "string"
+        },
+        "builtTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dataMiningTask": {
+          "$ref": "#/definitions/DataMiningTask"
+        },
+        "groupBuilder": {
+          "$ref": "#/definitions/Teacher"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "groupLeader": {
+          "$ref": "#/definitions/Student"
+        },
+        "groupName": {
+          "type": "string"
+        }
+      }
+    },
+    "DataMiningGroupDto": {
+      "type": "object",
+      "properties": {
+        "arrangementId": {
+          "type": "string"
+        },
+        "builderId": {
+          "type": "string"
+        },
+        "builtTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "leaderId": {
+          "type": "string"
+        },
+        "memberIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "taskId": {
+          "type": "string"
+        }
+      }
+    },
+    "DataMiningTask": {
+      "type": "object",
+      "properties": {
+        "actualDuration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "actualFinishTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actualStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "algorithms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Algorithm"
+          }
+        },
+        "arrangementId": {
+          "type": "string"
+        },
+        "builtTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "plannedDuration": {
+          "$ref": "#/definitions/MiningTaskDuration"
+        },
+        "plannedFinishTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "plannedStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "attentionRequried",
+            "completed",
+            "inProgress",
+            "incomplete",
+            "newTask"
+          ]
+        },
+        "taskDescription": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "taskName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "DataSetCharacteristic": {
+      "type": "object",
+      "properties": {
+        "abbreviation": {
+          "type": "string"
+        },
+        "charId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "chineseName": {
+          "type": "string"
+        },
+        "englishName": {
+          "type": "string"
+        }
+      }
+    },
+    "DataSetCollection": {
+      "type": "object",
+      "properties": {
+        "area": {
+          "$ref": "#/definitions/AreaType"
+        },
+        "associatedTasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssociatedTask"
+          }
+        },
+        "attributeCharacteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeCharacteristic"
+          }
+        },
+        "collectionId": {
+          "type": "string"
+        },
+        "collectionName": {
+          "type": "string"
+        },
+        "dataSetCharacteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataSetCharacteristic"
+          }
+        },
+        "dataSetFolderPath": {
+          "type": "string"
+        },
+        "dateDonated": {
+          "type": "string",
+          "format": "date"
+        },
+        "descriptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataSetDescription"
+          }
+        },
+        "isMissingValues": {
+          "type": "string"
+        },
+        "numberOfAttributes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfInstances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfWebHits": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DataSetContainer": {
+      "type": "object",
+      "properties": {
+        "containerId": {
+          "type": "string"
+        },
+        "dataSetCollection": {
+          "$ref": "#/definitions/DataSetCollection"
+        },
+        "description": {
+          "type": "string"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "filePath": {
+          "type": "string"
+        },
+        "fileType": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DataSetDescription": {
+      "type": "object",
+      "properties": {
+        "descriptionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "DividingGroupInfo": {
+      "type": "object",
+      "properties": {
+        "dataMiningGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PreviewDividingGroupDto"
+          }
+        },
+        "queryKey": {
+          "type": "string"
+        }
+      }
+    },
+    "FavoriteStatus": {
+      "type": "object",
+      "properties": {
+        "chineseValue": {
+          "type": "string"
+        },
+        "englishValue": {
+          "type": "string"
+        },
+        "favoriteId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GroupingConfigParams": {
+      "type": "object",
+      "properties": {
+        "beginDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "builderId": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "gradient": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isIgnoreArrangedTask": {
+          "type": "boolean"
+        },
+        "specifiedDividingStudents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "taskId": {
+          "type": "string"
+        }
+      }
+    },
+    "MiningTaskDto": {
+      "type": "object",
+      "properties": {
+        "actualFinishTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "actualStartTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "algorithmIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "arrangementId": {
+          "type": "string"
+        },
+        "builtTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "collectionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "groupIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "plannedFinishTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "plannedStartTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "statusId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "taskDescription": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "taskName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "MiningTaskDuration": {
+      "type": "object",
+      "properties": {
+        "durationDay": {
+          "type": "number",
+          "format": "double"
+        },
+        "durationHour": {
+          "type": "number",
+          "format": "double"
+        },
+        "durationMinute": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Page«DataMiningGroup»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataMiningGroup"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Page«DataMiningTask»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataMiningTask"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Page«DataSetCollection»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataSetCollection"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Page«DataSetContainer»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataSetContainer"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Page«Student»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Student"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PreviewDividingGroupDto": {
+      "type": "object",
+      "properties": {
+        "arrangementId": {
+          "type": "string"
+        },
+        "builtTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dataMiningTask": {
+          "$ref": "#/definitions/DataMiningTask"
+        },
+        "groupBuilder": {
+          "$ref": "#/definitions/Teacher"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "groupLeader": {
+          "$ref": "#/definitions/Student"
+        },
+        "groupMembers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Student"
+          }
+        },
+        "groupName": {
+          "type": "string"
+        }
+      }
+    },
+    "ProgressEntity": {
+      "type": "object",
+      "properties": {
+        "pbytesRead": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pcontentLength": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pitems": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Sort": {
+      "type": "object"
+    },
+    "Student": {
+      "type": "object",
+      "properties": {
+        "accountStatus": {
+          "type": "string",
+          "enum": [
+            "LOCKED",
+            "AVAILABLE"
+          ]
+        },
+        "avatar": {
+          "type": "string",
+          "format": "byte"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date"
+        },
+        "className": {
+          "type": "string"
+        },
+        "favorite": {
+          "$ref": "#/definitions/FavoriteStatus"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "string"
+        },
+        "introduction": {
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "profession": {
+          "type": "string"
+        },
+        "publicSalt": {
+          "type": "string"
+        },
+        "regionCode": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/StudentStatus"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "studentName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "StudentDto": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string"
+        },
+        "favorite": {
+          "$ref": "#/definitions/FavoriteStatus"
+        },
+        "finishedTaskCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "grade": {
+          "type": "string"
+        },
+        "profession": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/StudentStatus"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "studentName": {
+          "type": "string"
+        }
+      }
+    },
+    "StudentStatus": {
+      "type": "object",
+      "properties": {
+        "chineseValue": {
+          "type": "string"
+        },
+        "englishValue": {
+          "type": "string"
+        },
+        "statusId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Teacher": {
+      "type": "object",
+      "properties": {
+        "accountStatus": {
+          "type": "string",
+          "enum": [
+            "LOCKED",
+            "AVAILABLE"
+          ]
+        },
+        "avatar": {
+          "type": "string",
+          "format": "byte"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "introduction": {
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "publicSalt": {
+          "type": "string"
+        },
+        "regionCode": {
+          "type": "string"
+        },
+        "teacherId": {
+          "type": "string"
+        },
+        "teacherName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "accountStatus": {
+          "type": "string",
+          "enum": [
+            "LOCKED",
+            "AVAILABLE"
+          ]
+        },
+        "avatar": {
+          "type": "string",
+          "format": "byte"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "introduction": {
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "publicSalt": {
+          "type": "string"
+        },
+        "regionCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "UserDto": {
+      "type": "object",
+      "properties": {
+        "accessStatus": {
+          "type": "string",
+          "enum": [
+            "LOCKED",
+            "AVAILABLE"
+          ]
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "introduction": {
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "name": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "regionCode": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
