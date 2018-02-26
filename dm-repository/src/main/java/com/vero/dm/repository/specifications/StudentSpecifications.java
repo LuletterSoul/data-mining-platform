@@ -39,6 +39,16 @@ public class StudentSpecifications
                                                                  CriteriaQuery<?> query,
                                                                  CriteriaBuilder builder)
     {
+        List<Predicate> totalPredicates = buildStudentPredicates(className, profession, grade, studentIdPrefix, studentName, root, builder);
+        query.where(builder.and(toPredicates(totalPredicates)));
+        return query.getRestriction();
+    }
+
+    public static Predicate[] toPredicates(List<Predicate> predicates) {
+        return predicates.toArray(new Predicate[predicates.size()]);
+    }
+
+    private static List<Predicate> buildStudentPredicates(String className, String profession, String grade, String studentIdPrefix, String studentName, Root<Student> root, CriteriaBuilder builder) {
         Predicate classNamePredicate = builder.equal(root.get(Student_.CLASS_NAME), className);
         Predicate professionPredicate = builder.equal(root.get(Student_.PROFESSION), profession);
         Predicate gradePredicate = builder.equal(root.get(Student_.GRADE), grade);
@@ -67,8 +77,7 @@ public class StudentSpecifications
         {
             totalPredicates.add(studentNamePredicate);
         }
-        query.where(builder.and(totalPredicates.toArray(new Predicate[totalPredicates.size()])));
-        return query.getRestriction();
+        return totalPredicates;
     }
 
     public static Specification<Student> findStudentsWithoutGroup(String className,
@@ -78,8 +87,8 @@ public class StudentSpecifications
                                                                   Date beginDate, Date endDate)
     {
         return (root, query, cb) -> {
-            Predicate andPredicate = buildStudentMultipleParamsPredicate(className, profession,
-                grade, studentIdPrefix, studentName, root, query, cb);
+            List<Predicate> totalPredicates  = buildStudentPredicates(className, profession,
+                grade, studentIdPrefix, studentName, root, cb);
             if (!ObjectUtils.isEmpty(beginDate) && !ObjectUtils.isEmpty(endDate))
             {
                 Subquery<Student> subQuery = query.subquery(Student.class);
@@ -92,11 +101,9 @@ public class StudentSpecifications
                     join.get(DataMiningTask_.PLANNED_FINISH_TIME), endDate);
                 subQuery.where(cb.and(dateGq, dateLq));
                 Predicate notIn = cb.not(cb.exists(subQuery));
-                query.where(andPredicate, notIn);
+                totalPredicates.add(notIn);
             }
-            else{
-                query.where(andPredicate);
-            }
+            query.where(toPredicates(totalPredicates));
             return query.getRestriction();
         };
 
