@@ -70,7 +70,9 @@ public class Student extends User implements Serializable
      */
     @ManyToMany
     @JsonIgnore
-    @JoinTable(name = "group_student_rel", joinColumns = @JoinColumn(name = "memberId", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
+    @JoinTable(name = "group_student_rel",
+                joinColumns = @JoinColumn(name = "memberId", referencedColumnName = "userId"),
+                inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
     private Set<DataMiningGroup> miningGroups;
 
     public Student()

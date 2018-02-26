@@ -80,6 +80,17 @@ public class StudentSpecifications
         return totalPredicates;
     }
 
+    /**
+     * 获取规定时间段没有发掘任务在身的学生
+     * @param className
+     * @param profession
+     * @param grade
+     * @param studentIdPrefix
+     * @param studentName
+     * @param beginDate
+     * @param endDate
+     * @return
+     */
     public static Specification<Student> findStudentsWithoutGroup(String className,
                                                                   String profession, String grade,
                                                                   String studentIdPrefix,
@@ -91,17 +102,18 @@ public class StudentSpecifications
                 grade, studentIdPrefix, studentName, root, cb);
             if (!ObjectUtils.isEmpty(beginDate) && !ObjectUtils.isEmpty(endDate))
             {
-                Subquery<Student> subQuery = query.subquery(Student.class);
+                Subquery<String> subQuery = query.subquery(String.class);
                 Root<Student> subRoot = subQuery.from(Student.class);
-                Join<DataMiningGroup, DataMiningTask> join = subRoot.join(Student_.miningGroups,
-                    JoinType.LEFT).join(DataMiningGroup_.dataMiningTask, JoinType.LEFT);
+                Join<DataMiningGroup, DataMiningTask> taskJoin = subRoot.join(Student_.miningGroups, JoinType.LEFT).join(DataMiningGroup_.dataMiningTask, JoinType.LEFT);
                 Predicate dateGq = cb.greaterThanOrEqualTo(
-                    join.get(DataMiningTask_.PLANNED_START_TIME), beginDate);
-                Predicate dateLq = cb.lessThanOrEqualTo(
-                    join.get(DataMiningTask_.PLANNED_FINISH_TIME), endDate);
+                        taskJoin.get(DataMiningTask_.PLANNED_START_TIME), beginDate);
+                Predicate dateLq = cb.lessThanOrEqualTo(taskJoin.get(DataMiningTask_.PLANNED_FINISH_TIME), endDate);
                 subQuery.where(cb.and(dateGq, dateLq));
-                Predicate notIn = cb.not(cb.exists(subQuery));
+                //注意子查询不能脱离父根使用,否则抛别名匹配错误的异常
+                subQuery.select(subRoot.get(Student_.studentId));
+                Predicate notIn = cb.not(cb.in(root.get(Student_.studentId)).value(subQuery));
                 totalPredicates.add(notIn);
+//                return subQuery.getRestriction();
             }
             query.where(toPredicates(totalPredicates));
             return query.getRestriction();
