@@ -11,22 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DataMiningPlatformWebApplication.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Dev.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/RedisConfiguration.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/RedisConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/annotations/ExcelModelScan.java" afterPath="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/annotations/ExcelModelScan.java" />
-      <change beforePath="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/config/ExcelModuleConfig.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/scan/ExcelModuleDefinitionRegistrar.java" afterPath="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/scan/ExcelModuleDefinitionRegistrar.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityDevConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityDevConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityProdConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityProdConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/dm-web/pom.xml" afterPath="$PROJECT_DIR$/dm-web/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" afterPath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
-      <change beforePath="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties" afterPath="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties" />
-      <change beforePath="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.properties" afterPath="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.properties" />
-      <change beforePath="$PROJECT_DIR$/dm-web/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/dm-web/src/main/resources/application.properties" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/resources/dm.sql" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -246,11 +233,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComponentScanBeanDefinitionParser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ComponentScanBeanDefinitionParser.java" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/ComponentScanBeanDefinitionParser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="823">
               <caret line="66" column="61" lean-forward="true" selection-start-line="66" selection-start-column="61" selection-end-line="66" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -341,16 +338,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5811">
               <caret line="192" column="0" lean-forward="false" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -573,81 +560,28 @@
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="importer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="entry" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swagger" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
@@ -725,6 +659,7 @@
       <recent name="com.vero.dm.util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitHub\data-minning-platform\dm-repository\src\main\resources" />
       <recent name="F:\GitHup\data-minning-platform\dm-web\src\main\resources" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -1467,7 +1402,7 @@
       <workItem from="1519645660304" duration="14121000" />
       <workItem from="1519721401470" duration="31954000" />
       <workItem from="1519835193741" duration="544000" />
-      <workItem from="1519835791855" duration="2205000" />
+      <workItem from="1519835791855" duration="2301000" />
     </task>
     <task id="LOCAL-00001" summary="新增spring data jpa支持的dao">
       <created>1517282324742</created>
@@ -1588,7 +1523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519823211781</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="增设prod dev环境一键切换">
+      <created>1519838032673</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1519838032673</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1615,7 +1557,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="719582000" />
+    <option name="totallyTimeSpent" value="719678000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1645,7 +1587,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.018760195" sideWeight="0.47042367" order="20" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.030995106" sideWeight="0.47042367" order="20" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077302635" sideWeight="0.48174006" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1656,7 +1598,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.079119086" sideWeight="0.47282174" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08517699" sideWeight="0.49785638" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28303427" sideWeight="0.49570817" order="18" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12230216" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13589129" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -1729,7 +1671,8 @@
     <MESSAGE value="增加枚举、日期的param converter,新增了分组的查询api" />
     <MESSAGE value="修复查询空闲学生的api" />
     <MESSAGE value="异常表增强" />
-    <option name="LAST_COMMIT_MESSAGE" value="异常表增强" />
+    <MESSAGE value="增设prod dev环境一键切换" />
+    <option name="LAST_COMMIT_MESSAGE" value="增设prod dev环境一键切换" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1781,13 +1724,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/StudentJpaRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="40" column="18" lean-forward="false" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AssociatedTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
@@ -2165,6 +2101,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="823">
           <caret line="66" column="61" lean-forward="true" selection-start-line="66" selection-start-column="61" selection-end-line="66" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
