@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.vero.dm.model.DataMiningGroup;
 
+import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,5 +37,9 @@ public class DividingGroupInfo
      */
     private List<PreviewDividingGroupDto> dataMiningGroups;
 
+    /**
+     * 一键分组关联的唯一任务
+     */
+    private DataMiningTask dataMiningTask;
 
 }

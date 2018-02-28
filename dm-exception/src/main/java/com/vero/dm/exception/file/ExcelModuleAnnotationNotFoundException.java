@@ -9,8 +9,8 @@ import com.vero.dm.exception.error.ExceptionCode;
  * @since data-mining-platform
  */
 
-public class ExcelModuleAnnotationNotFound extends FileOperationException {
-    public ExcelModuleAnnotationNotFound(String message, ExceptionCode errorCode) {
+public class ExcelModuleAnnotationNotFoundException extends FileOperationException {
+    public ExcelModuleAnnotationNotFoundException(String message, ExceptionCode errorCode) {
         super(message, errorCode);
     }
 }

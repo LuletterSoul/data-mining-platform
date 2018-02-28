@@ -6,10 +6,6 @@ import static org.springframework.http.HttpStatus.*;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
-import com.vero.dm.exception.business.StudentIdDuplicatedException;
-import com.vero.dm.exception.file.ExcelModuleAnnotationNotFound;
-import com.vero.dm.exception.file.SetZipException;
-import com.vero.dm.exception.file.UnsupportedFileType;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
@@ -27,10 +23,15 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.vero.dm.exception.auth.*;
+import com.vero.dm.exception.business.StudentIdDuplicatedException;
 import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.error.ErrorInfo;
 import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.exception.file.ExcelModuleAnnotationNotFoundException;
 import com.vero.dm.exception.file.ExcelModuleInValidException;
+import com.vero.dm.exception.file.SetZipException;
+import com.vero.dm.exception.file.UnsupportedFileTypeException;
+import com.vero.dm.exception.group.SpecificStudentNotFoundException;
 
 
 /**
@@ -158,8 +159,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             new HttpHeaders(), CONFLICT, request);
     }
 
-
-
     // 412
 
     // 500
@@ -282,35 +281,44 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(value = {ExcelModuleAnnotationNotFound.class})
-    public ResponseEntity<Object> handleExcelModuleAnnotationNotFound(final ExcelModuleAnnotationNotFound ex,
-                                                                    final WebRequest request)
+    @ExceptionHandler(value = {ExcelModuleAnnotationNotFoundException.class})
+    public ResponseEntity<Object> handleExcelModuleAnnotationNotFound(final ExcelModuleAnnotationNotFoundException ex,
+                                                                      final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-                HttpStatus.ACCEPTED, HttpStatus.INTERNAL_SERVER_ERROR, request);
+            HttpStatus.ACCEPTED, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-    @ExceptionHandler({UnsupportedFileType.class})
-    public ResponseEntity<Object> handleUnsupportedFileType(final UnsupportedFileType ex,
-                                                   final WebRequest request)
+    @ExceptionHandler({UnsupportedFileTypeException.class})
+    public ResponseEntity<Object> handleUnsupportedFileType(final UnsupportedFileTypeException ex,
+                                                            final WebRequest request)
     {
-        return handBusinessExceptionInternal(ex, ex.getErrorCode(),
-                new HttpHeaders(), HttpStatus.FORBIDDEN,HttpStatus.FORBIDDEN, request);
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
     }
 
     @ExceptionHandler({StudentIdDuplicatedException.class})
     public ResponseEntity<Object> handleStudentIdDuplicatedException(final StudentIdDuplicatedException ex,
-                                                   final WebRequest request)
-    {
-        return handBusinessExceptionInternal(ex, ex.getErrorCode(),
-                new HttpHeaders(), HttpStatus.CONFLICT,HttpStatus.CONFLICT, request);
-    }
-    @ExceptionHandler({SetZipException.class})
-    public ResponseEntity<Object> handleSetZipException(final SetZipException ex,
                                                                      final WebRequest request)
     {
-        return handBusinessExceptionInternal(ex, ex.getErrorCode(),
-                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR,HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.CONFLICT, HttpStatus.CONFLICT, request);
+    }
+
+    @ExceptionHandler({SpecificStudentNotFoundException.class})
+    public ResponseEntity<Object> handleSpecifStudentNotFoundException(final SpecificStudentNotFoundException ex,
+                                                                       final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler({SetZipException.class})
+    public ResponseEntity<Object> handleSetZipException(final SetZipException ex,
+                                                        final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+            HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
 }

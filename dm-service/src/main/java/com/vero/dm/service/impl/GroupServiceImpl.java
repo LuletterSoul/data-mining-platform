@@ -6,19 +6,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.vero.dm.model.*;
+import com.vero.dm.util.DateStyle;
+import com.vero.dm.util.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.Student;
-import com.vero.dm.model.Teacher;
 import com.vero.dm.repository.dto.*;
 import com.vero.dm.service.GroupService;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 
 /**
@@ -128,10 +128,13 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                 perGroupStudents);
             previewDefaultGroups.add(group);
         }
+//        if (!StringUtils.isEmpty(params.getBuildingKey())) {
+//            cacheGroups.put(queryKey, previewDefaultGroups);
+//        }
         String queryKey = UUID.randomUUID().toString();
-        cacheGroups.put(queryKey, previewDefaultGroups);
+
         return new DividingGroupInfo(queryKey,
-            PreviewDividingGroupDto.build(previewDefaultGroups));
+            PreviewDividingGroupDto.build(previewDefaultGroups),task);
     }
 
     private DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,
@@ -143,7 +146,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setDataMiningTask(taskJpaRepository.findOne(taskId));
         group.setTeacherBuilder(teacherJpaRepository.findOne(builderId));
         group.setBuiltTime(new Date());
-        group.setGroupName("Group_" + group.getBuiltTime());
+        group.setGroupName("Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM_SS));
         group.setArrangementId(String.valueOf(arrangementId));
         return group;
     }
@@ -176,7 +179,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         }
         else if (studentIds != null && !studentIds.isEmpty())
         {
-            return studentJpaRepository.findAll(studentIds);
+            return studentJpaRepository.findByStudentIds(studentIds);
         }
         else if (params.getIsIgnoreArrangedTask())
         {
@@ -245,6 +248,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         groupJpaRepository.save(group);
         return StudentDto.build(group.getGroupLeader());
     }
+
 
     @Override
     public List<StudentDto> fetchGroupMembers(String groupId)

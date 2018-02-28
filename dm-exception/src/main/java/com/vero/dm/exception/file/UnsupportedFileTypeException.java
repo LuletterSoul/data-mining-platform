@@ -9,9 +9,9 @@ import com.vero.dm.exception.error.ExceptionCode;
  * @since data-mining-platform
  */
 
-public class UnsupportedFileType extends FileOperationException {
+public class UnsupportedFileTypeException extends FileOperationException {
 
-    public UnsupportedFileType(String message, ExceptionCode errorCode) {
+    public UnsupportedFileTypeException(String message, ExceptionCode errorCode) {
         super(message, errorCode);
     }
 }

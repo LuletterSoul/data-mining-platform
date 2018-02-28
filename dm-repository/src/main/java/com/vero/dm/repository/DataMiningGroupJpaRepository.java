@@ -3,6 +3,7 @@ package com.vero.dm.repository;
 
 import java.util.List;
 
+import com.vero.dm.model.DataSetCollection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

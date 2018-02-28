@@ -95,11 +95,17 @@ public class MiningTaskController
             HttpStatus.CREATED);
     }
 
-    @ApiOperation("获取与此任务相关联的分组")
+    @ApiOperation("获取执行此任务分组")
     @GetMapping(value = "/{taskId}/groups")
     public ResponseEntity<List<DataMiningGroup>> groups(@PathVariable("taskId") String taskId)
     {
         return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskId), HttpStatus.OK);
+    }
+
+    @ApiOperation("获取该任务分配的数据集")
+    @GetMapping(value = "/{taskId}/arranged_collections")
+    public ResponseEntity<List<DataSetCollection>> collection(@PathVariable("taskId") String taskId) {
+        return null;
     }
 
 //    @ApiOperation("为分组分配一个数据挖掘任务")
@@ -147,7 +153,7 @@ public class MiningTaskController
             HttpStatus.CREATED);
     }
 
-    @ApiOperation("获取数据集")
+    @ApiOperation("获取与此任务相关联的分组")
     @GetMapping(value = "/{taskId}/collections")
     public ResponseEntity<List<DataSetCollection>> getInvolvedSets(@PathVariable("taskId") String taskId)
     {

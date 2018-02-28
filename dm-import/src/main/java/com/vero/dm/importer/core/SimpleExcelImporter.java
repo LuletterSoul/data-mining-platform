@@ -9,9 +9,9 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.vero.dm.exception.error.ExceptionCode;
-import com.vero.dm.exception.file.ExcelModuleAnnotationNotFound;
+import com.vero.dm.exception.file.ExcelModuleAnnotationNotFoundException;
 import com.vero.dm.exception.file.ExcelModuleInValidException;
-import com.vero.dm.exception.file.UnsupportedFileType;
+import com.vero.dm.exception.file.UnsupportedFileTypeException;
 import com.vero.dm.importer.annotations.ExcelAnnotationUtils;
 import com.vero.dm.importer.annotations.ExcelColumn;
 import com.vero.dm.importer.annotations.ExcelModel;
@@ -50,7 +50,7 @@ public class SimpleExcelImporter<E> implements ExcelImporter<E>
         if (!clazz.isAnnotationPresent(ExcelModel.class))
         {
             String message = "从Excel文件导入数据的类模型必须含有@" + ExcelModel.class.getSimpleName() + "注解";
-            throw new ExcelModuleAnnotationNotFound(message,
+            throw new ExcelModuleAnnotationNotFoundException(message,
                 ExceptionCode.ExcelAnnotationNotFound);
         }
     }
@@ -132,7 +132,7 @@ public class SimpleExcelImporter<E> implements ExcelImporter<E>
     {
         if (!file.getPath().endsWith(ExcelOperationConstants.XLSX_SUFFIX))
         {
-            throw new UnsupportedFileType(
+            throw new UnsupportedFileTypeException(
                 "Unsupported File Type,Required .xlsl suffix Excel File.",
                 ExceptionCode.UnsupportedFileType);
         }

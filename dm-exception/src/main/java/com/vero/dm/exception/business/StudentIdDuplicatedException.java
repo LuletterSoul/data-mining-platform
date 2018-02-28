@@ -1,6 +1,7 @@
 package com.vero.dm.exception.business;
 
 
+import com.vero.dm.exception.common.DataDuplicatedException;
 import com.vero.dm.exception.error.ExceptionCode;
 
 
@@ -10,8 +11,10 @@ import com.vero.dm.exception.error.ExceptionCode;
  * @since data-mining-platform
  */
 
-public class StudentIdDuplicatedException extends BusinessException
+public class StudentIdDuplicatedException extends DataDuplicatedException
 {
+    private static final long serialVersionUID = -1206496777994801196L;
+
     public StudentIdDuplicatedException(String message, ExceptionCode errorCode)
     {
         super(message, errorCode);

@@ -52,9 +52,9 @@ public class TaskSpecifications
             if (!ObjectUtils.isEmpty(builtTimeEnd)) {
                 totalPredicates.add(builtTimeEndPredicate);
             }
-//            if (!ObjectUtils.isEmpty(taskStatus)) {
-//                totalPredicates.add(statusPredicate);
-//            }
+            if (!ObjectUtils.isEmpty(taskStatus)) {
+                totalPredicates.add(statusPredicate);
+            }
             query.where(cb.and(totalPredicates.toArray(new Predicate[totalPredicates.size()])));
             return query.getRestriction();
         };

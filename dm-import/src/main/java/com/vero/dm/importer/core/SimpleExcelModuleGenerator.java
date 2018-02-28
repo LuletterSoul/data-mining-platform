@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import com.vero.dm.exception.error.ExceptionCode;
-import com.vero.dm.exception.file.ExcelModuleAnnotationNotFound;
+import com.vero.dm.exception.file.ExcelModuleAnnotationNotFoundException;
 import org.apache.poi.hssf.usermodel.DVConstraint;
 import org.apache.poi.hssf.usermodel.HSSFDataValidation;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -45,7 +45,7 @@ public class SimpleExcelModuleGenerator implements ExcelModuleGenerator
         if (!clazz.isAnnotationPresent(ExcelModel.class))
         {
             String message = "Unsupported Annotation for Excel Module Scanning .";
-            throw new ExcelModuleAnnotationNotFound(message, ExceptionCode.ExcelAnnotationNotFound);
+            throw new ExcelModuleAnnotationNotFoundException(message, ExceptionCode.ExcelAnnotationNotFound);
         }
         ExcelModel excelModel = clazz.getAnnotation(ExcelModel.class);
         // 获取注解信息

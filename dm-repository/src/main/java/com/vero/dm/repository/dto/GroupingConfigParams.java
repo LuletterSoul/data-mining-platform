@@ -63,4 +63,9 @@ public class GroupingConfigParams
      */
 //    @ApiParam(value = "建队人")
     private String builderId;
+
+    /**
+     * 一键分组的代号
+     */
+    private String buildingKey;
 }

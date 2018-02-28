@@ -33,7 +33,6 @@ public class Student extends User implements Serializable
 
     @ExcelColumn(name = "学生姓名")
     private String studentName;
-
     /**
      * 学号唯一
      */
