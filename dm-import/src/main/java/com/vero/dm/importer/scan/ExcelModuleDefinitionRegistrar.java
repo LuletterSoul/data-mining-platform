@@ -71,6 +71,7 @@ public class ExcelModuleDefinitionRegistrar implements ImportBeanDefinitionRegis
             importingClassMetadata.getAnnotationAttributes(ExcelModelScan.class.getName()));
         String[] basePackages = annAttr.getStringArray("value");
         basePackages = extractBasePackages(importingClassMetadata, annAttr, basePackages);
+        log.info("Base packages:[{}]", basePackages[0]);
         List<TypeFilter> includeFilters = extractTypeFilters(
             annAttr.getAnnotationArray("includeFilters"));
         // 增加一个包含的过滤器,扫描到的类只要不是抽象的,接口,枚举,注解,及匿名类那么就算是符合的

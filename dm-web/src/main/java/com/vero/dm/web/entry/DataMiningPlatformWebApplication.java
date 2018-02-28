@@ -1,12 +1,14 @@
 package com.vero.dm.web.entry;
 
 
+import com.vero.dm.importer.annotations.ExcelModelScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @since data-minning-platform
  */
 
+@Configuration
+@ExcelModelScan(basePackages = {"com.vero.dm.model"})
 @ComponentScan(basePackages = {"com.vero.dm"}) // 扫描该包路径下的所有spring组件
 @SpringBootApplication
 @EnableTransactionManagement(proxyTargetClass = true)

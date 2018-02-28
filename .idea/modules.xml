@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/data-mining-platform.iml" filepath="$PROJECT_DIR$/data-mining-platform.iml" />
       <module fileurl="file://$PROJECT_DIR$/dm-api/dm-api.iml" filepath="$PROJECT_DIR$/dm-api/dm-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/dm-exception/dm-exception.iml" filepath="$PROJECT_DIR$/dm-exception/dm-exception.iml" />
       <module fileurl="file://$PROJECT_DIR$/dm-import/dm-import.iml" filepath="$PROJECT_DIR$/dm-import/dm-import.iml" />

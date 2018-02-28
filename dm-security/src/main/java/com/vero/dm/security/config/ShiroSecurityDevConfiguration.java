@@ -282,8 +282,8 @@ public class ShiroSecurityDevConfiguration
         filterChainDefinitionMap.put("/public_salt/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/api/**",
-            "noSess,allowOriginFilter,preLogout,statelessFilter");
-        filterChainDefinitionMap.put("/**", "noSess,allowOriginFilter,preLogout");
+            "noSess,allowOriginFilter,preLogout");
+        filterChainDefinitionMap.put("/**", "noSess,allowOriginFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 

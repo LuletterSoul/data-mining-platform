@@ -21,7 +21,6 @@ import com.vero.dm.importer.scan.ExcelModuleDefinitionRegistrar;
 @Retention(RetentionPolicy.RUNTIME)
 @Import(ExcelModuleDefinitionRegistrar.class)
 public @interface ExcelModelScan {
-
     String[] value() default {};
 
     String[] basePackages() default {};

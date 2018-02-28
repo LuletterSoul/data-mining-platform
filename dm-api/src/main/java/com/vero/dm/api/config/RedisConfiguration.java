@@ -29,15 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 public class RedisConfiguration extends CachingConfigurerSupport
 {
-    @Value("${spring.redis.host}")
-    private String host;
-
-    @Value("${spring.redis.port}")
-    private int port;
-
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-
     // 自定义缓存key生成策略
     // @Bean
     // public KeyGenerator keyGenerator()
