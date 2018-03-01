@@ -8,12 +8,14 @@ import javax.sql.DataSource;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
+@Profile("dev")
 @Configuration
 @PropertySource(value = "classpath:datasource.properties")
 public class ComboPooledDataSourceConfig implements EnvironmentAware

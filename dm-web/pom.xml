@@ -9,7 +9,9 @@
     </parent>
     <artifactId>dm-web</artifactId>
     <modelVersion>4.0.0</modelVersion>
-
+    <properties>
+        <docker.image.prefix>dm</docker.image.prefix>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.vero.dm</groupId>
@@ -17,15 +19,10 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
     <build>
+        <finalName>dm-platform</finalName>
         <plugins>
-            <!--<plugin>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<source>1.8</source>-->
-                    <!--<target>1.8</target>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -43,6 +40,23 @@
                         <!--</configuration>-->
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.11</version>
+                <configuration>
+                    <dockerHost>http://47.95.113.210:2375</dockerHost>
+                    <imageName>dm-web</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
