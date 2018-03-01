@@ -202,8 +202,7 @@ public class ExcelModuleDefinitionRegistrar implements ImportBeanDefinitionRegis
             log.debug("开始扫描指定包{}下的所有类", basePackage);
         }
         List<Class<?>> candidates = new ArrayList<>();
-        String packageSearchPath = CLASSPATH_ALL_URL_PREFIX + replaceDotByDelimiter(basePackage)
-                                   + '/' + RESOURCE_PATTERN;
+        String packageSearchPath = CLASSPATH_ALL_URL_PREFIX + replaceDotByDelimiter(basePackage) + RESOURCE_PATTERN;
         ResourceLoader resourceLoader = new DefaultResourceLoader();
         MetadataReaderFactory readerFactory = new SimpleMetadataReaderFactory(resourceLoader);
         Resource[] resources = ResourcePatternUtils.getResourcePatternResolver(
