@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.vero.dm</groupId>
     <artifactId>data-mining-platform</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <modules>
         <module>dm-model</module>
         <module>dm-import</module>

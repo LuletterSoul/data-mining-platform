@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "area_info")
+@Table(name = "area_info",schema = "")
 public class AreaType
 {
     @Id

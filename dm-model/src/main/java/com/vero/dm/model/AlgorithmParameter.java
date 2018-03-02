@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "algorithm_param")
+@Table(name = "algorithm_param",schema = "")
 public class AlgorithmParameter
 {
     @Id

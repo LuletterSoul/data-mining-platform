@@ -27,9 +27,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @description
  * @modified by:
  */
-@Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@EnableJpaRepositories("com.vero.dm.repository")
+
 @PropertySource(value = "classpath:hibernate.properties", ignoreResourceNotFound = true)
 @EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfiguration

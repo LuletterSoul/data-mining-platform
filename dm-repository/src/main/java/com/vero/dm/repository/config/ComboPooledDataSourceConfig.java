@@ -16,7 +16,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
 @Profile("dev")
-@Configuration
 @PropertySource(value = "classpath:datasource.properties")
 public class ComboPooledDataSourceConfig implements EnvironmentAware
 

@@ -11,30 +11,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-exception/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-exception/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-import/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-import/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-model/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-model/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-repository/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-repository/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-repository/src/main/resources/datasource-dev.properties" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-security/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-security/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-service/src/main/docker/Dockerfile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-service/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-util/src/main/docker/DockerFile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-util/src/main/docker/runboot.sh" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/docker/runboot.sh" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-web/src/main/resources/application.yml" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/eclipseCodeFormatter.xml" afterPath="$PROJECT_DIR$/.idea/eclipseCodeFormatter.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/dm-api/pom.xml" afterPath="$PROJECT_DIR$/dm-api/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Algorithm.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Algorithm.java" />
+      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AlgorithmParameter.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AlgorithmParameter.java" />
+      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AreaType.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AreaType.java" />
       <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/resources/datasource-dev.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/resources/datasource.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/resources/hibernate.properties" afterPath="" />
       <change beforePath="$PROJECT_DIR$/dm-web/pom.xml" afterPath="$PROJECT_DIR$/dm-web/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" afterPath="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
+      <change beforePath="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/dm-web/src/main/resources/application.properties" afterPath="" />
       <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -74,6 +70,17 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="data_mining@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_mining@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_mining@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="data_mining: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
     </expand>
     <select />
   </component>
@@ -85,21 +92,282 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-web/pom.xml">
+      <file leaf-file-name="PhysicalNamingStrategyStandardImpl.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/boot/model/naming/PhysicalNamingStrategyStandardImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="49" column="37" lean-forward="false" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+            <state relative-caret-position="1080">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding>
+                <element signature="e#1280#1281#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ejb3JoinColumn.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/Ejb3JoinColumn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29700">
+              <caret line="916" column="0" lean-forward="false" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Ejb3Column.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/Ejb3Column.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7488">
+              <caret line="301" column="0" lean-forward="false" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpringPhysicalNamingStrategy.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/1.5.9.RELEASE/spring-boot-1.5.9.RELEASE-sources.jar!/org/springframework/boot/orm/jpa/hibernate/SpringPhysicalNamingStrategy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PhysicalNamingStrategy.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/boot/model/naming/PhysicalNamingStrategy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComboPooledDataSourceConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="favorite_status" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.favorite_status">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-dev.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-prod.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-web/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="runboot.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/runboot.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="730">
+              <caret line="36" column="43" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="36" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1800">
+              <caret line="50" column="12" lean-forward="false" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+            <state relative-caret-position="108">
+              <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_mining.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6408">
+              <caret line="178" column="44" lean-forward="false" selection-start-line="178" selection-start-column="44" selection-end-line="178" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_role_re" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_role_re">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/42fe0f99-3786-404e-a460-87a99a43df9a/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1440">
+              <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_param" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_param">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_type" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_type">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_type_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_type_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attr_char_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.attr_char_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attr_feature_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.attr_feature_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collection_attr_char_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_attr_char_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collection_char_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_char_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HibernateConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1692">
+              <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -178,22 +446,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/PreviewDividingGroupDto.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskConverter.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningTaskStatus.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningTaskJpaRepository.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/BaseEnum.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/UniversalEnumConverterFactory.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/DateConverterFactory.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/DateConverter.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/SpringMvcConfiguration.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/42fe0f99-3786-404e-a460-87a99a43df9a/console.sql" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/StudentSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java" />
@@ -220,15 +472,31 @@
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/RedisConfiguration.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityDevConfiguration.java" />
         <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.properties" />
-        <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties" />
         <option value="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/config/ExcelModuleConfig.java" />
         <option value="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/annotations/ExcelModelScan.java" />
-        <option value="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
         <option value="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/scan/ExcelModuleDefinitionRegistrar.java" />
         <option value="$PROJECT_DIR$/dm-web/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/dm-web/src/main/docker/DockerFile" />
+        <option value="$PROJECT_DIR$/dm-repository/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" />
+        <option value="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/42fe0f99-3786-404e-a460-87a99a43df9a/console.sql" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Algorithm.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AlgorithmParameter.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AreaType.java" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/application-dev.yml" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/application-prod.yml" />
+        <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/datasource-dev.properties" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/database-dev.yml" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/database-prod.yml" />
+        <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml" />
+        <option value="$PROJECT_DIR$/dm-api/pom.xml" />
         <option value="$PROJECT_DIR$/dm-web/pom.xml" />
+        <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml" />
+        <option value="$PROJECT_DIR$/dm-web/src/main/resources/application.yml" />
       </list>
     </option>
   </component>
@@ -264,19 +532,15 @@
           <item name="data-mining-platform" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="dm-api" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
       </expand>
       <select />
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-24" />
-    <option name="y" value="99" />
+    <option name="x" value="199" />
+    <option name="y" value="87" />
     <option name="width" value="1938" />
-    <option name="height" value="1098" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -296,7 +560,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -308,7 +571,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -318,58 +582,18 @@
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="docker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: org.apache.shiro:shiro-web:1.4.0" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.apache.shiro:shiro-web:1.4.0" type="70bed36:NamedLibraryElementNode" />
-              <item name="shiro-web-1.4.0.jar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,7 +604,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="F:\node.js\node.exe" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15578231" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -393,6 +617,7 @@
     <property name="RequestMappingsPanelOrder2" value="2" />
     <property name="LombokPluginEnabledInProject" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/GitHup/data-minning-platform/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java&#10;RESOURCE_PATTERN&#9;PSI&#9;JAVA://org.springframework.oxm.jaxb.ClassPathJaxb2TypeScanner#RESOURCE_PATTERN&#10;identityGenerator&#9;PSI&#9;JAVA://org.hibernate.id.IdentityGenerator" />
+    <property name="settings.editor.splitter.proportion" value="0.19709794" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -413,11 +638,11 @@
       <recent name="com.vero.dm.util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\GitHup\data-minning-platform\dm-web\src\main\resources" />
+      <recent name="F:\GitHup\data-minning-platform\dm-repository\src\main\resources" />
       <recent name="D:\GitHub\data-minning-platform\dm-util\src\main\docker" />
       <recent name="D:\GitHub\data-minning-platform\dm-service\src\main\docker" />
       <recent name="D:\GitHub\data-minning-platform\dm-security\src\main\docker" />
-      <recent name="D:\GitHub\data-minning-platform\dm-repository\src\main\docker" />
-      <recent name="D:\GitHub\data-minning-platform\dm-model\src\main\docker" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.vero.dm.security.strategy" />
@@ -597,7 +822,7 @@
               <map />
             </option>
             <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
@@ -614,7 +839,7 @@
             <option name="goals">
               <list>
                 <option value="clean" />
-                <option value="package" />
+                <option value="install" />
                 <option value="docker:build" />
                 <option value="-DskipTests" />
               </list>
@@ -1215,6 +1440,9 @@
       <workItem from="1519897096646" duration="4521000" />
       <workItem from="1519903783686" duration="778000" />
       <workItem from="1519920058742" duration="6422000" />
+      <workItem from="1519953513615" duration="4219000" />
+      <workItem from="1519957796633" duration="2874000" />
+      <workItem from="1519961449193" duration="1875000" />
     </task>
     <task id="LOCAL-00001" summary="新增spring data jpa支持的dao">
       <created>1517282324742</created>
@@ -1369,7 +1597,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="738875000" />
+    <option name="totallyTimeSpent" value="747947000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1381,35 +1609,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="2578" height="1420" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53181076" sideWeight="0.519984" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7345133" sideWeight="0.16917293" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.49785638" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10391687" sideWeight="0.73790675" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16648765" sideWeight="0.8495575" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10391687" sideWeight="0.26209322" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16648765" sideWeight="0.15044248" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.041598696" sideWeight="0.47042367" order="20" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6106195" sideWeight="0.47042367" order="20" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60946745" sideWeight="0.83082706" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41598696" sideWeight="0.4696243" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0725938" sideWeight="0.480016" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08517699" sideWeight="0.49785638" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28303427" sideWeight="0.4940048" order="18" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20103917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18796992" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1420,12 +1647,13 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06820623" sideWeight="0.49548534" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077302635" sideWeight="0.48174006" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63163716" sideWeight="0.48174006" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.4816147" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19247788" sideWeight="0.4816147" order="19" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18584071" sideWeight="0.49570355" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1615,7 +1843,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="767" />
+      <option name="time" value="769" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
@@ -1629,533 +1857,275 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/ClassPathScanningCandidateComponentProvider.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/convert/support/GenericConversionService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="277" column="0" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="12348">
+          <caret line="394" column="0" lean-forward="false" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/util/ResourceUtils.java">
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/ContainerSpecifications.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="279" column="26" lean-forward="false" selection-start-line="279" selection-start-column="26" selection-end-line="279" selection-end-column="26" />
+        <state relative-caret-position="202">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/io/ResourceLoader.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/convert/support/ConversionUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="33" column="26" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        <state relative-caret-position="684">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/util/PathMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.favorite_stu_rel">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/util/AntPathMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_set_description">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/io/support/ResourcePatternUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_set_char">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/io/support/PathMatchingResourcePatternResolver.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/ImprovedNamingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
-          <folding>
-            <element signature="e#11498#11499#0" expanded="false" />
-            <element signature="e#11528#11529#0" expanded="false" />
-            <element signature="e#14116#14126#0" expanded="false" />
-            <element signature="e#18948#18958#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1039">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/List.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.9.RELEASE/spring-data-jpa-1.11.9.RELEASE-sources.jar!/org/springframework/data/jpa/repository/JpaSpecificationExecutor.java">
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/hibernate.properties" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/DefaultComponentSafeNamingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="54" column="12" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+        <state relative-caret-position="252">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/DefaultNamingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3627">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitattributes">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.9.RELEASE/spring-boot-autoconfigure-1.5.9.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/orm/jpa/JpaProperties.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="7632">
+          <caret line="277" column="20" lean-forward="false" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_set_container">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-util/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="39" />
-          <folding />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.favorite_status">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/annotations/ExcelAnnotationUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1131">
-          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-          <folding />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_role_re">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/core/DefaultExcelModuleManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-          <folding />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_info">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/scan/ExcelModuleDefinitionRegistrar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6825">
-          <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
-          <folding>
-            <element signature="e#10045#10046#0" expanded="false" />
-            <element signature="e#10103#10104#0" expanded="false" />
-          </folding>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_task_rel">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.9.RELEASE/spring-boot-autoconfigure-1.5.9.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/web/EmbeddedServletContainerAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2730">
-          <caret line="118" column="24" lean-forward="false" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/io/support/ResourcePatternResolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1677">
-          <caret line="60" column="75" lean-forward="false" selection-start-line="60" selection-start-column="75" selection-end-line="60" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/ComponentScan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/ComponentScanBeanDefinitionParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2340">
-          <caret line="98" column="63" lean-forward="false" selection-start-line="98" selection-start-column="63" selection-end-line="98" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1519829806404" expanded="true" signature="191:255" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="257:323" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="325:389" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="391:417" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="419:461" ph="/*!40103 SET... " />
-            <marker date="1519829806404" expanded="true" signature="463:497" ph="/*!40103 SET... " />
-            <marker date="1519829806404" expanded="true" signature="499:566" ph="/*!40014 SET... " />
-            <marker date="1519829806404" expanded="true" signature="568:650" ph="/*!40014 SET... " />
-            <marker date="1519829806404" expanded="true" signature="652:726" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="728:783" ph="/*!40111 SET... " />
-            <marker date="1519829806404" expanded="true" signature="839:876" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="878:939" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="941:984" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="986:1215" ph="CREATE TABLE... algorithm_info" />
-            <marker date="1519829806404" expanded="true" signature="1217:1272" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="1361:1414" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="1416:1638" ph="INSERT INTO `algorithm_info`... " />
-            <marker date="1519829806404" expanded="true" signature="1640:1692" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="1764:1802" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="1804:1865" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="1867:1910" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="1912:2337" ph="CREATE TABLE... algorithm_param" />
-            <marker date="1519829806404" expanded="true" signature="2339:2394" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="2485:2539" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="2541:2594" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="2665:2702" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="2704:2765" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="2767:2810" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="2812:3018" ph="CREATE TABLE... algorithm_type" />
-            <marker date="1519829806404" expanded="true" signature="3020:3075" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="3164:3217" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="3219:3271" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="3346:3387" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="3389:3450" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="3452:3495" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="3497:3936" ph="CREATE TABLE... algorithm_type_rel" />
-            <marker date="1519829806404" expanded="true" signature="3938:3993" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="4090:4147" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="4149:4205" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="4271:4303" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="4305:4366" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="4368:4411" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="4413:4660" ph="CREATE TABLE... area_info" />
-            <marker date="1519829806404" expanded="true" signature="4662:4717" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="4796:4844" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="4846:5065" ph="INSERT INTO `area_info`... " />
-            <marker date="1519829806404" expanded="true" signature="5067:5114" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="5185:5222" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="5224:5285" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="5287:5330" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="5332:5584" ph="CREATE TABLE... attr_char_info" />
-            <marker date="1519829806404" expanded="true" signature="5586:5641" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="5730:5783" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="5785:5894" ph="INSERT INTO `attr_char_info`... " />
-            <marker date="1519829806404" expanded="true" signature="5896:5948" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="6022:6062" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="6064:6125" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="6127:6170" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="6172:6427" ph="CREATE TABLE... attr_feature_info" />
-            <marker date="1519829806404" expanded="true" signature="6429:6484" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="6579:6635" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="6637:6692" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="6773:6820" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="6822:6883" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="6885:6928" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="6930:7394" ph="CREATE TABLE... collection_attr_char_rel" />
-            <marker date="1519829806404" expanded="true" signature="7396:7451" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="7560:7623" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="7625:7904" ph="INSERT INTO `collection_attr_char_rel`... " />
-            <marker date="1519829806404" expanded="true" signature="7906:7968" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="8044:8086" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="8088:8149" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="8151:8194" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="8196:8654" ph="CREATE TABLE... collection_char_rel" />
-            <marker date="1519829806404" expanded="true" signature="8656:8711" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="8810:8868" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="8870:9105" ph="INSERT INTO `collection_char_rel`... " />
-            <marker date="1519829806404" expanded="true" signature="9107:9164" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="9240:9282" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="9284:9345" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="9347:9390" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="9392:9852" ph="CREATE TABLE... collection_task_rel" />
-            <marker date="1519829806404" expanded="true" signature="9854:9909" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="10008:10066" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="10068:10342" ph="INSERT INTO `collection_task_rel`... " />
-            <marker date="1519829806404" expanded="true" signature="10344:10401" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="10475:10515" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="10517:10578" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="10580:10623" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="10625:11689" ph="CREATE TABLE... data_mining_group" />
-            <marker date="1519829806404" expanded="true" signature="11691:11746" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="11841:11897" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="11899:11954" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="12027:12066" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="12068:12129" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="12131:12174" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="12176:12724" ph="CREATE TABLE... data_mining_task" />
-            <marker date="1519829806404" expanded="true" signature="12726:12781" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="12874:12929" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="12931:13248" ph="INSERT INTO `data_mining_task`... " />
-            <marker date="1519829806404" expanded="true" signature="13250:13304" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="13374:13410" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="13412:13473" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="13475:13518" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="13520:13771" ph="CREATE TABLE... data_set_char" />
-            <marker date="1519829806404" expanded="true" signature="13773:13828" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="13915:13967" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="13969:14168" ph="INSERT INTO `data_set_char`... " />
-            <marker date="1519829806404" expanded="true" signature="14170:14221" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="14297:14339" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="14341:14402" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="14404:14447" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="14449:15062" ph="CREATE TABLE... data_set_collection" />
-            <marker date="1519829806404" expanded="true" signature="15064:15119" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="15218:15276" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="15278:15986" ph="INSERT INTO `data_set_collection`... " />
-            <marker date="1519829806404" expanded="true" signature="15988:16045" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="16120:16161" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="16163:16224" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="16226:16269" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="16271:16808" ph="CREATE TABLE... data_set_container" />
-            <marker date="1519829806404" expanded="true" signature="16810:16865" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="16962:17019" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="17021:21761" ph="INSERT INTO `data_set_container`... " />
-            <marker date="1519829806404" expanded="true" signature="21763:21819" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="21896:21939" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="21941:22002" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="22004:22047" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="22049:22490" ph="CREATE TABLE... data_set_description" />
-            <marker date="1519829806404" expanded="true" signature="22492:22547" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="22648:22707" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="22709:22767" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="22839:22877" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="22879:22940" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="22942:22985" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="22987:23206" ph="CREATE TABLE... favorite_status" />
-            <marker date="1519829806404" expanded="true" signature="23208:23263" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="23354:23408" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="23410:23493" ph="INSERT INTO `favorite_status`... " />
-            <marker date="1519829806404" expanded="true" signature="23495:23548" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="23621:23660" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="23662:23723" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="23725:23768" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="23770:24212" ph="CREATE TABLE... favorite_stu_rel" />
-            <marker date="1519829806404" expanded="true" signature="24214:24269" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="24362:24417" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="24419:24473" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="24547:24587" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="24589:24650" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="24652:24695" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="24697:25139" ph="CREATE TABLE... group_student_rel" />
-            <marker date="1519829806404" expanded="true" signature="25141:25196" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="25291:25347" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="25349:25404" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="25477:25516" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="25518:25579" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="25581:25624" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="25626:25836" ph="CREATE TABLE... mining_task_type" />
-            <marker date="1519829806404" expanded="true" signature="25838:25893" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="25986:26041" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="26043:26167" ph="INSERT INTO `mining_task_type`... " />
-            <marker date="1519829806404" expanded="true" signature="26169:26223" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="26295:26333" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="26335:26396" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="26398:26441" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="26443:26742" ph="CREATE TABLE... permission_info" />
-            <marker date="1519829806404" expanded="true" signature="26744:26799" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="26890:26944" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="26946:27087" ph="INSERT INTO `permission_info`... " />
-            <marker date="1519829806404" expanded="true" signature="27089:27142" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="27208:27240" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="27242:27303" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="27305:27348" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="27350:27586" ph="CREATE TABLE... role_info" />
-            <marker date="1519829806404" expanded="true" signature="27588:27643" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="27722:27770" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="27772:27851" ph="INSERT INTO `role_info`... " />
-            <marker date="1519829806404" expanded="true" signature="27853:27900" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="27975:28016" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="28018:28079" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="28081:28124" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="28126:28582" ph="CREATE TABLE... role_permission_re" />
-            <marker date="1519829806404" expanded="true" signature="28584:28639" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="28736:28793" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="28795:28851" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="28922:28959" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="28961:29022" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="29024:29067" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="29069:29283" ph="CREATE TABLE... student_status" />
-            <marker date="1519829806404" expanded="true" signature="29285:29340" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="29429:29482" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="29484:29609" ph="INSERT INTO `student_status`... " />
-            <marker date="1519829806404" expanded="true" signature="29611:29663" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="29734:29771" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="29773:29834" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="29836:29879" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="29881:30013" ph="CREATE TABLE... sys_statistics" />
-            <marker date="1519829806404" expanded="true" signature="30015:30070" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="30159:30212" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="30214:30266" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="30341:30382" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="30384:30445" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="30447:30490" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="30492:30948" ph="CREATE TABLE... task_algorithm_rel" />
-            <marker date="1519829806404" expanded="true" signature="30950:31005" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="31102:31159" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="31161:31230" ph="INSERT INTO `task_algorithm_rel`... " />
-            <marker date="1519829806404" expanded="true" signature="31232:31288" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="31362:31402" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="31404:31465" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="31467:31510" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="31512:31982" ph="CREATE TABLE... task_data_set_rel" />
-            <marker date="1519829806404" expanded="true" signature="31984:32039" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="32134:32190" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="32192:32273" ph="INSERT INTO `task_data_set_rel`... " />
-            <marker date="1519829806404" expanded="true" signature="32275:32330" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="32396:32428" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="32430:32491" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="32493:32536" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="32538:34004" ph="CREATE TABLE... user_info" />
-            <marker date="1519829806404" expanded="true" signature="34006:34061" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="34140:34188" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="34190:122512" ph="INSERT INTO `user_info`... " />
-            <marker date="1519829806404" expanded="true" signature="122514:122561" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="122630:122665" ph="DROP TABLE I... " />
-            <marker date="1519829806404" expanded="true" signature="122667:122728" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="122730:122773" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="122775:123190" ph="CREATE TABLE... user_role_re" />
-            <marker date="1519829806404" expanded="true" signature="123192:123247" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123332:123383" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="123385:123459" ph="INSERT INTO `user_role_re`... " />
-            <marker date="1519829806404" expanded="true" signature="123461:123511" ph="/*!40000 ALT... " />
-            <marker date="1519829806404" expanded="true" signature="123528:123568" ph="/*!40103 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123571:123609" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123611:123669" ph="/*!40014 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123671:123719" ph="/*!40014 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123721:123783" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123785:123849" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123851:123913" ph="/*!40101 SET... " />
-            <marker date="1519829806404" expanded="true" signature="123915:123955" ph="/*!40111 SET... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/annotations/ExcelModelScan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/Import.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1482">
-          <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/POIUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/constant/ExcelOperationConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/hibernate.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/datasource-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+        <state relative-caret-position="360">
+          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/datasource.properties">
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="1692">
+          <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application.properties">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/boot/model/naming/PhysicalNamingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+        <state relative-caret-position="576">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityProdConfiguration.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/1.5.9.RELEASE/spring-boot-1.5.9.RELEASE-sources.jar!/org/springframework/boot/orm/jpa/hibernate/SpringPhysicalNamingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5811">
-          <caret line="192" column="0" lean-forward="false" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+        <state relative-caret-position="396">
+          <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java">
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_task">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/Ejb3JoinColumn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1521">
-          <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+        <state relative-caret-position="29700">
+          <caret line="916" column="0" lean-forward="false" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/AttributeCharacteristic.java">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/42fe0f99-3786-404e-a460-87a99a43df9a/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="1440">
+          <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/spotify/docker-maven-plugin/0.4.11/docker-maven-plugin-0.4.11.jar!/META-INF/maven/plugin.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/boot/model/naming/PhysicalNamingStrategyStandardImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="115" column="8" lean-forward="false" selection-start-line="115" selection-start-column="8" selection-end-line="115" selection-end-column="8" />
+        <state relative-caret-position="1080">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#1280#1281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/cfg/Ejb3Column.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7488">
+          <caret line="301" column="0" lean-forward="false" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/datasource.properties" />
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6408">
+          <caret line="178" column="44" lean-forward="false" selection-start-line="178" selection-start-column="44" selection-end-line="178" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_attr_char_rel">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_type_rel">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.attr_char_info">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_param">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.attr_feature_info">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_info">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_char_rel">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.properties" />
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.properties" />
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application.properties" />
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/datasource-dev.properties" />
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/database-dev.yml" />
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/database-prod.yml" />
+    <entry file="file://$PROJECT_DIR$/dm-model/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="50" column="12" lean-forward="false" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -2168,106 +2138,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/lib/maven-model-builder-3.3.9.jar!/org/apache/maven/model/pom-4.0.0.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="55" column="15" lean-forward="false" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="257" column="18" lean-forward="false" selection-start-line="257" selection-start-column="18" selection-end-line="257" selection-end-column="18" />
+        <state relative-caret-position="36">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-exception/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-import/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/docker/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-util/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/docker/DockerFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="730">
+          <caret line="36" column="43" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="36" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="49" column="37" lean-forward="false" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+        <state relative-caret-position="70">
+          <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile">
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+        <state relative-caret-position="468">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -2278,7 +2192,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>data-minning-platform:war exploded</last-edited>
+          <last-edited>data-mining-platform:war</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2332,6 +2246,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

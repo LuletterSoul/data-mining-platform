@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "algorithm_info")
+@Table(name = "algorithm_info",schema = "")
 public class Algorithm
 {
     @Id
