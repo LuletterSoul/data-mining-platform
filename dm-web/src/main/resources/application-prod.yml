@@ -1,4 +1,3 @@
----
 spring:
   jackson:
     default-property-inclusion: non_null
@@ -35,34 +34,32 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     generate-ddl: true
+
 #数据源
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
     type: com.mchange.v2.c3p0.ComboPooledDataSource
-    url: jdbc:mysql://172.17.129.24/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+    url: jdbc:mysql://mysql:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 
   redis:
     password:
     database: 0
-    port: 6379
+    port: 6380
     pool:
       max-idle: 100
       min-idle: 3
       max-active: 100
       max-wait: -1
-    host: 172.17.129.24
+    host: redis-server
     timeout: 0
 
 server:
-  address: 172.17.129.24
   tomcat:
     basedir: /alidata/tomcat
-  port: 8080
 
 logging:
   level:
     com:
-      dm: ERROR
-    root: trace
+      dm: DEBUG

@@ -1,0 +1,35 @@
+version : '3'
+services:
+  dm-web:
+    image: dm/dm-platform
+    ports:
+      - "8080:8080"
+    networks:
+      - net-dm
+    depends_on:
+      - mysql
+    environment:
+     - DATABASE_HOST=mysql
+     - DATABASE_USER=root
+     - DATABASE_PASSWORD=root
+     - DATABASE_NAME=data_mining
+     - DATABASE_PORT=3306
+    container_name: dm-platform-microsoft-service
+
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - net-dm
+    environment:
+     - MYSQL_DATABASE=data_mining
+     - MYSQL_USER=root
+     - MYSQL_PASSWORD=root
+     - MYSQL_ROOT_PASSWORD=root
+    container_name: dm-mysql
+
+networks:
+  net-dm:
+    driver: bridge

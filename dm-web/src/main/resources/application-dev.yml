@@ -65,9 +65,5 @@ logging:
   level:
     com:
       dm: DEBUG
-    org:
-      springframework:
-        web: DEBUG
-    root: trace
 
 

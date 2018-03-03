@@ -27,10 +27,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @description
  * @modified by:
  */
-@EnableAspectJAutoProxy(proxyTargetClass = true)
-
-@PropertySource(value = "classpath:hibernate.properties", ignoreResourceNotFound = true)
-@EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfiguration
 {
 
