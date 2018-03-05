@@ -6,6 +6,8 @@ import static org.springframework.http.HttpStatus.*;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
+import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
+import com.vero.dm.exception.group.StudentNotFoundException;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
@@ -305,12 +307,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatus.CONFLICT, HttpStatus.CONFLICT, request);
     }
 
-    @ExceptionHandler({SpecificStudentNotFoundException.class})
-    public ResponseEntity<Object> handleSpecifStudentNotFoundException(final SpecificStudentNotFoundException ex,
+
+    @ExceptionHandler({StudentNotFoundException.class,SpecificStudentNotFoundException.class})
+    public ResponseEntity<Object> handleStudentNotFoundException(final StudentNotFoundException ex,
                                                                        final WebRequest request)
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
-            HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND, request);
+                HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND, request);
+    }
+    @ExceptionHandler({PreviewGroupsNotFoundException.class})
+    public ResponseEntity<Object> handlePreviewGroupsNotFoundException(final PreviewGroupsNotFoundException ex,
+                                                        final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+                HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler({SetZipException.class})

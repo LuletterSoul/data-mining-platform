@@ -6,16 +6,22 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.EntityNotFoundException;
 
-import com.vero.dm.model.*;
-import com.vero.dm.util.date.DateStyle;
-import com.vero.dm.util.date.DateUtil;
+import com.vero.dm.exception.group.StudentNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
+import com.vero.dm.model.DataMiningGroup;
+import com.vero.dm.model.DataMiningTask;
+import com.vero.dm.model.Student;
+import com.vero.dm.model.Teacher;
 import com.vero.dm.repository.dto.*;
 import com.vero.dm.service.GroupService;
+import com.vero.dm.util.date.DateStyle;
+import com.vero.dm.util.date.DateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -81,8 +87,9 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         List<Student> studentsPrepareDivided = getStudentsPrepareDivided(params);
         if (studentsPrepareDivided == null || studentsPrepareDivided.isEmpty())
         {
-            log.error("Could't found students who are corresponding to the request.");
-            throw new EntityNotFoundException("找不到的符合要求的待分组学生");
+            String message = "Could't found students who are corresponding to the request.";
+            log.error(message);
+            throw new StudentNotFoundException(message, ExceptionCode.StudentNotFound);
         }
         Integer restStudent = studentsPrepareDivided.size() % gradient;
         // 用户要求的每个组的总人数,如果用户未配置，默认值为12；
@@ -127,13 +134,13 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                 perGroupStudents);
             previewDefaultGroups.add(group);
         }
-//        if (!StringUtils.isEmpty(params.getBuildingKey())) {
-//            cacheGroups.put(queryKey, previewDefaultGroups);
-//        }
+        // if (!StringUtils.isEmpty(params.getBuildingKey())) {
+        // cacheGroups.put(queryKey, previewDefaultGroups);
+        // }
         String queryKey = UUID.randomUUID().toString();
-
-        return new DividingGroupInfo(queryKey,
-            PreviewDividingGroupDto.build(previewDefaultGroups),task);
+        cacheGroups.put(queryKey, previewDefaultGroups);
+        return new DividingGroupInfo(queryKey, PreviewDividingGroupDto.build(previewDefaultGroups),
+            task);
     }
 
     private DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,
@@ -145,7 +152,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setDataMiningTask(taskJpaRepository.findOne(taskId));
         group.setTeacherBuilder(teacherJpaRepository.findOne(builderId));
         group.setBuiltTime(new Date());
-        group.setGroupName("Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM_SS));
+        group.setGroupName(
+            "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM_SS));
         group.setArrangementId(String.valueOf(arrangementId));
         return group;
     }
@@ -156,9 +164,9 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         List<DataMiningGroup> groups = cacheGroups.get(queryKey);
         if (groups == null || groups.isEmpty())
         {
-            log.error(
-                "Could not query corresponding groups information.Make sure your have init divide strategy firstly.");
-            throw new IllegalArgumentException("查询不到对应的分组信息");
+            String message = "Could not query corresponding groups information.Make sure your have init divide strategy firstly.";
+            log.error(message);
+            throw new PreviewGroupsNotFoundException(message, ExceptionCode.PreviewGroupsNotFound);
         }
         groupJpaRepository.save(groups);
         cacheGroups.remove(queryKey);
@@ -189,8 +197,9 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
-    public List<Student> fetchStudentWithoutGroup(Date begin,Date end) {
-        return studentJpaRepository.fetchStudentWithoutGroup(begin,end);
+    public List<Student> fetchStudentWithoutGroup(Date begin, Date end)
+    {
+        return studentJpaRepository.fetchStudentWithoutGroup(begin, end);
     }
 
     @Override
@@ -201,7 +210,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
-    public List<DataMiningGroup> fetchGroupDetails(List<String> groupIds) {
+    public List<DataMiningGroup> fetchGroupDetails(List<String> groupIds)
+    {
         return groupJpaRepository.findAll(groupIds);
     }
 
@@ -214,7 +224,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         return group;
     }
 
-    private void cancelGroupConfiguration(DataMiningGroup group) {
+    private void cancelGroupConfiguration(DataMiningGroup group)
+    {
         group.setGroupLeader(null);
         group.setGroupMembers(null);
         group.setStudentBuilder(null);
@@ -223,7 +234,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
-    public List<DataMiningGroup> deleteGroupBatch(List<String> groupIds) {
+    public List<DataMiningGroup> deleteGroupBatch(List<String> groupIds)
+    {
         List<DataMiningGroup> groups = fetchGroupDetails(groupIds);
         groups.forEach(this::cancelGroupConfiguration);
         groupJpaRepository.delete(groups);
@@ -240,14 +252,14 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             log.error("Could not found student request to be set leader.");
             throw new EntityNotFoundException("找不到要被设为组长的学生信息");
         }
-        if (!group.getGroupMembers().contains(leader)) {
+        if (!group.getGroupMembers().contains(leader))
+        {
             throw new IllegalArgumentException("组长必须为该组的一名成员");
         }
         group.setGroupLeader(leader);
         groupJpaRepository.save(group);
         return StudentDto.build(group.getGroupLeader());
     }
-
 
     @Override
     public List<StudentDto> fetchGroupMembers(String groupId)
