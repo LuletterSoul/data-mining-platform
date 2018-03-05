@@ -7,7 +7,7 @@ spring:
       accept-empty-array-as-null-object: true
       accept-empty-string-as-null-object: true
     time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: com.vero.dm.util.date.ConcurrencyDateFormatter
   session:
     store-type: none
   http:
@@ -60,7 +60,7 @@ spring:
 server:
   tomcat:
     basedir: D:/Tomcat
-
+  port: 8085
 logging:
   level:
     com:

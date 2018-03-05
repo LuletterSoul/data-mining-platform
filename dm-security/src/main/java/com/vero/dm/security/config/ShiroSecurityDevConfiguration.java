@@ -1,14 +1,11 @@
 package com.vero.dm.security.config;
 
 
-import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.vero.dm.security.filter.AuthenticationExceptionFilter;
-import com.vero.dm.security.filter.PreLogoutFilter;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -20,7 +17,6 @@ import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.AuthenticationFilter;
 import org.apache.shiro.web.filter.session.NoSessionCreationFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
@@ -38,19 +34,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
 import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
 import com.vero.dm.security.filter.AllowOriginFilter;
+import com.vero.dm.security.filter.AuthenticationExceptionFilter;
+import com.vero.dm.security.filter.PreLogoutFilter;
 import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 import com.vero.dm.security.manager.StatelessDefaultSubjectFactory;
 import com.vero.dm.security.realm.StatelessRealm;
 import com.vero.dm.security.strategy.*;
-import com.vero.dm.util.DateStyle;
+import com.vero.dm.util.date.ConcurrencyDateFormatter;
 
 import net.sf.ehcache.CacheManager;
 
 
 /**
- * 该类定义了shiro 安全体系的Bean组件
- * 自定义的Filter必须放在{@link ShiroFilterFactoryBean}之前注册在spring容器中,
+ * 该类定义了shiro 安全体系的Bean组件 自定义的Filter必须放在{@link ShiroFilterFactoryBean}之前注册在spring容器中,
  * 然后被它内部的逻辑启动扫描对应的filter,注册在自身维护的filters中
+ * 
  * @author 刘祥德 qq313700046@icloud.com .
  * @date created in 15:02 2017/7/17.
  * @description
@@ -75,7 +73,6 @@ public class ShiroSecurityDevConfiguration
         return shiroCacheManager;
     }
 
-
     @Bean
     public StatelessRealm statelessRealm()
     {
@@ -88,7 +85,6 @@ public class ShiroSecurityDevConfiguration
         statelessRealm.setCredentialsMatcher(statelessCredentialsMatcher());
         return statelessRealm;
     }
-
 
     @Bean
     public StrategyMatchChain strategyMatchChain()
@@ -218,8 +214,7 @@ public class ShiroSecurityDevConfiguration
     {
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
         mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapperFactoryBean.setDateFormat(
-            new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue()));
+        mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
         mapperFactoryBean.afterPropertiesSet();
         return mapperFactoryBean.getObject();
     }
@@ -241,7 +236,8 @@ public class ShiroSecurityDevConfiguration
     }
 
     @Bean
-    public AuthenticationExceptionFilter exceFilter() {
+    public AuthenticationExceptionFilter exceFilter()
+    {
         return new AuthenticationExceptionFilter();
     }
 
@@ -256,8 +252,6 @@ public class ShiroSecurityDevConfiguration
     {
         return new NoSessionCreationFilter();
     }
-
-
 
     @Bean(name = "preLogout")
     public PreLogoutFilter preLogout()
@@ -281,8 +275,7 @@ public class ShiroSecurityDevConfiguration
         filterChainDefinitionMap.put("/token/**", "anon");
         filterChainDefinitionMap.put("/public_salt/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-        filterChainDefinitionMap.put("/api/**",
-            "noSess,allowOriginFilter,preLogout");
+        filterChainDefinitionMap.put("/api/**", "noSess,allowOriginFilter,preLogout");
         filterChainDefinitionMap.put("/**", "noSess,allowOriginFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

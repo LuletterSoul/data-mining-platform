@@ -5,9 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.vero.dm.util.date.ConcurrentDateUtil;
 import org.springframework.core.convert.converter.Converter;
 
-import com.vero.dm.util.DateStyle;
+import com.vero.dm.util.date.DateStyle;
 import org.springframework.util.StringUtils;
 
 
@@ -19,7 +20,6 @@ import org.springframework.util.StringUtils;
 
 public class DateConverter implements Converter<String, Date>
 {
-    private SimpleDateFormat format = new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
 
     @Override
     public Date convert(String source)
@@ -29,7 +29,7 @@ public class DateConverter implements Converter<String, Date>
             return null;
         }
         try {
-            return format.parse(source);
+            return ConcurrentDateUtil.parse(source);
         } catch (ParseException e) {
             e.printStackTrace();
         }

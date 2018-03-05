@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vero.dm.api.converters.DateConverter;
+import com.vero.dm.util.date.ConcurrencyDateFormatter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -16,14 +17,11 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vero.dm.api.converters.UniversalEnumConverterFactory;
-import com.vero.dm.util.DateStyle;
+import com.vero.dm.util.date.DateStyle;
 
 
 /**
@@ -115,9 +113,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter
     public ObjectMapper objectMapper()
     {
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
-        // mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapperFactoryBean.setDateFormat(
-            new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue()));
+        mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
         mapperFactoryBean.afterPropertiesSet();
         return mapperFactoryBean.getObject();
     }
