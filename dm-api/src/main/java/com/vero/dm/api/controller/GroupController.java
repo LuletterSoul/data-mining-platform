@@ -55,7 +55,7 @@ public class GroupController
     @ApiOperation("获取空闲的学生列表")
     @GetMapping(value = "/leisure_students")
     @Cacheable(cacheNames = "studentPageableCache")
-    public ResponseEntity<Page<Student>> studentsPageable(@PageableDefault(size = 10, sort = {
+    public ResponseEntity<List<Student>> studentsPageable(@PageableDefault(size = 10, sort = {
             "studentId"}, direction = Sort.Direction.DESC) Pageable pageable,
                                                           @ApiParam("行政班") @RequestParam(name = "className", required = false, defaultValue = "") String className,
                                                           @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
@@ -66,7 +66,7 @@ public class GroupController
                                                           @ApiParam("结束日期") @RequestParam(value = "endDate", required = false) Date endDate)
     {
         return new ResponseEntity<>(
-                studentService.getStudentList(pageable, className, profession, grade, studentIdPrefix,studentName,beginDate,endDate),
+                studentService.getAllStudents(pageable, className, profession, grade, studentIdPrefix,studentName,beginDate,endDate),
                 HttpStatus.OK);
     }
 
@@ -101,6 +101,13 @@ public class GroupController
     public DataMiningGroup get(@PathVariable("groupId") String groupId)
     {
         return groupService.fetchGroupDetails(groupId);
+    }
+
+    @ApiOperation("获取所有分组的名称")
+    @GetMapping(value = "/group_names")
+    public ResponseEntity<List<String>> groupNames()
+    {
+        return new ResponseEntity<>(groupService.fetchGroupNames(), HttpStatus.OK);
     }
 
     @ApiOperation("创建一个分组")

@@ -3,6 +3,7 @@ package com.vero.dm.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.vero.dm.repository.dto.StudentDto;
 import org.springframework.data.domain.Page;
@@ -35,8 +36,12 @@ public interface StudentService extends UserService
 
     Page<Student> getStudentList(Pageable pageable,String className,String profession,String grade,String studentIdPrefix,String studentName);
 
-
     Page<Student> getStudentList(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate,Date endDate);
+
+
+    List<Student> getAllStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate,Date endDate);
+
+
 
     StudentDto deleteByStudentId(String studentId);
 
@@ -59,6 +64,8 @@ public interface StudentService extends UserService
      * @return
      */
     StudentStatus getStudentStatusPersisted(Integer statusId);
+
+    Map<String, List<?>> getStudentPropertiesOptions();
 
 
 }

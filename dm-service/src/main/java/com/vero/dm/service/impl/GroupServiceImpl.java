@@ -119,19 +119,18 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                 previewDefaultGroups.get(previewDefaultGroups.size() - 1).getGroupMembers().addAll(
                     perGroupStudents);
             }
+            // 剩下的学生超过梯度的一半，另起一组
+            else {
+                    DataMiningGroup group = buildGroup(params.getBuilderId(), task.getTaskId(), 1,
+                            perGroupStudents);
+                    previewDefaultGroups.add(group);
+                }
         }
         // 符合条件的学生比每组的人数少,直接作为一组
         if (studentsPrepareDivided.size() < gradient)
         {
             DataMiningGroup group = buildGroup(params.getBuilderId(), task.getTaskId(), 1,
                 studentsPrepareDivided);
-            previewDefaultGroups.add(group);
-        }
-        // 剩下的学生超过梯度的一半，另起一组
-        if (restStudent >= gradient / 2)
-        {
-            DataMiningGroup group = buildGroup(params.getBuilderId(), task.getTaskId(), 1,
-                perGroupStudents);
             previewDefaultGroups.add(group);
         }
         // if (!StringUtils.isEmpty(params.getBuildingKey())) {
@@ -282,5 +281,10 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setGroupMembers(new LinkedHashSet<>(students));
         groupJpaRepository.save(group);
         return StudentDto.build(students);
+    }
+
+    @Override
+    public List<String> fetchGroupNames() {
+        return groupJpaRepository.findGroupNames();
     }
 }

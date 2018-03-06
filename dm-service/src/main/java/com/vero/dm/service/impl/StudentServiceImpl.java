@@ -9,7 +9,9 @@ import static com.vero.dm.util.PathUtils.getAbsolutePath;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -198,6 +200,12 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
+    public List<Student> getAllStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate) {
+        return studentJpaRepository.findAll(findStudentsWithoutGroup(className, profession, grade,
+                studentIdPrefix, studentName, beginDate, endDate));
+    }
+
+    @Override
     public StudentDto deleteByStudentId(String studentId)
     {
         // Student student = studentDao.getStudentById(studentId);
@@ -269,6 +277,15 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     {
         // return studentDao.getStudentStatus(statusId);
         return null;
+    }
+
+    @Override
+    public Map<String, List<?>> getStudentPropertiesOptions() {
+        Map<String, List<?>> options = new HashMap<>();
+        options.put("classNameOptions", studentJpaRepository.findClassNameOptions());
+        options.put("professionOptions", studentJpaRepository.findProfessionOptions());
+        options.put("gradeOptions", studentJpaRepository.findGradeOptions());
+        return options;
     }
 
     public List<Student> fetchStudentWithoutTasks()

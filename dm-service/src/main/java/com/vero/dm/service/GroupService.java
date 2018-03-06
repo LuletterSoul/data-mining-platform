@@ -45,4 +45,6 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
     List<StudentDto> fetchGroupMembers(String groupId);
 
     List<StudentDto> configureGroupMembers(String groupId, List<String> studentIds);
+
+    List<String> fetchGroupNames();
 }

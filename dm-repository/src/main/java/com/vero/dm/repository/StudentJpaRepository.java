@@ -45,4 +45,14 @@ public interface StudentJpaRepository extends JpaRepository<Student, String>,Jpa
     @Modifying
     @Query(value = "DELETE FROM Student s WHERE s.studentId in :studentIds")
     int deleteBatchStudentsById(@Param("studentIds") List<String> studentIds);
+
+    @Query(value = "SELECT distinct s.className from Student s")
+    List<String> findClassNameOptions();
+
+    @Query(value = "SELECT distinct s.profession from Student s")
+    List<String> findProfessionOptions();
+
+    @Query(value = "SELECT distinct s.grade from Student s")
+    List<String> findGradeOptions();
+
 }

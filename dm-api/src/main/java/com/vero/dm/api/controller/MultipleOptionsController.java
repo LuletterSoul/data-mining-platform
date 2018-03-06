@@ -4,6 +4,7 @@ package com.vero.dm.api.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,13 @@ public class MultipleOptionsController
 {
     private DataSetCollectionService collectionService;
 
+    private StudentService studentService;
+
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
     @Autowired
     public void setCollectionService(DataSetCollectionService collectionService)
     {
@@ -31,9 +39,15 @@ public class MultipleOptionsController
     }
 
     @Cacheable(cacheNames = "dataSetCollectionOptionsCache")
-    @GetMapping
-    public Map<String, List<?>> getOptions()
+    @GetMapping(value = "/data_set")
+    public Map<String, List<?>> getDataSetOptions()
     {
         return collectionService.getOptions();
+    }
+
+    @GetMapping(value = "/student")
+    public Map<String, List<?>> getStudentOptions()
+    {
+        return studentService.getStudentPropertiesOptions();
     }
 }
