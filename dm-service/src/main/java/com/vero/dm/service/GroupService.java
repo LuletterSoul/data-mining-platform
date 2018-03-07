@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataSetCollection;
+import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.Student;
-import com.vero.dm.repository.dto.DataMiningGroupDto;
-import com.vero.dm.repository.dto.DividingGroupInfo;
-import com.vero.dm.repository.dto.StudentDto;
-import com.vero.dm.repository.dto.GroupingConfigParams;
+import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.repository.dto.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -24,7 +22,13 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 {
     DataMiningGroup createGroup(DataMiningGroupDto groupDto);
 
-    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable);
+    DataMiningGroup updateGroup(GroupDto groupDto);
+
+    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable,String groupName,
+                                              Date beginDate,
+                                              Date endDate,
+                                              String leaderStudentId,
+                                              MiningTaskStatus taskStatus);
 
     List<Student> fetchStudentWithoutGroup(Date begin, Date end);
 
@@ -47,4 +51,10 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
     List<StudentDto> configureGroupMembers(String groupId, List<String> studentIds);
 
     List<String> fetchGroupNames();
+
+    List<Student> fetchGroupLeaders();
+
+    DataMiningTask arrangeTask(String groupId,String taskId);
+
+    List<MiningTaskStatus> fetchStatusOptions();
 }

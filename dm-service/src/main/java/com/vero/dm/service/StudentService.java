@@ -14,8 +14,6 @@ import com.vero.dm.model.Student;
 import com.vero.dm.model.StudentStatus;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -34,12 +32,12 @@ public interface StudentService extends UserService
 
     List<Student> findAllStudents();
 
-    Page<Student> getStudentList(Pageable pageable,String className,String profession,String grade,String studentIdPrefix,String studentName);
+    Page<Student> getStudentList(boolean fetch, Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName);
 
     Page<Student> getStudentList(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate,Date endDate);
 
 
-    List<Student> getAllStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate,Date endDate);
+    List<Student> getAllLeisureStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate);
 
 
 

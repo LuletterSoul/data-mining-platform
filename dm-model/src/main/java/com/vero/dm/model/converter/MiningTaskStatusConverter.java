@@ -21,6 +21,9 @@ public class MiningTaskStatusConverter implements AttributeConverter<MiningTaskS
     @Override
     public MiningTaskStatus convertToEntityAttribute(Integer dbData) {
         MiningTaskStatus[] status = MiningTaskStatus.values();
+        if (dbData == null) {
+            return null;
+        }
         for (MiningTaskStatus s : status) {
             if (s.getValue() == dbData) {
                 return s;

@@ -4,6 +4,8 @@ package com.vero.dm.api.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.service.GroupService;
 import com.vero.dm.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -27,9 +29,16 @@ public class MultipleOptionsController
 
     private StudentService studentService;
 
+    private GroupService groupService;
+
     @Autowired
     public void setStudentService(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @Autowired
+    public void setGroupService(GroupService groupService) {
+        this.groupService = groupService;
     }
 
     @Autowired
@@ -49,5 +58,10 @@ public class MultipleOptionsController
     public Map<String, List<?>> getStudentOptions()
     {
         return studentService.getStudentPropertiesOptions();
+    }
+
+    @GetMapping(value = "/groups/task/status")
+    public List<MiningTaskStatus> getGroupStatuses() {
+        return groupService.fetchStatusOptions();
     }
 }

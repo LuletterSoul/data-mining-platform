@@ -1,23 +1,27 @@
 package com.vero.dm.service.impl;
 
 
+import static com.vero.dm.repository.specifications.GroupSpecifications.groupSpec;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.EntityNotFoundException;
 
-import com.vero.dm.exception.group.StudentNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
+import com.vero.dm.exception.group.StudentNotFoundException;
 import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.Teacher;
+import com.vero.dm.model.enums.MiningTaskStatus;
 import com.vero.dm.repository.dto.*;
 import com.vero.dm.service.GroupService;
 import com.vero.dm.util.date.DateStyle;
@@ -72,9 +76,35 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
+    public DataMiningGroup updateGroup(GroupDto groupDto)
+    {
+        this.updateLeader(groupDto.getLeaderId(), groupDto.getGroupId());
+        this.configureGroupMembers(groupDto.getGroupId(), groupDto.getMemberIds());
+        DataMiningGroup group = groupJpaRepository.findOne(groupDto.getGroupId());
+        BeanUtils.copyProperties(groupDto, group);
+        group.setTaskStatus(MiningTaskStatus.map.get(groupDto.getTaskStatus()));
+        if (!StringUtils.isEmpty(groupDto.getTaskId())) {
+            if (group.getTaskStatus().equals(MiningTaskStatus.toBeAssigned)) {
+                group.setTaskStatus(MiningTaskStatus.newTask);
+            }
+        }
+        this.arrangeTask(groupDto.getGroupId(), groupDto.getTaskId());
+        groupJpaRepository.saveAndFlush(group);
+        return group;
+    }
+
+    @Override
+    public Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName,
+                                                     Date beginDate, Date endDate,
+                                                     String leaderStudentId,
+                                                     MiningTaskStatus taskStatus)
+    {
+        return groupJpaRepository.findAll(
+            groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus), pageable);
+    }
+
     public Page<DataMiningGroup> fetchPageableGroups(Pageable pageable)
     {
-
         return groupJpaRepository.findAll(pageable);
     }
 
@@ -83,7 +113,6 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     {
         // 将要被分配的任务;
         List<DataMiningGroup> previewDefaultGroups = new LinkedList<>();
-        DataMiningTask task = taskJpaRepository.findOne(params.getTaskId());
         List<Student> studentsPrepareDivided = getStudentsPrepareDivided(params);
         if (studentsPrepareDivided == null || studentsPrepareDivided.isEmpty())
         {
@@ -105,8 +134,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                 // 到达固定人数分一组;
                 if (i % gradient == 0)
                 {
-                    DataMiningGroup group = buildGroup(params.getBuilderId(), task.getTaskId(), i,
-                        perGroupStudents);
+                    DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(),
+                        i, perGroupStudents);
                     // 生成预览分组情况，待管理员确认;
                     previewDefaultGroups.add(group);
                     perGroupStudents = new LinkedList<>();
@@ -120,40 +149,48 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                     perGroupStudents);
             }
             // 剩下的学生超过梯度的一半，另起一组
-            else {
-                    DataMiningGroup group = buildGroup(params.getBuilderId(), task.getTaskId(), 1,
-                            perGroupStudents);
-                    previewDefaultGroups.add(group);
-                }
+            else
+            {
+                DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
+                    perGroupStudents);
+                previewDefaultGroups.add(group);
+            }
         }
         // 符合条件的学生比每组的人数少,直接作为一组
         if (studentsPrepareDivided.size() < gradient)
         {
-            DataMiningGroup group = buildGroup(params.getBuilderId(), task.getTaskId(), 1,
+            DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
                 studentsPrepareDivided);
             previewDefaultGroups.add(group);
         }
-        // if (!StringUtils.isEmpty(params.getBuildingKey())) {
-        // cacheGroups.put(queryKey, previewDefaultGroups);
-        // }
         String queryKey = UUID.randomUUID().toString();
         cacheGroups.put(queryKey, previewDefaultGroups);
         return new DividingGroupInfo(queryKey, PreviewDividingGroupDto.build(previewDefaultGroups),
-            task);
+            previewDefaultGroups.get(0).getDataMiningTask());
     }
 
     private DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,
                                        List<Student> perGroupStudents)
     {
         DataMiningGroup group = new DataMiningGroup();
-        group.setGroupMembers(new LinkedHashSet<>(perGroupStudents));
         group.setGroupLeader(perGroupStudents.get(0));
-        group.setDataMiningTask(taskJpaRepository.findOne(taskId));
+        if (StringUtils.isEmpty(taskId))
+        {
+            group.setDataMiningTask(null);
+            group.setTaskStatus(MiningTaskStatus.toBeAssigned);
+        }
+        else
+        {
+            group.setDataMiningTask(taskJpaRepository.findOne(taskId));
+            group.setTaskStatus(MiningTaskStatus.newTask);
+        }
         group.setTeacherBuilder(teacherJpaRepository.findOne(builderId));
         group.setBuiltTime(new Date());
         group.setGroupName(
-            "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM_SS));
+            "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM)
+                           + "_" + arrangementId);
         group.setArrangementId(String.valueOf(arrangementId));
+        group.setGroupMembers(new LinkedHashSet<>(perGroupStudents));
         return group;
     }
 
@@ -245,7 +282,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     public StudentDto updateLeader(String studentId, String groupId)
     {
         DataMiningGroup group = fetchGroupDetails(groupId);
-        Student leader = studentJpaRepository.findOne(studentId);
+        Student leader = studentJpaRepository.findByStudentId(studentId);
         if (leader == null)
         {
             log.error("Could not found student request to be set leader.");
@@ -272,8 +309,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     @Override
     public List<StudentDto> configureGroupMembers(String groupId, List<String> studentIds)
     {
-        List<Student> students = studentJpaRepository.findAll(studentIds);
-        DataMiningGroup group = findById(groupId);
+        List<Student> students = studentJpaRepository.findByStudentIds(studentIds);
+        DataMiningGroup group = groupJpaRepository.findOne(groupId);
         if (!students.contains(group.getGroupLeader()))
         {
             group.setGroupLeader(null);
@@ -284,7 +321,30 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
-    public List<String> fetchGroupNames() {
+    public List<String> fetchGroupNames()
+    {
         return groupJpaRepository.findGroupNames();
     }
+
+    @Override
+    public List<Student> fetchGroupLeaders()
+    {
+        return groupJpaRepository.findLeaders();
+    }
+
+    @Override
+    public DataMiningTask arrangeTask(String groupId, String taskId) {
+        DataMiningTask task = taskJpaRepository.findOne(taskId);
+        DataMiningGroup group = fetchGroupDetails(groupId);
+        group.setDataMiningTask(task);
+        groupJpaRepository.save(group);
+        return task;
+    }
+
+    @Override
+    public List<MiningTaskStatus> fetchStatusOptions()
+    {
+        return Arrays.asList(MiningTaskStatus.values());
+    }
+
 }

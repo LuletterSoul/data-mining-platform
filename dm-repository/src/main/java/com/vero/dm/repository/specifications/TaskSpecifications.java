@@ -4,7 +4,6 @@ package com.vero.dm.repository.specifications;
 import javax.persistence.criteria.Predicate;
 
 import com.vero.dm.model.*;
-import com.vero.dm.model.enums.MiningTaskStatus;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -26,8 +25,7 @@ public class TaskSpecifications
                                                           Date plannedBeginDate,
                                                           Date plannedEndDate,
                                                           Date builtTimeBegin,
-                                                          Date builtTimeEnd,
-                                                          MiningTaskStatus taskStatus)
+                                                          Date builtTimeEnd)
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates = new ArrayList<>();
@@ -36,7 +34,6 @@ public class TaskSpecifications
             Predicate endDatePredicate = cb.lessThanOrEqualTo(root.get(DataMiningTask_.PLANNED_FINISH_TIME), plannedEndDate);
             Predicate builtTimeBeginPredicate = cb.greaterThanOrEqualTo(root.get(DataMiningTask_.BUILT_TIME), builtTimeBegin);
             Predicate builtTimeEndPredicate = cb.lessThanOrEqualTo(root.get(DataMiningTask_.BUILT_TIME), builtTimeEnd);
-            Predicate statusPredicate = cb.equal(root.get(DataMiningTask_.STATUS), taskStatus);
             if (!StringUtils.isEmpty(taskName)) {
                 totalPredicates.add(taskNamePredicate);
             }
@@ -51,9 +48,6 @@ public class TaskSpecifications
             }
             if (!ObjectUtils.isEmpty(builtTimeEnd)) {
                 totalPredicates.add(builtTimeEndPredicate);
-            }
-            if (!ObjectUtils.isEmpty(taskStatus)) {
-                totalPredicates.add(statusPredicate);
             }
             query.where(cb.and(totalPredicates.toArray(new Predicate[totalPredicates.size()])));
             return query.getRestriction();

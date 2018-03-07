@@ -2,7 +2,7 @@ package com.vero.dm.service.impl;
 
 
 import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithParams;
-import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithoutGroup;
+import static com.vero.dm.repository.specifications.StudentSpecifications.findLeisureStudents;
 import static com.vero.dm.util.PathUtils.concat;
 import static com.vero.dm.util.PathUtils.getAbsolutePath;
 
@@ -16,7 +16,9 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -182,12 +184,17 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public Page<Student> getStudentList(Pageable pageable, String className, String profession,
+    public Page<Student> getStudentList(boolean fetch, Pageable pageable, String className, String profession,
                                         String grade, String studentIdPrefix, String studentName)
     {
-        return studentJpaRepository.findAll(
-            findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName),
-            pageable);
+        if (fetch) {
+            return new PageImpl<>(studentJpaRepository.findAll(
+                    findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName))) ;
+        }else{
+            return studentJpaRepository.findAll(
+                    findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName),
+                    pageable);
+        }
     }
 
     @Override
@@ -195,13 +202,13 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
                                         String grade, String studentIdPrefix, String studentName,
                                         Date beginDate, Date endDate)
     {
-        return studentJpaRepository.findAll(findStudentsWithoutGroup(className, profession, grade,
+        return studentJpaRepository.findAll(findLeisureStudents(className, profession, grade,
             studentIdPrefix, studentName, beginDate, endDate), pageable);
     }
 
     @Override
-    public List<Student> getAllStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate) {
-        return studentJpaRepository.findAll(findStudentsWithoutGroup(className, profession, grade,
+    public List<Student> getAllLeisureStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate) {
+        return studentJpaRepository.findAll(findLeisureStudents(className, profession, grade,
                 studentIdPrefix, studentName, beginDate, endDate));
     }
 

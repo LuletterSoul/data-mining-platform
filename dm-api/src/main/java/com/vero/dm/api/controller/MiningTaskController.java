@@ -5,14 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import com.vero.dm.model.*;
-import com.vero.dm.model.enums.MiningTaskStatus;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -75,8 +73,9 @@ public class MiningTaskController
                                         @ApiParam(value = "建立时间区间结点")
                                             @RequestParam(value = "builtTimeEnd",required = false,defaultValue = "")
                                             Date builtTimeEnd,
-                                        @ApiParam(value = "任务状态")@RequestParam(value = "taskStatus") MiningTaskStatus taskStatus) {
-        return miningTaskService.fetchTaskList(taskName,plannedBeginDate,plannedEndDate,builtTimeBegin,builtTimeEnd , taskStatus, pageable);
+                                        @ApiParam(value = "抓取全部")
+                                            @RequestParam(value = "fetch",required = false,defaultValue = "false")boolean fetch) {
+        return miningTaskService.fetchTaskList(fetch, taskName, plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, pageable);
     }
 
     @ApiOperation("更新数据挖掘任务的信息")

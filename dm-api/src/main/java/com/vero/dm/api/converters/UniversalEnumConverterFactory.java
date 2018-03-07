@@ -53,7 +53,7 @@ public class UniversalEnumConverterFactory implements ConverterFactory<String, B
         public T convert(String source)
         {
             T result = enumMap.get(source);
-            if (result == null)
+             if (result == null)
             {
                 throw new IllegalArgumentException("No element matches " + source);
             }

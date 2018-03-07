@@ -98,11 +98,6 @@ public class DataMiningTask
     @Transient
     private Integer actualDuration;
 
-    /**
-     * 任务状态
-     */
-    @Convert(converter = MiningTaskStatusConverter.class)
-    private MiningTaskStatus status;
 
     /**
      * 每个任务可被分给多个分组，内容相似

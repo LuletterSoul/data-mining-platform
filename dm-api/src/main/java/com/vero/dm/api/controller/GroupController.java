@@ -4,10 +4,6 @@ package com.vero.dm.api.controller;
 import java.util.Date;
 import java.util.List;
 
-import com.vero.dm.model.DataSetCollection;
-import com.vero.dm.model.Student;
-import com.vero.dm.service.StudentService;
-import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -19,12 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.repository.dto.DataMiningGroupDto;
-import com.vero.dm.repository.dto.DividingGroupInfo;
-import com.vero.dm.repository.dto.GroupingConfigParams;
-import com.vero.dm.repository.dto.StudentDto;
+import com.vero.dm.model.Student;
+import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.repository.dto.*;
 import com.vero.dm.service.GroupService;
+import com.vero.dm.service.StudentService;
 import com.vero.dm.service.constant.ResourcePath;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 
 /**
@@ -41,7 +42,8 @@ public class GroupController
     private StudentService studentService;
 
     @Autowired
-    public void setStudentService(StudentService studentService) {
+    public void setStudentService(StudentService studentService)
+    {
         this.studentService = studentService;
     }
 
@@ -51,23 +53,21 @@ public class GroupController
         this.groupService = groupService;
     }
 
-
     @ApiOperation("获取空闲的学生列表")
     @GetMapping(value = "/leisure_students")
     @Cacheable(cacheNames = "studentPageableCache")
-    public ResponseEntity<List<Student>> studentsPageable(@PageableDefault(size = 10, sort = {
-            "studentId"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                                          @ApiParam("行政班") @RequestParam(name = "className", required = false, defaultValue = "") String className,
-                                                          @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
-                                                          @ApiParam("年级") @RequestParam(value = "grade", required = false, defaultValue = "") String grade,
-                                                          @ApiParam("学号前缀模糊查询") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentIdPrefix,
-                                                          @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName,
-                                                          @ApiParam("开始日期") @RequestParam(value = "beginDate", required = false) Date beginDate,
-                                                          @ApiParam("结束日期") @RequestParam(value = "endDate", required = false) Date endDate)
+    public ResponseEntity<List<Student>> leisureStudents(@PageableDefault(size = 10, sort = {
+        "studentId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                                         @ApiParam("行政班") @RequestParam(name = "className", required = false, defaultValue = "") String className,
+                                                         @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
+                                                         @ApiParam("年级") @RequestParam(value = "grade", required = false, defaultValue = "") String grade,
+                                                         @ApiParam("学号前缀模糊查询") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentIdPrefix,
+                                                         @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName,
+                                                         @ApiParam("开始日期") @RequestParam(value = "beginDate", required = false) Date beginDate,
+                                                         @ApiParam("结束日期") @RequestParam(value = "endDate", required = false) Date endDate)
     {
-        return new ResponseEntity<>(
-                studentService.getAllStudents(pageable, className, profession, grade, studentIdPrefix,studentName,beginDate,endDate),
-                HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getAllLeisureStudents(pageable, className,
+            profession, grade, studentIdPrefix, studentName, beginDate, endDate), HttpStatus.OK);
     }
 
     @ApiOperation("分页查询分组列表")
@@ -77,9 +77,15 @@ public class GroupController
         @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC")})
     @GetMapping
     public ResponseEntity<Page<DataMiningGroup>> getPageable(@PageableDefault(size = 20, sort = {
-        "groupId"}, direction = Sort.Direction.DESC) Pageable pageable)
+        "builtTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                                             @ApiParam("队伍名称") @RequestParam(value = "groupName", required = false, defaultValue = "") String groupName,
+                                                             @ApiParam("建立时间的区间起点") @RequestParam(value = "beginDate", required = false, defaultValue = "") Date beginDate,
+                                                             @ApiParam("建立时间区间的终点") @RequestParam(value = "endDate", required = false, defaultValue = "") Date endDate,
+                                                             @ApiParam("队长学号") @RequestParam(value = "leaderStudentId", required = false, defaultValue = "") String leaderStudentId,
+                                                             @ApiParam("任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") MiningTaskStatus taskStatus)
     {
-        return new ResponseEntity<>(groupService.fetchPageableGroups(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(groupService.fetchPageableGroups(pageable, groupName,
+            beginDate, endDate, leaderStudentId, taskStatus), HttpStatus.OK);
     }
 
     @ApiOperation("获取系统帮助用户分组的信息")
@@ -92,9 +98,10 @@ public class GroupController
 
     @ApiOperation("创建系统先前分组,由用户确认")
     @PostMapping(value = "/dividing_groups/{queryKey}")
-    public ResponseEntity<List<DataMiningGroup>> createSystemDefaultGroups(@ApiParam(value = "系统响应的查询Key")@PathVariable("queryKey") String queryKey)
+    public ResponseEntity<List<DataMiningGroup>> createSystemDefaultGroups(@ApiParam(value = "系统响应的查询Key") @PathVariable("queryKey") String queryKey)
     {
-        return new ResponseEntity<>(groupService.sureDividingGroupRequest(queryKey), HttpStatus.CREATED);
+        return new ResponseEntity<>(groupService.sureDividingGroupRequest(queryKey),
+            HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{groupId}")
@@ -110,6 +117,13 @@ public class GroupController
         return new ResponseEntity<>(groupService.fetchGroupNames(), HttpStatus.OK);
     }
 
+    @ApiOperation("获取所有分组的队长信息")
+    @GetMapping(value = "/group_leaders")
+    public ResponseEntity<List<Student>> leaders()
+    {
+        return new ResponseEntity<>(groupService.fetchGroupLeaders(), HttpStatus.OK);
+    }
+
     @ApiOperation("创建一个分组")
     @PostMapping
     public ResponseEntity<DataMiningGroup> create(@RequestBody DataMiningGroupDto group)
@@ -119,10 +133,9 @@ public class GroupController
 
     @ApiOperation("更新分组信息")
     @PutMapping
-    public DataMiningGroup update(@RequestBody DataMiningGroup miningGroup)
+    public ResponseEntity<DataMiningGroup> update(@RequestBody GroupDto groupDto)
     {
-        groupService.update(miningGroup);
-        return miningGroup;
+        return new ResponseEntity<>(groupService.updateGroup(groupDto), HttpStatus.OK);
     }
 
     @ApiOperation("删除一个分组")
@@ -137,8 +150,7 @@ public class GroupController
     @DeleteMapping
     public ResponseEntity<List<DataMiningGroup>> delete(@RequestBody List<String> groupIds)
     {
-        return new ResponseEntity<>(groupService.deleteGroupBatch(groupIds),
-                HttpStatus.OK);
+        return new ResponseEntity<>(groupService.deleteGroupBatch(groupIds), HttpStatus.OK);
     }
 
     // @RequestMapping(value = "/{groupId}/leader", method = RequestMethod.PATCH)
@@ -155,8 +167,6 @@ public class GroupController
     {
         return groupService.updateLeader(studentId, groupId);
     }
-
-
 
     @ApiOperation("获取分组成员")
     @GetMapping(value = "/{groupId}/members")

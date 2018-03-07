@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -112,6 +111,7 @@ public class StudentController
     @Cacheable(cacheNames = "studentPageableCache")
     public ResponseEntity<Page<Student>> studentsPageable(@PageableDefault(size = 10, sort = {
         "studentId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                                          @ApiParam("是否查询全部") @RequestParam(name = "fetch", required = false, defaultValue = "false") Boolean fetch,
                                                           @ApiParam("行政班") @RequestParam(name = "className", required = false, defaultValue = "") String className,
                                                           @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
                                                           @ApiParam("年级") @RequestParam(value = "grade", required = false, defaultValue = "") String grade,
@@ -119,7 +119,7 @@ public class StudentController
                                                           @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName)
     {
         return new ResponseEntity<>(
-            studentService.getStudentList(pageable, className, profession, grade, studentIdPrefix,studentName),
+            studentService.getStudentList(fetch, pageable, className, profession, grade, studentIdPrefix,studentName),
             HttpStatus.OK);
     }
 }

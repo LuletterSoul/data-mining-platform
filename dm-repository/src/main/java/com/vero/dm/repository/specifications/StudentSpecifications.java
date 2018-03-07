@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.criteria.*;
 
+import com.vero.dm.model.enums.MiningTaskStatus;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -91,11 +92,11 @@ public class StudentSpecifications
      * @param endDate
      * @return
      */
-    public static Specification<Student> findStudentsWithoutGroup(String className,
-                                                                  String profession, String grade,
-                                                                  String studentIdPrefix,
-                                                                  String studentName,
-                                                                  Date beginDate, Date endDate)
+    public static Specification<Student> findLeisureStudents(String className,
+                                                             String profession, String grade,
+                                                             String studentIdPrefix,
+                                                             String studentName,
+                                                             Date beginDate, Date endDate)
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates  = buildStudentPredicates(className, profession,
@@ -104,11 +105,14 @@ public class StudentSpecifications
             {
                 Subquery<String> subQuery = query.subquery(String.class);
                 Root<Student> subRoot = subQuery.from(Student.class);
-                Join<DataMiningGroup, DataMiningTask> taskJoin = subRoot.join(Student_.miningGroups, JoinType.LEFT).join(DataMiningGroup_.dataMiningTask, JoinType.LEFT);
+                Join<Student, DataMiningGroup> groupJoin = subRoot.join(Student_.miningGroups, JoinType.LEFT);
+                Join<DataMiningGroup, DataMiningTask> taskJoin = groupJoin.join(DataMiningGroup_.dataMiningTask, JoinType.LEFT);
                 Predicate dateGq = cb.greaterThanOrEqualTo(
                         taskJoin.get(DataMiningTask_.PLANNED_START_TIME), beginDate);
                 Predicate dateLq = cb.lessThanOrEqualTo(taskJoin.get(DataMiningTask_.PLANNED_FINISH_TIME), endDate);
-                subQuery.where(cb.and(dateGq, dateLq));
+                //已完成任务的学生也视为空闲
+                Predicate taskStatus = cb.notEqual(groupJoin.get(DataMiningGroup_.TASK_STATUS), MiningTaskStatus.completed);
+                subQuery.where(cb.and(dateGq, dateLq, taskStatus));
                 //注意子查询不能脱离父根使用,否则抛别名匹配错误的异常
                 subQuery.select(subRoot.get(Student_.studentId));
                 Predicate notIn = cb.not(cb.in(root.get(Student_.studentId)).value(subQuery));

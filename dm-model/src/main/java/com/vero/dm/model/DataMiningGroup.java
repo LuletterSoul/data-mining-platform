@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.vero.dm.model.converter.MiningTaskStatusConverter;
+import com.vero.dm.model.enums.MiningTaskStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -85,6 +87,12 @@ public class DataMiningGroup
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taskId", foreignKey = @ForeignKey(name = "TASK_FOREIGN_KEY"))
     private DataMiningTask dataMiningTask;
+
+    /**
+     * 任务状态
+     */
+    @Convert(converter = MiningTaskStatusConverter.class)
+    private MiningTaskStatus taskStatus;
 
     @Override
     public boolean equals(Object o)

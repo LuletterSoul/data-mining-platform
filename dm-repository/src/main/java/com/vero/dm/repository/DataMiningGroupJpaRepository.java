@@ -4,7 +4,9 @@ package com.vero.dm.repository;
 import java.util.List;
 
 import com.vero.dm.model.DataSetCollection;
+import com.vero.dm.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.vero.dm.model.DataMiningGroup;
@@ -17,7 +19,9 @@ import org.springframework.data.repository.query.Param;
  * @since data-mining-platform
  */
 
-public interface DataMiningGroupJpaRepository extends JpaRepository<DataMiningGroup, String>
+public interface DataMiningGroupJpaRepository extends
+        JpaRepository<DataMiningGroup, String>
+        ,JpaSpecificationExecutor<DataMiningGroup>
 {
     @Query(value = "select  g from DataMiningGroup g left join g.dataMiningTask t where t.taskId = :taskId")
     List<DataMiningGroup> findByDataMiningTaskId(@Param("taskId") String taskId);
@@ -25,4 +29,6 @@ public interface DataMiningGroupJpaRepository extends JpaRepository<DataMiningGr
     @Query(value = "select  g.groupName from DataMiningGroup g")
     List<String> findGroupNames();
 
+    @Query(value = "select distinct g.groupLeader from DataMiningGroup g")
+    List<Student> findLeaders();
 }
