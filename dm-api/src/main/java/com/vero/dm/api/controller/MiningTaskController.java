@@ -57,7 +57,15 @@ public class MiningTaskController
     public ResponseEntity<DataMiningTask> deleteById(@PathVariable("taskId") String taskId)
     {
         return new ResponseEntity<>(miningTaskService.deleteByTaskId(taskId),
-            HttpStatus.NO_CONTENT);
+            HttpStatus.OK);
+    }
+
+    @ApiOperation("批量删除所有数据挖掘任务")
+    @DeleteMapping
+    public ResponseEntity<List<DataMiningTask>> deleteBatchByIds(@RequestBody List<String> taskIds)
+    {
+        return new ResponseEntity<>(miningTaskService.deleteBatchTask(taskIds),
+                HttpStatus.OK);
     }
 
     @ApiOperation("分页获取任务列表")
@@ -137,7 +145,7 @@ public class MiningTaskController
             HttpStatus.CREATED);
     }
 
-    @ApiOperation("批量移除任务")
+    @ApiOperation("批量移除任务的关联分组")
     @RequestMapping(value = "/{taskId}/groups", method = RequestMethod.DELETE)
     public ResponseEntity<List<DataMiningGroup>> removeGroups(@PathVariable("taskId") String taskId,
                                                               @RequestBody List<String> groupIds)
