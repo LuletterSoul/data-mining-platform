@@ -20,11 +20,17 @@ import com.vero.dm.repository.dto.MiningTaskDto;
 public interface MiningTaskService extends BaseService<DataMiningTask, String>
 {
 
+    List<DataMiningTask> findByTaskIds(List<String> taskIds);
+
+    List<String> findAllTaskNames();
+
     DataMiningTask saveOrUpdateMiningTask(MiningTaskDto miningTaskDto);
 
     DataMiningTask deleteByTaskId(String taskId);
 
-    Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, Pageable pageable);
+    List<DataMiningTask> deleteBatchTask(List<String> taskIds);
+
+    Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, Pageable pageable, TaskProgressStatus progressStatus, Integer lowBound, Integer upperBound);
 
     List<DataMiningGroup> fetchInvolvedGroups(String taskId);
 
@@ -45,4 +51,6 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
     List<DataSetCollection> removeAllMiningSets(String taskId);
 
     List<TaskProgressStatus> fetchProgressStatus();
+
+    Integer[] minAndMaxGroupNum();
 }

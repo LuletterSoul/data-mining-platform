@@ -5,8 +5,6 @@ import static com.vero.dm.repository.specifications.TaskSpecifications.tasksSpec
 
 import java.util.*;
 
-import com.vero.dm.model.enums.TaskProgressStatus;
-import org.hibernate.mapping.Array;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -17,6 +15,7 @@ import com.vero.dm.model.Algorithm;
 import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.DataSetCollection;
+import com.vero.dm.model.enums.TaskProgressStatus;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
 
@@ -36,6 +35,17 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     public DataMiningTask findById(String id)
     {
         return taskJpaRepository.findOne(id);
+    }
+
+    @Override
+    public List<DataMiningTask> findByTaskIds(List<String> taskIds)
+    {
+        return taskJpaRepository.findAll(taskIds);
+    }
+
+    @Override
+    public List<String> findAllTaskNames() {
+        return taskJpaRepository.findAllTaskNames();
     }
 
     @Override
@@ -66,21 +76,50 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
+    public List<DataMiningTask> deleteBatchTask(List<String> taskIds)
+    {
+        List<DataMiningTask> tasks = findByTaskIds(taskIds);
+        tasks.forEach(t -> {
+            t.setAlgorithms(null);
+            t.setArrangedCollections(null);
+            t.setGroups(null);
+        });
+        taskJpaRepository.save(tasks);
+        taskJpaRepository.delete(tasks);
+        return tasks;
+    }
+
+    @Override
     public Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName,
                                               Date plannedBeginDate, Date plannedEndDate,
                                               Date builtTimeBegin, Date builtTimeEnd,
-                                              Pageable pageable)
+                                              Pageable pageable, TaskProgressStatus progressStatus,
+                                              Integer lowBound, Integer upperBound)
     {
+        List<DataMiningTask> finalResult =new LinkedList<>();
+        List<DataMiningTask> taskLimit = taskJpaRepository.findByLinkedGroupsBound(lowBound, upperBound);
         if (fetch)
         {
-            return new PageImpl<>(taskJpaRepository.findAll(tasksSpec(taskName, plannedBeginDate,
-                plannedEndDate, builtTimeBegin, builtTimeEnd)));
-
+            List<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName, plannedBeginDate, plannedEndDate,
+                    builtTimeBegin, builtTimeEnd, progressStatus));
+            taskLimit.forEach(c -> {
+                if (tasks.contains(c)) {
+                    finalResult.add(c);
+                }
+            });
+            return new PageImpl<>(tasks);
         }
         else
         {
-            return taskJpaRepository.findAll(tasksSpec(taskName, plannedBeginDate, plannedEndDate,
-                builtTimeBegin, builtTimeEnd), pageable);
+            Page<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName, plannedBeginDate, plannedEndDate,
+                    builtTimeBegin, builtTimeEnd, progressStatus),pageable);
+            List<DataMiningTask> content = tasks.getContent();
+            tasks.forEach( c ->{
+                if (taskLimit.contains(c)) {
+                    finalResult.add(c);
+                }
+            });
+            return new PageImpl<>(finalResult);
         }
     }
 
@@ -183,7 +222,17 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
-    public List<TaskProgressStatus> fetchProgressStatus() {
+    public List<TaskProgressStatus> fetchProgressStatus()
+    {
         return Arrays.asList(TaskProgressStatus.values());
+    }
+
+    @Override
+    public Integer[] minAndMaxGroupNum()
+    {
+        Integer[] max_min_pair = new Integer[2];
+        max_min_pair[0] = taskJpaRepository.findMaxGroupNum();
+        max_min_pair[1] = taskJpaRepository.findMinGroupNum();
+        return max_min_pair;
     }
 }

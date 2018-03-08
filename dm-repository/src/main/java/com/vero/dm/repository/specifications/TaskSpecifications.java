@@ -1,16 +1,19 @@
 package com.vero.dm.repository.specifications;
 
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.criteria.Predicate;
 
-import com.vero.dm.model.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.vero.dm.model.DataMiningTask;
+import com.vero.dm.model.DataMiningTask_;
+import com.vero.dm.model.enums.TaskProgressStatus;
 
 
 /**
@@ -21,33 +24,47 @@ import java.util.List;
 
 public class TaskSpecifications
 {
-    public static Specification<DataMiningTask> tasksSpec(String taskName,
-                                                          Date plannedBeginDate,
-                                                          Date plannedEndDate,
-                                                          Date builtTimeBegin,
-                                                          Date builtTimeEnd)
+    public static Specification<DataMiningTask> tasksSpec(String taskName, Date plannedBeginDate,
+                                                          Date plannedEndDate, Date builtTimeBegin,
+                                                          Date builtTimeEnd,
+                                                          TaskProgressStatus progressStatus)
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates = new ArrayList<>();
-            Predicate taskNamePredicate = cb.equal(root.get(DataMiningTask_.TASK_NAME), taskName);
-            Predicate beginDatePredicate = cb.greaterThanOrEqualTo(root.get(DataMiningTask_.PLANNED_START_TIME), plannedBeginDate);
-            Predicate endDatePredicate = cb.lessThanOrEqualTo(root.get(DataMiningTask_.PLANNED_FINISH_TIME), plannedEndDate);
-            Predicate builtTimeBeginPredicate = cb.greaterThanOrEqualTo(root.get(DataMiningTask_.BUILT_TIME), builtTimeBegin);
-            Predicate builtTimeEndPredicate = cb.lessThanOrEqualTo(root.get(DataMiningTask_.BUILT_TIME), builtTimeEnd);
-            if (!StringUtils.isEmpty(taskName)) {
+            if (!StringUtils.isEmpty(taskName))
+            {
+                Predicate taskNamePredicate = cb.equal(root.get(DataMiningTask_.TASK_NAME), taskName);
                 totalPredicates.add(taskNamePredicate);
             }
-            if (!ObjectUtils.isEmpty(plannedBeginDate)) {
+            if (!ObjectUtils.isEmpty(plannedBeginDate))
+            {
+                Predicate beginDatePredicate = cb.greaterThanOrEqualTo(
+                        root.get(DataMiningTask_.PLANNED_START_TIME), plannedBeginDate);
                 totalPredicates.add(beginDatePredicate);
             }
-            if (!ObjectUtils.isEmpty(plannedEndDate)) {
+            if (!ObjectUtils.isEmpty(plannedEndDate))
+            {
+                Predicate endDatePredicate = cb.lessThanOrEqualTo(
+                        root.get(DataMiningTask_.PLANNED_FINISH_TIME), plannedEndDate);
                 totalPredicates.add(endDatePredicate);
             }
-            if (!ObjectUtils.isEmpty(builtTimeBegin)) {
+            if (!ObjectUtils.isEmpty(builtTimeBegin))
+            {
+                Predicate builtTimeBeginPredicate = cb.greaterThanOrEqualTo(
+                        root.get(DataMiningTask_.BUILT_TIME), builtTimeBegin);
                 totalPredicates.add(builtTimeBeginPredicate);
             }
-            if (!ObjectUtils.isEmpty(builtTimeEnd)) {
+            if (!ObjectUtils.isEmpty(builtTimeEnd))
+            {
+                Predicate builtTimeEndPredicate = cb.lessThanOrEqualTo(
+                        root.get(DataMiningTask_.BUILT_TIME), builtTimeEnd);
                 totalPredicates.add(builtTimeEndPredicate);
+            }
+            if (!ObjectUtils.isEmpty(progressStatus))
+            {
+                Predicate taskStatusPredicate = cb.equal(root.get(DataMiningTask_.PROGRESS_STATUS),
+                        progressStatus);
+                totalPredicates.add(taskStatusPredicate);
             }
             query.where(cb.and(totalPredicates.toArray(new Predicate[totalPredicates.size()])));
             return query.getRestriction();
