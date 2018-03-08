@@ -5,6 +5,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -165,6 +166,10 @@ public class SimpleExcelImporter<E> implements ExcelImporter<E>
                 if (field.getType().equals(Long.class))
                 {
                     field.set(e, cell.getNumericCellValue());
+                }
+                if (field.getType().equals(String.class)) {
+                    cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                    field.set(e, cell.getStringCellValue());
                 }
             }
             else if (cell.getCellTypeEnum() == CellType.STRING)

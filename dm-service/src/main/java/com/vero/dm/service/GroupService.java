@@ -56,5 +56,7 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 
     DataMiningTask arrangeTask(String groupId,String taskId);
 
+    MiningTaskStatus updateGroupStatus(String groupId,MiningTaskStatus newStatus);
+
     List<MiningTaskStatus> fetchStatusOptions();
 }

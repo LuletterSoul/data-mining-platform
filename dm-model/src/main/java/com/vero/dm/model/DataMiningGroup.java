@@ -79,7 +79,7 @@ public class DataMiningGroup
      */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "studentUserId", foreignKey = @ForeignKey(name = "S_BUILDER_FK_ID"))
-    private Student studentBuilder;
+    private Student studentBuilder; 
 
     /**
      * 每个分组只能持有一个发掘任务

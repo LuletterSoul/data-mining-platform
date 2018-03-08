@@ -14,7 +14,6 @@ spring:
     multipart:
       maxRequestSize: 1024Mb
       maxFileSize: 1024MB
-      enabled: false
 #数据库
   jpa:
     database: MYSQL

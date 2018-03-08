@@ -8,11 +8,9 @@ import static com.vero.dm.util.PathUtils.getAbsolutePath;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.vero.dm.model.DataMiningGroup;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -268,6 +266,13 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public List<Student> deleteBatchByStudentIds(List<String> studentIds)
     {
         List<Student> students = studentJpaRepository.findByStudentIds(studentIds);
+        students.forEach(s -> {
+            s.setMiningGroups(null);
+            Set<DataMiningGroup> groups = s.getRuleMiningGroups();
+            groups.forEach(g -> g.setGroupLeader(null));
+            groupJpaRepository.save(groups);
+        });
+        studentJpaRepository.save(students);
         studentJpaRepository.deleteBatchStudentsById(studentIds);
         return students;
     }

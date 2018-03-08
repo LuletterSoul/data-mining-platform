@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import com.vero.dm.exception.error.ExceptionCode;
@@ -184,7 +185,15 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             group.setDataMiningTask(taskJpaRepository.findOne(taskId));
             group.setTaskStatus(MiningTaskStatus.newTask);
         }
-        group.setTeacherBuilder(teacherJpaRepository.findOne(builderId));
+        Teacher teacherBuilder = teacherJpaRepository.findOne(builderId);
+        Student studentBuilder = studentJpaRepository.findOne(builderId);
+        if (!ObjectUtils.isEmpty(teacherBuilder)) {
+            group.setTeacherBuilder(teacherBuilder);
+        }
+        if (!ObjectUtils.isEmpty(studentBuilder)) {
+            group.setStudentBuilder(studentBuilder);
+        }
+
         group.setBuiltTime(new Date());
         group.setGroupName(
             "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM)
@@ -339,6 +348,14 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setDataMiningTask(task);
         groupJpaRepository.save(group);
         return task;
+    }
+
+    @Override
+    public MiningTaskStatus updateGroupStatus(String groupId, MiningTaskStatus newStatus) {
+        DataMiningGroup group = fetchGroupDetails(groupId);
+        group.setTaskStatus(newStatus);
+        groupJpaRepository.save(group);
+        return newStatus;
     }
 
     @Override
