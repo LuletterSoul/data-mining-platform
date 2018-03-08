@@ -7,7 +7,9 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.vero.dm.model.converter.MiningTaskStatusConverter;
+import com.vero.dm.model.converter.TaskProgressStatusConverter;
 import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.model.enums.TaskProgressStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -97,6 +99,10 @@ public class DataMiningTask
      */
     @Transient
     private Integer actualDuration;
+
+
+    @Convert(converter = TaskProgressStatusConverter.class)
+    private TaskProgressStatus progressStatus;
 
 
     /**

@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.model.enums.TaskProgressStatus;
 import com.vero.dm.service.GroupService;
+import com.vero.dm.service.MiningTaskService;
 import com.vero.dm.service.StudentService;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +33,14 @@ public class MultipleOptionsController
     private StudentService studentService;
 
     private GroupService groupService;
+
+    private MiningTaskService taskService;
+
+
+    @Autowired
+    public void setTaskService(MiningTaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @Autowired
     public void setStudentService(StudentService studentService) {
@@ -58,6 +69,10 @@ public class MultipleOptionsController
     public Map<String, List<?>> getStudentOptions()
     {
         return studentService.getStudentPropertiesOptions();
+    }
+    @GetMapping(value = "/tasks/progress_status")
+    public List<TaskProgressStatus> getTaskStatuses() {
+        return taskService.fetchProgressStatus();
     }
 
     @GetMapping(value = "/groups/task/status")

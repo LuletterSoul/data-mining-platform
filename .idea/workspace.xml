@@ -11,28 +11,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="增加和修缮查询API">
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatusWrapper.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupDto.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/TaskProgressStatusConverter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/date/DateStyle.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/date/DateUtil.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/eclipseCodeFormatter.xml" afterPath="$PROJECT_DIR$/.idea/eclipseCodeFormatter.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" />
       <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/UniversalEnumConverterFactory.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/UniversalEnumConverterFactory.java" />
       <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" />
       <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java" />
       <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningGroupJpaRepository.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningGroupJpaRepository.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/StudentSpecifications.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/StudentSpecifications.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" />
-      <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java" />
       <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java" />
-      <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" />
-      <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
       <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -100,9 +91,11 @@
       <file leaf-file-name="DataMiningGroup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="935">
+              <caret line="79" column="26" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+              <folding>
+                <marker date="1520476989692" expanded="true" signature="2294:2554" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,43 +103,9 @@
       <file leaf-file-name="GroupController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="137" column="52" lean-forward="true" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
-              <folding>
-                <element signature="e#1391#1392#0" expanded="true" />
-                <element signature="e#1443#1444#0" expanded="true" />
-                <element signature="e#1524#1525#0" expanded="true" />
-                <element signature="e#1572#1573#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/BaseService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="361" column="9" lean-forward="false" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
+            <state relative-caret-position="646">
+              <caret line="96" column="5" lean-forward="true" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sort.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/domain/Sort.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_mining_task" pinned="false" current-in-tab="true">
-        <entry file="das://table:/af44228a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_task">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -154,8 +113,8 @@
       <file leaf-file-name="MiningTaskController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="60" column="23" lean-forward="false" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
+            <state relative-caret-position="305">
+              <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -164,8 +123,8 @@
       <file leaf-file-name="DataMiningTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2949">
-              <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="244">
+              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -173,51 +132,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupingConfigParams.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java">
+      <file leaf-file-name="TaskProgressStatus.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-702">
-              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="941">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="647">
+              <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MiningTaskStatusConverter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MiningTaskStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1211#1212#0" expanded="true" />
-                <element signature="e#1245#1246#0" expanded="true" />
-                <element signature="e#1282#1283#0" expanded="true" />
-                <element signature="e#1311#1312#0" expanded="true" />
-                <element signature="e#1344#1345#0" expanded="true" />
-                <element signature="e#1372#1373#0" expanded="true" />
+                <element signature="e#1181#1182#0" expanded="true" />
+                <element signature="e#1214#1215#0" expanded="true" />
+                <element signature="e#1303#1304#0" expanded="true" />
+                <element signature="e#1336#1337#0" expanded="true" />
+                <element signature="e#1365#1366#0" expanded="true" />
+                <element signature="e#1403#1404#0" expanded="true" />
+                <element signature="e#1437#1438#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -226,9 +154,44 @@
       <file leaf-file-name="MiningTaskStatusWrapper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatusWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
+            <state relative-caret-position="396">
               <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MiningTaskStatus.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1249#1250#0" expanded="true" />
+                <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#1320#1321#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+                <element signature="e#1382#1383#0" expanded="true" />
+                <element signature="e#1410#1411#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultipleOptionsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="667">
+              <caret line="78" column="21" lean-forward="false" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+              <folding>
+                <element signature="e#1178#1179#0" expanded="true" />
+                <element signature="e#1224#1225#0" expanded="true" />
+                <element signature="e#1950#1951#0" expanded="true" />
+                <element signature="e#2017#2018#0" expanded="true" />
+                <element signature="e#2123#2124#0" expanded="true" />
+                <element signature="e#2179#2180#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -236,8 +199,8 @@
       <file leaf-file-name="MiningTaskService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+            <state relative-caret-position="505">
+              <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -246,83 +209,12 @@
       <file leaf-file-name="MiningTaskServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="80" column="12" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MiningTaskDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningTaskDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2067">
-              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MultipleOptionsController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="59" column="45" lean-forward="false" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
+            <state relative-caret-position="469">
+              <caret line="186" column="50" lean-forward="false" selection-start-line="186" selection-start-column="50" selection-end-line="186" selection-end-column="50" />
               <folding>
-                <element signature="e#999#1000#0" expanded="true" />
-                <element signature="e#1051#1052#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1176#1177#0" expanded="true" />
-                <element signature="e#1494#1495#0" expanded="true" />
-                <element signature="e#1547#1548#0" expanded="true" />
-                <element signature="e#1642#1643#0" expanded="true" />
-                <element signature="e#1709#1710#0" expanded="true" />
-                <element signature="e#1812#1813#0" expanded="true" />
-                <element signature="e#1868#1869#0" expanded="true" />
+                <element signature="e#6262#6263#0" expanded="true" />
+                <element signature="e#6327#6328#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DividingGroupInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/DividingGroupInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentJpaRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/StudentJpaRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1404">
-              <caret line="49" column="17" lean-forward="false" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PageImpl.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/domain/PageImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1599">
-              <caret line="57" column="11" lean-forward="false" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-              <folding>
-                <element signature="e#2040#2041#0" expanded="true" />
-                <element signature="e#2104#2105#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RestExceptionHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -330,8 +222,8 @@
       <file leaf-file-name="GroupService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="56" column="28" lean-forward="true" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
+            <state relative-caret-position="523">
+              <caret line="58" column="27" lean-forward="false" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -340,101 +232,184 @@
       <file leaf-file-name="GroupServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="535">
+              <caret line="345" column="5" lean-forward="true" selection-start-line="345" selection-start-column="5" selection-end-line="345" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3863#3864#0" expanded="true" />
-                <element signature="e#3922#3923#0" expanded="true" />
-                <element signature="e#11950#11951#0" expanded="true" />
-                <element signature="e#12008#12009#0" expanded="true" />
-                <element signature="e#12074#12075#0" expanded="true" />
-                <element signature="e#12129#12130#0" expanded="true" />
-                <element signature="e#12522#12523#0" expanded="true" />
                 <element signature="e#12585#12586#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractBaseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/AbstractBaseServiceImpl.java">
+      <file leaf-file-name="MiningTaskStatusConverter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="255" column="13" lean-forward="false" selection-start-line="255" selection-start-column="13" selection-end-line="255" selection-end-column="13" />
+            <state relative-caret-position="198">
+              <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/BaseEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskProgressStatusConverter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/TaskProgressStatusConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
               <folding>
-                <element signature="e#5169#5170#0" expanded="true" />
-                <element signature="e#5196#5197#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#505#506#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MethodProxy.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <file leaf-file-name="RestExceptionHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="66">
+              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransactionAspectSupport.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
+      <file leaf-file-name="group_student_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.group_student_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupSpecifications.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
+            <state relative-caret-position="233">
+              <caret line="34" column="74" lean-forward="false" selection-start-line="34" selection-start-column="74" selection-end-line="34" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataSetCollectionController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
+      <file leaf-file-name="data_mining_group" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_group">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DividingGroupInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/DividingGroupInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state relative-caret-position="864">
+              <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataSetCollectionService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/DataSetCollectionService.java">
+      <file leaf-file-name="algorithm_param" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_param">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_type" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_type">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_type_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_type_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attr_char_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.attr_char_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attr_feature_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.attr_feature_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collection_attr_char_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_attr_char_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="algorithm_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.algorithm_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collection_char_rel" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.collection_char_rel">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataSetCollectionServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/DataSetCollectionServiceImpl.java">
+      <file leaf-file-name="HibernateConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="190" column="29" lean-forward="false" selection-start-line="190" selection-start-column="29" selection-end-line="190" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/StudentDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataMiningGroupJpaRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningGroupJpaRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="1548">
+              <caret line="66" column="52" lean-forward="false" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -447,16 +422,15 @@
       <list>
         <option value="JUnit4 Test Class" />
         <option value="AnnotationType" />
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Gradle Kotlin DSL Build Script" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>resourceLoader</find>
       <find>Component</find>
       <find>findPathMatchingResources</find>
       <find>project.version</find>
@@ -486,11 +460,13 @@
       <find>123</find>
       <find>datamining4_</find>
       <find>task</find>
+      <find>MiningTaskStatus</find>
     </findStrings>
     <replaceStrings>
       <replace>ExcelModel</replace>
       <replace>SXSSFCellStyle</replace>
       <replace>SXSSFCell</replace>
+      <replace>TaskProgressStatus</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -514,11 +490,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/database-dev.yml" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/resources/database-prod.yml" />
-        <option value="$PROJECT_DIR$/dm-api/pom.xml" />
-        <option value="$PROJECT_DIR$/dm-web/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java" />
         <option value="$PROJECT_DIR$/dm-web/src/main/docker/runboot.sh" />
         <option value="$PROJECT_DIR$/dm-web/pom.xml" />
@@ -546,25 +517,30 @@
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/StudentJpaRepository.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/UniversalEnumConverterFactory.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/StudentSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningGroupJpaRepository.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatusWrapper.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupDto.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/AbstractBaseEnum.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/BaseEnumConverter.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/TaskProgressStatusConverter.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" />
+        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java" />
+        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java" />
       </list>
     </option>
   </component>
@@ -628,7 +604,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -640,7 +615,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -695,39 +669,6 @@
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
               <item name="dm-model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -771,171 +712,6 @@
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-repository" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="specifications" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-util" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-util" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-util" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="docker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="entry" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -943,6 +719,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1977,7 +1755,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="846409000" />
+    <option name="totallyTimeSpent" value="852501000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1989,20 +1767,57 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="2578" height="1458" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7345133" sideWeight="0.16917293" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853982" sideWeight="0.49785638" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16487648" sideWeight="0.16313823" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24812031" sideWeight="0.48826817" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.44026548" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16487648" sideWeight="0.8368618" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.111725666" sideWeight="0.47042367" order="20" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1659292" sideWeight="0.48174006" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.071902655" sideWeight="0.83082706" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41598696" sideWeight="0.4696243" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08517699" sideWeight="0.49785638" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28207964" sideWeight="0.4940048" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21374866" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.49785638" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32990506" sideWeight="0.5443645" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.49785638" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09352518" sideWeight="0.22195986" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24820144" sideWeight="0.49234694" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44026548" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09352518" sideWeight="0.7780402" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2014,10 +1829,13 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.097310126" sideWeight="0.83082706" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41598696" sideWeight="0.4696243" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08517699" sideWeight="0.49785638" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28303427" sideWeight="0.4940048" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19247788" sideWeight="0.4816147" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2146283" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -2025,17 +1843,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1210443" sideWeight="0.49570355" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.49785638" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19247788" sideWeight="0.4816147" order="19" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2253,192 +2060,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1179">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningTaskJpaRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="69" column="16" lean-forward="false" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="3798" column="30" lean-forward="false" selection-start-line="3798" selection-start-column="30" selection-end-line="3798" selection-end-column="30" />
-          <folding>
-            <element signature="e#177013#177014#0" expanded="false" />
-            <element signature="e#177054#177055#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/BaseEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE-sources.jar!/org/springframework/core/convert/support/ConversionUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/af44228a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.group_student_rel">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/af44228a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_group">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/converters/UniversalEnumConverterFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1872">
-          <caret line="55" column="1" lean-forward="false" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/target/generated-sources/apt/com/vero/dm/model/DataMiningGroup_.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="33" column="53" lean-forward="false" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/StudentSpecifications.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="115" column="44" lean-forward="true" selection-start-line="115" selection-start-column="44" selection-end-line="115" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.9.RELEASE/spring-data-jpa-1.11.9.RELEASE-sources.jar!/org/springframework/data/jpa/repository/JpaSpecificationExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/domain/PageRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/domain/Pageable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/web/PageableDefault.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1583">
-          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="65" column="25" lean-forward="false" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="291" column="69" lean-forward="false" selection-start-line="291" selection-start-column="69" selection-end-line="291" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/StudentJpaRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="49" column="17" lean-forward="false" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningGroupJpaRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
           <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2450,30 +2075,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/domain/PageImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1599">
           <caret line="57" column="11" lean-forward="false" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-          <folding>
-            <element signature="e#2040#2041#0" expanded="true" />
-            <element signature="e#2104#2105#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="80" column="12" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2481,7 +2086,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2495,8 +2099,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/DividingGroupInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="864">
+          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -2505,7 +2109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
           <caret line="361" column="9" lean-forward="false" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2521,7 +2124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
           <caret line="190" column="29" lean-forward="false" selection-start-line="190" selection-start-column="29" selection-end-line="190" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2529,7 +2131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2541,101 +2142,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="59" column="45" lean-forward="false" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
-          <folding>
-            <element signature="e#999#1000#0" expanded="true" />
-            <element signature="e#1051#1052#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1494#1495#0" expanded="true" />
-            <element signature="e#1547#1548#0" expanded="true" />
-            <element signature="e#1642#1643#0" expanded="true" />
-            <element signature="e#1709#1710#0" expanded="true" />
-            <element signature="e#1812#1813#0" expanded="true" />
-            <element signature="e#1868#1869#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="60" column="23" lean-forward="false" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2949">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatusWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1211#1212#0" expanded="true" />
-            <element signature="e#1245#1246#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="e#1311#1312#0" expanded="true" />
-            <element signature="e#1344#1345#0" expanded="true" />
-            <element signature="e#1372#1373#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="137" column="52" lean-forward="true" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
-          <folding>
-            <element signature="e#1391#1392#0" expanded="true" />
-            <element signature="e#1443#1444#0" expanded="true" />
-            <element signature="e#1524#1525#0" expanded="true" />
-            <element signature="e#1572#1573#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2643,7 +2153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2670,42 +2179,382 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="935">
+          <caret line="79" column="26" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+          <folding>
+            <marker date="1520476989692" expanded="true" signature="2294:2554" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/af44228a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_task" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar!/org/hibernate/boot/model/naming/PhysicalNamingStrategyStandardImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java">
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="56" column="28" lean-forward="true" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
+        <state relative-caret-position="233">
+          <caret line="34" column="74" lean-forward="false" selection-start-line="34" selection-start-column="74" selection-end-line="34" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.group_student_rel">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="36" column="74" lean-forward="false" selection-start-line="36" selection-start-column="74" selection-end-line="36" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="96" column="5" lean-forward="true" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/PreviewDividingGroupDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/DownloadUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1728">
+          <caret line="55" column="48" lean-forward="false" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/date/ConcurrentDateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#610#611#0" expanded="false" />
+            <element signature="e#669#670#0" expanded="false" />
+            <element signature="e#719#720#0" expanded="false" />
+            <element signature="e#772#773#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/ThreadLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1692">
+          <caret line="73" column="13" lean-forward="false" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/date/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21564">
+          <caret line="652" column="19" lean-forward="false" selection-start-line="652" selection-start-column="19" selection-end-line="652" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8365#8366#0" expanded="false" />
+            <element signature="e#8424#8425#0" expanded="false" />
+            <element signature="e#10253#10254#0" expanded="false" />
+            <element signature="e#10319#10320#0" expanded="false" />
+            <element signature="e#10502#10503#0" expanded="false" />
+            <element signature="e#10568#10569#0" expanded="false" />
+            <element signature="e#10759#10760#0" expanded="false" />
+            <element signature="e#10826#10827#0" expanded="false" />
+            <element signature="e#11010#11011#0" expanded="false" />
+            <element signature="e#11077#11078#0" expanded="false" />
+            <element signature="e#11267#11268#0" expanded="false" />
+            <element signature="e#11332#11333#0" expanded="false" />
+            <element signature="e#11512#11513#0" expanded="false" />
+            <element signature="e#11577#11578#0" expanded="false" />
+            <element signature="e#12024#12025#0" expanded="false" />
+            <element signature="e#12097#12098#0" expanded="false" />
+            <element signature="e#12543#12544#0" expanded="false" />
+            <element signature="e#12611#12612#0" expanded="false" />
+            <element signature="e#13057#13058#0" expanded="false" />
+            <element signature="e#13125#13126#0" expanded="false" />
+            <element signature="e#13252#13253#0" expanded="false" />
+            <element signature="e#13302#13303#0" expanded="false" />
+            <element signature="e#13424#13425#0" expanded="false" />
+            <element signature="e#13478#13479#0" expanded="false" />
+            <element signature="e#13606#13607#0" expanded="false" />
+            <element signature="e#13657#13658#0" expanded="false" />
+            <element signature="e#13780#13781#0" expanded="false" />
+            <element signature="e#13835#13836#0" expanded="false" />
+            <element signature="e#13960#13961#0" expanded="false" />
+            <element signature="e#14009#14010#0" expanded="false" />
+            <element signature="e#14129#14130#0" expanded="false" />
+            <element signature="e#14183#14184#0" expanded="false" />
+            <element signature="e#14310#14311#0" expanded="false" />
+            <element signature="e#14360#14361#0" expanded="false" />
+            <element signature="e#14482#14483#0" expanded="false" />
+            <element signature="e#14543#14544#0" expanded="false" />
+            <element signature="e#14672#14673#0" expanded="false" />
+            <element signature="e#14724#14725#0" expanded="false" />
+            <element signature="e#14848#14849#0" expanded="false" />
+            <element signature="e#14904#14905#0" expanded="false" />
+            <element signature="e#15033#15034#0" expanded="false" />
+            <element signature="e#15085#15086#0" expanded="false" />
+            <element signature="e#15209#15210#0" expanded="false" />
+            <element signature="e#15265#15266#0" expanded="false" />
+            <element signature="e#15411#15412#0" expanded="false" />
+            <element signature="e#15476#15477#0" expanded="false" />
+            <element signature="e#15616#15617#0" expanded="false" />
+            <element signature="e#15679#15680#0" expanded="false" />
+            <element signature="e#15825#15826#0" expanded="false" />
+            <element signature="e#15888#15889#0" expanded="false" />
+            <element signature="e#16029#16030#0" expanded="false" />
+            <element signature="e#16090#16091#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/date/DateStyle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding>
+            <element signature="e#1059#1060#0" expanded="false" />
+            <element signature="e#1093#1094#0" expanded="false" />
+            <element signature="e#1125#1126#0" expanded="false" />
+            <element signature="e#1153#1154#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6876">
+          <caret line="191" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="838" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/BaseEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/AbstractBaseEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/BaseEnumConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatusWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/TaskProgressStatusConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_role_re">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_info">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/42fe0f99-3786-404e-a460-87a99a43df9a/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33480">
+          <caret line="838" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="838" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="535">
+          <caret line="345" column="5" lean-forward="true" selection-start-line="345" selection-start-column="5" selection-end-line="345" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3863#3864#0" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#11950#11951#0" expanded="true" />
-            <element signature="e#12008#12009#0" expanded="true" />
-            <element signature="e#12074#12075#0" expanded="true" />
-            <element signature="e#12129#12130#0" expanded="true" />
-            <element signature="e#12522#12523#0" expanded="true" />
             <element signature="e#12585#12586#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/af44228a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_task">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="58" column="27" lean-forward="false" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="186" column="50" lean-forward="false" selection-start-line="186" selection-start-column="50" selection-end-line="186" selection-end-column="50" />
+          <folding>
+            <element signature="e#6262#6263#0" expanded="true" />
+            <element signature="e#6327#6328#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="78" column="21" lean-forward="false" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+          <folding>
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1224#1225#0" expanded="true" />
+            <element signature="e#1950#1951#0" expanded="true" />
+            <element signature="e#2017#2018#0" expanded="true" />
+            <element signature="e#2123#2124#0" expanded="true" />
+            <element signature="e#2179#2180#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1283#1284#0" expanded="true" />
+            <element signature="e#1320#1321#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+            <element signature="e#1214#1215#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1336#1337#0" expanded="true" />
+            <element signature="e#1365#1366#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

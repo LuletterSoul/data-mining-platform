@@ -3,11 +3,10 @@ package com.vero.dm.service.impl;
 
 import static com.vero.dm.repository.specifications.TaskSpecifications.tasksSpec;
 
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
+import com.vero.dm.model.enums.TaskProgressStatus;
+import org.hibernate.mapping.Array;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -181,5 +180,10 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         task.setArrangedCollections(null);
         taskJpaRepository.save(task);
         return collections;
+    }
+
+    @Override
+    public List<TaskProgressStatus> fetchProgressStatus() {
+        return Arrays.asList(TaskProgressStatus.values());
     }
 }
