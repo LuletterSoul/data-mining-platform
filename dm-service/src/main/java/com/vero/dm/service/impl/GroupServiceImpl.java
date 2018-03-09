@@ -8,8 +8,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.vero.dm.model.enums.TaskProgressStatus;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -98,8 +100,12 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     public Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName,
                                                      Date beginDate, Date endDate,
                                                      String leaderStudentId,
-                                                     MiningTaskStatus taskStatus)
+                                                     MiningTaskStatus taskStatus, Boolean fetch)
     {
+        if (fetch) {
+            return new PageImpl<>(groupJpaRepository.findAll(
+                    groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus)));
+        }
         return groupJpaRepository.findAll(
             groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus), pageable);
     }
@@ -346,6 +352,13 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         DataMiningTask task = taskJpaRepository.findOne(taskId);
         DataMiningGroup group = fetchGroupDetails(groupId);
         group.setDataMiningTask(task);
+        TaskProgressStatus status = task.getProgressStatus();
+        //更新当前任务状态
+        Boolean isAssigned = status.equals(TaskProgressStatus.newCreate) || status.equals(TaskProgressStatus.toBeAssigned);
+        if (isAssigned) {
+            task.setProgressStatus(TaskProgressStatus.assigned);
+        }
+        taskJpaRepository.save(task);
         groupJpaRepository.save(group);
         return task;
     }

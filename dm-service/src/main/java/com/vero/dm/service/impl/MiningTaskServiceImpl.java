@@ -5,6 +5,7 @@ import static com.vero.dm.repository.specifications.TaskSpecifications.tasksSpec
 
 import java.util.*;
 
+import com.vero.dm.model.enums.MiningTaskStatus;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -53,13 +54,31 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     {
         DataMiningTask task = new DataMiningTask();
         BeanUtils.copyProperties(miningTaskDto, task);
+        List<DataMiningGroup> groups = groupJpaRepository.findAll(miningTaskDto.getArrangeGroupIds());
         List<DataSetCollection> collections = collectionJpaRepository.findAll(
             miningTaskDto.getCollectionIds());
         List<Algorithm> algorithms = this.algorithmJpaRepository.findAll(
             miningTaskDto.getAlgorithmIds());
+        groups.forEach(g ->{
+            //更新当前任务状态
+            g.setDataMiningTask(task);
+            g.setTaskStatus(MiningTaskStatus.newTask);
+        });
+        //用户没有指定当前任务的执行分组,修改任务状态为“新创建”
+        if (groups.isEmpty()) {
+            task.setProgressStatus(TaskProgressStatus.newCreate);
+        }
+        else{
+            task.setProgressStatus(TaskProgressStatus.assigned);
+        }
         task.setAlgorithms(new LinkedHashSet<>(algorithms));
         task.setArrangedCollections(new LinkedHashSet<>(collections));
-        this.taskJpaRepository.save(task);
+        task.setGroups(new LinkedHashSet<>(groups));
+        task.setBuiltTime(new Date());
+        task.setPlannedStartTime(miningTaskDto.getPlannedTimeRange()[0]);
+        task.setPlannedFinishTime(miningTaskDto.getPlannedTimeRange()[1]);
+        this.taskJpaRepository.saveAndFlush(task);
+        this.groupJpaRepository.save(groups);
         return task;
     }
 
@@ -80,11 +99,17 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     {
         List<DataMiningTask> tasks = findByTaskIds(taskIds);
         tasks.forEach(t -> {
+            Set<DataMiningGroup> groups = t.getGroups();
+            groups.forEach( g-> {
+                //修改当前任务状态
+                g.setDataMiningTask(null);
+                g.setTaskStatus(MiningTaskStatus.toBeAssigned);
+            });
+            groupJpaRepository.save(groups);
             t.setAlgorithms(null);
             t.setArrangedCollections(null);
             t.setGroups(null);
         });
-        taskJpaRepository.save(tasks);
         taskJpaRepository.delete(tasks);
         return tasks;
     }
@@ -114,7 +139,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
             Page<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName, plannedBeginDate, plannedEndDate,
                     builtTimeBegin, builtTimeEnd, progressStatus),pageable);
             List<DataMiningTask> content = tasks.getContent();
-            tasks.forEach( c ->{
+            content.forEach( c ->{
                 if (taskLimit.contains(c)) {
                     finalResult.add(c);
                 }

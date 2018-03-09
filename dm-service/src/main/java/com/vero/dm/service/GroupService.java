@@ -24,11 +24,11 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 
     DataMiningGroup updateGroup(GroupDto groupDto);
 
-    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable,String groupName,
+    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName,
                                               Date beginDate,
                                               Date endDate,
                                               String leaderStudentId,
-                                              MiningTaskStatus taskStatus);
+                                              MiningTaskStatus taskStatus, Boolean fetch);
 
     List<Student> fetchStudentWithoutGroup(Date begin, Date end);
 

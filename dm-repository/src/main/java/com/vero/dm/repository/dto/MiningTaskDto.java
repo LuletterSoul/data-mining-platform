@@ -45,37 +45,19 @@ public class MiningTaskDto
      */
     private Date builtTime;
 
-    /**
-     * 计划开始时间
-     */
-    private Date plannedStartTime;
 
-    /**
-     * 计划完成时间
-     */
-    private Date plannedFinishTime;
-
-    /**
-     * 实际开始时间
-     */
-    private Date actualStartTime;
-
-    /**
-     * 实际完成时间
-     */
-    private Date actualFinishTime;
+    private Date[] plannedTimeRange;
 
 
     /**
      * 任务状态
      */
-    private Integer statusId;
+    private Integer statusValue;
 
     /**
      * 每个任务可被分给多个分组，内容相似
      */
-    private List<String> groupIds;
-
+    private List<String> arrangeGroupIds;
 
     /**
      * 每个分组可以被分配多个数据集

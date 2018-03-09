@@ -18,7 +18,10 @@ public enum TaskProgressStatus implements BaseEnum {
     closed(3, "CLOSED", "任务关闭"),
     closing(4, "CLOSING", "任务即将关闭"),
     canceled(5,"CANCELED","任务被取消"),
-    deleted(6,"DELETED","任务被强制删除");
+    deleted(6,"DELETED","任务被强制删除"),
+    newCreate(7, "NEW_CREATE", "新创建"),
+    assigned(8,"ASSIGNED","任务已被分发"),;
+
     public static Map<Integer, TaskProgressStatus> map = new HashMap<>();
 
     static
