@@ -20,6 +20,8 @@ import com.vero.dm.repository.dto.MiningTaskDto;
 public interface MiningTaskService extends BaseService<DataMiningTask, String>
 {
 
+    List<DataMiningTask> findAllTasks();
+
     List<DataMiningTask> findByTaskIds(List<String> taskIds);
 
     List<String> findAllTaskNames();

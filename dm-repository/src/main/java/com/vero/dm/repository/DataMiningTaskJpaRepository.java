@@ -21,6 +21,7 @@ import java.util.List;
 public interface DataMiningTaskJpaRepository extends JpaRepository<DataMiningTask, String>
                                                     ,JpaSpecificationExecutor<DataMiningTask>
 {
+
     @Query(value = "SELECT max(t.groups.size) from DataMiningTask t")
     int findMaxGroupNum();
 

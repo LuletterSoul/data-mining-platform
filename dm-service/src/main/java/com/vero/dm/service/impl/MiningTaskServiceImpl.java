@@ -39,6 +39,11 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
+    public List<DataMiningTask> findAllTasks() {
+        return taskJpaRepository.findAll();
+    }
+
+    @Override
     public List<DataMiningTask> findByTaskIds(List<String> taskIds)
     {
         return taskJpaRepository.findAll(taskIds);
@@ -256,6 +261,11 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     public Integer[] minAndMaxGroupNum()
     {
         Integer[] max_min_pair = new Integer[2];
+        if (findAllTasks().isEmpty()) {
+            max_min_pair[0] = 0;
+            max_min_pair[1] = 0;
+            return max_min_pair;
+        }
         max_min_pair[0] = taskJpaRepository.findMaxGroupNum();
         max_min_pair[1] = taskJpaRepository.findMinGroupNum();
         return max_min_pair;
