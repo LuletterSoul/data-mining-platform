@@ -82,10 +82,11 @@ public class GroupController
                                                              @ApiParam("建立时间的区间起点") @RequestParam(value = "beginDate", required = false, defaultValue = "") Date beginDate,
                                                              @ApiParam("建立时间区间的终点") @RequestParam(value = "endDate", required = false, defaultValue = "") Date endDate,
                                                              @ApiParam("队长学号") @RequestParam(value = "leaderStudentId", required = false, defaultValue = "") String leaderStudentId,
-                                                             @ApiParam("任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") MiningTaskStatus taskStatus)
+                                                             @ApiParam("任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") MiningTaskStatus taskStatus,
+                                                             @ApiParam("抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") Boolean fetch)
     {
         return new ResponseEntity<>(groupService.fetchPageableGroups(pageable, groupName,
-            beginDate, endDate, leaderStudentId, taskStatus), HttpStatus.OK);
+            beginDate, endDate, leaderStudentId, taskStatus, fetch), HttpStatus.OK);
     }
 
     @ApiOperation("获取系统帮助用户分组的信息")
