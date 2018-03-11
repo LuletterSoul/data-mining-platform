@@ -59,6 +59,9 @@ public class MiningTaskDto
      */
     private List<String> arrangeGroupIds;
 
+
+    private List<GroupDto> groups;
+
     /**
      * 每个分组可以被分配多个数据集
      */

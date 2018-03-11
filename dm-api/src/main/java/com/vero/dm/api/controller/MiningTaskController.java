@@ -3,6 +3,7 @@ package com.vero.dm.api.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -115,9 +116,9 @@ public class MiningTaskController
 
     @ApiOperation("获取执行此任务分组")
     @GetMapping(value = "/{taskId}/groups")
-    public ResponseEntity<List<DataMiningGroup>> groups(@PathVariable("taskId") String taskId)
+    public ResponseEntity<Map<String, List<DataMiningGroup>>> groups(@PathVariable("taskId") List<String> taskIds)
     {
-        return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskId), HttpStatus.OK);
+        return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskIds), HttpStatus.OK);
     }
 
     @ApiOperation("获取该任务分配的数据集")

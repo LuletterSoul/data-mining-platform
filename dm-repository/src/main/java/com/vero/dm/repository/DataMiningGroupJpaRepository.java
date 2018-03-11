@@ -26,6 +26,8 @@ public interface DataMiningGroupJpaRepository extends
     @Query(value = "select  g from DataMiningGroup g left join g.dataMiningTask t where t.taskId = :taskId")
     List<DataMiningGroup> findByDataMiningTaskId(@Param("taskId") String taskId);
 
+
+
     @Query(value = "select  g.groupName from DataMiningGroup g")
     List<String> findGroupNames();
 

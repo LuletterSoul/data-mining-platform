@@ -137,7 +137,6 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
                     finalResult.add(c);
                 }
             });
-            return new PageImpl<>(tasks);
         }
         else
         {
@@ -149,15 +148,18 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
                     finalResult.add(c);
                 }
             });
-            return new PageImpl<>(finalResult);
         }
+        return new PageImpl<>(finalResult);
     }
 
     @Override
-    public List<DataMiningGroup> fetchInvolvedGroups(String taskId)
+    public Map<String, List<DataMiningGroup>> fetchInvolvedGroups(List<String> taskIds)
     {
         // return miningTaskDao.fetchInvolvedGroups(taskId);
-        return groupJpaRepository.findByDataMiningTaskId(taskId);
+        Map<String, List<DataMiningGroup>> groups = new HashMap<>();
+        List<DataMiningTask> tasks = taskJpaRepository.findAll(taskIds);
+        tasks.parallelStream().forEach( t -> groups.put(t.getTaskId(), groupJpaRepository.findByDataMiningTaskId(t.getTaskId())));
+        return groups;
     }
 
     @Override

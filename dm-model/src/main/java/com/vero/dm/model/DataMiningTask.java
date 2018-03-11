@@ -109,7 +109,7 @@ public class DataMiningTask
      * 每个任务可被分给多个分组，内容相似
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "dataMiningTask")
+    @OneToMany(mappedBy = "dataMiningTask",fetch = FetchType.LAZY)
     private Set<DataMiningGroup> groups;
 
     /**

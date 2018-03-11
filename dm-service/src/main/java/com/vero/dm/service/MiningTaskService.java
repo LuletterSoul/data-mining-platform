@@ -3,6 +3,7 @@ package com.vero.dm.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.vero.dm.model.*;
 import com.vero.dm.model.enums.TaskProgressStatus;
@@ -34,7 +35,7 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, Pageable pageable, TaskProgressStatus progressStatus, Integer lowBound, Integer upperBound);
 
-    List<DataMiningGroup> fetchInvolvedGroups(String taskId);
+    Map<String, List<DataMiningGroup>> fetchInvolvedGroups(List<String> taskIds);
 
     List<DataMiningGroup> removeInvolvedGroups(String taskId, List<String> groupIds);
 
