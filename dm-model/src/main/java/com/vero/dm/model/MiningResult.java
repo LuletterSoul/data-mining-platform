@@ -1,5 +1,6 @@
 package com.vero.dm.model;
 
+import com.google.common.base.Objects;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -46,4 +47,18 @@ public class MiningResult
      * 数据挖掘的分析结果的文件路径
      */
     private String path;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MiningResult that = (MiningResult) o;
+        return Objects.equal(resultId, that.resultId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(super.hashCode(), resultId);
+    }
 }

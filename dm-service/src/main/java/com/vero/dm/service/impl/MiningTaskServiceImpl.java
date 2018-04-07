@@ -5,6 +5,7 @@ import static com.vero.dm.repository.specifications.TaskSpecifications.tasksSpec
 
 import java.util.*;
 
+import com.vero.dm.model.*;
 import com.vero.dm.model.enums.MiningTaskStatus;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -12,10 +13,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.vero.dm.model.Algorithm;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.enums.TaskProgressStatus;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
@@ -84,6 +81,12 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         task.setPlannedFinishTime(miningTaskDto.getPlannedTimeRange()[1]);
         this.taskJpaRepository.saveAndFlush(task);
         this.groupJpaRepository.save(groups);
+
+        //持久化任务阶段信息
+        Set<MiningTaskStage> stages = miningTaskDto.getStages();
+        stages.forEach( s ->s.setTask(task));
+        this.taskStageJpaRepository.save(stages);
+
         return task;
     }
 

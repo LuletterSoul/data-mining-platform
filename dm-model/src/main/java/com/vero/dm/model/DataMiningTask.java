@@ -127,7 +127,7 @@ public class DataMiningTask
      * 每个任务可有多个阶段
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task",fetch = FetchType.EAGER)
     private Set<MiningTaskStage> stages;
 
     @Override

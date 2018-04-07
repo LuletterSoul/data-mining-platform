@@ -3,6 +3,9 @@ package com.vero.dm.repository.dto;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
+
+import com.vero.dm.model.MiningTaskStage;
 
 import lombok.Data;
 
@@ -45,9 +48,7 @@ public class MiningTaskDto
      */
     private Date builtTime;
 
-
     private Date[] plannedTimeRange;
-
 
     /**
      * 任务状态
@@ -58,7 +59,6 @@ public class MiningTaskDto
      * 每个任务可被分给多个分组，内容相似
      */
     private List<String> arrangeGroupIds;
-
 
     private List<GroupDto> groups;
 
@@ -71,5 +71,10 @@ public class MiningTaskDto
      * 每个数据任务可以采用多种算法
      */
     private List<Integer> algorithmIds;
+
+    /**
+     * 一个任务可以有多个阶段
+     */
+    private Set<MiningTaskStage> stages;
 
 }

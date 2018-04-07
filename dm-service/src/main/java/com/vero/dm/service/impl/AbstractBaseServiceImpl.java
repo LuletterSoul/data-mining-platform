@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,6 +77,9 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
 
     @Autowired
     protected AlgorithmJpaRepository algorithmJpaRepository;
+
+    @Autowired
+    protected TaskStageJpaRepository taskStageJpaRepository;
 
     @Override
     public List<E> get(Pageable pageable)
