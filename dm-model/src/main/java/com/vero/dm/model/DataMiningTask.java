@@ -6,14 +6,12 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import com.vero.dm.model.converter.MiningTaskStatusConverter;
-import com.vero.dm.model.converter.TaskProgressStatusConverter;
-import com.vero.dm.model.enums.MiningTaskStatus;
-import com.vero.dm.model.enums.TaskProgressStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
+import com.vero.dm.model.converter.TaskProgressStatusConverter;
+import com.vero.dm.model.enums.TaskProgressStatus;
 
 import lombok.Data;
 import lombok.ToString;
@@ -100,16 +98,14 @@ public class DataMiningTask
     @Transient
     private Integer actualDuration;
 
-
     @Convert(converter = TaskProgressStatusConverter.class)
     private TaskProgressStatus progressStatus;
-
 
     /**
      * 每个任务可被分给多个分组，内容相似
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "dataMiningTask",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dataMiningTask")
     private Set<DataMiningGroup> groups;
 
     /**
@@ -126,6 +122,13 @@ public class DataMiningTask
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "task_algorithm_rel", joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "taskId"), inverseJoinColumns = @JoinColumn(name = "algorithmId", referencedColumnName = "algorithmId"))
     private Set<Algorithm> algorithms;
+
+    /**
+     * 每个任务可有多个阶段
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "task")
+    private Set<MiningTaskStage> stages;
 
     @Override
     public boolean equals(Object o)
