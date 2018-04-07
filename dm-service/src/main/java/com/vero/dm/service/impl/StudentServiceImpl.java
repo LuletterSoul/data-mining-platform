@@ -1,8 +1,8 @@
 package com.vero.dm.service.impl;
 
 
-import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithParams;
 import static com.vero.dm.repository.specifications.StudentSpecifications.findLeisureStudents;
+import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithParams;
 import static com.vero.dm.util.PathUtils.concat;
 import static com.vero.dm.util.PathUtils.getAbsolutePath;
 
@@ -10,13 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import com.vero.dm.model.DataMiningGroup;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +23,7 @@ import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.importer.core.ExcelExporter;
 import com.vero.dm.importer.core.ExcelImporter;
 import com.vero.dm.importer.core.ExcelModuleManager;
+import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.FavoriteStatus;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.StudentStatus;
@@ -52,18 +51,6 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     @Autowired
     private ExcelExporter<Student> studentExcelExporter;
 
-    @Override
-    public List<StudentDto> getStudentList()
-    {
-        // List<Student> students = studentDao.getStudentList();
-        // List<StudentDto> list = new LinkedList<StudentDto>();
-        // for (Student student : students)
-        // {
-        // list.add(StudentDto.build(student));
-        // }
-        // return list;
-        return null;
-    }
 
     @Override
     public List<Student> importStudents(MultipartFile file)
@@ -182,32 +169,36 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public Page<Student> getStudentList(boolean fetch, Pageable pageable, String className, String profession,
-                                        String grade, String studentIdPrefix, String studentName)
+    public Page<Student> getStudentList(boolean fetch, Pageable pageable, String className,
+                                        String profession, String grade, String studentIdPrefix,
+                                        String studentName, Date beginDate, Date endDate)
     {
-        if (fetch) {
-            return new PageImpl<>(studentJpaRepository.findAll(
-                    findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName))) ;
-        }else{
+        if (fetch)
+        {
+            return new PageImpl<>(studentJpaRepository.findAll(findStudentsWithParams(className,
+                profession, grade, studentIdPrefix, studentName)));
+        }
+        else if (Objects.isNull(endDate) && Objects.isNull(beginDate))
+        {
             return studentJpaRepository.findAll(
-                    findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName),
-                    pageable);
+                findStudentsWithParams(className, profession, grade, studentIdPrefix, studentName),
+                pageable);
+        }
+        else
+        {
+            return studentJpaRepository.findAll(findLeisureStudents(className, profession, grade,
+                studentIdPrefix, studentName, beginDate, endDate), pageable);
         }
     }
 
     @Override
-    public Page<Student> getStudentList(Pageable pageable, String className, String profession,
-                                        String grade, String studentIdPrefix, String studentName,
-                                        Date beginDate, Date endDate)
+    public List<Student> getAllLeisureStudents(Pageable pageable, String className,
+                                               String profession, String grade,
+                                               String studentIdPrefix, String studentName,
+                                               Date beginDate, Date endDate)
     {
         return studentJpaRepository.findAll(findLeisureStudents(className, profession, grade,
-            studentIdPrefix, studentName, beginDate, endDate), pageable);
-    }
-
-    @Override
-    public List<Student> getAllLeisureStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate) {
-        return studentJpaRepository.findAll(findLeisureStudents(className, profession, grade,
-                studentIdPrefix, studentName, beginDate, endDate));
+            studentIdPrefix, studentName, beginDate, endDate));
     }
 
     @Override
@@ -292,7 +283,8 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public Map<String, List<?>> getStudentPropertiesOptions() {
+    public Map<String, List<?>> getStudentPropertiesOptions()
+    {
         Map<String, List<?>> options = new HashMap<>();
         options.put("classNameOptions", studentJpaRepository.findClassNameOptions());
         options.put("professionOptions", studentJpaRepository.findProfessionOptions());

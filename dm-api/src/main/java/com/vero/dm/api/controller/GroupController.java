@@ -105,6 +105,8 @@ public class GroupController
             HttpStatus.CREATED);
     }
 
+
+
     @GetMapping(value = "/{groupId}")
     public DataMiningGroup get(@PathVariable("groupId") String groupId)
     {
@@ -134,7 +136,7 @@ public class GroupController
 
     @ApiOperation("更新分组信息")
     @PutMapping
-    public ResponseEntity<DataMiningGroup> update(@RequestBody GroupDto groupDto)
+    public ResponseEntity<DataMiningGroup> update(@RequestBody DataMiningGroupDto groupDto)
     {
         return new ResponseEntity<>(groupService.updateGroup(groupDto), HttpStatus.OK);
     }

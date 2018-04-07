@@ -22,7 +22,7 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 {
     DataMiningGroup createGroup(DataMiningGroupDto groupDto);
 
-    DataMiningGroup updateGroup(GroupDto groupDto);
+    DataMiningGroup updateGroup(DataMiningGroupDto groupDto);
 
     Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName,
                                               Date beginDate,

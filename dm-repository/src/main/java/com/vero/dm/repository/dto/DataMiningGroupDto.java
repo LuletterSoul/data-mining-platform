@@ -27,23 +27,44 @@ public class DataMiningGroupDto
      */
     private String groupName;
 
-    /**
-     * 被分配的任务编号
-     */
-    private String arrangementId;
 
     /**
      * 被建立的时间
      */
     private Date builtTime;
 
+    /**
+     * 任务状态
+     */
+    private int taskStatus;
+
+
+    /**
+     * 被分配的任务编号
+     */
+    private String arrangementId;
+
+
+    /**
+     * 组员
+     */
     private List<String> memberIds;
+
+    /**
+     * 组长
+     */
 
     private String leaderId;
 
+
+    /**
+     * 每个分组只能持有一个发掘任务
+     */
+    private String taskId;
+
+
     private String builderId;
 
-    private String taskId;
 
     public static final Integer DEFAULT_GRADIENT = 12;
 }

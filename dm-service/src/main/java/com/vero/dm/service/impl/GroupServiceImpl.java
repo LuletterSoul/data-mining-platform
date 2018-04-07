@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.persistence.EntityNotFoundException;
 
 import com.vero.dm.model.enums.TaskProgressStatus;
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -60,8 +61,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     {
         DataMiningGroup group = new DataMiningGroup();
         Teacher builder = teacherJpaRepository.findOne(groupDto.getBuilderId());
-        Student leader = studentJpaRepository.findOne(groupDto.getLeaderId());
-        List<Student> members = studentJpaRepository.findAll(groupDto.getMemberIds());
+        Student leader = studentJpaRepository.findByStudentId(groupDto.getLeaderId());
+        List<Student> members = studentJpaRepository.findByStudentIds(groupDto.getMemberIds());
         DataMiningTask task = taskJpaRepository.findOne(groupDto.getTaskId());
         if (!members.contains(leader))
         {
@@ -69,31 +70,37 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             return null;
         }
         BeanUtils.copyProperties(groupDto, group);
+        updateTaskStatus(groupDto, group);
         group.setDataMiningTask(task);
         group.setTeacherBuilder(builder);
         group.setGroupMembers(new LinkedHashSet<>(members));
         group.setGroupLeader(leader);
         group.setBuiltTime(new Date());
         groupJpaRepository.save(group);
+        this.arrangeTask(groupDto.getGroupId(), groupDto.getTaskId());
         return group;
     }
 
     @Override
-    public DataMiningGroup updateGroup(GroupDto groupDto)
+    public DataMiningGroup updateGroup(DataMiningGroupDto groupDto)
     {
         this.updateLeader(groupDto.getLeaderId(), groupDto.getGroupId());
         this.configureGroupMembers(groupDto.getGroupId(), groupDto.getMemberIds());
         DataMiningGroup group = groupJpaRepository.findOne(groupDto.getGroupId());
         BeanUtils.copyProperties(groupDto, group);
+        updateTaskStatus(groupDto, group);
+        this.arrangeTask(groupDto.getGroupId(), groupDto.getTaskId());
+        groupJpaRepository.saveAndFlush(group);
+        return group;
+    }
+
+    private void updateTaskStatus(DataMiningGroupDto groupDto, DataMiningGroup group) {
         group.setTaskStatus(MiningTaskStatus.map.get(groupDto.getTaskStatus()));
         if (!StringUtils.isEmpty(groupDto.getTaskId())) {
             if (group.getTaskStatus().equals(MiningTaskStatus.toBeAssigned)) {
                 group.setTaskStatus(MiningTaskStatus.newTask);
             }
         }
-        this.arrangeTask(groupDto.getGroupId(), groupDto.getTaskId());
-        groupJpaRepository.saveAndFlush(group);
-        return group;
     }
 
     @Override
@@ -349,6 +356,9 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
 
     @Override
     public DataMiningTask arrangeTask(String groupId, String taskId) {
+        if (StringUtils.isEmpty(groupId) || StringUtils.isEmpty(taskId)) {
+            return null;
+        }
         DataMiningTask task = taskJpaRepository.findOne(taskId);
         DataMiningGroup group = fetchGroupDetails(groupId);
         group.setDataMiningTask(task);

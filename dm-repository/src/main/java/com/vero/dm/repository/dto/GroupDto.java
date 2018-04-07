@@ -19,47 +19,5 @@ import java.util.List;
 @Data
 public class GroupDto {
 
-    /**
-     * 数据库标识
-     */
-    private String groupId;
 
-    /**
-     * 分组名称
-     */
-    private String groupName;
-
-    /**
-     * 被分配的任务编号
-     */
-    private String arrangementId;
-
-    /**
-     * 被建立的时间
-     */
-    private Date builtTime;
-
-    /**
-     * 组员
-     */
-    private List<String> memberIds;
-
-    /**
-     * 组长
-     */
-
-    private String leaderId;
-
-
-
-
-    /**
-     * 每个分组只能持有一个发掘任务
-     */
-    private String taskId;
-
-    /**
-     * 任务状态
-     */
-    private int taskStatus;
 }

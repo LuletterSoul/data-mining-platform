@@ -22,8 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface StudentService extends UserService
 {
-    List<StudentDto> getStudentList();
-
     List<Student> importStudents(MultipartFile file);
 
     byte[] handleStudentExcelModuleDownload();
@@ -32,13 +30,45 @@ public interface StudentService extends UserService
 
     List<Student> findAllStudents();
 
-    Page<Student> getStudentList(boolean fetch, Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName);
 
-    Page<Student> getStudentList(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate,Date endDate);
+    /**
+     * 分页获取的库内的学生信息
+     * @param fetch
+     * @param pageable
+     * @param className
+     * @param profession
+     * @param grade
+     * @param studentIdPrefix
+     * @param studentName
+     * @param beginDate
+     * @param endDate
+     * @return
+     */
+    Page<Student> getStudentList(boolean fetch,
+                                 Pageable pageable,
+                                 String className,
+                                 String profession,
+                                 String grade,
+                                 String studentIdPrefix,
+                                 String studentName,
+                                 Date beginDate,
+                                 Date endDate);
 
 
+
+    /**
+     * 获取全部空闲的学生
+     * @param pageable
+     * @param className
+     * @param profession
+     * @param grade
+     * @param studentIdPrefix
+     * @param studentName
+     * @param beginDate
+     * @param endDate
+     * @return
+     */
     List<Student> getAllLeisureStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate);
-
 
 
     StudentDto deleteByStudentId(String studentId);

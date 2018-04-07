@@ -1,6 +1,7 @@
 package com.vero.dm.api.controller;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class StudentController
 
 
     @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<StudentDto> create(@RequestBody Student student)
     {
         StudentDto studentDto = studentService.save(student);
@@ -71,12 +72,22 @@ public class StudentController
         return new ResponseEntity<>(studentService.update(studentDto), HttpStatus.OK);
     }
 
-    // @RequestMapping(value = "/{studentId}", method = RequestMethod.DELETE)
-    // public ResponseEntity<StudentDto> delete(@PathVariable("studentId") String studentId)
-    // {
-    // StudentDto studentDto = studentService.deleteByStudentId(studentId);
-    // return new ResponseEntity<>(studentDto, HttpStatus.OK);
-    // }
+    @ApiOperation("获取空闲的学生列表")
+    @GetMapping(value = "/leisure_students")
+    @Cacheable(cacheNames = "studentPageableCache")
+    public ResponseEntity<List<Student>> leisureStudents(@PageableDefault(size = 10, sort = {
+            "studentId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                                         @ApiParam("行政班") @RequestParam(name = "className", required = false, defaultValue = "") String className,
+                                                         @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
+                                                         @ApiParam("年级") @RequestParam(value = "grade", required = false, defaultValue = "") String grade,
+                                                         @ApiParam("学号前缀模糊查询") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentIdPrefix,
+                                                         @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName,
+                                                         @ApiParam("开始日期") @RequestParam(value = "beginDate", required = false) Date beginDate,
+                                                         @ApiParam("结束日期") @RequestParam(value = "endDate", required = false) Date endDate)
+    {
+        return new ResponseEntity<>(studentService.getAllLeisureStudents(pageable, className,
+                profession, grade, studentIdPrefix, studentName, beginDate, endDate), HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public StudentDto get(@PathVariable("userId") String userId)
@@ -116,10 +127,12 @@ public class StudentController
                                                           @ApiParam("专业") @RequestParam(value = "profession", required = false, defaultValue = "") String profession,
                                                           @ApiParam("年级") @RequestParam(value = "grade", required = false, defaultValue = "") String grade,
                                                           @ApiParam("学号前缀模糊查询") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentIdPrefix,
-                                                          @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName)
+                                                          @ApiParam("姓名") @RequestParam(value = "studentName", required = false, defaultValue = "") String studentName,
+                                                          @ApiParam("开始日期") @RequestParam(value = "beginDate", required = false) Date beginDate,
+                                                          @ApiParam("结束日期") @RequestParam(value = "endDate", required = false) Date endDate)
     {
         return new ResponseEntity<>(
-            studentService.getStudentList(fetch, pageable, className, profession, grade, studentIdPrefix,studentName),
+            studentService.getStudentList(fetch, pageable, className, profession, grade, studentIdPrefix,studentName,beginDate,endDate),
             HttpStatus.OK);
     }
 }
