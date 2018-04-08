@@ -101,6 +101,7 @@ public class DataMiningTask
     @Convert(converter = TaskProgressStatusConverter.class)
     private TaskProgressStatus progressStatus;
 
+
     /**
      * 每个任务可被分给多个分组，内容相似
      */
@@ -108,26 +109,33 @@ public class DataMiningTask
     @OneToMany(mappedBy = "dataMiningTask")
     private Set<DataMiningGroup> groups;
 
+
     /**
      * 每个分组可以被分配多个数据集
      */
     @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "task_data_set_rel", joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "taskId"), inverseJoinColumns = @JoinColumn(name = "collectionId", referencedColumnName = "collectionId"))
+    @JoinTable(name = "task_data_set_rel", joinColumns = @JoinColumn(name = "taskId",
+            referencedColumnName = "taskId"),
+            inverseJoinColumns = @JoinColumn(name = "collectionId",
+            referencedColumnName = "collectionId"))
     private Set<DataSetCollection> arrangedCollections;
 
     /**
      * 每个数据任务可以采用多种算法
      */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "task_algorithm_rel", joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "taskId"), inverseJoinColumns = @JoinColumn(name = "algorithmId", referencedColumnName = "algorithmId"))
+    @JoinTable(name = "task_algorithm_rel",
+            joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "taskId"),
+            inverseJoinColumns = @JoinColumn(name = "algorithmId",
+                    referencedColumnName = "algorithmId"))
     private Set<Algorithm> algorithms;
 
     /**
      * 每个任务可有多个阶段
      */
-    @JsonIgnore
     @OneToMany(mappedBy = "task",fetch = FetchType.EAGER)
+    @org.hibernate.annotations.OrderBy(clause = "orderId asc")
     private Set<MiningTaskStage> stages;
 
     @Override
@@ -145,4 +153,6 @@ public class DataMiningTask
     {
         return Objects.hashCode(super.hashCode(), taskId);
     }
+
+
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -38,10 +39,27 @@ public class MiningResult
     @JoinColumn(name = "stageId", foreignKey = @ForeignKey(name = "STAGE_FK"))
     private MiningTaskStage stage;
 
+
+
+    /**
+     * 一个发掘结果可能使用了多个算法
+     */
+    @ManyToMany
+    @JoinTable(name = "result_algor_rel",
+            joinColumns = @JoinColumn(name = "resultId"),
+            inverseJoinColumns = @JoinColumn(name = "typeId"))
+    private Set<AlgorithmType> algorithmTypes;
+
     /**
      * 备注
      */
     private String comment;
+
+
+    /**
+     * 提交时间
+     */
+    private Date submittedDate;
 
     /**
      * 数据挖掘的分析结果的文件路径

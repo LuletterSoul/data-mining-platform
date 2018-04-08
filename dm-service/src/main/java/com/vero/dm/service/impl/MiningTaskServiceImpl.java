@@ -84,9 +84,13 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
 
         //持久化任务阶段信息
         Set<MiningTaskStage> stages = miningTaskDto.getStages();
-        stages.forEach( s ->s.setTask(task));
+        stages.forEach( s ->{
+            Date[] deadline = s.getDeadline();
+            s.setTask(task);
+            s.setBegin(deadline[0]);
+            s.setEnd(deadline[1]);
+        });
         this.taskStageJpaRepository.save(stages);
-
         return task;
     }
 
@@ -172,6 +176,11 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         groups.forEach(g -> doArrangeTask(null, g));
         groupJpaRepository.save(groups);
         return groups;
+    }
+
+    @Override
+    public List<MiningTaskStage> fetchRefStages(String taskId) {
+        return new LinkedList<>(findById(taskId).getStages());
     }
 
     @Override

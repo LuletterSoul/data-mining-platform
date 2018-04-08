@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.vero.dm.model.Algorithm;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.enums.TaskProgressStatus;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
@@ -119,6 +116,13 @@ public class MiningTaskController
     public ResponseEntity<Map<String, List<DataMiningGroup>>> groups(@PathVariable("taskId") List<String> taskIds)
     {
         return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskIds), HttpStatus.OK);
+    }
+
+    @ApiOperation("获取执行此任务分组")
+    @GetMapping(value = "/{taskId}/stages")
+    public ResponseEntity<List<MiningTaskStage>> groups(@PathVariable("taskId") String taskId)
+    {
+        return new ResponseEntity<>(miningTaskService.fetchRefStages(taskId), HttpStatus.OK);
     }
 
     @ApiOperation("获取该任务分配的数据集")

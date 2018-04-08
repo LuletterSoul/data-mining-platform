@@ -39,6 +39,8 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     List<DataMiningGroup> removeInvolvedGroups(String taskId, List<String> groupIds);
 
+    List<MiningTaskStage> fetchRefStages(String taskId);
+
     DataMiningGroup involveGroup(String taskId, String groupId);
 
     List<DataMiningGroup> involveGroups(String taskId, List<String> groupIds);

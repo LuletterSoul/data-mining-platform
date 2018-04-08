@@ -7,6 +7,7 @@ package com.vero.dm.model;
  * @since data-mining-platform
  */
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class MiningTaskStage
     /**
      * 每个阶段只对应一个任务
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "taskId", foreignKey = @ForeignKey(name = "TASK_FK"))
     private DataMiningTask task;
@@ -56,6 +58,17 @@ public class MiningTaskStage
      * 阶段备注
      */
     private String comment;
+
+    /**
+     * 期限
+     */
+    @Transient
+    private Date[] deadline;
+
+
+    private Date begin;
+
+    private Date end;
 
     @Override
     public boolean equals(Object o)
