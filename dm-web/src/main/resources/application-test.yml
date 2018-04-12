@@ -1,3 +1,5 @@
+
+#spring mvc
 spring:
   jackson:
     default-property-inclusion: non_null
@@ -5,18 +7,18 @@ spring:
       accept-empty-array-as-null-object: true
       accept-empty-string-as-null-object: true
     time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: com.vero.dm.util.date.ConcurrencyDateFormatter
   session:
     store-type: none
   http:
     multipart:
       maxRequestSize: 1024Mb
-      maxFileSize: 1024Mb
-
+      maxFileSize: 1024MB
+#数据库
   jpa:
     database: MYSQL
     # 是否显示HQL
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
         # 数据库方言
@@ -33,15 +35,16 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     generate-ddl: true
-
 #数据源
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 15298382837LIUxia_
+    password: root
     type: com.mchange.v2.c3p0.ComboPooledDataSource
-    url: jdbc:mysql://mysql:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://localhost:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
 
+
+  #redis
   redis:
     password:
     database: 0
@@ -51,14 +54,15 @@ spring:
       min-idle: 3
       max-active: 100
       max-wait: -1
-    host: redis-server
+    host: 127.0.0.1
     timeout: 0
-
 server:
   tomcat:
-    basedir: /alidata/tomcat
-
+    basedir: D:/Tomcat
+  port: 8085
 logging:
   level:
     com:
       dm: DEBUG
+
+

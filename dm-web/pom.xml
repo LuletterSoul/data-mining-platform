@@ -46,7 +46,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.11</version>
                 <configuration>
-                    <dockerHost>http://47.95.113.210:2375</dockerHost>
+                    <dockerHost>http://118.24.62.94:2376</dockerHost>
                     <imageName>${docker.image.prefix}/${project.build.finalName}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>

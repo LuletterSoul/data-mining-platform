@@ -11,8 +11,8 @@
       <user-name>root</user-name>
       <introspection-schemas>*:data_mining</introspection-schemas>
     </data-source>
-    <data-source name="data_mining@47.95.113.210" uuid="add251b8-9af7-45a1-b225-00df3ec08e39">
-      <database-info product="MySQL" version="5.7.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.45 ( Revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 )">
+    <data-source name="data_mining@118.24.62.94" uuid="add251b8-9af7-45a1-b225-00df3ec08e39">
+      <database-info product="MySQL" version="5.7.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
