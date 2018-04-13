@@ -307,6 +307,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         collectionJpaRepository.save(newCollection);
         String folderPath = concat(ResourcePath.COLLECTION_PATH, newCollection.getCollectionId());
         newCollection.setDataSetFolderPath(PathUtils.getAbsolutePath(folderPath));
+        log.info("Create new data set base folder:[{}]", folderPath);
         return newCollection;
     }
 

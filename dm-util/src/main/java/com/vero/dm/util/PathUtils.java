@@ -5,11 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -32,6 +33,7 @@ public class PathUtils
         try
         {
             String projectRoot = getProjectRoot();
+                log.info("Current project root should be :[{}]", projectRoot);
             File file = buildFile(relativePath, projectRoot);
             return file.getAbsolutePath();
         }
@@ -44,7 +46,7 @@ public class PathUtils
     }
 
     private static File buildFile(String relativePath, String projectRoot) {
-        File file = new File(projectRoot, relativePath);
+        File file = new File(concat(projectRoot,relativePath));
         if (!file.exists())
         {
             file.mkdirs();
@@ -55,9 +57,24 @@ public class PathUtils
     public static String getProjectRoot()
         throws FileNotFoundException
     {
-        File path = new File(ResourceUtils.getURL("classpath:").getPath());
-        if (!path.exists()) path = new File("");
-        return path.getAbsolutePath();
+        String path= Objects
+                .requireNonNull(Thread.currentThread().getContextClassLoader().getResource(""))
+                .toString();
+        File pathFile = new File(replacePath(path));
+        if (!pathFile.exists()) pathFile = new File("");
+        return pathFile.getAbsolutePath();
+    }
+
+    private static String replacePath(String path) {
+        //windows下
+        if("\\".equals(File.separator)){
+            path = path.replace("/", "\\");  // 将/换成\\
+        }
+        //linux下
+        if("/".equals(File.separator)){
+            path = path.replace("\\", "/");
+        }
+        return path;
     }
 
     public static String concat(String basePath, String... suffixes)
@@ -65,13 +82,8 @@ public class PathUtils
         StringBuilder builder = new StringBuilder(basePath);
         for (String suffix : suffixes)
         {
-            builder.append("\\").append(suffix);
+            builder.append(File.separator).append(suffix);
         }
-//        File file = new File(builder.toString());
-//        if (!file.exists())
-//        {
-//            file.mkdirs();
-//        }
         return builder.toString();
     }
 

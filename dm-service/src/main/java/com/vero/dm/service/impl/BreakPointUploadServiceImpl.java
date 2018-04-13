@@ -8,6 +8,7 @@ package com.vero.dm.service.impl;
  */
 
 import com.vero.dm.service.upload.BreakPointUpload;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,7 @@ import java.util.List;
  * BreakPointUpload Service模块，同Plupload实体类一样，因为要用到Spring web相关依赖，所以不将其放在Service模块
  */
 @Service
+@Slf4j
 public class BreakPointUploadServiceImpl {
 
     public static void upload(BreakPointUpload breakPointUpload, File uploadDir) {
@@ -29,7 +31,6 @@ public class BreakPointUploadServiceImpl {
     }
 
     private static void upload(BreakPointUpload breakPointUpload, File uploadDir, String fileName) {
-
         int chunks = breakPointUpload.getChunks();// 用户上传文件被分隔的总块数
         int nowChunk = breakPointUpload.getChunk();// 当前块，从0开始
 
