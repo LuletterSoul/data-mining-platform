@@ -15,6 +15,7 @@ import com.vero.dm.model.enums.TaskProgressStatus;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.engine.internal.Cascade;
 
 
 /**
@@ -134,7 +135,8 @@ public class DataMiningTask
     /**
      * 每个任务可有多个阶段
      */
-    @OneToMany(mappedBy = "task",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "task",fetch = FetchType.EAGER,
+            cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     @org.hibernate.annotations.OrderBy(clause = "orderId asc")
     private Set<MiningTaskStage> stages;
 
