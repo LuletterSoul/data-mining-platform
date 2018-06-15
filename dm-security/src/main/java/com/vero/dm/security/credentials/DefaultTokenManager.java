@@ -87,8 +87,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
             //更新最后一次访问(申请令牌)的时间;
             signAccessToken(accessToken, user);
             log.debug("Generate access token applied to [{}].", user.getUsername());
-            user.setLastLoginTime(new Date());
-            userService.updateUser(UserDto.build(user), accessToken);
             log.info("User [{}] last login time: [{}]", user.getUsername(),user.getLastLoginTime());
             return accessToken;
         }
@@ -193,8 +191,11 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     {
         List<String> roleNames = userService.findRoleNameSetByUserName(user.getUsername());
         List<String> permissionNames = userService.findPermissionNameSet(user.getUsername());
+        UserDto userDto = UserDto.build(user, roleNames, permissionNames);
+        user.setLastLoginTime(new Date());
         accessTokenCache.put(
-            new Element(accessToken, UserDto.build(user, roleNames, permissionNames)));
+            new Element(accessToken,userDto));
+        userService.updateUser(userDto,accessToken);
     }
 
     @Override

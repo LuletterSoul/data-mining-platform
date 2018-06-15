@@ -68,17 +68,8 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         user.setAvatar(userDto.getAvatar().getBytes());
         userJpaRepository.saveAndFlush(user);
         //更新缓存
-        Element userElement = accessTokenCache.get(accessToken);
-        if(!Objects.isNull(userElement)){
-            UserDto old = (UserDto) userElement.getObjectValue();
-            if(!Objects.isNull(old)){
-                BeanUtils.copyProperties(userDto, old);
-                accessTokenCache.put(new Element(accessToken, old));
-                return userDto;
-            }
-        }
-
-        return null;
+        accessTokenCache.put(new Element(accessToken, userDto));
+        return userDto;
     }
     //
     // public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)
