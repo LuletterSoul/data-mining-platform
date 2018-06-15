@@ -2,8 +2,7 @@ package com.vero.dm.model;
 
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -48,12 +47,12 @@ public class User implements Serializable
 
     protected String password;
 
-    protected Date birthday;
-
     protected String publicSalt;
 
     @JsonIgnore
     protected String privateSalt;
+
+    protected Date birthday;
 
     protected UserAccessStatus accountStatus = UserAccessStatus.AVAILABLE;
 
@@ -66,7 +65,7 @@ public class User implements Serializable
 
     protected String introduction;
 
-    protected java.util.Date lastLoginTime;
+    protected Date lastLoginTime;
 
     public User()
     {}

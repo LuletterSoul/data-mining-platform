@@ -1,7 +1,6 @@
 package com.vero.dm.api.controller;
 
 
-import com.vero.dm.security.credentials.DisposableTokenMaintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -87,9 +86,9 @@ public class UserController
     }
 
     @PutMapping
-    public UserDto update(@RequestBody UserDto userDto)
+    public UserDto update(@RequestBody UserDto userDto,@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
     {
-        return userService.updateUser(userDto);
+        return userService.updateUser(userDto, accessToken);
     }
 
     // @ApiOperation("根据用户名的获取权限角色")

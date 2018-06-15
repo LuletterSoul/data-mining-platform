@@ -14,8 +14,9 @@ public interface TokenValidator {
 
     /**
      *
+     * 前端加密的密文就行匹配
      * @param sourceUsername 来源
-     * @param providedCredential 客户端提供认证证书
+     * @param providedCredential 客户端提供认证证书{=密码与公盐生成的密文}
      * @return 是否合法
      */
     boolean validate(String sourceUsername,String providedCredential);

@@ -40,6 +40,14 @@ public interface StatelessCredentialsComputer
      */
     String encryptPassword(String plaintext, String customSalt);
 
+
+    /**
+     * 在服务器端计算用公盐与明文加密之后生成的哈希值
+     *
+     * @param password
+     * @param publicSalt
+     * @return
+     */
     String computeNegotiatedApplyToken(String password,String publicSalt);
 
     /**

@@ -2,8 +2,8 @@ package com.vero.dm.repository.dto;
 
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import com.vero.dm.model.User;
@@ -69,11 +69,11 @@ public class UserDto implements Serializable
         userDto.setUsername(user.getUsername());
         userDto.setName(user.getName());
         userDto.setAvatar(new String(user.getAvatar()));
-        userDto.setBirthday(user.getBirthday());
         userDto.setGender(user.getGender());
         userDto.setIntroduction(user.getIntroduction());
         userDto.setRegionCode(user.getRegionCode());
         userDto.setAccessStatus(user.getAccountStatus());
+        userDto.setBirthday(user.getBirthday());
         userDto.setLastLoginTime(new Date(user.getLastLoginTime().getTime()));
         return userDto;
     }

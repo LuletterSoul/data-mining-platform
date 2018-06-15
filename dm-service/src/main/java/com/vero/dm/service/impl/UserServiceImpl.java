@@ -2,9 +2,14 @@ package com.vero.dm.service.impl;
 
 
 import java.util.List;
+import java.util.Objects;
 
+import com.mchange.v2.lang.ObjectUtils;
+import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
+import net.sf.ehcache.Element;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> implements UserService
 {
 
+    private Ehcache accessTokenCache;
+
+    @Autowired
+    public void setAccessTokenCache(CacheManager cacheManager)
+    {
+        this.accessTokenCache = cacheManager.getCache("accessTokenCache");
+    }
+
     @Override
     public User findById(String id)
     {
@@ -48,13 +61,24 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto)
+    public UserDto updateUser(UserDto userDto, String accessToken)
     {
         User user = this.findById(userDto.getUserId());
         BeanUtils.copyProperties(userDto, user);
         user.setAvatar(userDto.getAvatar().getBytes());
-        userJpaRepository.save(user);
-        return userDto;
+        userJpaRepository.saveAndFlush(user);
+        //更新缓存
+        Element userElement = accessTokenCache.get(accessToken);
+        if(!Objects.isNull(userElement)){
+            UserDto old = (UserDto) userElement.getObjectValue();
+            if(!Objects.isNull(old)){
+                BeanUtils.copyProperties(userDto, old);
+                accessTokenCache.put(new Element(accessToken, old));
+                return userDto;
+            }
+        }
+
+        return null;
     }
     //
     // public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)

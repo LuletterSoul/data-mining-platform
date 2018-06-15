@@ -18,7 +18,7 @@ public interface UserService extends BaseService<User, String>
 
     UserDto getUserProfile(String username);
 
-    UserDto updateUser(UserDto userDto);
+    UserDto updateUser(UserDto userDto, String accessToken);
 
     void correlateRoles(String userId, List<Long> roleIdList);
 

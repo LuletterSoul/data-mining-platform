@@ -80,12 +80,16 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         if (tokenValidator.validate(username, providedCredential))
         {
             User user = userService.fetchByUserName(username);
-            // 生成访问证书
+            // 生成访问证书;
             String accessToken = tokenGenerator.generateHighSecurityTAccessToken(username,
                 userService.fetchPrivateSalt(username));
             // 签发证书,记录申请的令牌信息,进行超时记录;
+            //更新最后一次访问(申请令牌)的时间;
             signAccessToken(accessToken, user);
             log.debug("Generate access token applied to [{}].", user.getUsername());
+            user.setLastLoginTime(new Date());
+            userService.updateUser(UserDto.build(user), accessToken);
+            log.info("User [{}] last login time: [{}]", user.getUsername(),user.getLastLoginTime());
             return accessToken;
         }
         else
