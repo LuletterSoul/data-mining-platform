@@ -162,7 +162,7 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
             {
                 return true;
             }
-            String message = "Some critical credentials required.Make sure your credentials has been linked with request.";
+            String message = "Some critical credentials are required.Make sure the credentials has been sent with the request.";
             throw new HeaderLostException(message, ExceptionCode.HeaderLost);
         }
         return false;

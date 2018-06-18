@@ -28,7 +28,7 @@ import net.sf.ehcache.Element;
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5 created in 0:03 2017/9/15.
- * @since data-minning-platform
+ * @since data-mining-platform
  */
 
 @Service
@@ -43,6 +43,8 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     private Ehcache currentDisposableTokenCache;
 
     private Ehcache accessTokenCache;
+
+    private Ehcache usernameToTokenCache;
 
     @Autowired
     private TokenGenerator tokenGenerator;
@@ -71,12 +73,20 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         this.accessTokenCache = cacheManager.getCache("accessTokenCache");
     }
 
+    @Autowired
+    public void setUsernameToTokenCache(CacheManager cacheManager)
+    {
+        this.usernameToTokenCache= cacheManager.getCache("usernameToTokenCache");
+    }
+
+
+
     @Override
     public String applyExpiredToken(String username, String providedCredential, String dateString)
     {
         validateTokenDate(username, dateString);
         // 先清除之前的令牌信息
-        cleanPreApplicationInfo(providedCredential);
+        cleanPreTokenAuth(username);
         if (tokenValidator.validate(username, providedCredential))
         {
             User user = userService.fetchByUserName(username);
@@ -84,34 +94,34 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
             String accessToken = tokenGenerator.generateHighSecurityTAccessToken(username,
                 userService.fetchPrivateSalt(username));
             // 签发证书,记录申请的令牌信息,进行超时记录;
-            //更新最后一次访问(申请令牌)的时间;
+            // 更新最后一次访问(申请令牌)的时间;
             signAccessToken(accessToken, user);
             log.debug("Generate access token applied to [{}].", user.getUsername());
-            log.info("User [{}] last login time: [{}]", user.getUsername(),user.getLastLoginTime());
+            log.info("User [{}] last login time: [{}]", user.getUsername(),
+                user.getLastLoginTime());
             return accessToken;
         }
         else
         {
             String message = "Mismatch the correct password.";
+            log.info("");
             throw new IncorrectCredentialsException(message, ExceptionCode.InvalidAccount);
         }
     }
 
-
     /**
      * 清空所有登录缓存
      * 
-     * @param accessToken
+     * @param username
      *            令牌
      */
-    private void cleanPreApplicationInfo(String accessToken)
+    private void cleanPreTokenAuth(String username)
     {
-        if (!cleanTokenCache(accessToken))
+        if (!cleanTokenCache(username))
         {
-            log.debug("[{}] hasn't apply token during period time.", accessToken);
+            log.debug("[{}] hasn't apply token during period time.", username);
         }
     }
-
 
     private void validateTokenDate(String username, String dateString)
     {
@@ -143,7 +153,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         return DateUtil.DateToString(date, DateStyle.YYYY_MM_DD_HH_MM_SS.getValue());
     }
 
-
     /**
      * 验证每个对一次行证书申请的时间，对于无效期内的request直接拒绝申请 主要是为了防止重放攻击，与试图申请过期证书的非法操作
      * 
@@ -160,9 +169,21 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     }
 
     @Override
-    public boolean cleanTokenCache(String key)
+    public boolean cleanTokenCache(String username)
     {
-        return currentDisposableTokenCache.remove(key) && accessTokenCache.remove(key);
+        accessTokenCache.evictExpiredElements();
+        Element entry = usernameToTokenCache.get(username);
+        if(entry == null || usernameToTokenCache.isExpired(entry)){
+            usernameToTokenCache.evictExpiredElements();
+            log.debug("Expired token of User:[{}].", username);
+            return false;
+        }
+        else{
+            String accessToken = (String) entry.getObjectValue();
+            accessTokenCache.remove(accessToken);
+            log.info("Clean pre exist access token of User:[{}]", username);
+            return true;
+        }
     }
 
     @Override
@@ -192,10 +213,16 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         List<String> roleNames = userService.findRoleNameSetByUserName(user.getUsername());
         List<String> permissionNames = userService.findPermissionNameSet(user.getUsername());
         UserDto userDto = UserDto.build(user, roleNames, permissionNames);
-        user.setLastLoginTime(new Date());
-        accessTokenCache.put(
-            new Element(accessToken,userDto));
-        userService.updateUser(userDto,accessToken);
+        userDto.setLastLoginTime(new Date());
+        log.info("User [{}]:[{}] last login time: [{}]", userDto.getUsername(), userDto.getName(),
+            userDto.getLastLoginTime());
+        userService.updateUser(userDto, accessToken);
+        mapUsernameToToken(accessToken, user);
+    }
+
+    private void mapUsernameToToken(String accessToken, User user) {
+        usernameToTokenCache.remove(user.getUsername());
+        usernameToTokenCache.put(new Element(user.getUsername(), accessToken));
     }
 
     @Override

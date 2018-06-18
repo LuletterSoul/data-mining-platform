@@ -23,7 +23,7 @@
     <cache name="passwordRetryCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="3600"
+           timeToIdleSeconds="43200"
            timeToLiveSeconds="0"
            overflowToDisk="false"
            statistics="true">
@@ -117,7 +117,16 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
     <cache name="accessTokenCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="3600"
+           timeToIdleSeconds="43200"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           statistics="true">
+    </cache>
+
+    <cache name="usernameToTokenCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="43200"
            timeToLiveSeconds="0"
            overflowToDisk="true"
            statistics="true">
