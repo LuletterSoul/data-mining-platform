@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +71,7 @@ public class GroupController
             profession, grade, studentIdPrefix, studentName, beginDate, endDate), HttpStatus.OK);
     }
 
+    @Cacheable(cacheNames = "groupCache")
     @ApiOperation("分页查询分组列表")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
@@ -107,6 +109,7 @@ public class GroupController
 
 
 
+
     @GetMapping(value = "/{groupId}")
     public DataMiningGroup get(@PathVariable("groupId") String groupId)
     {
@@ -127,6 +130,7 @@ public class GroupController
         return new ResponseEntity<>(groupService.fetchGroupLeaders(), HttpStatus.OK);
     }
 
+    @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("创建一个分组")
     @PostMapping
     public ResponseEntity<DataMiningGroup> create(@RequestBody DataMiningGroupDto group)
@@ -134,6 +138,7 @@ public class GroupController
         return new ResponseEntity<>(groupService.createGroup(group), HttpStatus.CREATED);
     }
 
+    @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("更新分组信息")
     @PutMapping
     public ResponseEntity<DataMiningGroup> update(@RequestBody DataMiningGroupDto groupDto)
@@ -149,6 +154,8 @@ public class GroupController
             HttpStatus.NO_CONTENT);
     }
 
+
+    @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("删除分组")
     @DeleteMapping
     public ResponseEntity<List<DataMiningGroup>> delete(@RequestBody List<String> groupIds)
@@ -163,6 +170,7 @@ public class GroupController
     // return groupService.setGroupLeader(studentId, groupId);
     // }
 
+    @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("更新团队的组长")
     @PutMapping(value = "/{groupId}/leader")
     public StudentDto updateLeader(@PathVariable("groupId") String groupId,
@@ -178,6 +186,7 @@ public class GroupController
         return new ResponseEntity<>(groupService.fetchGroupMembers(groupId), HttpStatus.OK);
     }
 
+    @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("更新分组成员(包括增加、删除)")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),

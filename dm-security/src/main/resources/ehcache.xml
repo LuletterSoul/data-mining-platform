@@ -23,7 +23,7 @@
     <cache name="passwordRetryCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="43200"
+           timeToIdleSeconds="10800"
            timeToLiveSeconds="0"
            overflowToDisk="false"
            statistics="true">
@@ -64,15 +64,6 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
     >
     </cache>
 
-    <cache name="groupCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="true"
-           statistics="true">
-    </cache>
-
 
     <cache name="dataSetCollectionCache"
            maxElementsInMemory="500"
@@ -96,12 +87,22 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
     statistics="true">
 </cache>
 
+
     <cache name="disposableTokenCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
            overflowToDisk="true"
+           statistics="true">
+    </cache>
+
+    <cache name="groupCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="10800"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
            statistics="true">
     </cache>
 
@@ -117,7 +118,7 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
     <cache name="accessTokenCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="43200"
+           timeToIdleSeconds="10800"
            timeToLiveSeconds="0"
            overflowToDisk="true"
            statistics="true">
@@ -126,7 +127,7 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
     <cache name="usernameToTokenCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="43200"
+           timeToIdleSeconds="10800"
            timeToLiveSeconds="0"
            overflowToDisk="true"
            statistics="true">
@@ -159,21 +160,6 @@ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将�
            statistics="true">
     </cache>
 
-    <cache name="lastDoAuthenticationCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
-    </cache>
-
-    <cache name="users"
-           maxElementsInMemory="10000"
-           eternal="false"
-           overflowToDisk="true"
-           timeToIdleSeconds="300"
-           timeToLiveSeconds="600"/>
 
     <!--
     内存中最多可缓存10000个Element，其中的element会在闲置5分钟或是存活10分钟之后失效。

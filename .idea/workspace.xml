@@ -11,10 +11,9 @@
     <bookmark url="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="修复并发访问bug">
+    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java" />
+      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
       <change beforePath="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" afterPath="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -104,6 +103,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="177">
               <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-117">
+              <caret line="172" column="60" lean-forward="false" selection-start-line="172" selection-start-column="60" selection-end-line="172" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataSetCollectionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="73" column="4" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -254,7 +273,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IncorrectCredentialsException.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IncorrectCredentialsException.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-exception/src/main/java/com/vero/dm/exception/auth/IncorrectCredentialsException.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="858">
@@ -329,53 +348,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ehcache.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ehcache.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="696">
+              <caret line="106" column="12" lean-forward="true" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3198">
-              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MethodProxy.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3471">
-              <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-              <folding>
-                <marker date="1512890244166" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1512890244166" expanded="false" signature="155:629" ph="..." />
-                <marker date="1512890244166" expanded="true" signature="972:1209" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="1235:1910" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="1987:2257" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="2285:2292" ph="{}" />
-                <marker date="1512890244166" expanded="false" signature="2329:2340" ph=" { " />
-                <marker date="1512890244166" expanded="false" signature="2357:2363" ph=" }" />
-                <marker date="1512890244166" expanded="false" signature="2397:2408" ph=" { " />
-                <marker date="1512890244166" expanded="false" signature="2435:2441" ph=" }" />
-                <marker date="1512890244166" expanded="true" signature="2474:2540" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="2571:2637" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="2673:2739" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="2803:3367" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="3438:3951" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="4027:4296" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="4334:4924" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="4519:4918" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="4965:5093" ph="{...}" />
-                <marker date="1512890244166" expanded="true" signature="5076:5087" ph="{}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -449,8 +427,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ObjectMapper objectMapper()</find>
-      <find>mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());</find>
       <find>objectMa</find>
       <find>objectMapper</find>
       <find>final</find>
@@ -477,8 +453,10 @@
       <find>database index folder</find>
       <find>@Profile(&quot;dev&quot;)</find>
       <find>Some critical credentials required.Make sure your credentials has been linked with request.</find>
-      <find>acce</find>
       <find>IncorrectCredentialsException</find>
+      <find>lastDoAuthenticationCache</find>
+      <find>acce</find>
+      <find>groupCache</find>
     </findStrings>
     <replaceStrings>
       <replace>ExcelModel</replace>
@@ -524,7 +502,6 @@
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/GroupAction.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupDto.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/DataMiningGroupDto.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java" />
@@ -556,9 +533,10 @@
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java" />
-        <option value="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" />
       </list>
     </option>
   </component>
@@ -790,6 +768,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-security" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
@@ -1684,7 +1669,7 @@
       <workItem from="1523715567441" duration="2923000" />
       <workItem from="1527986388189" duration="2642000" />
       <workItem from="1529071749099" duration="14540000" />
-      <workItem from="1529334661454" duration="3310000" />
+      <workItem from="1529334661454" duration="3709000" />
     </task>
     <task id="LOCAL-00001" summary="新增spring data jpa支持的dao">
       <created>1517282324742</created>
@@ -1896,7 +1881,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529108125751</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="增加了登录缓存的时间，登录前进行缓存清空">
+      <created>1529338009601</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1529338009601</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1923,7 +1915,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1021258000" />
+    <option name="totallyTimeSpent" value="1021657000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1942,18 +1934,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4127844" sideWeight="0.13372718" order="18" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.49785638" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="20" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09272582" sideWeight="0.514827" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09272582" sideWeight="0.5153914" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="22" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09272582" sideWeight="0.485173" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09272582" sideWeight="0.48460862" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47231013" sideWeight="0.49785176" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13229416" sideWeight="0.67087543" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.03955696" sideWeight="0.45403677" order="33" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.100474685" sideWeight="0.45403677" order="33" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990506" sideWeight="0.47959185" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2063,7 +2055,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="服务器安全层大重构" />
     <MESSAGE value="完善和增强了平台的业务异常体系" />
     <MESSAGE value="完善了安全层微服务消息摘要传递的认证体系，支持一定量的并发(后台可拓展)" />
     <MESSAGE value="完善了安全层微服务消息摘要传递的认证体系，支持一定量的并发(后期可根据需求伸缩)" />
@@ -2088,7 +2079,8 @@
     <MESSAGE value="修复级联删除的bug" />
     <MESSAGE value="修复缓存刷新问题" />
     <MESSAGE value="修复并发访问bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复并发访问bug" />
+    <MESSAGE value="增加了登录缓存的时间，登录前进行缓存清空" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了登录缓存的时间，登录前进行缓存清空" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2182,26 +2174,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="64" column="61" lean-forward="false" selection-start-line="64" selection-start-column="61" selection-end-line="64" selection-end-column="61" />
-          <folding>
-            <marker date="1523536739251" expanded="true" signature="5755:5787" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StatisticsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
@@ -2486,14 +2458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenExpiredChecker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -2619,6 +2583,30 @@
             <element signature="e#466#467#0" expanded="true" />
             <element signature="e#507#508#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="73" column="4" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-117">
+          <caret line="172" column="60" lean-forward="false" selection-start-line="172" selection-start-column="60" selection-end-line="172" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="106" column="12" lean-forward="true" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
