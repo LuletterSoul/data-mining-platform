@@ -24,6 +24,8 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -62,6 +64,9 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     private TokenValidator tokenValidator;
 
     @Autowired
+    private DisposableTokenWriter disposableTokenWriter;
+
+    @Autowired
     public void setCurrentDisposableTokenCache(CacheManager cacheManager)
     {
         this.currentDisposableTokenCache = cacheManager.getCache("currentDisposableTokenCache");
@@ -82,7 +87,7 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
 
 
     @Override
-    public String applyExpiredToken(String username, String providedCredential, String dateString)
+    public String applyExpiredToken(String username, String providedCredential, String dateString, HttpServletResponse response)
     {
         validateTokenDate(username, dateString);
         // 先清除之前的令牌信息
@@ -99,6 +104,7 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
             log.debug("Generate access token applied to [{}].", user.getUsername());
             log.info("User [{}] last login time: [{}]", user.getUsername(),
                 user.getLastLoginTime());
+            disposableTokenWriter.write(response,accessToken);
             return accessToken;
         }
         else

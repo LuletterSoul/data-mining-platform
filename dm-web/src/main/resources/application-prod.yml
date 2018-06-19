@@ -40,7 +40,7 @@ spring:
     username: root
     password: 15298382837LIUxia_
     type: com.mchange.v2.c3p0.ComboPooledDataSource
-    url: jdbc:mysql://mysql:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://mysql:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
 
   redis:
     password:

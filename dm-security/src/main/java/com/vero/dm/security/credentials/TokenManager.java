@@ -3,6 +3,8 @@ package com.vero.dm.security.credentials;
 
 import com.vero.dm.model.User;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -21,9 +23,10 @@ public interface TokenManager
      *            客户端提供的访问证书
      * @param dateString
      *            请求的时间戳
+     * @param response
      * @return 有期限的令牌
      */
-    String applyExpiredToken(String username, String providedCredential, String dateString);
+    String applyExpiredToken(String username, String providedCredential, String dateString, HttpServletResponse response);
 
 
 

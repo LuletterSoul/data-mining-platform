@@ -17,6 +17,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -59,9 +61,10 @@ public class CredentialsController
     @GetMapping(value = "/tokens/{username}")
     public String getExpiredToken(@RequestHeader(Constants.TIMESTAMP_HEADER) String timestamp,
                                   @RequestHeader(Constants.APPLY_CREDENTIAL) String providedCredential,
-                                  @PathVariable("username") String username)
+                                  @PathVariable("username") String username,
+                                  HttpServletResponse response)
     {
-        return tokenManager.applyExpiredToken(username, providedCredential, timestamp);
+        return tokenManager.applyExpiredToken(username, providedCredential, timestamp, response);
     }
 
     @ApiOperation("删除所有Token信息(用于微服务注销)")
