@@ -110,7 +110,7 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
         else
         {
             String message = "Mismatch the correct password.";
-            log.info("");
+            log.info(message);
             throw new IncorrectCredentialsException(message, ExceptionCode.InvalidAccount);
         }
     }

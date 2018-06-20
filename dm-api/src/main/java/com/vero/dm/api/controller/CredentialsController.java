@@ -70,7 +70,7 @@ public class CredentialsController
 
     @ApiOperation("删除所有Token信息(用于微服务注销)")
     @DeleteMapping(value = "/tokens")
-    public String deleteToken(@ApiParam(value = "访问令牌") @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    public String deleteToken(@ApiParam(value = "访问令牌") @RequestHeader(value = Constants.ACCESS_TOKEN_HEADER,required = false) String accessToken)
     {
         if(!Objects.isNull(accessToken)){
             tokenManager.cleanTokenCache(accessToken);
