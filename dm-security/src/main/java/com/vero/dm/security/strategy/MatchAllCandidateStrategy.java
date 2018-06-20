@@ -39,9 +39,11 @@ public class MatchAllCandidateStrategy extends SimpleMatchStrategy
     protected boolean handleCandidates(LinkedList<String> candidates, StatelessToken token, StatelessInfo info) {
         boolean isMatched = false;
         ListIterator<String> listIterator = candidates.listIterator(candidates.size() - 1);
+        log.debug("Candidates:[{}]", candidates);
         while (listIterator.hasPrevious())
         {
             info.setCredentials(listIterator.previous());
+            log.debug("Client digest: [{}].Server digest:[{}]", token.getClientDigest(), buildServerDigest(info));
             if (equals(token.getClientDigest(), buildServerDigest(info)))
             {
                 isMatched = true;

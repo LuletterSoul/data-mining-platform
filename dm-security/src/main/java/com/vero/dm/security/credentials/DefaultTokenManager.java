@@ -177,7 +177,6 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     @Override
     public boolean cleanTokenCache(String username)
     {
-        accessTokenCache.evictExpiredElements();
         Element entry = usernameToTokenCache.get(username);
         if(entry == null || usernameToTokenCache.isExpired(entry)){
             usernameToTokenCache.evictExpiredElements();

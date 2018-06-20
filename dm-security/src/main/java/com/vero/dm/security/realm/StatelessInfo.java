@@ -61,10 +61,11 @@ public class StatelessInfo extends SimpleAuthenticationInfo
     }
 
     public StatelessInfo(Object principal, Object credentials, Map<String, ?> clientParams,
-                         String realmName)
+                         String realmName,LinkedList<String> candidates)
     {
         super(principal, credentials, realmName);
         this.clientParams = clientParams;
+        this.credentialCandidates = candidates;
     }
 
     public Map<String, ?> getClientParams()

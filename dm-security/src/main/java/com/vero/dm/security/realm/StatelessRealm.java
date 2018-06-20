@@ -100,23 +100,25 @@ public class StatelessRealm extends AuthorizingRealm
         StatelessToken statelessToken = (StatelessToken)token;
         String username = statelessToken.getUsername();
         String accessToken = statelessToken.getAccessToken();
+        LinkedList<String> candidates = buildCredentialCandidates(accessToken);
         // 如果是按照当前令牌授权,则从缓存中拉取对应的用户信息
         if (statelessToken.getIsAccessByAvailableToken())
         {
-            return buildForCachedUserInfo(statelessToken, accessToken);
+            return buildForCachedUserInfo(statelessToken, accessToken,candidates );
         }
-        LinkedList<String> candidates = buildCredentialCandidates(accessToken);
+        //否则,使用
         return new StatelessInfo(username, candidates.getLast(),
             statelessToken.getParams(), getName(),candidates ,
             accessToken);
     }
 
     private AuthenticationInfo buildForCachedUserInfo(StatelessToken statelessToken,
-                                                      String accessToken)
+                                                      String accessToken, LinkedList<String> candidates)
     {
         UserDto userDto = profileAccessor.fetchProfile(statelessToken.getAccessToken());
-        return new StatelessInfo(userDto.getUsername(), accessToken, statelessToken.getParams(),
-            getName());
+        return new StatelessInfo(userDto.getUsername(), candidates.getLast(),
+                statelessToken.getParams(), getName(),candidates ,
+                accessToken);
     }
 
 

@@ -114,6 +114,8 @@ public class StatelessAuthenticatingFilter extends AccessControlFilter
         }
         catch (AuthenticationException e)
         {
+            // 授权后置处理
+            afterAuthentication((HttpServletResponse)response, token.getAccessToken());
             return transferException(e);
         }
         return false;

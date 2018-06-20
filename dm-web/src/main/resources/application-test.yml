@@ -1,4 +1,3 @@
-
 #spring mvc
 spring:
   jackson:
@@ -42,6 +41,10 @@ spring:
     password: root
     type: com.mchange.v2.c3p0.ComboPooledDataSource
     url: jdbc:mysql://localhost:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+    tomcat:
+      test-on-borrow: true
+      test-while-idle: true
+      time-between-eviction-runs-millis: 3600000
 
 
   #redis

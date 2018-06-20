@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 
 /**
@@ -69,10 +70,12 @@ public class CredentialsController
 
     @ApiOperation("删除所有Token信息(用于微服务注销)")
     @DeleteMapping(value = "/tokens")
-    public String deleteToken(@ApiParam(value = "访问令牌", required = true) @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    public String deleteToken(@ApiParam(value = "访问令牌") @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
     {
-        tokenManager.cleanTokenCache(accessToken);
-        tokenMaintainer.cleanTokenList(accessToken);
+        if(!Objects.isNull(accessToken)){
+            tokenManager.cleanTokenCache(accessToken);
+            tokenMaintainer.cleanTokenList(accessToken);
+        }
         return accessToken;
     }
 

@@ -209,15 +209,15 @@ public class ShiroSecurityTestConfiguration
         return evaluator;
     }
 
-    @Bean
-    public ObjectMapper objectMapper()
-    {
-        Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
-        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
-        mapperFactoryBean.afterPropertiesSet();
-        return mapperFactoryBean.getObject();
-    }
+//    @Bean
+//    public ObjectMapper objectMapper()
+//    {
+//        Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
+//        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//        mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
+//        mapperFactoryBean.afterPropertiesSet();
+//        return mapperFactoryBean.getObject();
+//    }
 
     @Bean
     public MethodInvokingFactoryBean bindingSecurityManager()

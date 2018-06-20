@@ -5,7 +5,7 @@ spring:
       accept-empty-array-as-null-object: true
       accept-empty-string-as-null-object: true
     time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: com.vero.dm.util.date.ConcurrencyDateFormatter
   session:
     store-type: none
   http:
@@ -41,6 +41,10 @@ spring:
     password: 15298382837LIUxia_
     type: com.mchange.v2.c3p0.ComboPooledDataSource
     url: jdbc:mysql://mysql:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
+    tomcat:
+      test-on-borrow: true
+      test-while-idle: true
+      time-between-eviction-runs-millis: 3600000
 
   redis:
     password:
