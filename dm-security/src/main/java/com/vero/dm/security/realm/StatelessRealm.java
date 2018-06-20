@@ -116,8 +116,8 @@ public class StatelessRealm extends AuthorizingRealm
                                                       String accessToken, LinkedList<String> candidates)
     {
         UserDto userDto = profileAccessor.fetchProfile(statelessToken.getAccessToken());
-        return new StatelessInfo(userDto.getUsername(), candidates.getLast(),
-                statelessToken.getParams(), getName(),candidates ,
+        return new StatelessInfo(userDto.getUsername(), accessToken,
+                statelessToken.getParams(), getName(),candidates,
                 accessToken);
     }
 
