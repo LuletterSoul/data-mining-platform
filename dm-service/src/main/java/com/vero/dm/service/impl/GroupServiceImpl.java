@@ -109,6 +109,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                                                      String leaderStudentId,
                                                      MiningTaskStatus taskStatus, Boolean fetch)
     {
+        log.debug("Begin group information fetch process,Time:[{}]", new Date());
         if (fetch) {
             return new PageImpl<>(groupJpaRepository.findAll(
                     groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus)));

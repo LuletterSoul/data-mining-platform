@@ -1,6 +1,8 @@
 package com.vero.dm.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +41,7 @@ public enum TaskProgressStatus implements BaseEnum {
 
     private String description;
 
+    @JsonCreator
     TaskProgressStatus(Integer value, String status, String description)
     {
         this.value = value;
@@ -46,6 +49,18 @@ public enum TaskProgressStatus implements BaseEnum {
         this.description = description;
     }
 
+
+    @JsonCreator
+    public static TaskProgressStatus getItem(int value){
+        for(TaskProgressStatus item : values()){
+            if(item.getValue() == value){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
     public int getValue() {
         return this.value;
     }

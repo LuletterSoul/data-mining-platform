@@ -1,9 +1,7 @@
 package com.vero.dm.repository.dto;
 
 
-import java.sql.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.vero.dm.model.MiningTaskStage;
 
@@ -58,23 +56,23 @@ public class MiningTaskDto
     /**
      * 每个任务可被分给多个分组，内容相似
      */
-    private List<String> arrangeGroupIds;
+    private List<String> arrangeGroupIds =new ArrayList<>();
 
-    private List<GroupDto> groups;
+    private List<GroupDto> groups = new ArrayList<>();
 
     /**
      * 每个分组可以被分配多个数据集
      */
-    private List<String> collectionIds;
+    private List<String> collectionIds = new ArrayList<>();
 
     /**
      * 每个数据任务可以采用多种算法
      */
-    private List<Integer> algorithmIds;
+    private List<Integer> algorithmIds = new ArrayList<>();
 
     /**
      * 一个任务可以有多个阶段
      */
-    private Set<MiningTaskStage> stages;
+    private Set<MiningTaskStage> stages = new HashSet<>();
 
 }

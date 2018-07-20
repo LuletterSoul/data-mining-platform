@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.exception.auth.ConcurrentAccessException;
@@ -26,6 +27,7 @@ import net.sf.ehcache.Element;
  * @version 1.5 created in 0:38 2018/2/13.
  * @since data-mining-platform
  */
+@Profile(value = {"prod","dev","test"})
 @SuppressWarnings("unchecked")
 @Slf4j
 @Component

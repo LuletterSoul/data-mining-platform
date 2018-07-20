@@ -26,13 +26,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
-import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
+import com.vero.dm.security.credentials.StatelessChainCredentialsMatcher;
 import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.AuthenticationExceptionFilter;
 import com.vero.dm.security.filter.PreLogoutFilter;
@@ -40,7 +37,6 @@ import com.vero.dm.security.filter.StatelessAuthenticatingFilter;
 import com.vero.dm.security.manager.StatelessDefaultSubjectFactory;
 import com.vero.dm.security.realm.StatelessRealm;
 import com.vero.dm.security.strategy.*;
-import com.vero.dm.util.date.ConcurrencyDateFormatter;
 
 import net.sf.ehcache.CacheManager;
 
@@ -100,9 +96,9 @@ public class ShiroSecurityTestConfiguration
     }
 
     @Bean
-    public StatelessCredentialsMatcher statelessCredentialsMatcher()
+    public StatelessChainCredentialsMatcher statelessCredentialsMatcher()
     {
-        StatelessCredentialsMatcher matcher = new StatelessCredentialsMatcher();
+        StatelessChainCredentialsMatcher matcher = new StatelessChainCredentialsMatcher();
         matcher.setHashIterations(hashIterations);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
         matcher.setStatelessCredentialsComputer(computer());

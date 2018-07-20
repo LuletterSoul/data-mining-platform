@@ -4,6 +4,7 @@ package com.vero.dm.security.credentials;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.util.date.DateStyle;
@@ -17,6 +18,7 @@ import lombok.Getter;
  * @version 1.5 created in 14:20 2018/2/10.
  * @since data-mining-platform
  */
+@Profile(value = {"prod","dev","test"})
 @Component
 @Getter
 public class SimpleTokenGenerator implements TokenGenerator

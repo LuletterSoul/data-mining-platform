@@ -22,18 +22,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Setter
-public class StatelessCredentialsMatcher extends HashedCredentialsMatcher
+public class StatelessChainCredentialsMatcher extends HashedCredentialsMatcher
 {
     private StatelessCredentialsComputer statelessCredentialsComputer;
 
     private StrategyMatchChain matchChain;
 
-    public StatelessCredentialsMatcher()
+    public StatelessChainCredentialsMatcher()
     {
 
     }
 
-    public StatelessCredentialsMatcher(StrategyMatchChain matchChain)
+    public StatelessChainCredentialsMatcher(StrategyMatchChain matchChain)
     {
         this.matchChain = matchChain;
     }

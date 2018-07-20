@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
  * @since data-mining-platform
  */
 
+@Profile(value = {"prod","dev","test"})
 @Service
 @Slf4j
 @Transactional

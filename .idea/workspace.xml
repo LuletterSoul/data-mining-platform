@@ -11,10 +11,38 @@
     <bookmark url="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="增加分组查询cache">
+    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/entry/ApiLoader.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/resources/application-dev.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/resources/application-prod.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/resources/application-test.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/resources/application-utest.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/main/resources/application.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/base/ConfigurationWirer.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/GroupControllerTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessSingleCredentialsMatcher.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java" />
+      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java" />
+      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" />
+      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java" />
+      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningTaskDto.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningTaskDto.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityDevConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityDevConfiguration.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityProdConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityProdConfiguration.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityTestConfiguration.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityTestConfiguration.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleDisposableTokenWriter.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleDisposableTokenWriter.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenGenerator.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenGenerator.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenValidator.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenValidator.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsComputer.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsComputer.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsMatcher.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessChainCredentialsMatcher.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/UserProfileAccessorImpl.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/UserProfileAccessorImpl.java" />
+      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessInfo.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessInfo.java" />
       <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java" />
-      <change beforePath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/MatchAllCandidateStrategy.java" afterPath="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/MatchAllCandidateStrategy.java" />
+      <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,6 +65,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/data_mining_platform$GroupControllerTest_previewDefaultGroupings.coverage" NAME="GroupControllerTest.previewDefaultGroupings Coverage Results" MODIFIED="1532096242261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.vero.dm.api.controller.*</FILTER>
+    </SUITE>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -46,25 +79,12 @@
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
     <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data_mining@118.24.62.94" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data_mining@118.24.62.94" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data_mining@118.24.62.94" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="data_mining: schema" type="c314c289:MysqlImplModel$Schema" />
-      </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="data_mining@localhost" type="feb32156:DbDataSourceImpl" />
@@ -87,6 +107,13 @@
         <item name="data_mining: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="algorithm_param: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_mining@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="data_mining: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="favorite_stu_rel: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -98,21 +125,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="GroupController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
+      <file leaf-file-name="GroupControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/GroupControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+            <state relative-caret-position="480">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatelessRealm.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java">
+      <file leaf-file-name="AlgorithmController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/AlgorithmController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="96" column="53" lean-forward="false" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
+            <state relative-caret-position="420">
+              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -121,8 +148,18 @@
       <file leaf-file-name="DataSetCollectionController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state relative-caret-position="450">
+              <caret line="77" column="45" lean-forward="true" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReflectiveCallable.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -131,107 +168,173 @@
       <file leaf-file-name="ApiVersion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/ApiVersion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="300">
+              <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/User.java">
+      <file leaf-file-name="TaskProgressStatus.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+            <state relative-caret-position="1020">
+              <caret line="41" column="31" lean-forward="true" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MiningTaskStatus.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/BaseEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreakPointUploadController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/BreakPointUploadController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShiroSecurityTestConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityTestConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1200">
+              <caret line="77" column="47" lean-forward="false" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleDisposableTokenWriter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleDisposableTokenWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleTokenValidator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApiLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/entry/ApiLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1347#1348#0" expanded="true" />
+                <element signature="e#1407#1408#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/UserService.java">
+      <file leaf-file-name="UserProfileAccessorImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/UserProfileAccessorImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+            <state relative-caret-position="330">
+              <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/UserServiceImpl.java">
+      <file leaf-file-name="StudentServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1980">
-              <caret line="75" column="8" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+            <state relative-caret-position="390">
+              <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComboPooledDataSourceConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/ComboPooledDataSourceConfig.java">
+      <file leaf-file-name="ComponentScan.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/ComponentScan.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthenticatingRealm.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/realm/AuthenticatingRealm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19332">
-              <caret line="585" column="0" lean-forward="false" selection-start-line="585" selection-start-column="0" selection-end-line="585" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HibernateConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/config/HibernateConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModularRealmAuthenticator.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/pam/ModularRealmAuthenticator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5292">
-              <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+            <state relative-caret-position="3600">
+              <caret line="143" column="13" lean-forward="false" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application.yml">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchAllCandidateStrategy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/MatchAllCandidateStrategy.java">
+      <file leaf-file-name="CredentialsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="40" column="85" lean-forward="false" selection-start-line="40" selection-start-column="85" selection-end-line="40" selection-end-column="85" />
+            <state relative-caret-position="1890">
+              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+              <folding>
+                <element signature="e#1424#1425#0" expanded="true" />
+                <element signature="e#1472#1473#0" expanded="true" />
+                <element signature="e#1584#1585#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/Profile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2100">
+              <caret line="91" column="3" lean-forward="false" selection-start-line="91" selection-start-column="3" selection-end-line="91" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application-dev.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml">
+      <file leaf-file-name="RestController.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE-sources.jar!/org/springframework/web/bind/annotation/RestController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="930">
+              <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-utest.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application-utest.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -241,55 +344,70 @@
         </entry>
       </file>
       <file leaf-file-name="application-prod.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application-prod.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1116">
-              <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-              <folding>
-                <marker date="1529481793895" expanded="true" signature="10:212" ph="jackson: &lt;4 keys&gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatelessAuthenticatingFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2628">
-              <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourcePath.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/constant/ResourcePath.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="24" column="31" lean-forward="false" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserJpaRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/UserJpaRepository.java">
+      <file leaf-file-name="application-dev.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application-dev.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="21" column="9" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TokenManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenManager.java">
+      <file leaf-file-name="SimpleTokenGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+            <state relative-caret-position="330">
+              <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="128" column="20" lean-forward="true" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupingConfigParams.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="63" column="7" lean-forward="true" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_info" pinned="false" current-in-tab="false">
+        <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.user_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -297,131 +415,18 @@
       <file leaf-file-name="DefaultTokenManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3024">
-              <caret line="107" column="26" lean-forward="false" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MethodProxy.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <file leaf-file-name="DisposableTokenMaintainerImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3276">
-              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-              <folding>
-                <marker date="1517735570323" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1517735570323" expanded="false" signature="155:629" ph="..." />
-                <marker date="1517735570323" expanded="true" signature="972:1209" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="1235:1910" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="1987:2257" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="2285:2292" ph="{}" />
-                <marker date="1517735570323" expanded="false" signature="2329:2340" ph=" { " />
-                <marker date="1517735570323" expanded="false" signature="2357:2363" ph=" }" />
-                <marker date="1517735570323" expanded="false" signature="2397:2408" ph=" { " />
-                <marker date="1517735570323" expanded="false" signature="2435:2441" ph=" }" />
-                <marker date="1517735570323" expanded="true" signature="2474:2540" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="2571:2637" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="2673:2739" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="2803:3367" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="3438:3951" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="4027:4296" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="4334:4924" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="4519:4918" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="4965:5093" ph="{...}" />
-                <marker date="1517735570323" expanded="true" signature="5076:5087" ph="{}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CglibAopProxy.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.9.RELEASE/spring-aop-4.3.9.RELEASE-sources.jar!/org/springframework/aop/framework/CglibAopProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21564">
-              <caret line="675" column="0" lean-forward="false" selection-start-line="675" selection-start-column="0" selection-end-line="675" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReflectiveMethodInvocation.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.9.RELEASE/spring-aop-4.3.9.RELEASE-sources.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5076">
-              <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="78" column="29" lean-forward="false" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultMatchStrategyConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/DefaultMatchStrategyConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransactionInterceptor.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2520">
-              <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatelessInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1368">
-              <caret line="53" column="11" lean-forward="false" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransactionAspectSupport.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8604">
-              <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/UserDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2124">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataSetContainerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetContainerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="47" column="52" lean-forward="false" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+            <state relative-caret-position="420">
+              <caret line="32" column="10" lean-forward="false" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -432,11 +437,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit4 Test Class" />
         <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Gradle Kotlin DSL Build Script" />
         <option value="Enum" />
+        <option value="JUnit4 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -446,12 +451,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>objectMa</find>
-      <find>objectMapper</find>
-      <find>final</find>
-      <find>format</find>
-      <find>找不到的符合要求的待分组学生</find>
-      <find>姓名</find>
       <find>队名</find>
       <find>500</find>
       <find>123</find>
@@ -476,6 +475,12 @@
       <find>lastDoAuthenticationCache</find>
       <find>acce</find>
       <find>groupCache</find>
+      <find>·</find>
+      <find>webconfig</find>
+      <find>entry</find>
+      <find>spring-boot-starter-test</find>
+      <find>plannedStartTime</find>
+      <find>buildingKey</find>
     </findStrings>
     <replaceStrings>
       <replace>ExcelModel</replace>
@@ -493,7 +498,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="aplpha/v1.0.7" />
       </map>
     </option>
   </component>
@@ -505,38 +510,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java" />
-        <option value="$PROJECT_DIR$/dm-web/src/main/java/com/vero/dm/web/entry/DataMiningPlatformWebApplication.java" />
-        <option value="$PROJECT_DIR$/dm-import/src/main/java/com/vero/dm/importer/core/SimpleExcelImporter.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningTaskJpaRepository.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/DataMiningGroupJpaRepository.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/MiningTaskControllerTest.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/BreakPointUploadController.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/NewAction.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/GroupAction.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupDto.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/DataMiningGroupDto.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StudentController.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/TaskStageJpaRepository.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/AbstractBaseServiceImpl.java" />
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningTaskDto.java" />
-        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/StageDeadline.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningTaskStage.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningTaskService.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningResult.java" />
-        <option value="$PROJECT_DIR$/dm-web/pom.xml" />
         <option value="$PROJECT_DIR$/dm-web/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityTestConfiguration.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/DataSetCollectionServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/PathUtils.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/UserService.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml" />
         <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml" />
         <option value="$PROJECT_DIR$/dm-web/src/main/resources/application-test.yml" />
@@ -547,15 +529,38 @@
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Student.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" />
         <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" />
-        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java" />
-        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml" />
-        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" />
-        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java" />
-        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java" />
         <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/MatchAllCandidateStrategy.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java" />
+        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsMatcher.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessChainCredentialsMatcher.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessSingleCredentialsMatcher.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityTestConfiguration.java" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/entry/DataMiningPlatformWebApplication.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/entry/DataMiningPlatformWebApplication.java" />
+        <option value="$PROJECT_DIR$/dm-web/pom.xml" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
+        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningTaskDto.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/base/ConfigurationWirer.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java" />
+        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityUnitTestConfiguration.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenGenerator.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/entry/ApiLoader.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/UserProfileAccessorImpl.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleDisposableTokenWriter.java" />
+        <option value="$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenValidator.java" />
+        <option value="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/GroupControllerTest.java" />
+        <option value="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java" />
+        <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -616,10 +621,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="150" />
-    <option name="y" value="66" />
-    <option name="width" value="1686" />
-    <option name="height" value="1102" />
+    <option name="x" value="-1929" />
+    <option name="y" value="-9" />
+    <option name="width" value="1618" />
+    <option name="height" value="918" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -639,58 +644,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-security" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-security" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-security" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-security" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="dm-security" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="strategy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -703,6 +656,141 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-exception" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-import" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -713,7 +801,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="F:\node.js\node.exe" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="settings.editor.selected.configurable" value="Docker" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15578231" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -736,24 +824,28 @@
       <recent name="com.dm.org.dao" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.vero.dm.api.controller" />
       <recent name="com.dm.org.crawling" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\GitHup\data-minning-platform\dm-api\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.vero.dm.security.config" />
+      <recent name="entry" />
       <recent name="com.vero.dm.repository" />
       <recent name="com.vero.dm.repository.specifications" />
       <recent name="com.vero.dm.web.config" />
-      <recent name="com.vero.dm.util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\GitHup\data-minning-platform\dm-api\src\main\resources" />
       <recent name="D:\GitHub\data-minning-platform\dm-web\src\main\resources" />
       <recent name="D:\GitHub\data-minning-platform\dm-repository\src\main\resources" />
       <recent name="F:\GitHup\data-minning-platform\dm-web\src\main\resources" />
       <recent name="F:\GitHup\data-minning-platform\dm-repository\src\main\resources" />
-      <recent name="D:\GitHub\data-minning-platform\dm-util\src\main\docker" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.vero.dm.security.strategy" />
@@ -775,7 +867,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Test">
+  <component name="RunManager" selected="JUnit.GroupControllerTest.previewDefaultGroupings">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -823,6 +915,74 @@
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
       <setting name="depsClasspath" value="false" />
+    </configuration>
+    <configuration name="ConfigurationWirer.setWebApplicationContext" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="chronon">
+        <include>
+          <pattern>
+            <option name="PATTERN" value="com.vero.dm.api.base.**" />
+            <option name="ENABLED" value="true" />
+            <option name="INCLUDE" value="true" />
+          </pattern>
+        </include>
+      </extension>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.vero.dm.api.base.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="dm-api" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.vero.dm.api.base" />
+      <option name="MAIN_CLASS_NAME" value="com.vero.dm.api.base.ConfigurationWirer" />
+      <option name="METHOD_NAME" value="setWebApplicationContext" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="GroupControllerTest.previewDefaultGroupings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="chronon">
+        <include>
+          <pattern>
+            <option name="PATTERN" value="com.vero.dm.api.controller.**" />
+            <option name="ENABLED" value="true" />
+            <option name="INCLUDE" value="true" />
+          </pattern>
+        </include>
+      </extension>
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.vero.dm.api.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="dm-api" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.vero.dm.api.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.vero.dm.api.controller.GroupControllerTest" />
+      <option name="METHOD_NAME" value="previewDefaultGroupings" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration name="MachineLearningRepoPageProcessorTest.process" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <extension name="chronon">
@@ -1484,7 +1644,7 @@
       <arguments />
       <envs />
     </configuration>
-    <list size="10">
+    <list size="12">
       <item index="0" class="java.lang.String" itemvalue="Application.ZipUtil" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.MachineLearningRepoPageProcessorTest.process" />
       <item index="2" class="java.lang.String" itemvalue="Maven.docker" />
@@ -1495,12 +1655,16 @@
       <item index="7" class="java.lang.String" itemvalue="Spring Boot.Dev" />
       <item index="8" class="java.lang.String" itemvalue="Spring Boot.Prod" />
       <item index="9" class="java.lang.String" itemvalue="Tomcat Server.dm-platform" />
+      <item index="10" class="java.lang.String" itemvalue="JUnit.ConfigurationWirer.setWebApplicationContext" />
+      <item index="11" class="java.lang.String" itemvalue="JUnit.GroupControllerTest.previewDefaultGroupings" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.MachineLearningRepoPageProcessorTest.process" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.MachineLearningRepoPageProcessorTest.process" />
-        <item index="2" class="java.lang.String" itemvalue="Spring Boot.DataMiningPlatformWebApplication" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.GroupControllerTest.previewDefaultGroupings" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ConfigurationWirer.setWebApplicationContext" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.MachineLearningRepoPageProcessorTest.process" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.MachineLearningRepoPageProcessorTest.process" />
+        <item index="4" class="java.lang.String" itemvalue="Spring Boot.DataMiningPlatformWebApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -1592,7 +1756,10 @@
       <workItem from="1527986388189" duration="2642000" />
       <workItem from="1529071749099" duration="14540000" />
       <workItem from="1529334661454" duration="8401000" />
-      <workItem from="1529508512119" duration="263000" />
+      <workItem from="1529508512119" duration="911000" />
+      <workItem from="1529568285217" duration="279000" />
+      <workItem from="1531927175701" duration="34364000" />
+      <workItem from="1532095976919" duration="916000" />
     </task>
     <task id="LOCAL-00001" summary="新增spring data jpa支持的dao">
       <created>1517282324742</created>
@@ -1818,34 +1985,50 @@
       <option name="project" value="LOCAL" />
       <updated>1529338387272</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="一次一密条件放宽">
+      <created>1529508811452</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1529508811452</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 03m 54s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 43m 13s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 04m 59s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 44m 00s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 07m 10s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 49m 27s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 09m 21s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 51m 03s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 10m 19s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 52m 37s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 11m 37s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 54m 33s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineLearningRepoPageProcessorTest_process - 2017.10.03 at 12h 21m 12s.xml">
-      <configuration name="MachineLearningRepoPageProcessorTest.process" configurationId="JUnit" />
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 21h 56m 50s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 22h 17m 32s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 22h 18m 39s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GroupControllerTest_previewDefaultGroupings - 2018.07.20 at 22h 22m 17s.xml">
+      <configuration name="GroupControllerTest.previewDefaultGroupings" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1032257000" />
+    <option name="totallyTimeSpent" value="1068464000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1857,98 +2040,100 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
+    <frame x="-1929" y="-9" width="1618" height="918" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49785638" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.653481" sideWeight="0.2166267" order="18" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.49785638" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="20" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09237379" sideWeight="0.51563895" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="22" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49785638" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.653481" sideWeight="0.2166267" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.49785638" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.132116" sideWeight="0.335177" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07990506" sideWeight="0.7833733" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="23" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13229416" sideWeight="0.67087543" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17444877" sideWeight="0.48436102" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07990506" sideWeight="0.7833733" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.087548636" sideWeight="0.5649583" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11471519" sideWeight="0.45403677" order="33" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.5674779" sideWeight="0.45403677" order="3" side_tool="false" content_ui="tabs" x="0" y="29" width="1920" height="1051" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.47959185" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="25" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.715981" sideWeight="0.86370903" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27531645" sideWeight="0.4696243" order="29" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08450704" sideWeight="0.49785638" order="27" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2824367" sideWeight="0.4940048" order="31" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1970999" sideWeight="0.49434572" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.071902655" sideWeight="0.86370903" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09402655" sideWeight="0.4696243" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22287862" sideWeight="0.43504173" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08450704" sideWeight="0.49785638" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.119469024" sideWeight="0.4940048" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19779508" sideWeight="0.49434572" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18313642" sideWeight="0.5056543" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18313642" sideWeight="0.5056543" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09272582" sideWeight="0.48436102" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990506" sideWeight="0.47959185" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19247788" sideWeight="0.4816147" order="32" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19247788" sideWeight="0.4816147" order="20" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12071778" sideWeight="0.49570355" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12071778" sideWeight="0.49570355" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.49785638" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3923328" sideWeight="0.52957636" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.49785638" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49785638" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.653481" sideWeight="0.2166267" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.49785638" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.52255636" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23381294" sideWeight="0.5045147" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.132116" sideWeight="0.335177" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.4967051" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06820623" sideWeight="0.49548534" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17444877" sideWeight="0.48436102" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07990506" sideWeight="0.7833733" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14405684" sideWeight="0.18121912" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.087548636" sideWeight="0.5649583" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.030995106" sideWeight="0.47042367" order="20" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077302635" sideWeight="0.48174006" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.5674779" sideWeight="0.45403677" order="3" side_tool="false" content_ui="tabs" x="0" y="29" width="1920" height="1051" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.47959185" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7960848" sideWeight="0.4849624" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.079119086" sideWeight="0.47282174" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08517699" sideWeight="0.49785638" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28303427" sideWeight="0.49570817" order="18" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.4816147" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.071902655" sideWeight="0.86370903" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09402655" sideWeight="0.4696243" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22287862" sideWeight="0.43504173" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08450704" sideWeight="0.49785638" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.119469024" sideWeight="0.4940048" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19247788" sideWeight="0.4816147" order="20" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13589129" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18584071" sideWeight="0.49570355" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19779508" sideWeight="0.49434572" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18313642" sideWeight="0.5056543" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18313642" sideWeight="0.5056543" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12071778" sideWeight="0.49570355" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1985,7 +2170,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完善了安全层微服务消息摘要传递的认证体系，支持一定量的并发(后台可拓展)" />
     <MESSAGE value="完善了安全层微服务消息摘要传递的认证体系，支持一定量的并发(后期可根据需求伸缩)" />
     <MESSAGE value="修改了部分认证的API" />
     <MESSAGE value="支持小尺寸数据集的上传" />
@@ -2010,7 +2194,8 @@
     <MESSAGE value="修复并发访问bug" />
     <MESSAGE value="增加了登录缓存的时间，登录前进行缓存清空" />
     <MESSAGE value="增加分组查询cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加分组查询cache" />
+    <MESSAGE value="一次一密条件放宽" />
+    <option name="LAST_COMMIT_MESSAGE" value="一次一密条件放宽" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2087,6 +2272,12 @@
           <properties />
           <option name="timeStamp" value="770" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java</url>
+          <line>180</line>
+          <properties />
+          <option name="timeStamp" value="952" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog>
@@ -2095,7 +2286,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="925" />
+      <option name="time" value="953" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2104,271 +2295,184 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/AreaTypeServiceImpl.java">
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_161/src.zip!/java/sql/Date.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="239">
+          <caret line="73" column="11" lean-forward="false" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/CollectionCharServiceImpl.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/DataSetContainerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/DataSetCollectionServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="78" column="29" lean-forward="false" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+        <state relative-caret-position="239">
+          <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3276">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="239">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-util/src/main/java/com/vero/dm/util/GetSpringBeanUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/config/SpringMvcConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="105" column="13" lean-forward="true" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/base/ConfigurationWirer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding>
-            <marker date="1517735570323" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1517735570323" expanded="false" signature="155:629" ph="..." />
-            <marker date="1517735570323" expanded="true" signature="972:1209" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="1235:1910" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="1987:2257" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="2285:2292" ph="{}" />
-            <marker date="1517735570323" expanded="false" signature="2329:2340" ph=" { " />
-            <marker date="1517735570323" expanded="false" signature="2357:2363" ph=" }" />
-            <marker date="1517735570323" expanded="false" signature="2397:2408" ph=" { " />
-            <marker date="1517735570323" expanded="false" signature="2435:2441" ph=" }" />
-            <marker date="1517735570323" expanded="true" signature="2474:2540" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="2571:2637" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="2673:2739" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="2803:3367" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="3438:3951" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="4027:4296" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="4334:4924" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="4519:4918" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="4965:5093" ph="{...}" />
-            <marker date="1517735570323" expanded="true" signature="5076:5087" ph="{}" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.9.RELEASE/spring-aop-4.3.9.RELEASE-sources.jar!/org/springframework/aop/framework/CglibAopProxy.java">
+    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/MiningTaskServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21564">
-          <caret line="675" column="0" lean-forward="false" selection-start-line="675" selection-start-column="0" selection-end-line="675" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="210">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="44" column="13" lean-forward="false" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.data_mining_task">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.9.RELEASE/spring-aop-4.3.9.RELEASE-sources.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.8.10/jackson-databind-2.8.10-sources.jar!/com/fasterxml/jackson/databind/exc/UnrecognizedPropertyException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5076">
-          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/Convert.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.9.RELEASE/spring-tx-4.3.9.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8604">
-          <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/RoleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-prod.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1116">
-          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        <state relative-caret-position="90">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
           <folding>
-            <marker date="1529481793895" expanded="true" signature="10:212" ph="jackson: &lt;4 keys&gt;" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/UserServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningTaskDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="75" column="8" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+        <state relative-caret-position="227">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatusWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/UserService.java">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        <state relative-caret-position="180">
+          <caret line="100" column="36" lean-forward="false" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/MiningTaskStatusConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/converter/TaskProgressStatusConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.3.9.RELEASE/spring-test-4.3.9.RELEASE-sources.jar!/org/springframework/test/util/AssertionErrors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0-sources.jar!/com/fasterxml/jackson/annotation/JsonValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0-sources.jar!/com/fasterxml/jackson/annotation/JsonCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/String.java" />
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenExpiredChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="52" column="22" lean-forward="false" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache-core/2.6.11/ehcache-core-2.6.11-sources.jar!/net/sf/ehcache/Ehcache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="1098" column="19" lean-forward="false" selection-start-line="1098" selection-start-column="19" selection-end-line="1098" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="33" column="20" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="255" column="31" lean-forward="false" selection-start-line="255" selection-start-column="31" selection-end-line="255" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/StatelessCredentialsMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="65" column="29" lean-forward="false" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-exception/src/main/java/com/vero/dm/exception/error/ExceptionCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="51" column="52" lean-forward="false" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-exception/src/main/java/com/vero/dm/exception/auth/IncorrectCredentialsException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java">
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityProdConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/resources/ehcache.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE-sources.jar!/org/springframework/web/bind/annotation/RestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="105" column="29" lean-forward="false" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="29" />
+        <state relative-caret-position="930">
+          <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/TokenManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+        <state relative-caret-position="330">
+          <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3024">
-          <caret line="107" column="26" lean-forward="false" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-dev.yml">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application-utest.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2376,49 +2480,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/resources/application-test.yml">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application-prod.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1710">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/FileUploadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application-dev.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
-          <caret line="82" column="30" lean-forward="true" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/e7cc149a/add251b8-9af7-45a1-b225-00df3ec08e39/data_mining.area_info">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityUnitTestConfiguration.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/ComponentScan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3600">
+          <caret line="143" column="13" lean-forward="false" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/filter/StatelessAuthenticatingFilter.java">
+    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/StudentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2628">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        <state relative-caret-position="390">
+          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleTokenValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/UserProfileAccessorImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/entry/ApiLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/SimpleDisposableTokenWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/config/ShiroSecurityTestConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="77" column="47" lean-forward="false" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2429,78 +2571,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DisposableTokenMaintainerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="32" column="10" lean-forward="false" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/credentials/DefaultTokenManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.9.RELEASE/spring-context-4.3.9.RELEASE-sources.jar!/org/springframework/context/annotation/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="91" column="3" lean-forward="false" selection-start-line="91" selection-start-column="3" selection-end-line="91" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/AlgorithmController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/DefaultMatchStrategyConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="420">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/AlgorithmService.java">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/BreakPointUploadController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/BaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/realm/AuthenticatingRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19332">
-          <caret line="585" column="0" lean-forward="false" selection-start-line="585" selection-start-column="0" selection-end-line="585" selection-end-column="0" />
+        <state relative-caret-position="420">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/GroupService.java">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/CredentialsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        <state relative-caret-position="1890">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding>
+            <element signature="e#1424#1425#0" expanded="true" />
+            <element signature="e#1472#1473#0" expanded="true" />
+            <element signature="e#1584#1585#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/pam/ModularRealmAuthenticator.java">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5292">
-          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="77" column="45" lean-forward="true" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessInfo.java">
+    <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/ApiVersion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="53" column="11" lean-forward="false" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+        <state relative-caret-position="300">
+          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/strategy/MatchAllCandidateStrategy.java">
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/BaseEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="40" column="85" lean-forward="false" selection-start-line="40" selection-start-column="85" selection-end-line="40" selection-end-column="85" />
+        <state relative-caret-position="240">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-security/src/main/java/com/vero/dm/security/realm/StatelessRealm.java">
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/TaskProgressStatus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="96" column="53" lean-forward="false" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
+        <state relative-caret-position="1020">
+          <caret line="41" column="31" lean-forward="true" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/enums/MiningTaskStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/GroupControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/GroupingConfigParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="63" column="7" lean-forward="true" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="128" column="20" lean-forward="true" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
           <folding />
         </state>
       </provider>

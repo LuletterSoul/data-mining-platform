@@ -55,6 +55,7 @@ public class StatelessRealm extends AuthorizingRealm
         this.disposableTokenMaintainer = disposableTokenMaintainer;
     }
 
+
     @Autowired
     @Qualifier("userServiceImpl")
     public void setUserService(UserService userService)

@@ -2,6 +2,7 @@ package com.vero.dm.security.credentials;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.exception.auth.ExpiredCredentialsException;
@@ -18,7 +19,7 @@ import net.sf.ehcache.Ehcache;
  * @version 1.5 created in 15:33 2018/2/10.
  * @since data-mining-platform
  */
-
+@Profile(value = {"prod","dev","test"})
 @Component
 @Slf4j
 public class UserProfileAccessorImpl implements UserProfileAccessor

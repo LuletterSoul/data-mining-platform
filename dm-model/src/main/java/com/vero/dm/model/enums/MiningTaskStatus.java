@@ -4,7 +4,9 @@ package com.vero.dm.model.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 
 /**
@@ -33,6 +35,8 @@ public enum MiningTaskStatus implements BaseEnum {
         }
     }
 
+
+
     private int value;
 
     private String status;
@@ -56,6 +60,17 @@ public enum MiningTaskStatus implements BaseEnum {
         return status;
     }
 
+    @JsonCreator
+    public static MiningTaskStatus getItem(int value){
+        for(MiningTaskStatus item : values()){
+            if(item.getValue() == value){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
     public int getValue()
     {
         return value;

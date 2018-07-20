@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.security.constants.Constants;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.5 created in 23:36 2018/2/12.
  * @since data-mining-platform
  */
+@Profile(value = {"dev","prod","test"})
 @Component
 @Slf4j
 public class SimpleDisposableTokenWriter implements DisposableTokenWriter

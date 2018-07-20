@@ -51,7 +51,7 @@ public interface StatelessCredentialsComputer
     String computeNegotiatedApplyToken(String password,String publicSalt);
 
     /**
-     * {@link StatelessCredentialsMatcher#doCredentialsMatch(AuthenticationToken, AuthenticationInfo)}
+     * {@link StatelessChainCredentialsMatcher#doCredentialsMatch(AuthenticationToken, AuthenticationInfo)}
      *
      * 进行鉴权时，会传入
      * 

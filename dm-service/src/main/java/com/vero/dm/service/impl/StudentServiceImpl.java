@@ -212,13 +212,13 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
 
     public StudentDto save(Student student)
     {
-        FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(
-            student.getFavorite().getFavoriteId());
-        StudentStatus studentStatus = this.getStudentStatusPersisted(
-            student.getStatus().getStatusId());
-        student.setFavorite(favoriteStatus);
-        student.setStatus(studentStatus);
-        // this.registerUser(student);
+//        FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(
+//            student.getFavorite().getFavoriteId());
+//        StudentStatus studentStatus = this.getStudentStatusPersisted(
+//            student.getStatus().getStatusId());
+       // student.setFavorite(favoriteStatus);
+        //student.setStatus(studentStatus);
+        this.studentJpaRepository.save(student);
         return new StudentDto(student);
     }
 

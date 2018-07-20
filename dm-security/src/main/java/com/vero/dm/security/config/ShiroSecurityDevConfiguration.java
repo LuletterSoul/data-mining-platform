@@ -32,7 +32,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
-import com.vero.dm.security.credentials.StatelessCredentialsMatcher;
+import com.vero.dm.security.credentials.StatelessChainCredentialsMatcher;
 import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.AuthenticationExceptionFilter;
 import com.vero.dm.security.filter.PreLogoutFilter;
@@ -100,9 +100,9 @@ public class ShiroSecurityDevConfiguration
     }
 
     @Bean
-    public StatelessCredentialsMatcher statelessCredentialsMatcher()
+    public StatelessChainCredentialsMatcher statelessCredentialsMatcher()
     {
-        StatelessCredentialsMatcher matcher = new StatelessCredentialsMatcher();
+        StatelessChainCredentialsMatcher matcher = new StatelessChainCredentialsMatcher();
         matcher.setHashIterations(hashIterations);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
         matcher.setStatelessCredentialsComputer(computer());

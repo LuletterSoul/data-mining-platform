@@ -4,6 +4,7 @@ package com.vero.dm.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.security.constants.Constants;
@@ -27,6 +28,7 @@ import java.util.Objects;
  * @since data-mining-platform
  */
 @Slf4j
+@Profile(value = {"prod","dev","test"})
 @RestController
 public class CredentialsController
 {

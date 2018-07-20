@@ -47,6 +47,19 @@ public class GroupingConfigParams
     private Integer gradient =12;
 
     /**
+     * 按照[lower,upper]生成随机生成一个梯度
+     * 每组人数的下界
+     */
+    private  Integer lowerBound = 0;
+
+
+    /**
+     * 每组人数的上界
+     * 默认为12
+     */
+    private Integer upperBound =12;
+
+    /**
      * 忽略被分配的任务
      */
 //    @ApiParam(value = "忽略有任务在身的学生,继续分组")

@@ -5,6 +5,7 @@ import com.vero.dm.exception.auth.UnknownAccountException;
 import com.vero.dm.exception.error.ExceptionCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.vero.dm.model.User;
@@ -16,6 +17,7 @@ import com.vero.dm.service.UserService;
  * @version 1.5 created in 23:24 2018/2/9.
  * @since data-mining-platform
  */
+@Profile(value = {"prod","dev","test"})
 @Component
 public class SimpleTokenValidator implements TokenValidator
 {

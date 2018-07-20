@@ -3,6 +3,7 @@ package com.vero.dm.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.5 created in 15:40 2017/7/20.
  * @since data-mining-platform
  */
+@Profile(value = {"prod","dev","test"})
 @RestController
 @RequestMapping(value = ApiVersion.API_VERSION + ResourcePath.USER_PATH)
 @Slf4j
@@ -41,7 +43,6 @@ public class UserController
     private UserProfileAccessor profileAccessor;
 
     private StatelessCredentialsComputer credentialsService;
-
 
 
     @Autowired
