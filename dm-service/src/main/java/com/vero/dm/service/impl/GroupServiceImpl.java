@@ -126,6 +126,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     // 默认简单分组方法
     public DividingGroupInfo initDefaultGroupingStrategy(GroupingConfigParams params)
     {
+        gradient = nextGradient(params);
         // 将要被分配的任务;
         List<DataMiningGroup> previewDefaultGroups = new LinkedList<>();
         List<Student> studentsPrepareDivided = getStudentsPrepareDivided(params);
@@ -147,13 +148,15 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             {
                 perGroupStudents.add(student);
                 // 到达固定人数分一组;
-                if (i % gradient == 0)
+                if (i == gradient)
                 {
                     DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(),
                         i, perGroupStudents);
                     // 生成预览分组情况，待管理员确认;
                     previewDefaultGroups.add(group);
                     perGroupStudents = new LinkedList<>();
+                    gradient = nextGradient(params);
+                    i=0;
                 }
                 i++ ;
             }
@@ -182,6 +185,11 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         cacheGroups.put(queryKey, previewDefaultGroups);
         return new DividingGroupInfo(queryKey, PreviewDividingGroupDto.build(previewDefaultGroups),
             previewDefaultGroups.get(0).getDataMiningTask());
+    }
+
+    private int nextGradient(GroupingConfigParams params) {
+        Random random = new Random();
+        return random.nextInt(params.getUpperBound() - params.getLowerBound() + 1) + params.getLowerBound();
     }
 
     private DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,

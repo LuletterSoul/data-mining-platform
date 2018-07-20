@@ -46,6 +46,9 @@ public class StudentDto
         setFavorite(student.getFavorite());
     }
 
+    public StudentDto() {
+    }
+
     public StudentDto(String studentName, String grade, String profession, String className,
                       StudentStatus status, FavoriteStatus favorite)
     {}

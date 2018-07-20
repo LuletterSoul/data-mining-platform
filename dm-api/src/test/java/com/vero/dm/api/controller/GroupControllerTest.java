@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.vero.dm.api.base.ConfigurationWirer;
 import com.vero.dm.model.*;
-import com.vero.dm.repository.dto.DataMiningGroupDto;
-import com.vero.dm.repository.dto.DividingGroupInfo;
-import com.vero.dm.repository.dto.GroupingConfigParams;
-import com.vero.dm.repository.dto.MiningTaskDto;
+import com.vero.dm.repository.dto.*;
 import com.vero.dm.service.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,6 +20,7 @@ import java.security.Timestamp;
 import java.util.*;
 
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -101,7 +99,7 @@ public class GroupControllerTest extends ConfigurationWirer {
 
         List<String> candidateIds = new LinkedList<>();
         List<Student> students = new ArrayList<>();
-        //生成组员信息
+        //生成待分组信息
         for(int i =0;i<100;i++) {
             Student student = new Student();
             student.setUsername("有追求的继承者们"+i);
@@ -123,6 +121,7 @@ public class GroupControllerTest extends ConfigurationWirer {
         params.setSpecifiedDividingStudents(candidateIds);
 
         String paramString = objectMapper.writeValueAsString(params);
+        //测试预览分组接口
         String groupInfo =  mockMvc.perform(post(ApiVersion.API_VERSION.concat("/groups/dividing_groups"))
                 .contentType(MediaType.APPLICATION_JSON_UTF8).content(paramString))
                 .andExpect(status().isOk()).andDo(print()).andReturn().getResponse().getContentAsString();
@@ -131,22 +130,28 @@ public class GroupControllerTest extends ConfigurationWirer {
         Assert.assertNotNull(dividingGroupInfo);
         Assert.assertNotNull(dividingGroupInfo.getQueryKey());
       //  Assert.assertEquals(dividingGroupInfo.getQueryKey(), params.getBuildingKey());
-
-
+       // dividingGroupInfo.getDataMiningGroups();
         //模拟确认创建预览分组的请求
         String newGroupsString = mockMvc.perform(post(ApiVersion.API_VERSION
                 .concat("/groups/dividing_groups/")
                 .concat(dividingGroupInfo.getQueryKey())))
                 .andExpect(status().isCreated())
                 .andDo(print()).andReturn().getResponse().getContentAsString();
-
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, DataMiningGroup.class);
         List<DataMiningGroup> createdGroups = objectMapper.readValue(newGroupsString, javaType);
-
-        for (DataMiningGroup g : createdGroups) {
-            System.out.println(g);
+        int size = createdGroups.size();
+        Integer total = 0;
+        for (int i = 0; i < size; i++) {
+            DataMiningGroup g = createdGroups.get(i);
+            String studentStr = mockMvc.perform(get(ApiVersion.API_VERSION.concat("/groups").concat("/").concat(g.getGroupId()).concat("/members")))
+                    .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+            JavaType javaType2 = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, StudentDto.class);
+            List<StudentDto> members = objectMapper.readValue(studentStr, javaType2);
+            System.out.println("Group "+ i +" member scale is: "+members.size());
+            total += members.size();
         }
 
+        Assert.assertEquals((long)total,(long) candidateIds.size());
 
 //        //模拟添加组员的客户端请求
 //        List<String> studentIds = studentService.getStudentIds();
