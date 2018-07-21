@@ -30,6 +30,10 @@ public interface StudentService extends UserService
 
     List<Student> findAllStudents();
 
+    Student findStudentById(String id);
+
+    List<Student> findByStudentIds(List<String> ids);
+
 
     /**
      * 分页获取的库内的学生信息

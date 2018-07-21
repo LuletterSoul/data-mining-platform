@@ -1,11 +1,14 @@
 package com.vero.dm.api.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
-import com.vero.dm.api.base.ConfigurationWirer;
-import com.vero.dm.model.*;
-import com.vero.dm.repository.dto.*;
-import com.vero.dm.service.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.*;
+
+import javax.transaction.Transactional;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +17,17 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MvcResult;
 
-import javax.transaction.Transactional;
-import javax.xml.crypto.Data;
-import java.security.Timestamp;
-import java.util.*;
-
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.JavaType;
+import com.vero.dm.api.base.ConfigurationWirer;
+import com.vero.dm.model.DataMiningGroup;
+import com.vero.dm.model.DataMiningTask;
+import com.vero.dm.model.MiningTaskStage;
+import com.vero.dm.model.Student;
+import com.vero.dm.repository.dto.DividingGroupInfo;
+import com.vero.dm.repository.dto.GroupingConfigParams;
+import com.vero.dm.repository.dto.MiningTaskDto;
+import com.vero.dm.repository.dto.StudentDto;
+import com.vero.dm.service.*;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .

@@ -9,8 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.persistence.EntityNotFoundException;
 
 import com.vero.dm.model.enums.TaskProgressStatus;
-import org.omg.CORBA.OBJ_ADAPTER;
+import com.vero.dm.service.grouper.MiningGrouper;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -46,6 +47,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
 
     private Integer gradient = 12;
 
+    private MiningGrouper grouper;
+
     /**
      * 缓存分组列表
      */
@@ -54,6 +57,11 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     public void setGradient(Integer gradient)
     {
         this.gradient = gradient;
+    }
+
+    @Autowired
+    public void setGrouper(MiningGrouper grouper) {
+        this.grouper = grouper;
     }
 
     @Override
@@ -94,6 +102,11 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         return group;
     }
 
+    @Override
+    public void setPreviewGroupCache(String queryKey, List<DataMiningGroup> groups) {
+        this.cacheGroups.put(queryKey, groups);
+    }
+
     private void updateTaskStatus(DataMiningGroupDto groupDto, DataMiningGroup group) {
         group.setTaskStatus(MiningTaskStatus.map.get(groupDto.getTaskStatus()));
         if (!StringUtils.isEmpty(groupDto.getTaskId())) {
@@ -124,106 +137,107 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     // 默认简单分组方法
-    public DividingGroupInfo initDefaultGroupingStrategy(GroupingConfigParams params)
+    public DividingGroupInfo getDividingGroupInfo(GroupingConfigParams params)
     {
-        gradient = nextGradient(params);
-        // 将要被分配的任务;
-        List<DataMiningGroup> previewDefaultGroups = new LinkedList<>();
-        List<Student> studentsPrepareDivided = getStudentsPrepareDivided(params);
-        if (studentsPrepareDivided == null || studentsPrepareDivided.isEmpty())
-        {
-            String message = "Could't found students who are corresponding to the request.";
-            log.error(message);
-            throw new StudentNotFoundException(message, ExceptionCode.StudentNotFound);
-        }
-        Integer restStudent = studentsPrepareDivided.size() % gradient;
-        // 用户要求的每个组的总人数,如果用户未配置，默认值为12；
-        this.setGradient(params.getGradient());
-        List<Student> perGroupStudents = new LinkedList<>();
-        if (studentsPrepareDivided.size() >= gradient)
-        {
-            // int groupNum = studentIds.size() / gradient;
-            int i = 1;
-            for (Student student : studentsPrepareDivided)
-            {
-                perGroupStudents.add(student);
-                // 到达固定人数分一组;
-                if (i == gradient)
-                {
-                    DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(),
-                        i, perGroupStudents);
-                    // 生成预览分组情况，待管理员确认;
-                    previewDefaultGroups.add(group);
-                    perGroupStudents = new LinkedList<>();
-                    gradient = nextGradient(params);
-                    i=0;
-                }
-                i++ ;
-            }
-            // 组员人数非偶数，将后面不足分组梯度且比梯度的一半小的学生列表全加入到最后一个队伍；
-            if (restStudent < gradient / 2)
-            {
-                previewDefaultGroups.get(previewDefaultGroups.size() - 1).getGroupMembers().addAll(
-                    perGroupStudents);
-            }
-            // 剩下的学生超过梯度的一半，另起一组
-            else
-            {
-                DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
-                    perGroupStudents);
-                previewDefaultGroups.add(group);
-            }
-        }
-        // 符合条件的学生比每组的人数少,直接作为一组
-        if (studentsPrepareDivided.size() < gradient)
-        {
-            DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
-                studentsPrepareDivided);
-            previewDefaultGroups.add(group);
-        }
-        String queryKey = UUID.randomUUID().toString();
-        cacheGroups.put(queryKey, previewDefaultGroups);
-        return new DividingGroupInfo(queryKey, PreviewDividingGroupDto.build(previewDefaultGroups),
-            previewDefaultGroups.get(0).getDataMiningTask());
+//        gradient = nextGradient(params);
+//        // 将要被分配的任务;
+//        List<DataMiningGroup> previewDefaultGroups = new LinkedList<>();
+//        List<Student> studentsPrepareDivided = getStudentsPrepareDivided(params);
+//        if (studentsPrepareDivided == null || studentsPrepareDivided.isEmpty())
+//        {
+//            String message = "Could't found students who are corresponding to the request.";
+//            log.error(message);
+//            throw new StudentNotFoundException(message, ExceptionCode.StudentNotFound);
+//        }
+//        Integer restStudent = studentsPrepareDivided.size() % gradient;
+//        // 用户要求的每个组的总人数,如果用户未配置，默认值为12；
+//        this.setGradient(params.getGradient());
+//        List<Student> perGroupStudents = new LinkedList<>();
+//        if (studentsPrepareDivided.size() >= gradient)
+//        {
+//            // int groupNum = studentIds.size() / gradient;
+//            int i = 1;
+//            for (Student student : studentsPrepareDivided)
+//            {
+//                perGroupStudents.add(student);
+//                // 到达固定人数分一组;
+//                if (i == gradient)
+//                {
+//                    DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(),
+//                        i, perGroupStudents);
+//                    // 生成预览分组情况，待管理员确认;
+//                    previewDefaultGroups.add(group);
+//                    perGroupStudents = new LinkedList<>();
+//                    gradient = nextGradient(params);
+//                    i=0;
+//                }
+//                i++ ;
+//            }
+//            // 组员人数非偶数，将后面不足分组梯度且比梯度的一半小的学生列表全加入到最后一个队伍；
+//            if (restStudent < gradient / 2)
+//            {
+//                previewDefaultGroups.get(previewDefaultGroups.size() - 1).getGroupMembers().addAll(
+//                    perGroupStudents);
+//            }
+//            // 剩下的学生超过梯度的一半，另起一组
+//            else
+//            {
+//                DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
+//                    perGroupStudents);
+//                previewDefaultGroups.add(group);
+//            }
+//        }
+//        // 符合条件的学生比每组的人数少,直接作为一组
+//        if (studentsPrepareDivided.size() < gradient)
+//        {
+//            DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
+//                studentsPrepareDivided);
+//            previewDefaultGroups.add(group);
+//        }
+//        String queryKey = UUID.randomUUID().toString();
+//        cacheGroups.put(queryKey, previewDefaultGroups);
+//        return new DividingGroupInfo(queryKey, PreviewDividingGroupDto.build(previewDefaultGroups),
+//            previewDefaultGroups.get(0).getDataMiningTask());
+        return grouper.initDefaultGroupingStrategy(params);
     }
 
-    private int nextGradient(GroupingConfigParams params) {
-        Random random = new Random();
-        return random.nextInt(params.getUpperBound() - params.getLowerBound() + 1) + params.getLowerBound();
-    }
+//    private int nextGradient(GroupingConfigParams params) {
+//        Random random = new Random();
+//        return random.nextInt(params.getUpperBound() - params.getLowerBound() + 1) + params.getLowerBound();
+//    }
 
-    private DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,
-                                       List<Student> perGroupStudents)
-    {
-        DataMiningGroup group = new DataMiningGroup();
-        group.setGroupLeader(perGroupStudents.get(0));
-        if (StringUtils.isEmpty(taskId))
-        {
-            group.setDataMiningTask(null);
-            group.setTaskStatus(MiningTaskStatus.toBeAssigned);
-        }
-        else
-        {
-            group.setDataMiningTask(taskJpaRepository.findOne(taskId));
-            group.setTaskStatus(MiningTaskStatus.newTask);
-        }
-        Teacher teacherBuilder = teacherJpaRepository.findOne(builderId);
-        Student studentBuilder = studentJpaRepository.findOne(builderId);
-        if (!ObjectUtils.isEmpty(teacherBuilder)) {
-            group.setTeacherBuilder(teacherBuilder);
-        }
-        if (!ObjectUtils.isEmpty(studentBuilder)) {
-            group.setStudentBuilder(studentBuilder);
-        }
-
-        group.setBuiltTime(new Date());
-        group.setGroupName(
-            "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM)
-                           + "_" + arrangementId);
-        group.setArrangementId(String.valueOf(arrangementId));
-        group.setGroupMembers(new LinkedHashSet<>(perGroupStudents));
-        return group;
-    }
+//    private DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,
+//                                       List<Student> perGroupStudents)
+//    {
+//        DataMiningGroup group = new DataMiningGroup();
+//        group.setGroupLeader(perGroupStudents.get(0));
+//        if (StringUtils.isEmpty(taskId))
+//        {
+//            group.setDataMiningTask(null);
+//            group.setTaskStatus(MiningTaskStatus.toBeAssigned);
+//        }
+//        else
+//        {
+//            group.setDataMiningTask(taskJpaRepository.findOne(taskId));
+//            group.setTaskStatus(MiningTaskStatus.newTask);
+//        }
+//        Teacher teacherBuilder = teacherJpaRepository.findOne(builderId);
+//        Student studentBuilder = studentJpaRepository.findOne(builderId);
+//        if (!ObjectUtils.isEmpty(teacherBuilder)) {
+//            group.setTeacherBuilder(teacherBuilder);
+//        }
+//        if (!ObjectUtils.isEmpty(studentBuilder)) {
+//            group.setStudentBuilder(studentBuilder);
+//        }
+//
+//        group.setBuiltTime(new Date());
+//        group.setGroupName(
+//            "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM)
+//                           + "_" + arrangementId);
+//        group.setArrangementId(String.valueOf(arrangementId));
+//        group.setGroupMembers(new LinkedHashSet<>(perGroupStudents));
+//        return group;
+//    }
 
     @Override
     public List<DataMiningGroup> sureDividingGroupRequest(String queryKey)
@@ -240,28 +254,28 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         return groups;
     }
 
-    private List<Student> getStudentsPrepareDivided(GroupingConfigParams params)
-    {
-        List<String> studentIds = params.getSpecifiedDividingStudents();
-        // 如果用户不指定要分组的学生，且不忽略当前有任务在身学生
-        if ((studentIds == null || studentIds.isEmpty()) && !params.getIsIgnoreArrangedTask())
-        {
-            // 前端传入的时间参数，要求在此时间端内，学生没有处于其他实践任务分组执行数据挖掘任务；
-            // 以任务的计划时间为准
-            // 获取符合要求的学生
-            return fetchStudentWithoutGroup(params.getBeginDate(), params.getEndDate());
-        }
-        else if (studentIds != null && !studentIds.isEmpty())
-        {
-            return studentJpaRepository.findByStudentIds(studentIds);
-        }
-        else if (params.getIsIgnoreArrangedTask())
-        {
-            // 全部学生参与分组
-            return studentJpaRepository.findAll();
-        }
-        return null;
-    }
+//    private List<Student> getStudentsPrepareDivided(GroupingConfigParams params)
+//    {
+//        List<String> studentIds = params.getSpecifiedDividingStudents();
+//        // 如果用户不指定要分组的学生，且不忽略当前有任务在身学生
+//        if ((studentIds == null || studentIds.isEmpty()) && !params.getIsIgnoreArrangedTask())
+//        {
+//            // 前端传入的时间参数，要求在此时间端内，学生没有处于其他实践任务分组执行数据挖掘任务；
+//            // 以任务的计划时间为准
+//            // 获取符合要求的学生
+//            return fetchStudentWithoutGroup(params.getBeginDate(), params.getEndDate());
+//        }
+//        else if (studentIds != null && !studentIds.isEmpty())
+//        {
+//            return studentJpaRepository.findByStudentIds(studentIds);
+//        }
+//        else if (params.getIsIgnoreArrangedTask())
+//        {
+//            // 全部学生参与分组
+//            return studentJpaRepository.findAll();
+//        }
+//        return null;
+//    }
 
     @Override
     public List<Student> fetchStudentWithoutGroup(Date begin, Date end)

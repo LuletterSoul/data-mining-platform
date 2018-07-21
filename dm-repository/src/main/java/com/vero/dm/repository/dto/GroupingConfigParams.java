@@ -50,7 +50,7 @@ public class GroupingConfigParams
      * 按照[lower,upper]生成随机生成一个梯度
      * 每组人数的下界
      */
-    private  Integer lowerBound = 0;
+    private  Integer lowerBound = 1;
 
 
     /**

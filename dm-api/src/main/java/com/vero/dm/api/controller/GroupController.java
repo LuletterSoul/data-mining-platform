@@ -95,7 +95,7 @@ public class GroupController
     @PostMapping(value = "/dividing_groups")
     public ResponseEntity<DividingGroupInfo> previewDefaultGroupings(@RequestBody GroupingConfigParams params)
     {
-        return new ResponseEntity<>(groupService.initDefaultGroupingStrategy(params),
+        return new ResponseEntity<>(groupService.getDividingGroupInfo(params),
             HttpStatus.OK);
     }
 

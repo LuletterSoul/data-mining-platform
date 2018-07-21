@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import com.vero.dm.model.*;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,10 +24,6 @@ import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.importer.core.ExcelExporter;
 import com.vero.dm.importer.core.ExcelImporter;
 import com.vero.dm.importer.core.ExcelModuleManager;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.FavoriteStatus;
-import com.vero.dm.model.Student;
-import com.vero.dm.model.StudentStatus;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.StudentService;
 
@@ -50,6 +47,7 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
 
     @Autowired
     private ExcelExporter<Student> studentExcelExporter;
+
 
 
     @Override
@@ -166,6 +164,16 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public List<Student> findAllStudents()
     {
         return studentJpaRepository.findAll();
+    }
+
+    @Override
+    public Student findStudentById(String id) {
+        return studentJpaRepository.findOne(id);
+    }
+
+    @Override
+    public List<Student> findByStudentIds(List<String> ids) {
+        return studentJpaRepository.findByStudentIds(ids);
     }
 
     @Override

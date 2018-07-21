@@ -4,13 +4,17 @@ package com.vero.dm.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.vero.dm.model.DataMiningGroup;
 import com.vero.dm.model.DataMiningTask;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.enums.MiningTaskStatus;
-import com.vero.dm.repository.dto.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.vero.dm.repository.dto.DataMiningGroupDto;
+import com.vero.dm.repository.dto.DividingGroupInfo;
+import com.vero.dm.repository.dto.GroupingConfigParams;
+import com.vero.dm.repository.dto.StudentDto;
 
 
 /**
@@ -24,15 +28,16 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 
     DataMiningGroup updateGroup(DataMiningGroupDto groupDto);
 
-    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName,
-                                              Date beginDate,
-                                              Date endDate,
-                                              String leaderStudentId,
+    void setPreviewGroupCache(String queryKey, List<DataMiningGroup> groups);
+
+
+    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName, Date beginDate,
+                                              Date endDate, String leaderStudentId,
                                               MiningTaskStatus taskStatus, Boolean fetch);
 
     List<Student> fetchStudentWithoutGroup(Date begin, Date end);
 
-    DividingGroupInfo initDefaultGroupingStrategy(GroupingConfigParams params);
+    DividingGroupInfo getDividingGroupInfo(GroupingConfigParams params);
 
     List<DataMiningGroup> sureDividingGroupRequest(String queryKey);
 
@@ -54,9 +59,9 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 
     List<Student> fetchGroupLeaders();
 
-    DataMiningTask arrangeTask(String groupId,String taskId);
+    DataMiningTask arrangeTask(String groupId, String taskId);
 
-    MiningTaskStatus updateGroupStatus(String groupId,MiningTaskStatus newStatus);
+    MiningTaskStatus updateGroupStatus(String groupId, MiningTaskStatus newStatus);
 
     List<MiningTaskStatus> fetchStatusOptions();
 }
