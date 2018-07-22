@@ -41,7 +41,6 @@ public enum TaskProgressStatus implements BaseEnum {
 
     private String description;
 
-    @JsonCreator
     TaskProgressStatus(Integer value, String status, String description)
     {
         this.value = value;

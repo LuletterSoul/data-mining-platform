@@ -1,6 +1,7 @@
 package com.vero.dm.repository.dto;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,17 +23,15 @@ import lombok.NoArgsConstructor;
 public class GroupingConfigParams
 {
 
-
+    private Integer strategyId = 1;
     /**
      * 统一分配任务
      */
-//    @ApiParam(value = "给每个分组分配的任务",required = true)
     private String taskId;
 
     /**
      * 开始日期，此日期是为了筛选这段期间没有被分配任务的学生algorithm_param
      */
-//    @ApiParam(value = "范围时间")
     private Date beginDate;
 
     /**
@@ -43,7 +42,6 @@ public class GroupingConfigParams
     /**
      * 分组梯度，每组多少人,默认每组12人
      */
-//    @ApiParam(value = "每组多少人")
     private Integer gradient =12;
 
     /**
@@ -62,22 +60,27 @@ public class GroupingConfigParams
     /**
      * 忽略被分配的任务
      */
-//    @ApiParam(value = "忽略有任务在身的学生,继续分组")
     private Boolean isIgnoreArrangedTask = false;
 
     /**
      * 指定要分组的学生
      */
-//    @ApiParam(value = "指定要分组的学生标识")
-    private List<String> specifiedDividingStudents;
+    private List<String> specifiedDividingStudents = new ArrayList<>();
+
+
+    /**
+     * 指定要分发的任务
+     */
+    private List<String> specifiedTasks = new ArrayList<>();
 
     /**
      * 建立者
      */
-//    @ApiParam(value = "建队人")
     private String builderId;
 
+
     /**
+     *
      * 一键分组的代号
      */
     private String buildingKey;

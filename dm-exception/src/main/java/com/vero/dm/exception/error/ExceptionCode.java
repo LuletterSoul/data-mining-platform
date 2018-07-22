@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.vero.dm.exception.PlatformBaseException;
-import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
+import com.vero.dm.exception.group.*;
 import org.apache.http.auth.InvalidCredentialsException;
 
 import com.vero.dm.exception.auth.*;
@@ -17,8 +17,6 @@ import com.vero.dm.exception.common.DataDuplicatedException;
 import com.vero.dm.exception.common.ErrorCodeLostNotFoundException;
 import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.file.*;
-import com.vero.dm.exception.group.SpecificStudentNotFoundException;
-import com.vero.dm.exception.group.StudentNotFoundException;
 
 
 /**
@@ -38,12 +36,13 @@ public enum ExceptionCode {
     DataSetDeleteError(30003, "无法删除该数据集", DataSetDeleteException.class),
     ZipSetError(30004, "压缩数据集时出错",SetZipException.class),
     BusinessLogicError(40000,"业务逻辑异常.", BusinessException.class),
-    StudentIdDuplicated(40001,"学号重复.", StudentIdDuplicatedException.class)
-    ,
+    StudentIdDuplicated(40001,"学号重复.", StudentIdDuplicatedException.class),
     DataDuplicated(40002,"数据重复", DataDuplicatedException.class),
     StudentNotFound(40003,"找不到对应的学生", StudentNotFoundException.class),
     SpecifStudentNotFound(40004,"无法找到指定的学生信息", SpecificStudentNotFoundException.class),
     PreviewGroupsNotFound(40005, "找不到对应的预览分组列表.", PreviewGroupsNotFoundException.class),
+    TasksEmpty(40006, "待分配的任务不能为空", TasksEmptyException.class),
+    InvalidGroupingConfig(40007, "当前参数产生的分组无法接收所有待分配的任务", InvalidGroupingConifgException.class),
     AuthenticationError(50000, "权限认证出错,你不具备当前模块的访问权限.", InternalAuthenticationException.class),
     InvalidCredentials(50001, "证书不合法,请确保你已登录系统.", InvalidCredentialsException.class),
     ExpiredToken(50002, "证书已过期,请重新登录.", ExpiredCredentialsException.class),

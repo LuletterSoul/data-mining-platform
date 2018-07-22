@@ -9,6 +9,7 @@ import java.util.*;
 
 import javax.transaction.Transactional;
 
+import com.vero.dm.exception.group.InvalidGroupingConifgException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.vero.dm.repository.dto.GroupingConfigParams;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.*;
+import org.springframework.web.util.NestedServletException;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -61,89 +63,118 @@ public class GroupControllerTest extends ConfigurationWirer {
     @Autowired
     private AlgorithmTypeService algorithmTypeService;
 
-    private List<Integer> algorithmIds = new LinkedList<Integer>();
+    GroupingConfigParams params = new GroupingConfigParams();
 
-    private List<String> containerIds = new LinkedList<String>();
+    private Set<MiningTaskStage> stages = new HashSet<>();
 
-    private List<String> groupIds = new LinkedList<String>();
+    private List<String> taskIds = new ArrayList<>();
+
+    private List<String> candidateIds = new LinkedList<>();
+
+    private List<Student> students = new ArrayList<>();
+
+
+
+
 
     @Test
-    public void previewDefaultGroupings() throws Exception {
-
+    public void simpleGroupingStrategyTest() throws Exception {
+        reset();
+        Integer lowBound = 1;
+        Integer upperBound = 14;
+        Integer taskSize = 5;
+        Integer candidateSize = 100;
+        Integer strategyId = 1;
         MiningTaskStage stage1 = new MiningTaskStage();
         stage1.setBegin(new Date());
         stage1.setEnd(new Date());
-
-        //构建模拟的数据挖掘任务
-        MiningTaskDto miningTask = new MiningTaskDto();
-        miningTask.setPlannedTimeRange(new Date[]{new Date(),new Date()});
-        miningTask.setArrangementId("1");
-        miningTask.setTaskName("基于C4.5算法的研究与PRSA数据集的分类分析统计");
-
-
-        String serializedMiningTask = objectMapper.writeValueAsString(miningTask);
-        //模拟管理员創建实践任务
-        MvcResult result =mockMvc.perform(post(ApiVersion.API_VERSION.concat("/tasks"))
-                .content(serializedMiningTask)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated()).andDo(print()).andReturn();
-        String createdTaskJsonString = result.getResponse().getContentAsString();
-        DataMiningTask createdTask = objectMapper.readValue(createdTaskJsonString, DataMiningTask.class);
-        String taskId = createdTask.getTaskId();
-
-
-        GroupingConfigParams params = new GroupingConfigParams();
-
-
-//        //构建模拟的数据挖掘分组
-//        DataMiningGroup group = new DataMiningGroup();
-//        group.setGroupName("谁念西风独自凉");
-//        groupService.save(group);
-//        groupIds.add(group.getGroupId());
-
-        List<String> candidateIds = new LinkedList<>();
-        List<Student> students = new ArrayList<>();
-        //生成待分组信息
-        for(int i =0;i<100;i++) {
-            Student student = new Student();
-            student.setUsername("有追求的继承者们"+i);
-            student.setStudentId(UUID.randomUUID().toString().substring(0, 16));
-            student.setPassword("liuxiangde");
-            student.setStudentName(UUID.randomUUID().toString().substring(0, 8));
-            studentService.save(student);
-            students.add(student);
-            candidateIds.add(student.getStudentId());
-        }
-        params.setBeginDate(new Date());
-        params.setBuildingKey("123");
-        params.setGradient(12);
-        params.setBuilderId(students.get(0).getUserId());
-        params.setEndDate(new Date());
-        params.setLowerBound(2);
-        params.setUpperBound(10);
-        params.setTaskId(taskId);
-        params.setSpecifiedDividingStudents(candidateIds);
-
-        String paramString = objectMapper.writeValueAsString(params);
-        //测试预览分组接口
-        String groupInfo =  mockMvc.perform(post(ApiVersion.API_VERSION.concat("/groups/dividing_groups"))
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content(paramString))
-                .andExpect(status().isOk()).andDo(print()).andReturn().getResponse().getContentAsString();
-
-        DividingGroupInfo dividingGroupInfo = objectMapper.readValue(groupInfo, DividingGroupInfo.class);
-        Assert.assertNotNull(dividingGroupInfo);
-        Assert.assertNotNull(dividingGroupInfo.getQueryKey());
-      //  Assert.assertEquals(dividingGroupInfo.getQueryKey(), params.getBuildingKey());
-       // dividingGroupInfo.getDataMiningGroups();
-        //模拟确认创建预览分组的请求
-        String newGroupsString = mockMvc.perform(post(ApiVersion.API_VERSION
-                .concat("/groups/dividing_groups/")
-                .concat(dividingGroupInfo.getQueryKey())))
-                .andExpect(status().isCreated())
-                .andDo(print()).andReturn().getResponse().getContentAsString();
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, DataMiningGroup.class);
-        List<DataMiningGroup> createdGroups = objectMapper.readValue(newGroupsString, javaType);
+        stages.add(stage1);
+        buildTasks(taskSize);
+        buildCandidates(candidateSize);
+        //建立分组参数，选择策略为简单分组策略
+        buildParams(lowBound,upperBound,strategyId);
+        List<DataMiningGroup> createdGroups = createGroups();
         int size = createdGroups.size();
         Integer total = 0;
+        total = totalMembers(createdGroups, size, total);
+        Assert.assertEquals((long)total,(long) (lowBound + upperBound)/2 * taskSize);
+    }
+
+    @Test
+    public void randomGroupingStrategyTest() throws Exception {
+        reset();
+        Integer lowBound = 1;
+        Integer upperBound = 14;
+        Integer taskSize = 5;
+        Integer candidateSize = 100;
+        Integer strategyId = 2;
+        MiningTaskStage stage1 = new MiningTaskStage();
+        stage1.setBegin(new Date());
+        stage1.setEnd(new Date());
+        stages.add(stage1);
+        buildTasks(taskSize);
+        buildCandidates(candidateSize);
+        buildParams(lowBound,upperBound,strategyId);
+        List<DataMiningGroup> createdGroups = createGroups();
+        int size = createdGroups.size();
+        Integer total = 0;
+        total = totalMembers(createdGroups, size, total);
+//        Assert.assertEquals((long)total,(long) (lowBound + upperBound)/2 * taskSize);
+        System.out.println("被分组的总学生人数为: "+ total);
+    }
+
+    @Test(expected = NestedServletException.class)
+    public void restrictGroupingStrategyExceptionTest() throws Exception {
+        reset();
+        Integer lowBound = 1;
+        Integer upperBound = 14;
+        Integer taskSize = 5;
+        Integer candidateSize = 100;
+        Integer strategyId = 3;
+        MiningTaskStage stage1 = new MiningTaskStage();
+        stage1.setBegin(new Date());
+        stage1.setEnd(new Date());
+        stages.add(stage1);
+        buildTasks(taskSize);
+        buildCandidates(candidateSize);
+        buildParams(lowBound,upperBound,strategyId);
+        List<DataMiningGroup> createdGroups = createGroups();
+        int size = createdGroups.size();
+        Integer total = 0;
+    }
+
+    @Test
+    public void restrictGroupingStrategyTest() throws Exception {
+        reset();
+        Integer lowBound = 5;
+        Integer upperBound = 25;
+        Integer taskSize = 5;
+        Integer candidateSize = 100;
+        Integer strategyId = 3;
+        MiningTaskStage stage1 = new MiningTaskStage();
+        stage1.setBegin(new Date());
+        stage1.setEnd(new Date());
+        stages.add(stage1);
+        buildTasks(taskSize);
+        buildCandidates(candidateSize);
+        buildParams(lowBound,upperBound,strategyId);
+        List<DataMiningGroup> createdGroups = createGroups();
+        int size = createdGroups.size();
+        Integer total = 0;
+        total = totalMembers(createdGroups, size, total);
+        Assert.assertEquals((long)total,(long)candidateSize);
+        createdGroups.forEach(g-> Assert.assertTrue(taskIds.contains(g.getDataMiningTask().getTaskId())));
+    }
+
+    private void reset() {
+        stages.clear();
+        taskIds.clear();
+        candidateIds.clear();
+        students.clear();
+        params = new GroupingConfigParams();
+    }
+
+    private Integer totalMembers(List<DataMiningGroup> createdGroups, int size, Integer total) throws Exception {
         for (int i = 0; i < size; i++) {
             DataMiningGroup g = createdGroups.get(i);
             String studentStr = mockMvc.perform(get(ApiVersion.API_VERSION.concat("/groups").concat("/").concat(g.getGroupId()).concat("/members")))
@@ -153,41 +184,77 @@ public class GroupControllerTest extends ConfigurationWirer {
             System.out.println("Group "+ i +" member scale is: "+members.size());
             total += members.size();
         }
-
-        Assert.assertEquals((long)total,(long) candidateIds.size());
-
-//        //模拟添加组员的客户端请求
-//        List<String> studentIds = studentService.getStudentIds();
-//        String serializedStudentIds = objectMapper.writeValueAsString(studentIds);
-//        mockMvc.perform(post("/groups/"+group.getGroupId()+"/groupMembers/addMembersWithArray").contentType(MediaType.APPLICATION_JSON_UTF8)
-//                .content(serializedStudentIds)).andExpect(status().isCreated()).andDo(print());
+        return total;
+    }
 
 
-//        //构建模拟的算法描述
-//        AlgorithmType algorithmType = new AlgorithmType("分类", "Classification");
-//        algorithmTypeService.save(algorithmType);
-//        Algorithm algorithm = new Algorithm("C4.5", "机器学习算法中的一种分类决策树算法,其核心算法是ID3算法", algorithmType);
-//        algorithmService.save(algorithm);
-//        algorithmIds.add(algorithm.getAlgorithmId());
+    private List<DataMiningGroup> createGroups() throws Exception {
+        String paramString = objectMapper.writeValueAsString(params);
+        //测试预览分组接口
+        String groupInfo =  mockMvc.perform(post(ApiVersion.API_VERSION.concat("/groups/dividing_groups"))
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(paramString))
+                .andExpect(status().isOk()).andDo(print()).andReturn().getResponse().getContentAsString();
+        DividingGroupInfo dividingGroupInfo = objectMapper.readValue(groupInfo, DividingGroupInfo.class);
+        Assert.assertNotNull(dividingGroupInfo);
+        Assert.assertNotNull(dividingGroupInfo.getQueryKey());
+        String newGroupsString = mockMvc.perform(post(ApiVersion.API_VERSION
+                .concat("/groups/dividing_groups/")
+                .concat(dividingGroupInfo.getQueryKey())))
+                .andExpect(status().isCreated())
+                .andDo(print()).andReturn().getResponse().getContentAsString();
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, DataMiningGroup.class);
+        return objectMapper.readValue(newGroupsString, javaType);
+    }
 
-//        //模拟管理员给实践任务分配算法操作
-//        String serializedAlgorithmIds = objectMapper.writeValueAsString(algorithmIds);
-//        mockMvc.perform(post("/tasks/" + taskId + "/algorithms/configWithArray")
-//                .content(serializedAlgorithmIds).contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(status().isCreated()).andDo(print());
+    private void buildParams(int lowerBound,int upperBound,int strategyId) {
+        params = new GroupingConfigParams();
+        params.setStrategyId(strategyId);
+        params.setBeginDate(new Date());
+        params.setBuildingKey("123");
+        params.setGradient(12);
+        params.setBuilderId(students.get(0).getUserId());
+        params.setEndDate(new Date());
+        params.setLowerBound(lowerBound);
+        params.setUpperBound(upperBound);
+        params.setSpecifiedTasks(taskIds);
+        params.setSpecifiedDividingStudents(candidateIds);
+    }
 
-//        //模拟管理员给时间任务分配相应的挖掘数据
-//        List<String> containers = containerService.getContainerIds();
-//        String jSonContainerIds = objectMapper.writeValueAsString(containers);
-//        mockMvc.perform(post("/tasks/" + taskId + "/containers/addSetsWithArray")
-//                .content(jSonContainerIds)
-//                .contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(status().isCreated()).andDo(print());
+    private void buildCandidates(Integer candidateSize) {
+        //生成待分组信息
+        for(int i =0;i<candidateSize;i++) {
+            Student student = new Student();
+            student.setUsername("有追求的继承者们"+i);
+            student.setStudentId(UUID.randomUUID().toString().substring(0, 16));
+            student.setPassword("liuxiangde");
+            student.setStudentName(UUID.randomUUID().toString().substring(0, 8));
+            studentService.save(student);
+            students.add(student);
+            candidateIds.add(student.getStudentId());
+        }
+    }
 
-//        //模拟管理员给任务分配分配团队
-//        String jsonGroupIds = objectMapper.writeValueAsString(groupIds);
-//        mockMvc.perform(post("/tasks/"+taskId+"/groups/involveWithArray")
-//                .content(jsonGroupIds)
-//                .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated()).andDo(print());
+    private void buildTasks(int taskSize) throws Exception {
+        for(int i = 0;i<taskSize;i++) {
+            //构建模拟的数据挖掘任务
+            MiningTaskDto miningTask = buildMiningTaskDto(i);
+            String serializedMiningTask = objectMapper.writeValueAsString(miningTask);
+            //模拟管理员創建实践任务
+            MvcResult result =mockMvc.perform(post(ApiVersion.API_VERSION.concat("/tasks"))
+                    .content(serializedMiningTask)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated()).andDo(print()).andReturn();
+            String createdTaskJsonString = result.getResponse().getContentAsString();
+            DataMiningTask createdTask = objectMapper.readValue(createdTaskJsonString, DataMiningTask.class);
+            taskIds.add(createdTask.getTaskId());
+        }
+    }
+
+    private MiningTaskDto buildMiningTaskDto(int i) {
+        MiningTaskDto miningTask = new MiningTaskDto();
+        miningTask.setPlannedTimeRange(new Date[]{new Date(),new Date()});
+        miningTask.setArrangementId("1");
+        miningTask.setTaskName("基于C4.5算法的研究与PRSA数据集的分类分析统计" + i);
+        //miningTask.setStages(stages);
+        return miningTask;
     }
 }

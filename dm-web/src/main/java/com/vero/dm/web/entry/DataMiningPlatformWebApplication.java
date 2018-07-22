@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @since data-minning-platform
  */
 
+@Profile(value = {"prod","dev"})
 @Configuration
 @ExcelModelScan(basePackages = {"com.vero.dm.model"})
 @ComponentScan(basePackages = {"com.vero.dm"}) // 扫描该包路径下的所有spring组件

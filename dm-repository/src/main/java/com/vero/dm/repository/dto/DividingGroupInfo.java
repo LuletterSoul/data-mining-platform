@@ -42,4 +42,8 @@ public class DividingGroupInfo
      */
     private DataMiningTask dataMiningTask;
 
+    private List<Student> remainedStudents;
+
+    private List<String> taskIds;
+
 }
