@@ -4,9 +4,8 @@ package com.vero.dm.service.grouper;
 import java.util.Random;
 
 import com.vero.dm.exception.error.ExceptionCode;
-import com.vero.dm.exception.group.InvalidGroupingConifgException;
+import com.vero.dm.exception.group.InvalidGroupingConfigException;
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,8 +26,8 @@ public class RestrictGroupingStrategy extends SimpleGroupingStrategy
 
     private Integer pos = 0;
 
-    public RestrictGroupingStrategy() {
-    }
+    public RestrictGroupingStrategy()
+    {}
 
     public RestrictGroupingStrategy(MiningGrouper grouper)
     {
@@ -42,15 +41,15 @@ public class RestrictGroupingStrategy extends SimpleGroupingStrategy
         int average = (int)Math.floor(candidateSize / taskSize);
         if (average < lowerBound || average > upperBound)
         {
-            String message = "无法产生每组人数在上下界的范围内,且能被分配所有任务的分组";
+            String message = "无法产生每组人数在上下界的范围内,且能被分配所有任务的分组,请调整分组人数的上下界";
             log.info(message);
-            throw new InvalidGroupingConifgException(message, ExceptionCode.InvalidGroupingConfig);
+            throw new InvalidGroupingConfigException(message, ExceptionCode.InvalidGroupingConfig);
         }
         generateRandomSeq(lowerBound, upperBound, taskSize, candidateSize, average);
     }
 
     public void generateRandomSeq(Integer lowerBound, Integer upperBound, Integer taskSize,
-                                   Integer candidateSize, int average)
+                                  Integer candidateSize, int average)
     {
         Random random = new Random();
         scheme = new Integer[taskSize];
@@ -76,7 +75,7 @@ public class RestrictGroupingStrategy extends SimpleGroupingStrategy
             {
                 continue;
             }
-            scheme[index] =cu;
+            scheme[index] = cu;
         }
         int total = 0;
         for (Integer aScheme : scheme)
@@ -90,12 +89,12 @@ public class RestrictGroupingStrategy extends SimpleGroupingStrategy
         }
         else if (total > 0)
         {
-            step =1;
+            step = 1;
         }
         else
             return;
         total = Math.abs(total);
-        //校正，将多余分配的，或者剩下未分配的重新随机打乱，确保最后总的人数为候选人数
+        // 校正，将多余分配的，或者剩下未分配的重新随机打乱，确保最后总的人数为候选人数
         while (true)
         {
             int index = random.nextInt(taskSize);
@@ -117,9 +116,16 @@ public class RestrictGroupingStrategy extends SimpleGroupingStrategy
     @Override
     public Integer nextGradient(Integer lowBound, Integer upperBound)
     {
-        if (pos >= scheme.length) {
+        if (pos >= scheme.length)
+        {
             return 0;
         }
         return scheme[pos++ ];
+    }
+
+    @Override
+    public void preHandle()
+    {
+        pos = 0;
     }
 }

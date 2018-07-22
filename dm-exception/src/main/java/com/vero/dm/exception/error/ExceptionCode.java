@@ -42,7 +42,7 @@ public enum ExceptionCode {
     SpecifStudentNotFound(40004,"无法找到指定的学生信息", SpecificStudentNotFoundException.class),
     PreviewGroupsNotFound(40005, "找不到对应的预览分组列表.", PreviewGroupsNotFoundException.class),
     TasksEmpty(40006, "待分配的任务不能为空", TasksEmptyException.class),
-    InvalidGroupingConfig(40007, "当前参数产生的分组无法接收所有待分配的任务", InvalidGroupingConifgException.class),
+    InvalidGroupingConfig(40007, "当前参数产生的分组无法接收所有待分配的任务", InvalidGroupingConfigException.class),
     AuthenticationError(50000, "权限认证出错,你不具备当前模块的访问权限.", InternalAuthenticationException.class),
     InvalidCredentials(50001, "证书不合法,请确保你已登录系统.", InvalidCredentialsException.class),
     ExpiredToken(50002, "证书已过期,请重新登录.", ExpiredCredentialsException.class),

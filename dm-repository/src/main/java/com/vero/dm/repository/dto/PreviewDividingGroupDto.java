@@ -51,6 +51,11 @@ public class PreviewDividingGroupDto
     private List<Student> groupMembers;
 
     /**
+     * 组员数
+     */
+    private Integer memberSize;
+
+    /**
      * 组长
      */
     private Student groupLeader;
@@ -82,6 +87,7 @@ public class PreviewDividingGroupDto
         dividingGroupDto.setDataMiningTask(group.getDataMiningTask());
         dividingGroupDto.setGroupId(group.getGroupId());
         dividingGroupDto.setGroupName(group.getGroupName());
+        dividingGroupDto.setMemberSize(group.getGroupMembers().size());
         return dividingGroupDto;
     }
 

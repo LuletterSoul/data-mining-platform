@@ -58,6 +58,7 @@ public class MiningTaskDto
      */
     private List<String> arrangeGroupIds =new ArrayList<>();
 
+
     private List<GroupDto> groups = new ArrayList<>();
 
     /**

@@ -45,6 +45,7 @@ public class DataMiningGroup
     /**
      * 被分配的任务编号
      */
+
     private String arrangementId;
 
     /**

@@ -37,7 +37,6 @@ public class RandomGroupingStrategy extends SimpleGroupingStrategy
         {
             throw new IllegalArgumentException("Group low bound is illegal.");
         }
-        Random random = new Random();
         return random.nextInt(upperBound - lowBound) + lowBound;
     }
 }

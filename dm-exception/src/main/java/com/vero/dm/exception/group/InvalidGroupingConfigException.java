@@ -10,11 +10,11 @@ import com.vero.dm.exception.error.ExceptionCode;
  * @since data-mining-platform
  */
 
-public class InvalidGroupingConifgException extends DataMiningGroupException
+public class InvalidGroupingConfigException extends DataMiningGroupException
 {
     private static final long serialVersionUID = -6317325723268258766L;
 
-    public InvalidGroupingConifgException(String message, ExceptionCode errorCode)
+    public InvalidGroupingConfigException(String message, ExceptionCode errorCode)
     {
         super(message, errorCode);
     }

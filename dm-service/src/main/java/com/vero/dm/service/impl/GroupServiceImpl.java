@@ -145,66 +145,6 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     // 默认简单分组方法
     public DividingGroupInfo getDividingGroupInfo(GroupingConfigParams params)
     {
-        // gradient = nextGradient(params);
-        // // 将要被分配的任务;
-        // List<DataMiningGroup> previewDefaultGroups = new LinkedList<>();
-        // List<Student> studentsPrepareDivided = getStudentsPrepareDivided(params);
-        // if (studentsPrepareDivided == null || studentsPrepareDivided.isEmpty())
-        // {
-        // String message = "Could't found students who are corresponding to the request.";
-        // log.error(message);
-        // throw new StudentNotFoundException(message, ExceptionCode.StudentNotFound);
-        // }
-        // Integer restStudent = studentsPrepareDivided.size() % gradient;
-        // // 用户要求的每个组的总人数,如果用户未配置，默认值为12；
-        // this.setGradient(params.getGradient());
-        // List<Student> perGroupStudents = new LinkedList<>();
-        // if (studentsPrepareDivided.size() >= gradient)
-        // {
-        // // int groupNum = studentIds.size() / gradient;
-        // int i = 1;
-        // for (Student student : studentsPrepareDivided)
-        // {
-        // perGroupStudents.add(student);
-        // // 到达固定人数分一组;
-        // if (i == gradient)
-        // {
-        // DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(),
-        // i, perGroupStudents);
-        // // 生成预览分组情况，待管理员确认;
-        // previewDefaultGroups.add(group);
-        // perGroupStudents = new LinkedList<>();
-        // gradient = nextGradient(params);
-        // i=0;
-        // }
-        // i++ ;
-        // }
-        // // 组员人数非偶数，将后面不足分组梯度且比梯度的一半小的学生列表全加入到最后一个队伍；
-        // if (restStudent < gradient / 2)
-        // {
-        // previewDefaultGroups.get(previewDefaultGroups.size() - 1).getGroupMembers().addAll(
-        // perGroupStudents);
-        // }
-        // // 剩下的学生超过梯度的一半，另起一组
-        // else
-        // {
-        // DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
-        // perGroupStudents);
-        // previewDefaultGroups.add(group);
-        // }
-        // }
-        // // 符合条件的学生比每组的人数少,直接作为一组
-        // if (studentsPrepareDivided.size() < gradient)
-        // {
-        // DataMiningGroup group = buildGroup(params.getBuilderId(), params.getTaskId(), 1,
-        // studentsPrepareDivided);
-        // previewDefaultGroups.add(group);
-        // }
-        // String queryKey = UUID.randomUUID().toString();
-        // cacheGroups.put(queryKey, previewDefaultGroups);
-        // return new DividingGroupInfo(queryKey,
-        // PreviewDividingGroupDto.build(previewDefaultGroups),
-        // previewDefaultGroups.get(0).getDataMiningTask());
         return grouper.initDefaultGroupingStrategy(params);
     }
 

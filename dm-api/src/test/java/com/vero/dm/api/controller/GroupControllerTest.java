@@ -9,7 +9,6 @@ import java.util.*;
 
 import javax.transaction.Transactional;
 
-import com.vero.dm.exception.group.InvalidGroupingConifgException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

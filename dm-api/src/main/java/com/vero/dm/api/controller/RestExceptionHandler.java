@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.*;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
+import com.vero.dm.exception.group.InvalidGroupingConfigException;
 import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
 import com.vero.dm.exception.group.StudentNotFoundException;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
@@ -329,6 +330,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
             HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler({InvalidGroupingConfigException.class})
+    public ResponseEntity<Object> handleInvalidGroupingConfigException(final InvalidGroupingConfigException ex,
+                                                        final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
+                HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
     }
 
 }

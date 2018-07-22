@@ -45,16 +45,21 @@ public class SimpleGroupingStrategy extends AbstractGroupingStrategy
     }
 
     @Override
-    protected DataMiningGroup buildGroup(List<Student> perGroupStudents, int i, String builderId,
+    protected DataMiningGroup buildGroup(List<Student> perGroupStudents, String arrangementId, String builderId,
                                          String taskId)
     {
-        return grouper.buildGroup(builderId, taskId, i, perGroupStudents);
+        return grouper.buildGroup(builderId, taskId, arrangementId, perGroupStudents);
     }
 
     @Override
     public String handlePreview(List<DataMiningGroup> previewDefaultGroups)
     {
         return grouper.cachePreview(previewDefaultGroups);
+    }
+
+    @Override
+    public void preHandle() {
+
     }
 
     @Override

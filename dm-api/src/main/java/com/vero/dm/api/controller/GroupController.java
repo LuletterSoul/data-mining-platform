@@ -106,10 +106,7 @@ public class GroupController
         return new ResponseEntity<>(groupService.sureDividingGroupRequest(queryKey),
             HttpStatus.CREATED);
     }
-
-
-
-
+    
     @GetMapping(value = "/{groupId}")
     public DataMiningGroup get(@PathVariable("groupId") String groupId)
     {

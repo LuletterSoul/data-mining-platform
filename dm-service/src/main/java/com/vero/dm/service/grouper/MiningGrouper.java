@@ -21,8 +21,6 @@ import com.vero.dm.service.GroupService;
 import com.vero.dm.service.MiningTaskService;
 import com.vero.dm.service.StudentService;
 import com.vero.dm.service.TeacherService;
-import com.vero.dm.util.date.DateStyle;
-import com.vero.dm.util.date.DateUtil;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -92,8 +90,9 @@ public class MiningGrouper
         return groupingStrategy.doStrategy(params, candidates, params.getSpecifiedTasks());
     }
 
-    private void switchStrategy(GroupingConfigParams params) {
-        //切换策略
+    private void switchStrategy(GroupingConfigParams params)
+    {
+        // 切换策略
         this.setGroupingStrategy(this.strategies.get(params.getStrategyId()));
     }
 
@@ -128,7 +127,7 @@ public class MiningGrouper
     // params.getLowerBound();
     // }
 
-    public DataMiningGroup buildGroup(String builderId, String taskId, int arrangementId,
+    public DataMiningGroup buildGroup(String builderId, String taskId, String arrangementId,
                                       List<Student> perGroupStudents)
     {
         DataMiningGroup group = new DataMiningGroup();
@@ -155,9 +154,7 @@ public class MiningGrouper
         }
 
         group.setBuiltTime(new Date());
-        group.setGroupName(
-            "Group_" + DateUtil.DateToString(group.getBuiltTime(), DateStyle.YYYY_MM_DD_HH_MM)
-                           + "_" + arrangementId);
+        group.setGroupName("Group_" + arrangementId);
         group.setArrangementId(String.valueOf(arrangementId));
         group.setGroupMembers(new LinkedHashSet<>(perGroupStudents));
         return group;
