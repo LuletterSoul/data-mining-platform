@@ -7,6 +7,7 @@ import java.util.*;
 
 import com.vero.dm.model.*;
 import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.model.enums.StatusObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -266,9 +267,9 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
-    public List<TaskProgressStatus> fetchProgressStatus()
+    public List<StatusObject> fetchProgressStatus()
     {
-        return Arrays.asList(TaskProgressStatus.values());
+        return TaskProgressStatus.enum2Objects();
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.vero.dm.service;
 import java.util.Date;
 import java.util.List;
 
+import com.vero.dm.model.enums.StatusObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -63,5 +64,5 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 
     MiningTaskStatus updateGroupStatus(String groupId, MiningTaskStatus newStatus);
 
-    List<MiningTaskStatus> fetchStatusOptions();
+    List<StatusObject> fetchStatusOptions();
 }

@@ -1,7 +1,9 @@
 package com.vero.dm.model.enums;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -34,8 +36,6 @@ public enum MiningTaskStatus implements BaseEnum {
             map.put(value1.getValue(), value1);
         }
     }
-
-
 
     private int value;
 
@@ -74,5 +74,31 @@ public enum MiningTaskStatus implements BaseEnum {
     public int getValue()
     {
         return value;
+    }
+
+    public static void setMap(Map<Integer, MiningTaskStatus> map) {
+        MiningTaskStatus.map = map;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public static List<StatusObject> enum2Objects()
+    {
+        List<StatusObject> statusObjects = new ArrayList<>();
+        for (int i = 0; i < values().length; i++ )
+        {
+            statusObjects.add(StatusObject.enum2Object(values()[i]));
+        }
+        return statusObjects;
     }
 }

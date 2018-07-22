@@ -1,11 +1,13 @@
 package com.vero.dm.model.enums;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -48,11 +50,13 @@ public enum TaskProgressStatus implements BaseEnum {
         this.description = description;
     }
 
-
     @JsonCreator
-    public static TaskProgressStatus getItem(int value){
-        for(TaskProgressStatus item : values()){
-            if(item.getValue() == value){
+    public static TaskProgressStatus getItem(int value)
+    {
+        for (TaskProgressStatus item : values())
+        {
+            if (item.getValue() == value)
+            {
                 return item;
             }
         }
@@ -60,19 +64,53 @@ public enum TaskProgressStatus implements BaseEnum {
     }
 
     @JsonValue
-    public int getValue() {
+    public int getValue()
+    {
         return this.value;
     }
 
-    public static Map<Integer, TaskProgressStatus> getMap() {
+    public static Map<Integer, TaskProgressStatus> getMap()
+    {
         return map;
     }
 
-    public String getStatus() {
+    public String getStatus()
+    {
         return status;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
+    }
+
+    public static void setMap(Map<Integer, TaskProgressStatus> map)
+    {
+        TaskProgressStatus.map = map;
+    }
+
+    public void setValue(int value)
+    {
+        this.value = value;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public static List<StatusObject> enum2Objects()
+    {
+        List<StatusObject> statusObjects = new ArrayList<>();
+        for (int i = 0; i < values().length; i++ )
+        {
+            statusObjects.add(StatusObject.enum2Object(values()[i]));
+        }
+        return statusObjects;
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.vero.dm.model.*;
+import com.vero.dm.model.enums.StatusObject;
 import com.vero.dm.model.enums.TaskProgressStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,7 +56,7 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     List<DataSetCollection> removeAllMiningSets(String taskId);
 
-    List<TaskProgressStatus> fetchProgressStatus();
+    List<StatusObject> fetchProgressStatus();
 
     Integer[] minAndMaxGroupNum();
 }
