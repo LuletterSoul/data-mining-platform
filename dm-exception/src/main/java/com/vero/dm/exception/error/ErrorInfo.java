@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import com.vero.dm.exception.util.ExceptionUtil;
@@ -18,6 +19,7 @@ import com.vero.dm.exception.util.ExceptionUtil;
  * @since data-mining-platform
  */
 
+@Data
 public class ErrorInfo
 {
     /**
@@ -46,6 +48,9 @@ public class ErrorInfo
     private String date;
 
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
+    public ErrorInfo() {
+    }
 
     public ErrorInfo(Throwable throwable, String tip, HttpStatus status)
     {

@@ -214,6 +214,7 @@ public class ShiroSecurityProdConfiguration
     {
         Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
         mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapperFactoryBean.setFailOnEmptyBeans(false);
         mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
         mapperFactoryBean.afterPropertiesSet();
         return mapperFactoryBean.getObject();

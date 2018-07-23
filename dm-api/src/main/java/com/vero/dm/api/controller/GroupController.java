@@ -78,14 +78,14 @@ public class GroupController
         @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "groupId"),
         @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC")})
     @GetMapping
-    public ResponseEntity<Page<DataMiningGroup>> getPageable(@PageableDefault(size = 20, sort = {
+    public ResponseEntity<Page<DataMiningGroupDto>> getPageable(@PageableDefault(size = 20, sort = {
         "builtTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                                             @ApiParam("队伍名称") @RequestParam(value = "groupName", required = false, defaultValue = "") String groupName,
-                                                             @ApiParam("建立时间的区间起点") @RequestParam(value = "beginDate", required = false, defaultValue = "") Date beginDate,
-                                                             @ApiParam("建立时间区间的终点") @RequestParam(value = "endDate", required = false, defaultValue = "") Date endDate,
-                                                             @ApiParam("队长学号") @RequestParam(value = "leaderStudentId", required = false, defaultValue = "") String leaderStudentId,
-                                                             @ApiParam("任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") MiningTaskStatus taskStatus,
-                                                             @ApiParam("抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") Boolean fetch)
+                                                                @ApiParam("队伍名称") @RequestParam(value = "groupName", required = false, defaultValue = "") String groupName,
+                                                                @ApiParam("建立时间的区间起点") @RequestParam(value = "beginDate", required = false, defaultValue = "") Date beginDate,
+                                                                @ApiParam("建立时间区间的终点") @RequestParam(value = "endDate", required = false, defaultValue = "") Date endDate,
+                                                                @ApiParam("队长学号") @RequestParam(value = "leaderStudentId", required = false, defaultValue = "") String leaderStudentId,
+                                                                @ApiParam("任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") MiningTaskStatus taskStatus,
+                                                                @ApiParam("抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") Boolean fetch)
     {
         return new ResponseEntity<>(groupService.fetchPageableGroups(pageable, groupName,
             beginDate, endDate, leaderStudentId, taskStatus, fetch), HttpStatus.OK);
@@ -101,12 +101,12 @@ public class GroupController
 
     @ApiOperation("创建系统先前分组,由用户确认")
     @PostMapping(value = "/dividing_groups/{queryKey}")
-    public ResponseEntity<List<DataMiningGroup>> createSystemDefaultGroups(@ApiParam(value = "系统响应的查询Key") @PathVariable("queryKey") String queryKey)
+    public ResponseEntity<List<DataMiningGroupDto>> createSystemDefaultGroups(@ApiParam(value = "系统响应的查询Key") @PathVariable("queryKey") String queryKey)
     {
         return new ResponseEntity<>(groupService.sureDividingGroupRequest(queryKey),
             HttpStatus.CREATED);
     }
-    
+
     @GetMapping(value = "/{groupId}")
     public DataMiningGroup get(@PathVariable("groupId") String groupId)
     {
@@ -138,7 +138,7 @@ public class GroupController
     @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("更新分组信息")
     @PutMapping
-    public ResponseEntity<DataMiningGroup> update(@RequestBody DataMiningGroupDto groupDto)
+    public ResponseEntity<DataMiningGroupDto> update(@RequestBody DataMiningGroupDto groupDto)
     {
         return new ResponseEntity<>(groupService.updateGroup(groupDto), HttpStatus.OK);
     }

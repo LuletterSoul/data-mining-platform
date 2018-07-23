@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vero.dm.util.date.ConcurrencyDateFormatter;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -26,6 +29,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
@@ -205,15 +209,16 @@ public class ShiroSecurityTestConfiguration
         return evaluator;
     }
 
-//    @Bean
-//    public ObjectMapper objectMapper()
-//    {
-//        Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
-//        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//        mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
-//        mapperFactoryBean.afterPropertiesSet();
-//        return mapperFactoryBean.getObject();
-//    }
+    @Bean
+    public ObjectMapper objectMapper()
+    {
+        Jackson2ObjectMapperFactoryBean mapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
+        mapperFactoryBean.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapperFactoryBean.setFailOnEmptyBeans(false);
+        mapperFactoryBean.setDateFormat(new ConcurrencyDateFormatter());
+        mapperFactoryBean.afterPropertiesSet();
+        return mapperFactoryBean.getObject();
+    }
 
     @Bean
     public MethodInvokingFactoryBean bindingSecurityManager()

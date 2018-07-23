@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -91,16 +92,16 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
-    public DataMiningGroup updateGroup(DataMiningGroupDto groupDto)
+    public DataMiningGroupDto updateGroup(DataMiningGroupDto groupDto)
     {
-        this.updateLeader(groupDto.getLeaderId(), groupDto.getGroupId());
-        this.configureGroupMembers(groupDto.getGroupId(), groupDto.getMemberIds());
         DataMiningGroup group = groupJpaRepository.findOne(groupDto.getGroupId());
         BeanUtils.copyProperties(groupDto, group);
+        this.configureGroupMembers(groupDto.getGroupId(), groupDto.getMemberIds());
         updateTaskStatus(groupDto, group);
         this.arrangeTask(groupDto.getGroupId(), groupDto.getTaskId());
+        this.updateLeader(groupDto.getLeaderId(), groupDto.getGroupId());
         groupJpaRepository.saveAndFlush(group);
-        return group;
+        return DataMiningGroupDto.build(group);
     }
 
     @Override
@@ -122,19 +123,17 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     }
 
     @Override
-    public Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName,
-                                                     Date beginDate, Date endDate,
-                                                     String leaderStudentId,
-                                                     MiningTaskStatus taskStatus, Boolean fetch)
+    public Page<DataMiningGroupDto> fetchPageableGroups(Pageable pageable, String groupName,
+                                                        Date beginDate, Date endDate,
+                                                        String leaderStudentId,
+                                                        MiningTaskStatus taskStatus, Boolean fetch)
     {
-        log.debug("Begin group information fetch process,Time:[{}]", new Date());
+        Specification<DataMiningGroup> condition = groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus);
         if (fetch)
         {
-            return new PageImpl<>(groupJpaRepository.findAll(
-                groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus)));
+            return new PageImpl<>(DataMiningGroupDto.build(groupJpaRepository.findAll(condition)));
         }
-        return groupJpaRepository.findAll(
-            groupSpec(groupName, beginDate, endDate, leaderStudentId, taskStatus), pageable);
+        return new PageImpl<>(DataMiningGroupDto.build(groupJpaRepository.findAll(condition, pageable).getContent()));
     }
 
     public Page<DataMiningGroup> fetchPageableGroups(Pageable pageable)
@@ -188,7 +187,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     // }
 
     @Override
-    public List<DataMiningGroup> sureDividingGroupRequest(String queryKey)
+    public List<DataMiningGroupDto> sureDividingGroupRequest(String queryKey)
     {
         List<DataMiningGroup> groups = cacheGroups.get(queryKey);
         if (groups == null || groups.isEmpty())
@@ -199,7 +198,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         }
         groupJpaRepository.save(groups);
         cacheGroups.remove(queryKey);
-        return groups;
+        return DataMiningGroupDto.build(groups);
     }
 
     // private List<Student> getStudentsPrepareDivided(GroupingConfigParams params)
@@ -304,10 +303,10 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     {
         List<Student> students = studentJpaRepository.findByStudentIds(studentIds);
         DataMiningGroup group = groupJpaRepository.findOne(groupId);
-        if (!students.contains(group.getGroupLeader()))
-        {
-            group.setGroupLeader(null);
-        }
+//        if (!students.contains(group.getGroupLeader()))
+//        {
+//            group.setGroupLeader(null);
+//        }
         group.setGroupMembers(new LinkedHashSet<>(students));
         groupJpaRepository.save(group);
         return StudentDto.build(students);

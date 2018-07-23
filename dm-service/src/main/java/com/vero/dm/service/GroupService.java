@@ -27,20 +27,20 @@ public interface GroupService extends BaseService<DataMiningGroup, String>
 {
     DataMiningGroup createGroup(DataMiningGroupDto groupDto);
 
-    DataMiningGroup updateGroup(DataMiningGroupDto groupDto);
+    DataMiningGroupDto updateGroup(DataMiningGroupDto groupDto);
 
     void setPreviewGroupCache(String queryKey, List<DataMiningGroup> groups);
 
 
-    Page<DataMiningGroup> fetchPageableGroups(Pageable pageable, String groupName, Date beginDate,
-                                              Date endDate, String leaderStudentId,
-                                              MiningTaskStatus taskStatus, Boolean fetch);
+    Page<DataMiningGroupDto> fetchPageableGroups(Pageable pageable, String groupName, Date beginDate,
+                                                 Date endDate, String leaderStudentId,
+                                                 MiningTaskStatus taskStatus, Boolean fetch);
 
     List<Student> fetchStudentWithoutGroup(Date begin, Date end);
 
     DividingGroupInfo getDividingGroupInfo(GroupingConfigParams params);
 
-    List<DataMiningGroup> sureDividingGroupRequest(String queryKey);
+    List<DataMiningGroupDto> sureDividingGroupRequest(String queryKey);
 
     DataMiningGroup fetchGroupDetails(String groupId);
 

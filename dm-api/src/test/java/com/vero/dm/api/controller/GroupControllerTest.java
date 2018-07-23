@@ -9,6 +9,8 @@ import java.util.*;
 
 import javax.transaction.Transactional;
 
+import com.vero.dm.exception.error.ErrorInfo;
+import com.vero.dm.exception.error.ExceptionCode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ import com.vero.dm.repository.dto.GroupingConfigParams;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.*;
-import org.springframework.web.util.NestedServletException;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -92,7 +94,7 @@ public class GroupControllerTest extends ConfigurationWirer {
         buildCandidates(candidateSize);
         //建立分组参数，选择策略为简单分组策略
         buildParams(lowBound,upperBound,strategyId);
-        List<DataMiningGroup> createdGroups = createGroups();
+        List<DataMiningGroup> createdGroups = createGroups(status().isCreated(),status().isOk());
         int size = createdGroups.size();
         Integer total = 0;
         total = totalMembers(createdGroups, size, total);
@@ -114,7 +116,7 @@ public class GroupControllerTest extends ConfigurationWirer {
         buildTasks(taskSize);
         buildCandidates(candidateSize);
         buildParams(lowBound,upperBound,strategyId);
-        List<DataMiningGroup> createdGroups = createGroups();
+        List<DataMiningGroup> createdGroups = createGroups(status().isCreated() ,status().isOk());
         int size = createdGroups.size();
         Integer total = 0;
         total = totalMembers(createdGroups, size, total);
@@ -122,7 +124,7 @@ public class GroupControllerTest extends ConfigurationWirer {
         System.out.println("被分组的总学生人数为: "+ total);
     }
 
-    @Test(expected = NestedServletException.class)
+    @Test
     public void restrictGroupingStrategyExceptionTest() throws Exception {
         reset();
         Integer lowBound = 1;
@@ -137,8 +139,14 @@ public class GroupControllerTest extends ConfigurationWirer {
         buildTasks(taskSize);
         buildCandidates(candidateSize);
         buildParams(lowBound,upperBound,strategyId);
-        List<DataMiningGroup> createdGroups = createGroups();
-        int size = createdGroups.size();
+        String paramString = objectMapper.writeValueAsString(params);
+        //测试预览分组接口
+        String errorInfoStr =  mockMvc.perform(post(ApiVersion.API_VERSION.concat("/groups/dividing_groups"))
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(paramString))
+                .andExpect(status().isBadRequest()).andDo(print()).andReturn().getResponse().getContentAsString();
+        ErrorInfo errorInfo = objectMapper.readValue(errorInfoStr, ErrorInfo.class);
+        Assert.assertNotNull(errorInfo);
+        Assert.assertEquals(errorInfo.getErrorCode(), ExceptionCode.InvalidGroupingConfig.getCode());
         Integer total = 0;
     }
 
@@ -157,7 +165,7 @@ public class GroupControllerTest extends ConfigurationWirer {
         buildTasks(taskSize);
         buildCandidates(candidateSize);
         buildParams(lowBound,upperBound,strategyId);
-        List<DataMiningGroup> createdGroups = createGroups();
+        List<DataMiningGroup> createdGroups = createGroups(status().isCreated(), status().isOk());
         int size = createdGroups.size();
         Integer total = 0;
         total = totalMembers(createdGroups, size, total);
@@ -187,19 +195,19 @@ public class GroupControllerTest extends ConfigurationWirer {
     }
 
 
-    private List<DataMiningGroup> createGroups() throws Exception {
+    private List<DataMiningGroup> createGroups(ResultMatcher created, ResultMatcher preview) throws Exception {
         String paramString = objectMapper.writeValueAsString(params);
         //测试预览分组接口
         String groupInfo =  mockMvc.perform(post(ApiVersion.API_VERSION.concat("/groups/dividing_groups"))
                 .contentType(MediaType.APPLICATION_JSON_UTF8).content(paramString))
-                .andExpect(status().isOk()).andDo(print()).andReturn().getResponse().getContentAsString();
+                .andExpect(preview).andDo(print()).andReturn().getResponse().getContentAsString();
         DividingGroupInfo dividingGroupInfo = objectMapper.readValue(groupInfo, DividingGroupInfo.class);
         Assert.assertNotNull(dividingGroupInfo);
         Assert.assertNotNull(dividingGroupInfo.getQueryKey());
         String newGroupsString = mockMvc.perform(post(ApiVersion.API_VERSION
                 .concat("/groups/dividing_groups/")
                 .concat(dividingGroupInfo.getQueryKey())))
-                .andExpect(status().isCreated())
+                .andExpect(created)
                 .andDo(print()).andReturn().getResponse().getContentAsString();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, DataMiningGroup.class);
         return objectMapper.readValue(newGroupsString, javaType);
