@@ -10,6 +10,7 @@ import com.vero.dm.exception.group.InvalidGroupingConfigException;
 import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
 import com.vero.dm.exception.group.StudentNotFoundException;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
+import org.hibernate.LazyInitializationException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.dao.DataAccessException;
@@ -338,6 +339,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     {
         return handBusinessExceptionInternal(ex, ex.getErrorCode(), new HttpHeaders(),
                 HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
+    }
+
+
+    @ExceptionHandler({LazyInitializationException.class})
+    public ResponseEntity<Object> handleLazyInitializationException(final LazyInitializationException ex,
+                                                                       final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ExceptionCode.LazyInitializationError, new HttpHeaders(),
+                HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
 }

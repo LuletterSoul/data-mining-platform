@@ -21,7 +21,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@ToString(exclude = {"buildGroups"})
 @DiscriminatorValue(value = "Teacher")
 public class Teacher extends User
 {
@@ -42,4 +41,13 @@ public class Teacher extends User
     @JoinTable(name = "favorite_stu_rel", joinColumns = @JoinColumn(name = "t_userId", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "s_userId", referencedColumnName = "userId"))
     private Set<Student> favoriteStudent;
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherName='" + teacherName + '\'' +
+                ", teacherId='" + teacherId + '\'' +
+                ", buildGroups=" + buildGroups +
+                ", favoriteStudent=" + favoriteStudent +
+                '}';
+    }
 }

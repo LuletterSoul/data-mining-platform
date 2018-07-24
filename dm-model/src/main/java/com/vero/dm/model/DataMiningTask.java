@@ -30,7 +30,6 @@ import org.hibernate.engine.internal.Cascade;
 @Data
 @Entity
 @Table(name = "data_mining_task")
-@ToString(exclude = {"groups", "arrangedCollections", "algorithms"})
 public class DataMiningTask
 {
     /**
@@ -107,7 +106,7 @@ public class DataMiningTask
      * 每个任务可被分给多个分组，内容相似
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "dataMiningTask")
+    @OneToMany(mappedBy = "dataMiningTask",fetch = FetchType.LAZY)
     private Set<DataMiningGroup> groups;
 
 
@@ -115,7 +114,7 @@ public class DataMiningTask
      * 每个分组可以被分配多个数据集
      */
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "task_data_set_rel", joinColumns = @JoinColumn(name = "taskId",
             referencedColumnName = "taskId"),
             inverseJoinColumns = @JoinColumn(name = "collectionId",
@@ -140,21 +139,41 @@ public class DataMiningTask
     @org.hibernate.annotations.OrderBy(clause = "orderId asc")
     private Set<MiningTaskStage> stages;
 
+
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DataMiningTask task = (DataMiningTask)o;
-        return Objects.equal(taskId, task.taskId);
+
+        DataMiningTask that = (DataMiningTask) o;
+
+        return Objects.equal(this.taskId, that.taskId) &&
+                Objects.equal(this.taskName, that.taskName) &&
+                Objects.equal(this.arrangementId, that.arrangementId) &&
+                Objects.equal(this.type, that.type) &&
+                Objects.equal(this.taskDescription, that.taskDescription) &&
+                Objects.equal(this.builtTime, that.builtTime) &&
+                Objects.equal(this.plannedStartTime, that.plannedStartTime) &&
+                Objects.equal(this.plannedFinishTime, that.plannedFinishTime);
     }
 
     @Override
-    public int hashCode()
-    {
-        return Objects.hashCode(super.hashCode(), taskId);
+    public int hashCode() {
+        return Objects.hashCode(taskId, taskName, arrangementId, type, taskDescription, builtTime,
+                plannedStartTime, plannedFinishTime);
     }
 
-
+    @Override
+    public String toString() {
+        return "DataMiningTask{" +
+                "taskId='" + taskId + '\'' +
+                ", taskName='" + taskName + '\'' +
+                ", arrangementId='" + arrangementId + '\'' +
+                ", type='" + type + '\'' +
+                ", taskDescription='" + taskDescription + '\'' +
+                ", builtTime=" + builtTime +
+                ", plannedStartTime=" + plannedStartTime +
+                ", plannedFinishTime=" + plannedFinishTime +
+                '}';
+    }
 }

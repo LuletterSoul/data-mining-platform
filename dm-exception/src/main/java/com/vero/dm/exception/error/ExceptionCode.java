@@ -17,6 +17,7 @@ import com.vero.dm.exception.common.DataDuplicatedException;
 import com.vero.dm.exception.common.ErrorCodeLostNotFoundException;
 import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.file.*;
+import org.hibernate.LazyInitializationException;
 
 
 /**
@@ -56,7 +57,8 @@ public enum ExceptionCode {
     HighFrequencyAccessError(50010, "访问太频繁,请稍后重试.",HighFrequencyAccessException.class),
     LogoutTokenNotExist(50011, "无效的登出请求.",LogoutAccessException.class),
     ContractInvalid(60000,"协商内容不符.", ConstratInvalidException.class),
-    HeaderLost(60001, "与服务端协商的请求头丢失,请确定您的请求包含了必要的请求头.", HeaderLostException.class);
+    HeaderLost(60001, "与服务端协商的请求头丢失,请确定您的请求包含了必要的请求头.", HeaderLostException.class),
+    LazyInitializationError(60002,"服务器数据懒加载错误",LazyInitializationException.class);
 
     /**
      * 业务代码

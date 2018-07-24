@@ -196,6 +196,11 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             log.error(message);
             throw new PreviewGroupsNotFoundException(message, ExceptionCode.PreviewGroupsNotFound);
         }
+        groups.forEach(g->{
+            DataMiningTask t = g.getDataMiningTask();
+            t.setProgressStatus(TaskProgressStatus.assigned);
+            taskJpaRepository.save(t);
+        });
         groupJpaRepository.save(groups);
         cacheGroups.remove(queryKey);
         return DataMiningGroupDto.build(groups);

@@ -13,6 +13,8 @@ import com.vero.dm.model.enums.MiningTaskStatus;
 
 import lombok.Data;
 
+import javax.transaction.Transactional;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -105,6 +107,7 @@ public class DataMiningGroupDto
         this.dataMiningTask = dataMiningTask;
         // this.builderId = builderId;
     }
+
 
     public static DataMiningGroupDto build(DataMiningGroup group)
     {

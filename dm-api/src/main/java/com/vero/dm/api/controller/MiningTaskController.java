@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.vero.dm.model.*;
+import com.vero.dm.repository.dto.DataMiningGroupDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -113,7 +114,7 @@ public class MiningTaskController
 
     @ApiOperation("获取执行此任务分组")
     @GetMapping(value = "/{taskId}/groups")
-    public ResponseEntity<Map<String, List<DataMiningGroup>>> groups(@PathVariable("taskId") List<String> taskIds)
+    public ResponseEntity<Map<String, List<DataMiningGroupDto>>> groups(@PathVariable("taskId") List<String> taskIds)
     {
         return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskIds), HttpStatus.OK);
     }

@@ -25,7 +25,6 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "data_set_collection", catalog = "")
-@ToString(exclude = {"dataSetContainers"})
 public class DataSetCollection
 
 {
@@ -130,5 +129,18 @@ public class DataSetCollection
     public int hashCode()
     {
         return Objects.hashCode(super.hashCode(), collectionId);
+    }
+
+    @Override
+    public String toString() {
+        return "DataSetCollection{" +
+                "collectionId='" + collectionId + '\'' +
+                ", collectionName='" + collectionName + '\'' +
+                ", isMissingValues='" + isMissingValues + '\'' +
+                ", dateDonated=" + dateDonated +
+                ", numberOfInstances=" + numberOfInstances +
+                ", numberOfAttributes=" + numberOfAttributes +
+                ", numberOfWebHits=" + numberOfWebHits +
+                '}';
     }
 }

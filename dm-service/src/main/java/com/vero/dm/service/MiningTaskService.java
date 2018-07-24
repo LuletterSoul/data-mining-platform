@@ -8,6 +8,7 @@ import java.util.Map;
 import com.vero.dm.model.*;
 import com.vero.dm.model.enums.StatusObject;
 import com.vero.dm.model.enums.TaskProgressStatus;
+import com.vero.dm.repository.dto.DataMiningGroupDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -36,7 +37,7 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, Pageable pageable, TaskProgressStatus progressStatus, Integer lowBound, Integer upperBound);
 
-    Map<String, List<DataMiningGroup>> fetchInvolvedGroups(List<String> taskIds);
+    Map<String, List<DataMiningGroupDto>> fetchInvolvedGroups(List<String> taskIds);
 
     List<DataMiningGroup> removeInvolvedGroups(String taskId, List<String> groupIds);
 

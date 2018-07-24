@@ -99,6 +99,9 @@ public class GroupController
             HttpStatus.OK);
     }
 
+
+
+    @CacheEvict(cacheNames = "groupCache",allEntries = true)
     @ApiOperation("创建系统先前分组,由用户确认")
     @PostMapping(value = "/dividing_groups/{queryKey}")
     public ResponseEntity<List<DataMiningGroupDto>> createSystemDefaultGroups(@ApiParam(value = "系统响应的查询Key") @PathVariable("queryKey") String queryKey)

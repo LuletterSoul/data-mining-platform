@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 import com.vero.dm.importer.annotations.ExcelColumn;
 import com.vero.dm.importer.annotations.ExcelModel;
 
@@ -21,12 +22,10 @@ import lombok.ToString;
  * @description
  * @modified by:
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @ExcelModel(title = "学生信息导入模板")
 @DiscriminatorValue(value = "Student")
-@ToString(exclude = {"ruleMiningGroups", "miningGroups"})
 public class Student extends User implements Serializable
 {
     private static final long serialVersionUID = 8479971255524788081L;
@@ -84,4 +83,34 @@ public class Student extends User implements Serializable
         this.studentName = studentName;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentName='" + studentName + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", grade='" + grade + '\'' +
+                ", className='" + className + '\'' +
+                ", profession='" + profession + '\'' +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student that = (Student) o;
+
+        return  Objects.equal(this.studentName, that.studentName) &&
+                Objects.equal(this.studentId, that.studentId) &&
+                Objects.equal(this.grade, that.grade) &&
+                Objects.equal(this.className, that.className) &&
+                Objects.equal(this.profession, that.profession);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(studentName, studentId, grade, className, profession);
+    }
 }

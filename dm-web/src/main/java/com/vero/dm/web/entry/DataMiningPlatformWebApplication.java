@@ -25,7 +25,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @since data-minning-platform
  */
 
-@Profile(value = {"prod","dev"})
 @Configuration
 @ExcelModelScan(basePackages = {"com.vero.dm.model"})
 @ComponentScan(basePackages = {"com.vero.dm"}) // 扫描该包路径下的所有spring组件
