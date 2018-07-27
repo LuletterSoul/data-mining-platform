@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.vero.dm.model.*;
-import com.vero.dm.repository.dto.DataMiningGroupDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +14,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.vero.dm.model.*;
+import com.vero.dm.model.enums.ResultState;
 import com.vero.dm.model.enums.TaskProgressStatus;
+import com.vero.dm.repository.dto.DataMiningGroupDto;
 import com.vero.dm.repository.dto.MiningTaskDto;
 import com.vero.dm.service.MiningTaskService;
+import com.vero.dm.service.ResultRecordService;
 import com.vero.dm.service.constant.ResourcePath;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -38,10 +40,17 @@ public class MiningTaskController
 {
     private MiningTaskService miningTaskService;
 
+    private ResultRecordService resultRecordService;
+
     @Autowired
     public void setMiningTaskService(MiningTaskService miningTaskService)
     {
         this.miningTaskService = miningTaskService;
+    }
+
+    @Autowired
+    public void setResultRecordService(ResultRecordService resultRecordService) {
+        this.resultRecordService = resultRecordService;
     }
 
     @ApiOperation("根据ID获取数据挖掘任务的信息")
@@ -68,26 +77,27 @@ public class MiningTaskController
     }
 
     @ApiOperation("分页获取任务列表")
-    @ApiImplicitParams({
+@ApiImplicitParams({
         @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
         @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "taskId"),
         @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
-    @GetMapping
-    public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
+@GetMapping
+public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
         "builtTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                        @ApiParam(value = "任务名称") @RequestParam(value = "taskName", required = false, defaultValue = "") String taskName,
-                                        @ApiParam(value = "计划开始时间") @RequestParam(value = "plannedBeginDate", required = false, defaultValue = "") Date plannedBeginDate,
-                                        @ApiParam(value = "计划结束时间") @RequestParam(value = "plannedEndDate", required = false, defaultValue = "") Date plannedEndDate,
-                                        @ApiParam(value = "建立时间区间起点") @RequestParam(value = "builtTimeBegin", required = false, defaultValue = "") Date builtTimeBegin,
-                                        @ApiParam(value = "建立时间区间结点") @RequestParam(value = "builtTimeEnd", required = false, defaultValue = "") Date builtTimeEnd,
-                                        @ApiParam(value = "任务状态") @RequestParam(value = "progressStatus", required = false, defaultValue = "") TaskProgressStatus progressStatus,
-                                        @ApiParam(value = "关联分组数下界") @RequestParam(value = "lowBound", required = false, defaultValue ="-1") Integer lowBound,
-                                        @ApiParam(value = "关联分组数上界") @RequestParam(value = "upperBound", required = false, defaultValue = "6666666") Integer upperBound,
-                                        @ApiParam(value = "抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") boolean fetch)
-    {
-        return miningTaskService.fetchTaskList(fetch, taskName, plannedBeginDate, plannedEndDate,
-            builtTimeBegin, builtTimeEnd, pageable, progressStatus, lowBound, upperBound);
-    }
+                                    @ApiParam(value = "任务名称") @RequestParam(value = "taskName", required = false, defaultValue = "") String taskName,
+                                    @ApiParam(value = "计划开始时间") @RequestParam(value = "plannedBeginDate", required = false, defaultValue = "") Date plannedBeginDate,
+                                    @ApiParam(value = "计划结束时间") @RequestParam(value = "plannedEndDate", required = false, defaultValue = "") Date plannedEndDate,
+                                    @ApiParam(value = "建立时间区间起点") @RequestParam(value = "builtTimeBegin", required = false, defaultValue = "") Date builtTimeBegin,
+                                    @ApiParam(value = "建立时间区间结点") @RequestParam(value = "builtTimeEnd", required = false, defaultValue = "") Date builtTimeEnd,
+                                    @ApiParam(value = "任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") TaskProgressStatus progressStatus,
+                                    @ApiParam(value = "关联分组数下界") @RequestParam(value = "lowBound", required = false, defaultValue = "-1") Integer lowBound,
+                                    @ApiParam(value = "关联分组数上界") @RequestParam(value = "upperBound", required = false, defaultValue = "6666666") Integer upperBound,
+                                    @ApiParam(value = "指定的学生") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentId,
+                                    @ApiParam(value = "抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") boolean fetch) {
+
+    return miningTaskService.fetchTaskList(fetch, taskName, plannedBeginDate, plannedEndDate,
+            builtTimeBegin, builtTimeEnd,studentId , pageable, progressStatus, lowBound, upperBound);
+}
 
     @ApiOperation("更新数据挖掘任务的信息")
     @PutMapping
@@ -208,4 +218,22 @@ public class MiningTaskController
         return new ResponseEntity<>(miningTaskService.minAndMaxGroupNum(), HttpStatus.OK);
     }
 
+    @ApiOperation("获取任务的挖掘记录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
+            @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "taskId"),
+            @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
+    @GetMapping("/{taskId}/result_records")
+    public ResponseEntity<Page<ResultRecord>> getResultRecord(@PageableDefault(size = 15, sort = {
+            "recordId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                              @ApiParam(value = "任务Id") @RequestParam(value = "taskName",defaultValue = "")
+                                              @PathVariable("taskId") String taskId,
+                                              @ApiParam(value = "指定任务阶段") @RequestParam(value = "stageId", required = false, defaultValue = "") Integer stageId,
+                                              @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,
+                                              @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterIds", required = false) List<Integer> submitterIds,
+                                              @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
+                                              @ApiParam(value = "获取最新上传的结果") @RequestParam(value = "newest", required = false, defaultValue = "true") boolean newest) {
+
+        return new ResponseEntity<>(resultRecordService.findResultRecords(pageable,taskId,submitterIds,state,all,newest,stageId),HttpStatus.OK);
+    }
 }

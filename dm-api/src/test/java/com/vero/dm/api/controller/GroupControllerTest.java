@@ -44,20 +44,6 @@ import org.springframework.test.web.servlet.ResultMatcher;
 @Transactional
 public class GroupControllerTest extends ConfigurationWirer {
 
-    private String baseUrl;
-
-    @Autowired
-    private MiningTaskService taskService;
-
-    @Autowired
-    private AlgorithmService algorithmService;
-
-    @Autowired
-    private DataSetContainerService containerService;
-
-    @Autowired
-    private GroupService groupService;
-
     @Autowired
     private StudentService studentService;
 

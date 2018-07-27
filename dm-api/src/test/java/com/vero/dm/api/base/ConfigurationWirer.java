@@ -46,9 +46,9 @@ public class ConfigurationWirer
         objectMapper = new ObjectMapper();
         objectMapper.setDateFormat(new ConcurrencyDateFormatter());
          // 反序列化的时候如果多了其他属性,不抛出异常
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_EXTERNAL_TYPE_ID_PROPERTY, false);
-        objectMapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
+//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_EXTERNAL_TYPE_ID_PROPERTY, false);
+//        objectMapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
     }
 
     @Autowired

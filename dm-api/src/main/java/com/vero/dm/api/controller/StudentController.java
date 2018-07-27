@@ -4,6 +4,7 @@ package com.vero.dm.api.controller;
 import java.util.Date;
 import java.util.List;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
@@ -59,8 +60,7 @@ public class StudentController
     @ApiOperation("上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供")
     @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
     @PostMapping(value = "/excel_students")
-    public ResponseEntity<List<Student>> importStudents(@RequestPart MultipartFile file,
-                                                        @RequestParam(UploadProgressListener.PROC_QUERY_KEY) String progressQueryId)
+    public ResponseEntity<List<Student>> importStudents(@RequestPart MultipartFile file)
     {
         return new ResponseEntity<>(studentService.importStudents(file), HttpStatus.OK);
     }
@@ -88,6 +88,8 @@ public class StudentController
         return new ResponseEntity<>(studentService.getAllLeisureStudents(pageable, className,
                 profession, grade, studentIdPrefix, studentName, beginDate, endDate), HttpStatus.OK);
     }
+
+
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public StudentDto get(@PathVariable("userId") String userId)
