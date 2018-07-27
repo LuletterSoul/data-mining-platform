@@ -94,12 +94,12 @@ public class DataMiningGroup
     @Convert(converter = MiningTaskStatusConverter.class)
     private MiningTaskStatus taskStatus;
 
-    /**
-     * 分组提交过的所有发掘结果
-     */
-    @JsonIgnore
-    @OneToMany(mappedBy = "group")
-    private Set<MiningResult> results;
+//    /**
+//     * 分组提交过的所有发掘结果
+//     */
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "group")
+//    private Set<MiningResult> results;
 
 
     @Override

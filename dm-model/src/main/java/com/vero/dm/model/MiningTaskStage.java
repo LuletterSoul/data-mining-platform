@@ -51,7 +51,7 @@ public class MiningTaskStage
      * 每个阶段接收来自不同分组的发掘任务
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "stage")
+    @OneToMany(mappedBy = "stage",fetch = FetchType.LAZY)
     private Set<MiningResult> results;
 
     /**
@@ -64,7 +64,6 @@ public class MiningTaskStage
      */
     @Transient
     private Date[] deadline;
-
 
     private Date begin;
 

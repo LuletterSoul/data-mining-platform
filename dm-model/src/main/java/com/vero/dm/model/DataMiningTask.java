@@ -131,10 +131,21 @@ public class DataMiningTask
                     referencedColumnName = "algorithmId"))
     private Set<Algorithm> algorithms;
 
+
+    /**
+     * 每个数据任务可以采用多种算法
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "task_grammar_rel",
+            joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "taskId"),
+            inverseJoinColumns = @JoinColumn(name = "grammarId",
+                    referencedColumnName = "grammarId"))
+    private Set<MiningGrammar> grammars;
+
     /**
      * 每个任务可有多个阶段
      */
-    @OneToMany(mappedBy = "task",fetch = FetchType.EAGER,
+    @OneToMany(mappedBy = "task",fetch = FetchType.LAZY,
             cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     @org.hibernate.annotations.OrderBy(clause = "orderId asc")
     private Set<MiningTaskStage> stages;
