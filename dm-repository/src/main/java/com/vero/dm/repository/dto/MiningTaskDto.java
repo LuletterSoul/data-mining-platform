@@ -71,6 +71,9 @@ public class MiningTaskDto
      */
     private List<Integer> algorithmIds = new ArrayList<>();
 
+    
+    private List<Integer> grammarIds = new ArrayList<>();
+
     /**
      * 一个任务可以有多个阶段
      */

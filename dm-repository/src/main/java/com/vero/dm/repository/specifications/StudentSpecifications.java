@@ -14,6 +14,8 @@ import org.springframework.util.StringUtils;
 
 import com.vero.dm.model.*;
 
+import static com.vero.dm.repository.specifications.SpecificationUtil.*;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -45,9 +47,7 @@ public class StudentSpecifications
         return query.getRestriction();
     }
 
-    public static Predicate[] toPredicates(List<Predicate> predicates) {
-        return predicates.toArray(new Predicate[predicates.size()]);
-    }
+
 
     private static List<Predicate> buildStudentPredicates(String className, String profession, String grade, String studentIdPrefix, String studentName, Root<Student> root, CriteriaBuilder builder) {
         Predicate classNamePredicate = builder.equal(root.get(Student_.CLASS_NAME), className);

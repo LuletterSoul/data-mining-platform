@@ -4,15 +4,16 @@ package com.vero.dm.repository.specifications;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.*;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.DataMiningTask_;
+import com.vero.dm.model.*;
+import com.vero.dm.model.enums.ResultState;
 import com.vero.dm.model.enums.TaskProgressStatus;
 
 
@@ -27,47 +28,95 @@ public class TaskSpecifications
     public static Specification<DataMiningTask> tasksSpec(String taskName, Date plannedBeginDate,
                                                           Date plannedEndDate, Date builtTimeBegin,
                                                           Date builtTimeEnd,
-                                                          TaskProgressStatus progressStatus)
+                                                          TaskProgressStatus progressStatus,
+                                                          String studentId)
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates = new ArrayList<>();
             if (!StringUtils.isEmpty(taskName))
             {
-                Predicate taskNamePredicate = cb.equal(root.get(DataMiningTask_.TASK_NAME), taskName);
+                Predicate taskNamePredicate = cb.equal(root.get(DataMiningTask_.TASK_NAME),
+                    taskName);
                 totalPredicates.add(taskNamePredicate);
             }
             if (!ObjectUtils.isEmpty(plannedBeginDate))
             {
                 Predicate beginDatePredicate = cb.greaterThanOrEqualTo(
-                        root.get(DataMiningTask_.PLANNED_START_TIME), plannedBeginDate);
+                    root.get(DataMiningTask_.PLANNED_START_TIME), plannedBeginDate);
                 totalPredicates.add(beginDatePredicate);
             }
             if (!ObjectUtils.isEmpty(plannedEndDate))
             {
                 Predicate endDatePredicate = cb.lessThanOrEqualTo(
-                        root.get(DataMiningTask_.PLANNED_FINISH_TIME), plannedEndDate);
+                    root.get(DataMiningTask_.PLANNED_FINISH_TIME), plannedEndDate);
                 totalPredicates.add(endDatePredicate);
             }
             if (!ObjectUtils.isEmpty(builtTimeBegin))
             {
                 Predicate builtTimeBeginPredicate = cb.greaterThanOrEqualTo(
-                        root.get(DataMiningTask_.BUILT_TIME), builtTimeBegin);
+                    root.get(DataMiningTask_.BUILT_TIME), builtTimeBegin);
                 totalPredicates.add(builtTimeBeginPredicate);
             }
             if (!ObjectUtils.isEmpty(builtTimeEnd))
             {
                 Predicate builtTimeEndPredicate = cb.lessThanOrEqualTo(
-                        root.get(DataMiningTask_.BUILT_TIME), builtTimeEnd);
+                    root.get(DataMiningTask_.BUILT_TIME), builtTimeEnd);
                 totalPredicates.add(builtTimeEndPredicate);
             }
             if (!ObjectUtils.isEmpty(progressStatus))
             {
                 Predicate taskStatusPredicate = cb.equal(root.get(DataMiningTask_.PROGRESS_STATUS),
-                        progressStatus);
+                    progressStatus);
                 totalPredicates.add(taskStatusPredicate);
             }
-            query.where(cb.and(totalPredicates.toArray(new Predicate[totalPredicates.size()])));
+            query.where(cb.and(SpecificationUtil.toPredicates(totalPredicates)));
             return query.getRestriction();
         };
+    }
+
+    public static Specification<ResultRecord> recordsSpec(String taskId,
+                                                          List<Integer> submitterIds,
+                                                          ResultState state, boolean all,
+                                                          Integer stageId, boolean newest)
+    {
+        return (root, query, cb) -> {
+            List<Predicate> totalPredicates = new ArrayList<>();
+            Join<DataMiningTask, MiningTaskStage> taskStageJoin = root.join(
+                DataMiningTask_.STAGES);
+            totalPredicates.add(cb.equal(taskStageJoin.get(DataMiningTask_.TASK_ID), taskId));
+            if (all)
+            {
+                return select(query, cb, totalPredicates);
+            }
+            Join<MiningTaskStage, MiningResult> stageResultJoin = taskStageJoin.join(
+                MiningTaskStage_.RESULTS);
+            Join<MiningResult, ResultRecord> resultRecordJoin = stageResultJoin.join(
+                MiningResult_.RECORDS);
+            if (!Objects.isNull(submitterIds) && !submitterIds.isEmpty())
+            {
+                Predicate p1 = stageResultJoin.get(MiningResult_.SUBMITTER).get(
+                    Student_.USER_ID).in(submitterIds);
+                totalPredicates.add(p1);
+            }
+            if (!Objects.isNull(state))
+            {
+                Predicate p2 = cb.equal(stageResultJoin.get(MiningTaskStage_.RESULTS), state);
+                totalPredicates.add(p2);
+            }
+            if (!Objects.isNull(stageId))
+            {
+                Predicate p3 = cb.equal(stageResultJoin.get(MiningTaskStage_.STAGE_ID), stageId);
+                totalPredicates.add(p3);
+            }
+            return select(query, cb, totalPredicates);
+        };
+    }
+
+    private static Predicate select(CriteriaQuery<?> query, CriteriaBuilder cb,
+                                    List<Predicate> totalPredicates)
+    {
+        query.where(cb.and(SpecificationUtil.toPredicates(totalPredicates)));
+        query.from(ResultRecord.class);
+        return query.getRestriction();
     }
 }
