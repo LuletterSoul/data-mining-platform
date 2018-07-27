@@ -1,6 +1,7 @@
 package com.vero.dm.util;
 
 import com.beust.jcommander.ParameterException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
@@ -16,6 +17,7 @@ import java.util.zip.*;
  * @since data-mining-platform
  */
 
+@Slf4j
 public class ZipUtil {
 
     /**
@@ -27,6 +29,7 @@ public class ZipUtil {
      */
     private static void zip(String srcRootDir, File file, ZipOutputStream zos) throws Exception
     {
+        log.info("Begin a part of compressing: [{}]",file.getAbsoluteFile());
         if (file == null)
         {
             return;
@@ -58,13 +61,13 @@ public class ZipUtil {
      */
     private static void zip(String srcRootDir, File file, ZipOutputStream zos,List<String> specialPaths) throws Exception
     {
-        if (file == null)
+        if (file == null ||(file.isFile()&&!specialPaths.contains(file.getAbsolutePath())) )
         {
             return;
         }
 
         //如果是文件，则直接压缩该文件
-        if (file.isFile())
+        if (file.isFile()&&specialPaths.contains(file.getAbsolutePath()))
         {
             zipFile(srcRootDir, file, zos);
         }
@@ -75,9 +78,13 @@ public class ZipUtil {
             File[] childFileList = file.listFiles();
             for (int n=0; n<childFileList.length; n++)
             {
-                System.out.println(childFileList[n].getAbsolutePath());
-                if (specialPaths.contains(childFileList[n].getAbsolutePath())) {
+                String childSrc = childFileList[n].getAbsolutePath();
+                if (specialPaths.contains(childSrc)) {
                     zip(srcRootDir, childFileList[n], zos);
+                }
+                else{
+                    log.info("No target special path in current src.Dig into next child src: [{}]",childSrc);
+                    zip(childSrc, childFileList[n], zos, specialPaths);
                 }
             }
         }
@@ -165,6 +172,7 @@ public class ZipUtil {
             //调用递归压缩方法进行目录或文件压缩
             zip(srcRootDir, srcFile, zos);
             zos.flush();
+            log.info("Compressed done......");
         }
         catch (Exception e)
         {
@@ -199,6 +207,7 @@ public class ZipUtil {
         if (StringUtils.isEmpty(srcPath) || StringUtils.isEmpty(zipPath) || StringUtils.isEmpty(zipFileName)) {
             throw new ParameterException("1");
         }
+        log.info("Begin compressed process......");
         CheckedOutputStream cos = null;
         ZipOutputStream zos = null;
         try {
@@ -239,6 +248,7 @@ public class ZipUtil {
             //调用递归压缩方法进行目录或文件压缩
             zip(srcRootDir, srcFile, zos,specialPaths);
             zos.flush();
+            log.info("End compressed process......");
         } catch (Exception e) {
             throw e;
         } finally {

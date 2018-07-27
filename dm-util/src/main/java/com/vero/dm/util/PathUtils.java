@@ -84,7 +84,7 @@ public class PathUtils
         {
             builder.append(File.separator).append(suffix);
         }
-        return builder.toString();
+        return replacePath(builder.toString());
     }
 
 
