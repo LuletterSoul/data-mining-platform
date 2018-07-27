@@ -14,6 +14,12 @@ public class ResourcePath
 
     public static final String ALGORITHM_PATH = "/algorithms";
 
+    public static final String GRAMMAR_PATH = "/grammars";
+
+    public static final String RESULT_PATH = "/results";
+
+    public static final String STAGE_PATH = "/stages";
+
     public static final String TASK_PATH = "/tasks";
 
     public static final String FILE_PATH = "/files";
@@ -25,4 +31,5 @@ public class ResourcePath
     public static final String USER_PATH = "/users";
 
     public static final String STUDENT_PATH = "/students";
+    public static final String ZIP_PATH = "/zips";
 }

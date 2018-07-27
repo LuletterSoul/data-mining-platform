@@ -35,7 +35,7 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     List<DataMiningTask> deleteBatchTask(List<String> taskIds);
 
-    Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, Pageable pageable, TaskProgressStatus progressStatus, Integer lowBound, Integer upperBound);
+    Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate, Date plannedEndDate, Date builtTimeBegin, Date builtTimeEnd, String studentId, Pageable pageable, TaskProgressStatus progressStatus, Integer lowBound, Integer upperBound);
 
     Map<String, List<DataMiningGroupDto>> fetchInvolvedGroups(List<String> taskIds);
 

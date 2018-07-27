@@ -37,12 +37,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSetCollection, String> implements DataSetCollectionService
 {
-    @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     public DataSetCollection fectchAllDataSetContainer()
     {
         return null;
+    }
+
+    @Autowired
+    public void setThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+        this.threadPoolTaskExecutor = threadPoolTaskExecutor;
     }
 
     @Override

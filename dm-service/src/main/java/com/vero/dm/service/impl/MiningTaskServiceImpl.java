@@ -66,6 +66,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
             miningTaskDto.getCollectionIds());
         List<Algorithm> algorithms = this.algorithmJpaRepository.findAll(
             miningTaskDto.getAlgorithmIds());
+        List<MiningGrammar> grammars = this.miningGrammarRepository.findAll(miningTaskDto.getGrammarIds());
         groups.forEach(g -> {
             // 更新当前任务状态
             g.setDataMiningTask(task);
@@ -81,6 +82,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
             task.setProgressStatus(TaskProgressStatus.assigned);
         }
         task.setAlgorithms(new LinkedHashSet<>(algorithms));
+        task.setGrammars(new LinkedHashSet<>(grammars));
         task.setArrangedCollections(new LinkedHashSet<>(collections));
         task.setGroups(new LinkedHashSet<>(groups));
         task.setBuiltTime(new Date());
@@ -137,7 +139,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     public Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName,
                                               Date plannedBeginDate, Date plannedEndDate,
                                               Date builtTimeBegin, Date builtTimeEnd,
-                                              Pageable pageable, TaskProgressStatus progressStatus,
+                                              String studentId, Pageable pageable, TaskProgressStatus progressStatus,
                                               Integer lowBound, Integer upperBound)
     {
         List<DataMiningTask> finalResult = new LinkedList<>();
@@ -146,7 +148,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         if (fetch)
         {
             List<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName,
-                plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, progressStatus));
+                plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, progressStatus,studentId ));
             taskLimit.forEach(c -> {
                 if (tasks.contains(c))
                 {
@@ -157,7 +159,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         else
         {
             Page<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName,
-                plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, progressStatus),
+                plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, progressStatus,studentId),
                 pageable);
             List<DataMiningTask> content = tasks.getContent();
             content.forEach(c -> {

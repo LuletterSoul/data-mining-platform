@@ -79,6 +79,18 @@ public abstract class AbstractBaseServiceImpl<E, PK extends Serializable> implem
     protected AlgorithmJpaRepository algorithmJpaRepository;
 
     @Autowired
+    protected MiningGrammarRepository miningGrammarRepository;
+
+    @Autowired
+    protected MiningResultRepository miningResultRepository;
+
+    @Autowired
+    protected ResultRecordRepository resultRecordRepository;
+
+    @Autowired
+    protected StageRepository stageRepository;
+
+    @Autowired
     protected TaskStageJpaRepository taskStageJpaRepository;
 
     @Override

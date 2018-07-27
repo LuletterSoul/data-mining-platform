@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.vero.dm.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,10 +20,6 @@ import org.springframework.util.StringUtils;
 
 import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.DataMiningTask;
-import com.vero.dm.model.Student;
-import com.vero.dm.model.Teacher;
 import com.vero.dm.model.enums.MiningTaskStatus;
 import com.vero.dm.model.enums.StatusObject;
 import com.vero.dm.model.enums.TaskProgressStatus;
@@ -86,8 +83,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setGroupMembers(new LinkedHashSet<>(members));
         group.setGroupLeader(leader);
         group.setBuiltTime(new Date());
-        groupJpaRepository.save(group);
-        this.arrangeTask(groupDto.getGroupId(), groupDto.getTaskId());
+        group = groupJpaRepository.save(group);
+        this.arrangeTask(group.getGroupId(), groupDto.getTaskId());
         return group;
     }
 
@@ -197,8 +194,9 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
             throw new PreviewGroupsNotFoundException(message, ExceptionCode.PreviewGroupsNotFound);
         }
         groups.forEach(g->{
-            DataMiningTask t = g.getDataMiningTask();
+            DataMiningTask t = taskJpaRepository.findOne(g.getDataMiningTask().getTaskId());
             t.setProgressStatus(TaskProgressStatus.assigned);
+            buildMiningResultRecord(t);
             taskJpaRepository.save(t);
         });
         groupJpaRepository.save(groups);
@@ -347,9 +345,39 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         {
             task.setProgressStatus(TaskProgressStatus.assigned);
         }
-        taskJpaRepository.save(task);
-        groupJpaRepository.save(group);
+        taskJpaRepository.saveAndFlush(task);
+        groupJpaRepository.saveAndFlush(group);
+        buildMiningResultRecord(task);
         return task;
+    }
+
+    private void buildMiningResultRecord(DataMiningTask task) {
+        Set<MiningTaskStage> stages = task.getStages();
+        Set<DataMiningGroup> groups = task.getGroups();
+        List<MiningResult> results = new ArrayList<>();
+//        stages.forEach(s-> groups.forEach(g->{
+//
+//            members.forEach( m -> {
+//                MiningResult result = new MiningResult();
+//                result.setStage(s);
+//                result.setSubmitter(m);
+//                miningResultRepository.save(result);
+//            });
+//        }));
+        for (MiningTaskStage stage : stages) {
+            //给每个组员、每个阶段分配一个挖掘结果记录
+            for (DataMiningGroup group : groups) {
+                Set<Student> members = group.getGroupMembers();
+                for (Student member : members) {
+                    MiningResult result = new MiningResult();
+                    result.setStage(stage);
+                    result.setSubmitter(member);
+                    //miningResultRepository.save(result);
+                    results.add(result);
+                }
+            }
+        }
+        miningResultRepository.save(results);
     }
 
     @Override
