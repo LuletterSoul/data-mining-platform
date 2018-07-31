@@ -1,6 +1,7 @@
 package com.vero.dm.service.impl;
 
 
+import com.vero.dm.model.DataMiningTask;
 import org.springframework.stereotype.Service;
 
 import com.vero.dm.model.MiningTaskStage;
@@ -22,6 +23,6 @@ public class MiningTaskStageServiceImpl extends AbstractBaseServiceImpl<MiningTa
     @Override
     public MiningTaskStage saveStage(MiningTaskStage stage)
     {
-        return stageRepository.save(stage);
+        return stageRepository.saveAndFlush(stage);
     }
 }

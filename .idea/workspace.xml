@@ -11,30 +11,9 @@
     <bookmark url="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/GroupController.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test1.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test2.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test3.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test4.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test5.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test6.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-api/src/test/resource/test7.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dm-exception/src/main/java/com/vero/dm/exception/file/DuplicatedResultHandleException.java" />
+    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="调整关联逻辑">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningResultController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningResultController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningTaskController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/RestExceptionHandler.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StageController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StageController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/base/ConfigurationWirer.java" afterPath="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/base/ConfigurationWirer.java" />
-      <change beforePath="$PROJECT_DIR$/dm-exception/src/main/java/com/vero/dm/exception/error/ExceptionCode.java" afterPath="$PROJECT_DIR$/dm-exception/src/main/java/com/vero/dm/exception/error/ExceptionCode.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningGroup.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/DataMiningTask.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningResult.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningResult.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningTaskStage.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningTaskStage.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Student.java" afterPath="$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/Student.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/MiningResultRepository.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/MiningResultRepository.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/ResultSpecifications.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/ResultSpecifications.java" />
-      <change beforePath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" afterPath="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/TaskSpecifications.java" />
       <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningResultService.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/MiningResultService.java" />
       <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/ResultRecordService.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/ResultRecordService.java" />
       <change beforePath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" afterPath="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/GroupServiceImpl.java" />
@@ -293,11 +272,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MiningResultControllerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MiningResultControllerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/MiningResultControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="259">
               <caret line="170" column="17" lean-forward="false" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -521,7 +520,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/StageRepository.java" />
         <option value="$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/StudentService.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/dto/MiningResultDto.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java" />
@@ -572,6 +570,7 @@
         <option value="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/MiningTaskControllerTest.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/ResultSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MiningResultController.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -674,6 +673,11 @@
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
@@ -1005,6 +1009,7 @@
     <property name="settings.editor.splitter.proportion" value="0.19907407" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm" />
+    <property name="add_unversioned_files" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -2058,28 +2063,7 @@
       <workItem from="1531927175701" duration="34364000" />
       <workItem from="1532095976919" duration="42469000" />
       <workItem from="1532233321614" duration="181000" />
-      <workItem from="1532233817973" duration="187866000" />
-    </task>
-    <task id="LOCAL-00001" summary="新增spring data jpa支持的dao">
-      <created>1517282324742</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1517282324742</updated>
-    </task>
-    <task id="LOCAL-00002" summary="修改了关联关系以及部分数据库模型">
-      <created>1517282446168</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1517282446168</updated>
-    </task>
-    <task id="LOCAL-00003" summary="数据集接口修正，删除了大部分无用接口">
-      <created>1517331307597</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1517331307597</updated>
+      <workItem from="1532233817973" duration="188211000" />
     </task>
     <task id="LOCAL-00004" summary="数据挖掘任务的接口修正，删除大量无用接口">
       <created>1517392433347</created>
@@ -2396,7 +2380,35 @@
       <option name="project" value="LOCAL" />
       <updated>1532662884681</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="调整关联逻辑">
+      <created>1533051050620</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1533051050620</updated>
+    </task>
+    <task id="LOCAL-00050" summary="文件处理异常">
+      <created>1533051167489</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1533051167491</updated>
+    </task>
+    <task id="LOCAL-00051" summary="完成几个任务追踪接口的单元测试">
+      <created>1533051315684</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1533051315685</updated>
+    </task>
+    <task id="LOCAL-00052" summary="新增MiningResult/MiningRecord的动态查询Specification">
+      <created>1533051371765</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1533051371765</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2432,7 +2444,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1298064000" />
+    <option name="totallyTimeSpent" value="1298409000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2576,10 +2588,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="从任务端并行拉取团队信息" />
-    <MESSAGE value="学生查询API优化" />
-    <MESSAGE value="任务追踪数据库建模" />
-    <MESSAGE value="任务多阶段建立" />
     <MESSAGE value="任务追踪API" />
     <MESSAGE value="修复Linux环境的文件分隔符导致的下载问题" />
     <MESSAGE value="修复级联删除的bug" />
@@ -2601,7 +2609,11 @@
     <MESSAGE value="增加任务追踪查询JAP" />
     <MESSAGE value="新增挖掘结构管理的业务代码" />
     <MESSAGE value="工作变动" />
-    <option name="LAST_COMMIT_MESSAGE" value="工作变动" />
+    <MESSAGE value="调整关联逻辑" />
+    <MESSAGE value="文件处理异常" />
+    <MESSAGE value="完成几个任务追踪接口的单元测试" />
+    <MESSAGE value="新增MiningResult/MiningRecord的动态查询Specification" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增MiningResult/MiningRecord的动态查询Specification" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2689,20 +2701,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.role_info">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.permission_info">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/e7cc149a/42fe0f99-3786-404e-a460-87a99a43df9a/data_mining.mining_task_type">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -3144,6 +3142,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="170" column="17" lean-forward="false" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
           <folding />
         </state>
       </provider>

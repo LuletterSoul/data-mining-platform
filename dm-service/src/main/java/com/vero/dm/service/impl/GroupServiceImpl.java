@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.persistence.EntityNotFoundException;
 
 import com.vero.dm.model.*;
+import com.vero.dm.model.enums.ResultState;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -196,7 +197,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         groups.forEach(g->{
             DataMiningTask t = taskJpaRepository.findOne(g.getDataMiningTask().getTaskId());
             t.setProgressStatus(TaskProgressStatus.assigned);
-            buildMiningResultRecord(t);
+            buildMiningResultRecord(t.getTaskId());
             taskJpaRepository.save(t);
         });
         groupJpaRepository.save(groups);
@@ -347,14 +348,16 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         }
         taskJpaRepository.saveAndFlush(task);
         groupJpaRepository.saveAndFlush(group);
-        buildMiningResultRecord(task);
+        buildMiningResultRecord(task.getTaskId());
         return task;
     }
 
-    private void buildMiningResultRecord(DataMiningTask task) {
+    public void buildMiningResultRecord(String taskId) {
+        DataMiningTask task = taskJpaRepository.findOne(taskId);
         Set<MiningTaskStage> stages = task.getStages();
         Set<DataMiningGroup> groups = task.getGroups();
         List<MiningResult> results = new ArrayList<>();
+//        int oldNum = miningResultRepository.deleteMiningResultByTaskId(task.getTaskId());
 //        stages.forEach(s-> groups.forEach(g->{
 //
 //            members.forEach( m -> {
@@ -374,6 +377,7 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                     result.setSubmitter(member);
                     //miningResultRepository.save(result);
                     results.add(result);
+                    result.setState(ResultState.noResult);
                 }
             }
         }

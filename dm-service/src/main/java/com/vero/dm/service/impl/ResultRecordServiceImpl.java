@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.vero.dm.model.MiningResult;
 import com.vero.dm.model.ResultRecord;
 import com.vero.dm.model.enums.ResultState;
 import com.vero.dm.repository.specifications.TaskSpecifications;
@@ -27,7 +28,7 @@ public class ResultRecordServiceImpl extends AbstractBaseServiceImpl<ResultRecor
 {
     @Override
     public Page<ResultRecord> findResultRecords(Pageable pageable, String taskId,
-                                                List<Integer> submitterIds, ResultState state,
+                                                List<String> submitterIds, ResultState state,
                                                 boolean all, boolean newest, Integer stageId)
     {
         return resultRecordRepository.findAll(

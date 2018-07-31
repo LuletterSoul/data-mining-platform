@@ -198,7 +198,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     @Override
     public List<MiningTaskStage> fetchRefStages(String taskId)
     {
-        return new LinkedList<>(findById(taskId).getStages());
+        return new LinkedList<>(taskJpaRepository.findOne(taskId).getStages());
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.vero.dm.service;
 
 import java.util.List;
 
+import com.vero.dm.model.MiningResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +20,6 @@ import com.vero.dm.model.enums.ResultState;
 public interface ResultRecordService extends BaseService<ResultRecord, Integer>
 {
     Page<ResultRecord> findResultRecords(Pageable pageable, String taskId,
-                                         List<Integer> submitterIds, ResultState state,
+                                         List<String> submitterIds, ResultState state,
                                          boolean all, boolean newest, Integer stageId);
 }
