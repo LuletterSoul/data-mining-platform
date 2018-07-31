@@ -7,6 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.exception.file.DuplicatedResultHandleException;
+import com.vero.dm.exception.file.SetZipException;
+import org.apache.commons.io.FileUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,11 +49,29 @@ public class PathUtils
         return null;
     }
 
-    private static File buildFile(String relativePath, String projectRoot) {
+    public static File buildFile(String relativePath, String projectRoot) {
         File file = new File(concat(projectRoot,relativePath));
-        if (!file.exists())
-        {
-            file.mkdirs();
+        return buildFile(file);
+    }
+
+    public static File buildFile(File file) {
+        if(file.exists()){
+            try
+            {
+                log.debug("[{}]已重复,准备删除", file.getAbsoluteFile());
+                // 删除临时创建的压缩文件
+                FileUtils.forceDelete(file);
+                log.debug("[{}]删除成功.",file.getAbsoluteFile());
+            }
+            catch (IOException e)
+            {
+                log.error("删除[{}]失败",file.getAbsoluteFile());
+                throw new DuplicatedResultHandleException("The duplicated file could't be covery",
+                        ExceptionCode.DuplicatedResultHandleError);
+            }
+        }
+        if(!file.mkdirs()){
+            log.error("创建[{}]失败",file.getAbsoluteFile());
         }
         return file;
     }
