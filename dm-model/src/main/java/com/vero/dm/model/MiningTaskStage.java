@@ -42,7 +42,6 @@ public class MiningTaskStage
     /**
      * 每个阶段只对应一个任务
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "taskId", foreignKey = @ForeignKey(name = "TASK_FK"))
     private DataMiningTask task;
@@ -51,7 +50,7 @@ public class MiningTaskStage
      * 每个阶段接收来自不同分组的发掘任务
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "stage",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "stage",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<MiningResult> results;
 
     /**

@@ -66,7 +66,7 @@ public class Student extends User implements Serializable
     /**
      * 一个学生在不同时段可以位于不同的分组 不同分组也有不同学生 需要校验合法性
      */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "group_student_rel",
                 joinColumns = @JoinColumn(name = "memberId", referencedColumnName = "userId"),

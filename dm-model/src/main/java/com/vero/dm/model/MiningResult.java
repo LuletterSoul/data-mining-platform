@@ -47,7 +47,7 @@ public class MiningResult
     /**
      * 提交结果的学生
      */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "submitterId", foreignKey = @ForeignKey(name = "SUBMITTER_FK"))
     private Student submitter;
 
@@ -72,7 +72,7 @@ public class MiningResult
 
 
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @OrderBy(clause = "recordId desc")
     @JoinTable(name = "result_record_rel",
             joinColumns = @JoinColumn(name = "resultId"),
