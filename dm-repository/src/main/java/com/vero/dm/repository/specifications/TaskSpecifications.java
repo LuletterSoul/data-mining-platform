@@ -75,7 +75,7 @@ public class TaskSpecifications
     }
 
     public static Specification<ResultRecord> recordsSpec(String taskId,
-                                                          List<Integer> submitterIds,
+                                                          List<String> submitterIds,
                                                           ResultState state, boolean all,
                                                           Integer stageId, boolean newest)
     {

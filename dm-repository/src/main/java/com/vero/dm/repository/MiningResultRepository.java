@@ -19,6 +19,9 @@ import com.vero.dm.model.MiningResult;
 
 public interface MiningResultRepository extends JpaRepository<MiningResult, Integer>,JpaSpecificationExecutor<MiningResult>
 {
-    @Query(value = "select  r from MiningResult r left join r.stage  where r.stage.stageId = :stageId")
-    List<MiningResult> findByStageId(@Param("stageId") Integer stageId);
+    @Query(value = "select  r from MiningResult r left join r.stage  rs where rs.stageId = :stageId and rs.task.taskId = :taskId")
+    List<MiningResult> findByStageIdAndTaskId(@Param("taskId") String taskId, @Param("stageId") Integer stageId);
+
+    @Query(value = "DELETE from MiningResult mr WHERE mr.resultId in (SELECT sr.resultId from DataMiningTask t left join t.stages s left join s.results sr where t.taskId = :taskId)")
+    int deleteMiningResultByTaskId(@Param("taskId") String taskId);
 }
