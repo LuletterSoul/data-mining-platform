@@ -129,7 +129,7 @@ public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
         return new ResponseEntity<>(miningTaskService.fetchInvolvedGroups(taskIds), HttpStatus.OK);
     }
 
-    @ApiOperation("获取执行此任务分组")
+    @ApiOperation("获取执行此任务的阶段信息")
     @GetMapping(value = "/{taskId}/stages")
     public ResponseEntity<List<MiningTaskStage>> groups(@PathVariable("taskId") String taskId)
     {
@@ -230,7 +230,7 @@ public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
                                               @PathVariable("taskId") String taskId,
                                               @ApiParam(value = "指定任务阶段") @RequestParam(value = "stageId", required = false, defaultValue = "") Integer stageId,
                                               @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,
-                                              @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterIds", required = false) List<Integer> submitterIds,
+                                              @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterIds", required = false) List<String> submitterIds,
                                               @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
                                               @ApiParam(value = "获取最新上传的结果") @RequestParam(value = "newest", required = false, defaultValue = "true") boolean newest) {
 

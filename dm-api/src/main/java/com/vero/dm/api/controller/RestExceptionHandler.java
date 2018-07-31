@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.*;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
+import com.vero.dm.exception.file.*;
 import com.vero.dm.exception.group.InvalidGroupingConfigException;
 import com.vero.dm.exception.group.PreviewGroupsNotFoundException;
 import com.vero.dm.exception.group.StudentNotFoundException;
@@ -31,10 +32,6 @@ import com.vero.dm.exception.business.StudentIdDuplicatedException;
 import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.error.ErrorInfo;
 import com.vero.dm.exception.error.ExceptionCode;
-import com.vero.dm.exception.file.ExcelModuleAnnotationNotFoundException;
-import com.vero.dm.exception.file.ExcelModuleInValidException;
-import com.vero.dm.exception.file.SetZipException;
-import com.vero.dm.exception.file.UnsupportedFileTypeException;
 import com.vero.dm.exception.group.SpecificStudentNotFoundException;
 
 
@@ -349,5 +346,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
         return handBusinessExceptionInternal(ex, ExceptionCode.LazyInitializationError, new HttpHeaders(),
                 HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
+
+    @ExceptionHandler({DuplicatedResultHandleException.class})
+    public ResponseEntity<Object> handleDuplicatedResultHandleException(final DuplicatedResultHandleException ex,
+                                                                    final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ExceptionCode.LazyInitializationError, new HttpHeaders(),
+                HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
+    }
+
+
 
 }

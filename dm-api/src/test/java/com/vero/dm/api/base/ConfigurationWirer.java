@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vero.dm.api.entry.ApiLoader;
 /**
  * Controller 层集成环境测试基类
+ * 注意{@Transactionnal}
  * @author XiangDe Liu qq313700046@icloud.com .
  * @version 1.5
  * created in  20:41 2018/7/19.
@@ -46,9 +47,9 @@ public class ConfigurationWirer
         objectMapper = new ObjectMapper();
         objectMapper.setDateFormat(new ConcurrencyDateFormatter());
          // 反序列化的时候如果多了其他属性,不抛出异常
-//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_EXTERNAL_TYPE_ID_PROPERTY, false);
-//        objectMapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_EXTERNAL_TYPE_ID_PROPERTY, false);
+        objectMapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
     }
 
     @Autowired

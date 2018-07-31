@@ -5,7 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.vero.dm.model.enums.ResultState;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,9 +52,22 @@ public class MiningResultController
         return new ResponseEntity<>(resultService.saveResult(result), HttpStatus.CREATED);
     }
 
+    @ApiOperation("获取数据挖掘结果")
+    @GetMapping
+    public ResponseEntity<Page<MiningResult>> getResults(@PageableDefault(size = 15, sort = {
+            "resultId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                            @ApiParam(value = "任务Id")  @RequestParam(value = "taskId",required = false) String taskId,
+                                            @ApiParam(value = "阶段标识") @RequestParam(value = "stageId",required = false) Integer stageId,
+                                            @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,
+                                            @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
+                                            @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterId", required = false) String submitterId)
+    {
+        return new ResponseEntity<>(resultService.findResults(taskId, stageId, pageable, submitterId, state, all), HttpStatus.OK);
+    }
+
 
     @ApiOperation("上传数据挖掘结果")
-    @PostMapping(value = "/{resultId}")
+    @PostMapping(value = "/{resultId}/records",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResultRecord> uploadResult(@RequestPart MultipartFile resultFile,
                                                      @PathVariable("resultId") Integer resultId)
     {
@@ -57,7 +76,7 @@ public class MiningResultController
     }
 
     @ApiOperation("下载数据挖掘结果")
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/records",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void downloadResult(@RequestBody List<Integer> recordIds, HttpServletResponse response)
     {
         resultService.downloadResults(recordIds, response);

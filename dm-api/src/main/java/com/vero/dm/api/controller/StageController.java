@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +31,7 @@ import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping(value = ApiVersion.API_VERSION
-                        + ResourcePath.STAGE_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+                        + ResourcePath.STAGE_PATH)
 public class StageController
 {
 
@@ -63,17 +62,18 @@ public class StageController
     @GetMapping(value = "/{stageId}/results")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
-            @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "int", paramType = "query", defaultValue = "resultId"),
+            @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "Integer", paramType = "query", defaultValue = "resultId"),
             @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
     public ResponseEntity<Page<MiningResult>> getResults(@ApiParam(value = "阶段标识") @PathVariable("stageId") Integer stageId,
-                                                         @ApiParam(value = "提交者") @RequestParam(value = "submitterId", required = false) String submitterId,
-                                                         @ApiParam(value = "结果当前的状态") @RequestParam(value = "state", required = false) ResultState state,
+                                                         @ApiParam(value = "任务标识") @RequestParam(value = "taskId",required = false,defaultValue = "") String taskId,
+                                                         @ApiParam(value = "提交者") @RequestParam(value = "submitterId", required = false,defaultValue = "") String submitterId,
+                                                         @ApiParam(value = "结果当前的状态") @RequestParam(value = "state", required = false,defaultValue = "") ResultState state,
                                                          @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
                                                          @PageableDefault(size = 8, sort = {
                                                              "resultId"}, direction = Sort.Direction.DESC) Pageable pageable)
     {
         return new ResponseEntity<>(
-            resultService.findResults(stageId, pageable, submitterId, state, all), HttpStatus.OK);
+            resultService.findResults(taskId, stageId, pageable, submitterId, state, all), HttpStatus.OK);
     }
 
 }
