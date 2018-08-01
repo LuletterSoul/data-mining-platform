@@ -53,7 +53,7 @@ public class DownloadUtils
     public static String generateTimestampZipFileName(String prefix)
     {
         String fileName = prefix
-                + new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM_SS.getValue()).format(new Date())
+                + new SimpleDateFormat(DateStyle.YYYY_MM_DD_HH_MM.getValue()).format(new Date())
                 + ".zip";
         try {
             return new String(fileName.getBytes(), "UTF-8");
