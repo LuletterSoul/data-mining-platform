@@ -30,6 +30,7 @@ import com.vero.dm.model.MiningResult;
 import com.vero.dm.model.ResultRecord;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.enums.ResultState;
+import com.vero.dm.repository.dto.MiningResultDto;
 import com.vero.dm.service.MiningResultService;
 import com.vero.dm.service.constant.ResourcePath;
 import com.vero.dm.util.ZipCompressor;
@@ -63,15 +64,20 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
     }
 
     @Override
-    public Page<MiningResult> findResults(String taskId, Integer stageId, Pageable pageable, List<String> submitterIds,
-                                          ResultState state, boolean all)
+    public Page<MiningResultDto> findResults(String taskId, Integer stageId, Pageable pageable,
+                                             List<String> submitterIds, ResultState state,
+                                             boolean all)
     {
         if (all)
         {
-            return new PageImpl<>(miningResultRepository.findAll(resultsSpec(taskId, stageId, submitterIds, state)));
+            List<MiningResult> results = miningResultRepository.findAll(
+                resultsSpec(taskId, stageId, submitterIds, state));
+            return new PageImpl<>(MiningResultDto.build(results), pageable, results.size());
         }
-        return miningResultRepository.findAll(
+        Page<MiningResult> page = miningResultRepository.findAll(
             resultsSpec(taskId, stageId, submitterIds, state), pageable);
+        List<MiningResult> results = page.getContent();
+        return new PageImpl<>(MiningResultDto.build(results), pageable, page.getTotalElements());
     }
 
     @Override
@@ -88,20 +94,24 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         String taskName = result.getStage().getTask().getTaskName();
         Integer stageId = result.getStage().getOrderId();
         String fileName;
-        if(StringUtils.isEmpty(resultFile.getOriginalFilename())){
+        if (StringUtils.isEmpty(resultFile.getOriginalFilename()))
+        {
             fileName = resultFile.getName();
         }
-        else{
+        else
+        {
             fileName = resultFile.getOriginalFilename();
         }
         String absolutePath = getAbsolutePath(
-            concat(ResourcePath.STUDENT_PATH, userPath, taskName, String.valueOf(stageId)),fileName);
-        log.info("[{}]开始上传文件，文件位于[{}]",submitter.getUsername(), absolutePath);
+            concat(ResourcePath.STUDENT_PATH, userPath, taskName, String.valueOf(stageId)),
+            fileName);
+        log.info("[{}]开始上传文件，文件位于[{}]", submitter.getUsername(), absolutePath);
         threadPoolTaskExecutor.execute(() -> {
             try
             {
                 File located = new File(Objects.requireNonNull(absolutePath));
-                if (located.exists()) {
+                if (located.exists())
+                {
                     FileUtils.forceDelete(located);
                 }
                 resultFile.transferTo(located);
@@ -153,6 +163,7 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
                 {
                     // 删除临时创建的压缩文件
                     forceDelete(new File(zipFilePath));
+                    log.info("删除临时压缩文件:[{}]", zipFilePath);
                 }
                 catch (IOException e)
                 {
@@ -160,6 +171,10 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
                         ExceptionCode.ZipSetError);
                 }
             });
+            List<MiningResult> results = miningResultRepository.findResultByRecords(recordIds);
+            //更新状态
+            results.forEach(r -> r.setState(ResultState.downloaded));
+            miningResultRepository.save(results);
         }
         catch (Exception e)
         {

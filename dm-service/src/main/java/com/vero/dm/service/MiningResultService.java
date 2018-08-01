@@ -4,6 +4,7 @@ package com.vero.dm.service;
 import com.vero.dm.model.MiningResult;
 import com.vero.dm.model.ResultRecord;
 import com.vero.dm.model.enums.ResultState;
+import com.vero.dm.repository.dto.MiningResultDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +24,7 @@ public interface MiningResultService extends BaseService<MiningResult, Integer>
 
     MiningResult saveResult(MiningResult result);
 
-    Page<MiningResult> findResults(String taskId, Integer stageId, Pageable pageable, List<String> submitterIds, ResultState state, boolean all);
+    Page<MiningResultDto> findResults(String taskId, Integer stageId, Pageable pageable, List<String> submitterIds, ResultState state, boolean all);
 
     ResultRecord uploadResult(Integer resultId, MultipartFile resultFile);
 

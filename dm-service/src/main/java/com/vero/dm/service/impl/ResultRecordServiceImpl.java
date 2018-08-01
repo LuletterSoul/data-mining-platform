@@ -54,7 +54,17 @@ public class ResultRecordServiceImpl extends AbstractBaseServiceImpl<ResultRecor
         List<Set<ResultRecord>> recordSets = results.stream().map(
             MiningResult::getRecords).collect(Collectors.toList());
         List<ResultRecord> records = new ArrayList<>();
-        recordSets.forEach(records::addAll);
+        if(!newest){
+            recordSets.forEach(records::addAll);
+        }
+        else{
+            //获取最新的上传记录
+            recordSets.forEach(rs -> {
+                if (rs.iterator().hasNext()) {
+                    records.add(rs.iterator().next());
+                }
+            });
+        }
         return new PageImpl<>(records);
     }
 }
