@@ -1,6 +1,7 @@
 package com.vero.dm.api.controller;
 
 
+import com.vero.dm.repository.dto.MiningResultDto;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,12 +67,12 @@ public class StageController
             @ApiImplicitParam(name = "size", value = "每页数量", dataType = "int", paramType = "query", defaultValue = "10"),
             @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "Integer", paramType = "query", defaultValue = "resultId"),
             @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
-    public ResponseEntity<Page<MiningResult>> getResults(@ApiParam(value = "阶段标识") @PathVariable("stageId") Integer stageId,
-                                                         @ApiParam(value = "任务标识") @RequestParam(value = "taskId",required = false,defaultValue = "") String taskId,
-                                                         @ApiParam(value = "提交者") @RequestParam(value = "submitterIds", required = false,defaultValue = "") List<String> submitterIds,
-                                                         @ApiParam(value = "结果当前的状态") @RequestParam(value = "state", required = false,defaultValue = "") ResultState state,
-                                                         @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
-                                                         @PageableDefault(size = 8, sort = {
+    public ResponseEntity<Page<MiningResultDto>> getResults(@ApiParam(value = "阶段标识") @PathVariable("stageId") Integer stageId,
+                                                            @ApiParam(value = "任务标识") @RequestParam(value = "taskId",required = false,defaultValue = "") String taskId,
+                                                            @ApiParam(value = "提交者") @RequestParam(value = "submitterIds", required = false,defaultValue = "") List<String> submitterIds,
+                                                            @ApiParam(value = "结果当前的状态") @RequestParam(value = "state", required = false,defaultValue = "") ResultState state,
+                                                            @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
+                                                            @PageableDefault(size = 8, sort = {
                                                              "resultId"}, direction = Sort.Direction.DESC) Pageable pageable)
     {
         return new ResponseEntity<>(

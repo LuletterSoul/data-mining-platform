@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.vero.dm.model.enums.ResultState;
+import com.vero.dm.repository.dto.MiningResultDto;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -54,13 +55,13 @@ public class MiningResultController
 
     @ApiOperation("获取数据挖掘结果")
     @GetMapping
-    public ResponseEntity<Page<MiningResult>> getResults(@PageableDefault(size = 15, sort = {
+    public ResponseEntity<Page<MiningResultDto>> getResults(@PageableDefault(size = 15, sort = {
             "resultId"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                            @ApiParam(value = "任务Id")  @RequestParam(value = "taskId",required = false) String taskId,
-                                            @ApiParam(value = "阶段标识") @RequestParam(value = "stageId",required = false) Integer stageId,
-                                            @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,
-                                            @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
-                                            @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterIds", required = false) List<String> submitterIds)
+                                                            @ApiParam(value = "任务Id")  @RequestParam(value = "taskId",required = false) String taskId,
+                                                            @ApiParam(value = "阶段标识") @RequestParam(value = "stageId",required = false) Integer stageId,
+                                                            @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,
+                                                            @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
+                                                            @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterIds", required = false) List<String> submitterIds)
     {
         return new ResponseEntity<>(resultService.findResults(taskId, stageId, pageable, submitterIds, state, all), HttpStatus.OK);
     }

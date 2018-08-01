@@ -15,6 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.vero.dm.repository.dto.MiningResultDto;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
@@ -151,14 +152,14 @@ public class MiningTaskControllerTest extends ConfigurationWirer
                         jsonPath(
                             "$.content").exists()).andReturn().getResponse().getContentAsString();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class,
-            MiningResult.class);
+            MiningResultDto.class);
         JSONObject jsonObject = new JSONObject(resultStr);
         // 获取分页之后的内容
-        List<MiningResult> results = objectMapper.readValue(jsonObject.get("content").toString(),
+        List<MiningResultDto> results = objectMapper.readValue(jsonObject.get("content").toString(),
             javaType);
         // 每个学生必定有一条记录,三个阶段都有一个发掘结果
         Assert.assertEquals(3, results.size());
-        List<String> ids = results.stream().map(r -> r.getSubmitter().getStudentId()).collect(
+        List<String> ids = results.stream().map(MiningResultDto::getSubmitterId).collect(
             Collectors.toList());
         Assert.assertTrue(ids.contains(students.get(0).getStudentId()));
         // studentService.deleteBatchByStudentIds(studentIds);
@@ -166,13 +167,16 @@ public class MiningTaskControllerTest extends ConfigurationWirer
 
         List<String> prePaths = new ArrayList<>();
         for(int i = 1;i<=3;i++){
-            String testFileName = "test" + i + ".txt";
+            String testFileName1 = "test" + i + ".txt";
+            String testFileName2 = "test" + (i + 1) + ".txt";
             Integer resultId = results.get(i - 1).getResultId();
             //每个阶段上传一条记录
-            String recordStr = uploadResult(testFileName, resultId);
-            ResultRecord resStr = objectMapper.readValue(recordStr, ResultRecord.class);
-            System.out.println("Record Path:" + resStr.getPath());
-            prePaths.add(resStr.getPath());
+            String recordStr1 = uploadResult(testFileName1, resultId);
+            String recordStr2 = uploadResult(testFileName2, resultId);
+            ResultRecord resStr1 = objectMapper.readValue(recordStr1, ResultRecord.class);
+            ResultRecord resStr2 = objectMapper.readValue(recordStr2, ResultRecord.class);
+            prePaths.add(resStr1.getPath());
+            prePaths.add(resStr2.getPath());
         }
 
         String recordsReq = ApiVersion.API_VERSION + ResourcePath.TASK_PATH +"/"+ createdTask.getTaskId() + "/result_records";
@@ -185,7 +189,7 @@ public class MiningTaskControllerTest extends ConfigurationWirer
         JavaType resultRecordType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class,
                 ResultRecord.class);
         List<ResultRecord> records = objectMapper.readValue(new JSONObject(recordStr).get("content").toString(), resultRecordType);
-        Assert.assertEquals(3, records.size());
+        Assert.assertEquals(6, records.size());
         List<String> paths = records.stream().map(ResultRecord::getPath).collect(Collectors.toList());
         Assert.assertTrue(paths.containsAll(prePaths));
     }
