@@ -225,8 +225,7 @@ public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
             @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
     @GetMapping("/{taskId}/result_records")
     public ResponseEntity<Page<ResultRecord>> getResultRecord(@PageableDefault(size = 15, sort = {
-            "recordId"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                              @ApiParam(value = "任务Id") @RequestParam(value = "taskName",defaultValue = "")
+            "resultId"}, direction = Sort.Direction.DESC) Pageable pageable,
                                               @PathVariable("taskId") String taskId,
                                               @ApiParam(value = "指定任务阶段") @RequestParam(value = "stageId", required = false, defaultValue = "") Integer stageId,
                                               @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,

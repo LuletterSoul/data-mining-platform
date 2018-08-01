@@ -22,6 +22,8 @@ import com.vero.dm.service.constant.ResourcePath;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import java.util.List;
+
 
 /**
  * @author XiangDe Liu qq313700046@icloud.com .
@@ -66,14 +68,14 @@ public class StageController
             @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
     public ResponseEntity<Page<MiningResult>> getResults(@ApiParam(value = "阶段标识") @PathVariable("stageId") Integer stageId,
                                                          @ApiParam(value = "任务标识") @RequestParam(value = "taskId",required = false,defaultValue = "") String taskId,
-                                                         @ApiParam(value = "提交者") @RequestParam(value = "submitterId", required = false,defaultValue = "") String submitterId,
+                                                         @ApiParam(value = "提交者") @RequestParam(value = "submitterIds", required = false,defaultValue = "") List<String> submitterIds,
                                                          @ApiParam(value = "结果当前的状态") @RequestParam(value = "state", required = false,defaultValue = "") ResultState state,
                                                          @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
                                                          @PageableDefault(size = 8, sort = {
                                                              "resultId"}, direction = Sort.Direction.DESC) Pageable pageable)
     {
         return new ResponseEntity<>(
-            resultService.findResults(taskId, stageId, pageable, submitterId, state, all), HttpStatus.OK);
+            resultService.findResults(taskId, stageId, pageable, submitterIds, state, all), HttpStatus.OK);
     }
 
 }

@@ -10,9 +10,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
@@ -141,9 +143,9 @@ public class MiningTaskControllerTest extends ConfigurationWirer
         Integer stageId = stages.get(0).getStageId();
         String reqUrl = ApiVersion.API_VERSION.concat(ResourcePath.RESULT_PATH);
 
-        // 获取数据挖掘结果
+        // 获取标识为submitterId的用户上传在任务号为taskId任务下的数据挖掘结果
         String resultStr = mockMvc.perform(
-            get(reqUrl).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterId",
+            get(reqUrl).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterIds",
                 students.get(0).getUserId()).param("taskId", createdTask.getTaskId())).andDo(
                     print()).andExpect(status().isOk()).andExpect(
                         jsonPath(
@@ -154,7 +156,7 @@ public class MiningTaskControllerTest extends ConfigurationWirer
         // 获取分页之后的内容
         List<MiningResult> results = objectMapper.readValue(jsonObject.get("content").toString(),
             javaType);
-        // 每个学生必定有一条记录
+        // 每个学生必定有一条记录,三个阶段都有一个发掘结果
         Assert.assertEquals(3, results.size());
         List<String> ids = results.stream().map(r -> r.getSubmitter().getStudentId()).collect(
             Collectors.toList());
@@ -162,21 +164,45 @@ public class MiningTaskControllerTest extends ConfigurationWirer
         // studentService.deleteBatchByStudentIds(studentIds);
         //groupService.deleteMiningGroupById(group.getGroupId());
 
-        URL f1 = Thread.currentThread().getContextClassLoader().getResource("test1.txt");
+        List<String> prePaths = new ArrayList<>();
+        for(int i = 1;i<=3;i++){
+            String testFileName = "test" + i + ".txt";
+            Integer resultId = results.get(i - 1).getResultId();
+            //每个阶段上传一条记录
+            String recordStr = uploadResult(testFileName, resultId);
+            ResultRecord resStr = objectMapper.readValue(recordStr, ResultRecord.class);
+            System.out.println("Record Path:" + resStr.getPath());
+            prePaths.add(resStr.getPath());
+        }
+
+        String recordsReq = ApiVersion.API_VERSION + ResourcePath.TASK_PATH +"/"+ createdTask.getTaskId() + "/result_records";
+
+        String recordStr =   mockMvc.perform(
+                get(recordsReq).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterIds",students.get(0).getUserId())).andDo(
+                print()).andExpect(status().isOk()).andExpect(
+                jsonPath(
+                        "$.content").exists()).andReturn().getResponse().getContentAsString();
+        JavaType resultRecordType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class,
+                ResultRecord.class);
+        List<ResultRecord> records = objectMapper.readValue(new JSONObject(recordStr).get("content").toString(), resultRecordType);
+        Assert.assertEquals(3, records.size());
+        List<String> paths = records.stream().map(ResultRecord::getPath).collect(Collectors.toList());
+        Assert.assertTrue(paths.containsAll(prePaths));
+    }
+
+    private String uploadResult(String testFileName, Integer resultId) throws Exception {
+        URL f1 = Thread.currentThread().getContextClassLoader().getResource(testFileName);
         File testFile = new File(Objects.requireNonNull(f1).getFile());
         MockMultipartFile firstFile = new MockMultipartFile("resultFile", testFile.getName(),
             MediaType.MULTIPART_FORM_DATA_VALUE, new FileInputStream(testFile));
         String uploadAddr = ApiVersion.API_VERSION.concat(ResourcePath.RESULT_PATH).concat(
-            "/").concat(String.valueOf(results.get(0).getResultId()).concat("/records"));
+            "/").concat(String.valueOf(resultId).concat("/records"));
         // 发起上传请求，将Multipart file 映射到键为'resultFile'的fileMap中，否则会抛出Bad Request 400异常
-        String recordStr = mockMvc.perform(
+        return mockMvc.perform(
             MockMvcRequestBuilders.fileUpload(uploadAddr).file(firstFile).contentType(
                 MediaType.MULTIPART_FORM_DATA_VALUE)).andDo(print()).andExpect(
                     status().isCreated()).andDo(
                         print()).andReturn().getResponse().getContentAsString();
-        ResultRecord resultRecord = objectMapper.readValue(recordStr, ResultRecord.class);
-        System.out.println("Record Path:" + resultRecord.getPath());
-
     }
 
     private void buildCandidates(Integer candidateSize)

@@ -60,9 +60,9 @@ public class MiningResultController
                                             @ApiParam(value = "阶段标识") @RequestParam(value = "stageId",required = false) Integer stageId,
                                             @ApiParam(value = "记录状态") @RequestParam(value = "state", required = false, defaultValue = "")ResultState state,
                                             @ApiParam(value = "抓取全部") @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
-                                            @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterId", required = false) String submitterId)
+                                            @ApiParam(value = "提交者的用户ID") @RequestParam(value = "submitterIds", required = false) List<String> submitterIds)
     {
-        return new ResponseEntity<>(resultService.findResults(taskId, stageId, pageable, submitterId, state, all), HttpStatus.OK);
+        return new ResponseEntity<>(resultService.findResults(taskId, stageId, pageable, submitterIds, state, all), HttpStatus.OK);
     }
 
 
