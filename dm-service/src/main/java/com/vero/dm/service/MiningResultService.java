@@ -23,7 +23,7 @@ public interface MiningResultService extends BaseService<MiningResult, Integer>
 
     MiningResult saveResult(MiningResult result);
 
-    Page<MiningResult> findResults(String taskId, Integer stageId, Pageable pageable, String submitterId, ResultState state, boolean all);
+    Page<MiningResult> findResults(String taskId, Integer stageId, Pageable pageable, List<String> submitterIds, ResultState state, boolean all);
 
     ResultRecord uploadResult(Integer resultId, MultipartFile resultFile);
 

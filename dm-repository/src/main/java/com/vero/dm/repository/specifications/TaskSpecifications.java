@@ -81,17 +81,16 @@ public class TaskSpecifications
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates = new ArrayList<>();
-            Join<DataMiningTask, MiningTaskStage> taskStageJoin = root.join(
-                DataMiningTask_.STAGES);
+            Join<ResultRecord, MiningResult> resultRecordJoin = root.join(
+                    ResultRecord_.RESULT, JoinType.LEFT);
+            Join<MiningResult,MiningTaskStage> stageResultJoin = resultRecordJoin.join(
+                    MiningResult_.STAGE, JoinType.LEFT);
+            Join<MiningTaskStage, DataMiningTask> taskStageJoin =stageResultJoin.join(MiningTaskStage_.TASK);
             totalPredicates.add(cb.equal(taskStageJoin.get(DataMiningTask_.TASK_ID), taskId));
             if (all)
             {
                 return select(query, cb, totalPredicates);
             }
-            Join<MiningTaskStage, MiningResult> stageResultJoin = taskStageJoin.join(
-                MiningTaskStage_.RESULTS);
-            Join<MiningResult, ResultRecord> resultRecordJoin = stageResultJoin.join(
-                MiningResult_.RECORDS);
             if (!Objects.isNull(submitterIds) && !submitterIds.isEmpty())
             {
                 Predicate p1 = stageResultJoin.get(MiningResult_.SUBMITTER).get(
@@ -100,7 +99,7 @@ public class TaskSpecifications
             }
             if (!Objects.isNull(state))
             {
-                Predicate p2 = cb.equal(stageResultJoin.get(MiningTaskStage_.RESULTS), state);
+                Predicate p2 = cb.equal(stageResultJoin.get(MiningResult_.STATE), state);
                 totalPredicates.add(p2);
             }
             if (!Objects.isNull(stageId))

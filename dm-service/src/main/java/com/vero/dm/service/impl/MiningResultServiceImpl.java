@@ -1,7 +1,7 @@
 package com.vero.dm.service.impl;
 
 
-import static com.vero.dm.repository.specifications.ResultSpecifications.*;
+import static com.vero.dm.repository.specifications.ResultSpecifications.resultsSpec;
 import static com.vero.dm.util.DownloadUtils.bigFileDownload;
 import static com.vero.dm.util.DownloadUtils.generateTimestampZipFileName;
 import static com.vero.dm.util.PathUtils.concat;
@@ -30,7 +30,6 @@ import com.vero.dm.model.MiningResult;
 import com.vero.dm.model.ResultRecord;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.enums.ResultState;
-import com.vero.dm.repository.specifications.ResultSpecifications;
 import com.vero.dm.service.MiningResultService;
 import com.vero.dm.service.constant.ResourcePath;
 import com.vero.dm.util.ZipCompressor;
@@ -64,15 +63,15 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
     }
 
     @Override
-    public Page<MiningResult> findResults(String taskId, Integer stageId, Pageable pageable, String submitterId,
+    public Page<MiningResult> findResults(String taskId, Integer stageId, Pageable pageable, List<String> submitterIds,
                                           ResultState state, boolean all)
     {
         if (all)
         {
-            return new PageImpl<>(miningResultRepository.findAll(resultsSpec(taskId, stageId, submitterId, state)));
+            return new PageImpl<>(miningResultRepository.findAll(resultsSpec(taskId, stageId, submitterIds, state)));
         }
         return miningResultRepository.findAll(
-            resultsSpec(taskId, stageId, submitterId, state), pageable);
+            resultsSpec(taskId, stageId, submitterIds, state), pageable);
     }
 
     @Override
@@ -97,6 +96,7 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         }
         String absolutePath = getAbsolutePath(
             concat(ResourcePath.STUDENT_PATH, userPath, taskName, String.valueOf(stageId)),fileName);
+        log.info("[{}]开始上传文件，文件位于[{}]",submitter.getUsername(), absolutePath);
         threadPoolTaskExecutor.execute(() -> {
             try
             {
@@ -122,6 +122,7 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         {
             result.setState(ResultState.submitted);
         }
+        result.getRecords().add(resultRecord);
         miningResultRepository.save(result);
         log.info(submitter.getUsername() + "上传了数据挖掘结果,位于[{}]", resultRecord.getPath());
         return resultRecord;

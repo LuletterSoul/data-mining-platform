@@ -27,7 +27,7 @@ import com.vero.dm.model.enums.ResultState;
 public class ResultSpecifications
 {
     public static Specification<MiningResult>  resultsSpec(String taskId, Integer stageId,
-                                                          String submitterId, ResultState state)
+                                                           List<String> submitterIds, ResultState state)
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates = new ArrayList<>();
@@ -44,10 +44,9 @@ public class ResultSpecifications
                     stJoin.get(DataMiningTask_.TASK_ID), taskId);
                 totalPredicates.add(p);
             }
-            if (!StringUtils.isEmpty(submitterId))
+            if (!StringUtils.isEmpty(submitterIds))
             {
-                Predicate p = cb.equal(root.get(MiningResult_.SUBMITTER).get(Student_.USER_ID),
-                    submitterId);
+                Predicate p = root.get(MiningResult_.SUBMITTER).get(Student_.USER_ID).in(submitterIds);
                 totalPredicates.add(p);
             }
             if (!Objects.isNull(state))
