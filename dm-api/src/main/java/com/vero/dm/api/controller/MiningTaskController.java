@@ -82,21 +82,21 @@ public class MiningTaskController
         @ApiImplicitParam(name = "sort", value = "按某属性排序", dataType = "String", paramType = "query", defaultValue = "taskId"),
         @ApiImplicitParam(name = "direction", value = "排序方式", dataType = "String", paramType = "query", defaultValue = "DESC"),})
 @GetMapping
-public Page<DataMiningTask> getList(@PageableDefault(size = 15, sort = {
+public ResponseEntity<Page<MiningTaskDto>> getList(@PageableDefault(size = 15, sort = {
         "builtTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                    @ApiParam(value = "任务名称") @RequestParam(value = "taskName", required = false, defaultValue = "") String taskName,
-                                    @ApiParam(value = "计划开始时间") @RequestParam(value = "plannedBeginDate", required = false, defaultValue = "") Date plannedBeginDate,
-                                    @ApiParam(value = "计划结束时间") @RequestParam(value = "plannedEndDate", required = false, defaultValue = "") Date plannedEndDate,
-                                    @ApiParam(value = "建立时间区间起点") @RequestParam(value = "builtTimeBegin", required = false, defaultValue = "") Date builtTimeBegin,
-                                    @ApiParam(value = "建立时间区间结点") @RequestParam(value = "builtTimeEnd", required = false, defaultValue = "") Date builtTimeEnd,
-                                    @ApiParam(value = "任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") TaskProgressStatus progressStatus,
-                                    @ApiParam(value = "关联分组数下界") @RequestParam(value = "lowBound", required = false, defaultValue = "-1") Integer lowBound,
-                                    @ApiParam(value = "关联分组数上界") @RequestParam(value = "upperBound", required = false, defaultValue = "6666666") Integer upperBound,
-                                    @ApiParam(value = "指定的学生") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentId,
-                                    @ApiParam(value = "抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") boolean fetch) {
+                                                   @ApiParam(value = "任务名称") @RequestParam(value = "taskName", required = false, defaultValue = "") String taskName,
+                                                   @ApiParam(value = "计划开始时间") @RequestParam(value = "plannedBeginDate", required = false, defaultValue = "") Date plannedBeginDate,
+                                                   @ApiParam(value = "计划结束时间") @RequestParam(value = "plannedEndDate", required = false, defaultValue = "") Date plannedEndDate,
+                                                   @ApiParam(value = "建立时间区间起点") @RequestParam(value = "builtTimeBegin", required = false, defaultValue = "") Date builtTimeBegin,
+                                                   @ApiParam(value = "建立时间区间结点") @RequestParam(value = "builtTimeEnd", required = false, defaultValue = "") Date builtTimeEnd,
+                                                   @ApiParam(value = "任务状态") @RequestParam(value = "taskStatus", required = false, defaultValue = "") TaskProgressStatus progressStatus,
+                                                   @ApiParam(value = "关联分组数下界") @RequestParam(value = "lowBound", required = false, defaultValue = "-1") Integer lowBound,
+                                                   @ApiParam(value = "关联分组数上界") @RequestParam(value = "upperBound", required = false, defaultValue = "6666666") Integer upperBound,
+                                                   @ApiParam(value = "指定的学生") @RequestParam(value = "studentId", required = false, defaultValue = "") String studentId,
+                                                   @ApiParam(value = "抓取全部") @RequestParam(value = "fetch", required = false, defaultValue = "false") boolean fetch) {
 
-    return miningTaskService.fetchTaskList(fetch, taskName, plannedBeginDate, plannedEndDate,
-            builtTimeBegin, builtTimeEnd,studentId , pageable, progressStatus, lowBound, upperBound);
+    return new ResponseEntity<>(miningTaskService.fetchTaskList(fetch, taskName, plannedBeginDate, plannedEndDate,
+            builtTimeBegin, builtTimeEnd,studentId , pageable, progressStatus, lowBound, upperBound),HttpStatus.OK);
 }
 
     @ApiOperation("更新数据挖掘任务的信息")

@@ -136,11 +136,11 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
-    public Page<DataMiningTask> fetchTaskList(boolean fetch, String taskName,
-                                              Date plannedBeginDate, Date plannedEndDate,
-                                              Date builtTimeBegin, Date builtTimeEnd,
-                                              String studentId, Pageable pageable, TaskProgressStatus progressStatus,
-                                              Integer lowBound, Integer upperBound)
+    public Page<MiningTaskDto> fetchTaskList(boolean fetch, String taskName,
+                                             Date plannedBeginDate, Date plannedEndDate,
+                                             Date builtTimeBegin, Date builtTimeEnd,
+                                             String studentId, Pageable pageable, TaskProgressStatus progressStatus,
+                                             Integer lowBound, Integer upperBound)
     {
         List<DataMiningTask> finalResult = new LinkedList<>();
         List<DataMiningTask> taskLimit = taskJpaRepository.findByLinkedGroupsBound(lowBound,
@@ -169,7 +169,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
                 }
             });
         }
-        return new PageImpl<>(finalResult);
+        return new PageImpl<>(MiningTaskDto.build(finalResult));
     }
 
     @Override
