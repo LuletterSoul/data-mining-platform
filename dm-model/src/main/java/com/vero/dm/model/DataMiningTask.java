@@ -146,7 +146,7 @@ public class DataMiningTask
      * 每个任务可有多个阶段
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "task",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "task",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @org.hibernate.annotations.OrderBy(clause = "orderId asc")
     private Set<MiningTaskStage> stages;
 
