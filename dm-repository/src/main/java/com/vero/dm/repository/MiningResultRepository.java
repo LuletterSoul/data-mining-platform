@@ -24,4 +24,7 @@ public interface MiningResultRepository extends JpaRepository<MiningResult, Inte
 
     @Query(value = "DELETE from MiningResult mr WHERE mr.resultId in (SELECT sr.resultId from DataMiningTask t left join t.stages s left join s.results sr where t.taskId = :taskId)")
     int deleteMiningResultByTaskId(@Param("taskId") String taskId);
+
+    @Query(value = "select distinct r from MiningResult r left join r.records rrco where rrco.recordId in :recordIds")
+    List<MiningResult> findResultByRecords(@Param("recordIds") List<Integer> recordIds);
 }
