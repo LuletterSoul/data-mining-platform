@@ -20,4 +20,4 @@ gen
 .idea/artifacts
 .idea/libraries
 .idea/dataSources
-.idea/workspace.xml
+/.idea/workspace.xml
