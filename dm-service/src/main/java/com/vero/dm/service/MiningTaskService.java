@@ -9,6 +9,7 @@ import com.vero.dm.model.*;
 import com.vero.dm.model.enums.StatusObject;
 import com.vero.dm.model.enums.TaskProgressStatus;
 import com.vero.dm.repository.dto.DataMiningGroupDto;
+import com.vero.dm.repository.dto.TaskStatistics;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -28,6 +29,8 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
     List<DataMiningTask> findByTaskIds(List<String> taskIds);
 
     List<String> findAllTaskNames();
+
+    TaskStatistics findStatistics(String taskId);
 
     DataMiningTask saveOrUpdateMiningTask(MiningTaskDto miningTaskDto);
 

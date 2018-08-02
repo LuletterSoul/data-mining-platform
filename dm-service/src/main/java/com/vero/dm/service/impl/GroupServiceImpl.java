@@ -261,6 +261,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setGroupLeader(null);
         group.setGroupMembers(null);
         group.setStudentBuilder(null);
+        group.getDataMiningTask().setProgressStatus(TaskProgressStatus.toBeAssigned);
+        taskJpaRepository.save(group.getDataMiningTask());
         group.setDataMiningTask(null);
         groupJpaRepository.save(group);
     }

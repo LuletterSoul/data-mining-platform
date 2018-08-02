@@ -1,6 +1,7 @@
 package com.vero.dm.service.impl;
 
 
+import static com.vero.dm.repository.specifications.ResultSpecifications.resultsSpec;
 import static com.vero.dm.repository.specifications.TaskSpecifications.tasksSpec;
 
 import java.util.*;
@@ -13,10 +14,13 @@ import org.springframework.stereotype.Service;
 
 import com.vero.dm.model.*;
 import com.vero.dm.model.enums.MiningTaskStatus;
+import com.vero.dm.model.enums.ResultState;
 import com.vero.dm.model.enums.StatusObject;
 import com.vero.dm.model.enums.TaskProgressStatus;
 import com.vero.dm.repository.dto.DataMiningGroupDto;
 import com.vero.dm.repository.dto.MiningTaskDto;
+import com.vero.dm.repository.dto.StudentDto;
+import com.vero.dm.repository.dto.TaskStatistics;
 import com.vero.dm.service.MiningTaskService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +60,51 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
+    public TaskStatistics findStatistics(String taskId)
+    {
+        DataMiningTask task = taskJpaRepository.findOne(taskId);
+        Set<MiningTaskStage> stages = task.getStages();
+        Iterator it = stages.iterator();
+        Map<Integer, Integer> submittedStatistics = new LinkedHashMap<>();
+        Map<Integer, Integer> noSubmittedStatistics = new LinkedHashMap<>();
+        Map<Integer, Integer> downloadedStatistics = new LinkedHashMap<>();
+        Map<Integer, Integer[]> stageToGroupSubmitted = new LinkedHashMap<>();
+        Map<ResultState, List<Integer>> stateToGroup = new LinkedHashMap<>();
+        for (int i = 0; i < ResultState.values().length; i++) {
+            stateToGroup.put(ResultState.values()[i], new ArrayList<>());
+        }
+        List<StudentDto> absentStudents;
+        while (it.hasNext())
+        {
+            MiningTaskStage stage = (MiningTaskStage)it.next();
+            List<MiningResult> submittedResults = miningResultRepository.findAll(
+                resultsSpec(taskId, stage.getStageId(), null, ResultState.submitted));
+            stateToGroup.get(ResultState.submitted).add(submittedResults.size());
+            submittedStatistics.put(stage.getStageId(), submittedResults.size());
+
+
+            List<MiningResult> noSubmittedResults = miningResultRepository.findAll(
+                resultsSpec(taskId, stage.getStageId(), null, ResultState.noResult));
+            stateToGroup.get(ResultState.noResult).add(noSubmittedResults.size());
+            noSubmittedStatistics.put(stage.getStageId(), noSubmittedResults.size());
+
+
+            List<MiningResult> downloadedResults = miningResultRepository.findAll(
+                resultsSpec(taskId, stage.getStageId(), null, ResultState.downloaded));
+            stateToGroup.get(ResultState.downloaded).add(downloadedResults.size());
+            downloadedStatistics.put(stage.getStageId(), downloadedResults.size());
+
+            Integer[] sizes = new Integer[]{submittedResults.size(), noSubmittedResults.size(), downloadedResults.size()};
+            stageToGroupSubmitted.put(stage.getStageId(), sizes);
+        }
+        List<Student> students = taskJpaRepository.findSpecializedStateStudents(taskId, ResultState.noResult);
+        Set<Student> uniqueStus = new HashSet<>(students);
+        absentStudents = StudentDto.build(new ArrayList<>(uniqueStus));
+        return new TaskStatistics(submittedStatistics, noSubmittedStatistics, downloadedStatistics,
+                absentStudents, stageToGroupSubmitted,stateToGroup);
+    }
+
+    @Override
     public DataMiningTask saveOrUpdateMiningTask(MiningTaskDto miningTaskDto)
     {
         DataMiningTask task = new DataMiningTask();
@@ -66,7 +115,8 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
             miningTaskDto.getCollectionIds());
         List<Algorithm> algorithms = this.algorithmJpaRepository.findAll(
             miningTaskDto.getAlgorithmIds());
-        List<MiningGrammar> grammars = this.miningGrammarRepository.findAll(miningTaskDto.getGrammarIds());
+        List<MiningGrammar> grammars = this.miningGrammarRepository.findAll(
+            miningTaskDto.getGrammarIds());
         groups.forEach(g -> {
             // 更新当前任务状态
             g.setDataMiningTask(task);
@@ -136,10 +186,10 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
-    public Page<MiningTaskDto> fetchTaskList(boolean fetch, String taskName,
-                                             Date plannedBeginDate, Date plannedEndDate,
-                                             Date builtTimeBegin, Date builtTimeEnd,
-                                             String studentId, Pageable pageable, TaskProgressStatus progressStatus,
+    public Page<MiningTaskDto> fetchTaskList(boolean fetch, String taskName, Date plannedBeginDate,
+                                             Date plannedEndDate, Date builtTimeBegin,
+                                             Date builtTimeEnd, String studentId,
+                                             Pageable pageable, TaskProgressStatus progressStatus,
                                              Integer lowBound, Integer upperBound)
     {
         List<DataMiningTask> finalResult = new LinkedList<>();
@@ -147,8 +197,9 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
             upperBound);
         if (fetch)
         {
-            List<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName,
-                plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, progressStatus,studentId ));
+            List<DataMiningTask> tasks = taskJpaRepository.findAll(
+                tasksSpec(taskName, plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd,
+                    progressStatus, studentId));
             taskLimit.forEach(c -> {
                 if (tasks.contains(c))
                 {
@@ -158,8 +209,9 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         }
         else
         {
-            Page<DataMiningTask> tasks = taskJpaRepository.findAll(tasksSpec(taskName,
-                plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd, progressStatus,studentId),
+            Page<DataMiningTask> tasks = taskJpaRepository.findAll(
+                tasksSpec(taskName, plannedBeginDate, plannedEndDate, builtTimeBegin, builtTimeEnd,
+                    progressStatus, studentId),
                 pageable);
             List<DataMiningTask> content = tasks.getContent();
             content.forEach(c -> {
@@ -178,8 +230,9 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
         // return miningTaskDao.fetchInvolvedGroups(taskId);
         Map<String, List<DataMiningGroupDto>> groups = new HashMap<>();
         List<DataMiningTask> tasks = taskJpaRepository.findAll(taskIds);
-        tasks.forEach(t->{
-            List<DataMiningGroup> miningGroups  =  groupJpaRepository.findByDataMiningTaskId(t.getTaskId());
+        tasks.forEach(t -> {
+            List<DataMiningGroup> miningGroups = groupJpaRepository.findByDataMiningTaskId(
+                t.getTaskId());
             miningGroups.forEach(m -> m.getGroupMembers().size());
             groups.put(t.getTaskId(), DataMiningGroupDto.build(miningGroups));
         });
