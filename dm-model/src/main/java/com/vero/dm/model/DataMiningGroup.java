@@ -84,7 +84,7 @@ public class DataMiningGroup
     /**
      * 每个分组只能持有一个发掘任务
      */
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "taskId", foreignKey = @ForeignKey(name = "TASK_FOREIGN_KEY"))
     private DataMiningTask dataMiningTask;
 

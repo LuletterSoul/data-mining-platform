@@ -113,7 +113,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
     {
         group.setTaskStatus(MiningTaskStatus.map.get(groupDto.getTaskStatus()));
         DataMiningTask pre = group.getDataMiningTask();
-        if (!Objects.isNull(pre)) {
+        if (!Objects.isNull(pre))
+        {
             pre.setProgressStatus(TaskProgressStatus.toBeAssigned);
             taskJpaRepository.save(pre);
         }
@@ -205,10 +206,10 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         groups.forEach(g -> {
             DataMiningTask t = taskJpaRepository.findOne(g.getDataMiningTask().getTaskId());
             t.setProgressStatus(TaskProgressStatus.assigned);
-            buildMiningResultRecord(t.getTaskId());
             taskJpaRepository.save(t);
         });
-        groupJpaRepository.save(groups);
+        List<DataMiningGroup> createdGroups = groupJpaRepository.save(groups);
+        createdGroups.forEach(g -> buildMiningResultRecord(g.getDataMiningTask().getTaskId(), g.getGroupId()));
         cacheGroups.remove(queryKey);
         return DataMiningGroupDto.build(groups);
     }
@@ -269,7 +270,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         group.setGroupLeader(null);
         group.setGroupMembers(null);
         group.setStudentBuilder(null);
-        if (!Objects.isNull(group.getDataMiningTask())) {
+        if (!Objects.isNull(group.getDataMiningTask()))
+        {
             group.getDataMiningTask().setProgressStatus(TaskProgressStatus.toBeAssigned);
             taskJpaRepository.save(group.getDataMiningTask());
         }
@@ -278,12 +280,15 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         groupJpaRepository.save(group);
     }
 
-    public int clearResult(DataMiningGroup group) {
-        if (Objects.isNull(group.getGroupMembers())) {
+    public int clearResult(DataMiningGroup group)
+    {
+        if (Objects.isNull(group.getGroupMembers()))
+        {
             return 0;
         }
-        List<String> memberIds = group.getGroupMembers().stream().map(User::getUserId).collect(Collectors.toList());
-        //清除之前分组的挖掘记录8
+        List<String> memberIds = group.getGroupMembers().stream().map(User::getUserId).collect(
+            Collectors.toList());
+        // 清除之前分组的挖掘记录8
         return miningResultRepository.deleteMiningResultByMembers(memberIds);
     }
 
@@ -373,41 +378,28 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
         // 清除之前分组的挖掘记录
         int deleteResults = clearResult(group);
         log.info("删除[{}]先前的{}条结果记录.", group.getGroupName(), deleteResults);
-        buildMiningResultRecord(task.getTaskId());
+        buildMiningResultRecord(task.getTaskId(), groupId);
         return task;
     }
 
-    public void buildMiningResultRecord(String taskId)
+    public void buildMiningResultRecord(String taskId, String groupId)
     {
         DataMiningTask task = taskJpaRepository.findOne(taskId);
         Set<MiningTaskStage> stages = task.getStages();
-        Set<DataMiningGroup> groups = task.getGroups();
         List<MiningResult> results = new ArrayList<>();
-        // int oldNum = miningResultRepository.deleteMiningResultByTaskId(task.getTaskId());
-        // stages.forEach(s-> groups.forEach(g->{
-        //
-        // members.forEach( m -> {
-        // MiningResult result = new MiningResult();
-        // result.setStage(s);
-        // result.setSubmitter(m);
-        // miningResultRepository.save(result);
-        // });
-        // }));
+        DataMiningGroup g = groupJpaRepository.findOne(groupId);
         for (MiningTaskStage stage : stages)
         {
             // 给每个组员、每个阶段分配一个挖掘结果记录
-            for (DataMiningGroup group : groups)
+            Set<Student> members = g.getGroupMembers();
+            for (Student member : members)
             {
-                Set<Student> members = group.getGroupMembers();
-                for (Student member : members)
-                {
-                    MiningResult result = new MiningResult();
-                    result.setStage(stage);
-                    result.setSubmitter(member);
-                    // miningResultRepository.save(result);
-                    results.add(result);
-                    result.setState(ResultState.noResult);
-                }
+                MiningResult result = new MiningResult();
+                result.setStage(stage);
+                result.setSubmitter(member);
+                // miningResultRepository.save(result);
+                results.add(result);
+                result.setState(ResultState.noResult);
             }
         }
         miningResultRepository.save(results);
