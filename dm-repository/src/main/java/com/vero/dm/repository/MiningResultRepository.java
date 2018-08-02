@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.vero.dm.model.MiningResult;
+
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -27,4 +30,13 @@ public interface MiningResultRepository extends JpaRepository<MiningResult, Inte
 
     @Query(value = "select distinct r from MiningResult r left join r.records rrco where rrco.recordId in :recordIds")
     List<MiningResult> findResultByRecords(@Param("recordIds") List<Integer> recordIds);
+
+    /**
+     * 删除对应学生的记录
+     * @param memberIds
+     * @return
+     */
+    @Modifying
+    @Query(value = "DELETE from MiningResult mr where mr.submitter.userId in :memberIds")
+    int deleteMiningResultByMembers(@Param("memberIds") List<String> memberIds);
 }

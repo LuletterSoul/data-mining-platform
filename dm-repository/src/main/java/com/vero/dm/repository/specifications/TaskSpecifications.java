@@ -74,42 +74,42 @@ public class TaskSpecifications
         };
     }
 
-    public static Specification<ResultRecord> recordsSpec(String taskId,
-                                                          List<String> submitterIds,
-                                                          ResultState state, boolean all,
-                                                          Integer stageId, boolean newest)
-    {
-        return (root, query, cb) -> {
-            List<Predicate> totalPredicates = new ArrayList<>();
-            Join<ResultRecord, MiningResult> resultRecordJoin = root.join(
-                    ResultRecord_.RESULT, JoinType.LEFT);
-            Join<MiningResult,MiningTaskStage> stageResultJoin = resultRecordJoin.join(
-                    MiningResult_.STAGE, JoinType.LEFT);
-            Join<MiningTaskStage, DataMiningTask> taskStageJoin =stageResultJoin.join(MiningTaskStage_.TASK);
-            totalPredicates.add(cb.equal(taskStageJoin.get(DataMiningTask_.TASK_ID), taskId));
-            if (all)
-            {
-                return select(query, cb, totalPredicates);
-            }
-            if (!Objects.isNull(submitterIds) && !submitterIds.isEmpty())
-            {
-                Predicate p1 = stageResultJoin.get(MiningResult_.SUBMITTER).get(
-                    Student_.USER_ID).in(submitterIds);
-                totalPredicates.add(p1);
-            }
-            if (!Objects.isNull(state))
-            {
-                Predicate p2 = cb.equal(stageResultJoin.get(MiningResult_.STATE), state);
-                totalPredicates.add(p2);
-            }
-            if (!Objects.isNull(stageId))
-            {
-                Predicate p3 = cb.equal(stageResultJoin.get(MiningTaskStage_.STAGE_ID), stageId);
-                totalPredicates.add(p3);
-            }
-            return select(query, cb, totalPredicates);
-        };
-    }
+//    public static Specification<ResultRecord> recordsSpec(String taskId,
+//                                                          List<String> submitterIds,
+//                                                          ResultState state, boolean all,
+//                                                          Integer stageId, boolean newest)
+//    {
+//        return (root, query, cb) -> {
+//            List<Predicate> totalPredicates = new ArrayList<>();
+//            Join<ResultRecord, MiningResult> resultRecordJoin = root.join(
+//                    ResultRecord_.RESULT, JoinType.LEFT);
+//            Join<MiningResult,MiningTaskStage> stageResultJoin = resultRecordJoin.join(
+//                    MiningResult_.STAGE, JoinType.LEFT);
+//            Join<MiningTaskStage, DataMiningTask> taskStageJoin =stageResultJoin.join(MiningTaskStage_.TASK);
+//            totalPredicates.add(cb.equal(taskStageJoin.get(DataMiningTask_.TASK_ID), taskId));
+//            if (all)
+//            {
+//                return select(query, cb, totalPredicates);
+//            }
+//            if (!Objects.isNull(submitterIds) && !submitterIds.isEmpty())
+//            {
+//                Predicate p1 = stageResultJoin.get(MiningResult_.SUBMITTER).get(
+//                    Student_.USER_ID).in(submitterIds);
+//                totalPredicates.add(p1);
+//            }
+//            if (!Objects.isNull(state))
+//            {
+//                Predicate p2 = cb.equal(stageResultJoin.get(MiningResult_.STATE), state);
+//                totalPredicates.add(p2);
+//            }
+//            if (!Objects.isNull(stageId))
+//            {
+//                Predicate p3 = cb.equal(stageResultJoin.get(MiningTaskStage_.STAGE_ID), stageId);
+//                totalPredicates.add(p3);
+//            }
+//            return select(query, cb, totalPredicates);
+//        };
+//    }
 
     private static Predicate select(CriteriaQuery<?> query, CriteriaBuilder cb,
                                     List<Predicate> totalPredicates)
