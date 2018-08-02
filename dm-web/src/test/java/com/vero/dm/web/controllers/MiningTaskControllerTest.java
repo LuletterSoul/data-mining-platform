@@ -154,22 +154,23 @@ public class MiningTaskControllerTest extends ConfigurationWirer
             MiningResultDto.class);
         JSONObject jsonObject = new JSONObject(resultStr);
         // 获取分页之后的内容
-        List<MiningResultDto> results = objectMapper.readValue(jsonObject.get("content").toString(),
-            javaType);
+        List<MiningResultDto> results = objectMapper.readValue(
+            jsonObject.get("content").toString(), javaType);
         // 每个学生必定有一条记录,三个阶段都有一个发掘结果
         Assert.assertEquals(3, results.size());
         List<String> ids = results.stream().map(MiningResultDto::getSubmitterId).collect(
             Collectors.toList());
         Assert.assertTrue(ids.contains(students.get(0).getStudentId()));
         // studentService.deleteBatchByStudentIds(studentIds);
-        //groupService.deleteMiningGroupById(group.getGroupId());
+        // groupService.deleteMiningGroupById(group.getGroupId());
 
         List<String> prePaths = new ArrayList<>();
-        for(int i = 1;i<=3;i++){
+        for (int i = 1; i <= 3; i++ )
+        {
             String testFileName1 = "test" + i + ".txt";
             String testFileName2 = "test" + (i + 1) + ".txt";
             Integer resultId = results.get(i - 1).getResultId();
-            //每个阶段上传一条记录
+            // 每个阶段上传一条记录
             String recordStr1 = uploadResult(testFileName1, resultId);
             String recordStr2 = uploadResult(testFileName2, resultId);
             ResultRecord resStr1 = objectMapper.readValue(recordStr1, ResultRecord.class);
@@ -178,22 +179,28 @@ public class MiningTaskControllerTest extends ConfigurationWirer
             prePaths.add(resStr2.getPath());
         }
 
-        String recordsReq = ApiVersion.API_VERSION + ResourcePath.TASK_PATH +"/"+ createdTask.getTaskId() + "/result_records";
+        String recordsReq = ApiVersion.API_VERSION + ResourcePath.TASK_PATH + "/"
+                            + createdTask.getTaskId() + "/result_records";
 
-        String recordStr =   mockMvc.perform(
-                get(recordsReq).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterIds",students.get(0).getUserId())).andDo(
-                print()).andExpect(status().isOk()).andExpect(
-                jsonPath(
-                        "$.content").exists()).andReturn().getResponse().getContentAsString();
-        JavaType resultRecordType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class,
-                ResultRecord.class);
-        List<ResultRecord> records = objectMapper.readValue(new JSONObject(recordStr).get("content").toString(), resultRecordType);
+        String recordStr = mockMvc.perform(
+            get(recordsReq).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterIds",
+                students.get(0).getUserId()).param("newest", "false")).andDo(print()).andExpect(
+                    status().isOk()).andExpect(
+                        jsonPath(
+                            "$.content").exists()).andReturn().getResponse().getContentAsString();
+        JavaType resultRecordType = objectMapper.getTypeFactory().constructParametricType(
+            ArrayList.class, ResultRecord.class);
+        List<ResultRecord> records = objectMapper.readValue(
+            new JSONObject(recordStr).get("content").toString(), resultRecordType);
         Assert.assertEquals(6, records.size());
-        List<String> paths = records.stream().map(ResultRecord::getPath).collect(Collectors.toList());
+        List<String> paths = records.stream().map(ResultRecord::getPath).collect(
+            Collectors.toList());
         Assert.assertTrue(paths.containsAll(prePaths));
     }
 
-    private String uploadResult(String testFileName, Integer resultId) throws Exception {
+    private String uploadResult(String testFileName, Integer resultId)
+        throws Exception
+    {
         URL f1 = Thread.currentThread().getContextClassLoader().getResource(testFileName);
         File testFile = new File(Objects.requireNonNull(f1).getFile());
         MockMultipartFile firstFile = new MockMultipartFile("resultFile", testFile.getName(),
