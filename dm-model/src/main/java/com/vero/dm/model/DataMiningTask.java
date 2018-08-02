@@ -106,7 +106,7 @@ public class DataMiningTask
      * 每个任务可被分给多个分组，内容相似
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "dataMiningTask",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dataMiningTask",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<DataMiningGroup> groups;
 
 
