@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.repository.dto.TaskStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -59,6 +60,14 @@ public class MiningTaskController
     {
         return new ResponseEntity<>(miningTaskService.findById(taskId), HttpStatus.OK);
     }
+
+    @ApiOperation("根据ID获取数据挖掘任务的一些统计数据，如已交、未交、欠交的人数与学生")
+    @GetMapping(value = "/{taskId}/statistics")
+    public ResponseEntity<TaskStatistics> getStatistics(@PathVariable("taskId") String taskId)
+    {
+        return new ResponseEntity<>(miningTaskService.findStatistics(taskId), HttpStatus.OK);
+    }
+
 
     @ApiOperation("根据ID删除一个数据挖掘任务")
     @DeleteMapping(value = "/{taskId}")

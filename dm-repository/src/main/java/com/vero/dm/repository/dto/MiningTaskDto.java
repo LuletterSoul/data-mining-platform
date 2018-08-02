@@ -6,6 +6,7 @@ import java.util.*;
 import com.vero.dm.model.*;
 
 import com.vero.dm.model.enums.TaskProgressStatus;
+import io.swagger.models.auth.In;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -80,6 +81,7 @@ public class MiningTaskDto
      * 一个任务可以有多个阶段
      */
     private Set<MiningTaskStage> stages = new HashSet<>();
+
 
     /**
      * 计划开始时间

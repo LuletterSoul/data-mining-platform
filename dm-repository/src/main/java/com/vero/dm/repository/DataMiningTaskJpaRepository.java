@@ -1,15 +1,16 @@
 package com.vero.dm.repository;
 
 
-import com.vero.dm.model.DataMiningGroup;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-import com.vero.dm.model.DataMiningTask;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.vero.dm.model.DataMiningTask;
+import com.vero.dm.model.Student;
+import com.vero.dm.model.enums.ResultState;
 
 
 /**
@@ -18,8 +19,7 @@ import java.util.List;
  * @since data-mining-platform
  */
 
-public interface DataMiningTaskJpaRepository extends JpaRepository<DataMiningTask, String>
-                                                    ,JpaSpecificationExecutor<DataMiningTask>
+public interface DataMiningTaskJpaRepository extends JpaRepository<DataMiningTask, String>, JpaSpecificationExecutor<DataMiningTask>
 {
 
     @Query(value = "SELECT max(t.groups.size) from DataMiningTask t")
@@ -32,7 +32,13 @@ public interface DataMiningTaskJpaRepository extends JpaRepository<DataMiningTas
     List<String> findAllTaskNames();
 
     @Query(value = "SELECT t from DataMiningTask t where t.groups.size  >=:lowBound and t.groups.size <=:upperBound")
-    List<DataMiningTask> findByLinkedGroupsBound(@Param("lowBound") Integer lowBound,@Param("upperBound")  Integer upperBound);
+    List<DataMiningTask> findByLinkedGroupsBound(@Param("lowBound") Integer lowBound,
+                                                 @Param("upperBound") Integer upperBound);
 
-
+    /**
+     * 获取特定状态的学生
+     */
+    @Query(value = "SELECT tsre.submitter from DataMiningTask t left join t.stages ts left join ts.results tsre where t.taskId = :taskId and tsre.state = :state")
+    List<Student> findSpecializedStateStudents(@Param("taskId") String taskId,
+                                               @Param("state") ResultState state);
 }

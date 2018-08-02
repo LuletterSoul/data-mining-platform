@@ -44,7 +44,7 @@ public class ResultSpecifications
                     stJoin.get(DataMiningTask_.TASK_ID), taskId);
                 totalPredicates.add(p);
             }
-            if (!StringUtils.isEmpty(submitterIds))
+            if (!Objects.isNull(submitterIds)&&!StringUtils.isEmpty(submitterIds))
             {
                 Predicate p = root.get(MiningResult_.SUBMITTER).get(Student_.USER_ID).in(submitterIds);
                 totalPredicates.add(p);
