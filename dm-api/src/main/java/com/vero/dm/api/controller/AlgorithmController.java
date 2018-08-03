@@ -26,7 +26,6 @@ import io.swagger.annotations.ApiOperation;
                         + ResourcePath.ALGORITHM_PATH, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AlgorithmController
 {
-
     private AlgorithmService algorithmService;
 
     @Autowired

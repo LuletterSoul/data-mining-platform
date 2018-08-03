@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "本文档说明了每个接口返回、接收的字段信息。并且制定相应的规范作为前后端交流的渠道。",
+    "description": "本文档说明了每个接口的输入参数，及其输出的JSON数据形式。此文档是前后端分离模式开发的标准，要求前端发送符合输入参数的HTTP请求，让每个请求携带着符合服务器要求的用户授权信息，经服务器授权通过后返回JSON数据流。每个数据的返回格式基本是基于后台的数据库Entity序列化过来的，但也有一部分数据是基于过滤、组合、拆分、优化、统计得到的DTO序列化过来的。比如学生、教师用户的信息包含密码等敏感信息，后端用StudentDTO过滤了一部分敏感字段。一个实践任务会统计其所属的分组学生上交数据挖掘结果MiningResult的情况，后端的业务逻辑将其组织成TaskStatistics封装成api返回。一些实体由于关联复杂，且后台的全自动化ORM工具Hibernate的延迟加载(Lazy Loading)会导致一些异常，系统可能无法将一个实体及其关联实体完全序列化成JSON。一些前台的请求也并不是想要获取到该实体全部的字段信息(而是其中的一部分)，所以为了兼顾性能、稳定、粒度，系统有时候将数据关联拆分成更多的RESTful APIs。如实践任务DataMiningTask跟其他实体如分组、数据集、任务阶段、挖掘结果等Entities关联,含有的信息字段比较多，一般拆分成多个APIs获取其关联的对象。具体的形式风格式遵循RESTful语义的，获取一个实践任务的关联分组,API的URL表现为'/tasks/{taskId}/groups',其中taskId为逻辑主键的值，也就是任务的标识。类似的,获取一个实践任务的任务阶段为'/tasks/{taskId}/stages'。也就是说，这些API遵守RESTful的语义，且大多遵循页面逻辑。因为用户一般从一个概览的页面跳转到一个具体一点的页面，或者从具体的页面跳转到详情的页面，伴随着这些页面逻辑，前端可以通过REST的请求在上面一个一个页面得到了一级一级的实体信息。即前端需要获取一个实体Entity关联的下一个实体时，一般先获取到其ID，用API级联查询的方式一层一层地深入下去。举个简单的业务场景,教师管理员登录系统后，点开了任务管理模块的概览界面，这时候需要(分页)查询出任务列表，当然是通过GET动词的'/tasks'获取到数据。数据形式是这样的,[{taskId:...;taskName:...;...},{taskId:...};taskName:...;...]。显然，前端已经得到了tasks的taskIds了。这时，用户又想看看这个实践任务下的详细信息。点击了前端页面的'详情'按钮进入了详情页，前端自然需要更多的信息填充这个页面了。如任务关联的分组、任务阶段，前端需要发起'/tasks/{taskId}/groups','/tasks/{taskId}/stages'获取数据。然而，用户还想知道这个任务关联分组的组员有谁，自然需要刚刚得到的新鲜滚热辣的groupId去访问'/groups/{groupId}/members',还可以访问'/groups/{groupId}'得到这个任务关联分组的基本信息。一般情况系统提供了常用的级联查询，也就是系统几乎为每一个Entity都设计了一个Controller暴露API，以便上述的查询语义可以持续生效。但有一些情况，级联查询的次数太多，请求的开销大而繁复，后端应当根据需求开发出可以快速响应的接口，达到一次性获取到特定数据的目的假如前端要请求到特定任务，一个学生的所有未交的、新提交、已下载的数据挖掘记录，以便一次下下载全部内容该怎么办?自然，后端需要设计一个形如'/tasks/{taskId}/result_records'的接口返回数据。注意，我们对API设计时，'/'后面的实体并不死死的遵守需要与前面的task进行直接关联的语义，它有可能是间接的，往下跨越几层关联的。这里的result_records是某种意义上抽象出来的资源resources,因为它并不直接跟task关联，而是间接的关联。ResultRecord的父亲(直接关联者)是MiningResult(因为一个结果可以被多次提交，产出多条记录),MiningResult的父亲则是MiningStage,MiningStage的父亲才是DataMiningTask。这样，还需要遵循上面提及的级联查询的话，我们的逻辑是这样的'task--->stage--->result--->record'。途经的API依次是'/tasks'------>'/tasks/{taskId}/stages'----->'/stages/{stageId}/results'(这个API可能还得用几次，因为任务对阶段是一对多关系)--->'/results/{resultId}/result_records'。而且伴随的一对多的关系的叠加，查询的次数是以乘法计算的，显然这样的设计效果会带来粒度划分过细的问题，无法让前端访问到直接、有效的数据。'/tasks/{taskId}/result_records'类型的API就是为了解决跨越式查询而诞生的。总而言之，在RESTful API万物皆资源的体系框架下，后端的实体也被抽象为资源，只是资源可能是单一的，也可以是被组合优化过的，也可能是跨越了多个资源联结统计出来的，对前端暴露出来的无非就是一个一个名词。前端通过动词的HTTP方法，得到名词化的JSON资源，仅此而已",
     "version": "2.0",
-    "title": "易授微服务RESTful APIs说明文档",
+    "title": "数据挖掘实践教学平台RESTful APIs说明文档",
     "contact": {
       "name": "刘祥德",
       "url": "/",
@@ -93,7 +93,7 @@
           "algorithm-controller"
         ],
         "summary": "查找所有算法名称",
-        "operationId": "getUsingGET_6",
+        "operationId": "getUsingGET_36",
         "consumes": [
           "application/json"
         ],
@@ -128,7 +128,7 @@
           "data-set-container-controller"
         ],
         "summary": "根据Id删除数据集文件",
-        "operationId": "deleteUsingDELETE_5",
+        "operationId": "deleteUsingDELETE_25",
         "consumes": [
           "application/json"
         ],
@@ -184,7 +184,7 @@
           "data-set-container-controller"
         ],
         "summary": "分页查询数据集文件信息",
-        "operationId": "getUsingGET_7",
+        "operationId": "getUsingGET_37",
         "consumes": [
           "application/json"
         ],
@@ -225,7 +225,7 @@
           "data-set-container-controller"
         ],
         "summary": "导出数据集的压缩文件",
-        "operationId": "downloadZipUsingPOST_1",
+        "operationId": "downloadZipUsingPOST_6",
         "consumes": [
           "application/json;charset=UTF-8"
         ],
@@ -278,7 +278,7 @@
           "data-set-container-controller"
         ],
         "summary": "获取数据集的数据库路径",
-        "operationId": "filePathUsingGET_1",
+        "operationId": "filePathUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -319,7 +319,7 @@
           "data-set-collection-controller"
         ],
         "summary": "分页查询数据集",
-        "operationId": "getPageableUsingGET_2",
+        "operationId": "getPageableUsingGET_12",
         "consumes": [
           "application/json"
         ],
@@ -376,7 +376,7 @@
           "data-set-collection-controller"
         ],
         "summary": "创建数据集",
-        "operationId": "createUsingPOST_4",
+        "operationId": "createUsingPOST_24",
         "consumes": [
           "application/json"
         ],
@@ -420,7 +420,7 @@
           "data-set-collection-controller"
         ],
         "summary": "更新数据集",
-        "operationId": "updateUsingPUT_5",
+        "operationId": "updateUsingPUT_30",
         "consumes": [
           "application/json"
         ],
@@ -473,7 +473,7 @@
           "data-set-collection-controller"
         ],
         "summary": "批量删除数据集",
-        "operationId": "deleteBatchUsingDELETE_2",
+        "operationId": "deleteBatchUsingDELETE_12",
         "consumes": [
           "application/json"
         ],
@@ -519,7 +519,7 @@
           "data-set-collection-controller"
         ],
         "summary": "根据id获取数据集",
-        "operationId": "getByIdUsingGET_1",
+        "operationId": "getByIdUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -558,7 +558,7 @@
           "data-set-collection-controller"
         ],
         "summary": "根据id删除数据集",
-        "operationId": "deleteUsingDELETE_4",
+        "operationId": "deleteUsingDELETE_24",
         "consumes": [
           "application/json"
         ],
@@ -599,7 +599,7 @@
           "data-set-collection-controller"
         ],
         "summary": "获取所有数据集文件信息",
-        "operationId": "getContainerUsingGET_1",
+        "operationId": "getContainerUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -638,7 +638,7 @@
           "data-set-collection-controller"
         ],
         "summary": "上传数据集文件",
-        "operationId": "addContainerUsingPOST_1",
+        "operationId": "addContainerUsingPOST_6",
         "consumes": [
           "multipart/form-data"
         ],
@@ -689,7 +689,7 @@
           "excel-module-controller"
         ],
         "summary": "下载学生信息的导入模板",
-        "operationId": "downloadStudentExcelModuleUsingGET_1",
+        "operationId": "downloadStudentExcelModuleUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -722,7 +722,7 @@
           "grammar-controller"
         ],
         "summary": "获取挖掘语言名称",
-        "operationId": "getUsingGET_8",
+        "operationId": "getUsingGET_38",
         "consumes": [
           "application/json"
         ],
@@ -757,7 +757,7 @@
           "group-controller"
         ],
         "summary": "分页查询分组列表",
-        "operationId": "getPageableUsingGET_3",
+        "operationId": "getPageableUsingGET_13",
         "consumes": [
           "application/json"
         ],
@@ -868,7 +868,7 @@
           "group-controller"
         ],
         "summary": "创建一个分组",
-        "operationId": "createUsingPOST_5",
+        "operationId": "createUsingPOST_25",
         "consumes": [
           "application/json"
         ],
@@ -912,7 +912,7 @@
           "group-controller"
         ],
         "summary": "更新分组信息",
-        "operationId": "updateUsingPUT_6",
+        "operationId": "updateUsingPUT_31",
         "consumes": [
           "application/json"
         ],
@@ -956,7 +956,7 @@
           "group-controller"
         ],
         "summary": "删除分组",
-        "operationId": "deleteUsingDELETE_7",
+        "operationId": "deleteUsingDELETE_27",
         "consumes": [
           "application/json"
         ],
@@ -1005,7 +1005,7 @@
           "group-controller"
         ],
         "summary": "获取系统帮助用户分组的信息",
-        "operationId": "previewDefaultGroupingsUsingPOST_1",
+        "operationId": "previewDefaultGroupingsUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -1051,7 +1051,7 @@
           "group-controller"
         ],
         "summary": "创建系统先前分组,由用户确认",
-        "operationId": "createSystemDefaultGroupsUsingPOST_1",
+        "operationId": "createSystemDefaultGroupsUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -1098,7 +1098,7 @@
           "group-controller"
         ],
         "summary": "获取所有分组的队长信息",
-        "operationId": "leadersUsingGET_1",
+        "operationId": "leadersUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1133,7 +1133,7 @@
           "group-controller"
         ],
         "summary": "获取所有分组的名称",
-        "operationId": "groupNamesUsingGET_1",
+        "operationId": "groupNamesUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1168,7 +1168,7 @@
           "group-controller"
         ],
         "summary": "获取空闲的学生列表",
-        "operationId": "leisureStudentsUsingGET_2",
+        "operationId": "leisureStudentsUsingGET_12",
         "consumes": [
           "application/json"
         ],
@@ -1256,7 +1256,7 @@
           "group-controller"
         ],
         "summary": "get",
-        "operationId": "getUsingGET_9",
+        "operationId": "getUsingGET_39",
         "consumes": [
           "application/json"
         ],
@@ -1295,7 +1295,7 @@
           "group-controller"
         ],
         "summary": "删除一个分组",
-        "operationId": "deleteUsingDELETE_6",
+        "operationId": "deleteUsingDELETE_26",
         "consumes": [
           "application/json"
         ],
@@ -1336,7 +1336,7 @@
           "group-controller"
         ],
         "summary": "更新团队的组长",
-        "operationId": "updateLeaderUsingPUT_1",
+        "operationId": "updateLeaderUsingPUT_6",
         "consumes": [
           "application/json"
         ],
@@ -1389,7 +1389,7 @@
           "group-controller"
         ],
         "summary": "获取分组成员",
-        "operationId": "getGroupMembersUsingGET_1",
+        "operationId": "getGroupMembersUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1431,7 +1431,7 @@
           "group-controller"
         ],
         "summary": "更新分组成员(包括增加、删除)",
-        "operationId": "configureMembersUsingPUT_1",
+        "operationId": "configureMembersUsingPUT_6",
         "consumes": [
           "application/json"
         ],
@@ -1496,7 +1496,7 @@
           "mining-task-type-controller"
         ],
         "summary": "getOptionnalMiningTaskTypes",
-        "operationId": "getOptionnalMiningTaskTypesUsingGET_1",
+        "operationId": "getOptionnalMiningTaskTypesUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1531,7 +1531,7 @@
           "multiple-options-controller"
         ],
         "summary": "getDataSetOptions",
-        "operationId": "getDataSetOptionsUsingGET_1",
+        "operationId": "getDataSetOptionsUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1569,7 +1569,7 @@
           "multiple-options-controller"
         ],
         "summary": "getGroupStatuses",
-        "operationId": "getGroupStatusesUsingGET_1",
+        "operationId": "getGroupStatusesUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1604,7 +1604,7 @@
           "multiple-options-controller"
         ],
         "summary": "getStudentOptions",
-        "operationId": "getStudentOptionsUsingGET_1",
+        "operationId": "getStudentOptionsUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1642,7 +1642,7 @@
           "multiple-options-controller"
         ],
         "summary": "getTaskStatuses",
-        "operationId": "getTaskStatusesUsingGET_1",
+        "operationId": "getTaskStatusesUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1671,18 +1671,189 @@
         }
       }
     },
-    "/api/v1/results/{resultId}": {
+    "/api/v1/results": {
+      "get": {
+        "tags": [
+          "mining-result-controller"
+        ],
+        "summary": "获取数据挖掘结果",
+        "operationId": "getResultsUsingGET_12",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "query",
+            "description": "任务Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stageId",
+            "in": "query",
+            "description": "阶段标识",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "记录状态",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "抓取全部",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "submitterIds",
+            "in": "query",
+            "description": "提交者的用户ID",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«MiningResultDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mining-result-controller"
+        ],
+        "summary": "创建数据挖掘结果",
+        "operationId": "createResultUsingPOST_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "result",
+            "description": "result",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MiningResult"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MiningResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/results/records": {
+      "post": {
+        "tags": [
+          "mining-result-controller"
+        ],
+        "summary": "下载数据挖掘结果",
+        "operationId": "downloadResultUsingPOST_6",
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recordIds",
+            "description": "recordIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/results/{resultId}/records": {
       "post": {
         "tags": [
           "mining-result-controller"
         ],
         "summary": "上传数据挖掘结果",
-        "operationId": "uploadResultUsingPOST_1",
+        "operationId": "uploadResultUsingPOST_6",
         "consumes": [
           "multipart/form-data"
         ],
         "produces": [
-          "application/json;charset=UTF-8"
+          "*/*"
         ],
         "parameters": [
           {
@@ -1723,18 +1894,64 @@
         }
       }
     },
+    "/api/v1/stages": {
+      "post": {
+        "tags": [
+          "stage-controller"
+        ],
+        "summary": "创建一个任务阶段",
+        "operationId": "createStageUsingPOST_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "stage",
+            "description": "stage",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MiningTaskStage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MiningTaskStage"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/v1/stages/{stageId}/results": {
       "get": {
         "tags": [
           "stage-controller"
         ],
         "summary": "获取一个任务阶段的数据挖掘结果",
-        "operationId": "getResultsUsingGET_1",
+        "operationId": "getResultsUsingGET_13",
         "consumes": [
           "application/json"
         ],
         "produces": [
-          "application/json;charset=UTF-8"
+          "*/*"
         ],
         "parameters": [
           {
@@ -1746,11 +1963,22 @@
             "format": "int32"
           },
           {
-            "name": "submitterId",
+            "name": "taskId",
+            "in": "query",
+            "description": "任务标识",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "submitterIds",
             "in": "query",
             "description": "提交者",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           },
           {
             "name": "state",
@@ -1759,9 +1987,9 @@
             "required": false,
             "type": "string",
             "enum": [
-              "noResult",
-              "submitted",
-              "downloaded"
+              "1",
+              "2",
+              "3"
             ]
           },
           {
@@ -1771,13 +1999,38 @@
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "按某属性排序",
+            "required": false,
+            "type": "ref",
+            "default": "resultId"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "排序方式",
+            "required": false,
+            "type": "string",
+            "default": "DESC"
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Page«MiningResult»"
+              "$ref": "#/definitions/Page«MiningResultDto»"
             }
           },
           "401": {
@@ -1798,7 +2051,7 @@
           "statistics-controller"
         ],
         "summary": "systemStatistics",
-        "operationId": "systemStatisticsUsingGET_1",
+        "operationId": "systemStatisticsUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1830,7 +2083,7 @@
           "student-controller"
         ],
         "summary": "分页查询学生列表",
-        "operationId": "studentsPageableUsingGET_1",
+        "operationId": "studentsPageableUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -1921,7 +2174,7 @@
           "student-controller"
         ],
         "summary": "create",
-        "operationId": "createUsingPOST_7",
+        "operationId": "createUsingPOST_27",
         "consumes": [
           "application/json"
         ],
@@ -1965,7 +2218,7 @@
           "student-controller"
         ],
         "summary": "update",
-        "operationId": "updateUsingPUT_8",
+        "operationId": "updateUsingPUT_33",
         "consumes": [
           "application/json"
         ],
@@ -2009,7 +2262,7 @@
           "student-controller"
         ],
         "summary": "根据学号删除学生",
-        "operationId": "deleteBatchUsingDELETE_3",
+        "operationId": "deleteBatchUsingDELETE_13",
         "consumes": [
           "application/json"
         ],
@@ -2058,7 +2311,7 @@
           "student-controller"
         ],
         "summary": "上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供",
-        "operationId": "importStudentsUsingPOST_1",
+        "operationId": "importStudentsUsingPOST_6",
         "consumes": [
           "multipart/form-data"
         ],
@@ -2105,7 +2358,7 @@
           "student-controller"
         ],
         "summary": "获取空闲的学生列表",
-        "operationId": "leisureStudentsUsingGET_3",
+        "operationId": "leisureStudentsUsingGET_13",
         "consumes": [
           "application/json"
         ],
@@ -2193,7 +2446,7 @@
           "student-controller"
         ],
         "summary": "markStudent",
-        "operationId": "markStudentUsingPUT_1",
+        "operationId": "markStudentUsingPUT_6",
         "consumes": [
           "application/json"
         ],
@@ -2243,7 +2496,7 @@
           "student-controller"
         ],
         "summary": "unMarkStudent",
-        "operationId": "unMarkStudentUsingPUT_1",
+        "operationId": "unMarkStudentUsingPUT_6",
         "consumes": [
           "application/json"
         ],
@@ -2293,7 +2546,7 @@
           "student-controller"
         ],
         "summary": "get",
-        "operationId": "getUsingGET_11",
+        "operationId": "getUsingGET_41",
         "consumes": [
           "application/json"
         ],
@@ -2334,7 +2587,7 @@
           "mining-task-controller"
         ],
         "summary": "分页获取任务列表",
-        "operationId": "getListUsingGET_1",
+        "operationId": "getListUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -2461,7 +2714,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Page«DataMiningTask»"
+              "$ref": "#/definitions/Page«MiningTaskDto»"
             }
           },
           "401": {
@@ -2480,7 +2733,7 @@
           "mining-task-controller"
         ],
         "summary": "创建一个数据挖掘任务",
-        "operationId": "createUsingPOST_6",
+        "operationId": "createUsingPOST_26",
         "consumes": [
           "application/json"
         ],
@@ -2524,7 +2777,7 @@
           "mining-task-controller"
         ],
         "summary": "更新数据挖掘任务的信息",
-        "operationId": "updateUsingPUT_7",
+        "operationId": "updateUsingPUT_32",
         "consumes": [
           "application/json"
         ],
@@ -2568,7 +2821,7 @@
           "mining-task-controller"
         ],
         "summary": "批量删除所有数据挖掘任务",
-        "operationId": "deleteBatchByIdsUsingDELETE_1",
+        "operationId": "deleteBatchByIdsUsingDELETE_6",
         "consumes": [
           "application/json"
         ],
@@ -2617,7 +2870,7 @@
           "mining-task-controller"
         ],
         "summary": "获取分组数最多与最少的键值对",
-        "operationId": "minAndMaxGroupNumUsingGET_1",
+        "operationId": "minAndMaxGroupNumUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -2653,7 +2906,7 @@
           "mining-task-controller"
         ],
         "summary": "获取所有任务名称",
-        "operationId": "taskNamesUsingGET_1",
+        "operationId": "taskNamesUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -2688,7 +2941,7 @@
           "mining-task-controller"
         ],
         "summary": "根据ID获取数据挖掘任务的信息",
-        "operationId": "getUsingGET_10",
+        "operationId": "getUsingGET_40",
         "consumes": [
           "application/json"
         ],
@@ -2727,7 +2980,7 @@
           "mining-task-controller"
         ],
         "summary": "根据ID删除一个数据挖掘任务",
-        "operationId": "deleteByIdUsingDELETE_1",
+        "operationId": "deleteByIdUsingDELETE_6",
         "consumes": [
           "application/json"
         ],
@@ -2768,7 +3021,7 @@
           "mining-task-controller"
         ],
         "summary": "获取该任务配置的算法",
-        "operationId": "fetchConfiguredAlgorithmsUsingGET_1",
+        "operationId": "fetchConfiguredAlgorithmsUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -2810,7 +3063,7 @@
           "mining-task-controller"
         ],
         "summary": "配置算法",
-        "operationId": "configAlgorithmsUsingPOST_1",
+        "operationId": "configAlgorithmsUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -2870,7 +3123,7 @@
           "mining-task-controller"
         ],
         "summary": "获取该任务分配的数据集",
-        "operationId": "collectionUsingGET_1",
+        "operationId": "collectionUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -2914,7 +3167,7 @@
           "mining-task-controller"
         ],
         "summary": "获取与此任务相关联的分组",
-        "operationId": "getInvolvedSetsUsingGET_1",
+        "operationId": "getInvolvedSetsUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -2956,7 +3209,7 @@
           "mining-task-controller"
         ],
         "summary": "分配数据集",
-        "operationId": "arrangeMiningSetsUsingPOST_1",
+        "operationId": "arrangeMiningSetsUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -3013,7 +3266,7 @@
           "mining-task-controller"
         ],
         "summary": "取消所有数据集与该任务的关联",
-        "operationId": "deleteAllRelContainersUsingDELETE_1",
+        "operationId": "deleteAllRelContainersUsingDELETE_6",
         "consumes": [
           "application/json"
         ],
@@ -3057,7 +3310,7 @@
           "mining-task-controller"
         ],
         "summary": "获取执行此任务分组",
-        "operationId": "groupsUsingGET_2",
+        "operationId": "groupsUsingGET_12",
         "consumes": [
           "application/json"
         ],
@@ -3102,7 +3355,7 @@
           "mining-task-controller"
         ],
         "summary": "为多个分组批量分配任务",
-        "operationId": "involveGroupsUsingPOST_1",
+        "operationId": "involveGroupsUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -3159,7 +3412,7 @@
           "mining-task-controller"
         ],
         "summary": "批量移除任务的关联分组",
-        "operationId": "removeGroupsUsingDELETE_1",
+        "operationId": "removeGroupsUsingDELETE_6",
         "consumes": [
           "application/json"
         ],
@@ -3209,13 +3462,126 @@
         }
       }
     },
+    "/api/v1/tasks/{taskId}/result_records": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "获取任务的挖掘记录",
+        "operationId": "getResultRecordUsingGET_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "stageId",
+            "in": "query",
+            "description": "指定任务阶段",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "记录状态",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          {
+            "name": "submitterIds",
+            "in": "query",
+            "description": "提交者的用户ID",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "抓取全部",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "newest",
+            "in": "query",
+            "description": "获取最新上传的结果",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "按某属性排序",
+            "required": false,
+            "type": "string",
+            "default": "taskId"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "排序方式",
+            "required": false,
+            "type": "string",
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«ResultRecord»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/v1/tasks/{taskId}/stages": {
       "get": {
         "tags": [
           "mining-task-controller"
         ],
-        "summary": "获取执行此任务分组",
-        "operationId": "groupsUsingGET_3",
+        "summary": "获取执行此任务的阶段信息",
+        "operationId": "groupsUsingGET_13",
         "consumes": [
           "application/json"
         ],
@@ -3253,13 +3619,54 @@
         }
       }
     },
+    "/api/v1/tasks/{taskId}/statistics": {
+      "get": {
+        "tags": [
+          "mining-task-controller"
+        ],
+        "summary": "根据ID获取数据挖掘任务的一些统计数据，如已交、未交、欠交的人数与学生",
+        "operationId": "getStatisticsUsingGET_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TaskStatistics"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/v1/users": {
       "post": {
         "tags": [
           "user-controller"
         ],
         "summary": "注册用户",
-        "operationId": "registerUsingPOST_1",
+        "operationId": "registerUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -3303,7 +3710,7 @@
           "user-controller"
         ],
         "summary": "update",
-        "operationId": "updateUsingPUT_9",
+        "operationId": "updateUsingPUT_34",
         "consumes": [
           "application/json"
         ],
@@ -3356,7 +3763,7 @@
           "user-controller"
         ],
         "summary": "根据用户名查询用户信息",
-        "operationId": "profileUsingGET_1",
+        "operationId": "profileUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -3404,7 +3811,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingGET_1",
+        "operationId": "uploadUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -3459,7 +3866,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingHEAD_1",
+        "operationId": "uploadUsingHEAD_6",
         "consumes": [
           "application/json"
         ],
@@ -3514,7 +3921,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingPOST_1",
+        "operationId": "uploadUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -3572,7 +3979,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingPUT_1",
+        "operationId": "uploadUsingPUT_6",
         "consumes": [
           "application/json"
         ],
@@ -3630,7 +4037,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingDELETE_1",
+        "operationId": "uploadUsingDELETE_6",
         "consumes": [
           "application/json"
         ],
@@ -3685,7 +4092,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingOPTIONS_1",
+        "operationId": "uploadUsingOPTIONS_6",
         "consumes": [
           "application/json"
         ],
@@ -3740,7 +4147,7 @@
           "break-point-upload-controller"
         ],
         "summary": "upload",
-        "operationId": "uploadUsingPATCH_1",
+        "operationId": "uploadUsingPATCH_6",
         "consumes": [
           "application/json"
         ],
@@ -3797,7 +4204,7 @@
           "file-upload-controller"
         ],
         "summary": "getProgressRecord",
-        "operationId": "getProgressRecordUsingGET_1",
+        "operationId": "getProgressRecordUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -3838,7 +4245,7 @@
           "login-controller"
         ],
         "summary": "login",
-        "operationId": "loginUsingPOST_1",
+        "operationId": "loginUsingPOST_6",
         "consumes": [
           "application/json"
         ],
@@ -3870,7 +4277,7 @@
           "credentials-controller"
         ],
         "summary": "根据用户名获取公盐",
-        "operationId": "publicSaltUsingGET_1",
+        "operationId": "publicSaltUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -3911,7 +4318,7 @@
           "credentials-controller"
         ],
         "summary": "删除所有Token信息(用于微服务注销)",
-        "operationId": "deleteTokenUsingDELETE_1",
+        "operationId": "deleteTokenUsingDELETE_6",
         "consumes": [
           "application/json"
         ],
@@ -3952,7 +4359,7 @@
           "credentials-controller"
         ],
         "summary": "申请访问令牌",
-        "operationId": "getExpiredTokenUsingGET_1",
+        "operationId": "getExpiredTokenUsingGET_6",
         "consumes": [
           "application/json"
         ],
@@ -4325,12 +4732,6 @@
             "8"
           ]
         },
-        "stages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MiningTaskStage"
-          }
-        },
         "taskDescription": {
           "type": "string"
         },
@@ -4605,9 +5006,9 @@
         "state": {
           "type": "string",
           "enum": [
-            "noResult",
-            "submitted",
-            "downloaded"
+            "1",
+            "2",
+            "3"
           ]
         },
         "submitter": {
@@ -4615,14 +5016,77 @@
         }
       }
     },
+    "MiningResultDto": {
+      "type": "object",
+      "properties": {
+        "algorithmTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlgorithmType"
+          }
+        },
+        "comment": {
+          "type": "string"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResultRecord"
+          }
+        },
+        "resultId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "stage": {
+          "$ref": "#/definitions/MiningTaskStage"
+        },
+        "stageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "submitterId": {
+          "type": "string"
+        },
+        "submitterName": {
+          "type": "string"
+        }
+      }
+    },
     "MiningTaskDto": {
       "type": "object",
       "properties": {
+        "actualDuration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "actualFinishTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actualStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
         "algorithmIds": {
           "type": "array",
           "items": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "algorithms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Algorithm"
           }
         },
         "arrangeGroupIds": {
@@ -4651,11 +5115,28 @@
             "format": "int32"
           }
         },
+        "grammars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MiningGrammar"
+          }
+        },
         "groups": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/GroupDto"
           }
+        },
+        "plannedDuration": {
+          "$ref": "#/definitions/MiningTaskDuration"
+        },
+        "plannedFinishTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "plannedStartTime": {
+          "type": "string",
+          "format": "date-time"
         },
         "plannedTimeRange": {
           "type": "array",
@@ -4663,6 +5144,19 @@
             "type": "string",
             "format": "date-time"
           }
+        },
+        "progressStatus": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ]
         },
         "stages": {
           "type": "array",
@@ -4733,6 +5227,9 @@
         "stageId": {
           "type": "integer",
           "format": "int32"
+        },
+        "task": {
+          "$ref": "#/definitions/DataMiningTask"
         }
       }
     },
@@ -4743,46 +5240,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/DataMiningGroupDto"
-          }
-        },
-        "first": {
-          "type": "boolean"
-        },
-        "last": {
-          "type": "boolean"
-        },
-        "number": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "numberOfElements": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "size": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "sort": {
-          "$ref": "#/definitions/Sort"
-        },
-        "totalElements": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "totalPages": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "Page«DataMiningTask»": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DataMiningTask"
           }
         },
         "first": {
@@ -4896,13 +5353,93 @@
         }
       }
     },
-    "Page«MiningResult»": {
+    "Page«MiningResultDto»": {
       "type": "object",
       "properties": {
         "content": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/MiningResult"
+            "$ref": "#/definitions/MiningResultDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Page«MiningTaskDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MiningTaskDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Page«ResultRecord»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResultRecord"
           }
         },
         "first": {
@@ -5049,9 +5586,6 @@
           "type": "integer",
           "format": "int32"
         },
-        "result": {
-          "$ref": "#/definitions/MiningResult"
-        },
         "size": {
           "type": "integer",
           "format": "int64"
@@ -5191,6 +5725,58 @@
         "statusId": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "TaskStatistics": {
+      "type": "object",
+      "properties": {
+        "absentStudents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentDto"
+          }
+        },
+        "downloadedStatistics": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "noSubmittedStatistics": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "stageToGroupSubmitted": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "stateToGroup": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "submittedStatistics": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
         }
       }
     },
