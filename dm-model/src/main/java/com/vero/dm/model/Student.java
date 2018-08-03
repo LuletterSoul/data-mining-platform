@@ -56,6 +56,13 @@ public class Student extends User implements Serializable
     @JoinColumn(name = "favoriteId", foreignKey = @ForeignKey(name = "FAVORITE_FOREIGN_KEY"))
     private FavoriteStatus favorite;
 
+
+    /**
+     * 是否已被注册
+     */
+    @Column(columnDefinition="BIT default 0")
+    private boolean isRegister = false;
+
     /**
      * 一个学生可以管理多个分组
      */

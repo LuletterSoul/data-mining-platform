@@ -41,7 +41,7 @@ public class User implements Serializable
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    protected byte[] avatar;
+    protected byte[] avatar = {0};
 
     protected String gender;
 
