@@ -2,6 +2,7 @@ package com.vero.dm.security.credentials;
 
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Hash;
@@ -18,11 +18,21 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import com.vero.dm.exception.auth.AccountAcceptedException;
+import com.vero.dm.exception.auth.DuplicatedUsernameException;
+import com.vero.dm.exception.auth.RegisterInValidException;
+import com.vero.dm.exception.error.ExceptionCode;
+import com.vero.dm.model.Student;
 import com.vero.dm.model.User;
+import com.vero.dm.repository.StudentJpaRepository;
 import com.vero.dm.repository.UserJpaRepository;
+import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.realm.StatelessInfo;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -33,7 +43,7 @@ import com.vero.dm.security.realm.StatelessInfo;
 
 @Transactional
 @Slf4j
-public class DefaultStatelessCredentialsComputer extends DefaultPasswordService implements StatelessCredentialsComputer
+public class DefaultStatelessCredentialsServer extends DefaultPasswordService implements StatelessCredentialsServer
 {
 
     private Mac mac;
@@ -42,13 +52,16 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
     @Autowired
     private UserJpaRepository userJpaRepository;
 
+    @Autowired
+    private StudentJpaRepository studentJpaRepository;
+
     public final static String MAC_DEFAULT_ALGORITHM = "HmacSHA256";
 
     public final static String SERCRET_KEY_DEFAULT_ALGORITHM = "HMACSHA256";
 
     private SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 
-    public DefaultStatelessCredentialsComputer()
+    public DefaultStatelessCredentialsServer()
     {
 
     }
@@ -73,6 +86,111 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
         UserDto userDTO = new UserDto();
         BeanUtils.copyProperties(user, userDTO);
         return userDTO;
+    }
+
+    @Override
+    public StudentDto registerStudent(Student student)
+    {
+        String fromStudentId = student.getStudentId();
+        String fromPassword = student.getPassword();
+        String username = student.getUsername();
+        if (StringUtils.isEmpty(fromPassword) || StringUtils.isEmpty(username)
+            || StringUtils.isEmpty(fromStudentId))
+        {
+            throw new RegisterInValidException("注册的密码、用户名、学号不能为空",
+                ExceptionCode.RegisterInvalidException);
+        }
+        log.debug("[{}] post a register request.", username);
+        if (userJpaRepository.findUserNames().contains(username))
+        {
+            log.debug("Duplicated username [{}]", username);
+            throw new DuplicatedUsernameException("用户名已被注册", ExceptionCode.DuplicatedUsername);
+        }
+        // 生成公钥与私钥
+        String publicSalt = this.generateRandomSalt(32);
+        String privateSalt = this.generateRandomSalt(32);
+        // 加密明文密码
+        String encryptedPassword = this.encryptPassword(fromPassword, publicSalt);
+        if (!StringUtils.isEmpty(fromStudentId))
+        {
+            // 学生的信息可能由老师提前导入,学生通过注册，领取账号，更新密码和用户名。
+            boolean isExist = studentJpaRepository.findAllStudentIds().contains(fromStudentId);
+            // 学号在库内不存在，默认注册为新学生
+            if (!isExist)
+            {
+                student.setPrivateSalt(privateSalt);
+                student.setPublicSalt(publicSalt);
+                student.setPassword(encryptedPassword);
+                student.setRegister(true);
+                student = studentJpaRepository.save(student);
+                log.debug("The request of student [{}] post the un-exist studentId.",
+                    student.getStudentName());
+            }
+            // 学号存在
+            else
+            {
+                Student existStu = studentJpaRepository.findByStudentId(fromStudentId);
+                // 已被学生注册领取
+                if (existStu.isRegister())
+                {
+                    log.debug("[{}] was register.", existStu.getUsername());
+                    throw new AccountAcceptedException("已被注册", ExceptionCode.AccountAccepted);
+                }
+                if (StringUtils.isEmpty(existStu.getUsername()))
+                {
+                    existStu.setUsername(student.getUsername());
+                }
+                // 未分配密码和用户名的学生替换为注册信息,初始化密码再次加密
+                if (StringUtils.isEmpty(existStu.getPassword()))
+                {
+                    existStu.setPassword(encryptedPassword);
+                }
+                // 如果已经存在,更新学生的注册信息
+                existStu.setStudentName(student.getStudentName());
+                existStu.setClassName(student.getClassName());
+                existStu.setProfession(student.getProfession());
+                existStu.setGrade(student.getGrade());
+                existStu.setPrivateSalt(privateSalt);
+                existStu.setRegister(true);
+                student = studentJpaRepository.save(existStu);
+            }
+        }
+        log.debug("[{}]-[{}] register successfully.", student.getStudentId(),
+            student.getStudentName());
+        return StudentDto.build(student);
+    }
+
+    //为管理员导入的学生账号分配密码和用户名
+    @Override
+    public StudentDto registerImportedStudent(Student student) {
+
+        // 生成公钥与私钥
+        String publicSalt = this.generateRandomSalt(32);
+        String privateSalt = this.generateRandomSalt(32);
+        String fromPassword = student.getPassword();
+        // 加密明文密码
+        String encryptedPassword = this.encryptPassword(fromPassword, publicSalt);
+        student.setPrivateSalt(privateSalt);
+        student.setPublicSalt(publicSalt);
+        student.setPassword(encryptedPassword);
+        student.setRegister(true);
+        student = studentJpaRepository.save(student);
+        return StudentDto.build(student);
+    }
+
+    @Override
+    public List<StudentDto> registerImportedStudents(List<Student> students) {
+        List<StudentDto> studentDtos = new ArrayList<>();
+        students.forEach(s -> studentDtos.add(registerImportedStudent(s)));
+        return studentDtos;
+    }
+
+    @Override
+    public List<StudentDto> registerStudents(List<Student> students)
+    {
+        List<StudentDto> studentDtos = new ArrayList<>();
+        students.forEach(s -> studentDtos.add(registerStudent(s)));
+        return studentDtos;
     }
 
     @Override
@@ -102,7 +220,7 @@ public class DefaultStatelessCredentialsComputer extends DefaultPasswordService 
     @Override
     public String computeNegotiatedApplyToken(String password, String publicSalt)
     {
-        HashRequest request = buildRequest(password + publicSalt,1000);
+        HashRequest request = buildRequest(password + publicSalt, 1000);
         return getHashService().computeHash(request).toBase64();
     }
 

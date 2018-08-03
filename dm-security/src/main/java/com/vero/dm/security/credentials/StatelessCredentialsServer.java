@@ -1,9 +1,12 @@
 package com.vero.dm.security.credentials;
 
 
+import java.util.List;
 import java.util.Map;
 
+import com.vero.dm.model.Student;
 import com.vero.dm.model.User;
+import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.repository.dto.UserDto;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -18,10 +21,18 @@ import com.vero.dm.security.realm.StatelessInfo;
  * @since data-minning-platform
  */
 
-public interface StatelessCredentialsComputer
+public interface StatelessCredentialsServer
 {
 
     UserDto registerUser(User user);
+
+    StudentDto registerStudent(Student student);
+
+    StudentDto registerImportedStudent(Student student);
+
+    List<StudentDto> registerImportedStudents(List<Student> students);
+
+    List<StudentDto> registerStudents(List<Student> students);
 
     Hash computeHashWithParams(Object credentials, Map<String, ?> params, int iterations);
 

@@ -4,7 +4,7 @@ package com.vero.dm.security.strategy;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-import com.vero.dm.security.credentials.StatelessCredentialsComputer;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
 import com.vero.dm.security.realm.StatelessInfo;
 import com.vero.dm.security.realm.StatelessToken;
 
@@ -25,7 +25,7 @@ public class LimitedMatchAttemptsStrategy extends SimpleMatchStrategy
     public LimitedMatchAttemptsStrategy()
     {}
 
-    public LimitedMatchAttemptsStrategy(StatelessCredentialsComputer credentialsComputer)
+    public LimitedMatchAttemptsStrategy(StatelessCredentialsServer credentialsComputer)
     {
         super(credentialsComputer);
     }

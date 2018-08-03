@@ -23,7 +23,7 @@ public class SimpleTokenValidator implements TokenValidator
 {
 
     @Autowired
-    private StatelessCredentialsComputer credentialsService;
+    private StatelessCredentialsServer credentialsService;
 
     @Autowired
     @Qualifier("userServiceImpl")

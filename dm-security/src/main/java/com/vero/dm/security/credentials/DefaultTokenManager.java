@@ -60,7 +60,7 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     private UserService userService;
 
     @Autowired
-    private StatelessCredentialsComputer credentialsService;
+    private StatelessCredentialsServer credentialsService;
 
     @Autowired
     private TokenValidator tokenValidator;
@@ -219,6 +219,7 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     {
         List<String> roleNames = userService.findRoleNameSetByUserName(user.getUsername());
         List<String> permissionNames = userService.findPermissionNameSet(user.getUsername());
+
         UserDto userDto = UserDto.build(user, roleNames, permissionNames);
         userDto.setLastLoginTime(new Date());
         log.info("User [{}]:[{}] last login time: [{}]", userDto.getUsername(), userDto.getName(),

@@ -31,7 +31,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vero.dm.security.credentials.DefaultStatelessCredentialsComputer;
+import com.vero.dm.security.credentials.DefaultStatelessCredentialsServer;
 import com.vero.dm.security.credentials.StatelessChainCredentialsMatcher;
 import com.vero.dm.security.filter.AllowOriginFilter;
 import com.vero.dm.security.filter.AuthenticationExceptionFilter;
@@ -105,22 +105,22 @@ public class ShiroSecurityProdConfiguration
         StatelessChainCredentialsMatcher matcher = new StatelessChainCredentialsMatcher();
         matcher.setHashIterations(hashIterations);
         matcher.setHashAlgorithmName(DefaultPasswordService.DEFAULT_HASH_ALGORITHM);
-        matcher.setStatelessCredentialsComputer(computer());
+        matcher.setStatelessCredentialsServer(computer());
         return matcher;
     }
 
     /**
      * Define stateless credentials bean. {@link DefaultPasswordService#DefaultPasswordService()}
      * will set {@link DefaultHashService#setGeneratePublicSalt(boolean)} } true,and
-     * {@link DefaultStatelessCredentialsComputer} extends {@link DefaultHashService},we have to
+     * {@link DefaultStatelessCredentialsServer} extends {@link DefaultHashService},we have to
      * get corresponding embed hash service,reset it's boolean generate public salt configuration.
      * Developer will generate salt by himself via
-     * {@link DefaultStatelessCredentialsComputer#generateRandomSalt(int)}
+     * {@link DefaultStatelessCredentialsServer#generateRandomSalt(int)}
      */
     @Bean
-    public DefaultStatelessCredentialsComputer computer()
+    public DefaultStatelessCredentialsServer computer()
     {
-        DefaultStatelessCredentialsComputer service = new DefaultStatelessCredentialsComputer();
+        DefaultStatelessCredentialsServer service = new DefaultStatelessCredentialsServer();
         DefaultPasswordService defaultPasswordService = (DefaultPasswordService)service;
         HashService hashService = defaultPasswordService.getHashService();
         ((DefaultHashService)hashService).setGeneratePublicSalt(false);

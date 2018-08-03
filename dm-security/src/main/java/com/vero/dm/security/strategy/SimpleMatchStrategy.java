@@ -2,11 +2,10 @@ package com.vero.dm.security.strategy;
 
 
 import java.util.LinkedList;
-import java.util.List;
 
 import org.apache.shiro.crypto.hash.Hash;
 
-import com.vero.dm.security.credentials.StatelessCredentialsComputer;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
 import com.vero.dm.security.realm.StatelessInfo;
 import com.vero.dm.security.realm.StatelessToken;
 
@@ -32,7 +31,7 @@ public class SimpleMatchStrategy extends AbstractStrategy
     public SimpleMatchStrategy()
     {}
 
-    public SimpleMatchStrategy(StatelessCredentialsComputer credentialsComputer)
+    public SimpleMatchStrategy(StatelessCredentialsServer credentialsComputer)
     {
         super(credentialsComputer);
     }

@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Setter
 public class StatelessChainCredentialsMatcher extends HashedCredentialsMatcher
 {
-    private StatelessCredentialsComputer statelessCredentialsComputer;
+    private StatelessCredentialsServer statelessCredentialsServer;
 
     private StrategyMatchChain matchChain;
 
@@ -39,9 +39,9 @@ public class StatelessChainCredentialsMatcher extends HashedCredentialsMatcher
     }
 
     @Autowired
-    public void setStatelessCredentialsComputer(StatelessCredentialsComputer statelessCredentialsComputer)
+    public void setStatelessCredentialsServer(StatelessCredentialsServer statelessCredentialsServer)
     {
-        this.statelessCredentialsComputer = statelessCredentialsComputer;
+        this.statelessCredentialsServer = statelessCredentialsServer;
     }
 
     @Autowired

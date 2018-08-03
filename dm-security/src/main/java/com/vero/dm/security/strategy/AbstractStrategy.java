@@ -3,7 +3,7 @@ package com.vero.dm.security.strategy;
 
 import java.util.LinkedList;
 
-import com.vero.dm.security.credentials.StatelessCredentialsComputer;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
 import com.vero.dm.security.realm.StatelessInfo;
 import com.vero.dm.security.realm.StatelessToken;
 
@@ -18,9 +18,9 @@ public class AbstractStrategy implements CredentialMatchStrategy
 {
     private MatchStrategyConfig strategyConfig;
 
-    private StatelessCredentialsComputer credentialsComputer;
+    private StatelessCredentialsServer credentialsComputer;
 
-    public AbstractStrategy(StatelessCredentialsComputer credentialsComputer)
+    public AbstractStrategy(StatelessCredentialsServer credentialsComputer)
     {
         this.credentialsComputer = credentialsComputer;
     }
@@ -51,7 +51,7 @@ public class AbstractStrategy implements CredentialMatchStrategy
         return strategyConfig;
     }
 
-    public StatelessCredentialsComputer getCredentialsComputer() {
+    public StatelessCredentialsServer getCredentialsComputer() {
         return credentialsComputer;
     }
 }

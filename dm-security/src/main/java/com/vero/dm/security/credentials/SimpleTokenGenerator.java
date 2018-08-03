@@ -35,7 +35,7 @@ public class SimpleTokenGenerator implements TokenGenerator
     }
 
     @Autowired
-    private StatelessCredentialsComputer credentialsComputer;
+    private StatelessCredentialsServer credentialsComputer;
 
 
     @Override

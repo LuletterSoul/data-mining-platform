@@ -6,7 +6,7 @@ import java.util.ListIterator;
 
 import com.vero.dm.exception.auth.HighFrequencyAccessException;
 import com.vero.dm.exception.error.ExceptionCode;
-import com.vero.dm.security.credentials.StatelessCredentialsComputer;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
 import com.vero.dm.security.realm.StatelessInfo;
 import com.vero.dm.security.realm.StatelessToken;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class MatchAllCandidateStrategy extends SimpleMatchStrategy
         super(strategyConfig);
     }
 
-    public MatchAllCandidateStrategy(StatelessCredentialsComputer credentialsComputer)
+    public MatchAllCandidateStrategy(StatelessCredentialsServer credentialsComputer)
     {
         super(credentialsComputer);
     }
