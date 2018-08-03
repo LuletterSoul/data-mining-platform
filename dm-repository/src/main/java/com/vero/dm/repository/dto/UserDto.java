@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import com.vero.dm.model.User;
 import com.vero.dm.model.UserAccessStatus;
@@ -26,13 +27,15 @@ public class UserDto implements Serializable
 
     private String name;
 
-    private String avatar;
+    private String avatar = "";
 
     private String gender;
 
     private String regionCode;
 
     private String introduction;
+
+    private String serviceLevel;
 
     private Date birthday;
 
@@ -68,13 +71,15 @@ public class UserDto implements Serializable
         userDto.setUserId(user.getUserId());
         userDto.setUsername(user.getUsername());
         userDto.setName(user.getName());
-        userDto.setAvatar(new String(user.getAvatar()));
+        if (!Objects.isNull(user.getAvatar())) {
+            userDto.setAvatar(new String(user.getAvatar()));
+        }
         userDto.setGender(user.getGender());
         userDto.setIntroduction(user.getIntroduction());
         userDto.setRegionCode(user.getRegionCode());
         userDto.setAccessStatus(user.getAccountStatus());
         userDto.setBirthday(user.getBirthday());
-        userDto.setLastLoginTime(new Date(user.getLastLoginTime().getTime()));
+        userDto.setLastLoginTime(user.getLastLoginTime());
         return userDto;
     }
 
@@ -98,8 +103,6 @@ public class UserDto implements Serializable
                 ", birthday=" + birthday +
                 ", accessStatus=" + accessStatus +
                 ", lastLoginTime=" + lastLoginTime +
-                ", roles=" + roles +
-                ", permissions=" + permissions +
                 '}';
     }
 }
