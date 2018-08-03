@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.vero.dm.model.User;
 import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.security.constants.Constants;
-import com.vero.dm.security.credentials.StatelessCredentialsComputer;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
 import com.vero.dm.security.credentials.TokenManager;
 import com.vero.dm.security.credentials.UserProfileAccessor;
 import com.vero.dm.service.UserService;
@@ -42,7 +42,7 @@ public class UserController
 
     private UserProfileAccessor profileAccessor;
 
-    private StatelessCredentialsComputer credentialsService;
+    private StatelessCredentialsServer credentialsService;
 
 
     @Autowired
@@ -59,7 +59,7 @@ public class UserController
     }
 
     @Autowired
-    public void setCredentialsService(StatelessCredentialsComputer credentialsService)
+    public void setCredentialsService(StatelessCredentialsServer credentialsService)
     {
         this.credentialsService = credentialsService;
     }

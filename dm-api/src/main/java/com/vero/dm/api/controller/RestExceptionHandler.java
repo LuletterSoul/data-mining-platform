@@ -355,6 +355,31 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
                 HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
     }
 
+    @ExceptionHandler({RegisterInValidException.class})
+    public ResponseEntity<Object> handleRegisterInValidException(final RegisterInValidException ex,
+                                                                        final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ExceptionCode.RegisterInvalidException, new HttpHeaders(),
+                HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler({DuplicatedUsernameException.class})
+    public ResponseEntity<Object> handleDuplicatedUsernameException(final DuplicatedUsernameException ex,
+                                                                 final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ExceptionCode.DuplicatedUsername, new HttpHeaders(),
+                HttpStatus.CONFLICT, HttpStatus.CONFLICT, request);
+    }
+
+    @ExceptionHandler({AccountAcceptedException.class})
+    public ResponseEntity<Object> handleAccountAcceptedException(final AccountAcceptedException ex,
+                                                                    final WebRequest request)
+    {
+        return handBusinessExceptionInternal(ex, ExceptionCode.AccountAccepted, new HttpHeaders(),
+                HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN, request);
+    }
+
+
 
 
 }

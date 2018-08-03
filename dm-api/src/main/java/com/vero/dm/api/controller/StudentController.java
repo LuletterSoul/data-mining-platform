@@ -1,14 +1,17 @@
 package com.vero.dm.api.controller;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import io.swagger.annotations.Api;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
+import com.vero.dm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,7 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vero.dm.api.progress.UploadProgressListener;
 import com.vero.dm.model.Student;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.StudentService;
@@ -34,12 +36,29 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.5 created in
  */
 
+@Profile(value = {"prod","dev","test"})
 @RestController
 @Slf4j
 @RequestMapping(value = ApiVersion.API_VERSION + ResourcePath.STUDENT_PATH)
 public class StudentController
 {
     private StudentService studentService;
+
+    private StatelessCredentialsServer credentialsServer;
+
+    private UserService userService;
+
+    @Autowired
+    @Qualifier("userServiceImpl")
+    public void setUserService(UserService userService)
+    {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setCredentialsServer(StatelessCredentialsServer credentialsServer) {
+        this.credentialsServer = credentialsServer;
+    }
 
     @Autowired
     @Qualifier("studentServiceImpl")
@@ -53,16 +72,26 @@ public class StudentController
     @PostMapping
     public ResponseEntity<StudentDto> create(@RequestBody Student student)
     {
-        StudentDto studentDto = studentService.save(student);
-        return new ResponseEntity<>(studentDto, HttpStatus.CREATED);
+        StudentDto d = credentialsServer.registerStudent(student);
+        Student newStu = studentService.findByStudentId(d.getStudentId());
+        List<String> roleNames = new ArrayList<>();
+        //为每个学生分配学生角色，赋予访问权限
+        roleNames.add("student");
+        userService.correlateRoles(newStu.getUserId(), roleNames);
+        return new ResponseEntity<>(d, HttpStatus.CREATED);
     }
 
     @ApiOperation("上传一个Excel文件,由文件导入学生数据,文件的模板由服务器提供")
     @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
     @PostMapping(value = "/excel_students")
-    public ResponseEntity<List<Student>> importStudents(@RequestPart MultipartFile file)
+    public ResponseEntity<List<StudentDto>> importStudents(@RequestPart MultipartFile file)
     {
-        return new ResponseEntity<>(studentService.importStudents(file), HttpStatus.OK);
+        List<Student> students = studentService.importStudents(file);
+        List<String> roleNames = new ArrayList<>();
+        //为每个学生分配学生角色，赋予访问权限
+        roleNames.add("student");
+        userService.correlateRoles(students, roleNames);
+        return new ResponseEntity<>(credentialsServer.registerImportedStudents(students), HttpStatus.OK);
     }
 
     @CacheEvict(cacheNames = "studentPageableCache",allEntries=true)
