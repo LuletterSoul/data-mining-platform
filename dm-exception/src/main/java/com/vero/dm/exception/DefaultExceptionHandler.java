@@ -9,7 +9,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +22,8 @@ import com.vero.dm.exception.common.ErrorCodeLostNotFoundException;
 import com.vero.dm.exception.constract.HeaderLostException;
 import com.vero.dm.exception.error.ErrorInfo;
 import com.vero.dm.exception.error.ExceptionCode;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -83,6 +84,16 @@ public class DefaultExceptionHandler implements ExceptionHandler
         {
             handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.FORBIDDEN,
                 httpServletResponse, HttpStatus.NOT_FOUND);
+        }
+        else if (exception instanceof RegisterInValidException)
+        {
+            handPreAuthenticationInternalException(exception, exceptionCode,
+                HttpStatus.BAD_REQUEST, httpServletResponse, HttpStatus.BAD_REQUEST);
+        }
+        else if (exception instanceof AccountAcceptedException)
+        {
+            handPreAuthenticationInternalException(exception, exceptionCode, HttpStatus.CONFLICT,
+                httpServletResponse, HttpStatus.CONFLICT);
         }
         else if (exception instanceof IncorrectCredentialsException)
         {

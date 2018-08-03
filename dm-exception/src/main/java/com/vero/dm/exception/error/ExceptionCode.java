@@ -57,6 +57,9 @@ public enum ExceptionCode {
     CandidateTokenSizeError(50009,"服务器找不到足够的一次性令牌匹配认证信息.",CandidateTokenSizeException.class),
     HighFrequencyAccessError(50010, "访问太频繁,请稍后重试.",HighFrequencyAccessException.class),
     LogoutTokenNotExist(50011, "无效的登出请求.",LogoutAccessException.class),
+    RegisterInvalidException(50012, "注册信息不合法",RegisterInValidException.class),
+    AccountAccepted(50013,"账号已被领取",AccountAcceptedException.class),
+    DuplicatedUsername(50014, "用户名重复", DuplicatedUsernameException.class),
     ContractInvalid(60000,"协商内容不符.", ConstratInvalidException.class),
     HeaderLost(60001, "与服务端协商的请求头丢失,请确定您的请求包含了必要的请求头.", HeaderLostException.class),
     LazyInitializationError(60002,"服务器数据懒加载错误",LazyInitializationException.class);
