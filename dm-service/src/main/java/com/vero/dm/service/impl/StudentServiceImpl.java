@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import com.vero.dm.model.*;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +23,10 @@ import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.importer.core.ExcelExporter;
 import com.vero.dm.importer.core.ExcelImporter;
 import com.vero.dm.importer.core.ExcelModuleManager;
+import com.vero.dm.model.DataMiningGroup;
+import com.vero.dm.model.FavoriteStatus;
+import com.vero.dm.model.Student;
+import com.vero.dm.model.StudentStatus;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.StudentService;
 
@@ -48,7 +51,9 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     @Autowired
     private ExcelExporter<Student> studentExcelExporter;
 
+    public final static String MAC_DEFAULT_ALGORITHM = "HmacSHA256";
 
+    public final static String SERCRET_KEY_DEFAULT_ALGORITHM = "HMACSHA256";
 
     @Override
     public List<Student> importStudents(MultipartFile file)
@@ -66,6 +71,12 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         }
         List<Student> students = studentExcelImporter.importFromExcel(new File(absolutePath));
         checkStudentIdDuplication(students);
+        for (Student student : students)
+        {
+            // 初始化用户名密码皆为学号，密码为明文;
+            student.setPassword(student.getStudentId());
+            student.setUsername(student.getStudentId());
+        }
         studentJpaRepository.save(students);
         log.debug("Import Student Data Form Excel [{}].", file.getOriginalFilename());
         return students;
@@ -167,12 +178,20 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public Student findStudentById(String id) {
+    public Student findStudentById(String id)
+    {
         return studentJpaRepository.findOne(id);
     }
 
     @Override
-    public List<Student> findByStudentIds(List<String> ids) {
+    public Student findByStudentId(String studentId)
+    {
+        return studentJpaRepository.findByStudentId(studentId);
+    }
+
+    @Override
+    public List<Student> findByStudentIds(List<String> ids)
+    {
         return studentJpaRepository.findByStudentIds(ids);
     }
 
@@ -220,12 +239,12 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
 
     public StudentDto save(Student student)
     {
-//        FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(
-//            student.getFavorite().getFavoriteId());
-//        StudentStatus studentStatus = this.getStudentStatusPersisted(
-//            student.getStatus().getStatusId());
-       // student.setFavorite(favoriteStatus);
-        //student.setStatus(studentStatus);
+        // FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(
+        // student.getFavorite().getFavoriteId());
+        // StudentStatus studentStatus = this.getStudentStatusPersisted(
+        // student.getStatus().getStatusId());
+        // student.setFavorite(favoriteStatus);
+        // student.setStatus(studentStatus);
         this.studentJpaRepository.save(student);
         return new StudentDto(student);
     }

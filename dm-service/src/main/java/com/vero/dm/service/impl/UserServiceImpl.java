@@ -1,13 +1,11 @@
 package com.vero.dm.service.impl;
 
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-import com.mchange.v2.lang.ObjectUtils;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Ehcache;
-import net.sf.ehcache.Element;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,6 +17,9 @@ import com.vero.dm.repository.dto.UserDto;
 import com.vero.dm.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.Ehcache;
+import net.sf.ehcache.Element;
 
 
 /**
@@ -46,7 +47,6 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
         return userJpaRepository.findOne(id);
     }
 
-
     @Override
     public UserDto getUserProfile(String username)
     {
@@ -65,11 +65,19 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     {
         User user = this.findById(userDto.getUserId());
         BeanUtils.copyProperties(userDto, user);
-        user.setAvatar(userDto.getAvatar().getBytes());
+        if (!Objects.isNull(userDto.getAvatar())) {
+            user.setAvatar(userDto.getAvatar().getBytes());
+        }
         userJpaRepository.saveAndFlush(user);
-        //更新缓存
+        // 更新缓存
         accessTokenCache.put(new Element(accessToken, userDto));
         return userDto;
+    }
+
+    @Override
+    public void correlateRoles(List<? extends User> users, List<String> roleNames)
+    {
+        users.forEach(u -> correlateRoles(u.getUserId(), roleNames));
     }
     //
     // public User doUserCredentialsMatch(User user, DisposableSaltEntry entry)
@@ -116,14 +124,16 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     // return new DisposableSaltEntry(tmpId, randomSalt.toHex());
     // }
 
-    public void correlateRoles(String userId, List<Long> roleIdList)
+    public void correlateRoles(String userId, List<String> roleNames)
     {
-        // User user = userDao.fetchUserJoinRolesById(userId);
-        // for (Long roleId : roleIdList)
-        // {
-        // user.getRoles().add(roleDao.findById(roleId));
-        // }
-        // userDao.update(user);
+        User u = findById(userId);
+        Set<Role> roles = u.getRoles();
+        if (Objects.isNull(roles)) {
+            roles = new LinkedHashSet<>();
+        }
+        roles.addAll(roleJpaRepository.findAllByRoleNames(roleNames));
+        u.setRoles(roles);
+        userJpaRepository.save(u);
     }
 
     // public void removeRoles(String userId, List<Long> roleIdList)

@@ -31,5 +31,6 @@ public class ResourcePath
     public static final String USER_PATH = "/users";
 
     public static final String STUDENT_PATH = "/students";
+
     public static final String ZIP_PATH = "/zips";
 }

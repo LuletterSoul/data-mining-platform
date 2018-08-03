@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.vero.dm.repository.dto.StudentDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vero.dm.model.FavoriteStatus;
 import com.vero.dm.model.Student;
 import com.vero.dm.model.StudentStatus;
-import org.springframework.web.multipart.MultipartFile;
+import com.vero.dm.repository.dto.StudentDto;
 
 
 /**
@@ -32,11 +32,13 @@ public interface StudentService extends UserService
 
     Student findStudentById(String id);
 
-    List<Student> findByStudentIds(List<String> ids);
+    Student findByStudentId(String studentId);
 
+    List<Student> findByStudentIds(List<String> ids);
 
     /**
      * 分页获取的库内的学生信息
+     * 
      * @param fetch
      * @param pageable
      * @param className
@@ -48,20 +50,13 @@ public interface StudentService extends UserService
      * @param endDate
      * @return
      */
-    Page<Student> getStudentList(boolean fetch,
-                                 Pageable pageable,
-                                 String className,
-                                 String profession,
-                                 String grade,
-                                 String studentIdPrefix,
-                                 String studentName,
-                                 Date beginDate,
-                                 Date endDate);
-
-
+    Page<Student> getStudentList(boolean fetch, Pageable pageable, String className,
+                                 String profession, String grade, String studentIdPrefix,
+                                 String studentName, Date beginDate, Date endDate);
 
     /**
      * 获取全部空闲的学生
+     * 
      * @param pageable
      * @param className
      * @param profession
@@ -72,8 +67,9 @@ public interface StudentService extends UserService
      * @param endDate
      * @return
      */
-    List<Student> getAllLeisureStudents(Pageable pageable, String className, String profession, String grade, String studentIdPrefix, String studentName, Date beginDate, Date endDate);
-
+    List<Student> getAllLeisureStudents(Pageable pageable, String className, String profession,
+                                        String grade, String studentIdPrefix, String studentName,
+                                        Date beginDate, Date endDate);
 
     StudentDto deleteByStudentId(String studentId);
 
@@ -98,6 +94,5 @@ public interface StudentService extends UserService
     StudentStatus getStudentStatusPersisted(Integer statusId);
 
     Map<String, List<?>> getStudentPropertiesOptions();
-
 
 }
