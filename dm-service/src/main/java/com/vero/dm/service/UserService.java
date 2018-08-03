@@ -20,6 +20,8 @@ public interface UserService extends BaseService<User, String>
 
     UserDto updateUser(UserDto userDto, String accessToken);
 
+    boolean createUsername(String username);
+
     void correlateRoles(List<? extends User> users, List<String> roleNames);
 
     void correlateRoles(String userId, List<String> roleNames);

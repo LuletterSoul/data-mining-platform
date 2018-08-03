@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.5 created in 15:40 2017/7/20.
  * @since data-mining-platform
  */
-@Profile(value = {"prod","dev","test"})
+@Profile(value = {"prod", "dev", "test"})
 @RestController
 @RequestMapping(value = ApiVersion.API_VERSION + ResourcePath.USER_PATH)
 @Slf4j
@@ -43,7 +43,6 @@ public class UserController
     private UserProfileAccessor profileAccessor;
 
     private StatelessCredentialsServer credentialsService;
-
 
     @Autowired
     public void setTokenManager(TokenManager tokenManager)
@@ -87,9 +86,17 @@ public class UserController
     }
 
     @PutMapping
-    public UserDto update(@RequestBody UserDto userDto,@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    public UserDto update(@RequestBody UserDto userDto,
+                          @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
     {
         return userService.updateUser(userDto, accessToken);
+    }
+
+    @ApiOperation("创建一个用户名,重复的用户名将创建失败，用于账户创建时的重复校验")
+    @PostMapping(value = "/username")
+    public boolean createUsername(String username)
+    {
+        return userService.createUsername(username);
     }
 
     // @ApiOperation("根据用户名的获取权限角色")
@@ -99,12 +106,12 @@ public class UserController
     // return userService.findRoleNameSetByUserName(username);
     // }
 
-//    @ApiOperation(value = "用户注销")
-//    @PostMapping(value = "/preLogout")
-//    public String preLogout(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
-//    {
-//        tokenManager.cleanTokenCache(accessToken);
-//        tokenMaintainer.cleanTokenList(accessToken);
-//        return "Logout Success";
-//    }
+    // @ApiOperation(value = "用户注销")
+    // @PostMapping(value = "/preLogout")
+    // public String preLogout(@RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
+    // {
+    // tokenManager.cleanTokenCache(accessToken);
+    // tokenMaintainer.cleanTokenList(accessToken);
+    // return "Logout Success";
+    // }
 }

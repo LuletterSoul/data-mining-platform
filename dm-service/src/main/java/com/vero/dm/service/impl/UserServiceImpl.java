@@ -75,6 +75,11 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<User, String> imple
     }
 
     @Override
+    public boolean createUsername(String username) {
+        return !userJpaRepository.findUserNames().contains(username);
+    }
+
+    @Override
     public void correlateRoles(List<? extends User> users, List<String> roleNames)
     {
         users.forEach(u -> correlateRoles(u.getUserId(), roleNames));
