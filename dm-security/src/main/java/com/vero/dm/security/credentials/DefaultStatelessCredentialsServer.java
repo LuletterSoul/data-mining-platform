@@ -151,6 +151,7 @@ public class DefaultStatelessCredentialsServer extends DefaultPasswordService im
                 existStu.setProfession(student.getProfession());
                 existStu.setGrade(student.getGrade());
                 existStu.setPrivateSalt(privateSalt);
+                existStu.setPublicSalt(publicSalt);
                 existStu.setRegister(true);
                 student = studentJpaRepository.save(existStu);
             }
