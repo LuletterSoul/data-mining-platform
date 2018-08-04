@@ -275,6 +275,7 @@ public class ShiroSecurityProdConfiguration
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/token/**", "anon");
         filterChainDefinitionMap.put("/public_salt/**", "anon");
+        filterChainDefinitionMap.put("/stu_accounts/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/api/**",
             "noSess,allowOriginFilter,preLogout,statelessFilter");
