@@ -1,6 +1,7 @@
 package com.vero.dm.service.impl;
 
 
+import static com.vero.dm.repository.specifications.ResultSpecifications.resultsSpec;
 import static com.vero.dm.repository.specifications.StudentSpecifications.findLeisureStudents;
 import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithParams;
 import static com.vero.dm.util.PathUtils.concat;
@@ -9,7 +10,9 @@ import static com.vero.dm.util.PathUtils.getAbsolutePath;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
+import com.vero.dm.model.*;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,10 +26,6 @@ import com.vero.dm.exception.error.ExceptionCode;
 import com.vero.dm.importer.core.ExcelExporter;
 import com.vero.dm.importer.core.ExcelImporter;
 import com.vero.dm.importer.core.ExcelModuleManager;
-import com.vero.dm.model.DataMiningGroup;
-import com.vero.dm.model.FavoriteStatus;
-import com.vero.dm.model.Student;
-import com.vero.dm.model.StudentStatus;
 import com.vero.dm.repository.dto.StudentDto;
 import com.vero.dm.service.StudentService;
 
@@ -284,12 +283,15 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public List<Student> deleteBatchByStudentIds(List<String> studentIds)
     {
         List<Student> students = studentJpaRepository.findByStudentIds(studentIds);
+        List<String> studentUserIds = students.stream().map(Student::getUserId).collect(Collectors.toList());
         students.forEach(s -> {
             s.setMiningGroups(null);
             Set<DataMiningGroup> groups = s.getRuleMiningGroups();
             groups.forEach(g -> g.setGroupLeader(null));
             groupJpaRepository.save(groups);
         });
+        //删除上交的挖掘记录
+        miningResultRepository.deleteMiningResultByMembers(studentUserIds);
         studentJpaRepository.save(students);
         studentJpaRepository.deleteBatchStudentsById(studentIds);
         return students;

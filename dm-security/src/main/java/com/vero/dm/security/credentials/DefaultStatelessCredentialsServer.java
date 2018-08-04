@@ -164,7 +164,6 @@ public class DefaultStatelessCredentialsServer extends DefaultPasswordService im
     //为管理员导入的学生账号分配密码和用户名
     @Override
     public StudentDto registerImportedStudent(Student student) {
-
         // 生成公钥与私钥
         String publicSalt = this.generateRandomSalt(32);
         String privateSalt = this.generateRandomSalt(32);
