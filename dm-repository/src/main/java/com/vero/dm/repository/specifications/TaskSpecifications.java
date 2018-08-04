@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.JoinColumn;
 import javax.persistence.criteria.*;
 
 import org.springframework.data.jpa.domain.Specification;
@@ -62,6 +63,12 @@ public class TaskSpecifications
                 Predicate builtTimeEndPredicate = cb.lessThanOrEqualTo(
                     root.get(DataMiningTask_.BUILT_TIME), builtTimeEnd);
                 totalPredicates.add(builtTimeEndPredicate);
+            }
+            if (!StringUtils.isEmpty(studentId)) {
+                Join<DataMiningTask, DataMiningGroup> tgJoin = root.join(DataMiningTask_.GROUPS,JoinType.LEFT);
+                Join<DataMiningGroup, Student> gsJoin = tgJoin.join(DataMiningGroup_.GROUP_MEMBERS, JoinType.LEFT);
+                Predicate p = cb.equal(gsJoin.get(Student_.studentId), studentId);
+                totalPredicates.add(p);
             }
             if (!ObjectUtils.isEmpty(progressStatus))
             {
