@@ -1,10 +1,17 @@
 package com.vero.dm.api.controller;
 
 
+import com.vero.dm.model.Student;
+import com.vero.dm.repository.dto.StudentDto;
+import com.vero.dm.security.credentials.StatelessCredentialsServer;
+import com.vero.dm.security.credentials.UserProfileAccessor;
+import com.vero.dm.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.vero.dm.security.constants.Constants;
@@ -19,6 +26,8 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -38,10 +47,31 @@ public class CredentialsController
 
     private DisposableTokenMaintainer tokenMaintainer;
 
+    private UserProfileAccessor profileAccessor;
+
+    private StatelessCredentialsServer credentialsServer;
+
+    private StudentService studentService;
+
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
     @Autowired
     public void setTokenMaintainer(DisposableTokenMaintainer tokenMaintainer)
     {
         this.tokenMaintainer = tokenMaintainer;
+    }
+
+    @Autowired
+    public void setProfileAccessor(UserProfileAccessor profileAccessor) {
+        this.profileAccessor = profileAccessor;
+    }
+
+    @Autowired
+    public void setCredentialsServer(StatelessCredentialsServer credentialsServer) {
+        this.credentialsServer = credentialsServer;
     }
 
     @Autowired
@@ -68,6 +98,27 @@ public class CredentialsController
                                   HttpServletResponse response)
     {
         return tokenManager.applyExpiredToken(username, providedCredential, timestamp, response);
+    }
+
+
+    @ApiOperation("创建一个学生账户")
+    @PostMapping(value = "/stu_accounts")
+    public ResponseEntity<StudentDto> create(@RequestBody Student student)
+    {
+        StudentDto d = credentialsServer.registerStudent(student);
+        Student newStu = studentService.findByStudentId(d.getStudentId());
+        List<String> roleNames = new ArrayList<>();
+        //为每个学生分配学生角色，赋予访问权限
+        roleNames.add("student");
+        userService.correlateRoles(newStu.getUserId(), roleNames);
+        return new ResponseEntity<>(d, HttpStatus.CREATED);
+    }
+
+    @ApiOperation("重复的用户名将创建失败，用于账户创建时的重复校验")
+    @GetMapping(value = "/stu_accounts")
+    public boolean create(@RequestParam("username") String username)
+    {
+        return userService.createUsername(username);
     }
 
     @ApiOperation("删除所有Token信息(用于微服务注销)")
