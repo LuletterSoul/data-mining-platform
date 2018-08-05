@@ -4,32 +4,28 @@ services:
     image: dm/dm-platform
     ports:
       - "8080:8080"
-    networks:
-      - net-dm
     depends_on:
       - mysql
-    environment:
-     - DATABASE_HOST=mysql
-     - DATABASE_USER=root
-     - DATABASE_PASSWORD=root
-     - DATABASE_NAME=data_mining
-     - DATABASE_PORT=3306
-    container_name: dm-platform-microsoft-service
-
-
+      - redis-server
+    container_name: dm-platform
+    restart: always
   mysql:
-    image: mysql
+    image: mysql:5.7
     ports:
       - "3306:3306"
-    networks:
-      - net-dm
+    volumes:
+      - /opt/docker_v/mysql/conf.d:/etc/mysql/conf.d
+      - /data/mysql/data:/var/lib/mysql
     environment:
-     - MYSQL_DATABASE=data_mining
-     - MYSQL_USER=root
-     - MYSQL_PASSWORD=root
-     - MYSQL_ROOT_PASSWORD=root
-    container_name: dm-mysql
+     - MYSQL_ROOT_PASSWORD=15298382837LIUxia_
+    container_name: mysql
+    restart: always
 
-networks:
-  net-dm:
-    driver: bridge
+  redis-server:
+    image: redis:3.2
+    ports:
+      - "6379:6379"
+    volumes:
+      - /data:/data
+    container_name: redis-server
+    restart: always
