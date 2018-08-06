@@ -78,6 +78,4 @@ public class StageController
         return new ResponseEntity<>(
             resultService.findResults(taskId, stageId, pageable, submitterIds, state, all), HttpStatus.OK);
     }
-
-
 }
