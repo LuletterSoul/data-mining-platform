@@ -12,7 +12,7 @@
     <bookmark url="file://$PROJECT_DIR$/dm-api/src/test/java/com/vero/dm/api/controller/StudentControllerTest.java" description="    @Test&#10;    public void testCreateStudent()&#10;    ..." line="63" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="Docker Hub自动化构建测试5">
+    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
     </list>
@@ -394,8 +394,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="390">
+              <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -1767,14 +1767,7 @@
       <workItem from="1533192380622" duration="55980000" />
       <workItem from="1533399388198" duration="27398000" />
       <workItem from="1533488906032" duration="2596000" />
-      <workItem from="1533491586251" duration="8012000" />
-    </task>
-    <task id="LOCAL-00026" summary="任务追踪数据库建模">
-      <created>1523120778874</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1523120778874</updated>
+      <workItem from="1533491586251" duration="8744000" />
     </task>
     <task id="LOCAL-00027" summary="任务多阶段建立">
       <created>1523122219506</created>
@@ -2112,7 +2105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533533231263</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Docker Hub自动化构建测试5">
+      <created>1533533895738</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1533533895738</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2148,7 +2148,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1392395000" />
+    <option name="totallyTimeSpent" value="1393127000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2185,7 +2185,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29424778" sideWeight="0.2943072" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46460176" sideWeight="0.4696243" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17477876" sideWeight="0.4696243" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08450704" sideWeight="0.49785638" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.119469024" sideWeight="0.4940048" order="19" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26208377" sideWeight="0.48370928" order="0" side_tool="false" content_ui="combo" />
@@ -2293,7 +2293,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成几个任务追踪接口的单元测试" />
     <MESSAGE value="新增MiningResult/MiningRecord的动态查询Specification" />
     <MESSAGE value="修复了一件分组无法创建记录为空的bug" />
     <MESSAGE value="更新了RESTful API的描述" />
@@ -2318,7 +2317,8 @@
     <MESSAGE value="Docker Hub自动化构建测试2" />
     <MESSAGE value="Docker Hub自动化构建测试3" />
     <MESSAGE value="Docker Hub自动化构建测试4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker Hub自动化构建测试4" />
+    <MESSAGE value="Docker Hub自动化构建测试5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker Hub自动化构建测试5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2789,8 +2789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="390">
+          <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
           <folding />
         </state>
       </provider>
