@@ -24,7 +24,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @version 1.5 created in 15:41 2018/1/22.
  * @since data-minning-platform
  */
-
 @Configuration
 @ExcelModelScan(basePackages = {"com.vero.dm.model"})
 @ComponentScan(basePackages = {"com.vero.dm"}) // 扫描该包路径下的所有spring组件

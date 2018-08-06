@@ -15,5 +15,7 @@ FROM frolvlad/alpine-oraclejdk8:slim as build-run-env
 MAINTAINER XiangdeDe Liu <qq313700046@icloud.com>
 #将第一阶段生成的jar包复制到当前容器
 COPY --from=build-jar /build/dm-platform/dm-web/target/dm-platform.jar app.jar
+#映射端口
+EXPOSE 8080
 #加入容器启动命令
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
