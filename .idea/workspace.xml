@@ -15,7 +15,6 @@
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
-      <change beforePath="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" afterPath="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -395,8 +394,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+            <state relative-caret-position="300">
+              <caret line="10" column="57" lean-forward="true" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -1768,14 +1767,7 @@
       <workItem from="1533192380622" duration="55980000" />
       <workItem from="1533399388198" duration="27398000" />
       <workItem from="1533488906032" duration="2596000" />
-      <workItem from="1533491586251" duration="6940000" />
-    </task>
-    <task id="LOCAL-00024" summary="从任务端并行拉取团队信息">
-      <created>1520787760178</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1520787760178</updated>
+      <workItem from="1533491586251" duration="7346000" />
     </task>
     <task id="LOCAL-00025" summary="学生查询API优化">
       <created>1523118829188</created>
@@ -2113,7 +2105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533531639652</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Docker Hub自动化构建测试3">
+      <created>1533532829194</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1533532829194</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2149,7 +2148,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1391323000" />
+    <option name="totallyTimeSpent" value="1391729000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2294,7 +2293,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整关联逻辑" />
     <MESSAGE value="文件处理异常" />
     <MESSAGE value="完成几个任务追踪接口的单元测试" />
     <MESSAGE value="新增MiningResult/MiningRecord的动态查询Specification" />
@@ -2319,7 +2317,8 @@
     <MESSAGE value="明确接口动词" />
     <MESSAGE value="Docker Hub自动化构建测试1" />
     <MESSAGE value="Docker Hub自动化构建测试2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker Hub自动化构建测试2" />
+    <MESSAGE value="Docker Hub自动化构建测试3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker Hub自动化构建测试3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2790,8 +2789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        <state relative-caret-position="300">
+          <caret line="10" column="57" lean-forward="true" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
           <folding />
         </state>
       </provider>
