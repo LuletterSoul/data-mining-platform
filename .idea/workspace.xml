@@ -13,13 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="修复了一件分组无法创建记录为空的bug">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Dockerfile" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/BreakPointUploadController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/BreakPointUploadController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StageController.java" afterPath="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StageController.java" />
-      <change beforePath="$PROJECT_DIR$/dm-model/pom.xml" afterPath="$PROJECT_DIR$/dm-model/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -399,8 +394,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="8" column="71" lean-forward="false" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+            <state relative-caret-position="210">
+              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -1729,28 +1724,7 @@
       <workItem from="1533192380622" duration="55980000" />
       <workItem from="1533399388198" duration="27398000" />
       <workItem from="1533488906032" duration="2596000" />
-      <workItem from="1533491586251" duration="3814000" />
-    </task>
-    <task id="LOCAL-00019" summary="docker爬坑:共享mysql redis容器">
-      <created>1520099162321</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1520099162321</updated>
-    </task>
-    <task id="LOCAL-00020" summary="修复并发环境下的日期格式化问题">
-      <created>1520242810094</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1520242810094</updated>
-    </task>
-    <task id="LOCAL-00021" summary="异常体系增补">
-      <created>1520273133631</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1520273133631</updated>
+      <workItem from="1533491586251" duration="4621000" />
     </task>
     <task id="LOCAL-00022" summary="增加和修缮查询API">
       <created>1520357656942</created>
@@ -2074,7 +2048,28 @@
       <option name="project" value="LOCAL" />
       <updated>1533482461858</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Docker Hub自动化构建测试">
+      <created>1533528021146</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1533528021148</updated>
+    </task>
+    <task id="LOCAL-00069" summary="限制MetaModel版本">
+      <created>1533528053518</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1533528053519</updated>
+    </task>
+    <task id="LOCAL-00070" summary="明确接口动词">
+      <created>1533528074921</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1533528074921</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2110,7 +2105,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1388197000" />
+    <option name="totallyTimeSpent" value="1389004000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2127,14 +2122,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.117256634" sideWeight="0.49785638" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61504424" sideWeight="0.43501613" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1670354" sideWeight="0.43716434" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49570355" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853982" sideWeight="0.5042965" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12674543" sideWeight="0.8252427" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1670354" sideWeight="0.5649839" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1670354" sideWeight="0.56283563" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12674543" sideWeight="0.17475729" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2255,9 +2250,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="数据挖掘结果的模型设计" />
-    <MESSAGE value="新增和修改了压缩算法" />
-    <MESSAGE value="增加任务追踪查询JAP" />
     <MESSAGE value="新增挖掘结构管理的业务代码" />
     <MESSAGE value="工作变动" />
     <MESSAGE value="调整关联逻辑" />
@@ -2280,7 +2272,10 @@
     <MESSAGE value="修复注册公盐没有设置的bug" />
     <MESSAGE value="删除一个学生前清空挖掘记录" />
     <MESSAGE value="docker一键自动化部署" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker一键自动化部署" />
+    <MESSAGE value="Docker Hub自动化构建测试" />
+    <MESSAGE value="限制MetaModel版本" />
+    <MESSAGE value="明确接口动词" />
+    <option name="LAST_COMMIT_MESSAGE" value="明确接口动词" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2751,8 +2746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="71" lean-forward="false" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+        <state relative-caret-position="210">
+          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
           <folding />
         </state>
       </provider>
