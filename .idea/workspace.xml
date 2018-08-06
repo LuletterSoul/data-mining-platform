@@ -15,6 +15,7 @@
     <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
+      <change beforePath="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" afterPath="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -104,8 +105,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -395,7 +396,7 @@
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -521,7 +522,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/dm-web/pom.xml" />
         <option value="$PROJECT_DIR$/dm-web/src/main/docker/doker-compose.yml" />
-        <option value="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/ResultSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/RecordSpecifications.java" />
         <option value="$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/specifications/GroupSpecifications.java" />
@@ -529,6 +529,7 @@
         <option value="$PROJECT_DIR$/dm-model/pom.xml" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/BreakPointUploadController.java" />
         <option value="$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/StageController.java" />
+        <option value="$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile" />
         <option value="$PROJECT_DIR$/Dockerfile" />
       </list>
     </option>
@@ -613,6 +614,32 @@
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
+              <item name="dm-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="docker" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
@@ -1741,14 +1768,7 @@
       <workItem from="1533192380622" duration="55980000" />
       <workItem from="1533399388198" duration="27398000" />
       <workItem from="1533488906032" duration="2596000" />
-      <workItem from="1533491586251" duration="5755000" />
-    </task>
-    <task id="LOCAL-00023" summary="增加数据挖掘任务的状态描述">
-      <created>1520484062391</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1520484062391</updated>
+      <workItem from="1533491586251" duration="6940000" />
     </task>
     <task id="LOCAL-00024" summary="从任务端并行拉取团队信息">
       <created>1520787760178</created>
@@ -2086,7 +2106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533530533969</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Docker Hub自动化构建测试2">
+      <created>1533531639652</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1533531639652</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2122,7 +2149,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1390138000" />
+    <option name="totallyTimeSpent" value="1391323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2146,7 +2173,7 @@
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13716814" sideWeight="0.56283563" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.044247787" sideWeight="0.56283563" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12674543" sideWeight="0.17475729" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2159,7 +2186,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29424778" sideWeight="0.2943072" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.4696243" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17588496" sideWeight="0.4696243" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08450704" sideWeight="0.49785638" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.119469024" sideWeight="0.4940048" order="19" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26208377" sideWeight="0.48370928" order="0" side_tool="false" content_ui="combo" />
@@ -2267,7 +2294,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="工作变动" />
     <MESSAGE value="调整关联逻辑" />
     <MESSAGE value="文件处理异常" />
     <MESSAGE value="完成几个任务追踪接口的单元测试" />
@@ -2292,7 +2318,8 @@
     <MESSAGE value="限制MetaModel版本" />
     <MESSAGE value="明确接口动词" />
     <MESSAGE value="Docker Hub自动化构建测试1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker Hub自动化构建测试1" />
+    <MESSAGE value="Docker Hub自动化构建测试2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker Hub自动化构建测试2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2529,14 +2556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetCollectionController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -2713,14 +2732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/doker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/AlgorithmController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -2761,10 +2772,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/doker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dm-web/src/main/docker/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding />
         </state>
       </provider>
