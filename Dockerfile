@@ -1,5 +1,5 @@
 #阶段一 利用maven将Spring boot的工程代码打包成可执行jar包
-FROM maven:3.5.2-alpine as build-jar
+FROM hub.c.163.com/wuxukun/maven-aliyun:3-jdk-8 as build-jar
 MAINTAINER XiangdeDe Liu <qq313700046@icloud.com>
 VOLUME /tmp
 #打包的工作目录

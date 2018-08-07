@@ -1,5 +1,14 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <extension name="chronon">
+      <include>
+        <pattern>
+          <option name="PATTERN" value="com.vero.dm.web.entry.**" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="true" />
+        </pattern>
+      </include>
+    </extension>
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
       <pattern>
         <option name="PATTERN" value="com.vero.dm.web.entry.*" />
