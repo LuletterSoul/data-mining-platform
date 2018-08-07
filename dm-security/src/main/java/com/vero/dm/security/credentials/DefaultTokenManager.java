@@ -103,8 +103,8 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
             // 签发证书,记录申请的令牌信息,进行超时记录;
             // 更新最后一次访问(申请令牌)的时间;
             signAccessToken(accessToken, user);
-            log.debug("Generate access token applied to [{}].", user.getUsername());
-            log.info("User [{}] last login time: [{}]", user.getUsername(),
+            log.info("给用户[{}]生成证书", user.getUsername());
+            log.info("用户[{}]上一次访问时间为[{}]", user.getUsername(),
                 user.getLastLoginTime());
             disposableTokenWriter.write(response,accessToken);
             return accessToken;
@@ -219,12 +219,11 @@ public class DefaultTokenManager implements TokenManager, TokenExpiredChecker
     {
         List<String> roleNames = userService.findRoleNameSetByUserName(user.getUsername());
         List<String> permissionNames = userService.findPermissionNameSet(user.getUsername());
-
         UserDto userDto = UserDto.build(user, roleNames, permissionNames);
         userDto.setLastLoginTime(new Date());
-        log.info("User [{}]:[{}] last login time: [{}]", userDto.getUsername(), userDto.getName(),
-            userDto.getLastLoginTime());
         userService.updateUser(userDto, accessToken);
+        log.info("用户[{}]访问时间更新为: [{}]", userDto.getUsername(), userDto.getName(),
+                userDto.getLastLoginTime());
         mapUsernameToToken(accessToken, user);
     }
 
