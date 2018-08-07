@@ -1,7 +1,6 @@
 package com.vero.dm.service.impl;
 
 
-import static com.vero.dm.repository.specifications.ResultSpecifications.resultsSpec;
 import static com.vero.dm.repository.specifications.StudentSpecifications.findLeisureStudents;
 import static com.vero.dm.repository.specifications.StudentSpecifications.findStudentsWithParams;
 import static com.vero.dm.util.PathUtils.concat;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.vero.dm.exception.group.StudentNotFoundException;
 import com.vero.dm.model.*;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +81,20 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         return students;
     }
 
+    @Override
+    public StudentDto findByUsername(String username) {
+        Student student = studentJpaRepository.findByUsername(username);
+        if (student == null) {
+            student = new Student();
+        }
+        return StudentDto.build(student);
+    }
+
+    @Override
+    public StudentDto findByUserId(String userId) {
+        return StudentDto.build(studentJpaRepository.findByStudentId(userId));
+    }
+
     private void checkStudentIdDuplication(List<Student> students)
     {
         List<String> existedStudentIds = getStudentIds();
@@ -119,50 +133,6 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
         }
         return null;
     }
-
-    // @Override
-    // public void handleStudentExcelModuleDownload(HttpServletResponse response)
-    // {
-    // String filePath = excelModuleManager.getModulePath(Student.class);
-    // try
-    // {
-    // File file = new File(filePath);
-    // if (file.exists())
-    // {
-    // String filename = file.getName();
-    // InputStream fis = new BufferedInputStream(new FileInputStream(file));
-    // response.reset();
-    // response.setContentType("application/octet-stream");
-    // response.addHeader("Content-Disposition",
-    // "attachment;filename=" + URLEncoder.encode(filename, "utf-8"));
-    // response.addHeader("Content-Length", "" + file.length());
-    // OutputStream out = new BufferedOutputStream(response.getOutputStream());
-    // byte[] buffer = new byte[1024 * 1024];
-    // int i = -1;
-    // while ((i = fis.read(buffer)) != -1)
-    // {
-    // out.write(buffer, 0, i);
-    // out.flush();
-    // }
-    // fis.close();
-    // out.flush();
-    // out.close();
-    // // try
-    // // {
-    // // response.wait();
-    // // }
-    // // catch (InterruptedException e)
-    // // {
-    // // // TODO Auto-generated catch block
-    // // e.printStackTrace();
-    // // }
-    // }
-    // }
-    // catch (IOException e)
-    // {
-    // e.printStackTrace();
-    // }
-    // }
 
     @Override
     public List<String> getStudentIds()
@@ -238,12 +208,6 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
 
     public StudentDto save(Student student)
     {
-        // FavoriteStatus favoriteStatus = this.getFavoriteStatusPersisted(
-        // student.getFavorite().getFavoriteId());
-        // StudentStatus studentStatus = this.getStudentStatusPersisted(
-        // student.getStatus().getStatusId());
-        // student.setFavorite(favoriteStatus);
-        // student.setStatus(studentStatus);
         this.studentJpaRepository.save(student);
         return new StudentDto(student);
     }
@@ -259,10 +223,17 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     }
 
     @Override
-    public StudentDto getStudentById(String studentId)
-    {
-        // return StudentDto.build(studentDao.getStudentById(studentId));
-        return null;
+    public StudentDto getStudent(String userId, String username) {
+        StudentDto stuByUserId = findByUserId(userId);
+        StudentDto stuByUsername = findByUsername(username);
+        if (Objects.isNull(stuByUserId) && Objects.isNull(stuByUsername)) {
+            throw new StudentNotFoundException("此用户不具有学生身份", ExceptionCode.StudentNotFound);
+        }
+
+        if (!Objects.isNull(stuByUserId)) {
+            return stuByUserId;
+        }
+        return stuByUsername;
     }
 
     @Override

@@ -24,6 +24,10 @@ public interface StudentService extends UserService
 {
     List<Student> importStudents(MultipartFile file);
 
+    StudentDto findByUsername(String username);
+
+    StudentDto findByUserId(String userId);
+
     byte[] handleStudentExcelModuleDownload();
 
     List<String> getStudentIds();
@@ -77,7 +81,8 @@ public interface StudentService extends UserService
 
     StudentDto update(StudentDto studentDto);
 
-    StudentDto getStudentById(String studentId);
+
+    StudentDto getStudent(String userId, String username);
 
     int markStudents(List<String> studentIds);
 

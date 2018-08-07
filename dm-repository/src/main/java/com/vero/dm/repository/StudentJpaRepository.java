@@ -25,6 +25,9 @@ import com.vero.dm.model.Student;
 
 public interface StudentJpaRepository extends JpaRepository<Student, String>,JpaSpecificationExecutor<Student>
 {
+    Student findByUserId(String userId);
+
+    Student findByUsername(String username);
 
     @Query(value = "SELECT s2 FROM Student s2 where s2 not in (select s from Student s left join s.miningGroups g left join g.dataMiningTask t where t.plannedStartTime >= :beginDate and t.plannedFinishTime<= :endDate )")
     List<Student> fetchStudentWithoutGroup(@Param("beginDate") Date beginDate,
