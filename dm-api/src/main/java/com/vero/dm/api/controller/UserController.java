@@ -85,6 +85,7 @@ public class UserController
         return new ResponseEntity<>(credentialsService.registerUser(user), HttpStatus.CREATED);
     }
 
+    @ApiOperation("更新一个用户")
     @PutMapping
     public UserDto update(@RequestBody UserDto userDto,
                           @RequestHeader(Constants.ACCESS_TOKEN_HEADER) String accessToken)
