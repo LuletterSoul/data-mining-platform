@@ -85,14 +85,18 @@ public class StudentServiceImpl extends UserServiceImpl implements StudentServic
     public StudentDto findByUsername(String username) {
         Student student = studentJpaRepository.findByUsername(username);
         if (student == null) {
-            student = new Student();
+            return null;
         }
         return StudentDto.build(student);
     }
 
     @Override
     public StudentDto findByUserId(String userId) {
-        return StudentDto.build(studentJpaRepository.findByStudentId(userId));
+        Student student = studentJpaRepository.findByUserId(userId);
+        if (student == null) {
+            return null;
+        }
+        return StudentDto.build(student);
     }
 
     private void checkStudentIdDuplication(List<Student> students)
