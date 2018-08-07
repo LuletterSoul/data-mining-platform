@@ -5,60 +5,50 @@ import java.beans.PropertyVetoException;
 
 import javax.sql.DataSource;
 
-import org.springframework.context.EnvironmentAware;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
-
-public class ComboPooledDataSourceConfig implements EnvironmentAware
+@Component
+public class ComboPooledDataSourceConfig
 
 {
-    private Environment environment;
-
-    public void setEnvironment(Environment environment)
-    {
-        this.environment = environment;
-    }
-
+    @Autowired
     @Bean(name = "dataSource")
-    public DataSource loadDataSource()
+    public DataSource loadDataSource(DataSourceConfig config)
     {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setUser(environment.getProperty("dm.db.username"));
-        dataSource.setPassword(environment.getProperty("dm.db.password"));
-        dataSource.setJdbcUrl(environment.getProperty("dm.db.url"));
+        dataSource.setUser(config.getUsername());
+        dataSource.setPassword(config.getPassword());
+        dataSource.setJdbcUrl(config.getUrl());
         try
         {
-            dataSource.setDriverClass(environment.getProperty("dm.db.driver"));
+            dataSource.setDriverClass(config.getDriverClassName());
         }
         catch (PropertyVetoException e)
         {
             e.printStackTrace();
         }
-        dataSource.setInitialPoolSize(
-            Integer.valueOf(environment.getProperty("dm.db.initialPoolSize")));
-        dataSource.setMaxPoolSize(Integer.valueOf(environment.getProperty("dm.db.maxPoolSize")));
-        dataSource.setMinPoolSize(Integer.valueOf(environment.getProperty("dm.db.minPoolSize")));
-        dataSource.setMaxStatements(
-            Integer.valueOf(environment.getProperty("dm.db.maxStatements")));
+        dataSource.setInitialPoolSize(config.getInitialPoolSize());
+        dataSource.setMaxPoolSize(config.getMaxPoolSize());
+        dataSource.setMinPoolSize(config.getMinPoolSize());
+        dataSource.setMaxStatements(config.getMaxStatements());
         dataSource.setMaxStatementsPerConnection(
-            Integer.valueOf(environment.getProperty("dm.db.maxStatementsPerConnection")));
+                config.getMaxStatementsPerConnection());
         dataSource.setAcquireIncrement(
-            Integer.valueOf(environment.getProperty("dm.db.acquireIncrement")));
+                config.getAcquireIncrement());
         dataSource.setAcquireRetryAttempts(
-            Integer.valueOf(environment.getProperty("dm.db.acquireRetryAttempts")));
+            config.getAcquireRetryAttempts());
         dataSource.setAutoCommitOnClose(
-            Boolean.valueOf(environment.getProperty("dm.db.autoCommitOnClose")));
+            config.isAutoCommitOnClose());
         dataSource.setAcquireRetryDelay(
-            Integer.valueOf(environment.getProperty("dm.db.acquireRetryDelay")));
-        dataSource.setMaxIdleTime(Integer.valueOf(environment.getProperty("dm.db.maxIdleTime")));
-        dataSource.setBreakAfterAcquireFailure(
-            Boolean.valueOf(environment.getProperty("dm.db.breakAfterAcquireFailure")));
+            config.getAcquireRetryDelay());
+        dataSource.setMaxIdleTime(config.getMaxIdleTime());
+        dataSource.setBreakAfterAcquireFailure(config.isBreakAfterAcquireFailure());
+        dataSource.setIdleConnectionTestPeriod(config.getIdleConnectionTestPeriod());
         return dataSource;
     }
 }
