@@ -8,6 +8,7 @@ import com.vero.dm.security.credentials.UserProfileAccessor;
 import com.vero.dm.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
@@ -102,6 +103,7 @@ public class CredentialsController
 
 
     @ApiOperation("创建一个学生账户")
+    @CacheEvict(cacheNames = "studentPageableCache", allEntries = true)
     @PostMapping(value = "/stu_accounts")
     public ResponseEntity<StudentDto> create(@RequestBody Student student)
     {
