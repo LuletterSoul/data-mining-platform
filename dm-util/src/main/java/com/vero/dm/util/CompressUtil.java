@@ -238,16 +238,4 @@ public class CompressUtil {
             destDir.mkdirs();
         }
     }
-
-    public static void main(String[] args) {
-        zip("d:\\test\\cc", "d:\\test\\cc.zip", "11");
-//      try {
-//          File[] files = unzip("d:\\test\\汉字.zip", "aa");
-//          for (int i = 0; i < files.length; i++) {
-//              System.out.println(files[i]);
-//          }
-//      } catch (ZipException e) {
-//          e.printStackTrace();
-//      }
-    }
 }
