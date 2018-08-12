@@ -10,8 +10,8 @@ spring:
     store-type: none
   http:
     multipart:
-      maxRequestSize: 1024Mb
-      maxFileSize: 1024Mb
+      maxRequestSize: 2048Mb
+      maxFileSize: 2048Mb
 
   jpa:
     database: MYSQL
