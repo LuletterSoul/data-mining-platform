@@ -14,7 +14,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import com.vero.dm.util.CompressUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -33,7 +33,6 @@ import com.vero.dm.model.enums.ResultState;
 import com.vero.dm.repository.dto.MiningResultDto;
 import com.vero.dm.service.MiningResultService;
 import com.vero.dm.service.constant.ResourcePath;
-import com.vero.dm.util.ZipCompressor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -110,10 +109,6 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
             try
             {
                 File located = new File(Objects.requireNonNull(absolutePath));
-                if (located.exists())
-                {
-                    FileUtils.forceDelete(located);
-                }
                 resultFile.transferTo(located);
             }
             catch (IOException e)
@@ -128,10 +123,8 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         resultRecord.setSize(resultFile.getSize());
         resultRecord.setSubmittedDate(new Date());
         resultRecordRepository.save(resultRecord);
-        if (result.getState() == ResultState.noResult)
-        {
-            result.setState(ResultState.submitted);
-        }
+        //当前为状态为为提交的结果，置状态位为已提交
+        result.setState(ResultState.submitted);
         result.getRecords().add(resultRecord);
         miningResultRepository.save(result);
         log.info(submitter.getUsername() + "上传了数据挖掘结果,位于[{}]", resultRecord.getPath());
@@ -142,10 +135,11 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
     public void downloadResults(List<Integer> recordIds, HttpServletResponse response)
     {
         List<ResultRecord> records = resultRecordRepository.findAll(recordIds);
-        // DataSetCollection collection = collectionJpaRepository.findOne(collectionId);
+        String dir = getAbsolutePath(ResourcePath.STUDENT_PATH);
         List<String> filePaths = new ArrayList<>();
         records.forEach(d -> filePaths.add(d.getPath()));
-        String dir = getAbsolutePath(ResourcePath.STUDENT_PATH);
+        ArrayList<File> files = new ArrayList<>();
+        records.forEach(d -> files.add(new File(d.getPath())));
         String zipPath = getAbsolutePath(concat(ResourcePath.ZIP_PATH, ResourcePath.STUDENT_PATH));
         // 生成临时压缩文件
         String zipFileName = UUID.randomUUID().toString() + ".zip";
@@ -155,8 +149,9 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         {
             // 进行文件压缩
             // ZipUtil.zip(dir, zipPath, zipFileName, filePaths);
-            ZipCompressor compressor = new ZipCompressor(zipFilePath, dir);
-            compressor.zip(filePaths);
+//            ZipCompressor compressor = new ZipCompressor(zipFilePath, dir);
+//            compressor.zip(filePaths);
+            CompressUtil.zip(dir, zipFilePath,files,null);
             bigFileDownload(response, zipFilePath, generateTimestampZipFileName("results_"));
             threadPoolTaskExecutor.execute(() -> {
                 try

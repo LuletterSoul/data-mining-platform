@@ -38,7 +38,7 @@ public class PathUtils
         {
             String projectRoot = getProjectRoot();
                 log.info("Current project root should be :[{}]", projectRoot);
-            File file = buildFile(relativePath, projectRoot);
+            File file = buildPath(relativePath, projectRoot);
             return file.getAbsolutePath();
         }
         catch (FileNotFoundException e)
@@ -47,6 +47,14 @@ public class PathUtils
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static File buildPath(String relativePath, String projectRoot){
+        File file = new File(concat(projectRoot, relativePath));
+        if(!file.mkdirs()){
+            log.error("创建[{}]失败,已存在",file.getAbsoluteFile());
+        }
+        return file;
     }
 
     public static File buildFile(String relativePath, String projectRoot) {
@@ -71,7 +79,7 @@ public class PathUtils
             }
         }
         if(!file.mkdirs()){
-            log.error("创建[{}]失败",file.getAbsoluteFile());
+            log.info("创建[{}]失败,已存在",file.getAbsoluteFile());
         }
         return file;
     }

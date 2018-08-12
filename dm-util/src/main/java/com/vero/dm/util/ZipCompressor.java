@@ -36,13 +36,15 @@ public class ZipCompressor
         ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFileName));
 
         // 创建缓冲输出流
-        BufferedOutputStream bos = new BufferedOutputStream(out);
+        BufferedOutputStream bos = new BufferedOutputStream(out,10*1024);
 
         File sourceFile = new File(sourceFileName);
 
         // 调用函数
         compress(out, bos, sourceFile, sourceFile.getName(),specialPaths);
+        bos.flush();
         bos.close();
+        out.flush();
         out.close();
         log.debug("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊----压缩成功----＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
     }
@@ -96,9 +98,8 @@ public class ZipCompressor
             log.debug("正在压缩：[{}]",sourceFile.getAbsoluteFile());
             out.putNextEntry(new ZipEntry(base));
             FileInputStream fos = new FileInputStream(sourceFile);
-            BufferedInputStream bis = new BufferedInputStream(fos);
+            BufferedInputStream bis = new BufferedInputStream(fos,10*1024);
             int tag;
-            System.out.println(base);
             // 将源文件写入到zip文件中
             while ((tag = bis.read()) != -1)
             {
@@ -139,7 +140,7 @@ public class ZipCompressor
             log.debug("正在压缩：[{}]",sourceFile.getAbsoluteFile());
             out.putNextEntry(new ZipEntry(base));
             FileInputStream fos = new FileInputStream(sourceFile);
-            BufferedInputStream bis = new BufferedInputStream(fos);
+            BufferedInputStream bis = new BufferedInputStream(fos,10*1024);
             int tag;
             System.out.println(base);
             // 将源文件写入到zip文件中
