@@ -40,6 +40,8 @@ public class AllowOriginFilter extends AdviceFilter
 
     public final static String ACCESS_CONTROL_EXPOSE_HEADERS = "Access-Control-Expose-Headers";
 
+    public final static String ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials";
+
     public final static String DISPOSABLE_HEADER = "X-Access-Token";
 
     public final static String DEFAULT_ALLOW_HEADERS = "Content-Type,Content-Length, Authorization, Accept,X-Access-Token,X-Timestamp,X-Disposable-Token,X-Username,X-Client-Digest,X-Apply-Credential,X-Pre-Token";
@@ -106,6 +108,7 @@ public class AllowOriginFilter extends AdviceFilter
         httpResponse.setHeader(ACCESS_CONTROL_ALLOW_HEADERS, DEFAULT_ALLOW_HEADERS);
         httpResponse.setHeader(ACCESS_CONTROL_ALLOW_METHODS, DEFAULT_ALLOW_METHODS);
         httpResponse.setHeader(ACCESS_CONTROL_EXPOSE_HEADERS, DEFAULT_EXPOSE_HEADER);
+        httpResponse.setHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
         httpResponse.setHeader(Constants.DISPOSABLE_TOKEN_HEADER, "");
     }
 

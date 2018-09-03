@@ -52,7 +52,7 @@ public class PathUtils
     public static File buildPath(String relativePath, String projectRoot){
         File file = new File(concat(projectRoot, relativePath));
         if(!file.mkdirs()){
-            log.error("创建[{}]失败,已存在",file.getAbsoluteFile());
+            log.info("创建[{}]失败,已存在",file.getAbsoluteFile());
         }
         return file;
     }
@@ -73,7 +73,7 @@ public class PathUtils
             }
             catch (IOException e)
             {
-                log.error("删除[{}]失败",file.getAbsoluteFile());
+                log.info("删除[{}]失败",file.getAbsoluteFile());
                 throw new DuplicatedResultHandleException("The duplicated file could't be covery",
                         ExceptionCode.DuplicatedResultHandleError);
             }
