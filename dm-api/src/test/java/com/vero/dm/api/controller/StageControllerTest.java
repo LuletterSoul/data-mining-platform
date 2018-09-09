@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.vero.dm.repository.dto.MiningResultDto;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Assert;
@@ -211,14 +212,14 @@ public class StageControllerTest extends ConfigurationWirer
                 "true")).andExpect(status().isOk()).andDo(print()).andExpect(
                     jsonPath("$.content").exists()).andReturn().getResponse().getContentAsString();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class,
-            MiningResult.class);
+            MiningResultDto.class);
         JSONObject jsonObject = new JSONObject(resultStr);
         // 获取分页之后的内容
-        List<MiningResult> results = objectMapper.readValue(jsonObject.get("content").toString(),
+        List<MiningResultDto> results = objectMapper.readValue(jsonObject.get("content").toString(),
             javaType);
         // 每个学生必定有一条记录
         Assert.assertEquals(students.size(), results.size());
-        List<String> ids = results.stream().map(r -> r.getSubmitter().getStudentId()).collect(
+        List<String> ids = results.stream().map(MiningResultDto::getSubmitterId).collect(
             Collectors.toList());
         Assert.assertTrue(ids.containsAll(studentIds));
         // studentService.deleteBatchByStudentIds(studentIds);
@@ -276,23 +277,23 @@ public class StageControllerTest extends ConfigurationWirer
         // 获取数据挖掘结果
         String resultStr = mockMvc.perform(
             get(reqUrl).contentType(MediaType.APPLICATION_JSON_UTF8).param(
-                "submitterId", students.get(0).getUserId())).andExpect(status().isOk()).andDo(
+                "submitterIds", students.get(0).getUserId())).andExpect(status().isOk()).andDo(
                     print()).andExpect(
                         jsonPath(
                             "$.content").exists()).andReturn().getResponse().getContentAsString();
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class,
-            MiningResult.class);
+                MiningResultDto.class);
         JSONObject jsonObject = new JSONObject(resultStr);
 
 
         // 获取分页之后的内容
-        List<MiningResult> results = objectMapper.readValue(jsonObject.get("content").toString(),
+        List<MiningResultDto> results = objectMapper.readValue(jsonObject.get("content").toString(),
             javaType);
 
 
         // 每个学生必定有一条记录
         Assert.assertEquals(1, results.size());
-        List<String> ids = results.stream().map(r -> r.getSubmitter().getStudentId()).collect(
+        List<String> ids = results.stream().map(MiningResultDto::getSubmitterId).collect(
             Collectors.toList());
         Assert.assertTrue(ids.contains(students.get(0).getStudentId()));
         // studentService.deleteBatchByStudentIds(studentIds);
