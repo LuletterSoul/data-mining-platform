@@ -125,7 +125,12 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         resultRecordRepository.save(resultRecord);
         //当前为状态为为提交的结果，置状态位为已提交
         result.setState(ResultState.submitted);
-        result.getRecords().add(resultRecord);
+        Set<ResultRecord> resultRecords  = result.getRecords();
+        if(Objects.isNull(resultRecords)){
+            resultRecords = new LinkedHashSet<>();
+        }
+        resultRecords.add(resultRecord);
+        result.setRecords(resultRecords);
         miningResultRepository.save(result);
         log.info(submitter.getUsername() + "上传了数据挖掘结果,位于[{}]", resultRecord.getPath());
         return resultRecord;

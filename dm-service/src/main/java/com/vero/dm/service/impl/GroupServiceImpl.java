@@ -397,9 +397,8 @@ public class GroupServiceImpl extends AbstractBaseServiceImpl<DataMiningGroup, S
                 MiningResult result = new MiningResult();
                 result.setStage(stage);
                 result.setSubmitter(member);
-                // miningResultRepository.save(result);
-                results.add(result);
                 result.setState(ResultState.noResult);
+                results.add(result);
             }
         }
         miningResultRepository.save(results);
