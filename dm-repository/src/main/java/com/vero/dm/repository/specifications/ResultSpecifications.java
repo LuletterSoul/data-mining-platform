@@ -12,6 +12,7 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.vero.dm.model.*;
@@ -31,12 +32,13 @@ public class ResultSpecifications
     {
         return (root, query, cb) -> {
             List<Predicate> totalPredicates = new ArrayList<>();
-            Join<MiningTaskStage, DataMiningTask> stJoin = root.join(MiningResult_.STAGE,
-                JoinType.LEFT).join(MiningTaskStage_.TASK, JoinType.LEFT);
+            Join<MiningResult,MiningTaskStage> rtJoin = root.join(MiningResult_.STAGE,
+                    JoinType.LEFT);
+            Join<MiningTaskStage, DataMiningTask> stJoin = rtJoin.join(MiningTaskStage_.TASK, JoinType.LEFT);
             if (!Objects.isNull(stageId))
             {
                 totalPredicates.add(cb.equal(
-                    root.get(MiningResult_.STAGE).get(MiningTaskStage_.STAGE_ID), stageId));
+                        rtJoin.get(MiningTaskStage_.STAGE_ID), stageId));
             }
             if (!StringUtils.isEmpty(taskId))
             {
@@ -44,7 +46,7 @@ public class ResultSpecifications
                     stJoin.get(DataMiningTask_.TASK_ID), taskId);
                 totalPredicates.add(p);
             }
-            if (!Objects.isNull(submitterIds)&&!StringUtils.isEmpty(submitterIds))
+            if (!Objects.isNull(submitterIds)&&!CollectionUtils.isEmpty(submitterIds))
             {
                 Predicate p = root.get(MiningResult_.SUBMITTER).get(Student_.USER_ID).in(submitterIds);
                 totalPredicates.add(p);
