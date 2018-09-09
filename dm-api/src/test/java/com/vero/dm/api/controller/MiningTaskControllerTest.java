@@ -182,7 +182,7 @@ public class MiningTaskControllerTest extends ConfigurationWirer
         String recordsReq = ApiVersion.API_VERSION + ResourcePath.TASK_PATH +"/"+ createdTask.getTaskId() + "/result_records";
 
         String recordStr =   mockMvc.perform(
-                get(recordsReq).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterIds",students.get(0).getUserId())).andDo(
+                get(recordsReq).contentType(MediaType.APPLICATION_JSON_UTF8).param("submitterIds",students.get(0).getUserId()).param("newest","false")).andDo(
                 print()).andExpect(status().isOk()).andExpect(
                 jsonPath(
                         "$.content").exists()).andReturn().getResponse().getContentAsString();

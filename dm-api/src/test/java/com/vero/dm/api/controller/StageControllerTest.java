@@ -203,7 +203,7 @@ public class StageControllerTest extends ConfigurationWirer
         DataMiningGroup group = groupService.createGroup(groupDto);
         Integer stageId = stages.get(0).getStageId();
         String reqUrl = ApiVersion.API_VERSION.concat(ResourcePath.STAGE_PATH).concat("/").concat(
-            String.valueOf(stageId).concat("/findResultByRecords"));
+            String.valueOf(stageId).concat("/results"));
 
         // 获取数据挖掘结果
         String resultStr = mockMvc.perform(

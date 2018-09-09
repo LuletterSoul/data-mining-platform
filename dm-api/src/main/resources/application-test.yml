@@ -41,10 +41,22 @@ spring:
     password: root
     type: com.mchange.v2.c3p0.ComboPooledDataSource
     url: jdbc:mysql://localhost:3306/data_mining?setUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
-    tomcat:
-      test-on-borrow: true
-      test-while-idle: true
-      time-between-eviction-runs-millis: 3600000
+    testOnBorrow: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 3600000
+    initialPoolSize: 10
+    maxPoolSize: 50
+    minPoolSize: 8
+    maxStatements: 200
+    maxStatementsPerConnection: 200
+    acquireIncrement: 3
+    acquireRetryAttempts: 10
+    autoCommitOnClose: false
+    acquireRetryDelay: 2000
+    maxIdleTimeExcessConnections: 50
+    maxIdleTime: 60
+    idleConnectionTestPeriod: 30
+    breakAfterAcquireFailure: false
 
 
   #redis
