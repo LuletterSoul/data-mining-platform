@@ -1,19 +1,15 @@
 package com.vero.dm.model;
 
 
-import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 import com.vero.dm.importer.annotations.ExcelColumn;
 import com.vero.dm.importer.annotations.ExcelModel;
-
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 
 /**
