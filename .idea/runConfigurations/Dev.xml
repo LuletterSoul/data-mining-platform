@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="dm-web" />
     <extension name="chronon">
       <include>
         <pattern>
@@ -9,7 +10,7 @@
         </pattern>
       </include>
     </extension>
-    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+    <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="com.vero.dm.web.entry.*" />
         <option name="ENABLED" value="true" />
@@ -19,8 +20,8 @@
     <option name="PROGRAM_PARAMETERS" value="-Djava.security.egd=file:/dev/./urandom --spring.profiles.active=dev" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-    <module name="dm-web" />
-    <envs />
-    <method />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>
