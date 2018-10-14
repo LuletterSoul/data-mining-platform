@@ -311,7 +311,7 @@ public class MiningTaskServiceImpl extends AbstractBaseServiceImpl<DataMiningTas
     }
 
     @Override
-    public List<DataSetCollection> configureMiningSets(String taskId, List<String> collectionIds)
+    public List<DataSetCollection> configureMiningSets(String taskId, List<Integer> collectionIds)
     {
         List<DataSetCollection> collections = collectionJpaRepository.findAll(collectionIds);
         DataMiningTask task = findById(taskId);

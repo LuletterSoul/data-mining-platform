@@ -10,24 +10,23 @@ import static org.apache.commons.io.FileUtils.readFileToByteArray;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.vero.dm.util.CompressUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.vero.dm.exception.error.ExceptionCode;
-import com.vero.dm.exception.file.DataSetDeleteException;
 import com.vero.dm.exception.file.SetZipException;
 import com.vero.dm.model.DataSetCollection;
 import com.vero.dm.model.DataSetContainer;
 import com.vero.dm.service.DataSetContainerService;
 import com.vero.dm.service.constant.ResourcePath;
-import com.vero.dm.util.ZipUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -57,14 +56,14 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
-    public void downloadZip(List<String> containerIds, String collectionId,
+    public void downloadZip(List<Integer> containerIds, Integer collectionId,
                             HttpServletResponse response)
     {
         List<DataSetContainer> dataSetContainers = containerJpaRepository.findAllByContainerIdIn(
             containerIds);
         DataSetCollection collection = collectionJpaRepository.findOne(collectionId);
-        List<String> filePaths = new LinkedList<>();
-        dataSetContainers.forEach(d -> filePaths.add(d.getFilePath()));
+        ArrayList<File> files = new ArrayList<>();
+        dataSetContainers.forEach(d -> files.add(new File(d.getFilePath())));
         String zipRelativePath = concat(ResourcePath.COLLECTION_PATH, "zips");
         String zipPath = getAbsolutePath(zipRelativePath);
         // 生成临时压缩文件
@@ -74,7 +73,8 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
         try
         {
             // 进行文件压缩
-            ZipUtil.zip(collection.getDataSetFolderPath(), zipPath, zipFileName, filePaths);
+            CompressUtil.zip(collection.getDataSetFolderPath(), zipFilePath,files,null, false );
+//            ZipUtil.zip(collection.getDataSetFolderPath(), , zipFileName, filePaths);
             bigFileDownload(response, zipFilePath, generateTimestampZipFileName("data_set_"));
             try
             {
@@ -107,7 +107,7 @@ public class DataSetContainerServiceImpl extends AbstractBaseServiceImpl<DataSet
     }
 
     @Override
-    public List<DataSetContainer> deleteByContainerIds(List<String> containerIds)
+    public List<DataSetContainer> deleteByContainerIds(List<Integer> containerIds)
     {
         List<DataSetContainer> containers = containerJpaRepository.findAllByContainerIdIn(
             containerIds);

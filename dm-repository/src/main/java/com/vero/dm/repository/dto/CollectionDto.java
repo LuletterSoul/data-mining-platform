@@ -29,7 +29,7 @@ public class CollectionDto
     /**
      * 数据集的ID
      */
-    private String collectionId;
+    private Integer collectionId;
 
     /**
      * 数据集名称

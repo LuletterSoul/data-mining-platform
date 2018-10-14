@@ -26,10 +26,9 @@ public class DataSetContainer
      * 文件容器Id
      */
     @Id
-    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
-    @GeneratedValue(generator = "uuidGenerator")
-    @Column(name = "containerId")
-    private String containerId;
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
+    private Integer containerId;
 
     /**
      * 文件名

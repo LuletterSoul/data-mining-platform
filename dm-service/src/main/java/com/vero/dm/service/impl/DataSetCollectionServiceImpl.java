@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSetCollection, String> implements DataSetCollectionService
+public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSetCollection, Integer> implements DataSetCollectionService
 {
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
@@ -50,7 +50,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetCollection findById(String id)
+    public DataSetCollection findById(Integer id)
     {
         return collectionJpaRepository.findOne(id);
     }
@@ -67,7 +67,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetContainer addDataSetContainer(String collectionId, MultipartFile multipartFile)
+    public DataSetContainer addDataSetContainer(Integer collectionId, MultipartFile multipartFile)
     {
         DataSetCollection collection = findById(collectionId);
         String absolutePath = concat(collection.getDataSetFolderPath(),
@@ -93,14 +93,14 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         return container;
     }
 
-    public List<DataSetCollection> findCollectionsByIds(List<String> collectionIds)
+    public List<DataSetCollection> findCollectionsByIds(List<Integer> collectionIds)
     {
         return collectionJpaRepository.findAll(collectionIds);
     }
 
     @Override
-    public List<DataSetContainer> saveOrUpdateContainers(String collectionId,
-                                                         List<String> containerIds)
+    public List<DataSetContainer> saveOrUpdateContainers(Integer collectionId,
+                                                         List<Integer> containerIds)
     {
         // if (containerIds.isEmpty())
         // {
@@ -130,13 +130,6 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     // }
 
     @Override
-    public DataSetCollection getCollectionByName(String collectionName)
-    {
-        // return collectionDao.getCollectionByName(collectionName);
-        return null;
-    }
-
-    @Override
     public DataSetCollection saveCollection(CollectionDto collectionDto)
     {
         return collectionJpaRepository.save(convert(collectionDto));
@@ -160,7 +153,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public List<DataSetCollection> deleteBatch(List<String> collectionIds)
+    public List<DataSetCollection> deleteBatch(List<Integer> collectionIds)
     {
         List<DataSetCollection> collections = findCollectionsByIds(collectionIds);
 //        List<String> setFilePaths = collectionJpaRepository.findAllDataSetsFilePaths(collectionIds);
@@ -176,7 +169,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetCollection deleteByCollectionId(String collectionId)
+    public DataSetCollection deleteByCollectionId(Integer collectionId)
     {
         DataSetCollection collection = findById(collectionId);
         File dataDir = new File(collection.getDataSetFolderPath());
@@ -209,7 +202,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     // }
 
     @Override
-    public Page<DataSetContainer> getContainers(String collectionId, Pageable pageable)
+    public Page<DataSetContainer> getContainers(Integer collectionId, Pageable pageable)
     {
         return containerJpaRepository.findAll(findContainersByCollectionId(collectionId),pageable);
     }
@@ -222,7 +215,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     }
 
     @Override
-    public DataSetContainer relateContainer(String collectionId, String containerId)
+    public DataSetContainer relateContainer(Integer collectionId, Integer containerId)
     {
         // DataSetContainer container = containerDao.findById(containerId);
         // return this.addDataSetContainer(collectionId, container);
@@ -309,7 +302,7 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
         descriptions.forEach(d -> d.setDataSetCollection(newCollection));
         newCollection.setDataSetCharacteristics(new LinkedHashSet<>(dataSetCharacteristics));
         collectionJpaRepository.save(newCollection);
-        String folderPath = concat(ResourcePath.COLLECTION_PATH, newCollection.getCollectionId());
+        String folderPath = concat(ResourcePath.COLLECTION_PATH, newCollection.getCollectionId().toString());
         newCollection.setDataSetFolderPath(PathUtils.getAbsolutePath(folderPath));
         log.info("Create new data set base folder:[{}]", folderPath);
         return newCollection;

@@ -45,7 +45,7 @@ public class DataSetContainerController
     @ApiImplicitParams({
         @ApiImplicitParam(name = "containerId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
     @DeleteMapping
-    public ResponseEntity<List<DataSetContainer>> delete(@RequestBody List<String> containerIds)
+    public ResponseEntity<List<DataSetContainer>> delete(@RequestBody List<Integer> containerIds)
     {
         return new ResponseEntity<>(containerService.deleteByContainerIds(containerIds),
             HttpStatus.OK);
@@ -63,8 +63,8 @@ public class DataSetContainerController
 
     @ApiOperation(value = "导出数据集的压缩文件")
     @PostMapping(value = "/zips", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void downloadZip(@ApiParam(value = "数据集文件的标识号") @RequestBody List<String> containerIds,
-                            @RequestParam("collectionId") String collectionId,
+    public void downloadZip(@ApiParam(value = "数据集文件的标识号") @RequestBody List<Integer> containerIds,
+                            @RequestParam("collectionId") Integer collectionId,
                             HttpServletResponse response)
     {
         containerService.downloadZip(containerIds, collectionId, response);
