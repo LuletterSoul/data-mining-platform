@@ -1,2 +1,0 @@
-INSERT INTO data_mining.role_info (roleId, available, description, roleName) VALUES (100, true, '管理员', 'admin');
-INSERT INTO data_mining.role_info (roleId, available, description, roleName) VALUES (101, true, '用户管理员', 'user');

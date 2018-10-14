@@ -11,13 +11,75 @@
     <bookmark url="file://$PROJECT_DIR$/dm-repository/src/main/java/com/vero/dm/repository/UserJpaRepository.java" line="24" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="修复记录为空的bug">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/eclipseCodeFormatter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/eclipseCodeFormatter.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Dev.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="860404a8-ec95-4c31-b757-0e491262f58b" name="Default" comment="ignore ./idea">
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_param.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_param0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_type.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_type0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_type_rel.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_algorithm_type_rel0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_area_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_area_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_feature_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_feature_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_feature_rela.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_feature_rela0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_type.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_type0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_type_rel.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_attr_type_rel0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_collec_char_rela.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_collec_char_rela0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_mining_task.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_mining_task0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_attribute.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_attribute0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_cell.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_cell0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_collection.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_collection0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_container.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_container0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_row.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_data_set_row0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_favorite_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_favorite_status0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_favorite_stu_rel.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_favorite_stu_rel0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_group_student_rel.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_group_student_rel0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_hibernate_sequence.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_hibernate_sequence0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_mining_group.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_mining_group0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_mining_task_type.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_mining_task_type0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_permission_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_permission_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_role_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_role_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_role_permission_re.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_role_permission_re0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_set_char_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_set_char_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_set_task_rel.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_set_task_rel0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_student_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_student_status0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_sys_statistics.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_sys_statistics0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_task_algorithm_rela.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_task_algorithm_rela0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_task_data_set_ref.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_task_data_set_ref0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_user_info.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_user_info0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_user_role_re.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data_mining_user_role_re0.sql" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -183,7 +245,7 @@
         <counts>
           <entry key="Git file" value="40" />
           <entry key="JAVA" value="407" />
-          <entry key="PLAIN_TEXT" value="93" />
+          <entry key="PLAIN_TEXT" value="106" />
           <entry key="YAML" value="27" />
         </counts>
       </usages-collector>
@@ -196,7 +258,7 @@
         <counts>
           <entry key="gitignore" value="40" />
           <entry key="java" value="407" />
-          <entry key="txt" value="93" />
+          <entry key="txt" value="106" />
           <entry key="yml" value="27" />
         </counts>
       </usages-collector>
@@ -243,7 +305,7 @@
         <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="499">
-              <caret line="63" column="36" lean-forward="true" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -270,7 +332,7 @@
         <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningResult.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2370">
-              <caret line="92" column="2" lean-forward="true" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
+              <caret line="92" column="2" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -288,7 +350,7 @@
         <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/DataSetCollectionServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="416">
-              <caret line="228" column="63" lean-forward="true" selection-start-line="228" selection-start-column="63" selection-end-line="228" selection-end-column="63" />
+              <caret line="228" column="63" selection-start-line="228" selection-start-column="63" selection-end-line="228" selection-end-column="63" />
               <folding>
                 <element signature="e#1399#1400#0" expanded="true" />
                 <element signature="e#1426#1427#0" expanded="true" />
@@ -394,7 +456,7 @@
         <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/AbstractBaseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="326">
-              <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+              <caret line="75" column="28" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -430,7 +492,7 @@
         <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="413">
-              <caret line="547" column="50" lean-forward="true" selection-start-line="547" selection-start-column="50" selection-end-line="547" selection-end-column="50" />
+              <caret line="547" column="50" selection-start-line="547" selection-start-column="50" selection-end-line="547" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -466,7 +528,7 @@
         <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetContainerController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="278">
-              <caret line="69" column="75" lean-forward="true" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
+              <caret line="69" column="75" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -669,11 +731,6 @@
               <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="data-mining-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-minning-platform" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -705,7 +762,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/dm-model/target/generated-sources/apt/com/vero/dm/model/SystemStatistics_.java&#10;true&#10;F:/GitHup/data-minning-platform/dm-model/target/generated-sources/apt/com/vero/dm/model/Role_.java" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539508433887" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539508764776" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -1549,14 +1606,7 @@
       <workItem from="1536481117967" duration="9844000" />
       <workItem from="1536763774717" duration="620000" />
       <workItem from="1538459251015" duration="1970000" />
-      <workItem from="1539485053523" duration="9415000" />
-    </task>
-    <task id="LOCAL-00033" summary="一次一密条件放宽">
-      <created>1529508811452</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1529508811452</updated>
+      <workItem from="1539485053523" duration="9665000" />
     </task>
     <task id="LOCAL-00034" summary="新增单元测试环境">
       <created>1532096984540</created>
@@ -1894,7 +1944,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539507197446</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="ignore ./idea">
+      <created>1539508461922</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1539508461922</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1930,7 +1987,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1422162000" />
+    <option name="totallyTimeSpent" value="1422412000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1945,7 +2002,7 @@
     <frame x="-7" y="-7" width="2208" height="1248" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48370928" visible="true" weight="0.18046512" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48370928" visible="true" weight="0.18046512" />
       <window_info id="Structure" order="1" weight="0.24973147" />
       <window_info id="Designer" order="2" />
       <window_info id="Persistence" order="3" side_tool="true" />
@@ -1975,7 +2032,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="16" weight="0.32936078" />
       <window_info anchor="bottom" id="Spring" order="17" sideWeight="0.49785638" weight="0.08450704" />
       <window_info anchor="bottom" id="Version Control" order="18" sideWeight="0.504995" weight="0.6995074" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="19" sideWeight="0.4940048" visible="true" weight="0.09662717" />
+      <window_info anchor="bottom" id="Terminal" order="19" sideWeight="0.4940048" visible="true" weight="0.035551503" />
       <window_info anchor="bottom" id="Problems" order="20" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="21" sideWeight="0.5223256" weight="0.11668186" />
       <window_info anchor="bottom" id="Database Changes" order="22" />
@@ -2076,7 +2133,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增一些字段，空指针暂时填坑" />
     <MESSAGE value="用户实体新增一些字段，空指针暂时填坑" />
     <MESSAGE value="新增注册时的三种业务异常" />
     <MESSAGE value="暴露学生注册接口" />
@@ -2101,7 +2157,8 @@
     <MESSAGE value="更新数据库文件，查询bug" />
     <MESSAGE value="修复记录为空的bug" />
     <MESSAGE value="重构数据集存储结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构数据集存储结构" />
+    <MESSAGE value="ignore ./idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="ignore ./idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2383,7 +2440,7 @@
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/DataSetContainerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
-          <caret line="69" column="75" lean-forward="true" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
+          <caret line="69" column="75" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -2404,7 +2461,7 @@
     <entry file="file://$PROJECT_DIR$/dm-model/src/main/java/com/vero/dm/model/MiningResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2370">
-          <caret line="92" column="2" lean-forward="true" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
+          <caret line="92" column="2" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -2481,7 +2538,7 @@
     <entry file="file://$PROJECT_DIR$/dm-api/src/main/java/com/vero/dm/api/controller/MultipleOptionsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="499">
-          <caret line="63" column="36" lean-forward="true" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -2502,7 +2559,7 @@
     <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/DataSetCollectionServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
-          <caret line="228" column="63" lean-forward="true" selection-start-line="228" selection-start-column="63" selection-end-line="228" selection-end-column="63" />
+          <caret line="228" column="63" selection-start-line="228" selection-start-column="63" selection-end-line="228" selection-end-column="63" />
           <folding>
             <element signature="e#1399#1400#0" expanded="true" />
             <element signature="e#1426#1427#0" expanded="true" />
@@ -2516,7 +2573,7 @@
     <entry file="file://$PROJECT_DIR$/dm-service/src/main/java/com/vero/dm/service/impl/AbstractBaseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
-          <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+          <caret line="75" column="28" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -2544,7 +2601,7 @@
     <entry file="file://$PROJECT_DIR$/dm-repository/src/main/resources/data_mining.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
-          <caret line="547" column="50" lean-forward="true" selection-start-line="547" selection-start-column="50" selection-end-line="547" selection-end-column="50" />
+          <caret line="547" column="50" selection-start-line="547" selection-start-column="50" selection-end-line="547" selection-end-column="50" />
         </state>
       </provider>
     </entry>
