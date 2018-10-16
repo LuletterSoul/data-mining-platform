@@ -29,6 +29,7 @@ public class ResultRecord {
 //    @ManyToOne
 //    @JoinColumn(name = "resultId", foreignKey = @ForeignKey(name = "RESULT_FK"))
 //    private MiningResult result;
+    private String fileName;
 
     /**
      * 提交日期

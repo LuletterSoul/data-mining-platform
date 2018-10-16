@@ -118,6 +118,7 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         });
         ResultRecord resultRecord = new ResultRecord();
         resultRecord.setChecked(false);
+        resultRecord.setFileName(fileName);
         // resultRecord.setResult(result);
         resultRecord.setPath(absolutePath);
         resultRecord.setSize(resultFile.getSize());

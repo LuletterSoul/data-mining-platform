@@ -117,6 +117,7 @@ public class DataSetCollectionController
             HttpStatus.CREATED);
     }
 
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "上传数据集文件")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
@@ -129,6 +130,7 @@ public class DataSetCollectionController
     }
 
 
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "获取所有数据集文件信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})

@@ -63,6 +63,9 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public Page<DataSetCollection> getPageableCollection(Pageable pageable)
     {
+//        Page<DataSetCollection> collections = collectionJpaRepository.findAll(pageable);
+//        collections.getContent().forEach(c -> c.setNumberOfWebHits(c.getNumberOfWebHits()));
+//        collectionJpaRepository.save(collections.getContent());
         return collectionJpaRepository.findAll(pageable);
     }
 
@@ -204,6 +207,9 @@ public class DataSetCollectionServiceImpl extends AbstractBaseServiceImpl<DataSe
     @Override
     public Page<DataSetContainer> getContainers(Integer collectionId, Pageable pageable)
     {
+        DataSetCollection collection = findById(collectionId);
+        collection.setNumberOfWebHits(collection.getNumberOfWebHits() + 1);
+        collectionJpaRepository.save(collection);
         return containerJpaRepository.findAll(findContainersByCollectionId(collectionId),pageable);
     }
 
