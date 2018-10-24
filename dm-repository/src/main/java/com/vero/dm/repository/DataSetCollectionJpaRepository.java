@@ -16,9 +16,9 @@ import java.util.List;
  * @since data-mining-platform
  */
 
-public interface DataSetCollectionJpaRepository extends JpaRepository<DataSetCollection, String>
+public interface DataSetCollectionJpaRepository extends JpaRepository<DataSetCollection, Integer>
 {
     @Query(value = "select con.filePath from DataSetCollection c left join c.dataSetContainers con where c.collectionId in :collectionIds")
-    List<String> findAllDataSetsFilePaths(@Param("") List<String> collectionIds);
+    List<Integer> findAllDataSetsFilePaths(@Param("") List<Integer> collectionIds);
 
 }

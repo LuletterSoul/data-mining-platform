@@ -54,7 +54,7 @@ public interface MiningTaskService extends BaseService<DataMiningTask, String>
 
     List<Algorithm> configureAlgorithms(String taskId, List<Integer> algorithmIds);
 
-    List<DataSetCollection> configureMiningSets(String taskId, List<String> collectionIds);
+    List<DataSetCollection> configureMiningSets(String taskId, List<Integer> collectionIds);
 
     List<DataSetCollection> fetchRefCollections(String taskId);
 

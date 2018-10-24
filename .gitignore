@@ -14,10 +14,9 @@ buildNumber.properties
 *.iml
 out
 gen
-/out/
 /logs/
 /target/
-.idea/artifacts
-.idea/libraries
-.idea/dataSources
-/.idea/workspace.xml
+.idea
+students
+data_sets
+excel

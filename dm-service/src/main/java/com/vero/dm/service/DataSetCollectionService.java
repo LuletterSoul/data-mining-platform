@@ -19,20 +19,18 @@ import org.springframework.web.multipart.MultipartFile;
  * @description
  * @modified by:
  */
-public interface DataSetCollectionService extends BaseService<DataSetCollection, String>
+public interface DataSetCollectionService extends BaseService<DataSetCollection, Integer>
 {
 
 
     Page<DataSetCollection> getPageableCollection(Pageable pageable);
 
 
-    DataSetContainer addDataSetContainer(String collectionId, MultipartFile multipartFile);
+    DataSetContainer addDataSetContainer(Integer collectionId, MultipartFile multipartFile);
 
-    List<DataSetContainer> saveOrUpdateContainers(String collectionId, List<String> containerIds);
+    List<DataSetContainer> saveOrUpdateContainers(Integer collectionId, List<Integer> containerIds);
 
-//    DataSetContainer removeDataSetContainer(String collectionId, String containerId);
-
-    DataSetCollection getCollectionByName(String collectionName);
+//    DataSetContainer removeDataSetContainer(Integer collectionId, Integer containerId);
 
     DataSetCollection saveCollection(CollectionDto collectionDto);
 
@@ -40,17 +38,17 @@ public interface DataSetCollectionService extends BaseService<DataSetCollection,
 
     DataSetCollection deleteByName(String collectionName);
 
-    List<DataSetCollection> deleteBatch(List<String> collectionIds);
+    List<DataSetCollection> deleteBatch(List<Integer> collectionIds);
 
-    DataSetCollection deleteByCollectionId(String collectionId);
+    DataSetCollection deleteByCollectionId(Integer collectionId);
 
     DataSetCollection updateCollection(DataSetCollection collection);
 
-    Page<DataSetContainer> getContainers(String collectionId, Pageable pageable);
+    Page<DataSetContainer> getContainers(Integer collectionId, Pageable pageable);
 
     List<String> getCollectionNames();
 
-    DataSetContainer relateContainer(String collectionId, String containerId);
+    DataSetContainer relateContainer(Integer collectionId, Integer containerId);
 
     Map<String, List<?>> getOptions();
 

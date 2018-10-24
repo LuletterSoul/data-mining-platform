@@ -17,7 +17,6 @@
         <module>dm-api</module>
         <module>dm-web</module>
     </modules>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

@@ -118,6 +118,7 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
         });
         ResultRecord resultRecord = new ResultRecord();
         resultRecord.setChecked(false);
+        resultRecord.setFileName(fileName);
         // resultRecord.setResult(result);
         resultRecord.setPath(absolutePath);
         resultRecord.setSize(resultFile.getSize());
@@ -156,7 +157,7 @@ public class MiningResultServiceImpl extends AbstractBaseServiceImpl<MiningResul
             // ZipUtil.zip(dir, zipPath, zipFileName, filePaths);
 //            ZipCompressor compressor = new ZipCompressor(zipFilePath, dir);
 //            compressor.zip(filePaths);
-            CompressUtil.zip(dir, zipFilePath,files,null);
+            CompressUtil.zip(dir, zipFilePath,files,null, true );
             bigFileDownload(response, zipFilePath, generateTimestampZipFileName("results_"));
             threadPoolTaskExecutor.execute(() -> {
                 try

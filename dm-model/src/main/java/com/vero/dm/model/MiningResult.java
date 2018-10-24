@@ -47,7 +47,7 @@ public class MiningResult
     /**
      * 提交结果的学生
      */
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "submitterId", foreignKey = @ForeignKey(name = "SUBMITTER_FK"))
     private Student submitter;
 

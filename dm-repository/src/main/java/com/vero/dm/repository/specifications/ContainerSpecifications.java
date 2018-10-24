@@ -18,7 +18,7 @@ import com.vero.dm.model.DataSetContainer_;
 
 public class ContainerSpecifications
 {
-    public static Specification<DataSetContainer> findContainersByCollectionId(String collectionId)
+    public static Specification<DataSetContainer> findContainersByCollectionId(Integer collectionId)
     {
         return (root, query, cb) -> {
             DataSetCollection collection = new DataSetCollection();

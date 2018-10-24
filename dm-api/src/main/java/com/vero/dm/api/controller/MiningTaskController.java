@@ -191,7 +191,7 @@ public ResponseEntity<Page<MiningTaskDto>> getList(@PageableDefault(size = 15, s
     @ApiOperation("分配数据集")
     @PostMapping(value = "/{taskId}/collections")
     public ResponseEntity<List<DataSetCollection>> arrangeMiningSets(@PathVariable("taskId") String taskId,
-                                                                     @RequestBody List<String> collectionIds)
+                                                                     @RequestBody List<Integer> collectionIds)
     {
         return new ResponseEntity<>(miningTaskService.configureMiningSets(taskId, collectionIds),
             HttpStatus.CREATED);

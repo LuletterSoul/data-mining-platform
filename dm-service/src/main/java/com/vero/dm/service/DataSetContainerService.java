@@ -24,11 +24,11 @@ public interface DataSetContainerService extends BaseService<DataSetContainer, S
 
     Page<DataSetContainer> getPageableContainers(Pageable pageable);
 
-    void downloadZip(List<String> containerIds, String collectionId, HttpServletResponse response);
+    void downloadZip(List<Integer> containerIds, Integer collectionId, HttpServletResponse response);
 
     List<DataSetContainer> fetchDataSetContainers(String collectionId);
 
-    List<DataSetContainer> deleteByContainerIds(List<String> containerIds);
+    List<DataSetContainer> deleteByContainerIds(List<Integer> containerIds);
 
     DataSetCollection fetchCollectionRef(String containerId);
 

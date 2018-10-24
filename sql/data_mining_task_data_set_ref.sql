@@ -1,2 +1,0 @@
-INSERT INTO data_mining.task_data_set_ref (taskId, collectionId) VALUES ('ff8080815ed2cdf4015ed2d0ee6b0001', '402881e85ec408fc015ec86463000021');
-INSERT INTO data_mining.task_data_set_ref (taskId, collectionId) VALUES ('ff8080815ed2cdf4015ed2d0ee6b0001', '402881ef5ecb1bf1015ecb3285000003');

@@ -67,7 +67,7 @@ public class MiningTaskDto
     /**
      * 每个分组可以被分配多个数据集
      */
-    private List<String> collectionIds = new ArrayList<>();
+    private List<Integer> collectionIds = new ArrayList<>();
 
     /**
      * 每个数据任务可以采用多种算法

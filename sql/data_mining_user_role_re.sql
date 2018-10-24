@@ -1,1 +1,0 @@
-INSERT INTO data_mining.user_role_re (userId, roleId) VALUES ('8ae4820a5eb2450d015eb2453b1c0000', 100);

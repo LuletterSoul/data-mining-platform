@@ -65,7 +65,7 @@ public class DataSetCollectionController
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
     @GetMapping(value = "/{collectionId}")
-    public ResponseEntity<DataSetCollection> getById(@PathVariable("collectionId") String collectionId)
+    public ResponseEntity<DataSetCollection> getById(@PathVariable("collectionId") Integer collectionId)
     {
         return new ResponseEntity<>(collectionService.findById(collectionId), HttpStatus.OK);
     }
@@ -76,7 +76,7 @@ public class DataSetCollectionController
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
     @DeleteMapping(value = "/{collectionId}")
-    public ResponseEntity<DataSetCollection> delete(@PathVariable("collectionId") String collectionId)
+    public ResponseEntity<DataSetCollection> delete(@PathVariable("collectionId") Integer collectionId)
     {
         DataSetCollection collection = collectionService.deleteByCollectionId(collectionId);
         return new ResponseEntity<>(collection, HttpStatus.NO_CONTENT);
@@ -88,7 +88,7 @@ public class DataSetCollectionController
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionIds", value = "数据集编号", dataType = "List", paramType = "body", required = true)})
     @DeleteMapping
-    public ResponseEntity<List<DataSetCollection>> deleteBatch(@RequestBody List<String> collectionIds)
+    public ResponseEntity<List<DataSetCollection>> deleteBatch(@RequestBody List<Integer> collectionIds)
     {
         return new ResponseEntity<>(collectionService.deleteBatch(collectionIds),
             HttpStatus.NO_CONTENT);
@@ -117,23 +117,25 @@ public class DataSetCollectionController
             HttpStatus.CREATED);
     }
 
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "上传数据集文件")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
     @PostMapping(value = "/{collectionId}/containers")
     public ResponseEntity<DataSetContainer> addContainer(@RequestPart MultipartFile file,
-                                                         @PathVariable("collectionId") String collectionId)
+                                                         @PathVariable("collectionId") Integer collectionId)
     {
         return new ResponseEntity<>(collectionService.addDataSetContainer(collectionId, file),
             HttpStatus.CREATED);
     }
 
 
+    @CacheEvict(cacheNames = "dataSetCollectionCache",allEntries = true)
     @ApiOperation(value = "获取所有数据集文件信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "collectionId", value = "数据集编号", dataType = "String", paramType = "path", required = true)})
     @GetMapping(value = "/{collectionId}/containers")
-    public ResponseEntity<Page<DataSetContainer>> getContainer(@PageableDefault Pageable pageable,@PathVariable("collectionId") String collectionId)
+    public ResponseEntity<Page<DataSetContainer>> getContainer(@PageableDefault Pageable pageable,@PathVariable("collectionId") Integer collectionId)
     {
          return new ResponseEntity<>(collectionService.getContainers(collectionId,pageable),HttpStatus.OK);
     }

@@ -32,9 +32,9 @@ public class DataSetCollection
      * 数据集的ID
      */
     @Id
-    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
-    @GeneratedValue(generator = "uuidGenerator")
-    private String collectionId;
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
+    private Integer collectionId;
 
     /**
      * 数据集名称

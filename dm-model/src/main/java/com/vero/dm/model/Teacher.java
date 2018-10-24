@@ -24,6 +24,8 @@ import lombok.ToString;
 @DiscriminatorValue(value = "Teacher")
 public class Teacher extends User
 {
+    private static final long serialVersionUID = -8781446225981777396L;
+
     private String teacherName;
 
     @Column(unique = true)
@@ -36,10 +38,10 @@ public class Teacher extends User
     @OneToMany(mappedBy = "teacherBuilder")
     private Set<DataMiningGroup> buildGroups;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "favorite_stu_rel", joinColumns = @JoinColumn(name = "t_userId", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "s_userId", referencedColumnName = "userId"))
-    private Set<Student> favoriteStudent;
+//    @JsonIgnore
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "favorite_stu_rel", joinColumns = @JoinColumn(name = "t_userId", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "s_userId", referencedColumnName = "userId"))
+//    private Set<Student> favoriteStudent;
 
     @Override
     public String toString() {
@@ -47,7 +49,6 @@ public class Teacher extends User
                 "teacherName='" + teacherName + '\'' +
                 ", teacherId='" + teacherId + '\'' +
                 ", buildGroups=" + buildGroups +
-                ", favoriteStudent=" + favoriteStudent +
                 '}';
     }
 }

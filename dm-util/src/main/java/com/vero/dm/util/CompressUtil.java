@@ -169,7 +169,7 @@ public class CompressUtil {
         return null;
     }
 
-    public static String zip(String src, String dest, ArrayList<File> files, String passwd) {
+    public static String zip(String src, String dest, ArrayList<File> files, String passwd, boolean keepDirStructure) {
         File srcFile = new File(src);
         dest = buildDestinationZipFilePath(srcFile, dest);
         ZipParameters parameters = new ZipParameters();
@@ -180,8 +180,10 @@ public class CompressUtil {
             parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD); // 加密方式
             parameters.setPassword(passwd.toCharArray());
         }
-        //增加相对于绝对路径的目录结构
-        parameters.setDefaultFolderPath(srcFile.getParentFile().getAbsolutePath());
+        if(keepDirStructure){
+            //增加相对于绝对路径的目录结构
+            parameters.setDefaultFolderPath(srcFile.getParentFile().getAbsolutePath());
+        }
         try {
             ZipFile zipFile = new ZipFile(dest);
             zipFile.addFiles(files, parameters);
